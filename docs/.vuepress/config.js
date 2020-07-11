@@ -4,7 +4,8 @@ module.exports = {
     dest: './dist',
     port: '7777',
     head: [
-        ['link', {rel: 'icon', href: '/img/favicon.png'}]
+        ['link', {rel: 'icon', href: '/img/favicon.png'}],
+        ["link", { rel: "stylesheet", href: "/css/style.css" }]
     ],
     markdown: {
         lineNumbers: true
@@ -12,7 +13,7 @@ module.exports = {
     themeConfig: {
         nav: require('./nav.js'),
         sidebar: require('./sidebar.js'),
-        sidebarDepth: 2,
+        sidebarDepth: 1,
         lastUpdated: 'Last Updated',
         searchMaxSuggestoins: 10,
         serviceWorker: {
