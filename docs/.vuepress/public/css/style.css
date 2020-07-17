@@ -2,24 +2,24 @@
   display: none !important;
 }
 
-.home .skill-panel {
+.home .tech-stack {
   margin-top: 2.5rem;
   padding: 1.2rem 0;
   text-align: center;
   border-top: 1px solid #eaecef;
 }
 
-.home .skill-panel h1 {
+.home .tech-stack h1 {
   text-align: center;
   color: #4e6e8e;
   /*color: #139ce7*/
 }
 
-.home .skill-panel .skill-logo {
+.home .tech-stack .tech-logo {
   text-align: center;
 }
 
-.home .skill-panel .skill-logo-icon {
+.home .tech-stack .tech-logo-icon {
   position: relative;
   display: inline-block;
   width: 128px;
@@ -37,18 +37,18 @@
   transform: translateX(var(--transform-translate-x)) translateY(var(--transform-translate-y)) rotate(var(--transform-rotate)) skewX(var(--transform-skew-x)) skewY(var(--transform-skew-y)) scaleX(var(--transform-scale-x)) scaleY(var(--transform-scale-y));
 }
 
-.home .skill-panel .skill-logo-icon svg {
+.home .tech-stack .tech-logo-icon svg {
   padding: 32px;
   width: 64px;
   height: 64px;
 }
 
-.home .skill-panel .skill-logo-icon:hover {
+.home .tech-stack .tech-logo-icon:hover {
   --transform-scale-x: 1.1;
   --transform-scale-y: 1.1;
 }
 
-.home .skill-panel .skill-logo-icon:hover:before {
+.home .tech-stack .tech-logo-icon:hover:before {
   content: "";
   position: absolute;
   bottom: 13px;
@@ -61,7 +61,7 @@
   margin-left: -6px;
 }
 
-.home .skill-panel .skill-logo-icon:hover:after {
+.home .tech-stack .tech-logo-icon:hover:after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: -1rem;
