@@ -1,6 +1,6 @@
 module.exports = [
   {
-    text: '前端三板斧',
+    text: '前端基础',
     items: [
       { text: 'HTML', link: '/frontend-basics/html/' },
       { text: 'CSS', link: '/frontend-basics/css/' },
