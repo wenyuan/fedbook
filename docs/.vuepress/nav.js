@@ -8,7 +8,7 @@ module.exports = [
     ]
   },
   {
-    text: '历史', link: '/history/'
+    text: '更新日志', link: '/history/'
   },
   {
     text: '关于',

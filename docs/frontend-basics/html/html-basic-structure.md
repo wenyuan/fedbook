@@ -79,5 +79,3 @@
 * Web 组件
   
   template、slot
-
-## 3. 符合 SEO 的布局规范
