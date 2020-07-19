@@ -15,17 +15,17 @@ module.exports = [
 				collapsable: true
 			},
 			{
-				title: '3. 盒模型',
+				title: '3. 长度和单位',
+				path: '/frontend-basics/css/length-and-units',
+				collapsable: true
+			},
+			{
+				title: '4. 盒模型',
 				path: '/frontend-basics/css/box',
 				collapsable: true
 			},
 			{
-				title: '4. 布局',
-				path: '/frontend-basics/css/layout',
-				collapsable: true
-			},
-			{
-				title: '5. 值和单位',
+				title: '5. 布局',
 				path: '/frontend-basics/css/layout',
 				collapsable: true
 			}
