@@ -10,8 +10,8 @@ module.exports = [
 				collapsable: true
 			},
 			{
-				title: '2. 选择符',
-				path: '/frontend-basics/css/selector',
+				title: '2. 选择器与样式优先级',
+				path: '/frontend-basics/css/selectors-and-selector-priority',
 				collapsable: true
 			},
 			{
