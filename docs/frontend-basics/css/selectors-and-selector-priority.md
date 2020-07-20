@@ -2,7 +2,7 @@
 
 ## 1. 选择器写法
 
-[CSS 选择器参考手册](https://www.w3school.com.cn/cssref/css_selectors.asp "CSS 选择器参考手册")
+参考：[CSS 选择器参考手册](https://www.w3school.com.cn/cssref/css_selectors.asp "CSS 选择器参考手册")
 
 ## 2. 样式优先级
 
