@@ -21,7 +21,7 @@ module.exports = [
 			},
 			{
 				title: '4. 盒模型',
-				path: '/frontend-basics/css/box',
+				path: '/frontend-basics/css/box-model',
 				collapsable: true
 			},
 			{
