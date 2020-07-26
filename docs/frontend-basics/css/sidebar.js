@@ -25,8 +25,8 @@ module.exports = [
 				collapsable: true
 			},
 			{
-				title: '5. 布局',
-				path: '/frontend-basics/css/layout',
+				title: '5. 定位（position）',
+				path: '/frontend-basics/css/position-property',
 				collapsable: true
 			}
     ]
