@@ -11,7 +11,5 @@
   <a href="https://www.wenyuanblog.com/gift.html" target="_blank"><img alt="sponsor" src="https://img.shields.io/badge/sponsor-❤-ff69b4.svg?style=flat-square"></a>
 </p>
 
-# 一、闻鸢同学的技能书
-
 在线预览：https://www.skillbook.top/
 
