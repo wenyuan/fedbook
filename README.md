@@ -1,7 +1,7 @@
 # 闻鸢同学的技能书
 
 <p align="center">
-  <img src="img/logo.png" alt="skillbook.top" width="160" hegiht="160"/>
+  <img src="https://www.skillbook.top/img/skills.png" alt="skillbook.top" width="160" hegiht="160"/>
 </p>
 
 <p align="center">
