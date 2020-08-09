@@ -10,6 +10,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '二、执行上下文',
+        path: '/frontend-basics/javascript/execution-context',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
