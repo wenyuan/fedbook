@@ -5,27 +5,27 @@ module.exports = [
     collapsable: false,
     children: [
 			{
-				title: '1. CSS 引入方式',
+				title: '一、CSS 引入方式',
 				path: '/frontend-basics/css/ways-to-insert-css',
 				collapsable: true
 			},
 			{
-				title: '2. 选择器与样式优先级',
+				title: '二、选择器与样式优先级',
 				path: '/frontend-basics/css/selectors-and-selector-priority',
 				collapsable: true
 			},
 			{
-				title: '3. 长度和单位',
+				title: '三、长度和单位',
 				path: '/frontend-basics/css/length-and-units',
 				collapsable: true
 			},
 			{
-				title: '4. 盒模型',
+				title: '四、盒模型',
 				path: '/frontend-basics/css/box-model',
 				collapsable: true
 			},
 			{
-				title: '5. 定位（position）',
+				title: '五、定位（position）',
 				path: '/frontend-basics/css/position-property',
 				collapsable: true
 			},
