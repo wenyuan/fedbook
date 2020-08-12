@@ -15,6 +15,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '三、作用域',
+        path: '/frontend-basics/javascript/scope',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
