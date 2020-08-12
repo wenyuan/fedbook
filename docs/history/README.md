@@ -16,6 +16,7 @@
 
 ## 3. JavaScript 系列
 
+* 2020.08.12 &emsp; 添加 JavaScript 的《作用域》章节。
 * 2020.08.09 &emsp; 添加 JavaScript 的《执行上下文》章节。
 * 2020.08.02 &emsp; 添加 JavaScript 的《数据类型》章节。
 
