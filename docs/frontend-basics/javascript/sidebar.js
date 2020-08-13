@@ -20,6 +20,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '四、闭包',
+        path: '/frontend-basics/javascript/closure',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
