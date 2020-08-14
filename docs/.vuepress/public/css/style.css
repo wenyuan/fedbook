@@ -9,6 +9,7 @@ body {
   /*background-image: url(https://www.seoblogs.cn/images/bj.jpg);*/
 }
 
+/* 导航栏 Logo
 #app .navbar .home-link span:before {
   display: inline-block;
   content: '';
@@ -19,6 +20,7 @@ body {
   vertical-align: bottom;
   margin-right: 8px;
 }
+ */
 
 .home .features {
   display: none !important;

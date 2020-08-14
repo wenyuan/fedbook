@@ -12,6 +12,7 @@ module.exports = {
         lineNumbers: true
     },
     themeConfig: {
+        logo: '/img/logo.png',
         nav: require('./nav.js'),
         sidebar: require('./sidebar.js'),
         sidebarDepth: 2,
