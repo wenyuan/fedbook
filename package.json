@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.5.3",
+    "vuepress": "^1.5.3"
+  }
 }

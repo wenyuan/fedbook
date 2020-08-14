@@ -27,5 +27,6 @@ module.exports = {
         editLinks: true,
         editLinkText: '在 GitHub 上编辑此页 ！',
         smoothScroll: true
-    }
+    },
+    plugins: ['@vuepress/back-to-top']
 }
