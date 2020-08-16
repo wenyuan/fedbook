@@ -31,5 +31,12 @@ module.exports = [
         ]
       }
     ]
+  },
+  {
+    text: '线路',
+    items: [
+      { text: '国内', link: 'https://skillbook.gitee.io/' },
+      { text: '国外', link: 'https://skillbook.top/' }
+    ]
   }
 ]
