@@ -1,6 +1,7 @@
 module.exports = {
     title: '闻鸢同学的技能书',
     description: '一个90后程序员，终身学习者',
+    base: '/skillbook/',
     dest: './dist',
     port: '7777',
     head: [
