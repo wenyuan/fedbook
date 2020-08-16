@@ -100,7 +100,12 @@ body {
   border-radius: 4px;
 }
 
-/* scrollbar */
+/* Custom Containers */
+.custom-block.tip .custom-block-title {
+  color: #42b983;
+}
+
+/* ScrollBar */
 ::-webkit-scrollbar {
   width: 13px;
   height: 13px;
