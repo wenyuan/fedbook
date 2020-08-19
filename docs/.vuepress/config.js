@@ -1,5 +1,5 @@
 module.exports = {
-    title: '闻鸢同学的技能书',
+    title: '文渊的前端小册',
     description: '一个90后程序员，终身学习者',
     dest: './dist',
     port: '7777',
