@@ -39,8 +39,8 @@ module.exports = [
   {
     text: '线路',
     items: [
-      { text: '国内(主)', link: 'https://www.skillbook.top/' },
-      { text: '国内(备)', link: 'https://skillbook.gitee.io/' },
+      { text: '国内(主)', link: 'https://www.fedbook.cn/' },
+      { text: '国内(备)', link: 'https://winyuan.gitee.io/' },
       { text: '国外', link: 'https://wenyuan.github.io/' }
     ]
   }
