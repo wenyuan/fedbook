@@ -3,9 +3,9 @@ body {
 }
 
 #app .home {
-  background: #f5f5f5;
-  overflow-x: hidden;
-  max-width: 100% !important;
+  /*background: #f5f5f5;*/
+  /*overflow-x: hidden;*/
+  /*max-width: 100% !important;*/
   /*background-image: url(https://www.seoblogs.cn/images/bj.jpg);*/
 }
 
@@ -23,7 +23,7 @@ body {
  */
 
 .home .features {
-  display: none !important;
+  /*display: none !important;*/
 }
 
 .home .tech-stack {

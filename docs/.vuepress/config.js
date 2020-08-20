@@ -1,6 +1,6 @@
 module.exports = {
-    title: '文渊的前端小册',
-    description: '一个90后程序员，终身学习者',
+    title: '前端修炼小册',
+    description: "Wenyuan's Front-End Development Book",
     dest: './dist',
     port: '7777',
     head: [
