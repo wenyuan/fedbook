@@ -25,6 +25,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '五、this 指向',
+        path: '/frontend-basics/javascript/this-keyword',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
