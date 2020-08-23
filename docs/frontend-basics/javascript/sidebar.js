@@ -30,6 +30,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '六、原型与原型链',
+        path: '/frontend-basics/javascript/prototype-and-prototype-chain',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
