@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /img/skills.png
-actionText: 开始翻阅 →
+actionText: 进入小册 →
 actionLink: /foreword/roadmap/
 features:
 - title: 前端开发

@@ -20,7 +20,10 @@ body {
   vertical-align: bottom;
   margin-right: 8px;
 }
- */
+*/
+.navbar .logo {
+  margin-right: 0.4rem !important;
+}
 
 .home .features {
   /*display: none !important;*/
@@ -105,7 +108,7 @@ body {
   color: #42b983;
 }
 
-/* Inline Code Block */
+/* Inline Code Block
 .theme-default-content code {
   font-size: 14px !important;
   padding: 2px 4px;
@@ -117,6 +120,7 @@ body {
   font-family: "Operator Mono", Consolas, Monaco, Menlo, monospace !important;
   word-break: break-all !important;
 }
+*/
 
 /* ScrollBar */
 ::-webkit-scrollbar {
