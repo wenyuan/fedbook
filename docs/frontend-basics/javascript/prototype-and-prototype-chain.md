@@ -76,3 +76,14 @@ console.log(typeof foo.hasOwnProperty) // function
 从上图的链条来看，我们在 `foo` 这个对象中，查找 toString 方法，没找到，就循着 `foo.__proto__` 查找，`foo.__proto__` 里也没有找到，就循着 `foo.__proto__.__proto__` 找，这个时候找到了，则调用；如果还找不到，就再往上找，即 `foo.__proto__._proto__._proto__`，这个时候值为 `null`，查找结束。
 
 这就是原型链，我们也可以说，`Foo` 继承了 `Object`，所以 `foo` 中能访问到 Object 的原型属性。
+
+## 3. `prototype` 和 `__proto__`
+
+* `prototype`：显式原型，是 Function 独有的属性，这个属性对应着一个对象，这个对象就是我们所谓的原型对象。
+* `__proto__`：隐式原型，是每个对象都具有的属性，这个属性的值指向该对象的构造函数的原型对象。
+
+* 对象的隐式原型的值为其对应构造函数的显式原型的值：
+
+```javascript
+foo.__proto__ === Foo.prototype // true
+```
