@@ -50,9 +50,9 @@ siteName = '前端修炼小册'
 
 最后输出结果：
 
-```bash
-> "欢迎访问：www.fedbook.cn"
-> undefined
+```javascript
+"欢迎访问：www.fedbook.cn"
+undefined
 ```
 
 整个 JavaScript 的执行流程如下图所示：
@@ -262,13 +262,13 @@ foo(2);
 
 最后输出结果：
 
-```bash
-begin:2
-begin:1
-begin:0
-end:0
-end:1
-end:2
+```javascript
+"begin:2"
+"begin:1"
+"begin:0"
+"end:0"
+"end:1"
+"end:2"
 ```
 
 ### 5.2 执行栈大小

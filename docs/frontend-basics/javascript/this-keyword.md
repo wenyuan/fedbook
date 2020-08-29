@@ -33,7 +33,7 @@ mySite.printName()
 ```
 
 ::: details 输出结果
-```
+```javascript
 "前端修炼小册"
 ```
 :::
@@ -61,7 +61,7 @@ mySite.printName()
 ```
 
 ::: details 输出结果
-```
+```javascript
 "www.fedbook.cn"
 ```
 :::
@@ -182,7 +182,7 @@ mySite.showThis()
 ```
 
 ::: details 输出结果
-```
+```javascript
 ▸ {name: "www.fedbook.cn", showThis: ƒ}
 ▸ Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}
 ```
