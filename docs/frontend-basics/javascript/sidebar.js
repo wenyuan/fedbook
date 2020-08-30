@@ -35,6 +35,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '七、继承',
+        path: '/frontend-basics/javascript/inheritance',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
