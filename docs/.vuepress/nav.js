@@ -14,24 +14,20 @@ module.exports = [
       { text: 'JavaScript', link: '/frontend-basics/javascript/' },
     ]
   },
-  {
-    text: '更新日志', link: '/history/'
-  },
+  // {
+  //   text: '更新日志', link: '/history/'
+  // },
   {
     text: '关于',
     items: [
+      { text: '关于本站', link: '/about/' },
+      { text: '随心分享', link: '/share/' },
+      { text: '更新日志', link: '/history/' },
       {
-        text: '码农圈',
+        text: '其它',
         items: [
           { text: '博客', link: 'https://www.wenyuanblog.com/' },
-          { text: 'GitHub', link: 'https://github.com/wenyuan' },
-          { text: '掘金', link: 'https://juejin.im/user/5e02c16c51882512252dce88' },
-        ]
-      },
-      {
-        text: '娱乐圈',
-        items: [
-          { text: '哔哩哔哩', link: 'https://space.bilibili.com/296075930' }
+          { text: 'GitHub', link: 'https://github.com/wenyuan' }
         ]
       }
     ]
