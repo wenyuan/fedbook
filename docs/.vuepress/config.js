@@ -16,14 +16,8 @@ module.exports = {
         nav: require('./nav.js'),
         sidebar: require('./sidebar.js'),
         sidebarDepth: 2,
-        lastUpdated: 'Last Updated',
+        lastUpdated: '上次更新',
         searchMaxSuggestoins: 10,
-        serviceWorker: {
-            updatePopup: {
-                message: "有新的内容.",
-                buttonText: '更新'
-            }
-        },
         editLinks: true,
         editLinkText: '在 GitHub 上编辑此页 ！',
         smoothScroll: true
