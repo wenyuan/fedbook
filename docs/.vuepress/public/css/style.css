@@ -108,6 +108,16 @@ body {
   color: #42b983;
 }
 
+/* Comment Link */
+.comment-link {
+  /*text-align: right;*/
+  /*margin-bottom: 8px;*/
+  display: inline-block;
+}
+.comment-link a {
+  color: #4e6e8e;
+}
+
 /* Inline Code Block
 .theme-default-content code {
   font-size: 14px !important;
