@@ -57,15 +57,15 @@ JavaScript 一共有三种作用域：
 
 ```javascript
 function innerFunction() {
-    console.log(myName)
+    console.log(myName);
 }
 function outerFunction() {
-    var myName = "函数作用域"
-    innerFunction()
+    var myName = "函数作用域";
+    innerFunction();
 }
 
-var myName = "全局作用域"
-outerFunction()
+var myName = "全局作用域";
+outerFunction();
 ```
 
 从代码中可以看出，全局执行上下文和 `outerFunction` 函数的执行上下文中都包含变量 `myName`，那 `innerFunction` 函数里面 `myName` 的值到底该选择哪个？

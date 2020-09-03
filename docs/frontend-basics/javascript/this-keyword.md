@@ -24,12 +24,12 @@
 var mySite = { 
   name: "www.fedbook.cn",
   printName: function () {
-    console.log(name)
+    console.log(name);
   }    
-}
+};
 
-let name = "前端修炼小册"
-mySite.printName()
+let name = "前端修炼小册";
+mySite.printName();
 ```
 
 ::: details 输出结果
@@ -52,12 +52,12 @@ mySite.printName()
 var mySite = { 
   name: "www.fedbook.cn",
   printName: function () {
-    console.log(this.name) // 修改了这一行
+    console.log(this.name); // 修改了这一行
   }    
 }
 
-let name = "前端修炼小册"
-mySite.printName()
+let name = "前端修炼小册";
+mySite.printName();
 ```
 
 ::: details 输出结果
@@ -80,19 +80,19 @@ mySite.printName()
 
 ```javascript {10}
 function baz() { 
-  console.log("baz")
-  bar()
+  console.log("baz");
+  bar();
 }
 function bar() {
-  console.log("bar")
-  foo()
+  console.log("bar");
+  foo();
 }
 function foo() {
-  debugger
-  console.log("foo")
+  debugger;
+  console.log("foo");
 }
 
-baz()
+baz();
 ```
 
 使用浏览器的调试工具来查找 `foo` 函数的调用位置，如下图所示：
@@ -112,25 +112,25 @@ baz()
 function baz() {
   // 当前的调用栈是：baz
   // 因此，当前调用位置是全局作用域
-  console.log("baz")
-  bar() // <-- bar 的调用位置
+  console.log("baz");
+  bar(); // <-- bar 的调用位置
 }
 
 function bar() {
   // 当前的调用栈是：baz -> bar
   // 因此，当前调用位置在 baz 中
-  console.log("bar")
-  foo() // <-- foo 的调用位置
+  console.log("bar");
+  foo(); // <-- foo 的调用位置
 }
 
 function foo() {
   // 当前的调用栈是：baz -> bar -> foo
   // 因此，当前调用位置在 bar 中
-  debugger
-  console.log("foo")
+  debugger;
+  console.log("foo");
 }
 
-baz() // <-- baz 的调用位置
+baz(); // <-- baz 的调用位置
 ```
 
 ## 4. 在调用位置查找 this 绑定对象
@@ -140,25 +140,25 @@ baz() // <-- baz 的调用位置
 * Step1 函数是否在 `new` 中调用（new 绑定）？如果是的话 `this` 绑定的是新创建的对象。
 
 ```javascript
-var bar = new foo()
+var bar = new foo();
 ```
 
 * Step2 函数是否通过 `call`、`apply`（显式绑定）或者硬绑定调用？如果是的话 `this` 绑定的是指定的对象。
 
 ```javascript
-var bar = foo.call(obj2)
+var bar = foo.call(obj2);
 ```
 
 * Step3 函数是否在某个上下文对象中调用（隐式绑定）？如果是的话 `this` 绑定的是那个上下文对象。
 
 ```javascript
-var bar = obj1.foo()
+var bar = obj1.foo();
 ```
 
 * Step4 如果都不是的话，使用默认绑定。如果在严格模式下，就绑定到 `undefined`，否则绑定到全局对象。
 
 ```javascript
-var bar = foo()
+var bar = foo();
 ```
 
 ## 5. this 的缺陷以及应对方案
@@ -173,11 +173,11 @@ var bar = foo()
 var mySite = {
   name : "www.fedbook.cn", 
   showThis: function(){
-    console.log(this)
-    function printName(){ console.log(this) }
-    printName()
+    console.log(this);
+    function printName(){ console.log(this) };
+    printName();
   }
-}
+};
 mySite.showThis()
 ```
 

@@ -13,7 +13,7 @@ ES6 出来之后，原型在平时工作中用得就比较少了。但原型是 
 
 ```javascript
 function Foo () {}
-console.log(Foo.prototype) // { constructor: f Foo(), __proto__: Object }
+console.log(Foo.prototype); // { constructor: f Foo(), __proto__: Object }
 ```
 
 画图表示如下：
@@ -30,7 +30,7 @@ console.log(Foo.prototype) // { constructor: f Foo(), __proto__: Object }
 我们来看 `Foo` 函数的实例化：
 
 ```javascript
-const foo = new Foo()
+const foo = new Foo();
 ```
 
 这里我们通过 `new` 操作符实例化了一个 `foo` 对象，来看此时的图解：
@@ -67,8 +67,8 @@ const foo = new Foo()
 我们在 new 出 `foo` 对象后，并没有给 `foo` 对象添加任何方法，但我们依然能从 `foo` 对象中调用 `toString()`、 `hasOwnProperty()` 等方法。这是为什么呢？
 
 ```javascript
-console.log(typeof foo.toString) // function
-console.log(typeof foo.hasOwnProperty) // function
+console.log(typeof foo.toString); // function
+console.log(typeof foo.hasOwnProperty); // function
 ```
 
 原因是：JavaScript 在设计之初，`__proto__` 就是用来查找属性和方法的。

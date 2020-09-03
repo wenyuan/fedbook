@@ -7,13 +7,13 @@
 ```javascript
 function Person() {
   this.say = function() {
-    console.log("你好")
+    console.log("你好");
   }
 }
 
-var p1 = new Person()
-var p2 = new Person()
-console.log(p1.say === p2.say) // false
+var p1 = new Person();
+var p2 = new Person();
+console.log(p1.say === p2.say); // false
 ```
 
 于是，我们就需要用到**继承**。
@@ -28,25 +28,25 @@ console.log(p1.say === p2.say) // false
 
 ```javascript
 function SuperType() {
-  this.property = true
+  this.property = true;
 }
  
 SuperType.prototype.getSuperValue = function() {
-  return this.property
-}
- 
+  return this.property;
+};
+
 function SubType() {
-  this.subproperty = false
+  this.subproperty = false;
 }
  
-SubType.prototype = new SuperType()
+SubType.prototype = new SuperType();
 
 SubType.prototype.getSubValue = function() {
   return this.property
-}
+};
 
-var instance = new SubType()
-console.log(instance.getSuperValue()) // true
+var instance = new SubType();
+console.log(instance.getSuperValue()); // true
 ```
 
 例子中的实例及构造函数和原型之间的关系图：
@@ -84,13 +84,13 @@ JavaScript 的对象中几乎都会有一个 `__proto__` 属性，指向它的�
 
 ::: details 代码示例
 ```javascript
-alert(instance instanceof Object) //true
-alert(instance instanceof SuperType) //true
-alert(instance instanceof SubType) //true
+alert(instance instanceof Object); //true
+alert(instance instanceof SuperType); //true
+alert(instance instanceof SubType); //true
 
-alert(Object.prototype.isPrototypeOf(instance)) //true
-alert(SuperType.prototype.isPrototypeOf(instance)) //true
-alert(SubType.prototype.isPrototypeOf(instance)) //true
+alert(Object.prototype.isPrototypeOf(instance)); //true
+alert(SuperType.prototype.isPrototypeOf(instance)); //true
+alert(SubType.prototype.isPrototypeOf(instance)); //true
 ```
 :::
 
@@ -105,23 +105,23 @@ alert(SubType.prototype.isPrototypeOf(instance)) //true
 ::: details 代码示例
 ```javascript {12-20}
 function SuperType() {
-  this.property = true
+  this.property = true;
 }
 SuperType.prototype.getSuperValue = function() {
-  return this.property
-}
+  return this.property;
+};
 function SubType() {
-  this.subproperty = false
+  this.subproperty = false;
 }
 // 继承 SuperType
-SubType.prototype = new SuperType()
+SubType.prototype = new SuperType();
 // 使用对象字面量添加新方法，会导致上一行代码无效
 SubType.prototype = {
   getSubValue: function() {
-    return this.subproperty
+    return this.subproperty;
   },
   someOtherMethod: function() {
-    return false
+    return false;
   }
 }
 
@@ -137,22 +137,22 @@ console.log(instance.getSuperValue)
 
 ```javascript {10,11}
 function SuperType() {
-  this.colors = ["red", "blue", "green"]
-  this.name = "wenyuan"
+  this.colors = ["red", "blue", "green"];
+  this.name = "wenyuan";
 }
 function SubType() {}
 // 继承 SuperType
-SubType.prototype = new SuperType()
+SubType.prototype = new SuperType();
 
-var instance1 = new SubType()
-instance1.colors.push("yellow")
-instance1.name = "www.fedbook.cn"
-console.log(instance1.colors)
-console.log(instance1.name)
+var instance1 = new SubType();
+instance1.colors.push("yellow");
+instance1.name = "www.fedbook.cn";
+console.log(instance1.colors);
+console.log(instance1.name);
 
-var instance2 = new SubType()
-console.log(instance2.colors)
-console.log(instance2.name)
+var instance2 = new SubType();
+console.log(instance2.colors);
+console.log(instance2.name);
 ```
 
 最后输出结果：
@@ -185,18 +185,18 @@ console.log(instance2.name)
 
 ```javascript {6}
 function SuperType() {
-  this.colors = ["red", "blue", "green"]
+  this.colors = ["red", "blue", "green"];
 }
 function SubType(){
   // 继承了 SuperType
-  SuperType.call(this)
+  SuperType.call(this);
 }
 
-var instance1 = new SubType()
-instance1.colors.push("black")
-console.log(instance1.colors) // ["red", "blue", "green", "black"]
-var instance2 = new SubType()
-console.log(instance2.colors) // ["red", "blue", "green"]
+var instance1 = new SubType();
+instance1.colors.push("black");
+console.log(instance1.colors); // ["red", "blue", "green", "black"]
+var instance2 = new SubType();
+console.log(instance2.colors); // ["red", "blue", "green"]
 ```
 
 ### 2.2 基本思想
@@ -213,17 +213,17 @@ console.log(instance2.colors) // ["red", "blue", "green"]
 
 ```javascript
 function SuperType(name) {
-  this.name = name
+  this.name = name;
 }
 function SubType() {
     // 继承了SuperType，同时还传递了参数
-    SuperType.call(this, "wenyuan")
+    SuperType.call(this, "wenyuan");
     // 实例属性
-    this.age = 29
+    this.age = 29;
 }
-var instance = new SubType()
-alert(instance.name)  // "wenyuan"
-alert(instance.age)  // 29
+var instance = new SubType();
+alert(instance.name);  // "wenyuan"
+alert(instance.age);  // 29
 ```
 
 ### 2.4 劣势
@@ -244,34 +244,34 @@ alert(instance.age)  // 29
 
 ```javascript
 function SuperType(name) {
-  this.name = name
-  this.colors = ["red", "blue", "green"]
+  this.name = name;
+  this.colors = ["red", "blue", "green"];
 }
 SuperType.prototype.sayName = function() {
-   console.log(this.name)
-}
+   console.log(this.name);
+};
 function SubType(name, age) {
   // 继承属性
-  SuperType.call(this, name)
-  this.age = age
+  SuperType.call(this, name);
+  this.age = age;
 }
 // 继承方法
-SubType.prototype = new SuperType()
-SubType.prototype.constructor = SubType
+SubType.prototype = new SuperType();
+SubType.prototype.constructor = SubType;
 SubType.prototype.sayAge = function() {
-  console.log(this.age)
+  console.log(this.age);
 }
 
-var instance1 = new SubType("wenyuan", 5)
-instance1.colors.push("black")
-console.log(instance1.colors) // ["red", "blue", "green", "black"]
-instance1.sayName() // "wenyuan"
-instance1.sayAge() // 5
+var instance1 = new SubType("wenyuan", 5);
+instance1.colors.push("black");
+console.log(instance1.colors); // ["red", "blue", "green", "black"]
+instance1.sayName(); // "wenyuan"
+instance1.sayAge(); // 5
 
-var instance2 = new SubType("www.fedbook.cn", 3)
-console.log(instance2.colors) // ["red", "blue", "green"]
-instance2.sayName() // "www.fedbook.cn"
-instance2.sayAge() // 3
+var instance2 = new SubType("www.fedbook.cn", 3);
+console.log(instance2.colors); // ["red", "blue", "green"]
+instance2.sayName(); // "www.fedbook.cn"
+instance2.sayAge(); // 3
 ```
 
 ### 3.3 优势
@@ -294,8 +294,8 @@ instance2.sayAge() // 3
 function object(o) {
   function W(){
   }
-  W.prototype = o
-  return new W()
+  W.prototype = o;
+  return new W();
 }
 ```
 
@@ -305,11 +305,11 @@ ES5 新增了 `Object.create()` 方法规范化了原型式继承。即调用方
 
 ```javascript
 // 需要创建一个纯洁的对象：对象什么属性都没有
-Object.create(null)
+Object.create(null);
 
 // 创建一个子对象，它继承自某个父对象
-var o1 = { say:function(){} }
-var o2 = Object.create(o1)
+var o1 = { say:function(){} };
+var o2 = Object.create(o1);
 ```
 
 ### 4.2 寄生式继承
@@ -320,11 +320,11 @@ var o2 = Object.create(o1)
 
 ```javascript
 function createAnother(origin) {
-  var clone = object(origin)
+  var clone = object(origin);
   clone.say = function() {
-    alert('hi')
-  }
-  return clone
+    alert('hi');
+  };
+  return clone;
 }
 ```
 
@@ -340,9 +340,9 @@ function createAnother(origin) {
 
 ```javascript
 function inheritPrototype(SubType,SuperType) {
-  var prototype = object(SuperType.prototype)
-  prototype.constructor = SubType
-  SubType.prototype = prototype
+  var prototype = object(SuperType.prototype);
+  prototype.constructor = SubType;
+  SubType.prototype = prototype;
 }
 ```
 
@@ -354,18 +354,18 @@ function inheritPrototype(SubType,SuperType) {
 function object(o) {
   function W() {
   }
-  W.prototype = o
-  return new W
+  W.prototype = o;
+  return new W;
 }
 function inheritPrototype(SubType, SuperType) {
-  var prototype
+  var prototype;
   if (typeof Object.create === 'function') {
-    prototype = Object.create(SuperType.prototype)
+    prototype = Object.create(SuperType.prototype);
   } else {
-    prototype = object(SuperType.prototype)
+    prototype = object(SuperType.prototype);
   }         
-  prototype.constructor = SubType
-  SubType.prototype = prototype
+  prototype.constructor = SubType;
+  SubType.prototype = prototype;
 }
 ```
 
@@ -382,12 +382,12 @@ Class 可以通过 `extends` 关键字实现继承。子类必须在 `constructo
 ```javascript
 class ColorPoint extends Point {
   constructor(x, y, color) {
-    super(x, y) // 调用父类的 constructor(x, y)
-    this.color = color
+    super(x, y); // 调用父类的 constructor(x, y)
+    this.color = color;
   }
 
   toString() {
-    return this.color + ' ' + super.toString() // 调用父类的 toString()
+    return this.color + ' ' + super.toString(); // 调用父类的 toString()
   }
 }
 ```

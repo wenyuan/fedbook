@@ -26,17 +26,17 @@
 这种形式的闭包在 JavaScript 中非常常见。
 
 ```javascript
-var a = 1
+var a = 1;
 function foo() {
-  var a = 2
+  var a = 2;
   // 这就是闭包
   return function() {
-    console.log(a)
+    console.log(a);
   }
 }
 
-var bar = foo()
-bar() // 输出2，而不是1
+var bar = foo();
+bar(); // 输出2，而不是1
 ```
 
 ### 2.2 作为函数参数传递
@@ -44,20 +44,20 @@ bar() // 输出2，而不是1
 无论通过何种手段将内部函数传递到它所在词法作用域之外，它都会持有对原始作用域的引用，无论在何处执行这个函数，都会产生闭包。
 
 ```javascript
-var a = 1
+var a = 1;
 function foo() {
-  var a = 2
+  var a = 2;
   function baz() {
-    console.log(a)
+    console.log(a);
   }
-  bar(baz)
+  bar(baz);
 }
 function bar(fn) {
   // 这就是闭包
-  fn()
+  fn();
 }
 
-foo() // 输出2，而不是1
+foo(); // 输出2，而不是1
 ```
 
 ### 2.3 回调函数
@@ -67,13 +67,13 @@ foo() // 输出2，而不是1
 ```javascript
 // 定时器
 setTimeout(function timeHandler() {
-  console.log('timer')
-}, 100)
+  console.log('timer');
+}, 100);
 
 // 事件监听
 $('#container').click(function() {
-  console.log('DOM Listener')
-})
+  console.log('DOM Listener');
+});
 ```
 
 ### 2.4 IIFE（立即执行函数表达式）
@@ -81,9 +81,9 @@ $('#container').click(function() {
 IIFE（立即执行函数表达式）并不是一个典型的闭包，但它确实创建了一个闭包。
 
 ```javascript
-var a = 2
+var a = 2;
 (function IIFE() {
-  console.log(a) // 输出2
+  console.log(a); // 输出2
 })()
 ```
 
@@ -121,14 +121,14 @@ var common = (function() {
 
 ```javascript
 function foo() {
-  var a = 5
+  var a = 5;
   return function() {
-    a++
-    console.log(a)
+    a++;
+    console.log(a);
   }
 }
-var bar = foo()
+var bar = foo();
 
 // 要想释放 bar 里面保存的 a，只能通过释放 bar
-bar = null // 或者 bar = undefined
+bar = null; // 或者 bar = undefined
 ```

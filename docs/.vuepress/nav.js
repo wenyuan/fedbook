@@ -40,4 +40,4 @@ module.exports = [
       { text: '国外', link: 'https://wenyuan.github.io/' }
     ]
   }
-]
+];
