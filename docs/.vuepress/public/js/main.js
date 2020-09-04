@@ -14,5 +14,9 @@ window.onload = function() {
   }
 
   init();
-  addCommentLink()
+  setTimeout(function() {
+    // 阅读一段时间过后才能写评论
+    // 其实是为了解决 nextTick() 的问题
+    addCommentLink();
+  }, 5000)
 };
