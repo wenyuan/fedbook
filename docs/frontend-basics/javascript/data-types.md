@@ -1,28 +1,43 @@
 # 数据类型
 
-JavaScript 中共有 5 种基本数据类型和 1 种复杂数据类型。
+最新的 ECMAScript 标准定义了 8 种数据类型:
 
-## 1. 六种数据类型
+* 7 种基本数据类型：
+  * Undefined
+  * Null
+  * Boolean
+  * Number
+  * BigInt（ECMAScript 2020）
+  * String
+  * Symbol（ECMAScript 2015）
+* 1 种复杂数据类型：
+  * Object
 
-* 5 种基本数据类型：Undefined、Null、Boolean、Number 和 String。
-* 1 种复杂数据类型：Object。
+## 1. 使用 typeof 操作符判断数据类型
 
-## 2. typeof 操作符
+`typeof` 用于检测给定变量的数据类型，对一个值使用 `typeof` 操作符会返回一个表示操作数的类型的字符串。但 `typeof` 的运算结果，与运行时类型的规定有很多不一致的地方。
 
-`typeof` 用于检测给定变量的数据类型，对一个值使用 typeof 操作符可能返回下列某个字符串：
+我们可以看下表来对照一下。
 
-* `"undefined"` —— 如果这个值未定义；
-* `"boolean"` —— 如果这个值是布尔值；
-* `"string"` —— 如果这个值是字符串；
-* `"number"` —— 如果这个值是数值；
-* `"object"` —— 如果这个值是对象或 null；
-* `"function"` —— 如果这个值是函数。
+| 示例表达式         | typeof 结果   | 运行时类型行为     |
+| ----------------- | ------------- | ---------------- |
+| void(0)           | "undefined"   | Undefined        |
+| null              | "object"      | Null             |
+| true              | "boolean"     | Boolean          |
+| 3                 | "number"      | Number           |
+| 9007199254740992n | "bigint"      | BigInt           |
+| "ok"              | "string"      | String           |
+| Symbol("a")       | "symbol"      | Symbol           |
+| (function(){})    | "function"    | Function object  |
+| {}                | "object"      | Any other object |
 
-注：`typeof` 是一个操作符而不是函数，后面可加括号也可省略。
+在表格中，多数项是对应的，但是请注意 `object —— Null` 和 `function —— Object` 是特例，我们理解类型的时候需要特别注意这个区别。
 
-## 3. 数据类型详解
+此外，由于 `typeof` 是一个操作符而不是函数，后面可加括号也可省略。
 
-### 3.1 Undefined 类型
+## 2. 8 种数据类型介绍
+
+### 2.1 Undefined 类型
 
 Undefined 类型只有一个值，即特殊的 `undefined`。  
 在使用 `var` 声明变量但未对其加以初始化时，这个变量的值就是 `undefined`；
@@ -31,20 +46,20 @@ Undefined 类型只有一个值，即特殊的 `undefined`。
 
 **显示地初始化变量是明智的选择**，这样当 `typeof` 操作符返回 `"undefined"` 值时，我们就知道被检测地变量还没有被声明，而不是尚未初始化。（—— 出自红宝书）
 
-### 3.2 Null 类型
+### 2.2 Null 类型
 
 Null 类型也只有一个值，即特殊的 `null`。  
 从逻辑角度来看，`null` 值表示一个**空对象指针**，所以使用 `typeof` 操作符检测 `null` 值时会返回 `"object"`。
 
-如果定义的变量准备在将来**用于保存对象**，那么最好将该变量初始化为 null 而不是其他值。这样一来，只要直接检查相应的变量是否等于 null 值就可以知道它是否已经保存了一个对象的引用。（—— 出自红宝书）
+如果定义的变量准备在将来**用于保存对象**，那么最好将该变量初始化为 `null` 而不是其他值。这样一来，只要直接检查相应的变量是否等于 `null` 值就可以知道它是否已经保存了一个对象的引用。（—— 出自红宝书）
 
-实际上，`undefined` 值是派生自 `null` 值的，因此 null == undefined 会返回 true，但 `null === undefined` 则返回 `false` 了。
+实际上，`undefined` 值是派生自 `null` 值的，因此 `null == undefined` 会返回 `true`，但 `null === undefined` 则返回 `false` 了。
 
-### 3.3 Boolean 类型
+### 2.3 Boolean 类型
 
 Boolean 类型只有两个字面值：`true` 和 `false`。
 
-### 3.4 Number 类型
+### 2.4 Number 类型
 
 Number 类型使用 [IEEE754](https://baike.baidu.com/item/IEEE%20754/3869922?fr=aladdin) 格式来表示整数和浮点数值。
 
@@ -82,11 +97,38 @@ JavaScript 能够表示的**最大数值**为 `Number.MAX_VALUE`，在大多数�
 **转换规则**：这 3 个函数都会忽略字符串前面的空格，直至找到第一个非空格字符。如果第一个字符不是数字字符或负号，就会返回 `NaN`，直到解析完所有后续字符或者遇到了一个非数字字符。  
 区别是 `parseInt()` 转换过程中，小数点不是有效的数字字符；而 `parseFloat()` 转换过程中，第一个小数点是有效的，后面的小数点是无效的，从第二个小数点开始的后面所有字符会被忽略。
 
-### 3.5 String 类型
+### 2.5 BigInt 类型（ECMAScript 2020）
+
+BigInt 类型是在 ECMAScript 2020（ES11）引入的新特性。
+
+JavaScript 中能够精确表达的最大数字是 `2^53 - 1`，即 `Number.MAX_SAFE_INTEGER`，如果超过了这个范围，运算结果就不再准确了。
+
+```javascript
+const max = Number.MAX_SAFE_INTEGER;
+console.log(max); // 9007199254740991
+
+console.log(max + 1); // 9007199254740992
+console.log(max + 2); // 9007199254740992
+console.log(max + 3); // 9007199254740994
+console.log(Math.pow(2, 53) === Math.pow(2, 53) + 1); // true
+
+```
+
+而新的 BigInt 数据类型可以解决这个问题，它能够创建更大的数字。
+
+通过在数字末尾加上字母 `n`，就可以将它转换成 BigInt。但要注意，我们无法将标准数字与 BigInt 数字混合在一起计算，否则将抛出 TypeError。
+
+```javascript
+const bigNum = 100000000000000000000000000000n;
+console.log(bigNum + 1n); // 200000000000000000000000000000n
+console.log(bigNum + 1); // TypeError: Cannot mix BigInt and other types, use explicit conversions
+```
+
+### 2.6 String 类型
 
 String 类型用于表示由零或多个 16 位 Unicode 字符组成的字符序列，即字符串。
 
-#### 数值转换字符串
+**数值转换字符串**
 
 要把一个值转换为一个字符串有两种方式：
 
@@ -94,8 +136,22 @@ String 类型用于表示由零或多个 16 位 Unicode 字符组成的字符序
 
 第二种，`String()` 函数，它在转换过程中，如果值有 `toString()` 方法，则调用该方法（没有参数）；如果值是 `null`，则返回 `"null"`；如果值是 `undefined`，则返回 `"undefined"`。
 
-### 3.6 Object 类型
+### 2.7 Symbol 类型（ECMAScript 2015）
+
+Symbol 类型是在 ECMAScript 2015（ES6）引入的新特性。
+
+ES5 的对象属性名都是字符串，这容易造成属性名的冲突。因此 ES6 引入了一种新的基本数据类型 Symbol，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，
+
+关于 Symbol 的知识点可以参考阮一峰老师编写的《ES6标准入门（第3版）》中 [Symbol](https://es6.ruanyifeng.com/#docs/symbol "Symbol - ECMAScript 6入门") 章节。
+
+### 2.8 Object 类型
 
 JavaScript 中的对象是一组数据和功能的集合。对象可以通过执行 `new` 操作符后跟要创建的对象类型的名称来创建。
 
 简单说，对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合。
+
+## 参考资料
+
+1.《JavaScript高级程序设计（第3版）》  
+2.《ES6标准入门（第3版）》  
+2. [MDN：JavaScript 数据类型和数据结构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures "JavaScript 数据类型和数据结构")
