@@ -16,6 +16,7 @@
 
 ## 3. JavaScript 系列
 
+* 2020.09.08 &emsp; 更新 JavaScript 的《数据类型》章节，增加 Symbol（ECMAScript 2015）和 BigInt（ECMAScript 2020）。
 * 2020.08.30 &emsp; 添加 JavaScript 的《继承》章节。
 * 2020.08.25 &emsp; 添加 JavaScript 的《原型与原型链》章节。
 * 2020.08.13 &emsp; 添加 JavaScript 的《this 指向》章节。
