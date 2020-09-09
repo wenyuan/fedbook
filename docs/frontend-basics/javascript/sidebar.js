@@ -40,6 +40,16 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '函数声明',
+        path: '/frontend-basics/javascript/function-declare',
+        collapsable: true
+      },
+      {
+        title: '函数调用',
+        path: '/frontend-basics/javascript/function-invocation',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
