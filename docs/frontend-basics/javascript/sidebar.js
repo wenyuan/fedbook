@@ -5,37 +5,37 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: '一、数据类型',
+        title: '数据类型',
         path: '/frontend-basics/javascript/data-types',
         collapsable: true
       },
       {
-        title: '二、执行上下文',
+        title: '执行上下文',
         path: '/frontend-basics/javascript/execution-context',
         collapsable: true
       },
       {
-        title: '三、作用域',
+        title: '作用域',
         path: '/frontend-basics/javascript/scope',
         collapsable: true
       },
       {
-        title: '四、闭包',
+        title: '闭包',
         path: '/frontend-basics/javascript/closure',
         collapsable: true
       },
       {
-        title: '五、this 指向',
+        title: 'this 指向',
         path: '/frontend-basics/javascript/this-keyword',
         collapsable: true
       },
       {
-        title: '六、原型与原型链',
+        title: '原型与原型链',
         path: '/frontend-basics/javascript/prototype-and-prototype-chain',
         collapsable: true
       },
       {
-        title: '七、继承',
+        title: '继承',
         path: '/frontend-basics/javascript/inheritance',
         collapsable: true
       },
