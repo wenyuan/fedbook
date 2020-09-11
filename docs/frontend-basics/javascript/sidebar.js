@@ -40,12 +40,12 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '函数声明',
+        title: '声明函数的六种方式',
         path: '/frontend-basics/javascript/function-declare',
         collapsable: true
       },
       {
-        title: '函数调用',
+        title: '调用函数的四种方式',
         path: '/frontend-basics/javascript/function-invocation',
         collapsable: true
       },
