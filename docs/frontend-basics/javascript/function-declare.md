@@ -1,4 +1,4 @@
-# 函数声明
+# 声明函数的六种方式
 
 在 JavaScript 中，函数由许多组件组成并受它们影响：
 
@@ -27,7 +27,7 @@ function name(param1, …, paramN) {
 }
 ```
 
-* **name**：函数名
+* **name**：函数名，必须有。
 * **param**：要传递给函数的参数的名称。不同引擎中的最大参数数量不同。
 * **statements**：包含函数体的语句。
 
@@ -36,6 +36,10 @@ function name(param1, …, paramN) {
 函数声明会在当前作用域内创建一个变量，它的标识符就是函数名，它的值就是函数对象。
 
 我们都知道变量提升，对于函数而言，它会被提升到当前作用域的顶层，因此在编写代码时，可以在函数声明前就进行调用。
+
+函数声明的一个重要特性是它的变量提升机制，也就是同一作用域内允许在声明之前被调用。
+
+变量提升在某些场景下是很有用的。例如，你想在一个 JavaScript 脚本的开头就知道某个函数是如何被调用的，并不关心这个函数的具体实现。那么就可以把函数具体实现放在文件的下面，这样在阅读时不用滚到底部查看。
 
 此时创建的函数是一个具名函数，函数对象的 `name` 属性值就是它的名称。当你需要查看堆栈信息进行调试和查错时，该属性会非常有用。
 
@@ -92,10 +96,6 @@ const factorial = function(n) { … }
 ```
 
 但是函数声明 `function factorial(n)` 更简洁，因为不需要写 `const` 和 `=`。
-
-函数声明的一个重要特性是它的变量提升机制，也就是同一作用域内允许在声明之前被调用。
-
-变量提升在某些场景下是很有用的。例如，你想在一个 JavaScript 脚本的开头就知道某个函数是如何被调用的，并不关心这个函数的具体实现。那么就可以把函数具体实现放在文件的下面，这样在阅读时不用滚到底部查看。
 
 ### 1.4 和函数表达式的区别
 
@@ -180,37 +180,84 @@ const numbers = ([1, false, 5]).filter(function(item) {
 
 ## 2. 函数表达式
 
+### 2.1 基本语法
+
 函数表达式由 `function` 关键字、可选的函数名、一对括号中的参数列表 `(param1, …, paramN)` 和一对包裹着主体代码的花括号 `{ … }` 组成。
 
+示例：
+
 ```javascript
-const count = function(array) { // 函数表达式
+let function_expression = function [name](param1, …, paramN]) {
+   statements
+}
+```
+
+* **function_expression**：被赋值的变量名。
+* **name**：函数名称，可被省略，此种情况下的函数是匿名函数（anonymous）。函数名称只是函数体中的一个本地变量。
+* **statements**：包含函数体的语句。
+
+### 2.2 变量提升
+
+::: danger 注意
+没有变量提升
+:::
+
+JavaScript 中的函数表达式没有提升，不像函数声明，你在定义函数表达式之前不能使用函数表达式。
+
+示例：
+
+```javascript
+notHoisted(); // TypeError: notHoisted is not a function
+
+var notHoisted = function() {
+  console.log('bar');
+};
+```
+
+### 2.3 适用场景
+
+函数表达式创建了一个可以在不同情况下使用的函数对象：
+
+* 作为对象赋值给变量 `count = function(…){…}`
+* 在对象上创建一个方法 `sum: function(){…}`
+* 使用函数作为回调 `reduce(function(…){…})`
+* 在函数体内部引用当前函数（递归调用），此时一定要是一个命名函数表达式
+
+```javascript
+// 作为对象赋值给变量 
+const count = function(array) {
   return array.length;
 };
 
 const methods = {
   numbers: [1, 5, 8],
-  sum: function() { // 函数表达式
-    return this.numbers.reduce(function(acc, num) { // func. expression
+  sum: function() { // 在对象上创建一个方法
+    return this.numbers.reduce(function(acc, num) { // 使用函数作为回调
       return acc + num;
     });
   }
 };
 
+var math = {
+  'factorial': function factorial(n) {
+    if (n <= 1)
+      return 1;
+    return n * factorial(n - 1); // 在函数体内部引用当前函数
+  }
+};
+
 count([5, 7, 8]); // 3
 methods.sum();    // 14
+math.factorial(3); // 6
 ```
-
-函数表达式创建了一个可以在不同的情况下使用的函数对象：
-
-* 作为对象赋值给变量 `count = function(…){…}`
-* 在对象上创建一个方法 `sum:function(){…}`
-* 使用函数作为回调 `reduce(function(…){…})`
 
 函数表达式是 JavaScript 中最常用的部分，通常情况下，如果你喜欢简短的语法和词法上下文，就能经常看到函数表达式和箭头函数。
 
-## 2.1 命名函数表达式
+### 2.4 匿名函数表达式
 
-函数没有名字就是匿名的（ `name` 属性是一个空字符 `''`）：
+函数表达式中，当它没有函数名称的时侯，则称为匿名函数（平时所说的匿名函数就属于函数表达式），此时 `name` 属性是一个空字符 `''`。
+
+示例：
 
 ```javascript
 (
@@ -218,53 +265,70 @@ methods.sum();    // 14
 ).name; // ''
 ```
 
-这是一个匿名函数，它的名字是一个空字符串。
+被函数表达式赋值的那个变量会有一个 `name` 属性，如果你把这个变量赋值给另一个变量的话，这个 `name` 属性的值也不会改变。
 
-有时可以推断函数名。例如，当匿名函数被赋给一个变量：
+如果函数是一个匿名函数，那 `name` 属性的值就是被赋值的变量的名称（隐式命名）。如果函数不是匿名的话，那 `name` 属性的值就是这个函数的名称（显式命名）。这对于箭头函数也同样适用（箭头函数没有名字，所以 `name` 属性的值就是被赋值的变量的名称）。
 
-```javascript
-const myFunctionVar = function(variable) { 
-  return typeof variable; 
-};
-myFunctionVar.name; // "myFunctionVar"
-```
-
-匿名函数名是 `myFunctionVar`，因为 `myFunctionVar` 变量名用作函数名。
-
-当表达式指定了名称时，就是命名函数表达式。与简单的函数表达式相比，它有一些额外的属性：
-
-* 创建一个命名函数，即 `name` 属性就是函数名
-* 在函数体内部，与函数同名的变量指向函数对象
-
-让我们使用上面的例子，但是在函数表达式中设置一个名称：
+示例：
 
 ```javascript
-const getType = function funName(variable) {
-  console.log(typeof funName === 'function'); // true
-  return typeof variable;
-};
-console.log(getType(3)); // "number"
-console.log(getType.name); // "funName"
+var foo = function() {}
+foo.name // "foo"
 
-console.log(typeof funName); // "undefined"
+var bar = foo
+bar.name // "foo"
+
+console.log(foo === bar); //true
 ```
 
-函数 `funName(variable){…}` 是一个命名函数表达式。变量 `funName` 可以在函数域内访问，但不能在外部访问。无论哪种方式，函数对象的 `name` 属性都是函数名称：`funName`。
+### 2.5 命名函数表达式
 
-### 2.2 指定函数表达式
+当表达式指定了名称时，就是命名函数表达式。与简单的函数表达式相比，它有一些额外的特点：
 
-当一个函数表达式 `const fun = function(){}` 被赋值给一个变量时，一些引擎会从这个变量中推断出函数名。但是，回调可能作为匿名函数表达式进行传值的，不会存储到变量中：因此引擎无法确定它的名称。
+* `name` 属性就是函数名。
+* 在函数体内部，与函数同名的变量指向函数对象。
+* 在命名函数表达式中，函数名称可以在函数作用域内访问，但不能在外部访问。
 
-支持命名函数和避免匿名函数可以获得以下好处：
+```javascript
+var bar = function foo() {}
 
-* 使用函数名时，错误消息和调用堆栈显示更详细的信息
-* 通过减少匿名堆栈名称的数量，使调试更加舒适
-* 从函数名可以看出函数的作用
-* 可以在函数的作用域内访问函数，以进行递归调用或分发事件侦听器
+console.log(typeof foo) // "undefined"
+console.log(foo.name) // ReferenceError: foo is not defined
 
-## 3. 简写方法定义
+console.log(typeof bar) // "function"
+console.log(bar.name) // "foo"
+```
 
-简写方法定义可用于对象常量和 ES2015 类的方法声明。你可以使用函数名来定义它们，后面跟着一对括号中的参数列表 `(para1, …, paramN)` 和一对包裹着主体代码的花括号 `{ … }` 组成。
+推荐命名函数和避免匿名函数可以获得以下好处：
+
+* 显式指定函数名时，错误消息和调用堆栈显示更详细的信息。
+* 通过减少匿名堆栈名称的数量，使调试更加舒适。
+* 从函数名可以看出函数的作用。
+* 可以在函数的作用域内访问函数，以进行递归调用或分发事件侦听器。
+
+## 3. 方法的定义
+
+从 ECMAScript 2015 开始，在对象初始化中引入了一种更简短定义方法的语法，这是一种把方法名直接赋给函数的简写方式，可用于对象常量和 ES2015 类的方法声明。
+
+### 3.1 基本语法
+
+你可以使用函数名来定义它们，后面跟着一对括号中的参数列表 `(param1, …, paramN)` 和一对包裹着主体代码的花括号 `{ … }`。
+
+示例：
+
+```javascript
+const obj = {
+  foo() {
+    return 'bar';
+  }
+};
+
+console.log(obj.foo()); // "bar"
+```
+
+### 3.2 适用场景
+
+**封装对象方法**：
 
 ```javascript
 const collection = {
@@ -287,7 +351,7 @@ collection.get(1) // "Java"
 * 更短的语法更容易理解
 * 与函数表达式相反，简写方法定义创建一个指定的函数，这对调试很有用。
 
-类语法需要简短的方法声明：
+**类方法的声明**：
 
 ```javascript
 class Star {
@@ -302,7 +366,7 @@ const sun = new Star('Sun');
 sun.getMessage(' is shining') // "Sun is shining"
 ```
 
-### 3.1 计算得到的属性名和方法
+### 3.3 计算得到的属性名和方法
 
 ECMAScript 2015 增加了一个很好的特性：在对象字面量和类中计算属性名。
 
@@ -328,11 +392,15 @@ collection[getMethod](1) // "Java"
 
 ## 4. 箭头函数
 
-箭头函数是用一对括号定义的，其中包含参数列表 `(param1, param2, ……, paramN)`，然后是一个胖箭头 `=>` 和一对包裹着主体代码的花括号 `{ … }`。
+### 4.1 基本语法
+
+箭头函数表达式的语法比函数表达式更简洁，它是用一对括号定义的，其中包含参数列表 `(param1, param2, ……, paramN)`，然后是一个胖箭头 `=>` 和一对包裹着主体代码的花括号 `{ … }`。
+
+// 并且没有自己的this，arguments，super或new.target。箭头函数表达式更适用于那些本来需要匿名函数的地方，并且它不能用作构造函数。
 
 当箭头函数只有一个参数时，可以省略括号。当它包含一个语句时，花括号也可以省略。
 
-基本模式：
+示例：
 
 ```javascript
 const absValue = (number) => {
@@ -347,19 +415,11 @@ absValue(5);   // 5
 
 `absValue` 是一个计算数字绝对值的箭头函数。
 
-箭头函数具有以下特点：
+### 4.2 上下文透明性
 
-* 箭头函数不会创建它的执行上下文，而是按词法处理它(与函数表达式或函数声明相反，它们根据调用创建自己的 `this`)。
-* 箭头函数是匿名的。但是，可以从保存函数的变量推断出它的名称。
-* `arguments` 对象在箭头函数中不可用（与提供 `arguments` 对象的其他声明类型相反）。但是，您可以自由地使用 `rest` 参数` (…params)`。
+`this` 关键字是 JavaScript 的一个令人困惑的方面。因为函数创建自己的执行上下文，所以通常很难判断 `this` 的值。
 
-### 4.1 上下文透明
-
-`this` 关键字是 JavaScript 的一个令人困惑的方面。
-
-因为函数创建自己的执行上下文，所以通常很难检测 `this` 的值。
-
-ECMAScript 2015 通过引入箭头函数改进了 `this` 的用法，该函数按词法获取上下文（或者直接使用外部域的 `this`）。这种方式很好，因为当函数需要封闭的上下文时，不必使用 `.bind(this)` 或存储上下文 `var self = this`。
+ECMAScript 2015 通过引入箭头函数改进了 `this` 的用法，该函数按词法获取上下文（或者直接使用外部域的 `this`）。这种方式很好，因为当函数需要获取它的封闭上下文的 `this` 时，不必使用 `.bind(this)` 或存储上下文 `var self = this`。
 
 让我们看看如何从外部函数继承 `this`：
 
@@ -390,7 +450,7 @@ console.log(numbersObject.array); // [1, 5]
 
 当在不提供参数的情况下调用 `addNumber()` 时，返回一个允许插入数字的闭包。这个闭包是一个 `this` 等于 `numbersObject` 实例的箭头函数，因为上下文是从 `addNumbers()` 方法按词法获取的。
 
-如果没有箭头函数，您必须手动修复上下文。它意味着就得使用像 `.bind()` 方法这样的进行变通：
+如果没有箭头函数，就必须手动指定上下文，使用像 `.bind()` 这样的方式进行变通：
 
 ```javascript
 //...
@@ -413,9 +473,17 @@ console.log(numbersObject.array); // [1, 5]
 //...
 ```
 
-当您希望从封闭上下文获取的 `this` 保持原样时，可以使用上下文透明性。
+当我们希望从封闭上下文中获取 `this` 时，就可以利用箭头函数的这种上下文透明性。
 
-### 4.2 短回调
+### 4.3 特点
+
+箭头函数具有以下特点：
+
+* 箭头函数不会创建它的执行上下文，而是按词法处理它（与函数表达式或函数声明相反，它们根据调用创建自己的 `this`）。
+* 箭头函数是匿名的。但是，可以从保存函数的变量推断出它的名称。
+* `arguments` 对象在箭头函数中不可用（与提供 `arguments` 对象的其他声明类型相反）。但是，您可以自由地使用 `rest` 参数 `(param1, param2, ...rest) => { statements }`。
+
+### 4.2 短语法
 
 在创建箭头函数时，对于单个参数和单个主体语句，括号对和花括号是可选的。这有助于创建非常简洁的回调函数。
 
@@ -426,13 +494,13 @@ const numbers = [1, 5, 10, 0];
 numbers.some(item => item === 0); // true
 ```
 
-请注意，嵌套的短箭头函数很难理解，使用最短的箭头函数方式的方便方法是单个回调（不嵌套）。
-
-如果需要，在编写嵌套箭头函数时使用箭头函数的扩展语法。它只是更容易阅读。
+但要注意，嵌套的短箭头函数很难理解，推荐的短语法使用场景是单个回调（不嵌套）。
 
 ## 5. 生成器函数
 
 JavaScript 中的生成器函数返回生成器对象。它的语法类似于函数表达式、函数声明或方法声明，只是它需要一个星号 `*`。
+
+这里简单介绍一下，更推荐阅读阮一峰老师编写的《ES6标准入门（第3版）》中 [Generator](https://es6.ruanyifeng.com/#docs/generator "Generator - ECMAScript 6入门") 相关的两个章节。
 
 生成器函数的声明形式如下：
 
@@ -482,11 +550,20 @@ console.log(g.next().value); // 1
 
 三种生成器函数都返回生成器对象 `g`，之后 `g` 用于生成一系列自增数字。
 
-## 6. 还有一件事：new Function
+## 6. 构造函数
 
-在 JavaScript 中，函数是一类对象——函数是 `function` 类型的常规对象。
+### 6.1 基本语法
 
-上面描述的声明方法创建了相同的函数对象类型。我们来看一个例子：
+```javascript
+new Function (param1, …, paramN,  functionBody)
+```
+
+* **param1, …, paramN**：被函数使用的参数的名称，形式是一个有效的 JavaScript 标识符的字符串，或者一个用逗号分隔的有效字符串的列表。
+* **functionBody**：一个含有包括函数定义的 JavaScript 语句的字符串。
+
+### 6.2 实例用法
+
+上面介绍的五种声明方法，本质上创建了相同的函数对象类型。我们来看一个例子：
 
 ```javascript
 function sum1(a, b) {
@@ -503,7 +580,7 @@ console.log(typeof sum3 === 'function'); // true
 
 函数对象类型有一个构造函数：`Function`。
 
-当 `Function` 被作为构造函数调用时，`new Function(arg1, arg2，…，argN,bodyString)`，将创建一个新函数。参数 `arg1, args2, …, argN` 传递给构造函数成为新函数的参数名，最后一个参数 `bodyString` 用作函数体代码。
+当 `Function` 被作为构造函数调用时，`new Function(param1, param2, …, paramN, bodyString)`，将创建一个新函数。参数 `param1, param2, …, paramN` 传递给构造函数成为新函数的参数名，最后一个参数 `bodyString` 用作函数体代码。
 
 让我们创建一个函数，两个数字的和：
 
@@ -515,7 +592,7 @@ const sumFunction = new Function(numberA, numberB,
 sumFunction(10, 15) // 25
 ```
 
-使用 `Function` 构造函数调用创建的 `sumFunction` 具有参数 `numberA` 和 `numberB`，并且主体返回` numberA + numberB`。
+使用 `Function` 构造函数调用创建的 `sumFunction` 具有参数 `numberA` 和 `numberB`，并且主体返回 `numberA + numberB`。
 
 以这种方式创建的函数不能访问当前作用域，因此无法创建闭包，因此它们总是在全局域内创建。
 
@@ -530,19 +607,7 @@ sumFunction(10, 15) // 25
 })();
 ```
 
-请记住，几乎不应该使用 `new Function()` 来声明函数。因为函数体是在运行时执行的，所以这种方法继承了许多 `eval()` 使用问题:安全风险、更难调试、无法应用引擎优化、没有编辑器自动完成。
-
-## 7. 最后，哪种方法更好?
-
-没有赢家，也没有输家。选择哪种声明类型取决于具体情况。
-
-然而，在一些常见的情况下，你可以遵循一些规则。
-
-如果函数从封闭的函数中使用 `this`，则箭头函数是一个很好的解决方案。当回调函数有一个短语句时，箭头函数也是一个不错的选择，因为它创建了短而轻的代码。\
-
-在对象常量上声明方法时要使用更短的语法，简写方法声明更可取。
-
-正常情况不应该使用 `new Function` 方法来声明函数。主要是因为它打开了潜在的安全风险，不允许编辑器中的代码自动完成同时也不允许引擎优化。
+请记住，几乎不应该使用 `new Function()` 来声明函数。因为函数体是在运行时执行的，所以这种方法继承了许多 `eval()` 使用问题：安全风险、更难调试、无法应用引擎优化、没有编辑器自动补全。
 
 ## 参考资料
 
@@ -551,5 +616,5 @@ sumFunction(10, 15) // 25
 * [MDN - Method definitions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions "Method definitions")
 * [MDN - Arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions "Arrow function")
 * [MDN - Generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction "Generator function")
-* [MDN - Function() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function "Function() constructor")
+* [MDN - Function constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function "Function constructor")
 * [6 Ways to Declare JavaScript Functions](https://dmitripavlutin.com/6-ways-to-declare-javascript-functions/ "6 Ways to Declare JavaScript Functions")（酌情翻译）
