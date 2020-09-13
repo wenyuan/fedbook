@@ -150,6 +150,92 @@ JavaScript 中的对象是一组数据和功能的集合。对象可以通过执
 
 简单说，对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合。
 
+## 3. 判断数据类型
+
+JavaScript 中判断数据类型主要有下列几种方式：
+
+### 3.1 typeof
+
+`typeof` 只能区分基本类型：undefined、object、boolean、number、bigint，string，symbol，function，object，对于 null、array、object 来说，使用 typeof 都会统一返回 object 字符串。
+
+```javascript
+typeof {} // "object"
+typeof [] // "object"
+typeof null // "object"
+```
+
+### 3.2 Object.prototype.toString.call()
+
+`Object.prototype.toString.call()` 能用于判断原生引用类型数据，返回一个形如 `"[object XXX]"` 的字符串。
+
+判断基本类型：
+
+```javascript
+Object.prototype.toString.call(null); // "[object Null]"
+Object.prototype.toString.call(undefined); // "[object Undefined]"
+Object.prototype.toString.call('abc'); // "[object String]"
+Object.prototype.toString.call(123); // "[object Number]"
+Object.prototype.toString.call(true); // "[object Boolean]"
+```
+
+判断原生引用类型：
+
+```javascript
+// 函数类型
+function fn(){
+  console.log('test');
+}
+Object.prototype.toString.call(fn); // "[object Function]"
+
+// 日期类型
+var date = new Date();
+Object.prototype.toString.call(date); // "[object Date]"
+
+// 数组类型
+var arr = [1,2,3];
+Object.prototype.toString.call(arr); // "[object Array]"
+
+// 正则表达式
+var reg = /[hbc]at/gi;
+Object.prototype.toString.call(reg); // "[object RegExp]"
+```
+
+但是无法判断自定义类型：
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+var person = new Person("Rose", 18);
+Object.prototype.toString.call(arr); // "[object Object]"
+```
+
+很明显这种方法不能准确判断 `person` 是 `Person` 类的实例。
+
+### 3.3 instanceof
+
+`instanceof` 运算符用于测试构造函数的 `prototype` 属性是否出现在对象的原型链中的任何位置，
+
+可以用来判断某个构造函数的 `prototype` 属性是否存在另外一个要检测对象的原型链上，即判断一个对象是否是某个构造函数或其子构造函数的实例。
+
+它的用法类似于 `object instanceof class`
+
+注意左侧必须是对象（object），如果不是，直接返回 false。
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+var person = new Person("Rose", 18);
+console.log(person instanceof Person); // true
+```
+
+## 4. 数据类型转换
+
+参考 [JavaScript 类型转换](https://www.runoob.com/js/js-type-conversion.html "JavaScript 类型转换")。
+
 ## 参考资料
 
 1.《JavaScript高级程序设计（第3版）》  
