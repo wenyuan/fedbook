@@ -50,6 +50,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '事件循环机制',
+        path: '/frontend-basics/javascript/event-loop',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
