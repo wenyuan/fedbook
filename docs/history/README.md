@@ -16,6 +16,7 @@
 
 ## 3. JavaScript 系列
 
+* 2020.09.14 &emsp; 添加 JavaScript 的《同步与异步​》章节。
 * 2020.09.13 &emsp; 添加 JavaScript 的《事件循环机制》章节。
 * 2020.09.11 &emsp; 添加 JavaScript 的《声明函数的六种方式》章节。
 * 2020.09.08 &emsp; 更新 JavaScript 的《数据类型》章节，增加 Symbol（ECMAScript 2015）和 BigInt（ECMAScript 2020）。
