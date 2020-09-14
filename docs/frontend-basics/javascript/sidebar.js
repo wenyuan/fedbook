@@ -50,6 +50,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '同步与异步​',
+        path: '/frontend-basics/javascript/sync-and-async',
+        collapsable: true
+      },
+      {
         title: '事件循环机制',
         path: '/frontend-basics/javascript/event-loop',
         collapsable: true

@@ -238,6 +238,6 @@ console.log(person instanceof Person); // true
 
 ## 参考资料
 
-1.《JavaScript高级程序设计（第3版）》  
-2.《ES6标准入门（第3版）》  
-2. [MDN：JavaScript 数据类型和数据结构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures "JavaScript 数据类型和数据结构")
+* 《JavaScript高级程序设计（第3版）》  
+* 《ES6标准入门（第3版）》  
+* [MDN：JavaScript 数据类型和数据结构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures "JavaScript 数据类型和数据结构")
