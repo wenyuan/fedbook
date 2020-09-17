@@ -15,6 +15,11 @@ module.exports = [
 				collapsable: true
 			},
 			{
+				title: '伪元素和伪类',
+				path: '/frontend-basics/css/pseudo-elements-and-pseudo-classes',
+				collapsable: true
+			},
+			{
 				title: '长度和单位',
 				path: '/frontend-basics/css/length-and-units',
 				collapsable: true
