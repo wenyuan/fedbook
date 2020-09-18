@@ -113,6 +113,6 @@
 
 ## 3. 更多资源
 
-要想系统学习语义标签，可以看下[MDN 的 HTML 元素参考](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element "MDN 的 HTML 元素参考")，它里面会有标准的定义，告诉我们**每种标签适用的场景**。
+要想系统学习语义标签，可以看下 [MDN 的 HTML 元素参考](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element "MDN 的 HTML 元素参考")，它里面会有标准的定义，告诉我们**每种标签适用的场景**。
 
-如果是简单了解标签的写法，可以看下[W3school HTML标签](https://www.w3school.com.cn/tags/tag_comment.asp "W3school HTML标签")。
+如果是简单了解标签的写法，可以看下 [W3school HTML标签](https://www.w3school.com.cn/tags/tag_comment.asp "W3school HTML标签")。
