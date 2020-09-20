@@ -14,6 +14,12 @@ module.exports = [
       { text: 'JavaScript', link: '/frontend-basics/javascript/' },
     ]
   },
+  {
+    text: '面试题目',
+    items: [
+      { text: 'HTML', link: '/interview/html/' }
+    ]
+  },
   // {
   //   text: '更新日志', link: '/history/'
   // },
