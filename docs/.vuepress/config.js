@@ -1,4 +1,6 @@
-module.exports = {
+const resolve = require("vuepress-theme-hope/resolve");
+
+module.exports = resolve({
     title: '前端修炼小册',
     description: "Wenyuan's Front-End Development Book",
     dest: './dist',
@@ -18,9 +20,21 @@ module.exports = {
         sidebarDepth: 2,
         lastUpdated: '上次更新',
         searchMaxSuggestoins: 10,
-        editLinks: true,
+        editLinks: false,
         editLinkText: '在 GitHub 上编辑此页 ！',
-        smoothScroll: true
+        smoothScroll: true,
+        // vuepress-theme-hope params
+        baseLang: 'zh-CN',
+        author: 'wenyuan',
+        themeColor: false,
+        blog: false,
+        pwa: false,
+        pageInfo: false,
+        seo: false,
+        sitemap: false,
+        comment: false,
+        copyright: false,
+        breadcrumb: false
     },
-    plugins: ['@vuepress/back-to-top']
-};
+    // plugins: ['@vuepress/back-to-top']
+});

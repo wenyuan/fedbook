@@ -1,4 +1,4 @@
-# 行为层 JavaScript
+# JavaScript
 
 在 Web 前端页面中，
 

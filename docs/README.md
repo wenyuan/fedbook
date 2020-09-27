@@ -3,14 +3,18 @@ home: true
 heroImage: /img/skills.png
 actionText: 进入小册 →
 actionLink: /foreword/roadmap/
+action:
+- text: 进入小册 →
+  link: /foreword/roadmap/
 features:
 - title: 前端开发
   details: 以「前端开发」为主线，涵盖但不仅限于前端技术栈的知识点。
 - title: 持续学习
   details: 记录每一天的进步，越努力，越幸运，欢迎收藏或 star。
-- title: wenyuan
+- title: WENYUAN
   details: 一个 90 后程序员，终身学习者。座右铭：努力过，不后悔。
 footer: MIT Licensed | Copyright © 2018-present Wenyuan Xu
+copyright: false
 ---
 
 <div class="tech-stack">
