@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "serve": "vuepress dev docs",
+    "build": "vuepress build docs"
   },
   "keywords": [],
   "author": "",
