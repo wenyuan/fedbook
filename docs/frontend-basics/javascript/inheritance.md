@@ -52,7 +52,7 @@ console.log(instance.getSuperValue()); // true
 例子中的实例及构造函数和原型之间的关系图：
 
 <div style="text-align: center; width: 650px;">
-  <img :src="$withBase('/img/frontend-basics/javascript/prototypal-inheritance.png')" alt="原型继承：实例-构造函数-原型的关系图">
+  <img src="./assets/prototypal-inheritance.png" alt="原型继承：实例-构造函数-原型的关系图">
   <p style="text-align: center; color: #888">（原型继承：实例-构造函数-原型的关系图）</p>
 </div>
 
