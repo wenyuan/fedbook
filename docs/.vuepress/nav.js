@@ -24,13 +24,18 @@ module.exports = [
   //   text: '更新日志', link: '/history/'
   // },
   {
-    text: '关于',
+    text: '其它',
     items: [
-      { text: '关于本站', link: '/about/' },
-      { text: '随心分享', link: '/share/' },
-      { text: '更新日志', link: '/history/' },
       {
-        text: '其它',
+        text: '站内',
+        items: [
+          { text: '关于本站', link: '/about/' },
+          { text: '随心分享', link: '/share/' },
+          { text: '更新日志', link: '/history/' }
+        ]
+      },
+      {
+        text: '站外',
         items: [
           { text: '博客', link: 'https://www.wenyuanblog.com/' },
           { text: 'GitHub', link: 'https://github.com/wenyuan' }

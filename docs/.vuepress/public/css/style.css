@@ -196,6 +196,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 */
 
+/* NavBar style */
+.dropdown-wrapper .nav-dropdown .dropdown-item h4 {
+  padding: 0.75rem 1.5rem 0.45rem 1.25rem !important;
+}
+
 /* ScrollBar */
 ::-webkit-scrollbar {
   width: 13px;
