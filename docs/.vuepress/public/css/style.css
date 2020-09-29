@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
 .home .tech-stack .tech-logo-icon:hover:after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: -1rem;
+  bottom: -13px;
   left: 0;
   display: flex;
   justify-content: center;
@@ -175,6 +175,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .comment-link a {
   color: #4e6e8e;
+}
+
+/* fix: .token.operator background-color */
+.theme-default-content code .token.operator{
+  background: transparent !important;
 }
 
 /* Inline Code Block
