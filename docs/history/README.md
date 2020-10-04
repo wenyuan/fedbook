@@ -17,7 +17,7 @@
 
 ## 3. JavaScript 系列
 
-* 2020.09.14 &emsp; 添加 JavaScript 的《同步与异步​》章节。
+* 2020.09.14 &emsp; 添加 JavaScript 的《同步与异步》章节。
 * 2020.09.13 &emsp; 添加 JavaScript 的《事件循环机制》章节。
 * 2020.09.11 &emsp; 添加 JavaScript 的《声明函数的六种方式》章节。
 * 2020.09.08 &emsp; 更新 JavaScript 的《数据类型》章节，增加 Symbol（ECMAScript 2015）和 BigInt（ECMAScript 2020）。
@@ -29,6 +29,10 @@
 * 2020.08.12 &emsp; 添加 JavaScript 的《作用域》章节。
 * 2020.08.09 &emsp; 添加 JavaScript 的《执行上下文》章节。
 * 2020.08.02 &emsp; 添加 JavaScript 的《数据类型》章节。
+
+## 4. 面试相关
+
+* 2020.10.03 &emsp; 添加《HTML 问题》章节。
 
 ## 维护
 
