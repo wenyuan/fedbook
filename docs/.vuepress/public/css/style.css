@@ -177,9 +177,16 @@ h1, h2, h3, h4, h5, h6 {
   color: #4e6e8e;
 }
 
-/* fix: .token.operator background-color */
+/* fix: remove background-color in .token.operator */
 .theme-default-content code .token.operator{
   background: transparent !important;
+}
+
+/* fix: remove/set background-color in .token.url(.token.function / .token.punctuation / .token.string.url) */
+.theme-default-content code .token.url .token.function,
+.theme-default-content code .token.url .token.punctuation,
+.theme-default-content code .token.url .token.string.url {
+  background: #ecf4fa !important; /* not effect while set transparent */
 }
 
 /* Inline Code Block
