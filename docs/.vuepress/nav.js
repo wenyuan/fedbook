@@ -17,7 +17,8 @@ module.exports = [
   {
     text: '面试相关',
     items: [
-      { text: 'HTML 问题', link: '/interview/html/' }
+      { text: 'HTML 问题', link: '/interview/html/' },
+      { text: 'CSS 问题', link: '/interview/css/' }
     ]
   },
   // {
