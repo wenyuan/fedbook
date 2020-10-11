@@ -37,8 +37,10 @@
 
 ## 维护
 
-* 2020.09.27 &emsp; 使用 [vuepress-theme-hope](https://vuepress-theme.mrhope.site/ "vuepress-theme-hope") 这个主题。
-  * 在内容页，左侧展示一个类别下的文章列表、右侧展示当前文章的锚点标题，这样的排版可读性较好。
+* 2020.10.11 &emsp; 使用 [vuepress-plugin-demo-block](https://daxigua.me/vuepress-plugin-demo-block/zh/ "vuepress-plugin-demo-block") 插件。
+  * 让 Demo 演示框（主要是 CSS 知识点中的代码）更直观，方便调试。
+* 2020.09.27 &emsp; 使用 [vuepress-theme-hope](https://vuepress-theme.mrhope.site/ "vuepress-theme-hope") 主题。
+  * 在内容页，左侧展示文章标题列表、右侧展示当前文章的子标题，这样的排版可读性较好。
 * 2020.08.17 &emsp; 服务方不稳定，新增多线路切换访问。
 * 2020.07.26 &emsp; 购买域名，部署上线。
 * 2020.07.11 &emsp; 使用 VuePress 搭建小册。
