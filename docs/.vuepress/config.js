@@ -36,5 +36,5 @@ module.exports = resolve({
         copyright: false,
         breadcrumb: false
     },
-    // plugins: ['@vuepress/back-to-top']
+    plugins: ['demo-block']
 });
