@@ -233,3 +233,30 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+/* SweetAlert */
+.swal-title {
+  font-size: 24px;
+  line-height: 1;
+  color: #303133;
+}
+
+.swal-text {
+  padding: 10px 15px;
+  color: #606266;
+  font-size: 16px;
+}
+
+.swal-button:focus {
+  box-shadow: none;
+}
+
+.swal-button--confirm {
+  background-color: #409eff;
+  border-color: #409eff
+}
+
+.swal-button--confirm:hover {
+  background-color: #66b1ff !important;
+  border-color: #66b1ff !important;
+}

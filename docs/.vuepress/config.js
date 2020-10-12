@@ -8,6 +8,7 @@ module.exports = resolve({
     head: [
         ['link', {rel: 'icon', href: '/img/favicon.png'}],
         ["link", { rel: "stylesheet", href: "/css/style.css" }],
+        ["script", { charset: "utf-8", src: "https://unpkg.com/sweetalert/dist/sweetalert.min.js" }],
         ["script", { charset: "utf-8", src: "/js/main.js" }]
     ],
     markdown: {
