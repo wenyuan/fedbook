@@ -35,6 +35,11 @@ module.exports = [
 				collapsable: true
 			},
 			{
+				title: '浮动（float）',
+				path: '/frontend-basics/css/float-property',
+				collapsable: true
+			},
+			{
 				title: '未完待续',
 				path: '/frontend-basics/css/to-be-continued',
 				collapsable: true
