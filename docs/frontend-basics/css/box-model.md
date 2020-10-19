@@ -134,7 +134,15 @@ IE 盒模型是老的 IE 浏览器在[怪异模式](https://zh.wikipedia.org/wik
 
 > 在 IE 盒模型中，盒子的大小等于元素的 width、height 值，因而 border 和 padding 的空间会挤压 content 的空间，使得元素的内容宽高小于 width、height 设置的值。
 
-### 3.3 浏览器兼容性及其它
+### 3.3 两种模型区别
+
+差异：宽高计算方式不同
+
+标准模型：计算元素的宽高只算 content 的宽高
+
+IE 模型：计算元素的宽高包含 content、padding、border
+
+### 3.4 浏览器兼容性及其它
 
 * 只要设置了合适的 DTD，大多数浏览器会按照标准盒模型来显示，但是 IE5.X 和 6 在怪异模式下会根据 IE 盒子模型进行显示。
 * 标准盒模型下元素的 box-sizing 属性（IE8+）默认值为 content-box，将它设置成 border-box 可转换为 IE 盒模型。在实际应用场景中，**若想控制元素总宽高保持固定**，这个设置很有用。
