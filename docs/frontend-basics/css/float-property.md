@@ -289,7 +289,7 @@
 
 原理：这个方法的关键在于触发了 BFC。在 IE6、IE7、IE8 浏览器中还需要触发 hasLayout（{ overflow: auto; zoom: 1;}）
 
-### 方法六：父元素伪元素设置清除浮动
+### 方法六：父元素伪元素清除浮动
 
 * 优点：没有额外标签，代码量也适中，可重复利用率（建议定义公共类）
 * 缺点：稍显复杂，但是理解其原理后也挺简单的
@@ -300,13 +300,34 @@
 
 ```css
 .clearfix::after{
-  content: '';
-  display: block;
+  content: ""; /* 伪元素没有这个属性则无法生效 */
+  display: block; /* 只有块级元素才能清除浮动影响 */
   height: 0;
   clear: both;
   visibility: hidden;
 }
-.clearfix { zoom:1; }
+.clearfix { *zoom: 1; }
+```
+
+### 方法七：父元素双伪元素清除浮动
+
+* 优点：代码更简洁
+* 缺点：由于 IE6、IE7 不支持 `::after`，使用 `zoom: 1` 触发 hasLayout。
+
+原理：同上。
+
+```css
+.clearfix::before,
+.clearfix::after { 
+  content: ""; /* 伪元素没有这个属性则无法生效 */
+  display: block; /* 只有块级元素才能清除浮动影响 */
+}
+.clearfix::after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
 ```
 
 ## 7. 浮动的应用
