@@ -40,6 +40,11 @@ module.exports = [
 				collapsable: true
 			},
 			{
+				title: 'BFC',
+				path: '/frontend-basics/css/bfc',
+				collapsable: true
+			},
+			{
 				title: '未完待续',
 				path: '/frontend-basics/css/to-be-continued',
 				collapsable: true
