@@ -27,6 +27,7 @@ module.exports = resolve({
         // vuepress-theme-hope params
         baseLang: 'zh-CN',
         author: 'wenyuan',
+        darkmode: 'disable',
         themeColor: false,
         blog: false,
         pwa: false,
