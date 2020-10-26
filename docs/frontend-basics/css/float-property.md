@@ -33,34 +33,10 @@
 
 示例如下：
 
-::: demo [vanilla]
-```html
-<html>
-  <div class="float-demo-1">
-    <div class="box">
-      <span class="rule1">浮动元素</span>
-    </div>
-  </div>
-</html>
-
-<style>
-.float-demo-1 .box {
-  background: #00ff90;
-  padding: 10px;
-  width: 500px;
-  height: 150px;
-}
-.float-demo-1 .rule1 {
-  float: left;
-  margin: 0;
-  padding: 10px;
-  background: #ff6a00;
-  width: 100px;
-  text-align: center;
-}
-</style>
-```
-:::
+<iframe height="278" style="width: 100%;" scrolling="no" title="XWKMRZG" src="https://codepen.io/winyuan/embed/XWKMRZG?height=278&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/XWKMRZG'>XWKMRZG</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 #### 2）如果两个元素一个向左浮动，一个向右浮动，左浮动元素的 margin-right 不会和右浮动元素的 margin-left 相邻
 
@@ -70,85 +46,19 @@
 
 示例如下：
 
-::: demo [vanilla]
-```html
-<html>
-  <div class="float-demo-2">
-    <div class="box">
-      <span class="rule1">浮动元素1</span>
-      <span class="rule2">浮动元素2</span>
-    </div>
-  </div>
-</html>
-
-<style>
-.float-demo-2 .box {
-  background: #00ff90;
-  padding: 10px;
-  width: 500px;
-  height: 150px;
-}
-.float-demo-2 .rule1 {
-  float: left;
-  margin: 0;
-  padding: 10px;
-  background: #ff6a00;
-  width: 100px;
-  text-align: center;
-}
-.float-demo-2 .rule2 {
-  float: right;
-  margin: 0;
-  padding: 10px;
-  background: #ff6a00;
-  width: 100px;
-  text-align: center;
-}
-</style>
-```
-:::
+<iframe height="274" style="width: 100%;" scrolling="no" title="css-float-demo-2" src="https://codepen.io/winyuan/embed/LYZWyMp?height=274&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/LYZWyMp'>css-float-demo-2</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 情况二：当包含块的宽度小于两个浮动元素的宽度总和，此时后面的浮动元素将会向下浮动，其顶端是前面浮动元素的底端。
 
 示例所示：
 
-::: demo [vanilla]
-```html
-<html>
-  <div class="float-demo-3">
-    <div class="box">
-      <span class="rule1">浮动元素1</span>
-      <span class="rule2">浮动元素2</span>
-    </div>
-  </div>
-</html>
-
-<style>
-.float-demo-3 .box {
-  background: #00ff90;
-  padding: 10px;
-  width: 500px;
-  height: 150px;
-}
-.float-demo-3 .rule1 {
-  float: left;
-  margin: 0;
-  padding: 10px;
-  background: #ff6a00;
-  width: 300px;
-  text-align: center;
-}
-.float-demo-3 .rule2 {
-  float: right;
-  margin: 0;
-  padding: 10px;
-  background: #ff6a00;
-  width: 300px;
-  text-align: center;
-}
-</style>
-```
-:::
+<iframe height="274" style="width: 100%;" scrolling="no" title="css-float-demo-3" src="https://codepen.io/winyuan/embed/wvWJdNy?height=274&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/wvWJdNy'>css-float-demo-3</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 #### 3）如果有多个浮动元素，浮动元素会按顺序排下来而不会发生重叠
 
@@ -158,36 +68,10 @@
 
 示例如下：
 
-::: demo [vanilla]
-```html
-<html>
-  <div class="float-demo-4">
-    <div class="box">
-      <span class="rule1">浮动元素1</span>
-      <span class="rule1">浮动元素2</span>
-      <span class="rule1">浮动元素3</span>
-    </div>
-  </div>
-</html>
-
-<style>
-.float-demo-4 .box {
-  background: #00ff90;
-  padding: 10px;
-  width: 500px;
-  height: 150px;
-}
-.float-demo-4 .rule1 {
-  float: left;
-  margin: 0;
-  padding: 10px;
-  background: #ff6a00;
-  width: 100px;
-  text-align: center;
-}
-</style>
-```
-:::
+<iframe height="271" style="width: 100%;" scrolling="no" title="css-float-demo-4" src="https://codepen.io/winyuan/embed/mdEWmom?height=271&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/mdEWmom'>css-float-demo-4</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 #### 4）如果有多个浮动元素，后面的元素高度不会超过前面的元素，并且不会超过包含块
 
@@ -199,45 +83,10 @@
 
 这条规则是显而易见的，示例如下：
 
-::: demo [vanilla]
-```html
-<html>
-  <div class="float-demo-5">
-    <div class="box">
-      我是段前文本
-      <span class="rule1">浮动元素1</span>
-      <span class="rule2">浮动元素2</span>
-      我是段后文本
-    </div>
-  </div>
-</html>
-
-<style>
-.float-demo-5 .box {
-  background: #00ff90;
-  padding: 10px;
-  width: 500px;
-  height: 150px;
-}
-.float-demo-5 .rule1 {
-  float: left;
-  margin: 0;
-  padding: 10px;
-  background: #ff6a00;
-  width: 100px;
-  text-align: center;
-}
-.float-demo-5 .rule2 {
-  float: left;
-  margin: 0;
-  padding: 10px;
-  background: #ff6a00;
-  width: 100px;
-  text-align: center;
-}
-</style>
-```
-:::
+<iframe height="270" style="width: 100%;" scrolling="no" title="css-float-demo-5" src="https://codepen.io/winyuan/embed/yLJMbrG?height=270&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/yLJMbrG'>css-float-demo-5</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 #### 6）浮动元素会尽可能地向顶端对齐、向左或向右对齐
 

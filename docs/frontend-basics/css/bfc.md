@@ -63,28 +63,10 @@ Formatting Context 是 W3C CSS2.1 规范中的一个概念。他是页面的一�
 
 如下示例，因为两个 div 元素都处于同一个 BFC 容器下 (这里指 display: flow-root 的元素) ，所以第一个 div 的下边距和第二个 div 的上边距发生了重叠，两个盒子之间的距离是 10px 而非累加的 20px。
 
-::: demo [vanilla]
-```html
-<html>
-  <div class="bfc-demo-1">
-    <div class="box"></div>
-    <div class="box"></div>
-  </div>
-</html>
-
-<style>
-.bfc-demo-1 {
-  display: flow-root;
-}
-.bfc-demo-1 .box {
-  width: 100px;
-  height: 100px;
-  background: #ADD8E6;
-  margin: 10px;
-}
-</style>
-```
-:::
+<iframe height="328" style="width: 100%;" scrolling="no" title="css-bfc-demo-1" src="https://codepen.io/winyuan/embed/zYBZwVO?height=328&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/zYBZwVO'>css-bfc-demo-1</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 #### 2）计算 BFC 的高度时，浮动元素也参与计算
 
@@ -92,85 +74,26 @@ Formatting Context 是 W3C CSS2.1 规范中的一个概念。他是页面的一�
 
 如果使容器触发 BFC，那么容器将会包裹住浮动元素，在计算 BFC 的高度时，浮动元素也参与计算。
 
-::: demo [vanilla]
-```html
-<html>
-  <div class="bfc-demo-2">
-    <div class="box"></div>
-  </div>
-</html>
-
-<style>
-.bfc-demo-2 {
-  display: flow-root;
-}
-.bfc-demo-2 .box {
-  float: left;
-  width: 100px;
-  height: 100px;
-  background: #add8e6;
-  margin: 10px;
-}
-</style>
-```
-:::
+<iframe height="280" style="width: 100%;" scrolling="no" title="css-bfc-demo-2" src="https://codepen.io/winyuan/embed/yLJMbdZ?height=280&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/yLJMbdZ'>css-bfc-demo-2</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 #### 3）BFC 的区域不会与浮动盒子重叠（清除浮动原理）
 
 先来看一个文字环绕效果：
 
-::: demo [vanilla]
-```html
-<html>
-  <div class="bfc-demo-3">
-    <div class="box-1">我是一个左浮动的元素</div>
-    <div class="box-2">我是一个没有设置浮动, 也没有触发 BFC 元素。我所在的容器盒子与前一个浮动元素所在的容器盒子发生了重叠。</div>
-  </div>
-</html>
-
-<style>
-.bfc-demo-3 .box-1 {
-  float: left;
-  width: 100px;
-  height: 100px;
-  background: #add8e6;
-}
-.bfc-demo-3 .box-2 {
-  width: 200px;
-  height: 200px;
-  background: #eee;
-}
-</style>
-```
-:::
+<iframe height="310" style="width: 100%;" scrolling="no" title="css-bfc-demo-3" src="https://codepen.io/winyuan/embed/JjKWJPG?height=310&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/JjKWJPG'>css-bfc-demo-3</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 这时候其实第二个元素有部分被浮动元素所覆盖（但是文本信息不会被浮动元素所覆盖），如果想避免元素被覆盖，可触第二个元素的 BFC 特性，在第二个元素中加入 `overflow: hidden`，就会变成：
 
-::: demo [vanilla]
-```html
-<html>
-  <div class="bfc-demo-4">
-    <div class="box-1">我是一个左浮动的元素</div>
-    <div class="box-2">我是一个没有设置浮动, 但是触发 BFC 元素。BFC 可以阻止元素被浮动元素覆盖。</div>
-  </div>
-</html>
-
-<style>
-.bfc-demo-4 .box-1 {
-  float: left;
-  width: 100px;
-  height: 100px;
-  background: #add8e6;
-}
-.bfc-demo-4 .box-2 {
-  width: 200px;
-  height: 200px;
-  background: #eee;
-  overflow: hidden;
-}
-</style>
-```
-:::
+<iframe height="313" style="width: 100%;" scrolling="no" title="css-bfc-demo-4" src="https://codepen.io/winyuan/embed/xxOqrbw?height=313&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/xxOqrbw'>css-bfc-demo-4</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 这个方法可以用来实现两列自适应布局，这时候左边的宽度固定，右边的内容自适应宽度（不指定右边元素的 width 属性）。
 
