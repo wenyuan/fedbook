@@ -38,6 +38,7 @@
 
 ## 维护
 
+* 2020.10.26 &emsp; 移除 vuepress-plugin-demo-block 插件，改用 CodePen。
 * 2020.10.11 &emsp; 使用 [vuepress-plugin-demo-block](https://daxigua.me/vuepress-plugin-demo-block/zh/ "vuepress-plugin-demo-block") 插件。
   * 让 Demo 演示框（主要是 CSS 知识点中的代码）更直观，方便调试。
 * 2020.09.27 &emsp; 使用 [vuepress-theme-hope](https://vuepress-theme.mrhope.site/ "vuepress-theme-hope") 主题。
