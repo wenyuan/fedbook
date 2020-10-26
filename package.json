@@ -15,7 +15,6 @@
   "license": "ISC",
   "devDependencies": {
     "vuepress": "^1.5.3",
-    "vuepress-plugin-demo-block": "^0.7.2",
     "vuepress-theme-hope": "^0.7.4"
   }
 }
