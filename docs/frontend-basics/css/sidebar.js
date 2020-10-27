@@ -45,6 +45,11 @@ module.exports = [
 				collapsable: true
 			},
 			{
+				title: 'Flexbox 布局',
+				path: '/frontend-basics/css/flexbox',
+				collapsable: true
+			},
+			{
 				title: '未完待续',
 				path: '/frontend-basics/css/to-be-continued',
 				collapsable: true
