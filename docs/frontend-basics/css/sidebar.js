@@ -45,8 +45,18 @@ module.exports = [
 				collapsable: true
 			},
 			{
+				title: '经典布局',
+				path: '/frontend-basics/css/layout',
+				collapsable: true
+			},
+			{
 				title: 'Flexbox 布局',
 				path: '/frontend-basics/css/flexbox',
+				collapsable: true
+			},
+			{
+				title: 'Grid 布局',
+				path: '/frontend-basics/css/grid',
 				collapsable: true
 			},
 			{
