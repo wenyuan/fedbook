@@ -32,6 +32,8 @@ window.onload = function() {
 
   function init() {
     console.log('%cWelcome', 'color:#0a0;font-size:5em')
+    console.log("%c任何高超的技术，初看都与魔法无异", "color:#3fa9f5;line-height:28px;font-size:16px;");
+    console.log("%c欢迎通过 GitHub Issue 交流心得：%chttps://github.com/wenyuan/fedbook/issues","color:#3fa9f5;line-height:28px;font-size:16px;","color:#3fa9f5;line-height:28px;font-size:16px;");
   }
 
   function addCommentLink() {
