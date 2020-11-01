@@ -188,3 +188,174 @@ float 变化多端，下面又能给出三种利用浮动的特性来达到上�
 ```
 
 ## 3. 布局示例：三栏布局
+
+三栏布局用于需要两边固定宽度，中间自适应的场景，并且主要内容要优先渲染，按照 DOM 从上至下的加载原则，中间的自适应部分要放在前面。
+
+常见的三栏布局便是圣杯布局和双飞翼布局了。
+
+### 3.1 圣杯布局
+
+首先将布局的基础框架搭出来，在下面代码中，父 div 包含了三个子 div，将 .center 写在最前面，方便最先渲染。为了保证窗口缩小时仍然能展示，给 body 设置了最小宽度。
+
+```html
+<div class="container">
+  <div class="center"></div>
+  <div class="left"></div>
+  <div class="right"></div>
+</div>
+```
+```css
+body {
+  min-width: 630px;
+}
+.center {
+  width: 100%;
+  height: 150px;
+  background-color: #94E8FF;
+}
+.left {
+  width: 100px;
+  height: 150px;
+  background-color: #FFB5BF;
+}
+.right {
+  width: 200px;
+  height: 150px;
+  background-color: #8990D5;
+}
+```
+
+刷新浏览器，效果如下：
+
+<div style="text-align: center;">
+  <img src="./assets/holy-grail-layout-step-1.png" alt="基本框架效果图" style="width: 450px;">
+  <p style="text-align: center; color: #888;">（基本框架效果图）</p>
+</div>
+
+因为 div 默认是块级元素，此时三个子 div 会各占一行显示，接下来给三者都加上左浮动。
+
+```css
+.container {
+  overflow: hidden;   /* 清除浮动 */
+}
+.center, .left, .right {
+  float: left;
+}
+```
+
+由于 .center 设置了 100% 的宽度，所以 .left 和 .right 都被挤到下面去了，为了让它们上去，需要用到 margin 的负值。
+
+要想让 .left 回到 .center 的最左边，便是要向左移动 .center 的宽度，即 100%；
+
+.left 移动了之后，.right 会自动补上 .left 的空位，此时，.right 想要达到 .center 的最右边，只需要向左移动它自己本身的宽度就可以了，即 200px。
+
+```css
+.left {
+  margin-left: -100%;
+}
+.right {
+  margin-left: -200px;
+}
+```
+
+<br>
+
+<div style="text-align: center;">
+  <img src="./assets/holy-grail-layout-step-2.png" alt="通过使用 margin-left 让左右两边元素上移" style="width: 450px;">
+  <p style="text-align: center; color: #888;">（通过使用 margin-left 让左右两边元素上移）</p>
+</div>
+
+这个时候貌似是实现了圣杯布局，但仔细一看发现，.center 的文字被遮挡了，此时 .left、.right 都覆盖在 .center 的上面，我们要给两者留出位置。
+
+圣杯布局的做法是先设置父元素 .container 的 padding 属性，给 .left、.right 留出空间，两者需要的空间大小便是两者的宽度。父元素设置 padding 后，所有子元素都往中间挤了，这时利用定位属性将 .left、.right 分别向左向右拉到准备好的空位。
+
+```css
+.container {
+  padding-left: 100px;
+  padding-right: 200px;
+}
+.left {
+  position: relative;
+  left: -100px;
+}
+.right {
+  position: relative;
+  right: -200px;
+}
+```
+
+<br>
+
+<div style="text-align: center;">
+  <img src="./assets/holy-grail-layout-step-3.png" alt="父元素设置 padding 给左右两边的元素留空间，使用相对定位让左右两边元素归位" style="width: 450px;">
+  <p style="text-align: center; color: #888;">（父元素设置 padding 给左右两边的元素留空间，使用相对定位让左右两边元素归位）</p>
+</div>
+
+到这里，圣杯布局便完成了，它的核心思想是使用浮动布局，用 padding 为左右元素留空间，灵活使用 margin 的负值和相对定位让元素移动到相应的位置。完整的代码示例如下：
+
+<iframe height="251" style="width: 100%;" scrolling="no" title="css-layout-圣杯布局" src="https://codepen.io/winyuan/embed/eYzrJVe?height=251&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/eYzrJVe'>css-layout-圣杯布局</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+### 3.2 双飞翼布局
+
+双飞翼布局与圣杯布局的前部分一样，在给左右两边元素留出位置的思路有区别。
+
+圣杯布局是设置了父元素的 padding 留出空间，之后利用 relative 来归位。
+
+双飞翼则是多加了一个 div，将中间自适应部分包裹起来，利用子 div 的 margin 来给左右元素留空间。
+
+```html {2}
+<div class="container">
+  <div class="center-container"> <!-- 新增的 div -->
+    <div class="center">center</div>
+  </div>
+  <div class="left">left</div>
+  <div class="right">left</div>
+</div>
+```
+```css {7-10,15,16}
+body {
+  min-width: 630px;
+}
+.container {
+  overflow: hidden;
+}
+.center-container {
+  width: 100%;
+  float: left;
+}
+.center-container .center {
+  height: 150px;
+  background-color: #94e8ff;
+
+  margin-left: 100px;   /* 新添加的属性 */
+  margin-right: 200px;   /* 新添加的属性 */
+}
+.left {
+  width: 100px;
+  height: 150px;
+  background-color: #ffb5bf;
+  float: left;
+  margin-left: -100%;
+}
+.right {
+  width: 200px;
+  height: 150px;
+  background-color: #8990d5;
+  float: left;
+  margin-left: -200px;
+}
+```
+
+<br>
+
+<iframe height="249" style="width: 100%;" scrolling="no" title="css-layout-双飞翼布局" src="https://codepen.io/winyuan/embed/gOMzPjb?height=249&theme-id=light&default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/winyuan/pen/gOMzPjb'>css-layout-双飞翼布局</a> by wenyuan
+  (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+同样的问题，双飞翼布局通过多加一个 div 并使用了 margin 来实现，圣杯布局则是使用 padding、相对定位（relative）、设置偏移量（left、right）来实现，相对来说，双飞翼布局更容易理解。在圣杯布局中，无限缩小屏幕（假设没有设置 body 的最小宽度），当 .center 的宽度小于 .left 时，会出现布局错乱。
+
+（完）
