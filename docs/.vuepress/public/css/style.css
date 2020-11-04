@@ -100,72 +100,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 4px;
 }
 
-/* Custom Containers - fix theme bug */
-/* fix: tip */
-.custom-block.tip {
-  background-color: #f3f5f7;
-  border-color: #42b983;
-}
-
-/* fix: warning */
-.custom-block.warning {
-  background-color: rgba(255,229,100,.3);
-  border-color: #e7c000;
-  color: #6b5900;
-}
-
-.custom-block.warning .custom-block-title {
-  color: #b29400;
-}
-
-/* fix: danger */
-.custom-block.danger {
-  background-color: #ffe6e6;
-  border-color: #c00;
-  color: #4d0000;
-}
-
-.custom-block.danger .custom-block-title {
-  color: #900;
-}
-
-/* fix: .tip .warning .danger block */
-.custom-block.danger, .custom-block.tip, .custom-block.warning {
-  padding: .1rem 1.5rem;
-  border-left-width: .5rem;
-  border-left-style: solid;
-  margin: 1rem 0;
-}
-
-/* fix: title */
-.custom-block .custom-block-title {
-  font-weight: 600;
-  margin-bottom: -.4rem;
-}
-
-/* fix: details */
-.custom-block.details {
-  display: block;
-  position: relative;
-  border-radius: 2px;
-  margin: 1.6em 0;
-  padding: 1.6em;
-  background-color: #eee;
-}
-
-.custom-block.details summary {
-  outline: none;
-  cursor: pointer;
-}
-
-.custom-block.details div[class*='language-'] {
-  margin-top: 10px;
-}
-
-/* Custom Containers - define tip title color */
-.custom-block.tip .custom-block-title {
-  color: #42b983;
-}
 
 /* Comment Link */
 .comment-link {
@@ -175,18 +109,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .comment-link a {
   color: #4e6e8e;
-}
-
-/* fix: remove background-color in .token.operator */
-.theme-default-content code .token.operator{
-  background: transparent !important;
-}
-
-/* fix: remove/set background-color in .token.url(.token.function / .token.punctuation / .token.string.url) */
-.theme-default-content code .token.url .token.function,
-.theme-default-content code .token.url .token.punctuation,
-.theme-default-content code .token.url .token.string.url {
-  background: #ecf4fa !important; /* not effect while set transparent */
 }
 
 /* Inline Code Block

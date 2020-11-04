@@ -1,6 +1,6 @@
-const resolve = require("vuepress-theme-hope/resolve");
+const { config } = require("vuepress-theme-hope");
 
-module.exports = resolve({
+module.exports = config({
     title: '前端修炼小册',
     description: "Wenyuan's Front-End Development Book",
     dest: './dist',
@@ -36,6 +36,9 @@ module.exports = resolve({
         pageInfo: false,
         seo: false,
         sitemap: false,
+        mdEnhance: {
+            enableAll: false
+        },
         comment: false,
         copyright: false,
         breadcrumb: false
