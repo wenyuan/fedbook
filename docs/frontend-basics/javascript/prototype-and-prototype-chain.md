@@ -87,3 +87,7 @@ console.log(typeof foo.hasOwnProperty); // function
 ```javascript
 foo.__proto__ === Foo.prototype // true
 ```
+
+::: warning
+`[[prototype]]` 和 `__proto__` 意义相同，均表示对象的内部属性，其值指向对象原型。前者在一些书籍、规范中表示一个对象的原型属性，默认情况下是不可以再被外部访问的，估计是会被一些内部方法使用的，例如用 for...in 来遍历原型链上可以被枚举的属性的时候，就需要通过这个指针找到当前对象所继承的对象；后者则是在浏览器实现中支持的一个属性，用于指向对象原型。
+:::
