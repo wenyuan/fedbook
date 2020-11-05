@@ -39,6 +39,7 @@ module.exports = config({
         mdEnhance: {
             enableAll: false
         },
+        copyCode: false,
         comment: false,
         copyright: false,
         breadcrumb: false
