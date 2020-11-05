@@ -18,7 +18,61 @@ console.log(p1.say === p2.say); // false
 
 于是，我们就需要用到**继承**。
 
-> 通过某种方式让一个对象可以访问到另一个对象中的属性和方法，我们把这种方式称之为继承。（并不是所谓的 xxx extends yyy）
+> 通过某种方式让一个对象可以访问到另一个对象中的属性和方法，我们把这种方式称之为继承。
+
+在 JavaScript 中，继承的方式有很多种，外界对此也没有准确的认定到底有多少种方式，褒贬不一，主流通常有 7 种方式：
+
+* 原型链继承
+* 借用构造函数继承
+* 组合模式继承
+* 共享原型继承
+* 原型式继承
+* 寄生式继承
+* 寄生式组合继承
+* （题外）ES6 中 class 的继承
+
+## 1. 原型链继承
+
+通过实例化一个新的函数，子类的原型指向了父类的实例，子类就可以调用其父类原型对象上的私有属性和公有方法。
+
+代码示例：
+
+```javascript
+function Foo(){
+  this.name = 'seven';
+}
+Foo.prototype.getName = function() { 
+  return this.name
+}
+
+var foo = new Foo();
+foo.getName() // 'seven'
+
+
+function Parent() {
+  this.name = '父类';
+}
+ 
+Parent.prototype.getName = function() {
+  return this.name;
+};
+
+function Children() {
+  this.subproperty = false;
+}
+ 
+SubType.prototype = new SuperType();
+
+SubType.prototype.getSubValue = function() {
+  return this.property
+};
+
+var instance = new SubType();
+console.log(instance.getSuperValue()); // true
+
+```
+
+
 
 ## 1. 原型继承
 
