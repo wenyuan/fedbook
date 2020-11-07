@@ -44,5 +44,5 @@ module.exports = config({
         copyright: false,
         breadcrumb: false
     },
-    // plugins: ['@vuepress/back-to-top']
+    plugins: ['one-click-copy']
 });
