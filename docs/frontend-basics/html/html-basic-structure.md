@@ -6,15 +6,20 @@
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
+  <title>页面名称 - 产品中文全称 - 官方网站 - 前端修炼小册</title>
+  <meta name="keywords" content="产品名,专题名,专题相关名词,之间用英文半角逗号隔开">
+  <meta name="description" content="不超过150个字符，描述内容要和页面内容相关。">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>无标题文档</title>
+  <link rel="stylesheet" href="/css/index.css"/>
+  <link rel="shortcut icon" href="/img/favicon.ico"/>
 </head>
 <body>
   页面源代码内容
 </body>
+<script src="/js/index.js"></script>
 </html>
 ```
 
