@@ -9,7 +9,7 @@ module.exports = [
         path: '/frontend-basics/html/html-basic-structure',
         collapsable: true
       },
-			{
+      {
 				title: '语义类标签',
 				path: '/frontend-basics/html/semantic-elements',
 				collapsable: true
