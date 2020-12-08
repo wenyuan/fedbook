@@ -7,6 +7,9 @@ module.exports = [
     ]
   },
   {
+    text: '代码风格', link: '/coding-style/'
+  },
+  {
     text: '前端基础',
     items: [
       { text: 'HTML', link: '/frontend-basics/html/' },
