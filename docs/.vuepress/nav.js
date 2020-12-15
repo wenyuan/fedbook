@@ -24,9 +24,6 @@ module.exports = [
       { text: 'CSS 问题', link: '/interview/css/' }
     ]
   },
-  // {
-  //   text: '更新日志', link: '/history/'
-  // },
   {
     text: '其它',
     items: [

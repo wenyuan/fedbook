@@ -8,6 +8,11 @@ module.exports = [
         title: 'HTML 规范',
         path: '/style-guide/html-spec',
         collapsable: true
+      },
+      {
+        title: 'CSS 规范',
+        path: '/style-guide/css-spec',
+        collapsable: true
       }
     ]
   }
