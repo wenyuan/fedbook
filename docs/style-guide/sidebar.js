@@ -13,6 +13,11 @@ module.exports = [
         title: 'CSS 规范',
         path: '/style-guide/css-spec',
         collapsable: true
+      },
+      {
+        title: 'Vue 项目规范',
+        path: '/style-guide/vuejs-spec',
+        collapsable: true
       }
     ]
   }
