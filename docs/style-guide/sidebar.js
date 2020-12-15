@@ -1,12 +1,12 @@
 module.exports = [
   {
     title: '代码风格',
-    path: '/coding-style/',
+    path: '/style-guide/',
     collapsable: false,
     children: [
       {
         title: 'HTML 规范',
-        path: '/coding-style/html-style-guid',
+        path: '/style-guide/html-spec',
         collapsable: true
       }
     ]

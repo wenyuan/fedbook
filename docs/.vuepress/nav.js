@@ -7,7 +7,7 @@ module.exports = [
     ]
   },
   {
-    text: '代码风格', link: '/coding-style/'
+    text: '代码风格', link: '/style-guide/'
   },
   {
     text: '前端基础',
