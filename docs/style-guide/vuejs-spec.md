@@ -1,9 +1,16 @@
 # Vue 项目规范
 
+## 写在前面
+
+根据入乡随俗原则，在 Vue 项目中 ：
+
+* JavaScript 语句后不加分号
+* 缩进使用两个空格
+
 ## 工程目录安排
 
 * 全局通用的组件放在 `/src/components/` 下。
-* 页面/视图放在 `/src/views/` 下。
+* 页面/视图组件放在 `/src/views/` 下。
 * 全局公共指令、过滤器（多于三个文件以上引用）分别放在 `src/` 目录下的 `directives/`、`filters/`。
 * 当页面文件具有私有组件、指令、过滤器时，则建立一个与页面同名的目录，页面文件更名为 `index.vue`，然后在该目录下创建私有 `./components` 等文件夹。
 
@@ -30,8 +37,8 @@ src/
 
 ### 大小写规范
 
-* 属于 `components` 文件夹下的子文件夹（特指直接子文件夹），使用大写字母开头的 `PascalBase` 风格。
-* 其它文件夹统一使用 `kebab-case` 的风格。
+*  `components/` 下的子文件夹（特指直接子文件夹），使用 `PascalBase` 风格。
+* 其它文件夹统一使用 `kebab-case` 风格。
 
 例如：
 
@@ -41,29 +48,25 @@ components/
 │   └── index.vue
 ├── Charts                        # Charts 大写
 │   ├── MixChart.vue
-│   └── mixins                    # mixins 小写
+│   └── mixins                    # mixins 小写（不是 components 的直接子文件夹）
 │       └── resize.js
 └── ImageCropper                  # ImageCropper 大写
     ├── index.vue
-    └── utils                     # utils 小写
+    └── utils                     # utils 小写（不是 components 的直接子文件夹）
         ├── data2blob.js
         └── mimes.js
 ```
 
 ### 取名规范
 
-#### 1）组件文件夹
-
-指位于 `components` 下的直接子文件夹。
+#### 1）位于 `components/` 下的直接子文件夹
 
 * 代表着这类模块的类别。
-* 由名词组成（例如：`Charts`）
-* 如果有两个以上单词，采用 `PascalBase` 风格（例如：`BackToTop`）。
+* 由名词组成（例如：`Charts`）。
 * 最好只有一个单词，特殊情况可例外（good: `Car`，`Order`，`Cart`）（bad: `CarInfo`，`CarPage`）。
+* 如果有两个以上单词，采用 `PascalBase` 风格（例如：`BackToTop`）。
 
-#### 2）其它文件夹
-
-指 `view` 下的文件夹，或间接位于 `components` 下的子文件夹，和其它文件夹。
+#### 2）位于 `view/` 下的文件夹和其它文件夹
 
 * 代表着页面的名字，或者类名。
 * 由名词组成（例如：`profile`）。
@@ -77,43 +80,41 @@ src/
 ├── assets
 ├── main.js
 ├── components
-│   ├── BackToTop             # 组件文件夹
-│   └── Charts                # 组件文件夹
+│   ├── BackToTop             # 通用组件的文件夹
+│   └── Charts                # 通用组件的文件夹
 │       ├── Keyboard.vue
 │       ├── LineMarker.vue
 │       ├── MixChart.vue
-│       └── mixins            # 其它文件夹（间接位于 `components` 下的子文件夹）
+│       └── mixins            # 其它文件夹（不是 components 的直接子文件夹）
 ├── directive
 │   ├── clipboard             # 其它文件夹
 │   └── permission            # 其它文件夹
 ├── filters
 └── views
-    ├── charts                # 其它文件夹（页面文件夹）
-    ├── clipboard             # 其它文件夹（页面文件夹）
-    ├── dashboard             # 其它文件夹（页面文件夹）
-    │   ├── admin             # 其它文件夹（页面文件夹）
+    ├── charts                # 视图组件的文件夹
+    ├── clipboard             # 视图组件的文件夹
+    ├── dashboard             # 视图组件的文件夹
+    │   ├── admin             # 视图组件的文件夹
     │   │   ├── components
     │   │   └── index.vue
-    │   ├── editor            # 其它文件夹（页面文件夹）
+    │   ├── editor            # 视图组件的文件夹
     │   │   └── index.vue
     │   └── index.vue
-    └── error-page            # 其它文件夹（页面文件夹）
+    └── error-page            # 视图组件的文件夹
         ├── 401.vue
         └── 404.vue
 ```
 
-## `.vue` 文件命名规范
+## 组件命名规范
 
 ### 大小写规范
 
-* 属于 `components` 下的组件名采用 `PascalBase` 风格，各模块的入口文件`index.vue`采用小写。
+* `components/` 下的组件名采用 `PascalBase` 风格，各模块的入口文件`index.vue`采用小写。
 * 其它地方的组件名采用 `kebab-case` 的风格。
 
 ### 取名规范
 
-#### 1）基础组件名
-
-指位于 `components` 文件夹下的基础组件。
+#### 1）位于 `components/` 下的通用组件
 
 应该全部以一个特定的前缀开头，比如 `Base`、`App` 或 `V`。
 
@@ -135,9 +136,9 @@ components/
 |- Icon.vue
 ```
 
-#### 2）单例组件名
+#### 2）位于 `components/` 下的单例组件
 
-指位于 `components` 文件夹下的组件，这类组件在每个页面只使用一次，永远不接受任何 prop，是为你的应用定制的。
+位于 `components` 文件夹下的通用组件，但这类组件在每个页面只使用一次，永远不接受任何 prop，是为你的应用定制的。
 
 一般以 `The` 前缀命名，以示其唯一性。
 
@@ -157,9 +158,9 @@ components/
 |- MySidebar.vue
 ```
 
-#### 3）紧密耦合的组件名
+#### 3）位于 `components/` 下的紧密耦合组件
 
-指位于 `components` 文件夹下的组件，该类组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
+位于 `components` 文件夹下，该类组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
 
 一般以父组件名作为前缀命名。
 
@@ -181,9 +182,9 @@ components/
 
 #### 4）组件名中的单词顺序
 
-指位于 `components` 文件夹下的组件。
+组件名应该以高级别的（通常是一般化描述的）单词开头，以描述性的修饰词结尾。
 
-组件名应该以高级别的（通常是一般化描述的）单词开头，以描述性的修饰词结尾（这个描述比较抽象，什么叫“高级别”的呢，直接看例子）。
+这个表达比较抽象，什么叫「高级别」的呢，直接看例子。
 
 推荐：
 
@@ -229,11 +230,9 @@ components/
 |- UProfOpts.vue
 ```
 
-#### 6）页面/视图文件名
+#### 6）位于 `views/` 下的视图组件
 
-指位于 `views` 文件夹下的`.vue`文件。
-
-`views` 文件夹下面是由 **以页面为单位的vue文件** 或者 **模块文件夹** 组成的。
+这个文件夹下主要是**以页面为单位的组件**或者**模块文件夹**，需要遵循以下命名规范：
 
 * `views` 目录下面的 `.vue` 文件代表着页面的名字；
 * 只有一个文件的情况，直接放在 `views` 目录下面，如 `Login.vue`、`Home.vue`；
