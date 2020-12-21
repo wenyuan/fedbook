@@ -234,33 +234,33 @@ components/
 
 这个文件夹下主要是**以页面为单位的组件**或者**模块文件夹**，需要遵循以下命名规范：
 
-* `views` 目录下面的 `.vue` 文件代表着页面的名字；
-* 只有一个文件的情况，直接放在 `views` 目录下面，如 `Login.vue`、`Home.vue`；
-* 有 `utils` 等子文件夹时，在 `views` 下创建一个文件夹，要体现页面的名字， `.vue` 文件可与之同名；
-* 有两个以上 `.vue` 文件时，在 `views` 下创建一个文件夹，要体现内部文件的所属类名（例如`car`），`.vue` 文件放在里面（例如`car-list.vue`，`car-detail.vue`）；
-* 有私有组件时，在 `views` 下创建一个文件夹，要体现页面的名字，文件夹下必须有 `index.vue` 或 `index.js`；
+* `views/` 目录下面的 `.vue` 文件代表着页面的名字；
+* 只有一个文件的情况，直接放在 `views/` 目录下面，如 `Login.vue`、`Home.vue`；
+* 有 `utils/` 等子文件夹时，在 `views/` 下创建一个文件夹，要体现页面的名字， `.vue` 文件可与之同名；
+* 有两个以上 `.vue` 文件时，在 `views/` 下创建一个文件夹，要体现内部文件的所属类名（例如`car`），`.vue` 文件放在里面（例如`car-list.vue`，`car-detail.vue`）；
+* 有私有组件时，在 `views/` 下创建一个文件夹，要体现页面的名字，文件夹下必须有 `index.vue` 或 `index.js`；
 * 尽量是名词；
-* 除`components`下的，一律采用 `kebab-case` 的风格；
+* 除 `components/` 下的，一律采用 `kebab-case` 的风格；
 * 名字至少两个单词（good: `car-detail`）（bad: `car`）
 * 常用结尾单词有（`detail`、`edit`、`list`、`info`、`report`）
-* 私有`components`目录下，以 `Item` 结尾的代表着私有组件（`CarListItem`、`CarInfoItem`）
+* 私有 `components/` 目录下，以 `Item` 结尾的代表着私有组件（`CarListItem`、`CarInfoItem`）
 
-## `.vue` 文件内部编程规范
+## 组件内部编程规范
 
-### vue 方法放置顺序
+### 方法声明顺序
 
-#### ① components
-#### ② props
-#### ③ data
-#### ④ created
-#### ⑤ mounted
-#### ⑥ activited
-#### ⑦ update
-#### ⑧ beforeRouteUpdate
-#### ⑨ metods
-#### ⑩ filter
-#### ⑪ computed
-#### ⑫ watch
+① **components**  
+② **props**  
+③ **data**  
+④ **created**  
+⑤ **mounted**  
+⑥ **activited**  
+⑦ **update**  
+⑧ **beforeRouteUpdate**  
+⑨ **methods**  
+⑩ **filter**  
+⑪ **computed**  
+⑫ **watch**  
 
 ### prop 名大小写
 
