@@ -15,6 +15,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: 'JavaScript 规范',
+        path: '/style-guide/javascript-spec',
+        collapsable: true
+      },
+      {
         title: 'Vue 项目规范',
         path: '/style-guide/vuejs-spec',
         collapsable: true
