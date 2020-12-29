@@ -15,7 +15,7 @@ Tips：
 在制定代码风格指南时，主要借鉴了一些大厂和开源组织的前端代码规范： 
 
 * [腾讯](https://tgideas.qq.com/doc/index.html "TGideas 文档库")
-* [京东](https://guide.aotu.io/index.html "凹凸实验室")
+* [京东](https://guide.aotu.io/index.html "凹凸实验室")（比较齐全）
 * [百度](https://github.com/ecomfe/spec "spec")
 * [网易](http://nec.netease.com/standard "NEC")
 * [Airbnb](https://github.com/airbnb/javascript "Airbnb")
@@ -33,7 +33,7 @@ Tips：
 
 ESLint 和 Prettier 区别：
 
-* ESLint（包括其他一些 Lint 工具）主要解决的是**代码质量问题**，
+* ESLint（包括其他一些 Lint 工具）主要解决的是**代码质量问题**。
 * Prettier 主要解决的是**代码风格问题**。
 
 代码质量出问题意味着程序有潜在 Bug（未使用变量、三等号、全局变量声明等），而风格问题充其量也只是看着不爽（单行代码长度、tab 长度、空格、逗号表达式等）。
