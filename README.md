@@ -6,7 +6,7 @@
 
 <p align="center">
   <img alt="author" src="https://img.shields.io/badge/author-wenyuan-blue.svg?style=flat-square">
-  <img alt="updated" src="https://img.shields.io/badge/update-2020.12-blue.svg?style=flat-square">
+  <img alt="updated" src="https://img.shields.io/badge/update-2021.01-blue.svg?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square">
   <a href="https://www.wenyuanblog.com/gift.html" target="_blank">
     <img alt="sponsor" src="https://img.shields.io/badge/sponsor-❤-ff69b4.svg?style=flat-square">
