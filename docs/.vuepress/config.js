@@ -32,16 +32,17 @@ module.exports = config({
     darkmode: 'disable',
     themeColor: false,
     blog: false,
-    pwa: false,
     pageInfo: false,
-    seo: false,
-    sitemap: false,
     mdEnhance: {
       enableAll: false
     },
-    copyCode: false,
     comment: false,
     copyright: false,
+    pwa: false,
+    seo: false,
+    sitemap: false,
+    copyCode: false,
+    photoSwipe: false,
     breadcrumb: false
   },
   plugins: ['one-click-copy']

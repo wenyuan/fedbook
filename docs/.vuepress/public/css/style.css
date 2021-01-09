@@ -18,6 +18,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 8px;
 }
 */
+
+.navbar {
+  /* 取消高斯模糊效果 */
+  background: #fff !important;
+  backdrop-filter: none !important;
+}
+
 .navbar .logo {
   margin-right: 0.4rem !important;
 }
@@ -129,6 +136,15 @@ h1, h2, h3, h4, h5, h6 {
 .dropdown-wrapper .nav-dropdown .dropdown-item h4 {
   padding: 0.75rem 1.5rem 0.45rem 1.25rem !important;
 }
+
+/* RightBar style */
+#anchor {
+  left: calc(100% + 6rem) !important;
+}
+#anchor::-webkit-scrollbar {
+  width: 0 !important;
+}
+
 
 /* ScrollBar */
 ::-webkit-scrollbar {

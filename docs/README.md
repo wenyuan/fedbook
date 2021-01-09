@@ -14,7 +14,7 @@ features:
 - title: WENYUAN
   details: 一个 90 后程序员，终身学习者。座右铭：努力过，不后悔。
 footer: MIT Licensed | Copyright © 2018-present Wenyuan Xu
-copyright: false
+copyrightText: false
 ---
 
 <div class="tech-stack">
