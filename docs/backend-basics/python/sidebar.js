@@ -10,6 +10,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '变量与常量',
+        path: '/backend-basics/python/variables-and-constants',
+        collapsable: true
+      },
+      {
         title: '数据类型',
         path: '/backend-basics/python/data-types',
         collapsable: true
