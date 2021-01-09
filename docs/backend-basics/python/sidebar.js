@@ -13,6 +13,11 @@ module.exports = [
         title: '数据类型',
         path: '/backend-basics/python/data-types',
         collapsable: true
+      },
+      {
+        title: '函数参数',
+        path: '/backend-basics/python/function-params',
+        collapsable: true
       }
     ]
   }
