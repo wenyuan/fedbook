@@ -23,6 +23,11 @@ module.exports = [
         title: '函数参数',
         path: '/backend-basics/python/function-params',
         collapsable: true
+      },
+      {
+        title: '函数装饰器',
+        path: '/backend-basics/python/function-decorators',
+        collapsable: true
       }
     ]
   }
