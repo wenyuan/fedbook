@@ -28,6 +28,11 @@ module.exports = [
         title: '函数装饰器',
         path: '/backend-basics/python/function-decorators',
         collapsable: true
+      },
+      {
+        title: '面向对象编程',
+        path: '/backend-basics/python/oop',
+        collapsable: true
       }
     ]
   }
