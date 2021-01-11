@@ -147,7 +147,7 @@ def outer(func):
 
 @outer
 def f1(name):
-    print("{0}第一个接口......".format(name))
+    print("{0}正在连接第一个接口......".format(name))
 
 # 调用方法
 f1("zhangsan")
@@ -167,7 +167,7 @@ def outer(func):
 
 @outer
 def f2(name, age):
-    print("{0}第二个接口......".format(name))
+    print("{0}正在连接第二个接口......".format(name))
 
 # 调用方法
 f2("lisi", 14)
@@ -175,10 +175,89 @@ f2("lisi", 14)
 
 ## 6. 多层装饰器
 
-通过上面的介绍，函数装饰器的基本概念和用法，你应该有一定的了解了。那么进一步思考一下，一个函数可以被多个函数装饰吗？答案是可以的。看下面的例子：
+上面已经介绍了函数装饰器的基本概念和用法，接下来再进一步，一个函数可以被多个函数装饰吗？答案是可以的。看下面的例子：
 
-## 7. 总结
+```python
+def outer1(func):
+    def inner(*args, **kwargs):
+        print("身份认证成功")
+        result = func(*args, **kwargs)
+        print("日志添加成功")
+        return result
+    return inner
+
+def outer2(func):
+    def inner(*args, **kwargs):
+        print("代码开始执行")
+        result = func(*args, **kwargs)
+        print("代码执行完毕")
+        return result
+    return inner
+
+@outer1
+@outer2
+def f1(name, age):
+    print("{0}正在连接第一个接口......".format(name))
+
+# 调用方法
+f1("zhangsan", 13)
+```
+
+怎么分析多装饰器情况下的代码运行顺序呢？可以将它理解成洋葱模型：每个装饰器一层层包裹住最内部核心的原始函数，执行的时候逐层穿透进入最核心内部，执行内部核心函数后，再反向逐层穿回来。
+
+所以，最后的运行结果就显而易见了：
+
+```bash
+身份认证成功
+代码开始执行
+zhangsan正在连接第一个接口......
+代码执行完毕
+日志添加成功
+```
+
+## 7. 装饰器携带参数
+
+装饰器自己可以有参数吗？答案也是可以的。看下面的例子：
+
+```python
+def say_hello(country):
+    def wrapper(func):
+        def deco(*args, **kwargs):
+            if country == "China":
+                print("你好")
+            elif country == "America":
+                print("Hello")
+            else:
+                return
+            func(*args, **kwargs)
+        return deco
+    return wrapper
+
+@say_hello("China")
+def f1():
+    print("我来自中国")
+
+@say_hello("America")
+def f2():
+    print('I am from America')
+
+f1()
+f2()
+```
+
+运行结果：
+
+```bash
+你好
+我来自中国
+Hello
+I am from America
+```
+
+## 8. 总结
 
 装饰器体现的是设计模式中的装饰模式，实际上，在 Python 中装饰器可以用函数实现，也可以用类实现。我在实际开发中函数装饰器用的比较多，所以本文主要介绍的是函数装饰器。
+
+而如果要对装饰器的用法作更加深入的学习，官方文档和框架源码是比较好的学习对象。
 
 （完）
