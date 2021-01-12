@@ -33,6 +33,11 @@ module.exports = [
         title: '面向对象编程',
         path: '/backend-basics/python/oop',
         collapsable: true
+      },
+      {
+        title: '类和实例',
+        path: '/backend-basics/python/class-and-instance',
+        collapsable: true
       }
     ]
   }
