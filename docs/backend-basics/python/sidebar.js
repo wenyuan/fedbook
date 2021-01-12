@@ -38,6 +38,11 @@ module.exports = [
         title: '类和实例',
         path: '/backend-basics/python/class-and-instance',
         collapsable: true
+      },
+      {
+        title: '类的继承',
+        path: '/backend-basics/python/class-inheritance',
+        collapsable: true
       }
     ]
   }
