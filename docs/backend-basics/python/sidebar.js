@@ -43,6 +43,11 @@ module.exports = [
         title: '类的继承',
         path: '/backend-basics/python/class-inheritance',
         collapsable: true
+      },
+      {
+        title: '类成员保护',
+        path: '/backend-basics/python/class-access-modifiers',
+        collapsable: true
       }
     ]
   }
