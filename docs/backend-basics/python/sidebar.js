@@ -5,6 +5,11 @@ module.exports = [
     collapsable: false,
     children: [
       {
+        title: '编译器与解释器',
+        path: '/backend-basics/python/compiler-and-interpreter',
+        collapsable: true
+      },
+      {
         title: '语法规范',
         path: '/backend-basics/python/grammar',
         collapsable: true
