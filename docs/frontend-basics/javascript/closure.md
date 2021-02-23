@@ -132,3 +132,5 @@ var bar = foo();
 // 要想释放 bar 里面保存的 a，只能通过释放 bar
 bar = null; // 或者 bar = undefined
 ```
+
+（完）
