@@ -9,5 +9,8 @@ module.exports = {
   '/interview': require('../interview/sidebar'),
   '/frontend-frameworks/vuejs': require('../frontend-frameworks/vuejs/sidebar'),
   '/history': require('../history/sidebar'),
+  /* --------- 手写系列 --------- */
+  '/handwritten/javascript': require('../handwritten/javascript/sidebar'),
+  /* --------- 后端语言 --------- */
   '/': [],
 };

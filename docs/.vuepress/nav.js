@@ -24,6 +24,12 @@ module.exports = [
     ]
   },
   {
+    text: '手写系列',
+    items: [
+      { text: 'JavaScript 手写函数', link: '/handwritten/javascript/' }
+    ]
+  },
+  {
     text: '面试相关',
     items: [
       { text: 'HTML 问题', link: '/interview/html/' },
