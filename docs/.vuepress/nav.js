@@ -1,13 +1,10 @@
 module.exports = [
   {
-    text: '前言',
+    text: '风格指南',
     items: [
-      { text: '知识体系', link: '/foreword/roadmap/' },
-      { text: '写作规范', link: '/foreword/document-style-guide/' }
+      { text: '文档规范', link: '/style-guide/document/' },
+      { text: '代码风格', link: '/style-guide/program/' }
     ]
-  },
-  {
-    text: '代码风格', link: '/style-guide/'
   },
   {
     text: '前端基础',
