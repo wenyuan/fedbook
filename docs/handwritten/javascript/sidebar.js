@@ -10,6 +10,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '实现节流函数（throttle）',
+        path: '/handwritten/javascript/2-实现节流函数-throttle',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
