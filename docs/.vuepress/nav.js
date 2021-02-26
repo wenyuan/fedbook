@@ -40,7 +40,6 @@ module.exports = [
         text: '站内',
         items: [
           { text: '关于本站', link: '/about/' },
-          { text: '随心分享', link: '/share/' },
           { text: '更新日志', link: '/history/' }
         ]
       },
@@ -48,7 +47,8 @@ module.exports = [
         text: '站外',
         items: [
           { text: '博客', link: 'https://www.wenyuanblog.com/' },
-          { text: 'GitHub', link: 'https://github.com/wenyuan' }
+          { text: 'GitHub', link: 'https://github.com/wenyuan' },
+          { text: '支持一下', link: 'https://www.wenyuanblog.com/gift.html' }
         ]
       }
     ]
