@@ -16,17 +16,22 @@ module.exports = [
       },
       {
         title: '实现浅克隆（shallowClone）',
-        path: '/handwritten/javascript/3-实现浅克隆-shallowClone',
+        path: '/handwritten/javascript/3-实现浅克隆-shallow-clone',
         collapsable: true
       },
       {
         title: '实现深克隆（deepClone）',
-        path: '/handwritten/javascript/4-实现深克隆-deepClone',
+        path: '/handwritten/javascript/4-实现深克隆-deep-clone',
         collapsable: true
       },
       {
         title: '实现 instanceof',
         path: '/handwritten/javascript/5-实现instanceof',
+        collapsable: true
+      },
+      {
+        title: '实现 Object.create',
+        path: '/handwritten/javascript/6-实现object-create',
         collapsable: true
       },
       {
