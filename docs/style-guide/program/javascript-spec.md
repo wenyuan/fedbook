@@ -310,15 +310,15 @@ function numberFormatter(num, digits) {
 #### 文件注释
 
 * 用于告诉不熟悉这段代码的读者这个文件中包含哪些东西。
-* 文件注释要标明作者、文件版本、创建/修改时间、重大版本修改记录
+* 文件注释要标明作者、文件版本、创建/修改时间、重大版本修改记录。
 
 推荐：
 
 ```javascript
 /**
-* @desc Description of file, its uses and information
-* @dependencies about its dependencies.
-* @author Author Name
-* @date 2020-12-29
-*/
+ * @desc Description of file, its uses and information
+ * @dependencies about its dependencies.
+ * @author Author Name
+ * @date 2020-12-29
+ */
 ```

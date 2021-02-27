@@ -115,19 +115,17 @@ JavaScript 中的函数也是对象，函数对象也可以包含方法。其中
 
 ```javascript
 // call()
-function myFunction(a, b) {
-  return a * b;
-}
-myObject = myFunction.call(myObject, 10, 2); // 返回 20
+// obj: 这个对象将代替 func 里 this 对象
+// param1 ~ paramN: 这是一个参数列表
+func.call(obj, param1, …, paramN)
 ```
 
 ```javascript
-// apply()
-function myFunction(a, b) {
-  return a * b;
-}
-myArray = [10, 2];
-myObject = myFunction.apply(myObject, myArray); // 返回 20
+// apply() 
+// 该方法能接收两个参数
+// obj: 这个对象将代替 func 里 this 对象
+// args: 这是一个数组，它将作为参数传给 func（args --> arguments）
+func.apply(obj, args)
 ```
 
 注意：
