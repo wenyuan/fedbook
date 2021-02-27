@@ -11,16 +11,16 @@
 // wait 是等待时间
 const throttle = (func, wait=500) => {
   // 上一次执行该函数的时间
-  let lastTime = 0
+  let lastTime = 0;
   // 使用闭包返回一个函数并且用到闭包函数外面的变量 lastTime
   return function(...args) {
     // 当前时间
-    let now = +new Date()
+    let now = +new Date();
     // 将当前时间和上一次执行函数时间对比
     // 如果差值大于设置的等待时间就执行函数
     if (now - lastTime > wait) {
-      lastTime = now
-      func.apply(this, args)
+      lastTime = now;
+      func.apply(this, args);
     }
   }
 }
@@ -31,11 +31,11 @@ const throttle = (func, wait=500) => {
 ```javascript
 // 用 onmousemove 测试一下节流函数
 function func(e) {
-  console.log(e)
+  console.log(e);
 }
 let throttleFunc = throttle(func, 1000)
 document.onmousemove = (e) => {
-  throttleFunc(e)
+  throttleFunc(e);
 }
 ```
 

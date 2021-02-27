@@ -49,7 +49,7 @@ function name(param1, …, paramN) {
 // 变量提升
 console.log(hello('Aliens')); // "Hello Aliens!"
 // 命名的函数
-console.log(hello.name)       // "hello"
+console.log(hello.name);      // "hello"
 // 变量保存了函数对象
 console.log(typeof hello);    // "function"
 

@@ -13,14 +13,14 @@
 // wait 是等待时间
 const debounce = (func, wait=500) => {
   // 缓存一个定时器 id
-  let timer = 0
+  let timer = 0;
   // 这里返回的函数是每次用户实际调用的防抖函数
   // 如果已经设定过定时器了就清空上一次的定时器
   // 开始一个新的定时器，延迟执行用户传入的方法
   return function(...args) {
-    if (timer) clearTimeout(timer)
+    if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-      func.apply(this, args)
+      func.apply(this, args);
     }, wait)
   }
 }
@@ -31,11 +31,11 @@ const debounce = (func, wait=500) => {
 ```javascript
 // 用 onmousemove 测试一下防抖函数
 function func(e) {
-  console.log(e)
+  console.log(e);
 }
-let debounceFunc = debounce(func, 1000)
+let debounceFunc = debounce(func, 1000);
 document.onmousemove = (e) => {
-  debounceFunc(e)
+  debounceFunc(e);
 }
 ```
 

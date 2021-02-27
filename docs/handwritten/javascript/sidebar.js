@@ -15,6 +15,16 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '实现浅克隆（shallowClone）',
+        path: '/handwritten/javascript/3-实现浅克隆-shallowClone',
+        collapsable: true
+      },
+      {
+        title: '实现深克隆（deepClone）',
+        path: '/handwritten/javascript/4-实现深克隆-deepClone',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
