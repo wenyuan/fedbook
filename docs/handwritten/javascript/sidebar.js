@@ -25,6 +25,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '实现 instanceof',
+        path: '/handwritten/javascript/5-实现instanceof',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
