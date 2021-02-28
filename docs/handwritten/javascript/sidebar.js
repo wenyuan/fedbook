@@ -35,8 +35,8 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '实现 new',
-        path: '/handwritten/javascript/7-实现new',
+        title: '实现 new 运算符',
+        path: '/handwritten/javascript/7-实现new运算符',
         collapsable: true
       },
       {
