@@ -45,7 +45,7 @@
 ## 5. 手写系列 - JavaScript 手写函数
 
 * 2021.02.28 &emsp; 添加《实现 new 运算符》章节。
-* 2021.02.27 &emsp; 添加《实现浅克隆（shallowClone）》、《实现深克隆（deepClone）》、《实现 instanceof》、《实现 Object.create》章节。
+* 2021.02.27 &emsp; 添加《实现浅克隆（shallowClone）》、《实现深克隆（deepClone）》、《实现 instanceof 运算符》、《实现 Object.create 方法》章节。
 * 2021.02.26 &emsp; 添加《实现防抖函数（debounce）》、《实现节流函数（throttle）》章节。
 
 ## 6. 面试相关

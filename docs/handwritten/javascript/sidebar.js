@@ -25,13 +25,13 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '实现 instanceof',
-        path: '/handwritten/javascript/5-实现instanceof',
+        title: '实现 instanceof 运算符',
+        path: '/handwritten/javascript/5-实现instanceof运算符',
         collapsable: true
       },
       {
-        title: '实现 Object.create',
-        path: '/handwritten/javascript/6-实现object-create',
+        title: '实现 Object.create 方法',
+        path: '/handwritten/javascript/6-实现object-create方法',
         collapsable: true
       },
       {
