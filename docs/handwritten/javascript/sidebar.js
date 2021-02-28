@@ -35,6 +35,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '实现 new',
+        path: '/handwritten/javascript/7-实现new',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
