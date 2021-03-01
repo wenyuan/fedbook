@@ -40,6 +40,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '实现 call 方法',
+        path: '/handwritten/javascript/8-实现call方法',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
