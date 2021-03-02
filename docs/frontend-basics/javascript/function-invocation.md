@@ -143,21 +143,21 @@ bind 方式一般人用的比较少，但有的时候具有一些举足轻重的
 基本模式：
 
 ```javascript
-function speed() {
-  console.log(this.seconds);
+let func = function(){
+  console.log(this.name);
 }
 
-// 执行了 bind 方法之后，产生了一个新函数，这个新函数里面的逻辑和原来还是一样的，唯一的不同是 this 指向 {seconds: 100}
-let speedBind = speed.bind({seconds: 100});
-speedBind(); // 100
+// 执行了 bind 方法之后，产生了一个新函数，这个新函数里面的逻辑和原来还是一样的，唯一的不同是 this 指向 { name: '张三' }
+let funcBind = func.bind({ name: '张三' });
+funcBind(); // "张三"
 ```
 
 上述代码可以简化如下：
 
 ```javascript
-(function speed() {
-  console.log(this.seconds);
-}).bind({seconds: 100})();  // 100
+(function func() {
+  console.log(this.name);
+}).bind({ name: '张三' })(); // "张三"
 ```
 
 bind 函数在对象中：
