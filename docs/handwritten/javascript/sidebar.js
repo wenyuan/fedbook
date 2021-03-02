@@ -45,6 +45,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '实现 apply 方法',
+        path: '/handwritten/javascript/9-实现apply方法',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
