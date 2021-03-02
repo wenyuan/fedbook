@@ -50,6 +50,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '实现 bind 方法',
+        path: '/handwritten/javascript/10-实现bind方法',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
