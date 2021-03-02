@@ -44,6 +44,7 @@
 
 ## 5. 手写系列 - JavaScript 手写函数
 
+* 2021.03.02 &emsp; 添加《实现 apply 方法》、《实现 bind 方法》章节。
 * 2021.03.01 &emsp; 添加《实现 call 方法》章节。
 * 2021.02.28 &emsp; 添加《实现 new 运算符》章节。
 * 2021.02.27 &emsp; 添加《实现浅克隆（shallowClone）》、《实现深克隆（deepClone）》、《实现 instanceof 运算符》、《实现 Object.create 方法》章节。
