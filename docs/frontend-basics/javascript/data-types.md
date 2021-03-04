@@ -1,5 +1,7 @@
 # 数据类型
 
+## 1. 前言
+
 最新的 ECMAScript 标准定义了 8 种数据类型:
 
 * 7 种基本数据类型：
@@ -13,7 +15,7 @@
 * 1 种复杂数据类型：
   * Object
 
-## 1. 使用 typeof 操作符判断数据类型
+## 2. 使用 typeof 操作符判断数据类型
 
 `typeof` 用于检测给定变量的数据类型，对一个值使用 `typeof` 操作符会返回一个表示操作数的类型的字符串。但 `typeof` 的运算结果，与运行时类型的规定有很多不一致的地方。
 
@@ -35,9 +37,9 @@
 
 此外，由于 `typeof` 是一个操作符而不是函数，后面可加括号也可省略。
 
-## 2. 8 种数据类型介绍
+## 3. 8 种数据类型介绍
 
-### 2.1 Undefined 类型
+### 3.1 Undefined 类型
 
 Undefined 类型只有一个值，即特殊的 `undefined`。  
 在使用 `var` 声明变量但未对其加以初始化时，这个变量的值就是 `undefined`；
@@ -46,7 +48,7 @@ Undefined 类型只有一个值，即特殊的 `undefined`。
 
 **显示地初始化变量是明智的选择**，这样当 `typeof` 操作符返回 `"undefined"` 值时，我们就知道被检测地变量还没有被声明，而不是尚未初始化。（—— 出自红宝书）
 
-### 2.2 Null 类型
+### 3.2 Null 类型
 
 Null 类型也只有一个值，即特殊的 `null`。  
 从逻辑角度来看，`null` 值表示一个**空对象指针**，所以使用 `typeof` 操作符检测 `null` 值时会返回 `"object"`。
@@ -55,21 +57,21 @@ Null 类型也只有一个值，即特殊的 `null`。
 
 实际上，`undefined` 值是派生自 `null` 值的，因此 `null == undefined` 会返回 `true`，但 `null === undefined` 则返回 `false` 了。
 
-### 2.3 Boolean 类型
+### 3.3 Boolean 类型
 
 Boolean 类型只有两个字面值：`true` 和 `false`。
 
-### 2.4 Number 类型
+### 3.4 Number 类型
 
 Number 类型使用 [IEEE754](https://baike.baidu.com/item/IEEE%20754/3869922?fr=aladdin) 格式来表示整数和浮点数值。
 
-#### （1）浮点数值的整数化
+#### 1）浮点数值的整数化
 
 因为保存浮点数值需要得内存空间是保存整数值的两倍，所以凡是可以「整数化」的浮点数都会被转换为整数值，例如：`1.` 和 `1.0` 都会被解析为 `1`。
 
 对于那些极大或极小的数值，可以用 e 表示法（即科学计数法）表示的浮点数值表示。（用 e 表示法表示的数值等于 e 前面的数值乘以 10 的指数次幂）
 
-#### （2）数值范围限制
+#### 2）数值范围限制
 
 JavaScript 能够表示的**最小数值**为 `Number.MIN_VALUE`，在大多数浏览器中这个值是 `5e-324`；  
 JavaScript 能够表示的**最大数值**为 `Number.MAX_VALUE`，在大多数浏览器中这个值是 `1.7976931348623157e+308`。
@@ -78,13 +80,13 @@ JavaScript 能够表示的**最大数值**为 `Number.MAX_VALUE`，在大多数�
 
 可以使用 `isFinite()` 函数判断括号里的参数是否位于最小与最大数值之间。
 
-#### （3）特殊的 NaN
+#### 3）特殊的 NaN
 
 `NaN`，即非数值（Not a Number）是一个特殊的数值。它有两个特点：一是任何涉及 `NaN` 的操作都会返回 `NaN`，二是 `NaN` 与任何值都不相等，包括 `NaN` 本身。
 
 可以通过 `isNaN()` 函数来确认括号里的参数是否「不是数值」，需要注意的是，`isNaN()` 在接收到一个参数后，会尝试将这个值转换为数值，某些不是数值的值会直接转换为数值，例如字符串 `"10"` 或 `Boolean` 值。
 
-#### （4）数值转换函数
+#### 4）数值转换函数
 
 有 3 个函数可以把非数值转换为数值：`Number()`、`parseInt()` 和 `parseFloat()`。
 
@@ -97,7 +99,7 @@ JavaScript 能够表示的**最大数值**为 `Number.MAX_VALUE`，在大多数�
 **转换规则**：这 3 个函数都会忽略字符串前面的空格，直至找到第一个非空格字符。如果第一个字符不是数字字符或负号，就会返回 `NaN`，直到解析完所有后续字符或者遇到了一个非数字字符。  
 区别是 `parseInt()` 转换过程中，小数点不是有效的数字字符；而 `parseFloat()` 转换过程中，第一个小数点是有效的，后面的小数点是无效的，从第二个小数点开始的后面所有字符会被忽略。
 
-### 2.5 BigInt 类型（ECMAScript 2020）
+### 3.5 BigInt 类型（ECMAScript 2020）
 
 BigInt 类型是在 ECMAScript 2020（ES11）引入的新特性。
 
@@ -124,7 +126,7 @@ console.log(bigNum + 1n); // 200000000000000000000000000000n
 console.log(bigNum + 1); // TypeError: Cannot mix BigInt and other types, use explicit conversions
 ```
 
-### 2.6 String 类型
+### 3.6 String 类型
 
 String 类型用于表示由零或多个 16 位 Unicode 字符组成的字符序列，即字符串。
 
@@ -136,7 +138,7 @@ String 类型用于表示由零或多个 16 位 Unicode 字符组成的字符序
 
 第二种，`String()` 函数，它在转换过程中，如果值有 `toString()` 方法，则调用该方法（没有参数）；如果值是 `null`，则返回 `"null"`；如果值是 `undefined`，则返回 `"undefined"`。
 
-### 2.7 Symbol 类型（ECMAScript 2015）
+### 3.7 Symbol 类型（ECMAScript 2015）
 
 Symbol 类型是在 ECMAScript 2015（ES6）引入的新特性。
 
@@ -144,17 +146,17 @@ ES5 的对象属性名都是字符串，这容易造成属性名的冲突。因�
 
 关于 Symbol 的知识点可以参考阮一峰老师编写的《ES6标准入门（第3版）》中 [Symbol](https://es6.ruanyifeng.com/#docs/symbol "Symbol - ECMAScript 6入门") 章节。
 
-### 2.8 Object 类型
+### 3.8 Object 类型
 
 JavaScript 中的对象是一组数据和功能的集合。对象可以通过执行 `new` 操作符后跟要创建的对象类型的名称来创建。
 
 简单说，对象就是一组“键值对”（key-value）的集合，是一种无序的复合数据集合。
 
-## 3. 判断数据类型
+## 4. 判断数据类型
 
 JavaScript 中判断数据类型主要有下列几种方式：
 
-### 3.1 typeof
+### 4.1 typeof
 
 `typeof` 只能区分基本类型：undefined、object、boolean、number、bigint，string，symbol，function，object，对于 null、array、object 来说，使用 typeof 都会统一返回 object 字符串。
 
@@ -164,7 +166,7 @@ typeof [] // "object"
 typeof null // "object"
 ```
 
-### 3.2 Object.prototype.toString.call()
+### 4.2 Object.prototype.toString.call()
 
 `Object.prototype.toString.call()` 能用于判断原生引用类型数据，返回一个形如 `"[object XXX]"` 的字符串。
 
@@ -213,7 +215,7 @@ Object.prototype.toString.call(arr); // "[object Object]"
 
 很明显这种方法不能准确判断 `person` 是 `Person` 类的实例。
 
-### 3.3 instanceof
+### 4.3 instanceof
 
 `instanceof` 运算符用于测试构造函数的 `prototype` 属性是否出现在对象的原型链中的任何位置，
 
@@ -232,7 +234,7 @@ var person = new Person("Rose", 18);
 console.log(person instanceof Person); // true
 ```
 
-## 4. 数据类型转换
+## 5. 数据类型转换
 
 参考 [JavaScript 类型转换](https://www.runoob.com/js/js-type-conversion.html "JavaScript 类型转换")。
 

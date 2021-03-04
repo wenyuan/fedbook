@@ -2,7 +2,7 @@
 
 > 本文涉及到的名词：事件循环（Event Loop），宏任务（macro-task）与微任务（micro-task），执行栈和任务队列等。
 
-## 1. 背景知识
+## 1. 前言
 
 JavaScript 是单线程的，同一时间只能做一件事情。如果碰到某个耗时长的任务（比如一个需要 3s 的网络请求），那么后续的任务都要等待，这种效果是无法接受的，这时我们就引入了[异步任务](https://www.wenyuanblog.com/blogs/javascript-event-loop.html "同步与异步 Promise，async/await")的概念。
 
