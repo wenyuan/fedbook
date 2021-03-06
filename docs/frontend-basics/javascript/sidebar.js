@@ -60,6 +60,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '浅克隆与深克隆',
+        path: '/frontend-basics/javascript/shallow-clone-and-deep-clone',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
