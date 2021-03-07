@@ -65,6 +65,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '函数柯里化',
+        path: '/frontend-basics/javascript/function-currying',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/frontend-basics/javascript/to-be-continued',
         collapsable: true
