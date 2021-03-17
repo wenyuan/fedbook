@@ -35,7 +35,7 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '继承',
+        title: '继承的八种方式',
         path: '/frontend-basics/javascript/inheritance',
         collapsable: true
       },
