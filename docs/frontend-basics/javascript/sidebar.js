@@ -35,7 +35,12 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '继承的八种方式',
+        title: '数组遍历的几种方式',
+        path: '/frontend-basics/javascript/array-iteration',
+        collapsable: true
+      },
+      {
+        title: '继承的八种实现方式',
         path: '/frontend-basics/javascript/inheritance',
         collapsable: true
       },
