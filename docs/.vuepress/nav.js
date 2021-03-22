@@ -21,6 +21,12 @@ module.exports = [
     ]
   },
   {
+    text: '编程之道',
+    items: [
+      { text: '数据结构与算法', link: '/theory/algorithm/' }
+    ]
+  },
+  {
     text: '手写系列',
     items: [
       { text: 'JavaScript 手写函数', link: '/handwritten/javascript/' }

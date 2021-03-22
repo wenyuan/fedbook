@@ -8,6 +8,8 @@ module.exports = {
   /* --------- 后端语言 --------- */
   '/backend-basics/python': require('../backend-basics/python/sidebar'),
   '/interview': require('../interview/sidebar'),
+  /* --------- 编程之道 --------- */
+  '/theory/algorithm/': require('../theory/algorithm/sidebar'),
   /* --------- 前端框架 --------- */
   '/frontend-frameworks/vuejs': require('../frontend-frameworks/vuejs/sidebar'),
   /* --------- 手写系列 --------- */
