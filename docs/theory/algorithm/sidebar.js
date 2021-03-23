@@ -6,12 +6,12 @@ module.exports = [
     children: [
       {
         title: '复杂度分析',
-        path: '/handwritten/javascript/1-complexity-analysis',
+        path: '/theory/algorithm/1-complexity-analysis',
         collapsable: true
       },
       {
         title: '未完待续',
-        path: '/frontend-basics/javascript/to-be-continued',
+        path: '/theory/algorithm/to-be-continued',
         collapsable: true
       }
     ]

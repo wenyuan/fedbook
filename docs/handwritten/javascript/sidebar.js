@@ -56,7 +56,7 @@ module.exports = [
       },
       {
         title: '未完待续',
-        path: '/frontend-basics/javascript/to-be-continued',
+        path: '/handwritten/javascript/to-be-continued',
         collapsable: true
       }
     ]
