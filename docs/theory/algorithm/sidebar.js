@@ -6,7 +6,7 @@ module.exports = [
     children: [
       {
         title: '复杂度分析',
-        path: '/theory/algorithm/1-complexity-analysis',
+        path: '/theory/algorithm/complexity-analysis',
         collapsable: true
       },
       {
