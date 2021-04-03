@@ -10,6 +10,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '数据结构之数组',
+        path: '/theory/algorithm/array',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/theory/algorithm/to-be-continued',
         collapsable: true
