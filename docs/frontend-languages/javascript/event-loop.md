@@ -7,7 +7,7 @@
 JavaScript 是单线程的，同一时间只能做一件事情。如果碰到某个耗时长的任务（比如一个需要 3s 的网络请求），那么后续的任务都要等待，这种效果是无法接受的，这时我们就引入了[异步任务](https://www.wenyuanblog.com/blogs/javascript-event-loop.html "同步与异步 Promise，async/await")的概念。
 
 所以 JavaScript 执行主要包括同步任务和异步任务：  
-**同步任务**：会放入到[执行栈](/frontend-basics/javascript/execution-context.html "执行上下文")中，他们是要按顺序执行的任务；  
+**同步任务**：会放入到[执行栈](/frontend-languages/javascript/execution-context.html "执行上下文")中，他们是要按顺序执行的任务；  
 **异步任务**：会放入到任务队列中，这些异步任务一定要等到执行栈清空后才会执行，也就是说异步任务一定是在同步任务之后执行的。
 
 本文所讲的 JavaScript 事件循环机制，它主要与异步任务有关。

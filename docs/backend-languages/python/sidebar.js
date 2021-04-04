@@ -1,57 +1,57 @@
 module.exports = [
   {
     title: 'Python',
-		path: '/backend-basics/python/',
+		path: '/backend-languages/python/',
     collapsable: false,
     children: [
       {
         title: '编译器与解释器',
-        path: '/backend-basics/python/compiler-and-interpreter',
+        path: '/backend-languages/python/compiler-and-interpreter',
         collapsable: true
       },
       {
         title: '语法规范',
-        path: '/backend-basics/python/grammar',
+        path: '/backend-languages/python/grammar',
         collapsable: true
       },
       {
         title: '变量与常量',
-        path: '/backend-basics/python/variables-and-constants',
+        path: '/backend-languages/python/variables-and-constants',
         collapsable: true
       },
       {
         title: '数据类型',
-        path: '/backend-basics/python/data-types',
+        path: '/backend-languages/python/data-types',
         collapsable: true
       },
       {
         title: '函数参数',
-        path: '/backend-basics/python/function-params',
+        path: '/backend-languages/python/function-params',
         collapsable: true
       },
       {
         title: '函数装饰器',
-        path: '/backend-basics/python/function-decorators',
+        path: '/backend-languages/python/function-decorators',
         collapsable: true
       },
       {
         title: '面向对象编程',
-        path: '/backend-basics/python/oop',
+        path: '/backend-languages/python/oop',
         collapsable: true
       },
       {
         title: '类和实例',
-        path: '/backend-basics/python/class-and-instance',
+        path: '/backend-languages/python/class-and-instance',
         collapsable: true
       },
       {
         title: '类的继承',
-        path: '/backend-basics/python/class-inheritance',
+        path: '/backend-languages/python/class-inheritance',
         collapsable: true
       },
       {
         title: '类成员保护',
-        path: '/backend-basics/python/class-access-modifiers',
+        path: '/backend-languages/python/class-access-modifiers',
         collapsable: true
       }
     ]

@@ -1,12 +1,12 @@
 module.exports = {
   /* --------- 风格指南 --------- */
   '/style-guide/program': require('../style-guide/program/sidebar'),
-  /* --------- 前端基础 --------- */
-  '/frontend-basics/html': require('../frontend-basics/html/sidebar'),
-  '/frontend-basics/css': require('../frontend-basics/css/sidebar'),
-  '/frontend-basics/javascript': require('../frontend-basics/javascript/sidebar'),
+  /* --------- 前端语言 --------- */
+  '/frontend-languages/html': require('../frontend-languages/html/sidebar'),
+  '/frontend-languages/css': require('../frontend-languages/css/sidebar'),
+  '/frontend-languages/javascript': require('../frontend-languages/javascript/sidebar'),
   /* --------- 后端语言 --------- */
-  '/backend-basics/python': require('../backend-basics/python/sidebar'),
+  '/backend-languages/python': require('../backend-languages/python/sidebar'),
   '/interview': require('../interview/sidebar'),
   /* --------- 编程之道 --------- */
   '/theory/algorithm/': require('../theory/algorithm/sidebar'),

@@ -7,17 +7,17 @@ module.exports = [
     ]
   },
   {
-    text: '前端基础',
+    text: '前端语言',
     items: [
-      { text: 'HTML', link: '/frontend-basics/html/' },
-      { text: 'CSS', link: '/frontend-basics/css/' },
-      { text: 'JavaScript', link: '/frontend-basics/javascript/' }
+      { text: 'HTML', link: '/frontend-languages/html/' },
+      { text: 'CSS', link: '/frontend-languages/css/' },
+      { text: 'JavaScript', link: '/frontend-languages/javascript/' }
     ]
   },
   {
     text: '后端语言',
     items: [
-      { text: 'Python', link: '/backend-basics/python/' }
+      { text: 'Python', link: '/backend-languages/python/' }
     ]
   },
   {
