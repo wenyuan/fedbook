@@ -21,9 +21,9 @@ module.exports = [
     ]
   },
   {
-    text: '编程之道',
+    text: '编程进阶',
     items: [
-      { text: '数据结构与算法', link: '/theory/algorithm/' }
+      { text: '数据结构与算法', link: '/advanced-programming/algorithm/' }
     ]
   },
   {
