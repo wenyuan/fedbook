@@ -15,6 +15,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '数据结构之链表',
+        path: '/advanced-programming/algorithm/linked-list',
+        collapsable: true
+      },
+      {
         title: '未完待续',
         path: '/advanced-programming/algorithm/to-be-continued',
         collapsable: true
