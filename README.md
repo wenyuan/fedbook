@@ -108,7 +108,7 @@
   * [类成员保护](https://fedbook.cn/backend-basics/python/class-access-modifiers/)
   * 未完结，待更新
 
-<p style="text-align: right;">
+<p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
 </p>
 
