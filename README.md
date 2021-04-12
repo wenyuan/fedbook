@@ -39,10 +39,12 @@
   - [面试相关](#面试相关)
 - [计划](#计划)
 - [支持](#支持)
+- [版权信息](#版权信息)
+- [鸣谢](#鸣谢)
 
 ## 文章
 
-> **如果文章内容有不同的看法，可以在 [留言板](https://github.com/wenyuan/fedbook/issues/new "留言版") 提出，或者提交 PR，互行学习、共同进步**。
+> **持续更新，学习不止**。
 
 ### 风格指南
 
@@ -53,7 +55,9 @@
   * [JavaScript 规范](https://fedbook.cn/style-guide/program/javascript-spec/)
   * [Vue 项目规范](https://fedbook.cn/style-guide/program/vuejs-spec/)
 
-[⬆️ 返回顶部](#目录)
+<p align=right>
+  <a href="#目录">⬆️ 返回顶部</a>
+</p>
 
 ### 前端语言
 
@@ -91,7 +95,9 @@
   * [函数柯里化](https://fedbook.cn/frontend-basics/javascript/function-currying/)
   * 未完结，待更新
 
-[⬆️ 返回顶部](#目录)
+<p align=right>
+  <a href="#目录">⬆️ 返回顶部</a>
+</p>
 
 ### 后端语言
 
@@ -114,4 +120,50 @@
 
 ### 编程进阶
 
+* [数据结构与算法]()
+  * 未完结，待更新
+
+### 手写系列
+
+* [JavaScript 手写函数](https://fedbook.cn/handwritten/javascript/)
+  * 未完结，待更新
+
+### 面试相关
+
 TODO...
+
+<p align=right>
+  <a href="#目录">⬆️ 返回顶部</a>
+</p>
+
+## 计划
+
+这个仓库完全开源，它不是什么官方文档，仅仅是一份个人笔记，用于知识点的梳理。
+
+每块知识点是本人一边学习一边总结的，可能会存在错误，希望大家能够「**带着怀疑的态度**」去阅读，如果对内容有不同的看法，可以在 [留言板](https://github.com/wenyuan/fedbook/issues/new "留言版") 提出，或者提交 PR，大家互行学习、共同进步。
+
+如果文章内容有我将持续更新和维护该仓库，更欢迎你和我一起来维护。
+
+## 支持
+
+如果你觉得对你有帮助，可以给我一个小星星 ⭐️
+
+## 版权信息
+
+[MIT](https://opensource.org/licenses/MIT)
+
+Copyright (c) 2020-present, WenYuan
+
+## 鸣谢
+
+感谢广大行业前辈、教育工作者和知识传播者，得益于你们的探索，我们能够站在巨人的肩膀上去学习。
+
+本仓库内容也借鉴了不少业内的资料，我会在每篇文章后单独列出，仅在这里统一表达感激之情。
+
+也感谢女友的支持和理解，平时忙于工作和学习，多少会疏于陪伴。
+
+最后，既然选择了这一行业，那就不停地学习吧。生命不息，奋斗不止，感谢你正在访问本仓库，让我们一起加油吧！
+
+<p align=right>
+  <a href="#目录">⬆️ 返回顶部</a>
+</p>
