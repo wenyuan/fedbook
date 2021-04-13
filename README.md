@@ -15,7 +15,7 @@
 
 ## 简介
 
-[在线预览](https://www.fedbook.cn/) | [国内镜像](https://winyuan.gitee.io/)
+[在线预览](https://www.fedbook.cn/) | [国内镜像](https://fedbook.gitee.io/)
 
 以「前端开发」为主线，涵盖但不仅限于前端技术栈的知识点。
 

@@ -2,7 +2,7 @@ window.onload = function() {
   function webLocation() {
     // 判断浏览器的首选语言
     let protocol = 'https://'
-    let cnDomain = 'winyuan.gitee.io'
+    let cnDomain = 'fedbook.gitee.io'
     let language = navigator.language
     let host = window.location.host
     let urlRelativePath = getUrlRelativePath()
