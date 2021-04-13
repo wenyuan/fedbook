@@ -49,7 +49,7 @@ let obj1 = {
   c: [1, 2, 3]
 };
 let obj2 = _.cloneDeep(obj1);
-console.log(obj1.b.f === obj2.b.f); //false
+console.log(obj1.b.f === obj2.b.f); // false
 ```
 
 （完）
