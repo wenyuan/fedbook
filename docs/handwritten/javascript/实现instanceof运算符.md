@@ -1,4 +1,4 @@
-# 实现 instanceof
+# 实现 instanceof 运算符
 
 ## 1. 功能描述
 

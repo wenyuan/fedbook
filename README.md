@@ -26,6 +26,8 @@
 * 博客记录日常开发经验，读书笔记、生活随笔、理财等等，涉及面比较分散。
 * 小册以点亮技能树为主，系统梳理前端开发及其周边知识点，作为学习笔记和复习资料。
 
+近期正在学习：数据结构与算法（2021-04 ~ 现在）
+
 ## 目录
 
 - [简介](#简介)
@@ -61,38 +63,38 @@
 
 ### 前端语言
 
-* [HTML](https://fedbook.cn/frontend-basics/html/)
-  * [HTML 基本结构](https://fedbook.cn/frontend-basics/html/html-basic-structure/)
-  * [语义类标签](https://fedbook.cn/frontend-basics/html/semantic-elements/)
+* [HTML](https://fedbook.cn/frontend-languages/html/)
+  * [HTML 基本结构](https://fedbook.cn/frontend-languages/html/html-basic-structure/)
+  * [语义类标签](https://fedbook.cn/frontend-languages/html/semantic-elements/)
   * 未完结，待更新
-* [CSS](https://fedbook.cn/frontend-basics/css/)
-  * [CSS 引入方式](https://fedbook.cn/frontend-basics/css/ways-to-insert-css/)
-  * [选择器与样式优先级](https://fedbook.cn/frontend-basics/css/selectors-and-selector-priority/)
-  * [伪元素和伪类](https://fedbook.cn/frontend-basics/css/pseudo-elements-and-pseudo-classes/)
-  * [长度和单位](https://fedbook.cn/frontend-basics/css/length-and-units/)
-  * [盒模型](https://fedbook.cn/frontend-basics/css/box-model/)
-  * [定位（position）](https://fedbook.cn/frontend-basics/css/position-property/)
-  * [浮动（float）](https://fedbook.cn/frontend-basics/css/float-property/)
-  * [BFC](https://fedbook.cn/frontend-basics/css/bfc/)
-  * [经典布局](https://fedbook.cn/frontend-basics/css/layout/)
-  * [Flexbox 布局](https://fedbook.cn/frontend-basics/css/flexbox/)
-  * [Grid 布局](https://fedbook.cn/frontend-basics/css/grid/)
+* [CSS](https://fedbook.cn/frontend-languages/css/)
+  * [CSS 引入方式](https://fedbook.cn/frontend-languages/css/ways-to-insert-css/)
+  * [选择器与样式优先级](https://fedbook.cn/frontend-languages/css/selectors-and-selector-priority/)
+  * [伪元素和伪类](https://fedbook.cn/frontend-languages/css/pseudo-elements-and-pseudo-classes/)
+  * [长度和单位](https://fedbook.cn/frontend-languages/css/length-and-units/)
+  * [盒模型](https://fedbook.cn/frontend-languages/css/box-model/)
+  * [定位（position）](https://fedbook.cn/frontend-languages/css/position-property/)
+  * [浮动（float）](https://fedbook.cn/frontend-languages/css/float-property/)
+  * [BFC](https://fedbook.cn/frontend-languages/css/bfc/)
+  * [经典布局](https://fedbook.cn/frontend-languages/css/layout/)
+  * [Flexbox 布局](https://fedbook.cn/frontend-languages/css/flexbox/)
+  * [Grid 布局](https://fedbook.cn/frontend-languages/css/grid/)
   * 未完结，待更新
-* [JavaScript](https://fedbook.cn/frontend-basics/javascript/)
-  * [数据类型](https://fedbook.cn/frontend-basics/javascript/data-types/)
-  * [执行上下文](https://fedbook.cn/frontend-basics/javascript/execution-context/)
-  * [作用域](https://fedbook.cn/frontend-basics/javascript/scope/)
-  * [闭包](https://fedbook.cn/frontend-basics/javascript/closure/)
-  * [this 指向](https://fedbook.cn/frontend-basics/javascript/this-keyword/)
-  * [原型与原型链](https://fedbook.cn/frontend-basics/javascript/prototype-and-prototype-chain/)
-  * [数组遍历的几种方式](https://fedbook.cn/frontend-basics/javascript/array-iteration/)
-  * [继承的八种方式](https://fedbook.cn/frontend-basics/javascript/inheritance/)
-  * [声明函数的六种方式](https://fedbook.cn/frontend-basics/javascript/function-declare/)
-  * [调用函数的四种方式](https://fedbook.cn/frontend-basics/javascript/function-invocation/)
-  * [同步与异步](https://fedbook.cn/frontend-basics/javascript/sync-and-async/)
-  * [事件循环机制，微任务和宏任务的关系](https://fedbook.cn/frontend-basics/javascript/event-loop/)
-  * [浅克隆与深克隆](https://fedbook.cn/frontend-basics/javascript/shallow-clone-and-deep-clone/)
-  * [函数柯里化](https://fedbook.cn/frontend-basics/javascript/function-currying/)
+* [JavaScript](https://fedbook.cn/frontend-languages/javascript/)
+  * [数据类型](https://fedbook.cn/frontend-languages/javascript/data-types/)
+  * [执行上下文](https://fedbook.cn/frontend-languages/javascript/execution-context/)
+  * [作用域](https://fedbook.cn/frontend-languages/javascript/scope/)
+  * [闭包](https://fedbook.cn/frontend-languages/javascript/closure/)
+  * [this 指向](https://fedbook.cn/frontend-languages/javascript/this-keyword/)
+  * [原型与原型链](https://fedbook.cn/frontend-languages/javascript/prototype-and-prototype-chain/)
+  * [数组遍历的几种方式](https://fedbook.cn/frontend-languages/javascript/array-iteration/)
+  * [继承的八种方式](https://fedbook.cn/frontend-languages/javascript/inheritance/)
+  * [声明函数的六种方式](https://fedbook.cn/frontend-languages/javascript/function-declare/)
+  * [调用函数的四种方式](https://fedbook.cn/frontend-languages/javascript/function-invocation/)
+  * [同步与异步](https://fedbook.cn/frontend-languages/javascript/sync-and-async/)
+  * [事件循环机制，微任务和宏任务的关系](https://fedbook.cn/frontend-languages/javascript/event-loop/)
+  * [浅克隆与深克隆](https://fedbook.cn/frontend-languages/javascript/shallow-clone-and-deep-clone/)
+  * [函数柯里化](https://fedbook.cn/frontend-languages/javascript/function-currying/)
   * 未完结，待更新
 
 <p align=right>
@@ -101,17 +103,17 @@
 
 ### 后端语言
 
-* [Python](https://fedbook.cn/backend-basics/python/)
-  * [编译器与解释器](https://fedbook.cn/backend-basics/python/compiler-and-interpreter/)
-  * [语法规范](https://fedbook.cn/backend-basics/python/grammar/)
-  * [变量与常量](https://fedbook.cn/backend-basics/python/variables-and-constants/)
-  * [数据类型](https://fedbook.cn/backend-basics/python/data-types/)
-  * [函数参数](https://fedbook.cn/backend-basics/python/function-params/)
-  * [函数装饰器](https://fedbook.cn/backend-basics/python/function-decorators/)
-  * [面向对象编程](https://fedbook.cn/backend-basics/python/oop/)
-  * [类和实例](https://fedbook.cn/backend-basics/python/class-and-instance/)
-  * [类的继承](https://fedbook.cn/backend-basics/python/class-inheritance/)
-  * [类成员保护](https://fedbook.cn/backend-basics/python/class-access-modifiers/)
+* [Python](https://fedbook.cn/backend-languages/python/)
+  * [编译器与解释器](https://fedbook.cn/backend-languages/python/compiler-and-interpreter/)
+  * [语法规范](https://fedbook.cn/backend-languages/python/grammar/)
+  * [变量与常量](https://fedbook.cn/backend-languages/python/variables-and-constants/)
+  * [数据类型](https://fedbook.cn/backend-languages/python/data-types/)
+  * [函数参数](https://fedbook.cn/backend-languages/python/function-params/)
+  * [函数装饰器](https://fedbook.cn/backend-languages/python/function-decorators/)
+  * [面向对象编程](https://fedbook.cn/backend-languages/python/oop/)
+  * [类和实例](https://fedbook.cn/backend-languages/python/class-and-instance/)
+  * [类的继承](https://fedbook.cn/backend-languages/python/class-inheritance/)
+  * [类成员保护](https://fedbook.cn/backend-languages/python/class-access-modifiers/)
   * 未完结，待更新
 
 <p align=right>
@@ -120,12 +122,25 @@
 
 ### 编程进阶
 
-* [数据结构与算法]()
-  * 未完结，待更新
+* [数据结构与算法](https://fedbook.cn/advanced-programming/algorithm/)
+  * [复杂度分析](https://fedbook.cn/advanced-programming/algorithm/complexity-analysis/)
+  * [数据结构之数组](https://fedbook.cn/advanced-programming/algorithm/array/)
+  * [数据结构之链表](https://fedbook.cn/advanced-programming/algorithm/linked-list/)
+  * 近期在学习，每日更新
 
 ### 手写系列
 
 * [JavaScript 手写函数](https://fedbook.cn/handwritten/javascript/)
+  * [实现防抖函数（debounce）](https://fedbook.cn/handwritten/javascript/实现防抖函数-debounce/)
+  * [实现节流函数（throttle）](https://fedbook.cn/handwritten/javascript/实现节流函数-throttle/)
+  * [实现浅克隆（shallowClone）](https://fedbook.cn/handwritten/javascript/实现浅克隆-shallow-clone/)
+  * [实现深克隆（deepClone）](https://fedbook.cn/handwritten/javascript/实现深克隆-deep-clone/)
+  * [实现 instanceof 运算符](https://fedbook.cn/handwritten/javascript/实现instanceof运算符/)
+  * [实现 Object.create 方法](https://fedbook.cn/handwritten/javascript/实现object-create方法/)
+  * [实现 new 运算符](https://fedbook.cn/handwritten/javascript/实现new运算符/)
+  * [实现 call 方法](https://fedbook.cn/handwritten/javascript/实现call方法/)
+  * [实现 apply 方法](https://fedbook.cn/handwritten/javascript/实现apply方法/)
+  * [实现 bind 方法](https://fedbook.cn/handwritten/javascript/实现bind方法/)
   * 未完结，待更新
 
 ### 面试相关
@@ -142,7 +157,7 @@ TODO...
 
 每块知识点是本人一边学习一边总结的，可能会存在错误，希望大家能够「**带着怀疑的态度**」去阅读，如果对内容有不同的看法，可以在 [留言板](https://github.com/wenyuan/fedbook/issues/new?title=【讨论】此处填写文章标题&body=-%20文章标题：%0A-%20文章链接：%0A-%20我的疑问/观点：%0A-%20推荐资料： "留言版") 提出，或者提交 PR，大家互相学习、共同进步。
 
-如果文章内容有我将持续更新和维护该仓库，更欢迎你和我一起来维护。
+我将持续更新这个仓库的内容，更欢迎你和我一起来维护。
 
 ## 支持
 

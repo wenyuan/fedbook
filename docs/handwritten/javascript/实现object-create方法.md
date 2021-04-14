@@ -1,4 +1,4 @@
-# 实现 Object.create
+# 实现 Object.create 方法
 
 ## 1. 功能描述
 
