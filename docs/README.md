@@ -2,10 +2,10 @@
 home: true
 heroImage: /img/skills.png
 actionText: 进入小册 →
-actionLink: /foreword/roadmap/
+actionLink: /style-guide/document/
 action:
 - text: 进入小册 →
-  link: /foreword/roadmap/
+  link: /style-guide/document/
 features:
 - title: 前端开发
   details: 以「前端开发」为主线，涵盖但不仅限于前端技术栈的知识点。
