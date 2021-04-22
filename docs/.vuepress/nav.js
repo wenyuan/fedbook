@@ -38,13 +38,13 @@ module.exports = [
       { text: 'JavaScript 手写函数', link: '/handwritten/javascript/' }
     ]
   },
-  {
-    text: '面试相关',
-    items: [
-      { text: 'HTML 问题', link: '/interview/html/' },
-      { text: 'CSS 问题', link: '/interview/css/' }
-    ]
-  },
+  // {
+  //   text: '面试相关',
+  //   items: [
+  //     { text: 'HTML 问题', link: '/interview/html/' },
+  //     { text: 'CSS 问题', link: '/interview/css/' }
+  //   ]
+  // },
   {
     text: '其它',
     items: [
@@ -62,14 +62,14 @@ module.exports = [
           { text: 'GitHub', link: 'https://github.com/wenyuan' },
           { text: '支持一下', link: 'https://www.wenyuanblog.com/gift.html' }
         ]
+      },
+      {
+        text: '线路',
+        items: [
+          { text: '国内', link: 'https://fedbook.gitee.io/' },
+          { text: '国外', link: 'https://www.fedbook.cn/' }
+        ]
       }
-    ]
-  },
-  {
-    text: '线路',
-    items: [
-      { text: '国内', link: 'https://fedbook.gitee.io/' },
-      { text: '国外', link: 'https://www.fedbook.cn/' }
     ]
   }
 ];
