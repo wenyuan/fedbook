@@ -97,7 +97,7 @@ export default {
 <textarea v-model="desc"></textarea>
 
 <!-- Vue 中这么用是不会生效的 -->
-<textarea>{{desc}}</textarea>
+<textarea>{{ desc }}</textarea>
 ```
 
 ### 5.3 修饰符 lazy number trim
@@ -148,7 +148,7 @@ export default {
 <template>
   <div>
     <h1>我是子组件</h1>
-    <p>父组件对我说：{{ msg }}</p>
+    <p>父组件对我说：{{ message }}</p>
   </div>
 </template>
 
@@ -156,7 +156,7 @@ export default {
 export default {
   // 子组件通过 props 属性，接收父组件传过来的值
   props: {
-    msg: {
+    message: {
       type: String,
       default: () => {
         return ''
@@ -177,4 +177,200 @@ export default {
 
 ### 6.2 通过 $emit 实现子传父
 
+子组件通过 `$emit` 触发事件给父组件发送消息，父组件通过 `v-on`（简写为 `@`） 监听子组件提交的事件。下面演示一个例子：
+
+```vue
+<!-- 父组件：Parent.vue -->
+<template>
+  <div>
+    <h1>我是父组件</h1>
+    <child @get-message="showMsg"></child>
+  </div>
+</template>
+
+<script>
+import Child from '../components/Child.vue'
+
+export default {
+  components: { Child },
+  methods: {
+    // 参数就是子组件传递出来的数据
+    showMsg(msg) {
+      console.log(msg)
+    }
+  }
+}
+</script>
+```
+
+```vue
+<!-- 子组件：Child.vue -->
+<template>
+  <div>
+    <h1>我是子组件</h1>
+    <button @click="sendMsg">发送</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      childSay: 'hello, parent'
+    }
+  },
+  methods: {
+    // 子组件通过 emit 方法触发父组件中定义好的函数，从而将子组件中的数据传递给父组件
+    sendMsg() {
+      this.$emit('get-message', this.childSay)
+    }
+  }
+}
+</script>
+```
+
 ### 6.3 通过 $ref 获取子组件实例
+
+对于 `ref`：
+
+* 如果 `ref` 用在子组件上，指向的是组件实例，可以理解为对子组件的索引，通过 `$ref` 可以获取到在子组件里定义的属性和方法。
+* 如果 `ref` 在普通的 DOM 元素上使用，引用指向的就是 DOM 元素，通过 `$ref` 可能获取到该 DOM 的属性集合，轻松访问到 DOM 元素，作用与 jQuery 选择器类似。
+
+那么就好理解了，可以在父组件中通过 `$ref` 来直接获取子组件中的属性和方法。下面演示一个例子：
+
+```vue
+<!-- 父组件：Parent.vue -->
+<template>
+  <div>
+    <h1>我是父组件</h1>
+    <child ref="child"></child>
+  </div>
+</template>
+
+<script>
+import Child from '../components/Child.vue'
+
+export default {
+  components: { Child },
+  mounted() {
+    console.log(this.$refs.child)
+    this.$refs.child.getMessage('hello')
+  }
+}
+</script>
+```
+
+```vue
+<!-- 子组件：Child.vue -->
+<template>
+  <div>
+    <h1>我是子组件</h1>
+    <p>{{ message }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      message: ''
+    }
+  },
+  methods: {
+    // 由父组件通过 $ref 引用来调用子组件的该方法
+    getMessage(msg) {
+      this.message = msg
+    }
+  }
+}
+</script>
+```
+
+**对比（`prop` 和 `$ref` 之间的区别）**：
+
+* `prop` 着重于数据的传递，它并不能调用子组件里的属性和方法。像创建文章组件时，自定义标题和内容这样的使用场景，最适合使用 `prop`。
+* `$ref` 着重于索引，主要用来调用子组件里的属性和方法，其实并不擅长数据传递。而且 `ref` 用在 DOM 元素的时候，能使到选择器的作用，这个功能比作为索引更常有用到。
+
+## 7. 兄弟组件通信
+
+项目中，我们经常会遇到兄弟组件（或隔了很多层的组件、甚至是两个不相关的组件）之间通信的情况。在大型项目中我们可以通过引入 Vuex 轻松管理各组件之间通信问题，但在一些小型的项目中，可以通过自定义事件来实现，大体思路如下：
+
+1. 创建一个 Vue 的实例作为媒介，让各个兄弟组件共用同一个事件机制。
+2. 数据传递方，通过一个 EventBus 事件触发 `bus.$emit(方法名, 传递的数据)`。
+3. 数据接收方，在 `mounted` 中绑定监听事件，在 `beforeDestroy` 中解绑监听事件。
+
+下面演示一个例子：
+
+首先编写一个 `event-bus.js`，它的作用就是返回一个 Vue 的实例。
+
+```javascript
+// event-bus.js
+import Vue from 'vue'
+
+export default new Vue()
+```
+
+组件 A 和组件 B 里面分别引入 `event-bus.js` 返回的 Vue 实例（此处命名为 `bus`）。`bus` 本质上就是 Vue 的实例，而 Vue 的实例本身已经实现了 `$emit`、`$on`、`$off` 这些自定义事件的能力。
+
+在组件 A 中传递数据（触发自定义事件）。
+
+```vue
+<!-- 组件A：ComponentA.vue -->
+<template>
+  <div class="comment-a">
+    <button @click="sendMsg">向组件B传值</button>
+  </div>
+</template>
+
+<script>
+import bus from './event-bus'
+
+export default {
+  data() {
+    return {
+      msg: ''
+    }
+  },
+  methods: {
+    sendMsg() {
+      // 调用自定义事件
+      bus.$emit('listenToA', this.msg)
+    }
+  }
+}
+</script>
+```
+
+在组件 B 中接收数据（监听自定义事件），需要做两步操作，一是绑定自定义事件，二是在 `beforeDestroy` 中解绑自定义事件。
+
+```vue
+<!-- 组件B：ComponentB.vue -->
+<template>
+  <div class="comment-b"></div>
+</template>
+
+<script>
+import bus from './event-bus'
+
+export default {
+  mounted() {
+    // 绑定自定义事件
+    bus.$on('listenToA', this.getAData)
+  },
+  beforeDestroy() {
+    // 及时销毁自定义事件，否则可能造成内存泄露
+    bus.$off('listenToA', this.getAData)
+  },
+  methods: {
+    getAData(val) {
+      console.log(`组件 A 传递过来的数据: ${val}`)
+    }
+  }
+}
+</script>
+```
+
+**注意事项（区别）**：
+
+* `this.$emit(方法名, 传递的数据)` 是调用父组件的事件。
+* `bus.$emit(方法名, 传递的数据)` 是调用自定义事件。
