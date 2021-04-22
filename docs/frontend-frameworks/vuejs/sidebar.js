@@ -5,8 +5,8 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: '一、理解响应式数据',
-        path: '/frontend-frameworks/vuejs/reactive-data',
+        title: '基础用法要点',
+        path: '/frontend-frameworks/vuejs/basic-usage-points',
         collapsable: true
       }
     ]

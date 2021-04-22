@@ -15,6 +15,12 @@ module.exports = [
     ]
   },
   {
+    text: '前端框架',
+    items: [
+      { text: 'Vue.js', link: '/frontend-frameworks/vuejs/' }
+    ]
+  },
+  {
     text: '后端语言',
     items: [
       { text: 'Python', link: '/backend-languages/python/' }
