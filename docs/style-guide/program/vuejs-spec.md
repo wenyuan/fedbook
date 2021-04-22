@@ -335,12 +335,27 @@ components/
 子组件
 ```vue
 props: {
-  greetingText: String
+  myProps: String
 }
 ```
 父组件
 ```vue
-<WelcomeMessage greeting-text="hi"/>
+<my-component :my-props="abc"></my-component>
+```
+
+### 自定义事件名
+
+`v-on` 事件监听器在 DOM 模板中会被自动转换为全小写（因为 HTML 是大小写不敏感的），所以 `v-on:myEvent` 将会变成 `v-on:myevent` —— 导致 `myEvent` 不可能被监听到。
+
+因此，应该**始终使用 kebab-case 的事件名**。
+
+子组件
+```vue
+this.$emit('my-event')
+```
+父组件
+```vue
+<my-component @my-event="abc"></my-component>
 ```
 
 ### method 方法命名
