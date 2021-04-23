@@ -374,3 +374,35 @@ export default {
 
 * `this.$emit(方法名, 传递的数据)` 是调用父组件的事件。
 * `bus.$emit(方法名, 传递的数据)` 是调用自定义事件。
+
+## 8. 组件生命周期（单个组件）
+
+* 挂载阶段
+  * beforeCreate => created => beforeMount => mounted
+* 更新阶段
+  * beforeUpdate => updated
+* 销毁阶段
+  * beforeDestroy => destroyed
+
+在 created 阶段，把 Vue 实例初始化，存在内存中；在 mounted 阶段，组件在网页中渲染完成，此时可以做一些 Ajax 请求等操作。
+
+在 beforeDestroy 阶段，需要解除自定义事件的绑定、销毁定时任务、解除之前定义的 window 和 document 事件等。
+
+## 9. 组件生命周期（父子组件）
+
+**1）加载渲染过程：创建 Vue 实例时从外到内，渲染时从内到外**
+
+父 beforeCreate => 父 created => 父 beforeMount => 子 beforeCreate => 子 created => 子 beforeMount => 子 mounted => 父 mounted
+
+**2）子组件更新过程**
+
+父 beforeUpdate => 子 beforeUpdate => 子 updated => 父 updated
+
+**3）父组件更新过程**
+
+父 beforeUpdate => 父 updated
+
+**4）销毁过程**
+
+父 beforeDestroy => 子 beforeDestroy => 子 destroyed => 父 destroyed
+
