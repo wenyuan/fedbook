@@ -34,10 +34,11 @@ export default {
 </script>
 ```
 
-在组件上使用 `v-model` 的时候：
+在父组件上使用 `v-model` 的时候：
 
 ```vue
 <template>
+  <h1>我是父组件</h1>
   <base-checkbox v-model="lovingVue"></base-checkbox>
 </template>
 
@@ -70,7 +71,7 @@ Vue 是异步渲染，data 改变之后，DOM 不会立刻渲染。`$nextTick` �
   <div id="app">
     <ul ref="itemList">
       <li v-for="(item, index) in list" :key="index">
-        {{item}}
+        {{ item }}
       </li>
     </ul>
     <button @click="addItem">添加一项</button>
@@ -92,11 +93,10 @@ export default {
       this.list.push(`${Date.now()}`)
 
       // 1. 异步渲染，$nextTick 待 DOM 渲染完再回调
-      // 3. 页面渲染时会将 data 的修改做整合，多次 data 修改只会渲染一次
+      // 2. 页面渲染时会将 data 的修改做整合，多次 data 修改只会渲染一次
       this.$nextTick(() => {
         // 获取 DOM 元素
         const ulElem = this.$refs.itemList
-        // eslint-disable-next-line
         console.log(ulElem.childNodes.length)
       })
     }
@@ -105,3 +105,184 @@ export default {
 </script>
 ```
 
+## 3. slot 插槽
+
+### 3.1 基本使用
+
+slot 的基本用法是在父组件中往子组件插入一段内容（不一定只是字符串），示例如下：
+
+父组件引入了一个名为 `SlotDemo.vue` 的子组件，向其传入一个动态属性 `url` 以及一个类似子节点的 `website.title`。
+
+```vue
+<template>
+  <div>
+    <h1>我是父组件</h1>
+    <slot-demo :url="website.url">
+      {{ website.title }}
+    </slot-demo>
+  </div>
+</template>
+
+<script>
+import SlotDemo from './SlotDemo'
+
+export default {
+  components: {
+    SlotDemo,
+  },
+  data() {
+    return {
+      website: {
+        url: 'https://fedbook.cn/',
+        title: '前端修炼小册'
+      },
+    }
+  }
+}
+</script>
+```
+
+子组件除了在 `props` 中接收父组件传进来的 `url`，还多了一个 `<slot></slot>` 标签，它接收父组件中写的子节点 `website.title` 中的内容。
+
+```vue
+<template>
+  <a :href="url">
+    <slot>
+      默认内容，即父组件没设置内容时，显示这句话
+    </slot>
+  </a>
+</template>
+
+<script>
+export default {
+  props: ['url'],
+  data() {
+    return {}
+  }
+}
+</script>
+```
+
+### 3.2 作用域插槽
+
+有时我们需要让插槽内容能够访问子组件中才有的数据，即在父组件中获取子组件 `data` 里的值，就需要用到作用域插槽，示例如下：
+
+首先在子组件的 `data` 中定义一个 `website` 对象，再给 `<slot></slot>` 标签定义一个动态属性 `slotData` （名字可自定义）并赋值为 `website`。
+
+```vue
+<template>
+  <a :href="url">
+    <slot :slotData="website">
+      {{ website.subTitle }} <!-- 默认值显示 subTitle ，即父组件不传内容时 -->
+    </slot>
+  </a>
+</template>
+
+<script>
+export default {
+    props: ['url'],
+    data() {
+      return {
+        website: {
+          url: 'https://cn.vuejs.org/',
+          title: 'Vue.js'
+        }
+      }
+    }
+}
+</script>
+```
+
+父组件调用子组件时，现在增加了一个 `<template>` 标签，给它设置一个 `v-slot` 属性且值为 `slotProps`（名字可自定义）。
+
+在新增的 `<template>` 标签中进行插值，例如需要获取子组件 `data` 中的 `website.title`，写法就是 `slotProps.slotData.title`（`slotData` 对应的就是子组件的 `website`）。
+
+此时页面显示的就是子组件中的 `title` 值：
+
+```vue
+<template>
+  <div>
+    <h1>我是父组件</h1>
+    <scoped-slot-demo :url="website.url">
+      <template v-slot="slotProps">
+        {{ slotProps.slotData.title }}
+      </template>
+    </scoped-slot-demo>
+  </div>
+</template>
+
+<script>
+import ScopedSlotDemo from './ScopedSlotDemo'
+
+export default {
+  components: {
+    ScopedSlotDemo,
+  },
+  data() {
+    return {
+      website: {
+        url: 'https://fedbook.cn/',
+        title: '前端修炼小册'
+      }
+    }
+  }
+}
+</script>
+```
+
+### 3.3 具名插槽
+
+具名插槽用于子组件中有多个 slot 的场景，父组件往子组件传值时需要对应上名字，示例如下：
+
+子组件中每个 `<slot>` 元素有一个特殊的 `name` 属性，如果不指定 `name` 属性则默认是 "default"：
+
+```vue
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+```
+
+父组件中，在向具名插槽提供内容的时候，我们可以在一个 `<template>` 元素上使用 `v-slot` 指令，该指令的值就要对应上子组件中 `<slot>` 元素的 `name`。
+
+任何没有被包裹在带有 `v-slot` 的 `<template>` 中的内容都会被视为默认插槽的内容。
+
+```vue
+<template>
+  <div>
+    <h1>我是父组件</h1>
+    <named-slot-demo>
+      <template v-slot:header>
+        <h1>将插入 header slot 中</h1>
+      </template>
+        
+      <p>将插入 main slot 中，即未命名的 slot</p>
+      <p>也将插入 main slot 中</p>
+        
+      <template v-slot:footer>
+        <p>将插入 footer slot 中</p>
+      </template>
+    </named-slot-demo>
+  </div>
+</template>
+
+<script>
+import NamedSlotDemo from './NamedSlotDemo'
+
+export default {
+  components: {
+    NamedSlotDemo,
+  },
+  data() {
+    return {}
+  }
+}
+</script>
+```
