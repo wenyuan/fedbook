@@ -6,7 +6,7 @@ module.exports = [
     children: [
       {
         title: '基础用法要点',
-        path: '/frontend-frameworks/vuejs/basic-usage-points',
+        path: '/frontend-frameworks/vuejs/basic-use',
         collapsable: true
       },
       {

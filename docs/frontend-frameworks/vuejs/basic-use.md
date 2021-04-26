@@ -118,10 +118,11 @@ export default {
 
 ### 6.1 通过 prop 实现父传子
 
-子组件的 `props` 选项能够接收来自父组件数据，这是一种单向绑定，即只能父组件向子组件传递，不能反向。下面演示一个例子：
+子组件的 `props` 选项能够接收来自父组件数据，这是一种单向绑定，即只能父组件向子组件传递，不能反向。示例如下：
+
+父组件 `Parent.vue`：
 
 ```vue
-<!-- 父组件：Parent.vue -->
 <template>
   <div>
     <h1>我是父组件</h1>
@@ -143,8 +144,9 @@ export default {
 </script>
 ```
 
+子组件 `Child.vue`：
+
 ```vue
-<!-- 子组件：Child.vue -->
 <template>
   <div>
     <h1>我是子组件</h1>
@@ -177,10 +179,11 @@ export default {
 
 ### 6.2 通过 $emit 实现子传父
 
-子组件通过 `$emit` 触发事件给父组件发送消息，父组件通过 `v-on`（简写为 `@`） 监听子组件提交的事件。下面演示一个例子：
+子组件通过 `$emit` 触发事件给父组件发送消息，父组件通过 `v-on`（简写为 `@`） 监听子组件提交的事件。示例如下：
+
+父组件 `Parent.vue`：
 
 ```vue
-<!-- 父组件：Parent.vue -->
 <template>
   <div>
     <h1>我是父组件</h1>
@@ -203,8 +206,9 @@ export default {
 </script>
 ```
 
+子组件 `Child.vue`：
+
 ```vue
-<!-- 子组件：Child.vue -->
 <template>
   <div>
     <h1>我是子组件</h1>
@@ -236,10 +240,11 @@ export default {
 * 如果 `ref` 用在子组件上，指向的是组件实例，可以理解为对子组件的索引，通过 `$ref` 可以获取到在子组件里定义的属性和方法。
 * 如果 `ref` 在普通的 DOM 元素上使用，引用指向的就是 DOM 元素，通过 `$ref` 可能获取到该 DOM 的属性集合，轻松访问到 DOM 元素，作用与 jQuery 选择器类似。
 
-那么就好理解了，可以在父组件中通过 `$ref` 来直接获取子组件中的属性和方法。下面演示一个例子：
+那么就好理解了，可以在父组件中通过 `$ref` 来直接获取子组件中的属性和方法。示例如下：
+
+父组件 `Parent.vue`：
 
 ```vue
-<!-- 父组件：Parent.vue -->
 <template>
   <div>
     <h1>我是父组件</h1>
@@ -260,8 +265,9 @@ export default {
 </script>
 ```
 
+子组件 `Child.vue`：
+
 ```vue
-<!-- 子组件：Child.vue -->
 <template>
   <div>
     <h1>我是子组件</h1>
