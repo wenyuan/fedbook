@@ -286,3 +286,37 @@ export default {
 }
 </script>
 ```
+
+## 4. 动态组件
+
+动态组件用于在某个区域切换显示不同组件的场景，可以通过 Vue 的 `<component>` 元素加一个特殊的 `is` 属性来实现。
+
+代码示例：
+
+```vue
+<component :is="componentName"></component>
+```
+
+其中，`componentName` 传入需要显示的组件名。
+
+## 5. 异步组件
+
+通过 `import()` 函数来引入组件，可以实现按需加载/异步加载大组件，从而提升网页加载性能。
+
+同步加载的组件在打包的时候只会打成一个包，如果体积过大，会导致每次进入页面初始化的时候需要加载很大的一个文件：
+
+```vue
+<script>
+import FormDemo1 from './FormDemo1'
+import FormDemo2 from './FormDemo2'
+
+export default {
+  component: {
+    FormDemo1,
+    FormDemo2
+  }
+}
+</script>
+```
+
+一部
