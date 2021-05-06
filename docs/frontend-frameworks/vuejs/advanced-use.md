@@ -328,3 +328,63 @@ export default {
 }
 </script>
 ```
+
+## 6. 缓存组件
+
+缓存组件的意思是在频繁切换页面时（例如 Tab 切换），不需要重复渲染，常用于 Vue 的性能优化。
+
+通过 keep-alive 来实现缓存组件，示例如下：
+
+```vue
+<template>
+  <div>
+    <button @click="changeState('A')">A</button>
+    <button @click="changeState('B')">B</button>
+    <button @click="changeState('C')">C</button>
+
+    <keep-alive> <!-- 模拟 tab 切换 -->
+      <KeepAliveStageA v-if="state === 'A'"/>
+      <KeepAliveStageB v-if="state === 'B'"/>
+      <KeepAliveStageC v-if="state === 'C'"/>
+    </keep-alive>
+  </div>
+</template>
+
+<script>
+import KeepAliveStageA from './KeepAliveStateA'
+import KeepAliveStageB from './KeepAliveStateB'
+import KeepAliveStageC from './KeepAliveStateC'
+
+export default {
+  components: {
+    KeepAliveStageA,
+    KeepAliveStageB,
+    KeepAliveStageC
+  },
+  data() {
+    return {
+      state: 'A'
+    }
+  },
+  methods: {
+    changeState(state) {
+      this.state = state
+    }
+  }
+}
+</script>
+```
+
+## 7. mixin
+
+mixin 用于将多个组件的相同逻辑抽离出来，可以避免重复编写相同代码。
+
+但 mixin 并不是完美的解决方案，会有一些问题：
+
+* 变量来源不明确，不利于阅读
+* 多 mixin 可能会造成命名冲突
+* mixin 和组件可能出现多对多的关系，复杂度较高
+
+Vue3 提出的 Composition API 旨在解决这些问题。
+
+（完）
