@@ -26,7 +26,7 @@
 * 博客记录日常开发经验，读书笔记、生活随笔、理财等等，涉及面比较分散。
 * 小册以点亮技能树为主，系统梳理前端开发及其周边知识点，作为学习笔记和复习资料。
 
-近期正在学习：数据结构与算法（2021-04 ~ 现在）
+近期正在学习：前端框架 - Vue.js（2021-05 ~ 现在）
 
 ## 目录
 
@@ -35,6 +35,7 @@
 - [文章](#文章)
   - [风格指南](#风格指南)
   - [前端语言](#前端语言)
+  - [前端框架](#前端框架)
   - [后端语言](#后端语言)
   - [编程进阶](#编程进阶)
   - [手写系列](#手写系列)
@@ -101,6 +102,17 @@
   <a href="#目录">⬆️ 返回顶部</a>
 </p>
 
+### 前端框架
+
+* [Vue.js](https://fedbook.cn/frontend-frameworks/vuejs/)
+  * [基础用法要点](https://fedbook.cn/frontend-frameworks/vuejs/basic-use/)
+  * [高级用法特性](https://fedbook.cn/frontend-frameworks/vuejs/advanced-use/)
+  * 近期在学习，每日更新
+
+<p align=right>
+  <a href="#目录">⬆️ 返回顶部</a>
+</p>
+
 ### 后端语言
 
 * [Python](https://fedbook.cn/backend-languages/python/)
@@ -126,7 +138,7 @@
   * [复杂度分析](https://fedbook.cn/advanced-programming/algorithm/complexity-analysis/)
   * [数据结构之数组](https://fedbook.cn/advanced-programming/algorithm/array/)
   * [数据结构之链表](https://fedbook.cn/advanced-programming/algorithm/linked-list/)
-  * 近期在学习，每日更新
+  * 学习计划调整，延后学习
 
 ### 手写系列
 
