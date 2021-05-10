@@ -375,6 +375,15 @@ export default {
 </script>
 ```
 
+**keep-alive 和 v-show 的区别**：
+
+* 控制层级不同，v-show 是通过原生的 CSS（display）；keep-alive 是在 Vue 层级进行的 JS 对象的渲染
+* 实际使用中，简单的标签可以使用 v-show，复杂的组件结构（例如 Tab 切换）使用 keep-alive。
+
+**keep-alive 和 v-if 的区别**：
+
+* v-if 也是 Vue 本身机制控制的，但会销毁和重新渲染组件，也就是会频繁触发组件的 mounted 和 destroyed；而 keep-alive 的方式，Vue 会把组件缓存，不需要走渲染流程。
+
 ## 7. mixin
 
 mixin 用于将多个组件的相同逻辑抽离出来，可以避免重复编写相同代码。
