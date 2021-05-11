@@ -13,6 +13,11 @@ module.exports = [
         title: '高级用法特性',
         path: '/frontend-frameworks/vuejs/advanced-use',
         collapsable: true
+      },
+      {
+        title: '响应式原理',
+        path: '/frontend-frameworks/vuejs/reactive-data',
+        collapsable: true
       }
     ]
   }
