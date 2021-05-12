@@ -18,6 +18,11 @@ module.exports = [
         title: '响应式原理',
         path: '/frontend-frameworks/vuejs/reactive-data',
         collapsable: true
+      },
+      {
+        title: '虚拟 DOM 与 diff 算法',
+        path: '/frontend-frameworks/vuejs/virtual-dom-and-diff',
+        collapsable: true
       }
     ]
   }
