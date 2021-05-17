@@ -106,12 +106,17 @@ return function patch(oldVnode: VNode | Element, vnode: VNode): VNode {
     oldVnode = emptyNodeAt(oldVnode);
   }
 
+  // 相同的 vnode（key 和 sel 都相等视为相同的 vnode）
   if (sameVnode(oldVnode, vnode)) {
+    // 比对，渲染
     patchVnode(oldVnode, vnode, insertedVnodeQueue);
+
+  // 不同的 vnode，直接删掉重建
   } else {
     elm = oldVnode.elm!;
     parent = api.parentNode(elm) as Node;
 
+    // 重建
     createElm(vnode, insertedVnodeQueue);
 
     if (parent !== null) {
