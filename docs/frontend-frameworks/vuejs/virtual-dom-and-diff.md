@@ -67,7 +67,7 @@ vnode 是由 `h` 函数生成的，该函数的源码位于 `src/h.ts`。
 
 该文件内部主要定义了 `h` 函数可以接收的各种参数形式和参数类型，经过一系列处理后，最后返回了一个新的函数 `vnode` 函数，位于 `src/vnode.ts`。
 
-在 `src/vnode.ts` 文件中，一开始也是一堆定义，主要看最后一段，如下：
+在 `src/vnode.ts` 文件中，一开始也是一堆定义，主要看最后一段，如下（官方仓库的最新源码可能会实时变动）：
 
 ```typescript
 export function vnode(
@@ -87,3 +87,43 @@ export function vnode(
 * `sel`，`data`，`children`，`text` 就是前面提到的，其中 `children`，`text` 不能共存（一个标签元素下要么是文本字符串，要么是子元素）。
 * `elm` 是 vnode 对应的 DOM 元素，即 `patch` 函数需要渲染的目标元素。
 * `key` 类似于 `v-for` 的 `key`。
+
+### 3.3 patch 函数的源码
+
+patch 函数位于 `src/init.ts` 中的最后（官方仓库的最新源码可能会实时变动）。
+
+```typescript
+// patch 函数的第一个参数可以是 vnode 或 element，第二个参数是 vnode
+return function patch(oldVnode: VNode | Element, vnode: VNode): VNode {
+  let i: number, elm: Node, parent: Node;
+  const insertedVnodeQueue: VNodeQueue = [];
+  // cbs 即 callbacks，pre 是一个 hook（生命周期）
+  for (i = 0; i < cbs.pre.length; ++i) cbs.pre[i]();
+
+  // 第一个参数不是 vnode
+  if (!isVnode(oldVnode)) {
+    // 创建一个空的 vnode，关联到这个 DOM 元素
+    oldVnode = emptyNodeAt(oldVnode);
+  }
+
+  if (sameVnode(oldVnode, vnode)) {
+    patchVnode(oldVnode, vnode, insertedVnodeQueue);
+  } else {
+    elm = oldVnode.elm!;
+    parent = api.parentNode(elm) as Node;
+
+    createElm(vnode, insertedVnodeQueue);
+
+    if (parent !== null) {
+      api.insertBefore(parent, vnode.elm!, api.nextSibling(elm));
+      removeVnodes(parent, [oldVnode], 0, 0);
+    }
+  }
+
+  for (i = 0; i < insertedVnodeQueue.length; ++i) {
+    insertedVnodeQueue[i].data!.hook!.insert!(insertedVnodeQueue[i]);
+  }
+  for (i = 0; i < cbs.post.length; ++i) cbs.post[i]();
+  return vnode;
+};
+```
