@@ -90,7 +90,7 @@ export function vnode(
 
 ### 3.3 patch 函数的源码
 
-patch 函数位于 `src/init.ts` 中的最后（官方仓库的最新源码可能会实时变动）。
+`patch` 函数位于 `src/init.ts` 中的最后（官方仓库的最新源码可能会实时变动）。
 
 ```typescript
 // patch 函数的第一个参数可以是 vnode 或 element，第二个参数是 vnode
@@ -108,7 +108,7 @@ return function patch(oldVnode: VNode | Element, vnode: VNode): VNode {
 
   // 相同的 vnode（key 和 sel 都相等视为相同的 vnode）
   if (sameVnode(oldVnode, vnode)) {
-    // 比对，渲染
+    // 对比 vnode，渲染
     patchVnode(oldVnode, vnode, insertedVnodeQueue);
 
   // 不同的 vnode，直接删掉重建
@@ -132,3 +132,70 @@ return function patch(oldVnode: VNode | Element, vnode: VNode): VNode {
   return vnode;
 };
 ```
+
+### 3.4 patchVnode 函数的源码
+
+上述 `patch` 函数中调用了一个 `patchVnode` 来对比新旧 vnode，该方法也是位于 `src/init.ts` 中（官方仓库的最新源码可能会实时变动）。
+
+```typescript
+function patchVnode(oldVnode: VNode, vnode: VNode, insertedVnodeQueue: VNodeQueue) {
+  // 执行 prepatch hook
+  const hook = vnode.data?.hook;
+  hook?.prepatch?.(oldVnode, vnode);
+
+  // 设置 vnode.elm：新的 vnode 也需要知道自己的 elm
+  const elm = (vnode.elm = oldVnode.elm)!;
+
+  // 旧 vnode 的 children（以下简称旧 children）
+  const oldCh = oldVnode.children as VNode[];
+  // 新 vnode 的 children（以下简称新 children）
+  const ch = vnode.children as VNode[];
+
+  if (oldVnode === vnode) return;
+
+  // hook 相关，先不管
+  if (vnode.data !== undefined) {
+    for (let i = 0; i < cbs.update.length; ++i)
+      cbs.update[i](oldVnode, vnode);
+    vnode.data.hook?.update?.(oldVnode, vnode);
+  }
+
+  // vnode.text === undefined（即此时 vnode.children 有值）
+  // 一般情况下，vnode 的子元素为 text 或 children，都为 undefined 的情况需要在下面做兼容处理
+  if (isUndef(vnode.text)) {
+    // 新旧都有 children
+    if (isDef(oldCh) && isDef(ch)) {
+      if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue);
+    // 新 children 有，旧 children 无（旧 text 有）
+    } else if (isDef(ch)) {
+      // 清空旧 text
+      if (isDef(oldVnode.text)) api.setTextContent(elm, "");
+      // 添加 children
+      addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue);
+    // 旧 children 有，新 children 无
+    } else if (isDef(oldCh)) {
+      // 移除旧 children
+      removeVnodes(elm, oldCh, 0, oldCh.length - 1);
+    // 旧 text 有
+    } else if (isDef(oldVnode.text)) {
+      // 清空新 text
+      api.setTextContent(elm, "");
+    }
+
+  // else：vnode.text !== undefined（即此时 vnode.children 无值）
+  // 且新旧的 text 不一样
+  } else if (oldVnode.text !== vnode.text) {
+    // 移除旧 children
+    if (isDef(oldCh)) {
+      removeVnodes(elm, oldCh, 0, oldCh.length - 1);
+    }
+    // 设置新 text
+    api.setTextContent(elm, vnode.text!);
+  }
+  hook?.postpatch?.(oldVnode, vnode);
+}
+```
+
+### 3.5 updateChildren 函数的源码
+
+上述 `patchVnode` 函数中，当新旧 vnode 都有 `children` 时，需要将两者的 `children` 进行对比，调用了 `updateChildren`，该方法也是位于 `src/init.ts` 中（官方仓库的最新源码可能会实时变动）。
