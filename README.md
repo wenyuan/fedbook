@@ -108,6 +108,7 @@
   * [基础用法要点](https://fedbook.cn/frontend-frameworks/vuejs/basic-use/)
   * [高级用法特性](https://fedbook.cn/frontend-frameworks/vuejs/advanced-use/)
   * [响应式原理](https://fedbook.cn/frontend-frameworks/vuejs/reactive-data/)
+  * [虚拟 DOM 与 diff 算法](https://fedbook.cn/frontend-frameworks/vuejs/virtual-dom-and-diff/)
   * 近期在学习，每日更新
 
 <p align=right>
