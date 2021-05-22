@@ -29,6 +29,10 @@ diff 算法是 vdom 中最核心、最关键的部分。
 
 [snabbdom](https://github.com/snabbdom/snabbdom) 是一个简洁强大的 vdom 库，源码简短，总体代码行数不超过 500 行。Vue 在实现 vdom 和 diff 时也或多或者参考了它，因此可以通过 snabbdom 学习 vdom。
 
+::: warning
+以下内容仅是学习大体思路，非细抠源代码。
+:::
+
 ### 3.1 Example 解读
 
 参考 snabbdom 官方仓库中 README 里的 Example，下面列出几个比较关键的代码块，并附上注释：
@@ -107,6 +111,7 @@ return function patch(oldVnode: VNode | Element, vnode: VNode): VNode {
   }
 
   // 相同的 vnode（key 和 sel 都相等视为相同的 vnode）
+  // 都为 undefined 也是相同
   if (sameVnode(oldVnode, vnode)) {
     // 对比 vnode，渲染
     patchVnode(oldVnode, vnode, insertedVnodeQueue);
@@ -199,3 +204,128 @@ function patchVnode(oldVnode: VNode, vnode: VNode, insertedVnodeQueue: VNodeQueu
 ### 3.5 updateChildren 函数的源码
 
 上述 `patchVnode` 函数中，当新旧 vnode 都有 `children` 时，需要将两者的 `children` 进行对比，调用了 `updateChildren`，该方法也是位于 `src/init.ts` 中（官方仓库的最新源码可能会实时变动）。
+
+snabbdom 中对比旧子节点数组（以下简称 oldCh）和新子节点数组（以下简称 newCh）的方式是，先将 oldCh 的第一个元素与 newCh 的第一个元素进行对比，如果不一样，就将两者最后一个元素进行对比，如果依然不一样，就将两者的首元素和末元素进行对比。如果上述四种情况的比对都不成功，就拿当前 newCh 中的这个节点去逐一比对 oldCh 中的每个节点。
+
+值得注意的是，在 Vue 和 React 中不是使用的这种对比方法，这里只是一种实现思路。
+
+```typescript
+function updateChildren(
+  parentElm: Node,
+  oldCh: VNode[],
+  newCh: VNode[],
+  insertedVnodeQueue: VNodeQueue
+) {
+  // oldCh 和 newCh 是两个数组，这里的 start 和 end 表示数组的起始和结束
+  let oldStartIdx = 0;
+  let newStartIdx = 0;
+  let oldEndIdx = oldCh.length - 1;
+  let oldStartVnode = oldCh[0];
+  let oldEndVnode = oldCh[oldEndIdx];
+  let newEndIdx = newCh.length - 1;
+  let newStartVnode = newCh[0];
+  let newEndVnode = newCh[newEndIdx];
+  let oldKeyToIdx: KeyToIndexMap | undefined;
+  let idxInOld: number;
+  let elmToMove: VNode;
+  let before: any;
+
+  while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+    if (oldStartVnode == null) {
+      oldStartVnode = oldCh[++oldStartIdx]; // Vnode might have been moved left
+    } else if (oldEndVnode == null) {
+      oldEndVnode = oldCh[--oldEndIdx];
+    } else if (newStartVnode == null) {
+      newStartVnode = newCh[++newStartIdx];
+    } else if (newEndVnode == null) {
+      newEndVnode = newCh[--newEndIdx];
+
+    // 起始 oldCh 和起始 newCh 对比
+    } else if (sameVnode(oldStartVnode, newStartVnode)) {
+      patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue);
+      // 每次对比完后，指针进行加减，直到 start 和 end 的 idx 相等
+      oldStartVnode = oldCh[++oldStartIdx];
+      newStartVnode = newCh[++newStartIdx];
+
+    // 结束 oldCh 和结束 newCh 对比
+    } else if (sameVnode(oldEndVnode, newEndVnode)) {
+      patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue);
+      oldEndVnode = oldCh[--oldEndIdx];
+      newEndVnode = newCh[--newEndIdx];
+
+    // 开始 oldCh 和结束 newCh 对比
+    } else if (sameVnode(oldStartVnode, newEndVnode)) {
+      // Vnode moved right
+      patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue);
+      api.insertBefore(
+        parentElm,
+        oldStartVnode.elm!,
+        api.nextSibling(oldEndVnode.elm!)
+      );
+      oldStartVnode = oldCh[++oldStartIdx];
+      newEndVnode = newCh[--newEndIdx];
+
+    // 结束 oldCh 和开始 newCh 对比
+    } else if (sameVnode(oldEndVnode, newStartVnode)) {
+      // Vnode moved left
+      patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue);
+      api.insertBefore(parentElm, oldEndVnode.elm!, oldStartVnode.elm!);
+      oldEndVnode = oldCh[--oldEndIdx];
+      newStartVnode = newCh[++newStartIdx];
+
+    // 以上四个都未命中
+    } else {
+      if (oldKeyToIdx === undefined) {
+        oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx);
+      }
+      // 拿当前新节点的 key，逐一对比 oldCh 中的每个元素，看能否对应上某个节点的 key
+      idxInOld = oldKeyToIdx[newStartVnode.key as string];
+      // 没对应上
+      if (isUndef(idxInOld)) {
+        // 当前 newCh 中的这个节点是个新节点，则直接创建
+        api.insertBefore(
+          parentElm,
+          createElm(newStartVnode, insertedVnodeQueue),
+          oldStartVnode.elm!
+        );
+      // 对应上了
+      } else {
+        // 对应上 key 的节点
+        elmToMove = oldCh[idxInOld];
+        // 判断 sel 是否相等（sameNode 的条件是 key 和 sel 都相等）
+        if (elmToMove.sel !== newStartVnode.sel) {
+          // 是个新节点，直接直接创建
+          api.insertBefore(
+            parentElm,
+            createElm(newStartVnode, insertedVnodeQueue),
+            oldStartVnode.elm!
+          );
+        // sel 相等，key 相等
+        } else {
+          patchVnode(elmToMove, newStartVnode, insertedVnodeQueue);
+          oldCh[idxInOld] = undefined as any;
+          api.insertBefore(parentElm, elmToMove.elm!, oldStartVnode.elm!);
+        }
+      }
+      newStartVnode = newCh[++newStartIdx];
+    }
+  }
+  if (oldStartIdx <= oldEndIdx || newStartIdx <= newEndIdx) {
+    if (oldStartIdx > oldEndIdx) {
+      before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].elm;
+      addVnodes(
+        parentElm,
+        before,
+        newCh,
+        newStartIdx,
+        newEndIdx,
+        insertedVnodeQueue
+      );
+    } else {
+      removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
+    }
+  }
+}
+```
+
+（完）
