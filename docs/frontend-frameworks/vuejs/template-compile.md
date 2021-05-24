@@ -38,3 +38,56 @@ with(obj) {
 * 模板编译为 render 函数，执行 render 函数返回 vnode；
 * 基于 vnode 再执行 patch 和 diff；
 * 使用 Webpack 时，vue-loader 会在开发环境下编译模板（目前业内主流）；否则会在浏览器运行时中编译（单独在页面中引入 vue.js 使用）。
+
+用代码来解释编译过程：
+
+```javascript
+// Step1: 一个 template，使用了插值语法
+const template = `<p>{{message}}</p>`
+
+// Step2: 上述 template 被编译后，得到 JS 代码如下
+// with 语法，后面的自由变量的查找都会变成 this 的查找
+// this 指向 vm 实例: vm = new vue({...})
+with(this){return createElement('p',[createTextVNode(toString(message))])}
+
+// Step3: 执行上述函数后，返回 vnode
+// 类似 snabbdom 的 h 函数: h('p', {}, [...]) => vnode
+
+// Step4: 渲染和更新
+```
+
+## 4. vue 组件中使用 render 代替 template
+
+通过 `template` 来定义 Vue 组件：
+
+```javascript
+Vue.component('heading', {
+  template: `<h3><a name="headerId" href="#headerId">this is a tag</a></h3>`
+})
+```
+
+通过 `render` 属性来定义 Vue 组件，需要定义一个函数，参数为 `createElement`。
+
+`createElement` 类似于前面介绍的编译后的函数体，它的第一个参数是标签，第二个参数是属性（可不写），第三个参数是子元素。
+
+```javascript
+Vue.component('heading', {
+  render: function(createElement) {
+    return createElement(
+      'h' + this.level,
+      [
+        createElement('a', {
+          attrs: {
+            name: 'headerId',
+            href: '#' + 'headerId'
+          }
+        }, 'this is a tag')
+      ]
+    )
+  }
+})
+```
+
+在有些复杂情况中，不能用 `template`，可以考虑用 `render`。
+
+（完）
