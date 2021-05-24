@@ -23,6 +23,11 @@ module.exports = [
         title: '虚拟 DOM 与 diff 算法',
         path: '/frontend-frameworks/vuejs/virtual-dom-and-diff',
         collapsable: true
+      },
+      {
+        title: '模板编译',
+        path: '/frontend-frameworks/vuejs/template-compile',
+        collapsable: true
       }
     ]
   }
