@@ -28,6 +28,11 @@ module.exports = [
         title: '模板编译',
         path: '/frontend-frameworks/vuejs/template-compile',
         collapsable: true
+      },
+      {
+        title: '组件渲染与更新',
+        path: '/frontend-frameworks/vuejs/render-update',
+        collapsable: true
       }
     ]
   }
