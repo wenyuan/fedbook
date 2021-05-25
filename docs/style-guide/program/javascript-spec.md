@@ -8,7 +8,7 @@
 下图是一个概要图，其中列出了一些建议的规范，更具体的请参阅下文：
 
 <div style="text-align: center;">
-  <img src="assets/javascript-code-style.svg" alt="flexbox">
+  <img src="./assets/javascript-code-style.svg" alt="JavaScript 编码规范">
   <p style="text-align: center; color: #888;">（JavaScript 编码规范）</p>
 </div>
 
