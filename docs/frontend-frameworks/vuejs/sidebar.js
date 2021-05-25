@@ -31,7 +31,7 @@ module.exports = [
       },
       {
         title: '组件渲染与更新',
-        path: '/frontend-frameworks/vuejs/render-update',
+        path: '/frontend-frameworks/vuejs/component-render-and-update',
         collapsable: true
       }
     ]
