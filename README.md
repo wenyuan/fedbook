@@ -110,6 +110,7 @@
   * [响应式原理](https://fedbook.cn/frontend-frameworks/vuejs/reactive-data/)
   * [虚拟 DOM 与 diff 算法](https://fedbook.cn/frontend-frameworks/vuejs/virtual-dom-and-diff/)
   * [模板编译](https://fedbook.cn/frontend-frameworks/vuejs/template-compile/)
+  * [组件渲染与更新](https://fedbook.cn/frontend-frameworks/vuejs/render-update/)
   * 近期在学习，每日更新
 
 <p align=right>
