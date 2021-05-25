@@ -105,6 +105,11 @@ export default {
 </script>
 ```
 
+总结一下 `$nextTick` 的特点：
+
+* 汇总 data 的修改，一次性更新视图
+* 能够减少 DOM 操作次数，提高性能
+
 ## 3. slot 插槽
 
 ### 3.1 基本使用
