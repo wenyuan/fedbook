@@ -33,6 +33,11 @@ module.exports = [
         title: '组件渲染与更新',
         path: '/frontend-frameworks/vuejs/component-render-and-update',
         collapsable: true
+      },
+      {
+        title: '前端路由原理',
+        path: '/frontend-frameworks/vuejs/vue-router',
+        collapsable: true
       }
     ]
   }
