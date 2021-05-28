@@ -111,6 +111,7 @@
   * [虚拟 DOM 与 diff 算法](https://fedbook.cn/frontend-frameworks/vuejs/virtual-dom-and-diff/)
   * [模板编译](https://fedbook.cn/frontend-frameworks/vuejs/template-compile/)
   * [组件渲染与更新](https://fedbook.cn/frontend-frameworks/vuejs/component-render-and-update/)
+  * [前端路由原理](https://fedbook.cn/frontend-frameworks/vuejs/vue-router/)
   * 近期在学习，每日更新
 
 <p align=right>
