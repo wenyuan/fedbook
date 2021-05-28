@@ -26,13 +26,17 @@ location.search    // '?a=100&b=20'
 location.hash      // '#/aaa/bbb'
 ```
 
-### 2.2 hash 的特点
+### 2.2 hash 模式的特点
 
 * hash 变化会触发网页跳转，即浏览器的前进、后退
 * hash 变化不会刷新页面，这是 SPA 必需的特点
 * hash 永远不会提交到 server 端（前端自生自灭）
 
-### 2.3 hash 模式的实现原理
+### 2.3 hash 模式的核心方法
+
+* [window.onhashchange](https://developer.mozilla.org/zh-CN/docs/Web/API/WindowEventHandlers/onhashchange)
+
+### 2.4 hash 模式的实现原理
 
 通过 hash 的变化触发路由的变化，从而触发视图的渲染。
 
@@ -83,4 +87,76 @@ location.hash      // '#/aaa/bbb'
 
 ## 3. H5 history 模式
 
+### 3.1 H5 history 模式的特点
 
+H5 history 模式是用 url 规范的路由，但跳转时不刷新页面。
+
+正常页面浏览：
+
+* `https://github.com/xxx`         刷新页面
+* `https://github.com/xxx/yyy`     刷新页面
+* `https://github.com/xxx/yyy/zzz` 刷新页面
+
+改造成 H5 history 模式：
+
+* `https://github.com/xxx`         刷新页面
+* `https://github.com/xxx/yyy`     前端跳转，不刷新页面
+* `https://github.com/xxx/yyy/zzz` 前端跳转，不刷新页面
+
+### 3.2 H5 history 模式的核心方法
+
+* [history.pushState](https://developer.mozilla.org/zh-CN/docs/Web/API/History/pushState)
+* [window.onpopstate](https://developer.mozilla.org/zh-CN/docs/Web/API/WindowEventHandlers/onpopstate)
+
+### 3.3 H5 history 模式的实现原理
+
+下面演示的代码核心是三部分：
+
+* 页面初次加载，获取当前 path
+* 点击按钮，通过 `history.pushState` 修改 url 的 hash
+  * 第一个参数：`state`，无论何时，当通过浏览器前进、后退到达第三个参数配置的路由时，对应的该值就会携带过来
+  * 第二个参数：一般传递空字符串
+  * 第三个参数：目标路由的 `path`
+* 监听浏览器前进、后退
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>H5 history 模式</title>
+</head>
+<body>
+  <p>H5 history 模式</p>
+  <button id="btn-history">修改 url</button>
+</body>
+
+<script>
+  // 页面初次加载，获取 path
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('load', location.pathname)
+  })
+
+  // 打开一个新的路由
+  // 【注意】用 pushState 方式，浏览器不会刷新页面
+  document.getElementById('btn-history').addEventListener('click', () => {
+    const state = { name: 'page1' }
+    console.log('切换路由到', 'page1')
+    history.pushState(state, '', 'page1') // 重要！！
+  })
+
+  // 监听浏览器前进、后退
+  window.onpopstate = (event) => { // 重要！！
+    console.log('onpopstate', event.state, location.pathname)
+  }
+</script>
+</html>
+```
+
+H5 history 模式需要 server 端配合，可参考[后端配置例子](https://router.vuejs.org/zh/guide/essentials/history-mode.html#后端配置例子)。无论访问哪个路由，都返回 `index.html` 页面，再由前端通过 `history.pushState` 的方式触发路由的切换。
+
+
+
+（完）
