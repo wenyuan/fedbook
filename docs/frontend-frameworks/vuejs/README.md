@@ -16,7 +16,7 @@ var vm = new Vue({
 
 <div style="text-align: center;">
   <img src="./assets/mvvm.png" alt="MVVM 图示">
-  <p style="text-align:center; color: #888;">（MVVM 图示）</p>
+  <p style="text-align:center; color: #888;">（MVVM 图示，图来源于官网文档）</p>
 </div>
 
 MVVM 分为 Model、View、ViewModel 三者。
