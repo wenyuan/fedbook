@@ -11,7 +11,7 @@ DOM 更新非常耗时，但 JS 执行速度很快，因此现代前端框架（
 在数据驱动视图的模式下，vdom 能有效控制 DOM 操作。
 
 <div style="text-align: center;">
-  <img src="./assets/dom-js.png" alt="用 JS 模拟 DOM 结构">
+  <img src="./assets/dom-to-js.png" alt="用 JS 模拟 DOM 结构">
   <p style="text-align:center; color: #888;">（用 JS 模拟 DOM 结构）</p>
 </div>
 

@@ -4,6 +4,38 @@
 
 <hr>
 
+虽然没有完全遵循 MVVM 模型，但是 Vue 的设计也受到了它的启发。因此经常会使用 vm（ViewModel 的缩写）这个变量名表示 Vue 实例。
+
+```javascript
+var vm = new Vue({
+  // 选项
+})
+```
+
+对 MVVM 的理解：
+
+<div style="text-align: center;">
+  <img src="./assets/mvvm.png" alt="MVVM 图示">
+  <p style="text-align:center; color: #888;">（MVVM 图示）</p>
+</div>
+
+MVVM 分为 Model、View、ViewModel 三者。
+
+* Model：代表数据模型，数据和业务逻辑都在 Model 层中定义；
+* View：代表 UI 视图，负责数据的展示；
+* ViewModel：就是与界面（View）对应的 Model。因为数据库结构往往是不能直接跟界面控件一一对应上的，所以需要再定义一个数据对象专门对应 View 上的控件。而 ViewModel 的职责就是把 Model 对象封装成可以显示和接受输入的界面数据对象。
+
+比如 UI 中有一个 li 列表，它是怎么与我们的数据对应的，就是通过 ViewModel。
+
+Model 和 View 并无直接关联，而是通过 ViewModel 来进行联系的，Model 和 ViewModel 之间有着双向数据绑定的联系。因此当 Model 中的数据改变时会触发 View 层的刷新，View 中由于用户交互操作而改变的数据也会在 Model 中同步。
+
+<div style="text-align: center;">
+  <img src="./assets/mvvm-demo.png" alt="MVVM 例子">
+  <p style="text-align:center; color: #888;">（MVVM 例子）</p>
+</div>
+
+<hr>
+
 关于 Vue.js 的知识点，主要参考： 
 
 * 官方文档
