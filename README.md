@@ -89,6 +89,7 @@
   * [this 指向](https://fedbook.cn/frontend-languages/javascript/this-keyword/)
   * [原型与原型链](https://fedbook.cn/frontend-languages/javascript/prototype-and-prototype-chain/)
   * [数组遍历的几种方式](https://fedbook.cn/frontend-languages/javascript/array-iteration/)
+  * [对象遍历的几种方式](https://fedbook.cn/frontend-languages/javascript/object-iteration/)
   * [继承的八种方式](https://fedbook.cn/frontend-languages/javascript/inheritance/)
   * [声明函数的六种方式](https://fedbook.cn/frontend-languages/javascript/function-declare/)
   * [调用函数的四种方式](https://fedbook.cn/frontend-languages/javascript/function-invocation/)
