@@ -40,6 +40,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '对象遍历的几种方式',
+        path: '/frontend-languages/javascript/object-iteration',
+        collapsable: true
+      },
+      {
         title: '继承的八种实现方式',
         path: '/frontend-languages/javascript/inheritance',
         collapsable: true
