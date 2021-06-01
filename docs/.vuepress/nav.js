@@ -17,7 +17,18 @@ module.exports = [
   {
     text: '前端框架',
     items: [
-      { text: 'Vue.js', link: '/frontend-frameworks/vuejs/' }
+      {
+        text: '框架',
+        items: [
+          { text: 'Vue.js', link: '/frontend-frameworks/vuejs/' }
+        ]
+      },
+      {
+        text: '工具',
+        items: [
+          { text: 'webpack', link: '/frontend-frameworks/webpack5/' }
+        ]
+      }
     ]
   },
   {
