@@ -26,7 +26,7 @@
 * 一旦修改了 Data，就会通知 Watcher，如果修改的 data 是之前作为依赖被观察的，则重新触发渲染（re-render）。
 
 <div style="text-align: center;">
-  <img src="./assets/component-render-and-update.png" alt="demo-pic">
+  <img src="./assets/component-render-and-update.png" alt="组件渲染与更新">
   <p style="text-align: center; color: #888;">（组件渲染与更新，图来源于官网文档）</p>
 </div>
 
