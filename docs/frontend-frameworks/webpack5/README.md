@@ -1,5 +1,7 @@
 # webpack5
 
+> 本系列主要针对 webpack5 进行知识点梳理，该版本目前（2021 年）是最新稳定版。
+
 **webpack 是什么？**
 
 简单的说，webpack 用于编译 JavaScript 模块，它是一个模块打包工具。
