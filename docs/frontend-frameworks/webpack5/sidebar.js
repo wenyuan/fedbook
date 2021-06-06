@@ -5,7 +5,7 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: 'webpack 基本配置',
+        title: '基本配置',
         path: '/frontend-frameworks/webpack5/basic-config',
         collapsable: true
       }

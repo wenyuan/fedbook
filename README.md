@@ -114,6 +114,8 @@
   * [组件渲染与更新](https://fedbook.cn/frontend-frameworks/vuejs/component-render-and-update/)
   * [前端路由原理](https://fedbook.cn/frontend-frameworks/vuejs/vue-router/)
   * 近期在学习，每日更新
+* [webpack5](https://fedbook.cn/frontend-frameworks/webpack5/)
+  * [基本配置](https://fedbook.cn/frontend-frameworks/webpack5/basic-config/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
