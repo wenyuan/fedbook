@@ -21,32 +21,77 @@ webpack 的基本配置主要分为 6 个方面：
 * webpack.dev.js
 * webpack.prod.js
 
-在 dev（开发环境配置）和 prod（生产环境配置）中分别都通过 `smart`（需要安装 `webpack-merge` 这个依赖） 将 common（公共配置）引进来。
-
-以 `webpack.dev.js` 为例：
+`webpack.common.js` 基础配置代码：
 
 ```javascript
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { srcPath, distPath } = require('./paths')
+
+module.exports = {
+  entry: path.join(srcPath, 'index'),
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(srcPath, 'index.html'),
+      filename: 'index.html'
+    })
+  ],
+}
+```
+
+在 dev（开发环境配置）和 prod（生产环境配置）中分别都通过 `smart`（需要安装 `webpack-merge` 这个依赖） 将 common（公共配置）引进来。
+
+`webpack.dev.js` 基础配置代码：
+
+```javascript
+const path = require('path')
+const webpack = require('webpack')
 const webpackCommonConf = require('./webpack.common.js')
 const { merge } = require('webpack-merge')
+const { srcPath, distPath } = require('./paths')
 
 module.exports = merge(webpackCommonConf, {
   mode: 'development',
-  // 以下配置项省略……
+  devServer: {
+    // 这部分配置项省略，后面会单独详细讲……
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      // window.ENV = 'development'
+      ENV: JSON.stringify('development')
+    })
+  ]
 })
 ```
 
-下面是拆分配置后的目录结构。
+`webpack.prod.js` 基础配置代码：
 
-```bash
-├── src/                       # 项目源代码
-├── paths.js                   # 常用文件夹路径，返回目录变量给其它文件用
-├── webpack.common.js          # 公共配置
-├── webpack.dev.js             # 开发环境配置
-├── webpack.prod.js            # 生产环境配置
-└── .babelrc                   # babel配置   
+```javascript
+const path = require('path')
+const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const webpackCommonConf = require('./webpack.common.js')
+const { merge } = require('webpack-merge')
+const { srcPath, distPath } = require('./paths')
+
+module.exports = merge(webpackCommonConf, {
+  mode: 'production',
+  output: {
+    filename: 'bundle.[contenthash:8].js',  // 打包代码时，加上 hash 戳
+    path: distPath,
+    // publicPath: 'http://cdn.abc.com'  // 修改所有静态文件 url 的前缀（如 cdn 域名），这里暂时用不到
+  },
+  plugins: [
+    new CleanWebpackPlugin(), // 会默认清空 output.path 文件夹
+    new webpack.DefinePlugin({
+      // window.ENV = 'production'
+      ENV: JSON.stringify('production')
+    })
+  ]
+})
 ```
 
-这里还用到了一个 JS 文件 `paths.js`，它里面的完整代码是这样的：
+可以看到三份配置文件都引入了 `paths.js`，这是一个通用的 JS 文件，它里面的完整代码是这样的：
 
 ```javascript
 /**
@@ -65,11 +110,22 @@ module.exports = {
 }
 ```
 
+下面是拆分配置后的目录结构。
+
+```bash
+├── src/                       # 项目源代码
+├── paths.js                   # 常用文件夹路径，返回目录变量给其它文件用
+├── webpack.common.js          # 公共配置
+├── webpack.dev.js             # 开发环境配置
+├── webpack.prod.js            # 生产环境配置
+└── .babelrc                   # babel 配置（后面会讲到）
+```
+
 ## 2. 启动本地服务
 
 这个功能只在 dev 环境下使用，借助了 `webpack-dev-server` 这个依赖，配置写在 `webpack.dev.js` 中：
 
-```javascript
+```javascript {9-30}
 const path = require('path')
 const webpack = require('webpack')
 const webpackCommonConf = require('./webpack.common.js')
@@ -107,7 +163,7 @@ module.exports = merge(webpackCommonConf, {
 
 处理 ES6 是通用的功能，借助了 `babel-loader` 这个依赖，配置写在 `webpack.common.js` 中：
 
-```javascript
+```javascript {8-13}
 const path = require('path')
 const { srcPath, distPath } = require('./paths')
 
@@ -120,7 +176,7 @@ module.exports = {
         use: ['babel-loader'], 
         include: srcPath,
         exclude: /node_modules/
-      },
+      }
     ]
   }
 }
@@ -145,7 +201,7 @@ module.exports = {
 
 处理样式的配置如下：
 
-```javascript
+```javascript {8-17}
 const path = require('path')
 const { srcPath, distPath } = require('./paths')
 
@@ -184,7 +240,7 @@ module.exports = {
 
 * dev 环境：借助 `file-loader` 依赖，**直接引入图片 url**。在 `webpack.dev.js` 中的配置如下：
 
-```javascript
+```javascript {8-12}
 const webpackCommonConf = require('./webpack.common.js')
 const { merge } = require('webpack-merge')
 
@@ -204,7 +260,7 @@ module.exports = merge(webpackCommonConf, {
 
 * prod 环境：从性能优化的角度考虑，大图片借助 `file-loader` 依赖，直接引入图片 url，并打包到指定目录下；小图片转成 base64 的形式，可以减少一次 http 请求。在 `webpack.prod.js` 中的配置如下：
 
-```javascript
+```javascript {14-31}
 const webpackCommonConf = require('./webpack.common.js')
 const { merge } = require('webpack-merge')
 const { srcPath, distPath } = require('./paths')
@@ -235,7 +291,7 @@ module.exports = merge(webpackCommonConf, {
             // publicPath: 'http://cdn.abc.com'
           }
         }
-      },
+      }
     ]
   }
 })
