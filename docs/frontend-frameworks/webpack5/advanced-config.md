@@ -420,7 +420,7 @@ setTimeout(() => {
 
 需要先安装 `@babel/preset-react`：
 
-```shell
+```bash
 npm install --save-dev @babel/preset-react
 ```
 
@@ -438,7 +438,7 @@ npm install --save-dev @babel/preset-react
 
 需要先安装依赖包：
 
-```shell
+```bash
 npm i vue-loader
 ```
 
