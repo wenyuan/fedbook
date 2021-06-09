@@ -116,6 +116,7 @@
   * 近期在学习，每日更新
 * [webpack5](https://fedbook.cn/frontend-frameworks/webpack5/)
   * [基本配置](https://fedbook.cn/frontend-frameworks/webpack5/basic-config/)
+  * [高级配置](https://fedbook.cn/frontend-frameworks/webpack5/advanced-config/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

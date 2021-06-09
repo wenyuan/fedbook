@@ -5,7 +5,11 @@
 webpack 的高级配置主要分为 6 个方面，根据需要进行选择：
 
 * 多入口
-* 抽离压缩 CSS 文件
+* **抽离压缩 CSS 文件**
+* **抽离公共代码**
+* **懒加载 - 异步加载 JS**
+* 处理 JSX
+* 处理 Vue
 
 ## 1. 多入口
 
@@ -235,3 +239,240 @@ module.exports = merge(webpackCommonConf, {
 ```
 
 ## 3. 抽离公共代码
+
+为了提升性能，我们需要在打包时将**第三方模块**和**公用引用的代码**单独拆分出去。
+
+既然是在打包时进行的优化，就是修改首先在 `webpack.prod.js` 这份生产环境的配置文件。在 `optimization` 中添加分割代码块的逻辑，配置代码如下：
+
+```javascript {74-102}
+const webpack = require('webpack')
+const { merge } = require('webpack-merge')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserJSPlugin = require('terser-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const webpackCommonConf = require('./webpack.common.js')
+const { srcPath, distPath } = require('./paths')
+
+module.exports = merge(webpackCommonConf, {
+  mode: 'production',
+  output: {
+    filename: '[name].[contenthash:8].js', // name 即多入口时 entry 的 key
+    path: distPath,
+  },
+  module: {
+    rules: [
+      // 图片 - 考虑 base64 编码的情况
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            // 小于 5kb 的图片用 base64 格式产出
+            // 否则，依然延用 file-loader 的形式，产出 url 格式
+            limit: 5 * 1024,
+
+            // 打包到 img 目录下
+            outputPath: '/img/',
+
+            // 设置图片的 cdn 地址（也可以统一在外面的 output 中设置，那将作用于所有静态资源）
+            // publicPath: 'http://cdn.abc.com'
+          }
+        }
+      },
+      // 抽离 css
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,  // 注意，这里不再用 style-loader
+          'css-loader',
+          'postcss-loader'
+        ]
+      },
+      // 抽离 less
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,  // 注意，这里不再用 style-loader
+          'css-loader',
+          'less-loader',
+          'postcss-loader'
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new CleanWebpackPlugin(), // 会默认清空 output.path 文件夹
+    new webpack.DefinePlugin({
+      // window.ENV = 'production'
+      ENV: JSON.stringify('production')
+    }),
+
+    // 抽离 css 文件
+    new MiniCssExtractPlugin({
+      filename: 'css/main.[contenthash:8].css'
+    })
+  ],
+
+  optimization: {
+    // 压缩 css
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+
+    // 分割代码块
+    splitChunks: {
+      chunks: 'all',
+      /**
+       * initial 入口 chunk，对于异步导入的文件不处理
+       * async 异步 chunk，只对异步导入的文件处理
+       * all 全部 chunk，一般选择 all 模式
+       */
+
+      // 缓存分组
+      cacheGroups: {
+        // 第三方模块
+        vendor: {
+          name: 'vendor',       // chunk 名称
+          priority: 1,          // 权限更高，优先抽离（例如第三方模块同时也作为公共模块在多处引用时，按第三方模块的规则进行抽离）
+          test: /node_modules/, // 检查模块是否位于 node_modules/ 目录下
+          minSize: 30000,       // 大小限制（Byte），太小的不用抽离
+          minChunks: 1          // 最少复用过几次（第三方模块只要引用过一次就抽取出来）
+        },
+
+        // 公共的模块
+        common: {
+          name: 'common',       // chunk 名称
+          priority: 0,          // 优先级
+          minSize: 50000,       // 公共模块的大小限制（此处设置 50KB）
+          minChunks: 2          // 公共模块最少复用过几次
+        }
+      }
+    }
+  }
+})
+```
+
+对于**多入口的情况**，为了防止多余的第三方模块被打包到没有引用它的页面里，需要在 `webpack.common.js` 中的 `plugins` 内选择所需的 chunk，代码如下：
+
+```javascript {26,32}
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { srcPath, distPath } = require('./paths')
+
+module.exports = {
+  entry: {
+    index: path.join(srcPath, 'index.js'),
+    other: path.join(srcPath, 'other.js')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: ['babel-loader'],
+        include: srcPath,
+        exclude: /node_modules/
+      }
+    ]
+  },
+  plugins: [
+    // 多入口 - 生成 index.html
+    new HtmlWebpackPlugin({
+      template: path.join(srcPath, 'index.html'),
+      filename: 'index.html',
+      // chunks 表示该页面要引用哪些 chunk （即上面的 index 和 other），默认全部引用
+      chunks: ['index', 'vendor', 'common']  // 要考虑代码分割
+    }),
+    // 多入口 - 生成 other.html
+    new HtmlWebpackPlugin({
+      template: path.join(srcPath, 'other.html'),
+      filename: 'other.html',
+      chunks: ['other', 'common']  // 考虑代码分割
+    })
+  ]
+}
+```
+
+目前 chunks 一共出现在了三个地方：
+
+* common 里的 `entry` 定义了要生成哪些 chunk
+* common 里的 `plugins` 中定义了某个页面要引用哪些 chunk
+* prod 里的 `splitChunks` 中定义了代码分割成哪些 chunk
+
+## 4. 懒加载 - 异步加载 JS
+
+懒加载就是引入动态数据，webpack 本身支持这种机制，所以不需要额外配置，只需要借助 `import()` 语法来引入 JS 文件。这种语法和 Vue 和 React 中的异步组件是一样的。
+
+如下例子，这段代码写在某个 JS 文件中，将在 1.5s 之后加载出 `dynamic-data.js` 这个文件：
+
+```javascript
+setTimeout(() => {
+  // 定义 chunk
+  import('./dynamic-data.js').then(res => {
+    console.log(res.default.message)
+  })
+}, 1500)
+```
+
+这种异步加载也会产出一个 chunk，文件名是随机的字符串。
+
+## 5. 处理 JSX
+
+借助 babel 即可，[参考官网](https://www.babeljs.cn/docs/babel-preset-react)。
+
+需要先安装 `@babel/preset-react`：
+
+```shell
+npm install --save-dev @babel/preset-react
+```
+
+然后在 `.babelrc` 中写上 `@babel/preset-react`：
+
+```json
+{
+  "presets": ["@babel/preset-react"]
+}
+```
+
+## 6. 处理 Vue
+
+借助 vue-loader 即可，[参考官网](https://www.npmjs.com/package/vue-loader)。
+
+需要先安装依赖包：
+
+```shell
+npm i vue-loader
+```
+
+然后在 `webpack.common.js` 中添加对应的规则：
+
+```javascript {15-19}
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { srcPath, distPath } = require('./paths')
+
+module.exports = {
+  entry: path.join(srcPath, 'index'),
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: ['babel-loader'],
+        include: srcPath,
+        exclude: /node_modules/
+      },
+      {
+        test: /\.vue/,
+        use: ['vue-loader'],
+        include: srcPath
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(srcPath, 'index.html'),
+      filename: 'index.html'
+    })
+  ]
+}
+```
+
+（完）

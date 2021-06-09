@@ -184,7 +184,7 @@ module.exports = {
 
 由于 `babel-loader` 使用到了 babel，因此还需要配置 `.babelrc`。一般简单配置就已经包含了 ES6、7、8 常用语法，特殊情况再配置 plugins。所以常用配置如下：
 
-```
+```json
 {
   "presets": ["@babel/preset-env"],
   "plugins": []
