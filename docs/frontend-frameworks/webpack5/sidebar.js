@@ -18,6 +18,11 @@ module.exports = [
         title: '高级配置',
         path: '/frontend-frameworks/webpack5/advanced-config',
         collapsable: true
+      },
+      {
+        title: '性能优化 - 优化构建速度',
+        path: '/frontend-frameworks/webpack5/performance-optimization-in-build',
+        collapsable: true
       }
     ]
   }

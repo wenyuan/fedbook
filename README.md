@@ -118,6 +118,7 @@
   * [核心概念](https://fedbook.cn/frontend-frameworks/webpack5/core-concept/)
   * [基本配置](https://fedbook.cn/frontend-frameworks/webpack5/basic-config/)
   * [高级配置](https://fedbook.cn/frontend-frameworks/webpack5/advanced-config/)
+  * [性能优化 - 优化构建速度](https://fedbook.cn/frontend-frameworks/webpack5/performance-optimization-in-build/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
