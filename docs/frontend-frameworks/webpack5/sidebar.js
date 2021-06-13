@@ -20,7 +20,7 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '性能优化 - 优化构建速度',
+        title: '性能优化 - 构建速度',
         path: '/frontend-frameworks/webpack5/performance-optimization-in-build',
         collapsable: true
       }
