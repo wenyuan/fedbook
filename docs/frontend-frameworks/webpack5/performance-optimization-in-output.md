@@ -142,7 +142,13 @@ module.exports = merge(webpackCommonConf, {
 * webpack.dev.js
 * webpack.prod.js
 
-使用 production 就是指的在 `webpack.prod.js` 中的 `mode: 'production'`。
+使用 production 就是指的使用 `mode: 'production'` 的方式（即使用 `webpack.prod.js` 这份配置文件）去打包生产环境的代码。
+
+它具有如下好处：
+
+* 无需配置，production 默认自动开启代码压缩（webpack4.x 后的功能）
+* Vue、React 等会自动删掉调试代码（如开发环境的 warning）
+* 会自动启动 Tree-Shaking
 
 ## 8. 使用 Scope Hosting
 
