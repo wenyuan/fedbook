@@ -58,8 +58,8 @@ const { srcPath, distPath } = require('./paths')
 module.exports = merge(webpackCommonConf, {
   mode: 'production',
   output: {
-    // filename: 'bundle.[contentHash:8].js',  // 打包代码时，加上 hash 戳
-    filename: '[name].[contentHash:8].js',     // name 即多入口时 entry 的 key
+    // filename: 'bundle.[contenthash:8].js',  // 打包代码时，加上 hash 戳
+    filename: '[name].[contenthash:8].js',     // name 即多入口时 entry 的 key
     path: distPath,
   }
 })
@@ -103,8 +103,8 @@ const { srcPath, distPath } = require('./paths')
 module.exports = merge(webpackCommonConf, {
   mode: 'production',
   output: {
-    // filename: 'bundle.[contentHash:8].js', // 打包代码时，加上 hash 戳
-    filename: '[name].[contentHash:8].js',    // name 即多入口时 entry 的 key
+    // filename: 'bundle.[contenthash:8].js', // 打包代码时，加上 hash 戳
+    filename: '[name].[contenthash:8].js',    // name 即多入口时 entry 的 key
     path: distPath,
     publicPath: 'http://cdn.abc.com'          // 修改所有静态文件 url 的前缀（如 cdn 域名）
   }
@@ -135,6 +135,14 @@ module.exports = merge(webpackCommonConf, {
 ```
 
 ## 7. 使用 production
+
+前面说过，一般会将 webpack 配置文件拆分成三份：
+
+* webpack.common.js
+* webpack.dev.js
+* webpack.prod.js
+
+使用 production 就是指的在 `webpack.prod.js` 中的 `mode: 'production'`。
 
 ## 8. 使用 Scope Hosting
 

@@ -21,6 +21,17 @@ webpack 的基本配置主要分为 6 个方面：
 * webpack.dev.js
 * webpack.prod.js
 
+与此同时修改 `package.json` 中的命令语句：
+
+```bash {4,5}
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev-without-dev-server": "webpack --config build/webpack.dev.js",
+  "dev": "webpack serve --config build/webpack.dev.js",
+  "build": "webpack --config build/webpack.prod.js"
+}
+```
+
 `webpack.common.js` 基础配置代码：
 
 ```javascript

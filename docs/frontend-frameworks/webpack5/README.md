@@ -42,8 +42,25 @@ webpack 最出色的功能，是它还可以引入任何其它类型的文件，
 
 **webpack5 和 webpack4 有什么区别?**
 
-* webpack5 主要是内部效率的优化
-* 对比 webpack4，没有太多使用上的改动
+webpack5 主要是内部效率的优化，对比 webpack4，没有太多使用上的改动。
+
+升级 webpack5 以及周边插件后，代码需要做出的调整：
+
+* package.json 的 dev-server 命令
+  * 老版本：`"dev": "webpack-dev-server --config build/webpack.dev.js",`
+  * 新版本：`"dev": "webpack serve --config build/webpack.dev.js"`
+* 拆分配置文件后，引入 webpack-merge 的方法名
+  * 老版本：`const { smart } = require('webpack-merge')`
+  * 新版本：`const { merge } = require('webpack-merge')`
+* `webpack.prod.js` 中 CleanWebpackPlugin 方法的引入方式
+  * 老版本：`const CleanWebpackPlugin = require('clean-webpack-plugin')`
+  * 新版本：`const { CleanWebpackPlugin } = require('clean-webpack-plugin')`
+* `module.rules` 中 loader 的调用方式
+  * 老版本：`loader: ['xxx-loader']`
+  * 新版本：`use: ['xxx-loader']`
+* `webpack.prod.js` 的 `output` 中 hash 的写法
+  * 老版本：`filename: 'bundle.[contentHash:8].js'`
+  * 新版本：`filename: 'bundle.[contenthash:8].js'` 其中 `h` 小写，不能大写
 
 <hr>
 
