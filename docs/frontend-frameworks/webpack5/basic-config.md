@@ -39,7 +39,7 @@ module.exports = {
 }
 ```
 
-在 dev（开发环境配置）和 prod（生产环境配置）中分别都通过 `smart`（需要安装 `webpack-merge` 这个依赖） 将 common（公共配置）引进来。
+在 dev（开发环境配置）和 prod（生产环境配置）中分别都通过 `merge`（需要安装 `webpack-merge` 这个依赖） 将 common（公共配置）引进来。
 
 `webpack.dev.js` 基础配置代码：
 

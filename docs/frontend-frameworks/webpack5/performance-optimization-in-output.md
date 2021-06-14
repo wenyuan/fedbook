@@ -51,11 +51,11 @@
 在生产环境下（`webpack.prod.js`），对于出口文件，根据文件的内容计算出一个 hash 值（下述示例为 8 位 hash），如果文件内容更新后，缓存会失效，重新请求新的文件；如果代码没有变化，hash 值不变，就会使用缓存，从而提高加载效率。如下代码所示：
 
 ```javascript {8,9}
-const { smart } = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const webpackCommonConf = require('./webpack.common.js')
 const { srcPath, distPath } = require('./paths')
 
-module.exports = smart(webpackCommonConf, {
+module.exports = merge(webpackCommonConf, {
   mode: 'production',
   output: {
     // filename: 'bundle.[contentHash:8].js',  // 打包代码时，加上 hash 戳
@@ -96,11 +96,11 @@ setTimeout(() => {
 需要注意，在打包完后，需要将结果文件（`dist` 目录）都上传到 CDN 服务器，保证这些静态资源都是可访问的。
 
 ```javascript {11}
-const { smart } = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const webpackCommonConf = require('./webpack.common.js')
 const { srcPath, distPath } = require('./paths')
 
-module.exports = smart(webpackCommonConf, {
+module.exports = merge(webpackCommonConf, {
   mode: 'production',
   output: {
     // filename: 'bundle.[contentHash:8].js', // 打包代码时，加上 hash 戳
