@@ -150,6 +150,38 @@ module.exports = merge(webpackCommonConf, {
 * Vue、React 等会自动删掉调试代码（如开发环境的 warning）
 * 会自动启动 Tree-Shaking
 
+::: tip Tree-Shaking
+在 production 模式下，打包时会自动删除没有被调用的函数，从而减小打包后的代码体积。  
+只有 ES6 Module（静态引入，编译时引入）才能实现 Tree-Shaking，CommonJS（动态引入，执行时引入）不能够静态分析，无法实现 Tree-Shaking。
+:::
+
 ## 8. 使用 Scope Hosting
 
+默认的 webpack 打包结果中，多个 JS 文件会被打包生成多个函数。我们知道，每个函数都会产生一个作用域，那么打包前的文件越多打包后的函数就会越多，这对整个 JS 代码的执行及内存消耗很不友好。
 
+我们希望将文件合并在一个函数里执行，就能减少作用域数量，提高代码执行效率，这就需要开启 Scope Hosting。
+
+开启方式：
+
+```javascript
+const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin')
+
+module.exports = {
+  resolve: {
+    // 针对 NPM 中的第三方模块优先采用 jsnext:main 中指向的 ES6 模块化语法的文件
+    mainFields: ['jsnext:main', 'browser', 'main']
+  },
+  plugins: [
+    // 开启 Scope Hosting
+    new ModuleConcatenationPlugin()
+  ]
+}
+```
+
+使用 Scope Hosting 的好处：
+
+* 代码体积更小
+* 创造函数作用域更少
+* 代码可读性更好
+
+（完）

@@ -121,6 +121,7 @@
   * [基本配置](https://fedbook.cn/frontend-frameworks/webpack5/basic-config/)
   * [高级配置](https://fedbook.cn/frontend-frameworks/webpack5/advanced-config/)
   * [性能优化 - 构建速度](https://fedbook.cn/frontend-frameworks/webpack5/performance-optimization-in-build/)
+  * [性能优化 - 产出代码](https://fedbook.cn/frontend-frameworks/webpack5/performance-optimization-in-output/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
