@@ -6,7 +6,7 @@
 
 <p align="center">
   <img alt="author" src="https://img.shields.io/badge/author-wenyuan-blue.svg?style=flat-square">
-  <img alt="updated" src="https://img.shields.io/badge/update-2021.05-blue.svg?style=flat-square">
+  <img alt="updated" src="https://img.shields.io/badge/update-2021.06-blue.svg?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square">
   <a href="https://www.wenyuanblog.com/gift.html" target="_blank">
     <img alt="sponsor" src="https://img.shields.io/badge/sponsor-❤-ff69b4.svg?style=flat-square">
@@ -17,16 +17,18 @@
 
 [在线预览](https://www.fedbook.cn/) | [国内镜像](https://fedbook.gitee.io/)
 
-以「前端开发」为主线，涵盖但不仅限于前端技术栈的知识点。
+建立小册的目的：用输出倒逼输入，写文档的过程，是对自己所学知识的沉淀，分享交流的过程是对知识的复盘，这些都能够加深对知识的理解。（[费曼学习法](https://36kr.com/p/1721599983617)）
 
-记录每一天的进步，越努力，越幸运，欢迎收藏或 star。
+编写小册的误区：高中时候有摘笔记的习惯，每天都会挤时间抄课堂讲义，但到高考结束都几乎没有翻完那一堆本子。后来发现这是一种比较愚蠢的课堂笔记 —— 什么都记还不如不记。经过一次次的尝试后，觉得根据文章理大纲也比较低效。目前来看，还是通过判断个人对知识点吸收的难易程度去记，更容易自己成长。把认为重要的、容易遗忘的、经常要查阅的记录下来，形成自己的文档库，定期温故知新。未来需要用到的时候，还能节省时间成本，不用一一百度/Google。
 
-与[博客](https://www.wenyuanblog.com/)的区别：
+小册与[博客](https://www.wenyuanblog.com/)的区别：
 
-* 博客记录日常开发经验，读书笔记、生活随笔、理财等等，涉及面比较分散。
-* 小册以点亮技能树为主，系统梳理前端开发及其周边知识点，作为学习笔记和复习资料。
+* 博客记录开发经验、读书笔记、生活随笔、理财心得等，涉及面比较广泛。撰写博客的目的是为了留下成长的足迹。
+* 小册是个人文档库，系统梳理前端开发的知识脉络，记录学习时自己认为重要或易忘的知识点，更有利于定期回顾。
 
-近期正在学习：前端框架 - Vue.js（2021-05 ~ 现在）
+所以，在学习的过程中，我将筛选过的知识点记录在「前端修炼小册」，作为个人文档库，让每一天都在进步。我坚信：越努力，越幸运。
+
+近期正在学习：前端框架 - webpack（2021-06 ~ 现在）
 
 ## 目录
 
@@ -176,11 +178,11 @@ TODO...
 
 ## 计划
 
-这个仓库完全开源，它不是什么官方文档，仅仅是一份个人笔记，用于知识点的梳理。
+这个仓库完全开源，它不是什么官方文档，仅仅是一份个人文档库，用于知识点的梳理。
 
 每块知识点是本人一边学习一边总结的，可能会存在错误，希望大家能够「**带着怀疑的态度**」去阅读，如果对内容有不同的看法，可以在 [留言板](https://github.com/wenyuan/fedbook/issues/new?title=【讨论】此处填写文章标题&body=-%20文章标题：%0A-%20文章链接：%0A-%20我的疑问/观点：%0A-%20推荐资料： "留言版") 提出，或者提交 PR，大家互相学习、共同进步。
 
-我将持续更新这个仓库的内容，更欢迎你和我一起来维护。
+我将持续更新这个仓库的内容。独学而无友，则孤陋而寡闻，期待你能和我一起交流。
 
 ## 支持
 
