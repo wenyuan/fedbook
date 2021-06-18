@@ -1,29 +1,29 @@
-# webpack5
+# Webpack5
 
-> 本系列主要针对 webpack5 进行知识点梳理，该版本目前（2021 年）是最新稳定版。
+> 本系列主要针对 Webpack5 进行知识点梳理，该版本目前（2021 年）是最新稳定版。
 
-**webpack 是什么？**
+**Webpack 是什么？**
 
-简单的说，webpack 用于编译 JavaScript 模块，它是一个模块打包工具。
+简单的说，Webpack 用于编译 JavaScript 模块，它是一个模块打包工具。
 
 打包工具帮你获得一些准备用于部署的 js 和 css 等，把它们转化为适合浏览器的可用的格式。
 
 通过压缩、分离、懒加载等，来提升性能，提高开发效率。
 
 <div style="text-align: center;">
-  <img src="./assets/webpack.png" alt="webpack">
-  <p style="text-align: center; color: #888;">（webpack，图来源于官网文档）</p>
+  <img src="./assets/webpack.png" alt="Webpack">
+  <p style="text-align: center; color: #888;">（Webpack，图来源于官网文档）</p>
 </div>
 
 <hr>
 
-**webpack 不是什么？**
+**Webpack 不是什么？**
 
-webpack 不是任务执行的工具，它不能自动化的处理一些常见的开发任务，例如代码检测、构建、测试。这些都是一些重复性比较强的事情，一般偏重于上层的问题。
+Webpack 不是任务执行的工具，它不能自动化的处理一些常见的开发任务，例如代码检测、构建、测试。这些都是一些重复性比较强的事情，一般偏重于上层的问题。
 
 任务执行工具：grunt、gulp。
 
-**为什么要学习 webpack？**
+**为什么要学习 Webpack？**
 
 早期，在浏览器里运行 js，有二种方式：
 
@@ -34,17 +34,17 @@ webpack 不是任务执行的工具，它不能自动化的处理一些常见的
 
 Node.js 出来后，就出现了 JavaScript 的模块化开发。主要是引入了 require 机制，允许你在当前文件中加载和使用某个模块。
 
-webpack 最出色的功能，是它还可以引入任何其它类型的文件，包括非 js 类型的文件，可以用来引用应用程序中的所有的非 js 的内容，例如图片、css 等。webpack 把这些都视为模块，这样每个模块都可以通过相互的引用（依赖）来表明它们之间的关系，就可以避免打包未使用的模块（资源）。
+Webpack 最出色的功能，是它还可以引入任何其它类型的文件，包括非 js 类型的文件，可以用来引用应用程序中的所有的非 js 的内容，例如图片、css 等。Webpack 把这些都视为模块，这样每个模块都可以通过相互的引用（依赖）来表明它们之间的关系，就可以避免打包未使用的模块（资源）。
 
-这就是 webpack 存在的原因，也是学习 webpack 的原因。
+这就是 Webpack 存在的原因，也是学习 Webpack 的原因。
 
 <hr>
 
-**webpack5 和 webpack4 有什么区别?**
+**Webpack5 和 Webpack4 有什么区别?**
 
-webpack5 主要是内部效率的优化，对比 webpack4，没有太多使用上的改动。
+Webpack5 主要是内部效率的优化，对比 Webpack4，没有太多使用上的改动。
 
-升级 webpack5 以及周边插件后，代码需要做出的调整：
+升级 Webpack5 以及周边插件后，代码需要做出的调整：
 
 * package.json 的 dev-server 命令
   * 老版本：`"dev": "webpack-dev-server --config build/webpack.dev.js",`
@@ -64,7 +64,7 @@ webpack5 主要是内部效率的优化，对比 webpack4，没有太多使用�
 
 <hr>
 
-关于 webpack5 的知识点，主要参考： 
+关于 Webpack5 的知识点，主要参考： 
 
 * 官方文档
 

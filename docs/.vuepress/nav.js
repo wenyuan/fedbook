@@ -26,7 +26,7 @@ module.exports = [
       {
         text: '工具',
         items: [
-          { text: 'webpack', link: '/frontend-frameworks/webpack5/' }
+          { text: 'Webpack', link: '/frontend-frameworks/webpack5/' }
         ]
       }
     ]

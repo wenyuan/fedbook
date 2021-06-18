@@ -1,6 +1,6 @@
 # 性能优化 - 构建速度
 
-> webpack 性能优化主要有两个方向：优化打包构建速度 - 提高开发体验和效率，优化产出代码 - 提升产品性能，本文主要介绍如何优化构建速度。
+> Webpack 性能优化主要有两个方向：优化打包构建速度 - 提高开发体验和效率，优化产出代码 - 提升产品性能，本文主要介绍如何优化构建速度。
 
 构建速度的优化措施有 8 点：
 
@@ -72,7 +72,7 @@ module.exports = {
 
 ## 4. happyPack 多进程打包
 
-JS（Node.js/webpack）是**单线程**的，因此如果开启**多进程**打包，可以提高构建速度（特别是多核 CPU）。
+JS（Node.js/Webpack）是**单线程**的，因此如果开启**多进程**打包，可以提高构建速度（特别是多核 CPU）。
 
 首先需要安装 happyPack：
 
@@ -117,7 +117,7 @@ module.exports = {
 
 ## 5. ParallelUglifyPlugin 多进程压缩 JS
 
-webpack 内置了 Uglify 工具压缩 JS，但它是单进程的。开启多进程压缩会更快，和 happyPack 同理。
+Webpack 内置了 Uglify 工具压缩 JS，但它是单进程的。开启多进程压缩会更快，和 happyPack 同理。
 
 首先需要安装 ParallelUglifyPlugin：
 
@@ -193,7 +193,7 @@ module.export = {
 * 热更新：
   * 新代码生效，网页不刷新，状态不丢失
 
-热更新插件是 webpack 自带的，无需另外安装，在 `webpack.dev.js` 中配置如下：
+热更新插件是 Webpack 自带的，无需另外安装，在 `webpack.dev.js` 中配置如下：
 
 ```javascript {10-14,22,31}
 const path = require('path')
@@ -265,7 +265,7 @@ if(module.hot) {
 
 前端框架如 Vue.js 和 React 体积大，构建慢。但它们的版本较稳定，不常升级版本。那么同一个版本只构建一次即可，不用每次都重新构建。
 
-webpack 已内置 DllPlugin 支持，无需另外安装。它包含两个插件：
+Webpack 已内置 DllPlugin 支持，无需另外安装。它包含两个插件：
 
 * DllPlugin：打包出 dll 文件
 * DllReferencePlugin：使用 dll 文件

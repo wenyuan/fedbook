@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'webpack5',
+    title: 'Webpack5',
     path: '/frontend-frameworks/webpack5/',
     collapsable: false,
     children: [
