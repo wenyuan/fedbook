@@ -1,4 +1,4 @@
-# 文渊的前端小册
+# 前端修炼小册
 
 <p align="center">
   <img src="https://www.fedbook.cn/img/skills.png" alt="fedbook.cn" width="160" height="160"/>
@@ -14,3 +14,5 @@
 </p>
 
 [在线预览](https://www.fedbook.cn/) 
+
+> 该分支基于 VuePress 搭建，采用默认主题，仅作初始模板用，后续不再维护。
