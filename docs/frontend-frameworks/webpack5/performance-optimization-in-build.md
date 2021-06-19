@@ -74,7 +74,19 @@ module.exports = {
 
 JS（Node.js/Webpack）是**单线程**的，因此如果开启**多进程**打包，可以提高构建速度（特别是多核 CPU）。
 
-首先需要安装 happyPack：
+由于 happyPack 需要改变 babel-loader 的配置，所以需要先将原先 `webpack.common.js` 里关于 babel-loader 的配置删掉，并将这块配置移到 `webpack.dev.js` 中：
+
+```javascript
+// babel-loader
+{
+  test: /\.js$/,
+  use: ['babel-loader?cacheDirectory'],
+  include: srcPath,
+  exclude: /node_modules/
+}
+```
+
+接下来安装 happyPack：
 
 ```bash
 npm install happypack --save-dev
