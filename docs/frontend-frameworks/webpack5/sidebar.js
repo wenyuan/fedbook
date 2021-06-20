@@ -28,6 +28,11 @@ module.exports = [
         title: '性能优化 - 产出代码',
         path: '/frontend-frameworks/webpack5/performance-optimization-in-output',
         collapsable: true
+      },
+      {
+        title: '最佳实践 - 通用模板',
+        path: '/frontend-frameworks/webpack5/generic-template',
+        collapsable: true
       }
     ]
   }

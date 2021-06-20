@@ -2,6 +2,11 @@
 
 > 本系列主要针对 Webpack5 进行知识点梳理，该版本目前（2021 年）是最新稳定版。
 
+::: danger TODO...
+有些内容还是使用了废弃的特性，这个系列计划在有时间的时候重新整理撰写。  
+由于接下来有其它学习安排，目前可以先参考 [webpack-template](https://github.com/wenyuan/webpack-template)，这个仓库是按照最新的官方文档搭建的 Webpack5 通用配置模板。
+:::
+
 **Webpack 是什么？**
 
 简单的说，Webpack 用于编译 JavaScript 模块，它是一个模块打包工具。
