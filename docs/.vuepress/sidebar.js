@@ -1,6 +1,8 @@
 module.exports = {
   /* --------- 风格指南 --------- */
   '/style-guide/program': require('../style-guide/program/sidebar'),
+  /* --------- 必知必会 --------- */
+  '/basic-skills/nginx': require('../basic-skills/nginx/sidebar'),
   /* --------- 前端语言 --------- */
   '/frontend-languages/html': require('../frontend-languages/html/sidebar'),
   '/frontend-languages/css': require('../frontend-languages/css/sidebar'),
