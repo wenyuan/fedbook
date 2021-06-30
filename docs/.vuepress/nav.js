@@ -7,12 +7,6 @@ module.exports = [
     ]
   },
   {
-    text: '必知必会',
-    items: [
-      { text: 'Nginx', link: '/basic-skills/nginx/' }
-    ]
-  },
-  {
     text: '前端语言',
     items: [
       { text: 'HTML', link: '/frontend-languages/html/' },
@@ -41,6 +35,12 @@ module.exports = [
     text: '后端语言',
     items: [
       { text: 'Python', link: '/backend-languages/python/' }
+    ]
+  },
+  {
+    text: '必知必会',
+    items: [
+      { text: 'Nginx', link: '/basic-skills/nginx/' }
     ]
   },
   {
