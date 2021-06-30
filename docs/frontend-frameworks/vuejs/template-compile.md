@@ -1,6 +1,6 @@
 # 模板编译
 
-## 1. 前置知识点：with 语法
+## 前置知识点：with 语法
 
 首先复习一个 JS 的冷门知识点：`with` 语法。
 
@@ -26,14 +26,14 @@ with(obj) {
 
 在平时开发中，一般慎用 `with` 语法，这是因为它打破了作用域规则，使代码易读性变差了。但这里把它作为前置知识点是因为模板编译中用到了。
 
-## 2. Vue 模板被编译成什么
+## Vue 模板被编译成什么
 
 * Vue 的模板不是 html，因为它有指令、插值、JS 表达式，能实现判断、循环；
 * html 是标签语言，只有 JS 才能实现判断、循环。
 
 因此，模板一定是转换为某种 JS 代码，即编译模板。
 
-## 3. Vue 模板编译过程
+## Vue 模板编译过程
 
 * 模板编译为 render 函数，执行 render 函数返回 vnode；
 * 基于 vnode 再执行 patch 和 diff；
@@ -56,7 +56,7 @@ with(this){return createElement('p',[createTextVNode(toString(message))])}
 // Step4: 渲染和更新
 ```
 
-## 4. vue 组件中使用 render 代替 template
+## vue 组件中使用 render 代替 template
 
 通过 `template` 来定义 Vue 组件：
 

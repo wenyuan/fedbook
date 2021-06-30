@@ -2,13 +2,13 @@
 
 > Vue 原理的三大模块分别为响应式、vdom 和模板编译，前面已经分别学习过，现在通过总结渲染过程来将它们串起来回顾。
 
-## 1. 初次渲染过程
+## 初次渲染过程
 
 * Step1：解析模板为 render 函数（这步操作或在开发中通过 vue-loader 已完成）
 * Step2：触发响应式，监听 data 属性 getter 和 setter（下一步执行 render 函数可能会用到 getter）
 * Step3：执行 render 函数，生成 vnode，渲染节点 patch(elem, vnode)
 
-## 2. 更新过程
+## 更新过程
 
 * Step1：修改 data，触发 setter（前提是该 data 此前在 getter 中已被监听，即模板中被引用的 data）
 * Step2：重新执行 render 函数，生成 newVnode
@@ -16,7 +16,7 @@
 
 其中 vnode 和 newVnode 的最小差异由 patch 的 diff 算法计算。
 
-## 3. 完整流程图
+## 完整流程图
 
 组件渲染与更新的完整流程图如下所示：
 

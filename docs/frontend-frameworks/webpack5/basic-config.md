@@ -11,7 +11,7 @@ Webpack 的基本配置主要分为 6 个方面：
 
 完成基本配置后，项目就能够在 demo 环境运行。
 
-## 1. 拆分配置和 merge
+## 拆分配置和 merge
 
 传统方式，会在项目中新建一个 `webpack.config.js` 文件，将所有配置汇总在一起。
 
@@ -132,7 +132,7 @@ module.exports = {
 └── .babelrc                   # babel 配置（后面会讲到）
 ```
 
-## 2. 启动本地服务
+## 启动本地服务
 
 这个功能只在 dev 环境下使用，借助了 `webpack-dev-server` 这个依赖，配置写在 `webpack.dev.js` 中：
 
@@ -170,7 +170,7 @@ module.exports = merge(webpackCommonConf, {
 })
 ```
 
-## 3. 处理 ES6
+## 处理 ES6
 
 处理 ES6 是通用的功能，借助了 `babel-loader` 这个依赖，配置写在 `webpack.common.js` 中：
 
@@ -202,7 +202,7 @@ module.exports = {
 }
 ```
 
-## 4. 处理样式
+## 处理样式
 
 处理样式也是通用的功能，借助了 `css-loader`、`style-loader` 和 `postcss-loader` 这几个依赖，配置写在 `webpack.common.js` 中。
 
@@ -245,7 +245,7 @@ module.exports = {
 
 在处理样式的配置中，除了 CSS，同理还有 Less，Sass 等，都是差不多的思路（解析 Less 语法 => 解析 CSS 语法 => 转成 style），详见上面的配置示例。
 
-## 5. 处理图片
+## 处理图片
 
 处理图片在 dev 环境和 prod 环境的思路不同。
 
@@ -308,7 +308,7 @@ module.exports = merge(webpackCommonConf, {
 })
 ```
 
-## 6. 模块化
+## 模块化
 
 一个 WEB 工程通常会包含一系列的静态资源，并且这些资源一般会存在某种相互依赖的关系。一般静态资源包含：
 

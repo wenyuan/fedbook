@@ -1,6 +1,6 @@
 # 语法规范
 
-## 1. 标识符
+## 标识符
 
 所谓的标识符就是对变量、常量、函数、类等对象起的名字。
 
@@ -36,7 +36,7 @@ Python 对于标识符的命名有如下规定：
 
 模块和包的名字尽量用小写，并且不能和标准库以及著名的第三方库同名。
 
-## 2. 保留字
+## 保留字
 
 Python 保留字，也叫关键字，是 Python 语言官方确定的用作语法功能的专用标识符，不能把它们用作任何自定义标识符名称。关键字只包含小写字母。
 
@@ -49,7 +49,7 @@ print(keyword.kwlist)
 # ['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
 ```
 
-## 3. 注释
+## 注释
 
 #### 单行注释
 
@@ -94,7 +94,7 @@ class Foo:
 
 **需要强调的是这类注释必须紧跟在定义体下面，不能在任意位置**。
 
-## 4. 代码头两行
+## 代码头两行
 
 很多时候，我们在一些 Python 脚本文件的开头都能看到类似的以 `#` 开头的这样两行代码，它们不是注释，是一些设定。
 

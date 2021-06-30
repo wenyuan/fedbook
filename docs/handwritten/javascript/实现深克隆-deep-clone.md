@@ -1,12 +1,12 @@
 # 实现深克隆（deepClone）
 
-## 1. 功能描述
+## 功能描述
 
 深克隆（deepClone），层层拷贝对象或数组的每一层内容。
 
 注意：对于引用值时，深克隆之后**不会**出现你改我也改的情况。
 
-## 2. 手写实现（简易版）
+## 手写实现（简易版）
 
 ```javascript
 let newObj = JSON.parse(JSON.stringify(oldObj));
@@ -18,7 +18,7 @@ let newObj = JSON.parse(JSON.stringify(oldObj));
 * 会抛弃对象的 `constructor`，所有的构造函数会指向 `Object`；
 * 对象有循环引用，会报错。
 
-## 3. 手写实现（面试版）
+## 手写实现（面试版）
 
 ```javascript
 function deepClone(target)  {
@@ -35,7 +35,7 @@ function deepClone(target)  {
 }
 ```
 
-## 4. 手写实现（完善版）
+## 手写实现（完善版）
 
 考虑日期、正则等特殊对象，解决循环引用情况。
 

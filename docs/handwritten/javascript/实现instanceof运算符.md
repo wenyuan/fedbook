@@ -1,10 +1,10 @@
 # 实现 instanceof 运算符
 
-## 1. 功能描述
+## 功能描述
 
 `instanceof` 运算符用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。
 
-## 2. 实现思路
+## 实现思路
 
 `instanceof` 左侧必须是对象，才能找到它的原型链；  
 `instanceof` 右侧必须是函数，函数才会有 `prototype` 属性。  
@@ -18,7 +18,7 @@
   * 如果当前实例的原型链 `__proto__` 上找到了当前类的原型 `prototype`，则返回 `true`；
   * 如果一直找到 `Object.prototype.__proto__ == null`，`Object` 的基类（`null`）上面都没找到，则返回 `false`。
 
-## 3. 手写实现
+## 手写实现
 
 ```javascript
 function myInstanceof(instanceObject, classFunc) {
@@ -38,7 +38,7 @@ function myInstanceof(instanceObject, classFunc) {
 }
 ```
 
-## 4. 测试用例
+## 测试用例
 
 ```javascript
 myInstanceof([1,2,3], Array)

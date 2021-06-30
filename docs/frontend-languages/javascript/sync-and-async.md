@@ -4,7 +4,7 @@
 > 在 ES6 中，Promise 成为了异步编程的一种更合理更强大的解决方案。  
 > 在 ES7 中，async/await 优化了 ES6 异步编程的解决方案，比 Promise 更加优美。
 
-## 1. 同步与异步概念
+## 同步与异步概念
 
 **同步**：同步就是后一个任务等待前一个任务执行完毕后，再执行，执行顺序和任务的排列顺序一致。  
 **异步**：异步是非阻塞的，异步逻辑与主逻辑相互独立，主逻辑不需要等待异步逻辑完成，而是可以立刻继续下去。
@@ -41,7 +41,7 @@ console.log('e');
 
 上述代码的执行结果表明：当有多个异步函数时，跟书写顺序无关，**谁先返回，就先执行谁的回调**。
 
-## 2. ajax（jQuery）
+## ajax（jQuery）
 
 `$.ajax` 是 jQuery 中一个异步请求的方法，它的用法如下代码所示：
 
@@ -75,7 +75,7 @@ ajax(url, () => {
 })
 ```
 
-## 3. Promise
+## Promise
 
 Promise 是 ES6 中异步编程的一种解决方案，比传统的解决方案（回调函数或事件监听）更合理且更强大。
 
@@ -92,7 +92,7 @@ Promise 是 ES6 中异步编程的一种解决方案，比传统的解决方案�
 * 从 pending 变为 fulfilled  
 * 从 pending 变为 rejected
 
-### 3.1 基础用法
+### 基础用法
 
 下述代码演示了 Promise 基础用法：
 
@@ -112,7 +112,7 @@ promise.then(res => {
 })
 ```
 
-### 3.2 Promise.all
+### Promise.all
 
 `Promise.all` 可以将多个 Promise 实例包装成一个新的 Promise 实例。同时，成功和失败的返回值是不同的。
 
@@ -146,7 +146,7 @@ Promise.all([p1, p2, p3]).then(result => {
 // 'fail'
 ```
 
-### 3.3 Promise.race
+### Promise.race
 
 顾名思义，`Promise.race` 就是赛跑的意思，意思就是说，`Promise.race([p1, p2, p3])` 里面**哪个结果获得的快**，就返回那个结果，不管结果本身时成功状态还是失败状态。
 
@@ -172,7 +172,7 @@ Promise.race([p1, p2]).then(result => {
 // 'fail'
 ```
 
-## 4. async/await
+## async/await
 
 async/await 是 ES7 的新标准，也是用来处理异步的，是目前异步的终极解决方案。它其实是 Generator 函数的改进，背后原理就是 Promise。
 
@@ -184,7 +184,7 @@ async/await 是 ES7 的新标准，也是用来处理异步的，是目前异步
 1. 求值关键字，计算返回的 Promise 中的值，或者表达式（`await 100*100`）  
 2. 阻塞当前线程
 
-### 4.1 基础用法
+### 基础用法
 
 下述代码演示了 async/await 基础用法：
 
@@ -210,7 +210,7 @@ f2();
 // 等待两秒后，才依次打印出 'hello'，'world'
 ```
 
-### 4.2 错误处理
+### 错误处理
 
 async/await 中的错误处理需要通过 try/catch 来实现，否则一旦 `reject`，会直接抛出错误（`Uncaught (in promise) xxx`），后面的代码就都不会执行了。
 
@@ -235,10 +235,12 @@ f2();
 // 'fail'
 ```
 
-## 5. 总结
+## 总结
 
 本文简单介绍了 Promise 与 async/await 的用法，如果需要了解更多，可以阅读阮一峰老师编写的《ES6标准入门（第3版）》中 [Promise 对象](https://es6.ruanyifeng.com/#docs/promise "Promise 对象 - ECMAScript 6入门") 和 [async 函数](https://es6.ruanyifeng.com/#docs/async "async 函数 - ECMAScript 6入门") 两个章节。
 
 ## 参考资料
 
 * 《ES6标准入门（第3版）》  
+
+（完）

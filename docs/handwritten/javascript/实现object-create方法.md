@@ -1,10 +1,10 @@
 # 实现 Object.create 方法
 
-## 1. 功能描述
+## 功能描述
 
 `Object.create()` 方法创建一个新对象，使用现有的对象来提供新创建的对象的 `__proto__`（新对象的 `__proto__` 属性会指向原对象）。
 
-## 2. 手写实现
+## 手写实现
 
 ```javascript
 function objectCreate(obj) {
@@ -20,7 +20,7 @@ function objectCreate(obj) {
 }
 ```
 
-## 3. 测试用例
+## 测试用例
 
 ```javascript
 let obj = { 
@@ -32,7 +32,7 @@ console.log('Object.create()', Object.create(obj))
 console.log('objectCreate()', objectCreate(obj))
 ```
 
-## 4. 注意事项
+## 注意事项
 
 原生的 `Object.create(proto，[propertiesObject])` 方法支持两个参数：
 

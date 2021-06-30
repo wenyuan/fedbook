@@ -2,7 +2,7 @@
 
 > 通过最少量的代码，实际操作一下，总结一份 Webpack5 的通用配置文件模板。
 
-## 1. 初始化项目
+## 初始化项目
 
 ::: tip
 Webpack5 最小支持的 Node.js 版本已经为 8。
@@ -16,7 +16,7 @@ cd webpack-template/
 npm init -y
 ```
 
-## 2. 安装 Webpack
+## 安装 Webpack
 
 ::: tip
 当前（2021 年）执行安装命令时，默认安装的是 Webpack5。  
@@ -31,11 +31,11 @@ npm install webpack --save-dev
 npm install webpack-cli --save-dev
 ```
 
-## 3. 创建入口文件
+## 创建入口文件
 
 入口文件默认地址为 `webpack-template/src/index.js`，`src/` 下面存放项目源码。
 
-## 4. 执行打包（必须指定 mode）
+## 执行打包（必须指定 mode）
 
 下面的命令依次包含了入口文件、出口文件（通过 `--output-path` 指定）和模式。
 
@@ -45,7 +45,7 @@ webpack ./src/index.js --output-path ./dist --mode=development
 
 在通用模板中，会使用配置文件来简化命令行选项。
 
-## 5. 通用模板
+## 通用模板
 
 上面介绍的是从无到有创建一个 Webpack 最小工程的前置步骤。
 
@@ -103,3 +103,5 @@ module.exports = {
 ```
 
 针对常见需求，我整理了一个 Webpack5 通用模板，包含了基本需求和优化。该通用模板的完整代码参见 GitHub 仓库 [webpack-template](https://github.com/wenyuan/webpack-template)，使用步骤见该仓库的 `README.md`。
+
+（完）

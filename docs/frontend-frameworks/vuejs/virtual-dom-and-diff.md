@@ -1,6 +1,6 @@
 # 虚拟 DOM 与 diff 算法
 
-## 1. 虚拟 DOM
+## 虚拟 DOM
 
 虚拟 DOM（Virtual DOM）的简写为 vdom，它是实现 Vue 和 React 的重要基石。
 
@@ -15,7 +15,7 @@ DOM 更新非常耗时，但 JS 执行速度很快，因此现代前端框架（
   <p style="text-align:center; color: #888;">（用 JS 模拟 DOM 结构）</p>
 </div>
 
-## 2. diff 算法
+## diff 算法
 
 diff 算法是 vdom 中最核心、最关键的部分。
 
@@ -25,7 +25,7 @@ diff 算法是 vdom 中最核心、最关键的部分。
 * tag 不相同，则直接删掉重建，不再深度比较。
 * tag 和 key 两者都相同，则认为是相同节点，不再深度比较。
 
-## 3. snabbdom
+## snabbdom
 
 [snabbdom](https://github.com/snabbdom/snabbdom) 是一个简洁强大的 vdom 库，源码简短，总体代码行数不超过 500 行。Vue 在实现 vdom 和 diff 时也或多或者参考了它，因此可以通过 snabbdom 学习 vdom。
 
@@ -33,7 +33,7 @@ diff 算法是 vdom 中最核心、最关键的部分。
 以下内容仅是学习大体思路，非细抠源代码。
 :::
 
-### 3.1 Example 解读
+### Example 解读
 
 参考 snabbdom 官方仓库中 README 里的 Example，下面列出几个比较关键的代码块，并附上注释：
 
@@ -65,7 +65,7 @@ patch(vnode, newVnode);
 * vnode 数据结构：由 h 函数返回，是一个用 JS 模拟 DOM 元素
 * `patch` 函数：由 snabbdom 提供，用于将 vdom（第二个参数） 渲染到容器（第一个参数）上
 
-### 3.2 生成 vnode 的源码
+### 生成 vnode 的源码
 
 vnode 是由 `h` 函数生成的，该函数的源码位于 `src/h.ts`。
 
@@ -92,7 +92,7 @@ export function vnode(
 * `elm` 是 vnode 对应的 DOM 元素，即 `patch` 函数需要渲染的目标元素。
 * `key` 类似于 `v-for` 的 `key`。
 
-### 3.3 patch 函数的源码
+### patch 函数的源码
 
 `patch` 函数位于 `src/init.ts` 中的最后（官方仓库的最新源码可能会实时变动）。
 
@@ -138,7 +138,7 @@ return function patch(oldVnode: VNode | Element, vnode: VNode): VNode {
 };
 ```
 
-### 3.4 patchVnode 函数的源码
+### patchVnode 函数的源码
 
 上述 `patch` 函数中调用了一个 `patchVnode` 来对比新旧 vnode，该方法也是位于 `src/init.ts` 中（官方仓库的最新源码可能会实时变动）。
 
@@ -201,7 +201,7 @@ function patchVnode(oldVnode: VNode, vnode: VNode, insertedVnodeQueue: VNodeQueu
 }
 ```
 
-### 3.5 updateChildren 函数的源码
+### updateChildren 函数的源码
 
 上述 `patchVnode` 函数中，当新旧 vnode 都有 `children` 时，需要将两者的 `children` 进行对比，调用了 `updateChildren`，该方法也是位于 `src/init.ts` 中（官方仓库的最新源码可能会实时变动）。
 

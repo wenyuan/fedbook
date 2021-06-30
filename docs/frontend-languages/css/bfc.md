@@ -1,6 +1,6 @@
 # BFC
 
-## 1. 常见定位方案
+## 常见定位方案
 
 在讲 BFC 之前，我们先来了解一下常见的定位方案，定位方案用于控制元素的布局，有三种常见方案：
 
@@ -16,7 +16,7 @@
 
 > 在绝对定位布局中，元素会整体脱离普通流，因此绝对定位元素不会对其兄弟元素造成影响，而元素具体的位置由绝对定位的坐标决定。
 
-## 2. BFC 概念
+## BFC 概念
 
 BFC 即 Block Formatting Context（块级格式化上下文），属于前面定位方案中的普通流（normal flow）。
 
@@ -24,7 +24,7 @@ BFC 即 Block Formatting Context（块级格式化上下文），属于前面定
 
 下面我们再分别介绍下 Box 和 Formatting Context 的概念。
 
-### 2.1 Box：CSS 布局的基本单位
+### Box：CSS 布局的基本单位
 
 Box 是 CSS 布局的对象和基本单位，直观来说，一个页面有很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。不同的 Box，会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此 Box 内的元素会以不同的方式渲染。
 
@@ -36,7 +36,7 @@ Box 是 CSS 布局的对象和基本单位，直观来说，一个页面有很�
 
 PS：这里的 Box 即指盒模型，关于盒模型的具体内容可以查看[盒模型](/frontend-languages/css/box-model/ "盒模型")章节
 
-### 2.2 Formatting Context
+### Formatting Context
 
 Formatting Context 是 W3C CSS2.1 规范中的一个概念。他是页面的一块渲染区域，并且有一套渲染规则，它决定了其子元素如何定位，以及和其他元素的关系和相互作用。
 
@@ -47,15 +47,15 @@ Formatting Context 是 W3C CSS2.1 规范中的一个概念。他是页面的一�
 * 自适应格式化上下文（Flex Formatting Context）（FFC）（CSS3 新增）
 * 网格布局格式化上下文（GridLayout Formatting Context）（GFC）（CSS3 新增）
 
-## 3. BFC 特性及示例
+## BFC 特性及示例
 
-### 3.1 特性
+### 特性
 
 * 同一个 BFC 下外边距会发生折叠
 * 计算 BFC 的高度时，浮动元素也参与计算
 * BFC 的区域不会与浮动盒子重叠（清除浮动原理）
 
-### 3.2 示例
+### 示例
 
 #### 1）同一个 BFC 下外边距会发生折叠
 
@@ -97,7 +97,7 @@ Formatting Context 是 W3C CSS2.1 规范中的一个概念。他是页面的一�
 
 这个方法可以用来实现两列自适应布局，这时候左边的宽度固定，右边的内容自适应宽度（不指定右边元素的 width 属性）。
 
-## 4. 哪些元素会生成 BFC
+## 哪些元素会生成 BFC
 
 只要元素满足下面任一条件即可触发 BFC 特性：
 
@@ -112,7 +112,7 @@ Formatting Context 是 W3C CSS2.1 规范中的一个概念。他是页面的一�
 * display: flow-root（CSS 新增的属性，专门用来触发 BFC，但浏览器兼容性差）
 * column-span: all（原本的作用是让元素横跨所有列。该属性总是会创建一个新的格式化上下文，即便具有 column-span: all 的元素并不被包裹在一个多列容器中）
 
-## 5. BFC 的应用
+## BFC 的应用
 
 * 利用 BFC 避免 margin 重叠
 * 自适应两栏布局

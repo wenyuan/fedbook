@@ -11,7 +11,7 @@ Webpack 的高级配置主要分为 6 个方面，根据需要进行选择：
 * 处理 JSX
 * 处理 Vue
 
-## 1. 多入口
+## 多入口
 
 通过基本配置，我们在打包编译后产生的页面只是一个文件 `index.html`。如果在一个项目中想产生两个页面 `index.html` 和 `other.html`（或多个页面），就需要进行多入口配置。
 
@@ -82,7 +82,7 @@ module.exports = merge(webpackCommonConf, {
 })
 ```
 
-## 2. 抽离压缩 CSS 文件
+## 抽离压缩 CSS 文件
 
 在基础配置中，是把所有 CSS 文件全部写到页面的 style 标签里，这种方式在开发模式中问题不大，但在生产环境中显然不科学，因此我们需要把 CSS 文件抽离压缩。
 
@@ -238,7 +238,7 @@ module.exports = merge(webpackCommonConf, {
 })
 ```
 
-## 3. 抽离公共代码
+## 抽离公共代码
 
 为了提升性能，我们需要在打包时将**第三方模块**和**公用引用的代码**单独拆分出去。
 
@@ -397,7 +397,7 @@ module.exports = {
 * common 里的 `plugins` 中定义了某个页面要引用哪些 chunk
 * prod 里的 `splitChunks` 中定义了代码分割成哪些 chunk
 
-## 4. 懒加载 - 异步加载 JS
+## 懒加载 - 异步加载 JS
 
 懒加载就是引入动态数据，webpack 本身支持这种机制，所以不需要额外配置，只需要借助 `import()` 语法来引入 JS 文件。这种语法和 Vue 和 React 中的异步组件是一样的。
 
@@ -414,7 +414,7 @@ setTimeout(() => {
 
 这种异步加载也会产出一个 chunk，文件名是随机的字符串。
 
-## 5. 处理 JSX
+## 处理 JSX
 
 借助 babel 即可，[参考官网](https://www.babeljs.cn/docs/babel-preset-react)。
 
@@ -432,7 +432,7 @@ npm install --save-dev @babel/preset-react
 }
 ```
 
-## 6. 处理 Vue
+## 处理 Vue
 
 借助 vue-loader 即可，[参考官网](https://www.npmjs.com/package/vue-loader)。
 

@@ -18,6 +18,6 @@ module.exports = {
   '/advanced-programming/algorithm/': require('../advanced-programming/algorithm/sidebar'),
   /* --------- 手写系列 --------- */
   '/handwritten/javascript': require('../handwritten/javascript/sidebar'),
-  /* --------- 后端语言 --------- */
+  /* --------- 其它 --------- */
   '/': [],
 };

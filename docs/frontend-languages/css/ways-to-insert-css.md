@@ -1,6 +1,6 @@
 # CSS 引入方式
 
-## 1. 引入方式
+## 引入方式
 
 css 引入页面的方式有四种：
 
@@ -35,7 +35,7 @@ div {
 @import url("index.css")
 ```
 
-## 2. link 和 @import 的区别
+## link 和 @import 的区别
 
 * link 是 HTML 提供的标签；@import 是 CSS 提供的语法规则。
 * 加载页面时，link 标签引入的 CSS 被同时加载；@import 引入的 CSS 将在页面加载完毕后被加载。
@@ -43,7 +43,7 @@ div {
 
 注意：网上常说的「link 引入的样式权重大于 @import 引入的样式权重」是不太合理的。
 
-## 3. @import 引入 CSS 的弊端
+## @import 引入 CSS 的弊端
 
 * **使用 @import 引入 CSS 会影响浏览器的并行下载**<br>
   使用 @import 引用的 CSS 文件只有在引用它的那个 css 文件被下载、解析之后，浏览器才会知道还有另外一个 css 需要下载，这时才去下载，然后下载后开始解析、构建 render tree 等一系列操作。这就导致了浏览器无法并行下载所需的样式文件。

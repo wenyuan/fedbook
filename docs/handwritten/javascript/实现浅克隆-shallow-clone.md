@@ -1,12 +1,12 @@
 # 实现浅克隆（shallowClone）
 
-## 1. 功能描述
+## 功能描述
 
 浅克隆（shallowClone），只拷贝对象或数组的第一层内容。
 
 注意：对于引用值时，浅克隆之后会出现你改我也改的情况。
 
-## 2. 手写实现
+## 手写实现
 
 ```javascript
 const shallowClone = (target) => {
@@ -24,7 +24,7 @@ const shallowClone = (target) => {
 }
 ```
 
-## 3. 测试用例
+## 测试用例
 
 ```javascript
 let oldObj = {

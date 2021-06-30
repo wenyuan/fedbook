@@ -2,11 +2,11 @@
 
 网页布局（layout）是 CSS 的一个重点应用，在实际开发中，前端工程师在拿到设计稿后，都会先梳理页面的大致结构，构思完页面的布局后，再进行 coding。大多数网站都有着相似的布局，掌握这些布局套路便可以快速高效的完成开发工作。
 
-## 1. 相关属性
+## 相关属性
 
 与布局相关的 CSS 属性主要有 3 个：display、position 和 float。
 
-### 1.1 display
+### display
 
 display 是 CSS 布局中很重要的一个属性，它定义了元素生成的显示框类型，常见的几个属性值有：`block`、`inline`、`inline-block`、`inherit`、`none`、`flex`。
 
@@ -53,15 +53,15 @@ inherit 表示这个元素从父元素继承 display 属性值；none 表示这�
 
 在上图中，我们没有设置 margin 值，但是 div 之间会有空隙，这是因为浏览器会将 HTML 中的换行符、制表符、空白符合并成空白符，关于消除中间空隙的办法，推荐阅读《[去除 inline-block 元素间间距的 N 种方法 - 张鑫旭](https://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-去除间距/)》。
 
-### 1.2 position
+### position
 
 参见《[定位（position）](/frontend-languages/css/position-property/)》章节。
 
-### 1.3 float
+### float
 
 参见《[浮动（float）](/frontend-languages/css/float-property/)》章节。
 
-## 2. 布局示例：两栏布局
+## 布局示例：两栏布局
 
 常见的两栏布局页面一般是左边固定宽度，右边自适应。这种布局相对简单些，大概的效果如下：
 
@@ -92,7 +92,7 @@ inherit 表示这个元素从父元素继承 display 属性值；none 表示这�
 
 此时大体框架设计好了，.left 和 .right 目前是各自独占一行的，接下来调整样式来实现最终效果图，可以使用 3 种方式。
 
-### 2.1 设置 display 为 inline-block
+### 设置 display 为 inline-block
 
 原理：inline-block 兼具块级元素可以设置宽高和行内元素不独占一行的特性。
 
@@ -110,7 +110,7 @@ inherit 表示这个元素从父元素继承 display 属性值；none 表示这�
 }
 ```
 
-### 2.2 使用 float
+### 使用 float
 
 float 变化多端，下面又能给出三种利用浮动的特性来达到上图两栏布局的方法。
 
@@ -169,7 +169,7 @@ float 变化多端，下面又能给出三种利用浮动的特性来达到上�
 }
 ```
 
-### 2.3 使用 absolute
+### 使用 absolute
 
 原理：给元素的 positon 属性设置 absolute、fixed 时便会脱离文档流，不再遵循从上到下，从左到右的规律了。
 
@@ -187,13 +187,13 @@ float 变化多端，下面又能给出三种利用浮动的特性来达到上�
 }
 ```
 
-## 3. 布局示例：三栏布局
+## 布局示例：三栏布局
 
 三栏布局用于需要两边固定宽度，中间自适应的场景，并且主要内容要优先渲染，按照 DOM 从上至下的加载原则，中间的自适应部分要放在前面。
 
 常见的三栏布局便是圣杯布局和双飞翼布局了。
 
-### 3.1 圣杯布局
+### 圣杯布局
 
 首先将布局的基础框架搭出来，在下面代码中，父 div 包含了三个子 div，将 .center 写在最前面，方便最先渲染。为了保证窗口缩小时仍然能展示，给 body 设置了最小宽度。
 
@@ -298,7 +298,7 @@ body {
   (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
-### 3.2 双飞翼布局
+### 双飞翼布局
 
 双飞翼布局与圣杯布局的前部分一样，在给左右两边元素留出位置的思路有区别。
 

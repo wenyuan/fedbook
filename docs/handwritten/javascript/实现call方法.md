@@ -1,6 +1,6 @@
 # 实现 call 方法
 
-## 1. 功能描述
+## 功能描述
    
 `call()` 方法使用一个指定的 `this` 值和单独给出的一个或多个参数来调用一个函数。
 
@@ -13,14 +13,14 @@
 func.call(obj, param1, …, paramN)
 ```
 
-## 2. 实现思路
+## 实现思路
 
 * 如果不传入 context 参数，默认指向为 window
 * 将函数设为对象的属性
 * 指定函数中的 this 为对象，并传入给定实参，执行函数
 * 删除对象中我们添加的属性
 
-## 3. 手写实现
+## 手写实现
 
 ```javascript
 /**
@@ -47,7 +47,7 @@ Function.prototype.myCall  = function(context, ...args) {
 }
 ```
 
-## 4. 测试用例
+## 测试用例
 
 ```javascript
 // 目标：调用方法时打印出 "张三"

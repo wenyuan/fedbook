@@ -1,6 +1,6 @@
 # 前端路由原理
 
-## 1. 两种路由模式
+## 两种路由模式
 
 vue-router 有两种路由模式，分别是：
 
@@ -9,9 +9,9 @@ vue-router 有两种路由模式，分别是：
 
 其中，H5 history 模式需要后端的支持。
 
-## 2. hash 模式
+## hash 模式
 
-### 2.1 网页 url 组成部分
+### 网页 url 组成部分
 
 首先需要知道网页 url 组成部分，以及如何通过 JS 去获取各部分。
 
@@ -26,17 +26,17 @@ location.search    // '?a=100&b=20'
 location.hash      // '#/aaa/bbb'
 ```
 
-### 2.2 hash 模式的特点
+### hash 模式的特点
 
 * hash 变化会触发网页跳转，即浏览器的前进、后退
 * hash 变化不会刷新页面，这是 SPA 必需的特点
 * hash 永远不会提交到 server 端（前端自生自灭）
 
-### 2.3 hash 模式的核心方法
+### hash 模式的核心方法
 
 * [window.onhashchange](https://developer.mozilla.org/zh-CN/docs/Web/API/WindowEventHandlers/onhashchange)
 
-### 2.4 hash 模式的实现原理
+### hash 模式的实现原理
 
 通过 hash 的变化触发路由的变化，从而触发视图的渲染。
 
@@ -85,9 +85,9 @@ location.hash      // '#/aaa/bbb'
 </html>
 ```
 
-## 3. H5 history 模式
+## H5 history 模式
 
-### 3.1 H5 history 模式的特点
+### H5 history 模式的特点
 
 H5 history 模式是用 url 规范的路由，但跳转时不刷新页面。
 
@@ -103,12 +103,12 @@ H5 history 模式是用 url 规范的路由，但跳转时不刷新页面。
 * `https://github.com/xxx/yyy`     前端跳转，不刷新页面
 * `https://github.com/xxx/yyy/zzz` 前端跳转，不刷新页面
 
-### 3.2 H5 history 模式的核心方法
+### H5 history 模式的核心方法
 
 * [history.pushState](https://developer.mozilla.org/zh-CN/docs/Web/API/History/pushState)
 * [window.onpopstate](https://developer.mozilla.org/zh-CN/docs/Web/API/WindowEventHandlers/onpopstate)
 
-### 3.3 H5 history 模式的实现原理
+### H5 history 模式的实现原理
 
 下面演示的代码核心是三部分：
 
@@ -156,7 +156,5 @@ H5 history 模式是用 url 规范的路由，但跳转时不刷新页面。
 ```
 
 H5 history 模式需要 server 端配合，可参考[后端配置例子](https://router.vuejs.org/zh/guide/essentials/history-mode.html#后端配置例子)。无论访问哪个路由，都返回 `index.html` 页面，再由前端通过 `history.pushState` 的方式触发路由的切换。
-
-
 
 （完）

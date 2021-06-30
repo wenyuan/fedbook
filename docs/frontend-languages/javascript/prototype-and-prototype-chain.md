@@ -1,6 +1,6 @@
 # 原型与原型链
 
-## 1. 前言
+## 前言
 
 ES6 出来之后，原型在平时工作中用得就比较少了。但原型是 JavaScript 中的基础，很多流行框架诸如 Vue 和 React 中就多次用到 `prototype` 。平时在写代码时，也会不知不觉就应用上了原型的某个基础知识点。
 
@@ -9,7 +9,7 @@ ES6 出来之后，原型在平时工作中用得就比较少了。但原型是 
 * 原型
 * 原型链
 
-## 2. 原型
+## 原型
 
 任何一个函数，都拥有一个 `prototype` 属性，它指向这个函数的原型对象，如：
 
@@ -57,7 +57,7 @@ const foo = new Foo();
 
 以上就是关于原型的阐述，如果看到这里似懂非懂，建议反复看几遍，注意文字与图片对应，线条的指向，看懂了再接着往下看。
 
-## 3. `prototype` 和 `__proto__`
+## `prototype` 和 `__proto__`
 
 * `prototype`：显式原型对象，每一个函数（除了 bind）在创建之后都会拥有一个名为 prototype 的内部属性，它指向函数的原型对象。用来实现基于原型的继承与属性的共享。
 * `__proto__`：隐式原型对象，是每个对象都具有的属性，这个属性的值指向该对象的构造函数的原型对象。
@@ -72,7 +72,7 @@ foo.__proto__ === Foo.prototype // true
 `[[prototype]]` 和 `__proto__` 意义相同，均表示对象的内部属性，其值指向对象原型。前者在一些书籍、规范中表示一个对象的原型属性，默认情况下是不可以再被外部访问的，估计是会被一些内部方法使用的，例如用 for...in 来遍历原型链上可以被枚举的属性的时候，就需要通过这个指针找到当前对象所继承的对象；后者则是在浏览器实现中支持的一个属性，用于指向对象原型。
 :::
 
-## 4. 原型方法
+## 原型方法
 
 在 ES5 之前没有标准的方法访问 `[[prototype]]` 这个内置属性，但是大多数浏览器都支持通过 `__proto__` 访问。
 
@@ -127,7 +127,7 @@ let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescr
 
 此调用可以对 `obj` 进行真正准确地拷贝，包括所有的属性：可枚举和不可枚举的，数据属性和 setters/getters —— 包括所有内容，并带有正确的 `[[Prototype]]`。
 
-## 5. 原型的关系
+## 原型的关系
 
 所有原生构造函数的 `__proto__` 都指向 `Function.prototype`，
 
@@ -171,7 +171,7 @@ Error.__proto__.__proto__    === Object.prototype;   // true
 Date.__proto__.__proto__     === Object.prototype;   // true
 ```
 
-## 6. 原型链
+## 原型链
 
 原型链是 JavaScript 作者为了继承而设计的。由上边的分析，`const foo = new Foo()` 语句，其实是产生了一个链条的，如下:
 
@@ -192,3 +192,5 @@ console.log(typeof foo.hasOwnProperty); // function
 从上图的链条来看，我们在 `foo` 这个对象中，查找 toString 方法，没找到，就循着 `foo.__proto__` 查找，`foo.__proto__` 里也没有找到，就循着 `foo.__proto__.__proto__` 找，这个时候找到了，则调用；如果还找不到，就再往上找，即 `foo.__proto__._proto__._proto__`，这个时候值为 `null`，查找结束。
 
 这就是原型链，我们也可以说，`Foo` 继承了 `Object`，所以 `foo` 中能访问到 Object 的原型属性。
+
+（完）

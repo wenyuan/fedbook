@@ -1,6 +1,6 @@
 # 实现 apply 方法
 
-## 1. 功能描述
+## 功能描述
 
 `apply()` 方法调用一个具有给定 `this` 值的函数，以及以一个数组（或类数组对象）的形式提供的参数。
 
@@ -16,11 +16,11 @@
 func.apply(obj, args)
 ```
 
-## 2. 实现思路
+## 实现思路
 
 实现 `apply()` 的思路 和 实现 `call()` 是一样的，只要把入参中的 `...args` 换成 `args` 即可。
 
-## 3. 手写实现
+## 手写实现
 
 ```javascript
 /**
@@ -47,7 +47,7 @@ Function.prototype.myApply = function(context, args) {
 }
 ```
 
-## 4. 测试用例
+## 测试用例
 
 ```javascript
 // 目标：调用方法时打印出 "张三 性别:男 年龄:13"

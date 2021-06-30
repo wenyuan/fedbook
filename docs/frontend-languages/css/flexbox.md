@@ -2,7 +2,7 @@
 
 布局的传统解决方案，是基于盒模型，通过它的 `display`、`position`、`float` 等属性来进行布局。它对于一些特殊布局不是很方便，比如垂直居中水平居中，如果运用了浮动特性的话，就需要清除浮动，不但比较麻烦，一不小心还会出现意料之外的布局，最后呈现的结果往往不尽人意。
 
-## 1. 基础知识
+## 基础知识
 
 Flexbox（全称 Flexible Box）布局，也叫 Flex 布局，意为「弹性布局」。
 
@@ -26,7 +26,7 @@ Flexbox（全称 Flexible Box）布局，也叫 Flex 布局，意为「弹性布
 
 了解完 Flex 布局相关的抽象概念，接下来我们来看看有关 Flex 布局的属性部分，这里分为两部分介绍，一是作用于父元素（容器）的，二是作用于子元素（项目）的。
 
-## 2. 容器属性
+## 容器属性
 
 display 属性用来将父元素定义为 Flex 布局的容器，设置 display 值为 `display: flex;` 容器对外表现为块级元素；`display: inline-flex;` 容器对外表现为行内元素，对内两者表现是一样的。
 
@@ -50,7 +50,7 @@ display 属性用来将父元素定义为 Flex 布局的容器，设置 display 
 * align-items
 * align-content
 
-### 2.1 flex-direction
+### flex-direction
 
 flex-direction 定义了主轴的方向，即项目的排列方向。
 
@@ -93,7 +93,7 @@ flex-direction 定义了主轴的方向，即项目的排列方向。
   <p style="text-align: center; color: #888;">（flex-direction 为 column-reverse）</p>
 </div>
 
-### 2.2 flex-wrap
+### flex-wrap
 
 默认情况下，项目是排成一行显示的，flex-wrap 用来定义当一行放不下时，项目如何换行。
 
@@ -126,7 +126,7 @@ flex-direction 定义了主轴的方向，即项目的排列方向。
 
 将 flex-wrap 设置为 wrap-reverse 可以看做是调换了交叉轴的开始位置（cross start）和结束位置（cross end）。
 
-### 2.3 flex-flow
+### flex-flow
 
 flex-flow 是 flex-direction 和 flex-wrap 的简写，默认值是 row no-wrap。
 
@@ -136,7 +136,7 @@ flex-flow 是 flex-direction 和 flex-wrap 的简写，默认值是 row no-wrap�
 }
 ```
 
-### 2.4 justify-content
+### justify-content
 
 justify-content 定义了项目在主轴上的对齐方式。
 
@@ -179,7 +179,7 @@ justify-content 定义了项目在主轴上的对齐方式。
   <p style="text-align: center; color: #888;">（justify-content 为 space-around）</p>
 </div>
 
-### 2.5 align-items
+### align-items
 
 align-items 定义了项目在交叉轴上如何对齐。
 
@@ -222,7 +222,7 @@ align-items 定义了项目在交叉轴上如何对齐。
   <p style="text-align: center; color: #888;">（align-items 为 stretch）</p>
 </div>
 
-### 2.6 align-content
+### align-content
 
 align-content 定义了多根轴线的对齐方式，若此时主轴在水平方向，交叉轴在垂直方向，align-content 就可以理解为多行在垂直方向的对齐方式。项目排列只有一行时，该属性不起作用。
 
@@ -269,7 +269,7 @@ align-content 定义了多根轴线的对齐方式，若此时主轴在水平方
   <p style="text-align: center; color: #888;">（align-content 为 stretch）</p>
 </div>
 
-## 3. 项目属性
+## 项目属性
 
 对项目设置属性，可以更灵活地控制 Flex 布局。以下六种属性可以设置在项目上：
 
@@ -280,7 +280,7 @@ align-content 定义了多根轴线的对齐方式，若此时主轴在水平方
 * flex
 * align-self
 
-### 3.1 order
+### order
 
 order 定义了项目的排列顺序，默认值为 0，数值越小，排列越靠前。
 
@@ -297,7 +297,7 @@ order 定义了项目的排列顺序，默认值为 0，数值越小，排列越
   <p style="text-align: center; color: #888;">（给第三个项目设置了 order: -1; 后，该项目排到了最前面）</p>
 </div>
 
-### 3.2 flex-grow
+### flex-grow
 
 flex-grow 定义了项目的放大比例，默认为 0，也就是即使存在剩余空间，也不会放大。
 
@@ -321,7 +321,7 @@ flex-grow 定义了项目的放大比例，默认为 0，也就是即使存在�
   <p style="text-align: center; color: #888;">（flex-grow 属性值越大，所占剩余空间越大）</p>
 </div>
 
-### 3.3 flex-shrink
+### flex-shrink
 
 flex-shrink 定义了项目的缩小比例，默认为 1，即当空间不足时，项目会自动缩小。
 
@@ -347,7 +347,7 @@ flex-shrink 定义了项目的缩小比例，默认为 1，即当空间不足时
   <p style="text-align: center; color: #888;">（flex-shrink 为 0 的不缩小）</p>
 </div>
 
-### 3.4 flex-basis
+### flex-basis
 
 flex-basis 定义了在分配多余的空间之前，项目占据的主轴空间，默认值为 auto，即项目原来的大小。浏览器会根据这个属性来计算主轴是否有多余的空间。
 
@@ -366,7 +366,7 @@ flex-basis 的设置跟 width 或 height 一样，可以是像素，也可以是
   <p style="text-align: center; color: #888;">（不同的 flex-basis 值效果展示）</p>
 </div>
 
-### 3.5 flex
+### flex
 
 flex 属性是 flex-grow、flex-shrink、flex-basis 的缩写，默认值是 0 1 auto，后两个属性可选。
 
@@ -378,7 +378,7 @@ flex 属性是 flex-grow、flex-shrink、flex-basis 的缩写，默认值是 0 1
 }
 ```
 
-### 3.6 align-self
+### align-self
 
 align-self 用来定义单个项目与其他项目不一样的对齐方式，可以覆盖 align-items 属性。默认属性值是 auto，即继承父元素的 align-items 属性值。当没有父元素时，它的表现等同于 stretch。
 
@@ -397,9 +397,9 @@ align-self 的六个可能属性值，除了 auto 之外，其他的表现和 al
   <p style="text-align: center; color: #888;">（第三个项目的对齐方式与其他不同）</p>
 </div>
 
-## 4. 简单实例
+## 简单实例
 
-### 4.1 三栏布局
+### 三栏布局
 
 我们首先将容器设置为 Flex 布局：
 
@@ -433,7 +433,7 @@ align-self 的六个可能属性值，除了 auto 之外，其他的表现和 al
   (<a href='https://codepen.io/winyuan'>@winyuan</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
-### 4.2 居中问题
+### 居中问题
 
 当子元素的高度不确定时，处理垂直居中就比较麻烦，但是使用 Flex 布局中容器有关对齐方式的属性便能快速解决，以下代码子元素在父元素中是水平、垂直居中的。
 
@@ -445,7 +445,7 @@ align-self 的六个可能属性值，除了 auto 之外，其他的表现和 al
 }
 ```
 
-## 5. 浏览器兼容性及其他
+## 浏览器兼容性及其他
 
 设置为 Flex 布局后，子元素的 float、clear、vertical-align 属性都将失效。
 
@@ -477,3 +477,5 @@ display: flex | inline-flex;    /* 2012 version 新语法 */
   display: flex;             /* 新语法, Spec - Opera 12.1, Firefox 20+ */
  }
 ```
+
+（完）

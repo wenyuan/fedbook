@@ -21,7 +21,7 @@
 
 前 5 个其实在前面两章中已经介绍过了。
 
-## 1. 小图片 base64 编码
+## 小图片 base64 编码
 
 在生产环境下（`webpack.prod.js`），将小于某个大小的图片（例如 5kb）转成 base64 格式产出，减少一个网络请求。如下代码所示：
 
@@ -46,7 +46,7 @@
 }
 ```
 
-## 2. bundle 加 hash
+## bundle 加 hash
 
 在生产环境下（`webpack.prod.js`），对于出口文件，根据文件的内容计算出一个 hash 值（下述示例为 8 位 hash），如果文件内容更新后，缓存会失效，重新请求新的文件；如果代码没有变化，hash 值不变，就会使用缓存，从而提高加载效率。如下代码所示：
 
@@ -65,7 +65,7 @@ module.exports = merge(webpackCommonConf, {
 })
 ```
 
-## 3. 懒加载
+## 懒加载
 
 通过 `import` 语法，先加载重要的文件，然后异步加载大的文件。这个逻辑与 Vue 和 React 中组件的异步加载类似，如下代码所示：
 
@@ -78,18 +78,17 @@ setTimeout(() => {
 }, 1500)
 ```
 
-## 4. 提取公共代码
+## 提取公共代码
 
 在生产环境下（`webpack.prod.js`），将第三方模块和公用引用的代码单独拆分出去。
 
 参考 [高级配置-抽离公共代码](/frontend-frameworks/webpack5/advanced-config/#_3-抽离公共代码) 这一章的内容。
 
-
-## 5. IgnorePlugin
+## IgnorePlugin
 
 参考 [IgnorePlugin 避免引入无用模块](/frontend-frameworks/webpack5/performance-optimization-in-build/#_2-ignoreplugin-避免引入无用模块) 这一章的内容。
 
-## 6. 使用 CDN 加速
+## 使用 CDN 加速
 
 在生产环境下（`webpack.prod.js`），设置 `output.publicPath` 后，打包出来的 html 里都会引用 CDN 的静态资源文件。
 
@@ -134,7 +133,7 @@ module.exports = merge(webpackCommonConf, {
 }
 ```
 
-## 7. 使用 production
+## 使用 production
 
 前面说过，一般会将 Webpack 配置文件拆分成三份：
 
@@ -155,7 +154,7 @@ module.exports = merge(webpackCommonConf, {
 只有 ES6 Module（静态引入，编译时引入）才能实现 Tree-Shaking，CommonJS（动态引入，执行时引入）不能够静态分析，无法实现 Tree-Shaking。
 :::
 
-## 8. 使用 Scope Hosting
+## 使用 Scope Hosting
 
 默认的 Webpack 打包结果中，多个 JS 文件会被打包生成多个函数。我们知道，每个函数都会产生一个作用域，那么打包前的文件越多打包后的函数就会越多，这对整个 JS 代码的执行及内存消耗很不友好。
 

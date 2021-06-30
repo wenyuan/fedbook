@@ -1,10 +1,10 @@
 # 响应式原理
 
-## 1. 定义
+## 定义
 
 响应式指的是组件 data 的数据一旦变化，立刻触发视图的更新。它是实现数据驱动视图的第一步。
 
-## 2. 监听 data 变化的核心 API
+## 监听 data 变化的核心 API
 
 Vue 实现响应式的一个核心 API 是 `Object.defineProperty`。该方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
 
@@ -32,7 +32,7 @@ data.name = 'lisi'     // set
 
 利用 `Object.defineProperty` 重写 `get` 和 `set`，将对象属性的赋值和获取变成函数，我们可以实现一个简单的双向绑定。
 
-## 3. 如何监听 data 变化
+## 如何监听 data 变化
 
 共定义了三个函数：
 
@@ -100,7 +100,7 @@ data.name = 'lisi'
 data.age = 21
 ```
 
-## 4. 如何深度监听 data 变化
+## 如何深度监听 data 变化
 
 对于有嵌套属性的数据，例如：
 
@@ -148,13 +148,13 @@ function defineReactive(target, key, value) {
 }
 ```
 
-## 5. Object.defineProperty 缺点
+## Object.defineProperty 缺点
 
 * 深度监听时，需要递归到底，一次性计算量大
 * 无法监听新增属性/删除属性（所以开发中需要使用 Vue.set 和 Vue.delete 这两个 API 来增删 data 的属性）
 * 无法原生监听数组，需要特殊处理
 
-## 6. 如何监听数组变化
+## 如何监听数组变化
 
 [由于性能原因](https://segmentfault.com/a/1190000015783546)，Vue 不是通过 `Object.defineProperty` 来监听数组的。
 

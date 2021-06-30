@@ -15,7 +15,7 @@
 
 前 5 个可用于生产环境，后 3 个只用于开发环境。
 
-## 1. 优化 babel-loader
+## 优化 babel-loader
 
 * 开启缓存：在原配置的基础上增加一个 `?cacheDirectory` 开启缓存，只要是 ES6 代码没有改动的部分，就不会重新编译。
 * 明确范围：通过 `include` 或 `exclude` 明确打包范围，两者选一个即可。
@@ -30,7 +30,7 @@
 }
 ```
 
-## 2. IgnorePlugin 避免引入无用模块
+## IgnorePlugin 避免引入无用模块
 
 例如我们在项目中引入了 Moment.js 这个日期处理类库 `import moment from 'moment'`，该库有多国语言支持，默认会引入所有语言的 JS 代码，导致体积庞大。
 
@@ -57,7 +57,7 @@ moment.locale('zh-cn')
 console.log(moment().format('ll'))
 ```
 
-## 3. noParse 避免重复打包
+## noParse 避免重复打包
 
 代码中引入的第三方包，形如 `xxx.min.js`，往往已经采用模块化处理过了，我们不需要重新进行打包。这个时候就在 `module`
 
@@ -70,7 +70,7 @@ module.exports = {
 }
 ```
 
-## 4. happyPack 多进程打包
+## happyPack 多进程打包
 
 JS（Node.js/Webpack）是**单线程**的，因此如果开启**多进程**打包，可以提高构建速度（特别是多核 CPU）。
 
@@ -127,7 +127,7 @@ module.exports = {
 }
 ```
 
-## 5. ParallelUglifyPlugin 多进程压缩 JS
+## ParallelUglifyPlugin 多进程压缩 JS
 
 Webpack 内置了 Uglify 工具压缩 JS，但它是单进程的。开启多进程压缩会更快，和 happyPack 同理。
 
@@ -174,7 +174,7 @@ module.exports = {
 * 如果项目较小，打包很快，开启多进程会较低速度（进程开销）
 :::
 
-## 6. 自动刷新
+## 自动刷新
 
 每次代码修改保存之后，会自动进行重新构建并刷新页面，不用再次输入命令，用于开发环境。但一般我们在开发环境中都会使用 `webpack-dev-server`，该插件自带自动刷新功能，所以不用特地开启该功能。
 
@@ -195,7 +195,7 @@ module.export = {
 }
 ```
 
-## 7. 热更新
+## 热更新
 
 热更新替换（HMR - Hot Module Replacement）。
 
@@ -273,7 +273,7 @@ if(module.hot) {
 * css-loader 中同样也配置了热更新，不需要自己额外添加代码
 * 我们使用的 vue 框架里，vue-loader 里也已经配置了热更新，所以不需要额外添加代码
 
-## 8. DllPlugin 动态链接库插件
+## DllPlugin 动态链接库插件
 
 前端框架如 Vue.js 和 React 体积大，构建慢。但它们的版本较稳定，不常升级版本。那么同一个版本只构建一次即可，不用每次都重新构建。
 
