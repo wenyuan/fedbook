@@ -14,6 +14,11 @@ module.exports = [
         path: '/basic-skills/nginx/load-balancing',
         collapsable: true
       },
+      {
+        title: 'Nginx 的安装',
+        path: '/basic-skills/nginx/installation-of-nginx',
+        collapsable: true
+      },
     ]
   }
 ]
