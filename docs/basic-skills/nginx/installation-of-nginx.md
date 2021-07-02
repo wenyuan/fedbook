@@ -73,22 +73,6 @@ server {
 
 以下命令，如果你是 root 账户，直接执行即可，不是的话前面加 `sudo` 获取权限。
 
-CentOS（7.6）：
-
-```bash
-# 安装 gcc 依赖库
-yum install gcc-c++
-
-# 安装 PCRE pcre-devel 依赖库
-yum install -y pcre pcre-devel
-
-# 安装 zlib 依赖库
-yum install -y zlib zlib-devel
-
-# 安装 OpenSSL 依赖库
-yum install -y openssl openssl-devel
-```
-
 Ubuntu（16.04、18.04、20.04）：
 
 ```bash
@@ -108,6 +92,22 @@ apt-get install zlib1g-dev
 # 安装 OpenSSL 依赖库
 apt-get install openssl
 apt-get install libssl-dev  # 未安装该库会报 SSL modules require the OpenSSL library.
+```
+
+CentOS（7.6）：
+
+```bash
+# 安装 gcc 依赖库
+yum install gcc-c++
+
+# 安装 PCRE pcre-devel 依赖库
+yum install -y pcre pcre-devel
+
+# 安装 zlib 依赖库
+yum install -y zlib zlib-devel
+
+# 安装 OpenSSL 依赖库
+yum install -y openssl openssl-devel
 ```
 
 > **gcc 依赖库**：安装 Nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境，如果没有 gcc 环境，则需要安装。  
@@ -160,6 +160,7 @@ make install
 > * --user：运行 Nginx 的用户
 > * --group：运行 Nginx 的用户组
 > * --with-(模块名)：为 Nginx 添加的模块
+> * 比较完整的配置项的含义请参见[官方网站](http://nginx.org/en/docs/configure.html)
 
 ### 添加 Nginx 用户
 
@@ -195,6 +196,9 @@ ls
 
 # 启动 Nginx
 /usr/local/nginx/sbin/nginx
+
+# 查看 Nginx 进程
+ps -ef | grep nginx
 
 # 检查 Nginx 启动的端口（默认 0.0.0.0:80）
 netstat -lntup | grep nginx

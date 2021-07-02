@@ -19,6 +19,11 @@ module.exports = [
         path: '/basic-skills/nginx/installation-of-nginx',
         collapsable: true
       },
+      {
+        title: 'Nginx 的卸载',
+        path: '/basic-skills/nginx/uninstallation-of-nginx',
+        collapsable: true
+      },
     ]
   }
 ]

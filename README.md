@@ -154,6 +154,7 @@
   * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
   * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
   * [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
+  * [Nginx 的卸载](https://fedbook.cn/basic-skills/nginx/uninstallation-of-nginx/)
   * 未完结，待更新
 
 <p align=right>
