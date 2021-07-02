@@ -107,7 +107,7 @@ apt-get install zlib1g-dev
 
 # 安装 OpenSSL 依赖库
 apt-get install openssl
-apt-get install libssl-dev # 未安装该库会报 SSL modules require the OpenSSL library.
+apt-get install libssl-dev  # 未安装该库会报 SSL modules require the OpenSSL library.
 ```
 
 > **gcc 依赖库**：安装 Nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境，如果没有 gcc 环境，则需要安装。  
@@ -125,9 +125,93 @@ apt-get install libssl-dev # 未安装该库会报 SSL modules require the OpenS
 # 下载
 wget http://nginx.org/download/nginx-1.18.0.tar.gz
 
-# 解压并进入解压目录
+# 解压
 tar -zxvf nginx-1.18.0.tar.gz
+```
+
+### 编译安装
+
+以下命令，如果你是 root 账户，直接执行即可，不是的话前面加 `sudo` 获取权限。
+
+首先进入 Nginx 安装包的解压目录：
+
+```bash
 cd nginx-1.18.0/
 ```
 
-### 配置
+下面开始安装 Nginx：
+
+```bash
+# 预编译
+./configure --prefix=/usr/local/nginx --sbin-path=/usr/local/nginx/sbin --user=nginx --group=nginx --with-http_ssl_module --with-http_stub_status_module --with-http_gzip_static_module
+# 检查是否编译正确
+echo $?  # 如果返回值是 0，就是执行成功；如果是返回值是 0 以外的值，就是失败。
+
+# 编译
+make
+
+# 安装
+make install
+```
+
+> 在 ./configure 命令后跟了一堆参数，它们分别表示：
+> * --prefix：指定当前要安装的 Nginx 主程序目录
+> * --sbin-path：安装完成后，使用 Nginx 的命令放在该目录下
+> * --user：运行 Nginx 的用户
+> * --group：运行 Nginx 的用户组
+> * --with-(模块名)：为 Nginx 添加的模块
+
+### 添加 Nginx 用户
+
+一般我们会创建一个不能 ssh 登录的帐号，这类账号专门用于启动服务，只是让服务启动起来，但是不能登录系统（提升安全性）。 
+
+```bash
+# 为 Nginx 创建一个不能 ssh 登陆的用户（预编译命令中指定的用户和用户组）
+useradd nginx -s /sbin/nologin -M
+```
+
+> 在 useradd 命令后跟了两个参数，它们分别表示：
+> * -s：表示指定用户所用的 shell，此处为 `/sbin/nologin`，表示不登录
+> * -M：表示不创建用户主目录
+
+### 验证安装成功
+
+主要通过 Nginx 能否启动来验证是否安装成功，一般我会运行以下这些命令来测试。
+
+```bash
+# 查找安装路径
+whereis nginx
+
+# 查看 Nginx 的安装目录
+cd /usr/local/nginx  # 预编译命令中指定的路径
+ls
+
+# 查看 Nginx 程序管理命令
+cd /usr/local/nginx/sbin  # 预编译命令中指定的路径
+ls
+
+# 查看 Nginx 版本
+/usr/local/nginx/sbin/nginx -v
+
+# 启动 Nginx
+/usr/local/nginx/sbin/nginx
+
+# 检查 Nginx 启动的端口（默认 0.0.0.0:80）
+netstat -lntup | grep nginx
+```
+
+接下来通过浏览器访问 Nginx（服务器 IP:80），出现以下页面说明启动成功：
+                           
+<div style="text-align: center;">
+  <img src="./assets/welcome-to-nginx.png" alt="Welcome to nginx">
+  <p style="text-align: center; color: #888;">（Welcome to nginx）</p>
+</div>
+
+这里就是测一下能不能启停，生产环境要把 Nginx 加到系统自启。现在先关闭 Nginx。
+
+```bash
+# 关闭 Nginx
+/usr/local/nginx/sbin/nginx -s stop
+```
+
+（完）
