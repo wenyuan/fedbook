@@ -24,6 +24,11 @@ module.exports = [
         path: '/basic-skills/nginx/uninstallation-of-nginx',
         collapsable: true
       },
+      {
+        title: 'Nginx 常用命令',
+        path: '/basic-skills/nginx/common-commands',
+        collapsable: true
+      },
     ]
   }
 ]

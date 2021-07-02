@@ -155,6 +155,7 @@
   * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
   * [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
   * [Nginx 的卸载](https://fedbook.cn/basic-skills/nginx/uninstallation-of-nginx/)
+  * [Nginx 常用命令](https://fedbook.cn/basic-skills/nginx/common-commands/)
   * 未完结，待更新
 
 <p align=right>
