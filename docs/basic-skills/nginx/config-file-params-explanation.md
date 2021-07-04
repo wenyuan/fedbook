@@ -181,3 +181,5 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 ## 参考资料
 
 * [Full Example Configuration](https://www.nginx.com/resources/wiki/start/topics/examples/full/ "Full Example Configuration")
+
+（完）
