@@ -34,6 +34,11 @@ module.exports = [
         path: '/basic-skills/nginx/set-auto-start-after-server-reboot',
         collapsable: true
       },
+      {
+        title: 'Ngixn 配置文件详解',
+        path: '/basic-skills/nginx/config-file-params-explanation',
+        collapsable: true
+      },
     ]
   }
 ]

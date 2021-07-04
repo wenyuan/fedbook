@@ -157,6 +157,7 @@
   * [Nginx 的卸载](https://fedbook.cn/basic-skills/nginx/uninstallation-of-nginx/)
   * [Nginx 常用命令](https://fedbook.cn/basic-skills/nginx/common-commands/)
   * [Nginx 设置开机自启](https://fedbook.cn/basic-skills/nginx/set-auto-start-after-server-reboot/)
+  * [Ngixn 配置文件详解](https://fedbook.cn/basic-skills/nginx/config-file-params-explanation/)
   * 未完结，待更新
 
 <p align=right>
