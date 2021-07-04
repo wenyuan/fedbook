@@ -29,6 +29,11 @@ module.exports = [
         path: '/basic-skills/nginx/common-commands',
         collapsable: true
       },
+      {
+        title: 'Nginx 设置开机自启',
+        path: '/basic-skills/nginx/set-auto-start-after-server-reboot',
+        collapsable: true
+      },
     ]
   }
 ]
