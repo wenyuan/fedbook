@@ -39,6 +39,11 @@ module.exports = [
         path: '/basic-skills/nginx/config-file-params-explanation',
         collapsable: true
       },
+      {
+        title: 'Ngixn 配置文件模板',
+        path: '/basic-skills/nginx/config-file-generic-template',
+        collapsable: true
+      },
     ]
   }
 ]
