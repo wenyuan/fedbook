@@ -62,21 +62,23 @@ http {
     sendfile on;
     # 开启目录列表访问，适合下载服务器，默认关闭
     autoindex on;
-    # 防止网络阻塞，此选项仅在使用 sendfile 的时候使用
+    # 防止网络阻塞：数据包会先累积到最大后一次性传输，可以最大化利用网络资源，但会有一点点延迟（默认开启）
     tcp_nopush on;
-    # 防止网络阻塞，此选项仅在使用 sendfile 的时候使用
+    # 防止网络阻塞：小的数据包不等待直接传输（与 tcp_nopush 互斥，但两者可同为 on ，Nginx 会平衡这两个功能，默认开启）
     tcp_nodelay on;
 
     keepalive_timeout 65;                  # 长连接超时时间，单位是秒
 
-    # FastCGI 相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。
-    fastcgi_connect_timeout 300;
-    fastcgi_send_timeout 300;
-    fastcgi_read_timeout 300;
-    fastcgi_buffer_size 64k;
-    fastcgi_buffers 4 64k;
-    fastcgi_busy_buffers_size 128k;
-    fastcgi_temp_file_write_size 128k;
+    # FastCGI 相关参数是为了改善网站的性能：减少资源占用，提高访问速度。
+    # 参考1：https://blog.csdn.net/luozhonghua2014/article/details/37737823
+    # 参考2：https://blog.51cto.com/blief/1739655
+    fastcgi_connect_timeout 300;        # 连接到后端 fastcgi 超时时间（秒）
+    fastcgi_send_timeout 300;           # 指 Nginx 进程向 fastcgi 进程发送 request 的整个过程的超时时间（秒）
+    fastcgi_read_timeout 300;           # 指 fastcgi 进程向 Nginx 进程发送 response 的整个过程的超时时间（秒）
+    fastcgi_buffer_size 64k;            # 读取 fastcgi 应答第一部分需要多大缓冲区
+    fastcgi_buffers 4 64k;              # 指定本地需要多少和多大的缓冲区来缓冲 fastcgi 应答请求
+    fastcgi_busy_buffers_size 128k;     # 默认值是 fastcgi_buffer 的 2 倍
+    fastcgi_temp_file_write_size 128k;  # 写入缓存文件使用多大的数据块，默认值是 fastcgi_buffer 的 2 倍
 
     # gzip 模块设置
     gzip on;                               # 开启 gzip 压缩输出
@@ -85,8 +87,11 @@ http {
     gzip_http_version 1.0;                 # 压缩版本（默认 1.1，前端如果是 squid2.5 请使用 1.0）
     gzip_comp_level 2;                     # 压缩等级
     # 压缩类型，默认就已经包含 text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个 warn
+    # 图片压缩：建议不对 gif、jpge 等图片进行压缩，因为其压缩比例极低，反而耗费 CPU，但 bmp 可以压缩，因为 bmp 压缩比例较大
+    # 字体压缩：只需要为 ttf、otf 和 svg 字体启用 gzip，对其他字体格式进行 gzip 压缩时效果不明显
+    # 参考：https://blog.csdn.net/liupeifeng3514/article/details/79018334
     gzip_types text/plain application/x-javascript text/css application/xml;
-    gzip_vary on;
+    gzip_vary on;                          # 是否在 http header 中添加 Vary: Accept-Encoding，建议开启
     # limit_zone crawler $binary_remote_addr 10m;    # 开启限制 IP 连接数的时候需要使用
 
     # upstream 的负载均衡，weight 是权重，可以根据机器配置定义权重
@@ -177,6 +182,18 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 | $upstream_addr          | 后台 upstream 的地址，即真正提供服务的主机地址 |
 | $request_time           | 整个请求的总时间                             |
 | $upstream_response_time | 请求过程中，upstream 响应时间                 |
+
+## http、server、location 之间的关系
+
+* http：主要用于解决用户请求中的报文信息
+* server：用于配置一个具体的网站响应操作
+* location：用于匹配 uri
+
+由上至下是包含关系。
+
+## 更多其它参数
+
+server 中的参数配置项其实有很多，它们可以实现一些丰富的功能。上面只列举了最基础的几个参数，后面的章节会单独讲解如何配置来实现各种功能。
 
 ## 参考资料
 
