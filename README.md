@@ -6,7 +6,7 @@
 
 <p align="center">
   <img alt="author" src="https://img.shields.io/badge/author-wenyuan-blue.svg?style=flat-square">
-  <img alt="updated" src="https://img.shields.io/badge/update-2021.06-blue.svg?style=flat-square">
+  <img alt="updated" src="https://img.shields.io/badge/update-2021.07-blue.svg?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square">
   <a href="https://www.wenyuanblog.com/gift.html" target="_blank">
     <img alt="sponsor" src="https://img.shields.io/badge/sponsor-❤-ff69b4.svg?style=flat-square">
@@ -28,7 +28,7 @@
 
 所以，在学习的过程中，我将筛选过的知识点记录在「前端修炼小册」，作为个人文档库，让每一天都在进步。我坚信：越努力，越幸运。
 
-近期正在学习：前端框架 - webpack（2021-06 ~ 现在）
+近期正在学习：必知必会 - Nginx（2021-07 ~ 现在）
 
 ## 目录
 
