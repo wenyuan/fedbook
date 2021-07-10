@@ -35,13 +35,18 @@ module.exports = [
         collapsable: true
       },
       {
-        title: 'Ngixn 配置文件详解',
+        title: 'Nginx 配置文件详解',
         path: '/basic-skills/nginx/config-file-params-explanation',
         collapsable: true
       },
       {
-        title: 'Ngixn 配置文件模板',
+        title: 'Nginx 配置文件模板',
         path: '/basic-skills/nginx/config-file-generic-template',
+        collapsable: true
+      },
+      {
+        title: 'Nginx 安全访问控制',
+        path: '/basic-skills/nginx/ngx-http-access-module',
         collapsable: true
       },
     ]
