@@ -109,6 +109,10 @@ http {
     gzip_vary on;
     # limit_zone crawler $binary_remote_addr 10m;    # 开启限制 IP 连接数的时候需要使用
 
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
     include /usr/local/nginx/conf/vhosts/*.conf;
 
 }
@@ -128,7 +132,7 @@ mkdir vhosts
 这里只做一份最基础的子配置文件（server 部分）模板，对于如何配置来实现更多强大的功能，会在后面章节一一展开介绍。
 
 ```bash
-# 
+# 首页访问 /html/site 目录下的 index.html
 server {
     listen 80;
     server_name  www.fedbook.cn;
