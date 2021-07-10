@@ -8,15 +8,15 @@
 
 语法：
 
-* 配置允许访问：`allow 地址值`
-* 配置拒绝访问：`deny 地址值`
+* 配置允许访问：`allow 地址值;`
+* 配置拒绝访问：`deny 地址值;`
 * 地址值的形式支持：address | CIDR | unix: | all
 
 ## 配置案例
 
 假设我们有个网站，要限制外人不能访问管理页面（只允许指定 IP 访问 `/admin` 开始的 uri）。
 
-```bash
+```bash {8,9}
 server {
     listen 80;
     server_name  www.fedbook.cn;

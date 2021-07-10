@@ -49,6 +49,11 @@ module.exports = [
         path: '/basic-skills/nginx/ngx-http-access-module',
         collapsable: true
       },
+      {
+        title: 'Nginx 文件列表功能',
+        path: '/basic-skills/nginx/ngx-http-autoindex-module',
+        collapsable: true
+      },
     ]
   }
 ]
