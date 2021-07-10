@@ -59,6 +59,11 @@ module.exports = [
         path: '/basic-skills/nginx/ngx-http-auth-basic-module',
         collapsable: true
       },
+      {
+        title: 'Nginx 部署 Https 安全认证',
+        path: '/basic-skills/nginx/deploy-https-security-auth',
+        collapsable: true
+      },
     ]
   }
 ]

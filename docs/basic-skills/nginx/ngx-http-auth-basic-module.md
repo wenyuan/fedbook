@@ -71,6 +71,21 @@ htpasswd -D passwd.db test
 # 先删除指定用户，再创建用户即可实现修改密码的功能
 ```
 
+```bash
+├── nginx
+    │── html
+    │── logs
+    │── sbin
+    │── ...
+    │── passwd.db              # 用户文件，存储用户认证信息
+    └── conf
+        ├── ...
+        ├── nginx.conf         # 主配置文件
+        └── vhosts             # 子配置文件的目录
+            ├── web.conf       # 子配置文件 1
+            └── api.conf       # 子配置文件 2
+```
+
 ## 配置案例
 
 前端我们已经通过使用 htpasswd 工具，在 `/usr/local/nginx/` 目录下生成了用户文件 `passwd.db`，接下来在 Nginx 配置文件中进行配置。
