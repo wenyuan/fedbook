@@ -161,6 +161,7 @@
   * [Nginx 配置文件模板](https://fedbook.cn/basic-skills/nginx/config-file-generic-template/)
   * [Nginx 安全访问控制](https://fedbook.cn/basic-skills/nginx/ngx-http-access-module/)
   * [Nginx 文件列表功能](https://fedbook.cn/basic-skills/nginx/ngx-http-autoindex-module/)
+  * [Nginx 页面安全认证](https://fedbook.cn/basic-skills/nginx/ngx-http-auth-basic-module/)
   * 未完结，待更新
 
 <p align=right>

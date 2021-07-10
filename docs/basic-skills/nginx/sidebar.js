@@ -54,6 +54,11 @@ module.exports = [
         path: '/basic-skills/nginx/ngx-http-autoindex-module',
         collapsable: true
       },
+      {
+        title: 'Nginx 页面安全认证',
+        path: '/basic-skills/nginx/ngx-http-auth-basic-module',
+        collapsable: true
+      },
     ]
   }
 ]

@@ -9,21 +9,23 @@
   <p style="text-align: center; color: #888;">（中国科学技术大学开源镜像站）</p>
 </div>
 
-该功能用到了 `ngx_http_autoindex_module` 这个模块，使用时只需要开启 `autoindex` 即可。
+该功能用到了 `ngx_http_autoindex_module` 这个模块，该模块默认是关闭的。
 
 语法：
 
 * 开启文件列表功能：`autoindex on;`
 
+可以将它配置在 `http`，`server`，`location` 中的任一位置。
+
 ## 配置案例
 
-需要将 `/html/docs/download/` 目录变成可下载的内容列表，只需配置如下 `location`：
+需要将 `/sites/fedbook/download/` 目录变成可下载的内容列表，只需配置如下 `location`：
 
 ```bash {8}
 server {
     listen 80;
     server_name  www.fedbook.cn;
-    root /html/docs;
+    root /sites/fedbook;
     index index.html;
 
     location /download {
