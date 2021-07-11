@@ -71,6 +71,18 @@ htpasswd -D passwd.db test
 # 先删除指定用户，再创建用户即可实现修改密码的功能
 ```
 
+出于安全考虑，我们最好修改一下用户文件 `passwd.db` 的权限：
+
+```bash
+# 修改用户文件权限 
+chmod 400 /usr/local/nginx/passwd.db
+
+# 修改用户文件属主和属组
+chown root:root /usr/local/nginx/passwd.db
+```
+
+此时的 Nginx 文件目录结构：
+
 ```bash
 ├── nginx
     │── html
