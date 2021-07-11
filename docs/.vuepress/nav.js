@@ -9,9 +9,20 @@ module.exports = [
   {
     text: '前端语言',
     items: [
-      { text: 'HTML', link: '/frontend-languages/html/' },
-      { text: 'CSS', link: '/frontend-languages/css/' },
-      { text: 'JavaScript', link: '/frontend-languages/javascript/' }
+      {
+        text: '基础',
+        items: [
+          { text: 'HTML', link: '/frontend-languages/html/' },
+          { text: 'CSS', link: '/frontend-languages/css/' },
+          { text: 'JavaScript', link: '/frontend-languages/javascript/' }
+        ]
+      },
+      {
+        text: '进阶',
+        items: [
+          { text: 'TypeScript', link: '/frontend-languages/typescript/' }
+        ]
+      }
     ]
   },
   {

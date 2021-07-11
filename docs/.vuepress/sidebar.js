@@ -5,6 +5,7 @@ module.exports = {
   '/frontend-languages/html': require('../frontend-languages/html/sidebar'),
   '/frontend-languages/css': require('../frontend-languages/css/sidebar'),
   '/frontend-languages/javascript': require('../frontend-languages/javascript/sidebar'),
+  '/frontend-languages/typescript': require('../frontend-languages/typescript/sidebar'),
   /* --------- 前端框架 --------- */
   '/frontend-frameworks/vuejs': require('../frontend-frameworks/vuejs/sidebar'),
   '/frontend-frameworks/webpack5': require('../frontend-frameworks/webpack5/sidebar'),

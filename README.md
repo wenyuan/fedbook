@@ -101,6 +101,7 @@
   * [浅克隆与深克隆](https://fedbook.cn/frontend-languages/javascript/shallow-clone-and-deep-clone/)
   * [函数柯里化](https://fedbook.cn/frontend-languages/javascript/function-currying/)
   * 未完结，待更新
+* [TypeScript](https://fedbook.cn/frontend-languages/typescript/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
