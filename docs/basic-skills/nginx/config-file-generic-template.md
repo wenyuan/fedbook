@@ -70,7 +70,7 @@ server{
 user  nginx nginx;
 worker_processes  1;
 
-error_log  /dev/null;
+error_log  /var/log/nginx/error.log crit;
 
 pid        /var/run/nginx.pid;
 
@@ -129,19 +129,57 @@ mkdir vhosts
 
 在该文件夹下所有以 `.conf` 结尾的文件都是子配置文件，在主配置文件的末尾被 `include` 引入了。
 
-这里只做一份最基础的子配置文件（server 部分）模板，对于如何配置来实现更多强大的功能，会在后面章节一一展开介绍。
+这里只做一份最基础的子配置文件（server 部分）模板，实现一个静态网站的部署配置。
 
 ```bash
-# 首页访问 /sites/fedbook/ 目录下的 index.html
 server {
     listen 80;
-    server_name  www.fedbook.cn;
+    server_name  www.fedbook.cn fedbook.cn;
+
+    root /sites/fedbook;
+    index index.html;
 
     location / {
-        root /sites/fedbook;
-        index index.html;
+        try_files $uri $uri/ /index.html;
     }
+
+    location ~* \.(html|htm)$ {
+        expires 24h;
+        add_header Cache-Control "public";
+    }
+    
+    location ~* \.(css|js|jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|map|mp4|ogg|ogv|webm|htc)$ {
+        expires 24h;
+        access_log off;
+        add_header Cache-Control "public";
+    }
+
+    access_log  /var/log/nginx/access/fedbook.log;
 }
 ```
+
+上面配置文件我们指定了这个子模块的日志输出路径，所以需要创建该路径的文件夹，否则在写入日志时会因文件夹不存在而报错：
+
+```bash
+mkdir -p /var/log/nginx/access/
+```
+
+检查 Nginx 配置文件的正确性：
+
+```bash
+/usr/local/nginx/sbin/nginx -t
+```
+
+最后重新加载 Nginx 配置即可上线该静态网站：
+
+```bash
+# 如果已将 Nginx 加入开机自启（有 Nginx 开机自启脚本）
+/etc/init.d/nginx reload
+
+# 如果未将 Nginx 加入开机自启
+/usr/local/nginx/sbin/nginx -s reload
+```
+
+对于如何配置来实现更多强大的功能，会在后面章节一一展开介绍。
 
 （完）

@@ -408,4 +408,21 @@ chkconfig /etc/init.d/nginx off
 chkconfig --del /etc/init.d/nginx
 ```
 
+## 开机自启脚本提供的快捷命令
+
+通过 Nginx 开机自启脚本本身提供了一些 Nginx 常用操作的快捷命令，一旦我们通过这个脚本实现开机自启后，就可以通过这些快捷命令来操作 Nginx 了：
+
+```bash
+# 启动 Nginx
+/etc/init.d/nginx start
+
+# 重新加载 Nginx 配置
+/etc/init.d/nginx reload
+
+# 停止 Nginx
+/etc/init.d/nginx stop
+```
+
+这些命令通过看脚本代码就能找到。
+
 （完）
