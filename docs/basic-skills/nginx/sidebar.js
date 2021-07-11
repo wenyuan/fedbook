@@ -64,6 +64,11 @@ module.exports = [
         path: '/basic-skills/nginx/deploy-https-security-auth',
         collapsable: true
       },
+      {
+        title: '部署方案：前后端分离项目',
+        path: '/basic-skills/nginx/practice-in-front-end-separation-project',
+        collapsable: true
+      },
     ]
   }
 ]
