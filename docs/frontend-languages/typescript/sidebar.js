@@ -14,6 +14,11 @@ module.exports = [
         path: '/frontend-languages/typescript/boolean-number-string',
         collapsable: true
       },
+      {
+        title: '数组(Array)和元组(Tuple)',
+        path: '/frontend-languages/typescript/array-and-tuple',
+        collapsable: true
+      },
     ]
   }
 ]
