@@ -5,8 +5,8 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: '数据类型',
-        path: '/frontend-languages/typescript/data-types',
+        title: '数据类型简介',
+        path: '/frontend-languages/typescript/data-types-introduction',
         collapsable: true
       },
     ]

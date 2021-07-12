@@ -102,6 +102,8 @@
   * [函数柯里化](https://fedbook.cn/frontend-languages/javascript/function-currying/)
   * 未完结，待更新
 * [TypeScript](https://fedbook.cn/frontend-languages/typescript/)
+  * [数据类型简介](https://fedbook.cn/frontend-languages/typescript/data-types-introduction/)
+  * 未完结，待更新
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
