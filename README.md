@@ -103,6 +103,7 @@
   * 未完结，待更新
 * [TypeScript](https://fedbook.cn/frontend-languages/typescript/)
   * [数据类型简介](https://fedbook.cn/frontend-languages/typescript/data-types-introduction/)
+  * [布尔、数值与字符串](https://fedbook.cn/frontend-languages/typescript/boolean-number-string/)
   * 未完结，待更新
 
 <p align=right>

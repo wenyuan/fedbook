@@ -7,8 +7,8 @@ TypeScript 与普通 JavaScript 最大的区别就是对类型的强定义，它
 ## 基本类型
 
 * boolean   布尔类型
-* string    字符串类型
 * number    数字类型（整数和浮点数）
+* string    字符串类型
 * array     数组类型
 * null      null类型
 * undefined undefined类型
