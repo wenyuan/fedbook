@@ -19,6 +19,11 @@ module.exports = [
         path: '/frontend-languages/typescript/array-and-tuple',
         collapsable: true
       },
+      {
+        title: '联合(Union)和字面量(Literal)',
+        path: '/frontend-languages/typescript/union-and-literal',
+        collapsable: true
+      },
     ]
   }
 ]
