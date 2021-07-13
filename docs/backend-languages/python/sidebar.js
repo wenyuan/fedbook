@@ -53,6 +53,11 @@ module.exports = [
         title: '类成员保护',
         path: '/backend-languages/python/class-access-modifiers',
         collapsable: true
+      },
+      {
+        title: '案例：Telnet 远程控制主机',
+        path: '/backend-languages/python/python-lib-telnetlib',
+        collapsable: true
       }
     ]
   }
