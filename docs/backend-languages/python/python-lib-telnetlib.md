@@ -20,9 +20,9 @@ telnet ip_address_your_remote_server
 
 首先需要用到 Python 的 telnetlib 模块，它是一个标准库，无需另外安装。
 
-下面是一个使用 Telnet 连接远程设备的示例程序（[`telnet_example.py`](https://github.com/wenyuan/practice-in-python/blob/main/std-lib/telnet_example.py)）：
+下面是一个使用 Telnet 连接远程设备的示例程序（[`telnet_example.py`](https://github.com/wenyuan/practice-in-python/blob/main/devops-case/telnet_example.py)）：
 
-```bash
+```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
 telnetlib 模块里上面代码中用到的方法介绍：
 
-* `write()`：使用该方法向服务端发送命令，注意每个命令后要跟上换行符（`\n`）
+* `write()`：使用该方法向服务端发送命令，注意每个命令后要跟上换行符（`\n`）。
 * `read_until()`：当结果中存在想要的信息时返回。
 * `read_very_eager()`：返回缓冲区中所有可用的数据（上次获取之后本次获取之前的所有输入输出），这里要设置延时 `time.sleep(2)`，才能保证数据读取完毕。
 

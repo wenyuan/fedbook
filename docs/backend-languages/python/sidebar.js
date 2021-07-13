@@ -58,6 +58,11 @@ module.exports = [
         title: '案例：Telnet 远程控制主机',
         path: '/backend-languages/python/python-lib-telnetlib',
         collapsable: true
+      },
+      {
+        title: '案例：使用 Paramiko 执行 SSH',
+        path: '/backend-languages/python/python-lib-paramiko',
+        collapsable: true
       }
     ]
   }
