@@ -222,9 +222,13 @@ TODO...
 * 提交 Issues 或 PR
 * [送我一本书](https://www.wenyuanblog.com/gift.html)
 
-## 版权信息
+## 版权许可
 
-[MIT](https://opensource.org/licenses/MIT)
+本书采用「保持署名—非商用」创意共享 4.0 许可证。
+
+只要保持原作者署名和非商用，您可以自由地阅读、分享、修改本书。
+
+详细的法律条文请参见[创意共享](http://creativecommons.org/licenses/by-nc/4.0/)网站。
 
 Copyright (c) 2020-present, WenYuan
 
