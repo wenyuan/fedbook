@@ -222,7 +222,7 @@ TODO...
 * 提交 Issues 或 PR
 * [送我一本书](https://www.wenyuanblog.com/gift.html)
 
-## 版权许可
+## 版权信息
 
 本书采用「保持署名—非商用」创意共享 4.0 许可证。
 
