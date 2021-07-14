@@ -72,13 +72,13 @@ console.log(Days[3] === "Wed"); // true
 ```javascript
 var Days;
 (function (Days) {
-    Days[Days["Sun"] = 3] = "Sun";
-    Days[Days["Mon"] = 1] = "Mon";
-    Days[Days["Tue"] = 2] = "Tue";
-    Days[Days["Wed"] = 3] = "Wed";
-    Days[Days["Thu"] = 4] = "Thu";
-    Days[Days["Fri"] = 5] = "Fri";
-    Days[Days["Sat"] = 6] = "Sat";
+  Days[Days["Sun"] = 3] = "Sun";
+  Days[Days["Mon"] = 1] = "Mon";
+  Days[Days["Tue"] = 2] = "Tue";
+  Days[Days["Wed"] = 3] = "Wed";
+  Days[Days["Thu"] = 4] = "Thu";
+  Days[Days["Fri"] = 5] = "Fri";
+  Days[Days["Sat"] = 6] = "Sat";
 })(Days || (Days = {}));
 ```
 
@@ -93,13 +93,13 @@ enum Days {Sun = 7, Mon, Tue, Wed, Thu, Fri, Sat = <any>"S"};
 ```javascript
 var Days;
 (function (Days) {
-    Days[Days["Sun"] = 7] = "Sun";
-    Days[Days["Mon"] = 8] = "Mon";
-    Days[Days["Tue"] = 9] = "Tue";
-    Days[Days["Wed"] = 10] = "Wed";
-    Days[Days["Thu"] = 11] = "Thu";
-    Days[Days["Fri"] = 12] = "Fri";
-    Days[Days["Sat"] = "S"] = "Sat";
+  Days[Days["Sun"] = 7] = "Sun";
+  Days[Days["Mon"] = 8] = "Mon";
+  Days[Days["Tue"] = 9] = "Tue";
+  Days[Days["Wed"] = 10] = "Wed";
+  Days[Days["Thu"] = 11] = "Thu";
+  Days[Days["Fri"] = 12] = "Fri";
+  Days[Days["Sat"] = "S"] = "Sat";
 })(Days || (Days = {}));
 ```
 
