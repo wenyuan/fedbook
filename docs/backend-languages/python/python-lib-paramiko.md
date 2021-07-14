@@ -10,17 +10,23 @@ SSH 基于 TCP，默认端口号为 22。在终端运行 ssh 命令以连接远�
 ssh host_name@host_ip_address
 ```
 
-## 使用 Paramiko 执行 SSH
+## 关于 Paramiko
 
-paramiko 是一个实现了 SSHv2 协议的模块，用于与远程设备建立安全连接。同时，paramiko 也是一个关于 SSH 的纯 Python 接口。
+Paramiko 是一个基于 Python 编写的、使用 SSH 协议的模块，跟 Xshell 和 Xftp 功能类似，支持加密与认证，可以上传下载和访问服务器的文件。
 
-由于 paramiko 是 Python 的一个第三方库，首先需要安装它：
+可以利用 Paramiko 模块写服务器脚本，在本地执行，比如持续更新代码，查看日志，批量配置集群等。
+
+Paramiko 主要包含 SSHClient 和 SFTPClient 两个组件，分别用来执行命令和实现远程文件操作。
+
+由于 Paramiko 是 Python 的一个第三方库，首先需要安装它：
 
 ```bash
 sudo pip install paramiko
 ```
 
-下面是一个使用 paramiko 连接远程设备的示例程序（[`paramiko_example.py`](https://github.com/wenyuan/practice-in-python/blob/main/devops-case/paramiko_example.py)）：
+## Paramiko 用法示例
+
+下面是一个使用 Paramiko 连接远程设备的示例程序（[`paramiko_example.py`](https://github.com/wenyuan/practice-in-python/blob/main/devops-case/paramiko_example.py)）：
 
 ```python
 #!/usr/bin/env python
@@ -68,7 +74,7 @@ if __name__ == "__main__":
     do_ssh(host, username, password, commands)
 ```
 
-paramiko 模块里上面代码中用到的方法介绍：
+Paramiko 模块里上面代码中用到的方法介绍：
 
 * `set_missing_host_key_policy(policy)`：设置连接的远程主机没有本地主机密钥时的策略。目前支持三种：RejectPolicy（the default），AutoAddPolicy，WarningPolicy
 * `exec_command()`：该函数是将服务器执行完的结果一次性返回给你。

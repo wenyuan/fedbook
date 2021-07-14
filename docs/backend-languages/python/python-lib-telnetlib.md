@@ -46,8 +46,8 @@ def do_telnet(host, username, password, commands):
     tn.write(password + '\n')
 
     time.sleep(2)
-    command_result = tn.read_very_eager()
-    if 'Local authentication is rejected' in command_result:
+    res = tn.read_very_eager()
+    if 'Local authentication is rejected' in res:
         print('{host} 登录失败，用户名或密码错误'.format(host=host))
         return False
 
@@ -55,8 +55,8 @@ def do_telnet(host, username, password, commands):
     for command in commands:
         tn.write(command + '\n')
         time.sleep(2)
-        command_result = tn.read_very_eager()
-        print(command_result)
+        res = tn.read_very_eager()
+        print(res)
 
     # 执行完毕后，终止 Telnet 连接（或输入exit退出）
     tn.close()

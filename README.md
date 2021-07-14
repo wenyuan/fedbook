@@ -150,6 +150,7 @@
   * [类成员保护](https://fedbook.cn/backend-languages/python/class-access-modifiers/)
   * [案例：Telnet 远程控制主机](https://fedbook.cn/backend-languages/python/python-lib-telnetlib/)
   * [案例：使用 Paramiko 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-paramiko/)
+  * [案例：使用 Fabric 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-fabric/)
   * 未完结，待更新
 
 <p align=right>

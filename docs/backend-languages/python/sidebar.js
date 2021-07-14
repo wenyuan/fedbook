@@ -63,6 +63,11 @@ module.exports = [
         title: '案例：使用 Paramiko 执行 SSH',
         path: '/backend-languages/python/python-lib-paramiko',
         collapsable: true
+      },
+      {
+        title: '案例：使用 Fabric 执行 SSH',
+        path: '/backend-languages/python/python-lib-fabric',
+        collapsable: true
       }
     ]
   }
