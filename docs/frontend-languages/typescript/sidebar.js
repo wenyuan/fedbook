@@ -24,6 +24,11 @@ module.exports = [
         path: '/frontend-languages/typescript/union-and-literal',
         collapsable: true
       },
+      {
+        title: '枚举(Enum)',
+        path: '/frontend-languages/typescript/enum',
+        collapsable: true
+      },
     ]
   }
 ]

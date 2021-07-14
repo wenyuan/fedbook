@@ -106,6 +106,7 @@
   * [布尔、数值与字符串](https://fedbook.cn/frontend-languages/typescript/boolean-number-string/)
   * [数组(Array)和元组(Tuple)](https://fedbook.cn/frontend-languages/typescript/array-and-tuple/)
   * [联合(Union)和字面量(Literal)](https://fedbook.cn/frontend-languages/typescript/union-and-literal/)
+  * [枚举(Enum)](https://fedbook.cn/frontend-languages/typescript/enum/)
   * 未完结，待更新
 
 <p align=right>

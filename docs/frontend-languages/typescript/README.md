@@ -43,6 +43,7 @@ tsc hello.ts
 
 * 《[2小时极速入门 TypeScript](https://www.imooc.com/learn/1306)》
 * 《[TypeScript 入门教程](http://ts.xcatliu.com/)》
+* 《[TypeScript Handbook（中文版）](https://zhongsp.gitbooks.io/typescript-handbook/content/)》
 * 《[TypeScript](https://www.typescriptlang.org/)》
 
 <div style="text-align: right">
