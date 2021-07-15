@@ -29,6 +29,11 @@ module.exports = [
         path: '/frontend-languages/typescript/enum',
         collapsable: true
       },
+      {
+        title: 'Any 与 Unknown',
+        path: '/frontend-languages/typescript/any-and-unknow',
+        collapsable: true
+      },
     ]
   }
 ]
