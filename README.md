@@ -149,6 +149,7 @@
   * [类和实例](https://fedbook.cn/backend-languages/python/class-and-instance/)
   * [类的继承](https://fedbook.cn/backend-languages/python/class-inheritance/)
   * [类成员保护](https://fedbook.cn/backend-languages/python/class-access-modifiers/)
+  * [案例：Python 执行 cmd 命令](https://fedbook.cn/backend-languages/python/python-lib-subprocess/)
   * [案例：Telnet 远程控制主机](https://fedbook.cn/backend-languages/python/python-lib-telnetlib/)
   * [案例：使用 Paramiko 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-paramiko/)
   * [案例：使用 Fabric 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-fabric/)

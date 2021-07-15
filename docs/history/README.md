@@ -67,6 +67,7 @@ sidebar: auto
 
 ## 后端语言 - Python
 
+* 2021.07.15 &emsp; 添加《案例：Python 执行 cmd 命令》章节。
 * 2021.07.14 &emsp; 添加《案例：使用 Fabric 执行 SSH》章节。
 * 2021.07.13 &emsp; 添加《案例：Telnet 远程控制主机》、《案例：使用 Paramiko 执行 SSH》章节。
 * 2021.01.16 &emsp; 添加《编译器与解释器》章节。

@@ -55,6 +55,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '案例：Python 执行 cmd 命令',
+        path: '/backend-languages/python/python-lib-subprocess',
+        collapsable: true
+      },
+      {
         title: '案例：Telnet 远程控制主机',
         path: '/backend-languages/python/python-lib-telnetlib',
         collapsable: true
