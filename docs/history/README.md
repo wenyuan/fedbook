@@ -1,5 +1,6 @@
 ---
 sidebar: auto
+anchorDisplay: false
 ---
 
 # 更新日志
@@ -109,11 +110,12 @@ sidebar: auto
 
 ## 维护
 
+* 2021.07.16 &emsp; 升级 vuepress-theme-hope 主题至最新版本（1.19.0），并删除/覆盖一些样式。
 * 2021.01.09 &emsp; 升级 vuepress-theme-hope 主题至最新版本（1.8.1），并覆盖一些过于酷炫的样式。
 * 2020.10.26 &emsp; 移除 vuepress-plugin-demo-block 插件，改用 CodePen。
 * 2020.10.11 &emsp; 使用 [vuepress-plugin-demo-block](https://daxigua.me/vuepress-plugin-demo-block/zh/ "vuepress-plugin-demo-block") 插件。
   * 让 Demo 演示框（主要是 CSS 知识点中的代码）更直观，方便调试。
-* 2020.09.27 &emsp; 使用 [vuepress-theme-hope](https://vuepress-theme.mrhope.site/ "vuepress-theme-hope") 主题。
+* 2020.09.27 &emsp; 使用 [vuepress-theme-hope](https://vuepress-theme-hope.github.io/ "vuepress-theme-hope") 主题。
   * 在内容页，左侧展示文章标题列表、右侧展示当前文章的子标题，这样的排版可读性较好。
 * 2020.08.17 &emsp; 服务方不稳定，新增多线路切换访问。
 * 2020.07.26 &emsp; 购买域名，部署上线。

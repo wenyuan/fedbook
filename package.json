@@ -12,10 +12,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "CC BY-NC 4.0",
   "devDependencies": {
-    "vuepress": "^1.5.3",
-    "vuepress-plugin-one-click-copy": "^1.0.2",
-    "vuepress-theme-hope": "^1.8.1"
+    "vuepress": "^1.8.2",
+    "vuepress-plugin-one-click-copy": "^1.0.5",
+    "vuepress-theme-hope": "^1.19.0"
   }
 }

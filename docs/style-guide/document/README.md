@@ -1,5 +1,6 @@
 ---
 sidebar: auto
+anchorDisplay: false
 ---
 
 # 文档规范

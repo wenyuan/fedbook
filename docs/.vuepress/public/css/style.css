@@ -107,6 +107,10 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 4px;
 }
 
+/* remove padding-top to breadcrumb */
+.theme-default-content:not(.custom) {
+  padding: 0 2.5rem 2rem 2.5rem !important;
+}
 
 /* Comment Link */
 .comment-link {
@@ -139,37 +143,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* RightBar style */
 #anchor {
-  left: calc(100% + 6rem) !important;
+  left: calc(100% + 3.5rem) !important;
 }
 #anchor::-webkit-scrollbar {
   width: 0 !important;
-}
-
-
-/* ScrollBar */
-::-webkit-scrollbar {
-  width: 13px;
-  height: 13px;
-}
-
-::-webkit-scrollbar-track,
-::-webkit-scrollbar-thumb {
-  border-radius: 999px;
-  border: 5px solid transparent;
-}
-
-::-webkit-scrollbar-track {
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, .2) inset;
-}
-
-::-webkit-scrollbar-thumb {
-  min-height: 20px;
-  background-clip: content-box;
-  box-shadow: 0 0 0 5px rgba(0, 0, 0, .2) inset;
-}
-
-::-webkit-scrollbar-corner {
-  background: transparent;
 }
 
 /* SweetAlert */
@@ -229,7 +206,7 @@ h1, h2, h3, h4, h5, h6 {
   .theme-default-content.content__default h2:before {
     content: "";
     border-bottom: 2px solid #2998d1;
-    width: 100%;
+    width: calc(100% - 3.5rem);
     display: block;
     height: 10px;
     position: absolute;
@@ -258,6 +235,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* sidebar */
+.sidebar-heading {
+  font-weight: bold;
+}
+
 a.sidebar-link.active {
-  background: #42affa12;
+  background: #42affa12 !important;
 }

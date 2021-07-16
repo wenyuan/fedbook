@@ -26,9 +26,9 @@ module.exports = config({
     editLinks: true,
     editLinkText: '帮助我们改善此页面！',
     smoothScroll: true,
-    // vuepress-theme-hope params
-    baseLang: 'zh-CN',
+    // vuepress-theme-hope config
     author: 'wenyuan',
+    hostname: 'https://www.fedbook.cn',
     darkmode: 'disable',
     themeColor: false,
     blog: false,
@@ -38,12 +38,17 @@ module.exports = config({
     },
     comment: false,
     copyright: false,
+    git: {
+      timezone: 'Asia/Shanghai'
+    },
     pwa: false,
-    seo: false,
-    sitemap: false,
     copyCode: false,
     photoSwipe: false,
-    breadcrumb: false
+    repoDisplay: false,
+    fullscreen: false,
+    sidebarIcon: false,
+    breadcrumb: false,
+    contributor: false
   },
   plugins: ['one-click-copy']
 })
