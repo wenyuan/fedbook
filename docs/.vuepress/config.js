@@ -14,6 +14,11 @@ module.exports = config({
   markdown: {
     lineNumbers: true
   },
+  locales: {
+    '/': {
+      lang: 'zh-CN'
+    }
+  },
   themeConfig: {
     docsRepo: 'wenyuan/fedbook',
     docsDir: 'docs',
