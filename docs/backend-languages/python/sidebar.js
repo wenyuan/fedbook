@@ -1,7 +1,6 @@
 module.exports = [
   {
-    title: 'Python',
-		path: '/backend-languages/python/',
+    title: 'Python 基础',
     collapsable: false,
     children: [
       {
@@ -53,24 +52,30 @@ module.exports = [
         title: '类成员保护',
         path: '/backend-languages/python/class-access-modifiers',
         collapsable: true
-      },
+      }
+    ]
+  },
+  {
+    title: 'Python 模块',
+    collapsable: false,
+    children: [
       {
-        title: '案例：Python 执行 cmd 命令',
+        title: '使用 subprocess 执行 cmd',
         path: '/backend-languages/python/python-lib-subprocess',
         collapsable: true
       },
       {
-        title: '案例：Telnet 远程控制主机',
+        title: '使用 telnetlib 执行 Telnet',
         path: '/backend-languages/python/python-lib-telnetlib',
         collapsable: true
       },
       {
-        title: '案例：使用 Paramiko 执行 SSH',
+        title: '使用 Paramiko 执行 SSH',
         path: '/backend-languages/python/python-lib-paramiko',
         collapsable: true
       },
       {
-        title: '案例：使用 Fabric 执行 SSH',
+        title: '使用 Fabric 执行 SSH',
         path: '/backend-languages/python/python-lib-fabric',
         collapsable: true
       }

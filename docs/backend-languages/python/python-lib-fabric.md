@@ -1,4 +1,4 @@
-# 案例：使用 Fabric 执行 SSH
+# 使用 Fabric 执行 SSH
 
 ## 关于 Fabric
 

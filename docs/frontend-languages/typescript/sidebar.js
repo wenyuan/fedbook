@@ -1,7 +1,6 @@
 module.exports = [
   {
     title: 'TypeScript',
-		path: '/frontend-languages/typescript/',
     collapsable: false,
     children: [
       {

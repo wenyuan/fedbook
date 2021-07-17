@@ -1,4 +1,4 @@
-# 案例：使用 Paramiko 执行 SSH
+# 使用 Paramiko 执行 SSH
 
 ## 关于 SSH
 

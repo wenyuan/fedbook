@@ -1,7 +1,6 @@
 module.exports = [
   {
     title: 'HTML',
-		path: '/frontend-languages/html/',
     collapsable: false,
     children: [
       {

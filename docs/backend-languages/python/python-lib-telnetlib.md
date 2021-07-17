@@ -1,4 +1,4 @@
-# 案例：Telnet 远程控制主机
+# 使用 telnetlib 执行 Telnet
 
 ## 关于 Telnet
 

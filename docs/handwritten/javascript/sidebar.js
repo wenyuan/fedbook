@@ -1,7 +1,6 @@
 module.exports = [
   {
     title: 'JavaScript 手写函数',
-    path: '/handwritten/javascript/',
     collapsable: false,
     children: [
       {

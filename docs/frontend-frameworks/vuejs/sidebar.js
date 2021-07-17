@@ -1,7 +1,6 @@
 module.exports = [
   {
     title: 'Vue.js',
-    path: '/frontend-frameworks/vuejs/',
     collapsable: false,
     children: [
       {

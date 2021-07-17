@@ -69,9 +69,9 @@ anchorDisplay: false
 
 ## 后端语言 - Python
 
-* 2021.07.15 &emsp; 添加《案例：Python 执行 cmd 命令》章节。
-* 2021.07.14 &emsp; 添加《案例：使用 Fabric 执行 SSH》章节。
-* 2021.07.13 &emsp; 添加《案例：Telnet 远程控制主机》、《案例：使用 Paramiko 执行 SSH》章节。
+* 2021.07.15 &emsp; 添加《使用 subprocess 执行 cmd》章节。
+* 2021.07.14 &emsp; 添加《使用 Fabric 执行 SSH》章节。
+* 2021.07.13 &emsp; 添加《使用 telnetlib 执行 Telnet》、《使用 Paramiko 执行 SSH》章节。
 * 2021.01.16 &emsp; 添加《编译器与解释器》章节。
 * 2021.01.13 &emsp; 添加《类成员保护》章节。
 * 2021.01.12 &emsp; 添加《类和实例》、《类的继承》章节。

@@ -1,7 +1,6 @@
 module.exports = [
   {
     title: '数据结构与算法',
-    path: '/advanced-programming/algorithm/',
     collapsable: false,
     children: [
       {

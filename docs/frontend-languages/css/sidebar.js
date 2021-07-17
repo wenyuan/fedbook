@@ -1,7 +1,6 @@
 module.exports = [
   {
     title: 'CSS',
-		path: '/frontend-languages/css/',
     collapsable: false,
     children: [
 			{

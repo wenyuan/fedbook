@@ -1,4 +1,4 @@
-# 案例：Python 执行 cmd 命令
+# 使用 subprocess 执行 cmd
 
 ## 关于 subprocess
 

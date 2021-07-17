@@ -1,7 +1,6 @@
 module.exports = [
   {
     title: 'JavaScript',
-    path: '/frontend-languages/javascript/',
     collapsable: false,
     children: [
       {

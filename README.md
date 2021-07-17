@@ -140,6 +140,7 @@
 ### 后端语言
 
 * [Python](https://fedbook.cn/backend-languages/python/)
+  * **Python 基础**
   * [编译器与解释器](https://fedbook.cn/backend-languages/python/compiler-and-interpreter/)
   * [语法规范](https://fedbook.cn/backend-languages/python/grammar/)
   * [变量与常量](https://fedbook.cn/backend-languages/python/variables-and-constants/)
@@ -150,10 +151,11 @@
   * [类和实例](https://fedbook.cn/backend-languages/python/class-and-instance/)
   * [类的继承](https://fedbook.cn/backend-languages/python/class-inheritance/)
   * [类成员保护](https://fedbook.cn/backend-languages/python/class-access-modifiers/)
-  * [案例：Python 执行 cmd 命令](https://fedbook.cn/backend-languages/python/python-lib-subprocess/)
-  * [案例：Telnet 远程控制主机](https://fedbook.cn/backend-languages/python/python-lib-telnetlib/)
-  * [案例：使用 Paramiko 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-paramiko/)
-  * [案例：使用 Fabric 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-fabric/)
+  * **Python 模块**
+  * [使用 subprocess 执行 cmd](https://fedbook.cn/backend-languages/python/python-lib-subprocess/)
+  * [使用 telnetlib 执行 Telnet](https://fedbook.cn/backend-languages/python/python-lib-telnetlib/)
+  * [使用 Paramiko 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-paramiko/)
+  * [使用 Fabric 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-fabric/)
   * 未完结，待更新
 
 <p align=right>
