@@ -235,6 +235,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* sidebar */
+.sidebar-heading.clickable.active {
+  font-weight: bold !important;
+}
+
 .sidebar-heading {
   font-weight: bold;
 }
