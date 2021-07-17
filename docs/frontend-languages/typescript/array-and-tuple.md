@@ -1,6 +1,6 @@
-# 数组(Array)和元组(Tuple)
+# 数组和元组
 
-## Array 数组类型
+## 数组类型 array
 
 在 TypeScript 中，数组类型有多种定义方式，比较灵活。
 
@@ -55,9 +55,9 @@ let arr2 = [1, "a"];     // 数组只支持数值和字符串类型的元素
 let list: any[] = [1, 'a', true, { 'name': 'zhangsan' }];
 ```
 
-## Tuple 元组类型
+## 元组类型 tuple
 
-数组合并了相同类型的对象，而元组（Tuple）合并了不同类型的对象。
+数组合并了相同类型的对象，而元组（tuple）合并了不同类型的对象。
 
 定义一对值分别为 `string` 和 `number` 的元组：
 

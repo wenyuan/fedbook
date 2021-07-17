@@ -1,6 +1,6 @@
-# 联合(Union)和字面量(Literal)
+# 联合和字面量
 
-## Union 联合类型
+## 联合类型 union
 
 联合类型（Union Types）表示取值可以为多种类型中的一种。
 
@@ -66,7 +66,7 @@ console.log(myFavoriteNumber.length); // 编译时报错
 > * TypeScript 会在没有明确的指定类型的时候，根据定义时的赋值，推测出一个类型，这就是类型推论。
 > * 如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 any 类型而完全不被类型检查。
 
-## Literal 字面量类型
+## 字面量类型 literal 
 
 字面量类型（Literal Types）表示特定数据就是变量的类型。
 

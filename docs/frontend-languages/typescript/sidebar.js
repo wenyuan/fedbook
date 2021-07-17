@@ -14,25 +14,25 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '数组(Array)和元组(Tuple)',
+        title: '数组和元组',
         path: '/frontend-languages/typescript/array-and-tuple',
         collapsable: true
       },
       {
-        title: '联合(Union)和字面量(Literal)',
+        title: '联合和字面量',
         path: '/frontend-languages/typescript/union-and-literal',
         collapsable: true
       },
       {
-        title: '枚举(Enum)',
+        title: '枚举',
         path: '/frontend-languages/typescript/enum',
         collapsable: true
       },
       {
-        title: 'Any 与 Unknown',
+        title: '任意类型与未知类型',
         path: '/frontend-languages/typescript/any-and-unknow',
         collapsable: true
-      },
+      }
     ]
   }
 ]
