@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'TypeScript',
+    title: 'TypeScript 数据类型',
     collapsable: false,
     children: [
       {
