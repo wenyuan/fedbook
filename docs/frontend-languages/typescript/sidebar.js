@@ -37,6 +37,11 @@ module.exports = [
         title: '空值、未定义和不存在',
         path: '/frontend-languages/typescript/void-undefined-never',
         collapsable: true
+      },
+      {
+        title: '对象类型：接口',
+        path: '/frontend-languages/typescript/interface',
+        collapsable: true
       }
     ]
   }

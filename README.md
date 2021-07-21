@@ -109,6 +109,7 @@
   * [枚举](https://fedbook.cn/frontend-languages/typescript/enum/)
   * [任意类型与未知类型](https://fedbook.cn/frontend-languages/typescript/any-and-unknow/)
   * [空值、未定义和不存在](https://fedbook.cn/frontend-languages/typescript/void-undefined-never/)
+  * [对象类型：接口](https://fedbook.cn/frontend-languages/typescript/interface/)
   * 未完结，待更新
 
 <p align=right>
