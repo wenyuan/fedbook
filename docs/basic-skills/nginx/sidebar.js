@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'Nginx',
+    title: 'Nginx 用法整理',
     collapsable: false,
     children: [
       {
@@ -64,7 +64,18 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '部署方案：前后端分离项目',
+        title: 'Nginx 限流常用模块',
+        path: '/basic-skills/nginx/traffic-limiting-modules',
+        collapsable: true
+      }
+    ]
+  },
+  {
+    title: 'Nginx 部署方案',
+    collapsable: false,
+    children: [
+      {
+        title: 'Nginx 部署前后端分离项目',
         path: '/basic-skills/nginx/practice-in-front-end-separation-project',
         collapsable: true
       },

@@ -179,7 +179,8 @@
   * [Nginx 文件列表功能](https://fedbook.cn/basic-skills/nginx/ngx-http-autoindex-module/)
   * [Nginx 页面安全认证](https://fedbook.cn/basic-skills/nginx/ngx-http-auth-basic-module/)
   * [Nginx 部署 Https 安全认证](https://fedbook.cn/basic-skills/nginx/deploy-https-security-auth/)
-  * [前后端分离项目部署方案](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
+  * [Nginx 限流常用模块](https://fedbook.cn/basic-skills/nginx/traffic-limiting-modules/)
+  * [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
   * 未完结，待更新
 
 <p align=right>

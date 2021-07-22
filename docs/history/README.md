@@ -83,7 +83,8 @@ anchorDisplay: false
 
 ## 必知必会 - Nginx
 
-* 2021.07.11 &emsp; 添加《前后端分离项目部署方案》章节。
+* 2021.07.22 &emsp; 添加《Nginx 限流常用模块》章节。
+* 2021.07.11 &emsp; 添加《Nginx 部署前后端分离项目》章节。
 * 2021.07.10 &emsp; 添加《Nginx 安全访问控制》、《Nginx 文件列表功能》、《Nginx 页面安全认证》、《Nginx 部署 Https 安全认证》章节。
 * 2021.07.04 &emsp; 添加《Nginx 配置文件详解》、《Nginx 配置文件模板》章节。
 * 2021.07.03 &emsp; 添加《Nginx 设置开机自启》章节。
