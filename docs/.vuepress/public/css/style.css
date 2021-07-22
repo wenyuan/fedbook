@@ -29,6 +29,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 0.4rem !important;
 }
 
+.navbar .site-name {
+  font-size: 1.3rem !important;
+  font-weight: 600;
+}
+
 .home .features {
   /*display: none !important;*/
 }
@@ -118,6 +123,7 @@ h1, h2, h3, h4, h5, h6 {
   /*margin-bottom: 8px;*/
   display: inline-block;
 }
+
 .comment-link a {
   color: #4e6e8e;
 }
@@ -145,6 +151,7 @@ h1, h2, h3, h4, h5, h6 {
 #anchor {
   left: calc(100% + 3.5rem) !important;
 }
+
 #anchor::-webkit-scrollbar {
   width: 0 !important;
 }
@@ -177,7 +184,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* h2 style */
-@media screen and (min-width:700px) {
+@media screen and (min-width: 700px) {
   .theme-default-content.content__default h2 {
     display: inline-flex;
     align-items: center;
