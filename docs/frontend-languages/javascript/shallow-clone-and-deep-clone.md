@@ -16,13 +16,13 @@
 
 在浅克隆中，原始值的克隆没问题，只是值的拷贝，不会出现你改我改的问题。但是引用值的克隆，就会出现你改我也改的问题，因为浅层克隆的是地址，即指向的是同一空间。
 
-[手写实现浅克隆](/handwritten/javascript/3-实现浅克隆-shallow-clone/)
+[手写实现浅克隆](/handwritten/javascript/实现浅克隆-shallow-clone/)
 
 ## 深克隆概念
 
 进行深克隆之后，对于引用值的克隆问题就能解决了，因为在深克隆之后，值各自独立，互不影响。
 
-[手写实现深克隆](/handwritten/javascript/4-实现深克隆-deep-clone/)
+[手写实现深克隆](/handwritten/javascript/实现深克隆-deep-clone/)
 
 ## 应用实例
 
