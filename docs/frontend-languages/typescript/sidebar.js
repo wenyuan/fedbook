@@ -42,6 +42,11 @@ module.exports = [
         title: '对象类型：接口',
         path: '/frontend-languages/typescript/interface',
         collapsable: true
+      },
+      {
+        title: '函数类型',
+        path: '/frontend-languages/typescript/function-type',
+        collapsable: true
       }
     ]
   }
