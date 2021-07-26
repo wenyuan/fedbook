@@ -111,6 +111,7 @@
   * [空值、未定义和不存在](https://fedbook.cn/frontend-languages/typescript/void-undefined-never/)
   * [对象类型：接口](https://fedbook.cn/frontend-languages/typescript/interface/)
   * [函数类型](https://fedbook.cn/frontend-languages/typescript/function-type/)
+  * [泛型](https://fedbook.cn/frontend-languages/typescript/generics/)
   * 未完结，待更新
 
 <p align=right>

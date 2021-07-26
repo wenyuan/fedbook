@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'TypeScript 数据类型',
+    title: 'TypeScript 基础',
     collapsable: false,
     children: [
       {
@@ -46,6 +46,11 @@ module.exports = [
       {
         title: '函数类型',
         path: '/frontend-languages/typescript/function-type',
+        collapsable: true
+      },
+      {
+        title: '泛型',
+        path: '/frontend-languages/typescript/generics',
         collapsable: true
       }
     ]
