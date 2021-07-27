@@ -44,7 +44,7 @@ anchorDisplay: false
 
 ## 前端语言 - TypeScript
 
-* 2021.07.21 &emsp; 添加《泛型》章节。
+* 2021.07.26 &emsp; 添加《泛型》章节。
 * 2021.07.21 &emsp; 添加《函数类型》章节。
 * 2021.07.21 &emsp; 添加《对象类型：接口》章节。
 * 2021.07.17 &emsp; 添加《空值、未定义和不存在》章节。
@@ -73,6 +73,7 @@ anchorDisplay: false
 
 ## 后端语言 - Python
 
+* 2021.07.27 &emsp; 添加《使用 smtplib 发送电子邮件》章节。
 * 2021.07.15 &emsp; 添加《使用 subprocess 执行 cmd》章节。
 * 2021.07.14 &emsp; 添加《使用 Fabric 执行 SSH》章节。
 * 2021.07.13 &emsp; 添加《使用 telnetlib 执行 Telnet》、《使用 Paramiko 执行 SSH》章节。

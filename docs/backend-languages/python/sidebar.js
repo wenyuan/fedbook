@@ -60,6 +60,11 @@ module.exports = [
     collapsable: false,
     children: [
       {
+        title: '使用 smtplib 发送电子邮件',
+        path: '/backend-languages/python/python-lib-smtplib',
+        collapsable: true
+      },
+      {
         title: '使用 subprocess 执行 cmd',
         path: '/backend-languages/python/python-lib-subprocess',
         collapsable: true
