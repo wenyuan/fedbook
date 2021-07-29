@@ -97,10 +97,10 @@ from email.mime.text import MIMEText
 # ----- 需要修改的参数 -----
 # email相关
 sender = 'fedbook@qq.com'
-password = 'hjenixkwghseowyxnclh12yx8je9l2au'
+password = '******'
 smtp_server = 'smtp.qq.com'
 smtp_port = 465
-receivers = ['recever1@163.com', 'recever1@qq.com']
+receivers = ['recever1@163.com', 'recever2@qq.com']
 # ------------------------
 
 
@@ -154,10 +154,10 @@ from email.mime.text import MIMEText
 # ----- 需要修改的参数 -----
 # email相关
 sender = 'fedbook@qq.com'
-password = 'hjenixkwghseowyxnclh12yx8je9l2au'
+password = '******'
 smtp_server = 'smtp.qq.com'
 smtp_port = 465
-receivers = ['recever1@163.com', 'recever1@qq.com']
+receivers = ['recever1@163.com', 'recever2@qq.com']
 # ------------------------
 
 
@@ -217,10 +217,10 @@ from email.mime.multipart import MIMEMultipart
 # ----- 需要修改的参数 -----
 # email相关
 sender = 'fedbook@qq.com'
-password = 'hjenixkwghseowyxnclh12yx8je9l2au'
+password = '******'
 smtp_server = 'smtp.qq.com'
 smtp_port = 465
-receivers = ['recever1@163.com', 'recever1@qq.com']
+receivers = ['recever1@163.com', 'recever2@qq.com']
 # ------------------------
 
 
