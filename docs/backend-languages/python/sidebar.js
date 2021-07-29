@@ -60,6 +60,11 @@ module.exports = [
     collapsable: false,
     children: [
       {
+        title: '使用 xlrd 处理 Excel',
+        path: '/backend-languages/python/python-lib-xlrd',
+        collapsable: true
+      },
+      {
         title: '使用 smtplib 发送电子邮件',
         path: '/backend-languages/python/python-lib-smtplib',
         collapsable: true

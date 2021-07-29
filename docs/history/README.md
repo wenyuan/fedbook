@@ -73,6 +73,7 @@ anchorDisplay: false
 
 ## 后端语言 - Python
 
+* 2021.07.29 &emsp; 添加《使用 xlrd 处理 Excel》章节。
 * 2021.07.27 &emsp; 添加《使用 smtplib 发送电子邮件》章节。
 * 2021.07.15 &emsp; 添加《使用 subprocess 执行 cmd》章节。
 * 2021.07.14 &emsp; 添加《使用 Fabric 执行 SSH》章节。
