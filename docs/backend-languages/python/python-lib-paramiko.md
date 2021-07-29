@@ -69,7 +69,7 @@ def do_ssh(host, username, password, commands):
 if __name__ == "__main__":
     host = '192.168.10.x'
     username = 'admin'
-    password = 'password'
+    password = '******'
     commands = ['hostname', 'ls']
     do_ssh(host, username, password, commands)
 ```

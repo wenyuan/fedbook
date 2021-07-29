@@ -44,7 +44,7 @@ def do_ssh(host, username, password, commands):
 if __name__ == "__main__":
     host = '192.168.10.x'
     username = 'admin'
-    password = 'password'
+    password = '******'
     commands = ['pwd', 'ls']
     do_ssh(host, username, password, commands)
 ```
@@ -84,7 +84,7 @@ from fabric import task
 
 host_ip = '192.168.10.xx'  # 服务器地址
 user_name = 'root'         # 服务器用户名
-password = '****'          # 服务器密码
+password = '******'        # 服务器密码
 cmd = 'date'               # Shell 命令，查询服务器上的时间
 
 @task

@@ -65,7 +65,7 @@ def do_telnet(host, username, password, commands):
 if __name__ == "__main__":
     host = '192.168.10.x'
     username = 'admin'
-    password = 'password'
+    password = '******'
     commands = ['display version', 'display interface description Vlanif']
     do_telnet(host, username, password, commands)
 ```
