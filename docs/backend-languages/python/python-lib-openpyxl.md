@@ -165,7 +165,7 @@ if __name__ == "__main__":
   <p style="text-align: center; color: #888;">（使用 openpyxl 从 Excel 读取数据）</p>
 </div>
 
-## 常用 API
+## 常用读取 API
 
 接下来列举通过 openpyxl 读写 Excel 时常用的 API。
 
@@ -210,7 +210,7 @@ cell.value 获取格子中的值；
 
 workbook = load_workbook(filename="test.xlsx")
 sheet = workbook.active
-print(sheet)
+
 cell1 = sheet["A1"]
 cell2 = sheet["C11"]
 print(cell1.value, cell2.value)
@@ -221,9 +221,9 @@ print(cell1.value, cell2.value)
 ```python
 workbook = load_workbook(filename="test.xlsx")
 sheet = workbook.active
-print(sheet)
-cell1 = sheet.cell(row = 1,column = 1)
-cell2 = sheet.cell(row = 11,column = 3)
+
+cell1 = sheet.cell(row=1,column=1)
+cell2 = sheet.cell(row=11,column=3)
 print(cell1.value, cell2.value)
 ```
 
@@ -238,7 +238,7 @@ print(cell1.value, cell2.value)
 
 workbook = load_workbook(filename="test.xlsx")
 sheet = workbook.active
-print(sheet)
+
 cell1 = sheet["A1"]
 cell2 = sheet["C11"]
 print(cell1.value, cell1.row, cell1.column, cell1.coordinate)
@@ -252,6 +252,7 @@ print(cell2.value, cell2.row, cell2.column, cell2.coordinate)
 ```python
 workbook = load_workbook(filename="test.xlsx")
 sheet = workbook.active
+
 # 获取 A1:C2 区域的值
 cells = sheet["A1:C2"]
 print(cells)
@@ -268,18 +269,86 @@ for row in cells:
 * `.iter_rows()` 和 `.iter_cols()` 方式
 
 ```python
-workbook = load_workbook(filename = "test.xlsx")
+workbook = load_workbook(filename="test.xlsx")
 sheet = workbook.active
 
 # 按行获取值
-for row in sheet.iter_rows(min_row=2, max_row=5, min_col=1, max_col=2):
-    for col in row:
-        print(col.value)
+for row_item in sheet.iter_rows(min_row=2, max_row=5, min_col=1, max_col=2):
+    for col_item in row_item:
+        print(col_item.value)
 
 # 按列获取值
-for col in sheet.iter_cols(min_row=2, max_row=5, min_col=1, max_col=2):
-    for row in col:
-        print(row.value)
+for col_item in sheet.iter_cols(min_row=2, max_row=5, min_col=1, max_col=2):
+    for row_item in col_item:
+        print(row_item.value)
+```
+
+* `sheet.rows` 获取所有行
+
+```python
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+
+for row_item in sheet.rows:
+    print(row_item)
+```
+
+## 常用写入 API
+
+### 向指定单元格写入数据并保存
+
+```python
+"""
+注意：下方代码将"A1"单元格的数据改为了"哈喽"，并另存为"哈喽.xlsx"文件。
+如果我们保存的时候，不修改表名，相当于直接修改源文件。
+"""
+
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+
+sheet["A1"] = "哈喽"  # 这句代码也可以改为 cell = sheet["A1"] cell.value = "哈喽"
+workbook.save(filename = "哈喽.xlsx")
+```
+
+### 向表格中插入行数据
+
+* `.append()` 方式：会在表格已有的数据后面，追加新数据（按行插入）；
+* 这个操作很有用，爬虫得到的数据，可以使用该方式保存成 Excel 文件。
+
+```python
+"""
+下方代码会将 data 中的数据逐行追加到原表格数据后面
+"""
+
+workbook = load_workbook(filename = "test.xlsx")
+sheet = workbook.active
+
+data = [
+    ["唐僧", "男", "180cm"],
+    ["孙悟空", "男", "188cm"],
+    ["猪八戒", "男", "175cm"],
+    ["沙僧", "男", "176cm"]
+]
+for row in data:
+    sheet.append(row)
+workbook.save(filename = "test.xlsx")
+```
+
+### 使用 Excel 函数公式(很有用)
+
+```python
+"""
+这是在 Excel 中输入的公式：
+=IF(RIGHT(C2,2)="cm",C2,SUBSTITUTE(C2,"m","")*100&"cm")
+"""
+
+workbook = load_workbook(filename = "test.xlsx")
+sheet = workbook.active
+
+sheet["D1"] = "标准身高"
+for i in range(2, 16):
+    sheet["D{}".format(i)] = '=IF(RIGHT(C{},2)="cm",C{},SUBSTITUTE(C{},"m","")*100&"cm")'.format(i, i, i)
+workbook.save(filename = "test.xlsx")
 ```
 
 ## 参考资料
