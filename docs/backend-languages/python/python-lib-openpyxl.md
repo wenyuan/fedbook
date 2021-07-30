@@ -136,12 +136,12 @@ def read_excel(path, sheet_name):
 
     # sheet.rows 为表格内的每一行数据
     # 循环获取表格内的每一行数据
-    for index, row in enumerate(sheet.rows):
+    for row_index, row_item in enumerate(sheet.rows):
         # 定义一个空的数组用来存放每一行数据单元格的数据
         current_row = []
-        for col_index, col_value in enumerate(row):
+        for col_index, col_item in enumerate(row_item):
             # 获取单元格数据 追加到 return_row
-            current_row.append(col_value.value)
+            current_row.append(col_item.value)
         # 把每一行数据追加到结果 return_data 中，最后输出
         result.append(current_row)
 
