@@ -18,7 +18,7 @@ sudo pip install xlrd xlwt xlutils
 
 ## 写入 Excel
 
-下面是一个使用 xlwt 写入 Excel 的代码示例：
+下面是一个使用 xlwt 写入数据到 Excel 的代码示例：
 
 ```python
 #!/usr/bin/env python
@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
 ## 读取 Excel
 
-下面是一个使用 xlrd 读取 Excel 的代码示例：
+下面是一个使用 xlrd 读取 Excel 数据的代码示例：
 
 ```python
 #!/usr/bin/env python

@@ -65,6 +65,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '使用 openpyxl 处理新版本 Excel',
+        path: '/backend-languages/python/python-lib-openpyxl',
+        collapsable: true
+      },
+      {
         title: '使用 smtplib 发送电子邮件',
         path: '/backend-languages/python/python-lib-smtplib',
         collapsable: true
