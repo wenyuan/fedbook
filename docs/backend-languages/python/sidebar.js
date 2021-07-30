@@ -60,7 +60,7 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: '使用 xlrd 处理 Excel',
+        title: '使用 xlrd 处理旧版本 Excel',
         path: '/backend-languages/python/python-lib-xlrd',
         collapsable: true
       },

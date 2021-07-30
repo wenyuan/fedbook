@@ -156,7 +156,7 @@
   * [类的继承](https://fedbook.cn/backend-languages/python/class-inheritance/)
   * [类成员保护](https://fedbook.cn/backend-languages/python/class-access-modifiers/)
   * **Python 模块**
-  * [使用 xlrd 处理 Excel](https://fedbook.cn/backend-languages/python/python-lib-xlrd/)
+  * [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-languages/python/python-lib-xlrd/)
   * [使用 smtplib 发送电子邮件](https://fedbook.cn/backend-languages/python/python-lib-smtplib/)
   * [使用 subprocess 执行 cmd](https://fedbook.cn/backend-languages/python/python-lib-subprocess/)
   * [使用 telnetlib 执行 Telnet](https://fedbook.cn/backend-languages/python/python-lib-telnetlib/)
