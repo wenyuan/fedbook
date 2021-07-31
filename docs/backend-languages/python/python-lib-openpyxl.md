@@ -2,7 +2,7 @@
 
 ## 关于 openpyxl
 
-openpyxl 是读写新版本 Excel（`.xlsx`） 的第三方库，是一个比较综合的工具，能够同时读取和修改 Excel 文档。支持的格式有 `.xlsx` / `.xlsm` / `.xltx` / `.xltm`。
+openpyxl 是读写新版本 Excel（`.xlsx`） 的第三方库，是一个比较综合的工具，能够同时读取和修改 Excel 文档。支持的格式有 `.xlsx`、`.xlsm`、`.xltx` 和 `.xltm`。
 
 安装比较简单，直接用 pip 工具即可，安装命令如下：
 
@@ -197,6 +197,15 @@ print(sheet)
 sheet.dimensions
 ```
 
+### 获取最大行、最大列
+
+注意：获取到的最大行与最大列都是基于起始索引 1 计算的。
+
+```python
+sheet.max_row     # 最大行
+sheet.max_column  # 最大列
+```
+
 ### 获取表格内某个格子的数据
 
 * `sheet["A1"]` 方式
@@ -307,12 +316,12 @@ workbook = load_workbook(filename="test.xlsx")
 sheet = workbook.active
 
 sheet["A1"] = "哈喽"  # 这句代码也可以改为 cell = sheet["A1"] cell.value = "哈喽"
-workbook.save(filename = "哈喽.xlsx")
+workbook.save(filename="哈喽.xlsx")
 ```
 
 ### 向表格中插入行数据
 
-* `.append()` 方式：会在表格已有的数据后面，追加新数据（按行插入）；
+* 使用 `.append()` 方法：会在表格已有的数据后面，追加新数据（按行插入）；
 * 这个操作很有用，爬虫得到的数据，可以使用该方式保存成 Excel 文件。
 
 ```python
@@ -320,7 +329,7 @@ workbook.save(filename = "哈喽.xlsx")
 下方代码会将 data 中的数据逐行追加到原表格数据后面
 """
 
-workbook = load_workbook(filename = "test.xlsx")
+workbook = load_workbook(filename="test.xlsx")
 sheet = workbook.active
 
 data = [
@@ -331,7 +340,7 @@ data = [
 ]
 for row in data:
     sheet.append(row)
-workbook.save(filename = "test.xlsx")
+workbook.save(filename="test.xlsx")
 ```
 
 ### 使用 Excel 函数公式(很有用)
@@ -342,14 +351,293 @@ workbook.save(filename = "test.xlsx")
 =IF(RIGHT(C2,2)="cm",C2,SUBSTITUTE(C2,"m","")*100&"cm")
 """
 
-workbook = load_workbook(filename = "test.xlsx")
+workbook = load_workbook(filename="test.xlsx")
 sheet = workbook.active
 
 sheet["D1"] = "标准身高"
 for i in range(2, 16):
     sheet["D{}".format(i)] = '=IF(RIGHT(C{},2)="cm",C{},SUBSTITUTE(C{},"m","")*100&"cm")'.format(i, i, i)
-workbook.save(filename = "test.xlsx")
+workbook.save(filename="test.xlsx")
 ```
+
+### 插入空行和空列
+
+使用 `.insert_cols()` 和 `.insert_rows()` 方法：
+
+* `.insert_cols(idx=数字编号, amount=要插入的列数)`，插入的位置是在 idx 列数的左侧插入；
+* `.insert_rows(idx=数字编号, amount=要插入的行数)`，插入的位置是在 idx 行数的下方插入。
+
+```python
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+
+sheet.insert_cols(idx=4,amount=2)
+sheet.insert_rows(idx=5,amount=4)
+workbook.save(filename="test.xlsx")
+```
+
+### 删除指定行和列
+
+使用 `.delete_rows()` 和 `.delete_cols()` 方法：
+
+* `.delete_rows(idx=数字编号, amount=要删除的行数)`
+* `.delete_cols(idx=数字编号, amount=要删除的列数)`
+
+```python
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+
+# 删除第一列，第一行
+sheet.delete_cols(idx=1)
+sheet.delete_rows(idx=1)
+workbook.save(filename="test.xlsx")
+```
+
+### 移动指定单元格
+
+使用 `.move_range("数据区域",rows=,cols=)` 方法：正整数为向下或向右、负整数为向左或向上。
+
+```python
+# 向左移动两列，向下移动两行
+sheet.move_range("C1:D4", rows=2, cols=-1)
+```
+
+### 创建新的 Sheet 表
+
+使用 `.create_sheet("新的Sheet名")` 方法。
+
+```python
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+
+workbook.create_sheet("一个新的Sheet")
+print(workbook.sheetnames)
+workbook.save(filename="test.xlsx")
+```
+
+### 删除指定 Sheet 表
+
+使用 `.remove("Sheet名")` 方法。
+
+```python
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+print(workbook.sheetnames)
+
+# 这个相当于通过名字来激活指定 Sheet 表，激活状态下，才可以操作
+sheet = workbook['一个新的Sheet']
+workbook.remove(sheet)
+
+print(workbook.sheetnames)
+workbook.save(filename="test.xlsx")
+```
+
+### 复制一个 Sheet 表到另外一份 Excel
+
+使用 `.copy_worksheet()` 方法：复制某个 Excel 表中的 Sheet 表，然后将文件存储到另外一个 Excel 中（追加到最后）。
+
+```python
+workbook = load_workbook(filename="test_src.xlsx")
+sheet = workbook.active
+print("test_src.xlsx 中有这几个 Sheet 表：", workbook.sheetnames)
+
+sheet = workbook['姓名']  
+workbook.copy_worksheet(sheet)
+workbook.save(filename="test_dst.xlsx")
+```
+
+### 修改 Sheet 表的名称
+
+使用 `.title = "新的sheet表名"`。
+
+```python
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+print(sheet)
+
+sheet.title = "我是修改后的sheet名"
+print(sheet)
+```
+
+### 创建新的 Excel 文件
+
+```python
+from openpyxl import Workbook
+
+workbook = Workbook()
+sheet = workbook.active
+sheet.title = "表格1"
+workbook.save(filename="新建的Excel")
+```
+
+### 冻结窗口
+
+> 冻结窗口以后，滑动垂直/水平滚动条，该单元格的位置不会改变。
+
+使用 `.freeze_panes = "单元格"` 方法：需要确保指定的单元格不在第一行，因为 `freeze_panes` 将冻结给定单元格上方的行和左侧的列。
+
+```python
+"""
+sheet.freeze_panes = "B1"  # 冻结第一列
+sheet.freeze_panes = "A2"  # 冻结第一行
+sheet.freeze_panes = "B2"  # 同时冻结第一行和第一列
+"""
+
+workbook=load_workbook(filename="test.xlsx")
+sheet = workbook.active
+
+sheet.freeze_panes = "A2"  # 冻结第一行
+workbook.save(filename="test.xlsx")
+```
+
+### 给表格添加筛选器
+
+使用 `sheet.auto_filter.ref` 方法。
+
+* `.auto_filter.ref = sheet.dimension`：给所有字段添加筛选器；
+* `.auto_filter.ref = "A1"`：给 A1 这个格子添加筛选器，就是给第一列添加筛选器。
+
+```python
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+
+sheet.auto_filter.ref = sheet["A1"]
+workbook.save(filename="test.xlsx")
+```
+
+## 常用格式化 API
+
+### 修改字体样式
+
+* `Font(name=字体名称, size=字体大小, bold=是否加粗, italic=是否斜体, color=字体颜色)`
+
+其中，color 是 RGB 的 16 进制表示。
+
+```python
+from openpyxl.styles import Font
+from openpyxl import load_workbook
+
+
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+cell = sheet["A1"]
+font = Font(name="微软雅黑",size=20,bold=True,italic=True,color="FF0000")
+cell.font = font
+workbook.save(filename = "花园.xlsx")
+```
+
+### 获取单元格的字体样式
+
+```python
+from openpyxl.styles import Font
+from openpyxl import load_workbook
+
+
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+cell = sheet["A2"]
+font = cell.font
+print(font.name, font.size, font.bold, font.italic, font.color)
+```
+
+### 设置对齐样式
+
+* `Alignment(horizontal=水平对齐模式, vertical=垂直对齐模式, text_rotation=旋转角度, wrap_text=是否自动换行)`
+  * 水平对齐模式：'distributed'，'justify'，'center'，'leftfill'， 'centerContinuous'，'right'，'general'。
+  * 垂直对齐模式：'bottom'，'distributed'，'justify'，'center'，'top'。
+
+```python
+from openpyxl.styles import Alignment
+from openpyxl import load_workbook
+
+
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+cell = sheet["A1"]
+alignment = Alignment(horizontal="center", vertical="center", text_rotation=45, wrap_text=True)
+cell.alignment = alignment
+workbook.save(filename ="test.xlsx")
+```
+
+### 设置边框样式
+
+* `Side(style=边线样式, color=边线颜色)` 和 `Border(left=左边线样式, right=右边线样式, top=上边线样式, bottom=下边线样式)`
+  * style 参数：'double', 'mediumDashDotDot', 'slantDashDot', 'dashDotDot', 'dotted', 'hair', 'mediumDashed, 'dashed', 'dashDot', 'thin', 'mediumDashDot', 'medium', 'thick'
+
+```python
+from openpyxl.styles import Side, Border
+from openpyxl import load_workbook
+
+
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+cell = sheet["D6"]
+side1 = Side(style="thin", color="FF0000")
+side2 = Side(style="thick", color="FFFF00")
+border = Border(left=side1, right=side1, top=side2, bottom=side2)
+cell.border = border
+workbook.save(filename="test.xlsx")
+```
+
+### 设置填充样式
+
+* `PatternFill(fill_type=填充样式，fgColor=填充颜色）`
+* `GradientFill(stop=(渐变颜色1，渐变颜色2……))`
+
+```python
+from openpyxl.styles import PatternFill,GradientFill
+from openpyxl import load_workbook
+
+
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+cell_b9 = sheet["B9"]
+pattern_fill = PatternFill(fill_type="solid",fgColor="99ccff")
+cell_b9.fill = pattern_fill
+cell_b10 = sheet["B10"]
+gradient_fill = GradientFill(stop=("FFFFFF","99ccff","000000"))
+cell_b10.fill = gradient_fill
+workbook.save(filename="test.xlsx")
+```
+
+### 设置行高和列宽
+
+* `.row_dimensions[行编号].height = 行高`
+* `.column_dimensions[列编号].width = 列宽`
+
+```python
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+# 设置第1行的高度
+sheet.row_dimensions[1].height = 50
+# 设置B列的宽度
+sheet.column_dimensions["B"].width = 20
+workbook.save(filename="test.xlsx")
+
+"""
+也可以设置整个 Sheet 表的行高和列宽：
+sheet.row_dimensions.height = 50
+sheet.column_dimensions.width = 30
+"""
+```
+
+### 合并单元格
+
+* `.merge_cells(待合并的格子编号)`
+* `.merge_cells(start_row=起始行号，start_column=起始列号，end_row=结束行号，end_column=结束列号)`
+
+```python
+workbook = load_workbook(filename="test.xlsx")
+sheet = workbook.active
+sheet.merge_cells("C1:D2")
+sheet.merge_cells(start_row=7, start_column=1, end_row=8, end_column=3)
+workbook.save(filename="test.xlsx")
+```
+
+也可以取消合并单元格，用法一致。
+
+* `.unmerge_cells(待合并的格子编号)`
+* `.unmerge_cells(start_row=起始行号，start_column=起始列号，end_row=结束行号，end_column=结束列号)`
 
 ## 参考资料
 

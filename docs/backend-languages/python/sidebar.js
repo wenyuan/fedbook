@@ -57,7 +57,7 @@ module.exports = [
   },
   {
     title: 'Python 模块',
-    collapsable: false,
+    collapsable: true,
     children: [
       {
         title: '使用 xlrd 处理旧版本 Excel',
