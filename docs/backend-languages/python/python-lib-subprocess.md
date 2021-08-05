@@ -56,6 +56,8 @@ def exec_without_block():
 为了让主程序等待子进程完成后再继续往下执行，我们必须调用 Popen 对象的 `wait()` 方法，这样父进程才会等待（也就是阻塞 block）。
 
 ```python
+import subprocess
+
 def exec_with_block():
     child = subprocess.Popen(['ping -c 4 www.baidu.com'], shell=True)
     child.wait()
@@ -68,6 +70,8 @@ def exec_with_block():
 我们可以在 Popen() 建立子进程的时候改变标准输入、标准输出和标准错误，从而获取执行结果，如下例子。
 
 ```python
+import subprocess
+
 # 获取命令执行结果
 def get_exec_result():
     child = subprocess.Popen(['cat /etc/issue'],
