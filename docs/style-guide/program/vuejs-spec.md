@@ -7,6 +7,13 @@
 * JavaScript 语句后不加分号
 * 缩进使用两个空格
 
+市面上常用的命名规范：
+
+* `camelCase`（小驼峰式命名法 —— 首字母小写）
+* `PascalCase`（大驼峰式命名法 —— 首字母大写）
+* `kebab-case`（短横线连接式）
+* `Snake`（下划线连接式）
+
 ## 工程目录安排
 
 * 全局通用的组件放在 `/src/components/` 下。
@@ -26,14 +33,14 @@ src/
 ├── filters                        # 全局公共过滤器
 └── views                          # 页面/视图
     ├── login
-    │   ├── components             # 私有组件
-    │   └── index.vue
+    │         ├── components             # 私有组件
+    │         └── index.vue
     └── profile
-        ├── components             # 私有组件
-        └── index.vue
+              ├── components             # 私有组件
+              └── index.vue
 ```
 
-## 项目文件命名规范
+## 项目文件命名
 
 ### 项目名
 
@@ -41,7 +48,7 @@ src/
 
 ### 目录名
 
-**有复数结构时，要采用复数命名法**。例如：docs、assets、components、directives、mixins、utils、views。
+有复数结构时，要采用复数命名法。例如：`docs`、`assets`、`components`、`directives`、`mixins`、`utils`、`views`。
 
 ### 图像文件名
 
@@ -92,11 +99,61 @@ pic_TV.jpg
 
 > 上述规则可以快速记忆为「静态文件下划线，编译文件短横线」。
 
-## Vue 组件命名规范
+## Vue 文件夹命名
+
+### 位于 `components/` 下的直接子文件夹
+
+* 代表着这类模块的类别。
+* 由名词组成（例如：`Charts/`）。
+* 最好只有一个单词，特殊情况可例外（good: `Car/`，`Order/`，`Cart/`）（bad: `CarInfo/`，`CarPage/`）。
+* 如果有两个以上单词，采用 PascalBase 风格（例如：`BackToTop/`）
+
+### 位于 `views/` 下的文件夹和其它文件夹
+
+* 代表着页面的名字，或者类名。
+* 由名词组成（例如：`profile/`）。
+* 如果有两个以上单词，采用 kebab-case 的风格（例如：`error-page/`）。
+
+例如：
+
+```bash
+src/
+├── App.vue
+├── assets
+├── main.js
+├── components
+│   ├── BackToTop             # 通用组件的文件夹
+│   └── Charts                # 通用组件的文件夹
+│       ├── Keyboard.vue
+│       ├── LineMarker.vue
+│       ├── MixChart.vue
+│       └── mixins            # 其它文件夹（不是 components/ 的直接子文件夹）
+├── directive
+│   ├── clipboard             # 其它文件夹
+│   └── permission            # 其它文件夹
+├── filters
+└── views
+    ├── charts                # 视图组件的文件夹
+    ├── clipboard             # 视图组件的文件夹
+    ├── dashboard             # 视图组件的文件夹
+    │   ├── admin             # 视图组件的文件夹
+    │   │   ├── components
+    │   │   └── index.vue
+    │   ├── editor            # 视图组件的文件夹
+    │   │   └── index.vue
+    │   └── index.vue
+    └── error-page            # 视图组件的文件夹
+        ├── 401.vue
+        └── 404.vue
+```
+
+## Vue 组件命名
 
 ### 单文件组件名
 
 文件扩展名为 `.vue` 的 `single-file components`（单文件组件）。单文件组件名应该始终是**单词大写开头**（PascalCase）。
+
+推荐：
 
 ```bash
 src/
@@ -111,10 +168,21 @@ src/
 
 比如，头部和侧边栏组件几乎在每个页面都会使用，不接受 prop，该组件是专门为该应用所定制的。
 
+推荐：
+
 ```bash
 components/
 ├── TheHeading.vue
 ├── TheSidebar.vue
+```
+
+不推荐：
+
+```bash
+components/
+├── Heading.vue
+├── MySidebar.vue
+
 ```
 
 ### 基础组件名
@@ -122,9 +190,11 @@ components/
 > 基础组件：不包含业务，独立、具体功能的基础组件，比如**日期选择器**、**模态框**等。
 > 这类组件作为项目的基础控件，会被大量使用，因此组件的 API 进行过高强度的抽象，可以通过不同配置实现不同的功能。
 
-应用特定样式和约定的基础组件（也就是展示类的、无逻辑的或无状态、不掺杂业务逻辑的组件）应该全部以一个特定的前缀开头 —— Base。
+应用特定样式和约定的基础组件（也就是展示类的、无逻辑的或无状态、不掺杂业务逻辑的组件）应该全部以一个特定的前缀开头，比如 `Base`、`App` 或 `V`。
 
 **基础组件在一个页面内可使用多次，在不同页面内也可复用，是高可复用组件**。
+
+推荐：
 
 ```bash
 components/
@@ -133,7 +203,16 @@ components/
 ├── BaseIcon.vue
 ```
 
-### 业务组件
+不推荐：
+
+```bash
+components/
+├── MyButton.vue
+├── VueTable.vue
+├── Icon.vue
+```
+
+### 业务组件名
 
 > 业务组件：它不像基础组件只包含某个功能，而是在业务中被多个页面复用的（具有可复用性）。
 > 它与基础组件的区别是：业务组件只在当前项目中会用到，不具有通用性，而且会包含一些业务，比如数据请求；而基础组件不含业务，在任何项目中都可以使用，功能单一，比如一个具有数据校验功能的输入框。
@@ -142,6 +221,8 @@ components/
 
 业务组件在一个页面内比如：某个页面内有一个卡片列表，而样式和逻辑跟业务紧密相关的卡片就是业务组件。
 
+推荐：
+
 ```bash
 components/
 ├── CustomCard.vue
@@ -149,7 +230,11 @@ components/
 
 ### 紧密耦合的组件名
 
-**和父组件紧密耦合的子组件应该以父组件名作为前缀命名**。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
+该类组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
+
+**和父组件紧密耦合的子组件一般以父组件名作为前缀命名**。
+
+推荐：
 
 ```bash
 components/
@@ -158,9 +243,22 @@ components/
 ├── TodoListItemButton.vue
 ```
 
+不推荐：
+
+```bash
+components/
+├── TodoList.vue
+├── ItemForTodoList.vue
+├── ButtonForTodoListItem.vue
+```
+
 ### 组件名中单词顺序
 
-**组件名应该以高级别的（通常是一般化描述的）单词开头，以描述性的修饰词结尾**。因为编辑器通常会按字母顺序组织文件，所以现在组件之间的重要关系一目了然。如下组件主要是用于搜索和设置功能。
+**组件名应该以高级别的（通常是一般化描述的）单词开头，以描述性的修饰词结尾**。因为编辑器通常会按字母顺序组织文件，所以现在组件之间的重要关系一目了然。
+
+这个表达比较抽象，下面以搜索和设置功能的组件为例，解释什么叫「高级别」。
+
+推荐：
 
 ```bash
 components/
@@ -172,11 +270,25 @@ components/
 ├── SettingsCheckboxLaunchOnStartup.vue
 ```
 
+不推荐：
+
+```bash
+components/
+├── ClearSearchButton.vue
+├── ExcludeFromSearchInput.vue
+├── LaunchOnStartupCheckbox.vue
+├── RunSearchButton.vue
+├── SearchInput.vue
+├── TermsCheckbox.vue
+```
+
 还有另一种多级目录的方式，把所有的搜索组件放到 `search/` 目录，把所有的设置组件放到 `settings/` 目录。我们只推荐在非常大型（如有 100+ 个组件）的应用下才考虑这么做，因为在多级目录间找来找去，要比在单个 components 目录下滚动查找花费的精力更多。
 
 ### 组件名使用完整单词
 
-**组件名应该倾向于完整单词而不是缩写**。编辑器中的自动补全已经让书写长命名的代价非常之低了，而其带来的明确性却是非常宝贵的。不常用的缩写尤其应该避免。
+**组件名应该倾向于完整单词而不是缩写**，这样便于团队合作与后期维护。编辑器中的自动补全已经让书写长命名的代价非常之低了，而其带来的明确性却是非常宝贵的。不常用的缩写尤其应该避免。
+
+推荐：
 
 ```bash
 components/
@@ -184,227 +296,342 @@ components/
 ├── UserProfileOptions.vue
 ```
 
-## 代码参数命名规范
-
-
-
-
-
-
-
-## 文件夹命名规范
-
-### 大小写规范
-
-*  `components/` 下的子文件夹（特指直接子文件夹），使用 `PascalBase` 风格。
-* 其它文件夹统一使用 `kebab-case` 风格。
-
-例如：
+不推荐：
 
 ```bash
 components/
-├── BackToTop                     # BackToTop 大写
-│   └── index.vue
-├── Charts                        # Charts 大写
-│   ├── MixChart.vue
-│   └── mixins                    # mixins 小写（不是 components 的直接子文件夹）
-│       └── resize.js
-└── ImageCropper                  # ImageCropper 大写
-    ├── index.vue
-    └── utils                     # utils 小写（不是 components 的直接子文件夹）
-        ├── data2blob.js
-        └── mimes.js
+├── SdSettings.vue
+├── UProfOpts.vue
 ```
 
-### 取名规范
+### 视图组件名
 
-#### 1）位于 `components/` 下的直接子文件夹
+> 视图文件夹：位于 `views/` 文件夹下，代表着一类页面的名字，存放视图组件。
+> 视图组件：代表着某一页面的名字，或者类名。
+> 视图组件与其它组件的区别是：视图组件位于 `view/` 文件夹或视图文件夹下，其它组件位于 `components/` 文件夹下。
 
-* 代表着这类模块的类别。
-* 由名词组成（例如：`Charts`）。
-* 最好只有一个单词，特殊情况可例外（good: `Car`，`Order`，`Cart`）（bad: `CarInfo`，`CarPage`）。
-* 如果有两个以上单词，采用 `PascalBase` 风格（例如：`BackToTop`）。
-
-#### 2）位于 `view/` 下的文件夹和其它文件夹
-
-* 代表着页面的名字，或者类名。
-* 由名词组成（例如：`profile`）。
-* 如果有两个以上单词，采用 `kebab-case` 的风格，（例如：`error-page`）。
+* 视图组件可以直接位于 `views/` 文件夹下，例如：`Login.vue`、`Home.vue`。
+* 视图文件夹的名字要代表着页面的名字，例如：`login/`、`error-page/`。
+* 视图文件夹下只有一个视图组件的时候，该组件取名为 `index.vue`，例如：`login/index.vue`。
+* 视图文件夹下有两个以上视图组件的时候，分别取名，要体现内部文件的所属类名，例如：`car/car-list.vue` 和 `car/car-detail.vue`。
+* 尽量是名词。
+* 常用结尾单词有（`detail`、`edit`、`list`、`info`、`report`）。
+* 视图文件夹下可以存在私有 `components/`，其内部 `.vue` 文件遵循其它组件的命名方式（大驼峰）。
+* 除 `components/` 下的，一律采用 kebab-case 的风格。
 
 例如：
 
 ```bash
 src/
-├── App.vue
-├── assets
-├── main.js
 ├── components
-│   ├── BackToTop             # 通用组件的文件夹
-│   └── Charts                # 通用组件的文件夹
-│       ├── Keyboard.vue
-│       ├── LineMarker.vue
-│       ├── MixChart.vue
-│       └── mixins            # 其它文件夹（不是 components 的直接子文件夹）
-├── directive
-│   ├── clipboard             # 其它文件夹
-│   └── permission            # 其它文件夹
-├── filters
+│   ├── BackToTop               # 通用组件的文件夹
+│   └── Charts                  # 通用组件的文件夹
+│       ├── Keyboard.vue
+│       ├── LineMarker.vue
+│       ├── MixChart.vue
+│       └── mixins              # 其它文件夹
 └── views
-    ├── charts                # 视图组件的文件夹
-    ├── clipboard             # 视图组件的文件夹
-    ├── dashboard             # 视图组件的文件夹
-    │   ├── admin             # 视图组件的文件夹
-    │   │   ├── components
-    │   │   └── index.vue
-    │   ├── editor            # 视图组件的文件夹
-    │   │   └── index.vue
-    │   └── index.vue
-    └── error-page            # 视图组件的文件夹
-        ├── 401.vue
-        └── 404.vue
+    ├── login                   # 视图组件的文件夹
+    │   └── index.vue
+    ├── profile                 # 视图组件的文件夹
+    │   ├── index.vue
+    │   └── components
+    ├── car                     # 视图组件的文件夹
+    │   ├── car-list.vue        # 视图组件
+    │   ├── car-detail.vue      # 视图组件
+    │   └── components
+    │       ├── CarListItem.vue
+    │       └── CarInfoItem.vue
+    └── error-page              # 视图组件的文件夹
+        ├── 401.vue             # 视图组件
+        └── 404.vue             # 视图组件
 ```
 
-## 组件命名规范
+## 代码参数命名
 
-### 大小写规范
+### name
 
-* `components/` 下的组件名采用 `PascalBase` 风格，各模块的入口文件`index.vue`采用小写。
-* 其它地方的组件名采用 `kebab-case` 的风格。
-
-### 取名规范
-
-#### 1）位于 `components/` 下的通用组件
-
-应该全部以一个特定的前缀开头，比如 `Base`、`App` 或 `V`。
+**组件名应该始终是多个单词，应该始终是 PascalCase 的**。根组件 App 以及 `<transition>`、`<component>` 之类的 Vue 内置组件除外。这样做可以避免跟现有的以及未来的 HTML 元素相冲突，因为所有的 HTML 元素名称都是单个单词的。
 
 推荐：
 
-```bash
-components/
-|- BaseButton.vue
-|- BaseTable.vue
-|- BaseIcon.vue
+```javascript
+export default {
+  name: 'ToDoList',
+  // ...
+}
+```
+
+### prop
+
+**在声明 prop 的时候，其命名应该始终使用 camelCase，而在模板和 JSX 中应该始终使用 kebab-case**。我们单纯的遵循每个语言的约定，在 JavaScript 中更自然的是 camelCase。而在 HTML 中则是 kebab-case。
+
+推荐：
+
+```html
+<WelcomeMessage greeting-text="hi"/>
+```
+
+```javascript
+export default {
+  name: 'MyComponent',
+  // ...
+  props: {
+    greetingText: {
+      type: String,
+      required: true,
+      validator: function (value) {
+        return ['syncing', 'synced',].indexOf(value) !== -1
+      }
+    }
+  }
+}
+```
+
+### router
+
+**Vue Router Path 命名采用 kebab-case 格式**。用 Snake（如：`/user_info`）或 camelCase（如：`/userInfo`)的单词会被当成一个单词，搜索引擎无法区分语义。
+
+推荐：
+
+```javascript
+{
+  path: '/user-info', // user-info 能被搜索引擎解析成 user info
+  name: 'UserInfo',
+  component: UserInfo,
+  meta: {
+    title: ' - 用户',
+    desc: ''
+  }
+},
 ```
 
 不推荐：
 
-```bash
-components/
-|- MyButton.vue
-|- VueTable.vue
-|- Icon.vue
+```javascript
+// bad
+{
+  path: '/user_info', // user_info 被搜索引擎当成一个单词
+  name: 'UserInfo',
+  component: UserInfo,
+  meta: {
+    title: ' - 用户',
+    desc: ''
+  }
+},
 ```
 
-#### 2）位于 `components/` 下的单例组件
+### 模板中组件
 
-位于 `components` 文件夹下的通用组件，但这类组件在每个页面只使用一次，永远不接受任何 prop，是为你的应用定制的。
-
-一般以 `The` 前缀命名，以示其唯一性。
+对于绝大多数项目来说，在单文件组件和字符串模板中组件名应该总是 PascalCase 的，但是在 DOM 模板中总是 kebab-case 的。
 
 推荐：
 
-```bash
-components/
-|- TheHeading.vue
-|- TheSidebar.vue
+```html
+<!-- 在单文件组件和字符串模板中 --> 
+<MyComponent/>
+
+<!-- 在 DOM 模板中 --> 
+<my-component></my-component>
+```
+
+### 自闭合组件
+
+在单文件组件、字符串模板和 JSX 中没有内容的组件应该是自闭合的 —— 但在 DOM 模板里永远不要这样做。
+
+推荐：
+
+```html
+<!-- 在单文件组件和字符串模板中 -->
+<MyComponent/>
+
+<!-- 在所有地方 -->
+<my-component></my-component>
+```
+
+### 变量
+
+* 命名方法：camelCase
+* 命名规范：类型 + 对象描述或属性的方式
+
+推荐：
+
+```javascript
+let tableTitle = "LoginTable"
+let mySchool = "我的学校"
 ```
 
 不推荐：
 
-```bash
-components/
-|- Heading.vue
-|- MySidebar.vue
+```javascript
+var getTitle = "LoginTable"
 ```
 
-#### 3）位于 `components/` 下的紧密耦合组件
+### 常量
 
-位于 `components` 文件夹下，该类组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
-
-一般以父组件名作为前缀命名。
+* 命名方法：全部大写下划线分割
+* 命名规范：使用大写字母和下划线来组合命名，下划线用以分割单词
 
 推荐：
 
-```bash
-components/
-|- SearchSidebar.vue
-|- SearchSidebarNavigation.vue
+```javascript
+const MAX_COUNT = 10
+const URL = 'https://www.fedbook.cn'
 ```
 
-不推荐：
+### 方法
 
-```bash
-components/
-|- SearchSidebar.vue
-|- NavigationForSearchSidebar.vue
+* 命名方法：camelCase
+* 命名规范：统一使用动词或者动词 + 名词形式
+
+**1）普通情况下，使用动词 + 名词形式**
+
+推荐：`jumpPage`、`openCarInfoDialog`
+
+不推荐：`go`、`nextPage`、`show`、`open`、`login`
+
+**2）请求数据方法，以 data 结尾**
+
+推荐：`getListData`、`postFormData`
+
+不推荐：`takeData`、`confirmData`、`getList`、`postForm`
+
+**3）单个动词的情况**
+
+推荐：`init`、`refresh`
+
+| 动词 | 含义                      | 返回值                                         |
+| --- | ------------------------- | -------------------------------------------- |
+| can | 判断是否可执行某个动作（权）   | 函数返回一个布尔值。true：可执行；false：不可执行。   |
+| has | 判断是否含有某个值           | 函数返回一个布尔值。true：含有此值；false：不含有此值。|
+| is  | 判断是否为某个值             | 函数返回一个布尔值。true：为某个值；false：不为某个值。|
+| get | 获取某个值                  | 函数返回一个非布尔值。                            |
+| set | 设置某个值                  | 无返回值、返回是否设置成功或者返回链式对象。          |
+
+### 自定义事件
+
+**自定义事件应始终使用 kebab-case 的事件名**。
+
+不同于组件和 prop，事件名不存在任何自动化的大小写转换。而是触发的事件名需要完全匹配监听这个事件所用的名称。
+
+```html
+<MyComponent @my-event="handleDoSomething" />
 ```
 
-#### 4）组件名中的单词顺序
-
-组件名应该以高级别的（通常是一般化描述的）单词开头，以描述性的修饰词结尾。
-
-这个表达比较抽象，什么叫「高级别」的呢，直接看例子。
-
-推荐：
-
-```bash
-components/
-|- SearchButtonClear.vue
-|- SearchButtonRun.vue
-|- SearchInputQuery.vue
-|- SearchInputExcludeGlob.vue
-|- SettingsCheckboxTerms.vue
-|- SettingsCheckboxLaunchOnStartup.vue
+```javascript
+this.$emit('my-event')
 ```
 
-不推荐：
+不同于组件和 prop，事件名不会被用作一个 JavaScript 变量名或 property 名，所以就没有理由使用 camelCase 或 PascalCase 了。并且 `v-on` 事件监听器在 DOM 模板中会被自动转换为全小写 (因为 HTML 是大小写不敏感的)，所以 `v-on:myEvent` 将会变成 `v-on:myevent` —— 导致 `myEvent` 不可能被监听到。
 
-```bash
-components/
-|- ClearSearchButton.vue
-|- ExcludeFromSearchInput.vue
-|- LaunchOnStartupCheckbox.vue
-|- RunSearchButton.vue
-|- SearchInput.vue
-|- TermsCheckbox.vue
+* [原生事件参考列表](https://developer.mozilla.org/zh-CN/docs/Web/Events "原生事件参考列表")
+
+由原生事件可以发现其使用方式如下：
+
+```html
+<div
+  @blur="toggleHeaderFocus"
+  @focus="toggleHeaderFocus"
+  @click="toggleMenu"
+  @keydown.esc="handleKeydown"
+  @keydown.enter="handleKeydown"
+  @keydown.up.prevent="handleKeydown"
+  @keydown.down.prevent="handleKeydown"
+  @keydown.tab="handleKeydown"
+  @keydown.delete="handleKeydown"
+  @mouseenter="hasMouseHoverHead = true"
+  @mouseleave="hasMouseHoverHead = false">
+</div>
 ```
 
-#### 5）组件名使用完整单词
+而为了区分**原生事件**和**自定义事件**在 Vue 中的使用，建议除了多单词事件名使用 kebab-case 的情况下，自定义事件的命名还需遵守 **`on` + 动词** 的形式，如下：
 
-组件名应该倾向于完整单词而不是缩写，这样便于团队合作与后期维护。
-
-推荐：
-
-```bash
-components/
-|- StudentDashboardSettings.vue
-|- UserProfileOptions.vue
+```html
+<!-- 父组件 -->
+<div
+  @on-search="handleSearch"
+  @on-clear="handleClear"
+  @on-clickoutside="handleClickOutside">
+</div>
 ```
 
-不推荐：
-
-```bash
-components/
-|- SdSettings.vue
-|- UProfOpts.vue
+```javascript
+// 子组件
+export default {
+  methods: {
+    handleTriggerItem () {
+      this.$emit('on-clear')
+    }
+  }
+}
 ```
 
-#### 6）位于 `views/` 下的视图组件
+### 事件方法
 
-这个文件夹下主要是**以页面为单位的组件**或者**模块文件夹**，需要遵循以下命名规范：
+* 命名方法：camelCase
+* 命名规范：handle + 名称（可选）+ 动词
 
-* `views/` 目录下面的 `.vue` 文件代表着页面的名字；
-* 只有一个文件的情况，直接放在 `views/` 目录下面，如 `Login.vue`、`Home.vue`；
-* 有 `utils/` 等子文件夹时，在 `views/` 下创建一个文件夹，要体现页面的名字， `.vue` 文件可与之同名；
-* 有两个以上 `.vue` 文件时，在 `views/` 下创建一个文件夹，要体现内部文件的所属类名（例如`car`），`.vue` 文件放在里面（例如`car-list.vue`，`car-detail.vue`）；
-* 有私有组件时，在 `views/` 下创建一个文件夹，要体现页面的名字，文件夹下必须有 `index.vue` 或 `index.js`；
-* 尽量是名词；
-* 除 `components/` 下的，一律采用 `kebab-case` 的风格；
-* 名字至少两个单词（good: `car-detail`）（bad: `car`）
-* 常用结尾单词有（`detail`、`edit`、`list`、`info`、`report`）
-* 私有 `components/` 目录下，以 `Item` 结尾的代表着私有组件（`CarListItem`、`CarInfoItem`）
+```vue
+<template>
+  <div
+    @click.native.stop="handleItemClick()"
+    @mouseenter.native.stop="handleItemHover()">
+  </div>
+</template>
 
-## 组件内部编程规范
+<script>
+
+export default {
+  methods: {
+    handleItemClick () {
+      //...
+    },
+    handleItemHover () {
+      //...
+    }
+  }
+}
+</script>
+```
+
+## Vue 代码规范
+
+### 代码结构
+
+```vue
+<template>
+  <div id="my-component">
+    <DemoComponent />
+  </div>
+</template>
+
+<script>
+import DemoComponent from '../components/DemoComponent'
+
+export default {
+  name: 'MyComponent',
+  components: {
+    DemoComponent
+  },
+  mixins: [],
+  props: {},
+  data () {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  created () {},
+  mounted () {},
+  destroyed () {},
+  methods: {},
+}
+</script>
+
+<style lang="scss" scoped>
+#my-component {
+}
+</style>
+```
 
 ### 元素 attribute 顺序
 
@@ -439,7 +666,7 @@ components/
   
 注意：不推荐同时使用 `v-if` 和 `v-for`。
 
-### 组件内选项顺序
+### 组件方法书写顺序
 
 这是 Vue 官方推荐的组件选项默认顺序。它们被划分为几大类，所以你也能知道从插件里添加的新 property 应该放到哪里。
 
@@ -486,63 +713,261 @@ components/
   * `templated` / `render`
   * `renderError`
 
-### prop 名大小写
+### data
 
-* 在声明 `prop` 的时候，其命名应该始终使用 `camelCase`。
-* 在模板和 JSX 中应该始终使用 `kebab-case`。
+组件的 `data` 必须是一个函数。
 
-子组件
-```vue
-props: {
-  myProps: String
+```javascript
+// In a .vue file
+export default {
+  data () {
+    return {
+      foo: 'bar'
+    }
+  }
 }
 ```
-父组件
-```vue
-<my-component :my-props="abc"></my-component>
+
+### prop
+
+Prop 定义应该尽量详细。
+
+```javascript
+export default {
+  props: {
+    status: {
+      type: String,
+      required: true,
+      validator: function (value) {
+        return [
+          'syncing', 
+          'synced',
+          'version-conflict',
+          'error'
+        ].indexOf(value) !== -1
+      }
+    }
+  }
+}
 ```
 
-### 自定义事件名
+### computed
 
-`v-on` 事件监听器在 DOM 模板中会被自动转换为全小写（因为 HTML 是大小写不敏感的），所以 `v-on:myEvent` 将会变成 `v-on:myevent` —— 导致 `myEvent` 不可能被监听到。
+**应该把复杂计算属性分割为尽可能多的更简单的属性**。小的、专注的计算属性减少了信息使用时的假设性限制，所以需求变更时也用不着那么多重构了。
 
-因此，应该**始终使用 kebab-case 的事件名**。
+推荐：
 
-子组件
-```vue
-this.$emit('my-event')
+```javascript
+computed: {
+  basePrice: function () {
+    return this.manufactureCost / (1 - this.profitMargin)
+  },
+  discount: function () {
+    return this.basePrice * (this.discountPercent || 0)
+  },
+  finalPrice: function () {
+    return this.basePrice - this.discount
+  }
+}
 ```
-父组件
-```vue
-<my-component @my-event="abc"></my-component>
+
+不推荐：
+
+```javascript
+computed: { 
+  price: function () { 
+    var basePrice = this.manufactureCost / (1 - this.profitMargin) 
+    return ( 
+      basePrice - 
+      basePrice * (this.discountPercent || 0) 
+    ) 
+  } 
+}
 ```
 
-### method 方法命名
+### 为 `v-for` 设置键值
 
-* 动宾短语（good：`jumpPage`、`openCarInfoDialog`）（bad：`go`、`nextPage`、`show`、`open`、`login`）
-* ajax 方法以 `get`、`post` 开头，以 `data` 结尾（good：`getListData`、`postFormData`）（bad：`takeData`、`confirmData`、`getList`、`postForm`）
-* 事件方法以 `on` 或者 `handle` 开头（例如：`onTypeChange`、`onUsernameInput`、`handleTypeChange`）
-* `init`、`refresh` 单词除外
-* 尽量使用常用单词开头（例如`set`、`get`、`open`、`close`、`jump`）
-* 驼峰命名（good: `getListData`）（bad: `get_list_data`、`getlistData`）
+**在组件上必须用 `key` 搭配 `v-for`**，以便维护内部组件及其子树的状态。甚至在元素上维护可预测的行为，比如动画中的[对象固化（object constancy）](https://bost.ocks.org/mike/constancy/)。
 
-### data props 方法注意点
+```html
+<ul>
+  <li
+    v-for="todo in todos"
+    :key="todo.id">
+      {{ todo.text }}
+  </li>
+</ul>
+```
 
-* 使用 `data` 里的变量时请先在 `data` 里面初始化；
-* `props` 指定类型，也就是 `type`；
+### `v-if` 和 `v-for` 互斥
 
-### 生命周期方法注意点
+永远不要把 `v-if` 和 `v-for` 同时用在同一个元素上。
 
-* 不在 `mounted`、`created` 之类的方法里直接写取异步数据的逻辑，将方法抽象出来，只在此处调用；
-* 在 `created` 里面监听 Bus 事件
+不推荐（控制台会报错）：
 
-## 资源文件命名规范(.js .less等)
+```html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="shouldShowUsers"
+    :key="user.id">
+      {{ user.name }}
+  </li>
+</ul>
+```
 
-### `.js` 文件命名规范
+一般我们在两种常见的情况下会倾向于这样做：
 
-* 属于类的 `.js` 文件，除 `index.js` 外，使用 `PascalBase` 风格；
-* 其他类型的 `.js` 文件，使用 `kebab-case` 风格
+* 为了过滤一个列表中的项目（比如 `v-for="user in users" v-if="user.isActive"`）。在这种情形下，请将 `users` 替换为一个计算属性（比如 `activeUsers`），让其返回过滤后的列表。
 
-### `.less` 等其它文件命名规范
+推荐：
 
-* 一律采用 `kebab-case` 的风格。
+```html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id">
+      {{ user.name }}
+  </li>
+</ul>
+```
+
+```javascript
+computed: {
+  activeUsers: function () {
+    return this.users.filter((user) => {
+      return user.isActive
+    })
+  }
+}
+```
+
+* 为了避免渲染本应该被隐藏的列表（比如 `v-for="user in users" v-if="shouldShowUsers"`）。这种情形下，请将 `v-if` 移动至容器元素上（比如 `ul`，`ol`）。
+
+推荐：
+
+```html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id">
+      {{ user.name }}
+  </li>
+</ul>
+```
+
+不推荐：
+
+```html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="shouldShowUsers"
+    :key="user.id">
+      {{ user.name }}
+  </li>
+</ul>
+```
+
+### 多个 attribute 的元素
+
+多个 attribute 的元素应该分多行撰写，每个 attribute 一行。
+
+推荐：
+
+```html
+<img
+  src="https://vuejs.org/images/logo.png"
+  alt="Vue Logo">
+
+<MyComponent
+  foo="a"
+  bar="b"
+  baz="c"/>
+```
+
+不推荐：
+
+```html
+<img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
+<MyComponent foo="a" bar="b" baz="c"/>
+```
+
+### 模板中简单的表达式
+
+**组件模板应该只包含简单的表达式，复杂的表达式则应该重构为计算属性或方法**。
+
+复杂表达式会让你的模板变得不那么声明式。我们应该尽量描述应该出现的**是什么**，而非**如何**计算那个值。而且计算属性和方法使得代码可以重用。
+
+推荐：
+
+```html
+<!-- 在模板中 -->
+{{ normalizedFullName }}
+```
+
+```javascript
+// 复杂表达式已经移入一个计算属性
+computed: {
+  normalizedFullName: function () {
+    return this.fullName.split(' ').map(function (word) {
+      return word[0].toUpperCase() + word.slice(1)
+    }).join(' ')
+  }
+}
+```
+
+不推荐：
+
+```html
+<!-- 在模板中 -->
+{{
+  fullName.split(' ').map((word) => {
+    return word[0].toUpperCase() + word.slice(1)
+  }).join(' ')
+}}
+```
+
+### 带引号的 attribute 值
+
+非空 HTML 特性值应该始终带双引号。
+
+推荐：
+
+```html
+<input type="text">
+<AppSidebar :style="{ width: sidebarWidth + 'px' }">
+```
+
+不推荐：
+
+```html
+<input type=text>
+<AppSidebar :style={width:sidebarWidth+'px'}>
+```
+
+### 指令缩写
+
+* 用 `:` 表示 `v-bind:`
+* 用 `@` 表示 `v-on:`
+* 用 `#` 表示 `v-slot:`
+
+```html
+<input
+  :value="newTodoText"
+  :placeholder="newTodoInstructions">
+
+<input
+  @input="onInput"
+  @focus="onFocus">
+
+<template #header>
+  <h1>Here might be a page title</h1>
+</template>
+
+<template #footer>
+  <p>Here's some contact info</p>
+</template>
+```
+
+（完）
