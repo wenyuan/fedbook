@@ -1,5 +1,55 @@
 # HTML 规范
 
+## 文件模板
+
+HTML5 文件模板：
+
+```html
+<!DOCTYPE html>
+  <html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <title>HTML5 标准模版</title>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+移动端：
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta name="format-detection" content="telephone=no">
+  <title>移动端 HTML 模版</title>
+
+  <!-- S DNS预解析 -->
+  <link rel="dns-prefetch" href="">
+  <!-- E DNS预解析 -->
+
+  <!-- S 线上样式页面片，开发请直接取消注释引用 -->
+  <!-- #include virtual="" -->
+  <!-- E 线上样式页面片 -->
+
+  <!-- S 本地调试，根据开发模式选择调试方式，请开发删除 -->
+  <link rel="stylesheet" href="css/index.css">
+  <!-- /本地调试方式 -->
+
+  <link rel="stylesheet" href="http://srcPath/index.css">
+  <!-- /开发机调试方式 -->
+  <!-- E 本地调试 -->
+
+</head>
+<body>
+</body>
+</html>
+```
+
 ## 属性顺序
 
 HTML 属性应当按照以下给出的顺序依次排列，确保代码的易读性。
@@ -58,9 +108,51 @@ IE 浏览器会混淆元素的 `id` 和 `name` 属性， `document.getElementByI
 <script type="text/javascript" src="" ></script>
 ```
 
+## 代码嵌套
+
+* 元素嵌套规范，每个块状元素独立一行，内联元素可选。
+
+推荐：
+
+```html
+<div>
+  <h1></h1>
+  <p></p>
+</div>	
+<p><span></span><span></span></p>
+```
+
+不推荐：
+
+```html
+<div>
+  <h1></h1><p></p>
+</div>	
+<p> 
+  <span></span>
+  <span></span>
+</p>
+```
+
+* 段落元素与标题元素只能嵌套内联元素。
+
+推荐：
+
+```html
+<h1><span></span></h1>
+<p><span></span><span></span></p>
+```
+
+不推荐：
+
+```html
+<h1><div></div></h1>
+<p><div></div><div></div></p>
+```
+
 ## 注释规范
 
-#### 单行注释
+### 单行注释
 
 一般用于简单的描述，如某些状态描述、属性描述等。
 
@@ -73,7 +165,17 @@ IE 浏览器会混淆元素的 `id` 和 `name` 属性， `document.getElementByI
 <div>...</div>
 ```
 
-#### 模块注释
+不推荐：
+
+```html
+<div>...</div><!-- Comment Text -->
+
+<div><!-- Comment Text -->
+  ...
+</div>
+```
+
+### 模块注释
 
 一般用于描述模块的名称以及模块开始与结束的位置。
 
@@ -84,18 +186,33 @@ IE 浏览器会混淆元素的 `id` 和 `name` 属性， `document.getElementByI
 ```html
 <!-- S Comment Text A -->	
 <div class="mod-a">
-    ...
+  ...
 </div>
 <!-- E Comment Text A -->
 	
 <!-- S Comment Text B -->	
 <div class="mod-b">
-    ...
+  ...
 </div>
 <!-- E Comment Text B -->
 ```
 
-#### 嵌套模块注释
+不推荐：
+
+```html
+<!-- S Comment Text A -->
+<div class="mod_a">
+  ...
+</div>
+<!-- E Comment Text A -->
+<!-- S Comment Text B -->	
+<div class="mod_b">
+  ...
+</div>
+<!-- E Comment Text B -->
+```
+
+### 嵌套模块注释
 
 当模块注释内再出现模块注释的时候，为了突出主要模块，嵌套模块改用 `<!-- /Comment Text -->`。
 
@@ -105,16 +222,18 @@ IE 浏览器会混淆元素的 `id` 和 `name` 属性， `document.getElementByI
 <!-- S Comment Text A -->
 <div class="mod-a">
 		
-    <div class="mod-b">
-        ...
-    </div>
-    <!-- /mod-b -->
+  <div class="mod-b">
+    ...
+  </div>
+  <!-- /mod-b -->
     	
-    <div class="mod-c">
-    	...
-    </div>
-    <!-- /mod-c -->
+  <div class="mod-c">
+    ...
+  </div>
+  <!-- /mod-c -->
 		
 </div>
 <!-- E Comment Text A -->
 ```
+
+（完）

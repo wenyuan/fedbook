@@ -264,15 +264,53 @@ function walkAround() {
 
 ## 注释规范
 
-#### 单行注释
+### 单行注释
 
 必须独占一行。`//` 后跟一个空格，缩进与下一行被注释说明的代码一致。
 
-#### 多行注释
+推荐：
+
+```javascript
+// is current tab
+const active = true
+```
+
+不推荐：
+
+```javascript
+const active = true // is current tab
+```
+
+注释行的上方需要有一个空行（**除非注释行上方是一个块的顶部**），以增加可读性。
+
+### 多行注释
 
 避免使用 `/*...*/` 这样的多行注释。有多行注释内容时，使用多个单行注释。
 
-#### 函数/方法注释
+### 特殊标记
+
+有时我们发现某个可能的 bug，但因为一些原因还没法修复；或者某个地方还有一些待完成的功能，这时我们需要使用相应的特殊标记注释来告知未来的自己或合作者。常用的特殊标记有两种：
+
+* `// FIXME`：说明问题是什么
+* `// TODO`：说明还要做什么或者问题的解决方案
+
+例如：
+
+```javascript
+class Calculator extends Abacus {
+  constructor () {
+    super ()
+
+      // FIXME: shouldn’t use a global here
+      total = 0
+
+      // TODO: total should be configurable by an options param
+      this.total = 0
+  }
+}
+```
+
+### 函数/方法注释
 
 * 必须包含函数的说明，说明 what，而不是 how。
 * 有参数和返回值时，必须有注释标志。
@@ -307,7 +345,7 @@ function numberFormatter(num, digits) {
 }
 ```
 
-#### 文件注释
+### 文件注释
 
 * 用于告诉不熟悉这段代码的读者这个文件中包含哪些东西。
 * 文件注释要标明作者、文件版本、创建/修改时间、重大版本修改记录。
@@ -322,3 +360,5 @@ function numberFormatter(num, digits) {
  * @date 2020-12-29
  */
 ```
+
+（完）
