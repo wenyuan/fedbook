@@ -1,6 +1,6 @@
 # Vue.js
 
-一款渐进式 JavaScript 框架。
+Vue.js 是一款渐进式 JavaScript 框架。
 
 虽然没有完全遵循 MVVM 模型，但是 Vue 的设计也受到了它的启发。因此经常会使用 vm（ViewModel 的缩写）这个变量名表示 Vue 实例。
 
