@@ -31,7 +31,8 @@ module.exports = [
       {
         text: '框架',
         items: [
-          { text: 'Vue.js', link: '/frontend-frameworks/vuejs/' }
+          { text: 'Vue.js', link: '/frontend-frameworks/vuejs/' },
+          { text: 'React', link: '/frontend-frameworks/react/' },
         ]
       },
       {
