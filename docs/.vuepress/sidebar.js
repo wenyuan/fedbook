@@ -8,6 +8,7 @@ module.exports = {
   '/frontend-languages/typescript': require('../frontend-languages/typescript/sidebar'),
   /* --------- 前端框架 --------- */
   '/frontend-frameworks/vuejs': require('../frontend-frameworks/vuejs/sidebar'),
+  '/frontend-frameworks/react': require('../frontend-frameworks/react/sidebar'),
   '/frontend-frameworks/webpack5': require('../frontend-frameworks/webpack5/sidebar'),
   /* --------- 前端工程化 frontend-engineering（一切能提升前端开发效率，提高前端应用质量的手段和工具都是前端工程化） --------- */
   /* --------- 后端语言 --------- */

@@ -128,6 +128,8 @@
   * [模板编译](https://fedbook.cn/frontend-frameworks/vuejs/template-compile/)
   * [组件渲染与更新](https://fedbook.cn/frontend-frameworks/vuejs/component-render-and-update/)
   * [前端路由原理](https://fedbook.cn/frontend-frameworks/vuejs/vue-router/)
+* [React](https://fedbook.cn/frontend-frameworks/react/)
+  * [React JSX](https://fedbook.cn/frontend-frameworks/react/react-jsx/)
   * 近期在学习，每日更新
 * [Webpack5](https://fedbook.cn/frontend-frameworks/webpack5/)
   * [核心概念](https://fedbook.cn/frontend-frameworks/webpack5/core-concept/)
