@@ -8,7 +8,7 @@ JS + XML 本质是 `React.createElement(component, props, ...children)` 方法�
 
 JSX 作用：用来简化创建虚拟 DOM：
 
-* 写法：`var ele = <h1>Hello JSX!</h1>`
+* 写法：`var ele = <h1>Hello,React</h1>`
 * 注意 1：它不是字符串, 也不是 HTML/XML 标签
 * 注意 2：它最终产生的就是一个 JavaScript 对象
 
@@ -31,7 +31,7 @@ JSX 可以总结出下列语法规则。
   // 1. 创建虚拟 DOM
   const VDOM = <h1>Hello,React</h1>
   // 2. 渲染虚拟 DOM 到页面
-  ReactDOM.render(VDOM, document.getElementById('test'))
+  ReactDOM.render(VDOM, document.getElementById('example'))
 </script>
 ```
 
@@ -46,7 +46,7 @@ JSX 可以总结出下列语法规则。
   // 1. 创建虚拟 DOM
   const VDOM = <h1>{data}</h1>
   // 2. 渲染虚拟 DOM 到页面
-  ReactDOM.render(VDOM, document.getElementById('test'))
+  ReactDOM.render(VDOM, document.getElementById('example'))
 </script>
 ```
 
@@ -63,7 +63,7 @@ JSX 可以总结出下列语法规则。
   // 1. 创建虚拟 DOM
   const VDOM = <h1 className="title">{data}</h1>
   // 2. 渲染虚拟 DOM 到页面
-  ReactDOM.render(VDOM, document.getElementById('test'))
+  ReactDOM.render(VDOM, document.getElementById('example'))
 </script>
 ```
 
@@ -82,7 +82,7 @@ JSX 可以总结出下列语法规则。
   // 1. 创建虚拟 DOM
   const VDOM = <h1 style={{color:'white',fontSize:'60px'}}>{data}</h1>
   // 2. 渲染虚拟 DOM 到页面
-  ReactDOM.render(VDOM, document.getElementById('test'))
+  ReactDOM.render(VDOM, document.getElementById('example'))
 </script>
 ```
 
@@ -101,7 +101,7 @@ JSX 可以总结出下列语法规则。
     </div>
   )
   // 2. 渲染虚拟 DOM 到页面
-  ReactDOM.render(VDOM, document.getElementById('test'))
+  ReactDOM.render(VDOM, document.getElementById('example'))
 </script>
 ```
 
@@ -119,7 +119,7 @@ JSX 可以总结出下列语法规则。
     </div>
   )
   // 2. 渲染虚拟 DOM 到页面
-  ReactDOM.render(VDOM, document.getElementById('test'))
+  ReactDOM.render(VDOM, document.getElementById('example'))
 </script>
 ```
 
@@ -154,7 +154,7 @@ JSX 可以总结出下列语法规则。
     </div>
   )
   // 2. 渲染虚拟 DOM 到页面
-  ReactDOM.render(VDOM, document.getElementById('test'))
+  ReactDOM.render(VDOM, document.getElementById('example'))
 </script>
 ```
 
