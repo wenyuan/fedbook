@@ -1,6 +1,6 @@
 # 对象遍历的几种方式
 
-## 方式一：for...in...
+## for...in...
 
 要使用 `(const i in obj)` 而不是 `(i in obj)`，因为后者将会创建一个全局变量。
 
@@ -37,7 +37,7 @@ for (const i in obj) {
 * 在列出类数组索引的所有属性之后，在列出所有剩下的字符串名字（包括看起来像整负数或浮点数的名字）的属性。这些属性按照它们添加到对象的先后顺序列出。对于在对象字面量中定义的属性，按照他们在字面量中出现的顺序列出。
 * 最后，名字为符号对象的属性按照它们添加到对象的先后顺序列出。
 
-## 方式二：Object.keys
+## Object.keys
 
 用于获取对象自身所有的可枚举的属性值，但不包括原型中的属性，然后返回一个由**属性名**组成的数组。
 
@@ -57,7 +57,7 @@ console.log(Object.keys(obj));
 // ["name", "age"]
 ```
 
-## 方式三：Object.values
+## Object.values
 
 用于获取对象自身所有的可枚举的属性值，但不包括原型中的属性，然后返回一个由**属性值**组成的数组。
 
@@ -77,7 +77,7 @@ console.log(Object.values(obj));
 // ["zhangsan", 13]
 ```
 
-## 方式四：Object.entries
+## Object.entries
 
 用于获取对象自身所有的可枚举的属性值，但不包括原型中的属性，然后返回二维数组。每一个子数组由对象的属性名、属性值组成。
 
@@ -110,7 +110,7 @@ for (const [key, value] of Object.entries(obj)) {
 // age: 13
 ```
 
-## 方式五：Object.getOwnPropertyNames
+## Object.getOwnPropertyNames
 
 用于获取对象自身所有的可枚举的属性值（不包括 Symbol 值作为名称的属性），但不包括原型中的属性，然后返回一个由**属性名**组成的数组。
 
@@ -135,7 +135,7 @@ console.log(Object.getOwnPropertyNames(obj));
 // ["name", "age"]
 ```
 
-## 方式六：Object.getOwnPropertySymbols()
+## Object.getOwnPropertySymbols()
 
 用于获取指定对象的所有 Symbol 属性名。该方法返回一个数组，成员是当前对象的所有用作属性名的 Symbol 值。
 
@@ -149,7 +149,7 @@ console.log(Object.getOwnPropertySymbols(obj));
 // [Symbol(symbol1), Symbol(symbol2)]
 ```
 
-## 方式七：Reflect.ownKeys()
+## Reflect.ownKeys()
 
 返回一个数组，包含对象自身的所有属性，不管是属性名是 Symbol 或字符串，也不管是否可枚举。
 

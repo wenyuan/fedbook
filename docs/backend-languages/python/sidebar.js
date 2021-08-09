@@ -1,7 +1,7 @@
 module.exports = [
   {
     title: 'Python 基础',
-    collapsable: false,
+    collapsable: true,
     children: [
       {
         title: '编译器与解释器',

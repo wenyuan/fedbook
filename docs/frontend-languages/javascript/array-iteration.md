@@ -1,6 +1,6 @@
 # 数组遍历的几种方式
 
-## 方式一：原生的 for 循环
+## 原生的 for 循环
 
 最简单的一种循环遍历方法，也是使用频率最高的一种。
 
@@ -22,7 +22,7 @@ for(let i = 0, len = arr.length; i < len; i++) {
 
 但我查阅了很多资料，发现这已经是一种过时的优化方案了。随着浏览器解释器的不断改进，现在不再需要手动来优化，像 Chrome 的 V8 引擎就会把能确定不变的代码移到循环外。
 
-## 方式二：for...in...
+## for...in...
 
 这个循环用的人也很多，但是效率最低（输出的 `key` 是数组索引）。
 
@@ -33,7 +33,7 @@ for(let key in arr) {
 }
 ```
 
-## 方式三：for...of...（ES6）
+## for...of...（ES6）
 
 虽然性能要好于 `for...in...`，但仍然比不上普通的 for 循环（不能循环对象）。
 
@@ -44,7 +44,7 @@ for(let key of arr) {
 }
 ```
 
-## 方式四：forEach
+## forEach
 
 执行时，数组里的元素个数有几个，该方法里的回调就会执行几次。其中第一个参数是数组里的元素，第二个参数为数组里元素的索引，第三个参数则是数组自己。
 
@@ -58,7 +58,7 @@ arr.forEach(function (item, index, array) {
 })
 ```
 
-## 方式五：map
+## map
 
 遍历每一个元素并且返回对应的元素（可以返回处理后的元素），返回的新数组和旧数组的长度是一样的
 
@@ -73,7 +73,7 @@ let newArr = arr.map(function (item, index) {
 console.log(newArr);
 ```
 
-## 方式六：filter
+## filter
 
 遍历数组，过滤出符合条件的元素并返回一个新数组。
 
@@ -91,7 +91,7 @@ let newArr = arr.filter(function (item, index) {
 console.log(newArr);
 ```
 
-## 方式七：some
+## some
 
 遍历数组，只要有一个以上的元素满足条件就返回 `true`，否则返回 `false`。
 
@@ -109,7 +109,7 @@ let bool = arr.some(function (item, index) {
 console.log(bool);
 ```
 
-## 方式八：every
+## every
 
 遍历数组，每一个元素都满足条件 则返回 `true`，否则返回 `false`
 
@@ -127,7 +127,7 @@ let bool = arr.every(function (item, index) {
 console.log(bool);
 ```
 
-## 方式九：find（ES6）
+## find（ES6）
 
 遍历数组，返回符合条件的第一个元素，如果没有符合条件的元素则返回 `undefined`。
 
@@ -141,7 +141,7 @@ let num = arr.find(function (item, index) {
 console.log(num);
 ```
 
-## 方式十：findIndex（ES6）
+## findIndex（ES6）
 
 遍历数组，返回符合条件的第一个元素的索引，如果没有符合条件的元素则返回 `-1`。
 
@@ -155,7 +155,7 @@ let num = arr.findIndex(function (item) {
 console.log(num);
 ```
 
-## 方式十一：reduce、reduceRight
+## reduce、reduceRight
 
 `reduce` 方法接收两个参数，第一个参数是回调函数（`callback`） ，第二个参数是初始值（`initialValue`）。
 
@@ -170,7 +170,7 @@ console.log(num);
 
 > 如果不传入初始值，reduce 方法会从索引 1 开始执行回调函数，如果传入初始值，将从索引 0 开始、并从初始值的基础上累计执行回调。
 
-### 场景1：计算对象数组某一属性的总和
+### 计算对象数组某一属性的总和
 
 ```javascript
 const list  = [
@@ -184,7 +184,7 @@ const total = list.reduce((currentTotal, item) => {
 // total: 100
 ```
 
-### 场景2：对象数组的去重，并统计每一项重复次数
+### 对象数组的去重，并统计每一项重复次数
 
 ```javascript
 const list  = [
@@ -212,7 +212,7 @@ const result = list.reduce((array, item) => {
 // ]
 ```
 
-### 场景3：对象数组最大/最小值获取
+### 对象数组最大/最小值获取
 
 ```javascript
 const list  = [
@@ -236,7 +236,7 @@ const min = list.reduce((curItem, item) => {
 
 ## 总结
 
-### 1. 性能对比
+### 性能对比
 
 说了这么多，那这些遍历方法， 在性能上有什么差异呢？我们在 Chrome 浏览器中尝试。我采用每个循环执行 10 次，去除最大、最小值，取平均数，降低误差。
 
@@ -278,7 +278,7 @@ console.timeEnd('for...of...')
 
 从打印结果可以看出，原生 `for` 循环的速度最快，`for...of...` 循环最慢。
 
-### 2. 终止遍历的支持度、性能对比
+### 终止遍历的支持度、性能对比
 
 |                   | 是否可终止     |                  |                  |                  |
 | ----------------- | ------------- | ---------------- | ---------------- | ---------------- |

@@ -1,7 +1,7 @@
 module.exports = [
   {
-    title: 'JavaScript',
-    collapsable: false,
+    title: 'JavaScript 核心',
+    collapsable: true,
     children: [
       {
         title: '数据类型',
@@ -34,6 +34,37 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '同步与异步',
+        path: '/frontend-languages/javascript/sync-and-async',
+        collapsable: true
+      },
+      {
+        title: '事件循环机制',
+        path: '/frontend-languages/javascript/event-loop',
+        collapsable: true
+      },
+      {
+        title: '浅克隆与深克隆',
+        path: '/frontend-languages/javascript/shallow-clone-and-deep-clone',
+        collapsable: true
+      },
+      {
+        title: '函数柯里化',
+        path: '/frontend-languages/javascript/function-currying',
+        collapsable: true
+      },
+      {
+        title: '未完待续',
+        path: '/frontend-languages/javascript/to-be-continued',
+        collapsable: true
+      }
+    ]
+  },
+  {
+    title: 'JavaScript 用法',
+    collapsable: true,
+    children: [
+      {
         title: '数组遍历的几种方式',
         path: '/frontend-languages/javascript/array-iteration',
         collapsable: true
@@ -56,26 +87,6 @@ module.exports = [
       {
         title: '调用函数的四种方式',
         path: '/frontend-languages/javascript/function-invocation',
-        collapsable: true
-      },
-      {
-        title: '同步与异步​',
-        path: '/frontend-languages/javascript/sync-and-async',
-        collapsable: true
-      },
-      {
-        title: '事件循环机制',
-        path: '/frontend-languages/javascript/event-loop',
-        collapsable: true
-      },
-      {
-        title: '浅克隆与深克隆',
-        path: '/frontend-languages/javascript/shallow-clone-and-deep-clone',
-        collapsable: true
-      },
-      {
-        title: '函数柯里化',
-        path: '/frontend-languages/javascript/function-currying',
         collapsable: true
       },
       {
