@@ -104,6 +104,32 @@ baz()
 > * 众所周知，JavaScript 是单线程的，但浏览器不是单线程的，例如上面使用的倒计时器 `setTimeout`，浏览器内部就会有一个单独的线程去负责倒数，等时间到了就将回调放入消息队列。
 > * 平时所说的 JavaScript 单线程，是指执行我们代码的是一个线程，而其它一些内部的 API（例如 `setTimeout`）会用单独的线程去执行。所以这里的同步与异步，指的是运行环境提供的 API 是以同步模式还是异步模式的方式去工作。
 
+## 回调函数
+
+所有异步编程方案的根基都是回调函数。
+
+回调函数：由调用者定义，交给执行者执行的函数。回调函数一个很明显的特点是「由我们定义，我们不去调用，但最后执行了」。
+
+```javascript
+// callback 就是回调函数
+// 就是把函数作为参数传递，缺点是不利于阅读，执行顺序混乱。
+function foo(callback) {
+  setTimeout(function() {
+    callback()
+  }, 3000)
+}
+
+foo(function() {
+  console.log('这就是一个回调函数')
+  console.log('调用者定义这个函数，执行者执行这个函数')
+  console.log('其实就是调用者告诉执行者异步任务结束后应该做什么')
+})
+```
+
+除了传递回调函数参数这种方式，还有其他的一些实现异步的方式，例如：事件机制和发布订阅。这些也都是基于回调函数基础之上的变体。
+
+下面介绍几种使用回调方式来完成异步流程的方案。
+
 ## ajax（jQuery）
 
 `$.ajax` 是 jQuery 中一个异步请求的方法，它的用法如下代码所示：
@@ -160,41 +186,197 @@ Promise 是 ES6 中异步编程的一种解决方案，比传统的解决方案�
 下述代码演示了 Promise 基础用法：
 
 ```javascript
-var promise = new Promise(function(resolve, reject) {
+const promise = new Promise(function(resolve, reject) {
   if (true) {
     resolve('success'); // 异步请求成功，将请求结果 resolve 出去
   } else {
-    reject('fail'); // 异步请求失败，将错误信息 reject 出去
+    reject('fail');     // 异步请求失败，将错误信息 reject 出去
   }
 });
 
 promise.then(res => {
-  console.log(res); // 成功 resolve('success')
+  console.log(res);   // 成功 resolve('success')
 }).catch(error => {
   console.log(error); // 失败 reject('fail')
 })
 ```
 
+从上面的代码可以看出，Promise 本质上也是使用回调函数去定义异步任务结束后所需要执行的任务。这里的回调函数是通过 then 方法传递的，且 Promise 将回调分成了两种，分别是成功后的回调和失败后的回调。
+
+### Promise 使用案例
+
+下面演示一个用 Promise 封装 Ajax 请求的例子：
+
+```javascript
+/**
+ * Ajax Demo
+ * @param {string} get 请求的 url
+ * @return {Promise}
+ */
+function ajax(url) {
+  return new Promise(function(resolve, reject) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      if (this.status === 200) {
+        resolve(this.response);
+      } else {
+        reject(new Error(this.statusText));
+      }
+    };
+    xhr.send();
+  })
+};
+
+ajax('/api/users.json').then(function(res) {
+  console.log(res);
+}, function(error) {
+  console.log(error);
+});
+```
+
+上面代码中，ajax 是对 XMLHttpRequest 对象的封装，用于发出一个针对 JSON 数据的 HTTP GET 请求，并且返回一个 Promise 对象。需要注意的是，在 ajax 内部，resolve 函数和 reject 函数调用时，都带有参数。
+
+### Promise 链式调用
+
+* Promise 对象的 then 方法会返回一个全新的 Promise 对象。
+* 后面的 then 方法就是在为上一个 then 返回的 Promise 注册回调。
+* 前面 then 方法中回调函数的返回值会作为后面 then 方法回调的参数，如果没有返回值，默认返回 undefined。
+* 如果回调中返回的是 Promise，那后面 then 方法的回调会等待它的结束（也就是后面这个 then 方法在为我们返回的 Promise 注册回调）。
+
+```javascript
+ajax('/api/users.json')
+  .then(function(value) {
+    console.log(1)
+    return ajax('/api/urls.json')
+  })
+  .then(function(value) {
+    console.log(2)
+    console.log(value)
+  })
+  .then(function(value) {
+    console.log(3)
+  })
+  .then(function(value) {
+    console.log(4)
+    return 'hello'
+  })
+  .then(function(value) {
+    console.log(5)
+    console.log(value)
+  })
+
+// 输出结果
+1
+2
+[{name: '前端修炼小册', url: "www.fedbook.cn"}, {name: '百度', url: "www.baidu.com"}]
+3
+4
+5
+"hello"
+```
+
+### Promise 异常处理
+
+#### 1）应该总是使用 catch 方法来捕获 Promise 异常。
+
+我们知道，有两种方法可以捕获 Promise 对象抛出的异常：
+
+* `then()` 方法的第二个参数指定 `rejected` 状态的回调函数
+* `catch` 方法指定发生错误时的回调函数
+
+一般来说，应该总是使用 catch 方法来捕获 Promise 异常。
+
+```javascript
+// bad
+promise
+  .then(function(data) {
+    // success
+  }, function(err) {
+    // error
+  });
+
+// good
+promise
+  .then(function(data) { //cb
+    // success
+  })
+  .catch(function(err) {
+    // error
+  });
+```
+
+原因是 catch 方法可以捕获前面 then 方法执行中的错误，也更接近同步的写法（try/catch），而通过 then 方法的第二个参数只能捕获当前 Promsie 对象的异常（每个 then 方法返回的都是一个全新的 Promise 对象）。
+
+这个特性在链式调用的异常捕获中尤为重要：
+
+```javascript
+ajax('/api/users.json')
+  .then(function(value) {
+    console.log(1)
+  })
+  .then(function(value) {
+    console.log(2)
+  })
+  .then(function(value) {
+    console.log(3)
+  })
+  .catch(function(error) {
+    console.log('error:', error)
+  })
+```
+
+原因是 Promise 对象的错误具有「冒泡」性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个 catch 语句捕获。
+
+但这种写法也有个问题，就是链路中间但凡有一个方法中 catch 了，那么这个链路下面的 catch 都不会捕捉到。
+
+所以 catch 要控制好，必要的话可以在链路中间单独 catch（一个 Promise 异常会被就近的 catch 捕捉）。
+
+```javascript
+ajax('/api/users.json')
+  .then(function(value) {
+    console.log(1)
+  })
+  .catch(function(error) {
+    // 捕获第一个 Promise 对象抛出的错误
+    console.log('error:', error)
+  })
+  .then(function(value) {
+    console.log(2)
+  })
+  .then(function(value) {
+    console.log(3)
+  })
+  .catch(function(error) {
+    // 最后的 catch 捕获其它 Promise 对象抛出的错误
+    console.log('error:', error)
+  })
+```
+
 ### Promise.all
 
-`Promise.all` 可以将多个 Promise 实例包装成一个新的 Promise 实例。同时，成功和失败的返回值是不同的。
+`Promise.all` 可以将多个 Promise 实例（假定为 `p1`、`p2`、`p3`）包装成一个新的 Promise 实例（假定为 `p`）。
 
-**成功**的时候返回的是**一个结果数组**，数组中值的顺序与传入 promise 的顺序相同；而**失败**的时候则返回**最先被reject失败状态的值**。
+成功和失败分成两种情况。
+
+* 全部成功：`p` 的状态变为成功，此时 `p1`、`p2`、`p3` 的返回值组成一个数组（数组中元素顺序就是就是 `p1`、`p2`、`p3` 传入时的顺序），传递给 `p` 的回调函数。
+* 只要有一个失败：`p` 的状态就变为失败，此时第一个被 `reject` 的实例的返回值，会传递给 `p` 的回调函数。
 
 下述代码演示了 `Promise.all` 的用法：
 
 ```javascript
-let p1 = new Promise((resolve, reject) => {
+const p1 = new Promise((resolve, reject) => {
   resolve('success 1');
 });
-let p2 = new Promise((resolve, reject) => {
+const p2 = new Promise((resolve, reject) => {
   resolve('success 2');
 });
-let p3 = new Promise((resolve, reject) => {
+const p3 = new Promise((resolve, reject) => {
   reject('fail');
 });
 
-Promise.all([p1, p2]).then(result => {
+const p = Promise.all([p1, p2]).then(result => {
   console.log(result);
 }).catch(error => {
   console.log(error);
