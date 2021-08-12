@@ -82,6 +82,8 @@ baz()
 * **事件循环（Event Loop）**：它只做一件事：负责监听调用栈和消息队列，一旦调用栈中所有的任务都结束了，事件循环就从消息队列中取出第一个回调函数，将它压入调用栈；如果消息队列中暂时是空的，事件循环就会先暂停，等回函数调进消息队列（如果有）。
 * **消息队列**：存放异步任务的回调，先进先出。
 
+> 补充：任务进入消息队列的顺序由[宏任务与微任务](/frontend-languages/javascript/event-loop/)的时序决定，参考下一章的知识点，本文先不考虑。
+
 下面这张图可以很清晰的表达出同步任务和异步任务的执行顺序：
 
 <div style="text-align: center;">
@@ -288,9 +290,11 @@ ajax('/api/users.json')
 
 一般来说，应该总是使用 catch 方法来捕获 Promise 异常。
 
+原因是 catch 方法不但可以捕获异步操作抛出的错误（即状态为 rejected 时），而且 then 方法指定的回调函数中如果抛出错误，也会被 catch 方法捕获。
+
 ```javascript
 // bad
-promise
+ajax('/api/users.json')
   .then(function(data) {
     // success
   }, function(err) {
@@ -298,8 +302,8 @@ promise
   });
 
 // good
-promise
-  .then(function(data) { //cb
+ajax('/api/users.json')
+  .then(function(data) {
     // success
   })
   .catch(function(err) {
@@ -307,9 +311,9 @@ promise
   });
 ```
 
-原因是 catch 方法可以捕获前面 then 方法执行中的错误，也更接近同步的写法（try/catch），而通过 then 方法的第二个参数只能捕获当前 Promsie 对象的异常（每个 then 方法返回的都是一个全新的 Promise 对象）。
+在链式调用中，每个 then 方法都会返回一个全新的 Promise 对象。也就是说链式调用中的 catch 其实是给它前面一个 then 方法返回的 Promise 对象指定失败回调，并不是直接给第一个 Promise 对象指定的。
 
-这个特性在链式调用的异常捕获中尤为重要：
+但由于在同一个 Promise 链中，Promise 对象的错误具有「冒泡」性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个 catch 语句捕获。（通过 then 方法的第二个参数来捕获异常的话，不具有这种功能）
 
 ```javascript
 ajax('/api/users.json')
@@ -327,36 +331,120 @@ ajax('/api/users.json')
   })
 ```
 
-原因是 Promise 对象的错误具有「冒泡」性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个 catch 语句捕获。
-
-但这种写法也有个问题，就是链路中间但凡有一个方法中 catch 了，那么这个链路下面的 catch 都不会捕捉到。
+但这种写法也有个问题，就是链路中间但凡有一个方法中抛出异常被 catch 了，那么这个链路下面的 catch 就都不会捕捉到了。
 
 所以 catch 要控制好，必要的话可以在链路中间单独 catch（一个 Promise 异常会被就近的 catch 捕捉）。
 
+如下链式调用代码，先请求登录接口，然后请求保存接口：
+
 ```javascript
-ajax('/api/users.json')
+// 情形一
+// 登录接口设置了捕获错误函数，保存接口没有设置
+// 则先捕获登录接口中的错误，如果登录接口没有抛出错误，则捕获保存接口中的错误
+ajax('/api/login')
   .then(function(value) {
-    console.log(1)
+    return ajax('/api/save')
   })
   .catch(function(error) {
-    // 捕获第一个 Promise 对象抛出的错误
     console.log('error:', error)
   })
+
+// 情形二
+// 登录接口和保存接口都设置了捕获错误函数
+// 则各自捕获各自的错误
+ajax('/api/login')
   .then(function(value) {
-    console.log(2)
-  })
-  .then(function(value) {
-    console.log(3)
+    return ajax('/api/save').catch(function(error) { console.log('error in save:', error) })
   })
   .catch(function(error) {
-    // 最后的 catch 捕获其它 Promise 对象抛出的错误
-    console.log('error:', error)
+    console.log('error in login:', error)
   })
 ```
 
-### Promise.all
+#### 2）try catch 无法捕获异步异常。
 
-`Promise.all` 可以将多个 Promise 实例（假定为 `p1`、`p2`、`p3`）包装成一个新的 Promise 实例（假定为 `p`）。
+try catch 能捕获到的仅仅是 try 模块内执行的同步方法的异常，异步方法所产生的异常（例如 Ajax 请求、定时器），都无法被捕获到。
+
+```javascript
+try {
+  throw new Error('同步方法的异常')
+} catch (error) {
+  console.log(error)
+}
+
+try {
+  setTimeout(function () {
+    throw new Error('异步方法的异常')
+  }, 500)
+} catch (error) {
+  console.log(error)
+}
+```
+
+<div style="text-align: center;">
+  <img src="./assets/try-catch-uncaught-error.png" alt="try catch 无法捕获异步异常">
+  <p style="text-align: center; color: #888;">（try catch 无法捕获异步异常）</p>
+</div>
+
+要捕获异步异常，就需要借助 Promise 了：
+
+```javascript
+const promise = new Promise(function(resolve, reject) {
+  setTimeout(function () {
+    reject('异步方法的异常')
+  }, 500)
+})
+
+promise.then(value => {
+  console.log(value)
+}).catch(error => {
+  console.log(error)
+})
+```
+
+### Promise 静态方法
+
+#### Promise.resolve()
+
+该方法用于把一个值转换为 Promise 对象。
+
+```javascript
+// 将字符串转换为 Promise 对象后，在 fulfilled（操作成功）中可以拿到这个字符串
+Promise.resolve('foo')
+  .then(function (value) {
+    console.log(value)  // "foo"
+  })
+
+// 等价于
+new Promise(function(resolve, reject) {
+  resolve('foo')
+})
+```
+
+```javascript
+// 如果参数是另一个 Promise 对象，则该 Promise 对象会被原样返回
+const p1 = ajax('/api/users.json')
+const p2 = Promise.resolve(p1)
+console.log(p1 === p2)  // true
+```
+
+#### Promise.reject()
+
+该方法用于创建一个「失败」的 Promise 对象。
+
+```javascript
+// 无论传入什么数据，它都会成为 rejected（操作失败）的理由
+Promise.reject(new Error('rejected'))
+  .catch(function(error) {
+    console.log(error)  // Error: rejected
+  })
+```
+
+### Promise 并行执行
+
+#### Promise.all
+
+`Promise.all` 可以将多个 Promise 实例（假定为 `p1`、`p2`、`p3`）包装成一个新的 Promise 实例（假定为 `p`），适用于同时请求多个接口（相互间没有依赖）的场景。
 
 成功和失败分成两种情况。
 
@@ -391,7 +479,7 @@ Promise.all([p1, p2, p3]).then(result => {
 // 'fail'
 ```
 
-### Promise.race
+#### Promise.race
 
 顾名思义，`Promise.race` 就是赛跑的意思，意思就是说，`Promise.race([p1, p2, p3])` 里面**哪个结果获得的快**，就返回那个结果，不管结果本身时成功状态还是失败状态。
 
