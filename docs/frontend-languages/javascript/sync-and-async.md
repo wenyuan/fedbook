@@ -361,9 +361,9 @@ ajax('/api/login')
   })
 ```
 
-#### 2）try catch 无法捕获异步异常。
+#### 2）try/catch 无法捕获异步异常。
 
-try catch 能捕获到的仅仅是 try 模块内执行的同步方法的异常，异步方法所产生的异常（例如 Ajax 请求、定时器），都无法被捕获到。
+try/catch 能捕获到的仅仅是 try 模块内执行的同步方法的异常，异步方法所产生的异常（例如 Ajax 请求、定时器），都无法被捕获到。
 
 ```javascript
 try {
@@ -382,8 +382,8 @@ try {
 ```
 
 <div style="text-align: center;">
-  <img src="./assets/try-catch-uncaught-error.png" alt="try catch 无法捕获异步异常">
-  <p style="text-align: center; color: #888;">（try catch 无法捕获异步异常）</p>
+  <img src="./assets/try-catch-uncaught-error.png" alt="try/catch 无法捕获异步异常">
+  <p style="text-align: center; color: #888;">（try/catch 无法捕获异步异常）</p>
 </div>
 
 要捕获异步异常，就需要借助 Promise 了：
