@@ -14,7 +14,7 @@
 * `kebab-case`（短横线连接式）
 * `Snake`（下划线连接式）
 
-## 工程目录安排
+## 工程目录
 
 * 全局通用的组件放在 `/src/components/` 下。
 * 页面/视图组件放在 `/src/views/` 下。
@@ -33,24 +33,26 @@ src/
 ├── filters                        # 全局公共过滤器
 └── views                          # 页面/视图
     ├── login
-    │         ├── components             # 私有组件
-    │         └── index.vue
+    │   ├── components             # 私有组件
+    │   └── index.vue
     └── profile
-              ├── components             # 私有组件
-              └── index.vue
+        ├── components             # 私有组件
+        └── index.vue
 ```
 
-## 项目文件命名
+## 命名规范
 
-### 项目名
+### 通用文件与文件夹
+
+#### 1）项目名
 
 全部采用小写方式，以**短横线**分隔。例如：`my-project-name`。
 
-### 目录名
+#### 2）目录名
 
 有复数结构时，要采用复数命名法。例如：`docs`、`assets`、`components`、`directives`、`mixins`、`utils`、`views`。
 
-### 图像文件名
+#### 3）图像文件名
 
 全部采用小写方式， 优先选择单个单词命名，多个单词命名以**下划线**分隔。
 
@@ -64,7 +66,7 @@ pic_people.jpg
 pic_TV.jpg
 ```
 
-### HTML 文件名
+#### 4）HTML 文件名
 
 全部采用小写方式， 优先选择单个单词命名，多个单词命名以**下划线**分隔。
 
@@ -73,7 +75,7 @@ pic_TV.jpg
 ├── success_report.html
 ```
 
-### CSS 文件名
+#### 5）CSS 文件名
 
 全部采用小写方式， 优先选择单个单词命名，多个单词命名以**短横线**分隔。
 
@@ -84,7 +86,7 @@ pic_TV.jpg
 ├── input-number.scss
 ```
 
-### JavaScript 文件名
+#### 6）JavaScript 文件名
 
 全部采用小写方式， 优先选择单个单词命名，多个单词命名以**短横线**分隔。
 
@@ -99,16 +101,18 @@ pic_TV.jpg
 
 > 上述规则可以快速记忆为「静态文件下划线，编译文件短横线」。
 
-## Vue 文件夹命名
+### Vue 特色文件夹
 
-### 位于 `components/` 下的直接子文件夹
+在 Vue 工程中，这是对通用文件与文件夹命名规范的补充。
+
+#### 1）位于 `components/` 下的直接子文件夹
 
 * 代表着这类模块的类别。
 * 由名词组成（例如：`Charts/`）。
 * 最好只有一个单词，特殊情况可例外（good: `Car/`，`Order/`，`Cart/`）（bad: `CarInfo/`，`CarPage/`）。
 * 如果有两个以上单词，采用 PascalBase 风格（例如：`BackToTop/`）
 
-### 位于 `views/` 下的文件夹和其它文件夹
+#### 2）位于 `views/` 下的文件夹和其它文件夹
 
 * 代表着页面的名字，或者类名。
 * 由名词组成（例如：`profile/`）。
@@ -147,9 +151,9 @@ src/
         └── 404.vue
 ```
 
-## Vue 组件命名
+### Vue 组件命名
 
-### 单文件组件名
+#### 1）单文件组件名
 
 文件扩展名为 `.vue` 的 `single-file components`（单文件组件）。单文件组件名应该始终是**单词大写开头**（PascalCase）。
 
@@ -160,7 +164,7 @@ src/
 ├── MyComponent.vue
 ```
 
-### 单例组件名
+#### 2）单例组件名
 
 **只拥有单个活跃实例的组件应该以 `The` 前缀命名，以示其唯一性**。
 
@@ -185,7 +189,7 @@ components/
 
 ```
 
-### 基础组件名
+#### 3）基础组件名
 
 > 基础组件：不包含业务，独立、具体功能的基础组件，比如**日期选择器**、**模态框**等。
 > 这类组件作为项目的基础控件，会被大量使用，因此组件的 API 进行过高强度的抽象，可以通过不同配置实现不同的功能。
@@ -212,7 +216,7 @@ components/
 ├── Icon.vue
 ```
 
-### 业务组件名
+#### 4）业务组件名
 
 > 业务组件：它不像基础组件只包含某个功能，而是在业务中被多个页面复用的（具有可复用性）。
 > 它与基础组件的区别是：业务组件只在当前项目中会用到，不具有通用性，而且会包含一些业务，比如数据请求；而基础组件不含业务，在任何项目中都可以使用，功能单一，比如一个具有数据校验功能的输入框。
@@ -228,7 +232,7 @@ components/
 ├── CustomCard.vue
 ```
 
-### 紧密耦合的组件名
+#### 5）紧密耦合的组件名
 
 该类组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
 
@@ -252,7 +256,7 @@ components/
 ├── ButtonForTodoListItem.vue
 ```
 
-### 组件名中单词顺序
+#### 6）组件名中单词顺序
 
 **组件名应该以高级别的（通常是一般化描述的）单词开头，以描述性的修饰词结尾**。因为编辑器通常会按字母顺序组织文件，所以现在组件之间的重要关系一目了然。
 
@@ -284,7 +288,7 @@ components/
 
 还有另一种多级目录的方式，把所有的搜索组件放到 `search/` 目录，把所有的设置组件放到 `settings/` 目录。我们只推荐在非常大型（如有 100+ 个组件）的应用下才考虑这么做，因为在多级目录间找来找去，要比在单个 components 目录下滚动查找花费的精力更多。
 
-### 组件名使用完整单词
+#### 7）组件名使用完整单词
 
 **组件名应该倾向于完整单词而不是缩写**，这样便于团队合作与后期维护。编辑器中的自动补全已经让书写长命名的代价非常之低了，而其带来的明确性却是非常宝贵的。不常用的缩写尤其应该避免。
 
@@ -304,7 +308,7 @@ components/
 ├── UProfOpts.vue
 ```
 
-### 视图组件名
+#### 8）视图组件名
 
 > 视图文件夹：位于 `views/` 文件夹下，代表着一类页面的名字，存放视图组件。
 > 视图组件：代表着某一页面的名字，或者类名。
@@ -347,9 +351,9 @@ src/
         └── 404.vue             # 视图组件
 ```
 
-## 代码参数命名
+### Vue 组件内部参数命名
 
-### name
+#### 1）name
 
 **组件名应该始终是多个单词，应该始终是 PascalCase 的**。根组件 App 以及 `<transition>`、`<component>` 之类的 Vue 内置组件除外。这样做可以避免跟现有的以及未来的 HTML 元素相冲突，因为所有的 HTML 元素名称都是单个单词的。
 
@@ -362,7 +366,7 @@ export default {
 }
 ```
 
-### prop
+#### 2）prop
 
 **在声明 prop 的时候，其命名应该始终使用 camelCase，而在模板和 JSX 中应该始终使用 kebab-case**。我们单纯的遵循每个语言的约定，在 JavaScript 中更自然的是 camelCase。而在 HTML 中则是 kebab-case。
 
@@ -388,7 +392,7 @@ export default {
 }
 ```
 
-### router
+#### 3）router
 
 **Vue Router Path 命名采用 kebab-case 格式**。用 Snake（如：`/user_info`）或 camelCase（如：`/userInfo`)的单词会被当成一个单词，搜索引擎无法区分语义。
 
@@ -421,7 +425,7 @@ export default {
 },
 ```
 
-### 模板中组件
+#### 4）模板中组件
 
 对于绝大多数项目来说，在单文件组件和字符串模板中组件名应该总是 PascalCase 的，但是在 DOM 模板中总是 kebab-case 的。
 
@@ -435,7 +439,7 @@ export default {
 <my-component></my-component>
 ```
 
-### 自闭合组件
+#### 5）自闭合组件
 
 在单文件组件、字符串模板和 JSX 中没有内容的组件应该是自闭合的 —— 但在 DOM 模板里永远不要这样做。
 
@@ -449,7 +453,7 @@ export default {
 <my-component></my-component>
 ```
 
-### 变量
+#### 6）变量
 
 * 命名方法：camelCase
 * 命名规范：类型 + 对象描述或属性的方式
@@ -467,7 +471,7 @@ let mySchool = "我的学校"
 var getTitle = "LoginTable"
 ```
 
-### 常量
+#### 7）常量
 
 * 命名方法：全部大写下划线分割
 * 命名规范：使用大写字母和下划线来组合命名，下划线用以分割单词
@@ -479,7 +483,7 @@ const MAX_COUNT = 10
 const URL = 'https://www.fedbook.cn'
 ```
 
-### 方法
+#### 8）方法
 
 * 命名方法：camelCase
 * 命名规范：统一使用动词或者动词 + 名词形式
@@ -508,7 +512,7 @@ const URL = 'https://www.fedbook.cn'
 | get | 获取某个值                  | 函数返回一个非布尔值。                            |
 | set | 设置某个值                  | 无返回值、返回是否设置成功或者返回链式对象。          |
 
-### 自定义事件
+#### 9）自定义事件
 
 **自定义事件应始终使用 kebab-case 的事件名**。
 
@@ -566,7 +570,7 @@ export default {
 }
 ```
 
-### 事件方法
+#### 10）事件方法
 
 * 命名方法：camelCase
 * 命名规范：handle + 名称（可选）+ 动词
@@ -633,7 +637,9 @@ export default {
 </style>
 ```
 
-### 元素 attribute 顺序
+### 书写顺序
+
+#### 1）元素 attribute 顺序
 
 这是 Vue 官方为组件选项推荐的默认顺序。它们被划分为几大类，所以你也能知道新添加的自定义 attribute 和指令应该放到哪里。
 
@@ -666,7 +672,7 @@ export default {
   
 注意：不推荐同时使用 `v-if` 和 `v-for`。
 
-### 组件方法书写顺序
+#### 2）组件方法顺序
 
 这是 Vue 官方推荐的组件选项默认顺序。它们被划分为几大类，所以你也能知道从插件里添加的新 property 应该放到哪里。
 
@@ -712,8 +718,113 @@ export default {
 * **渲染**（组件输出的声明式描述）
   * `templated` / `render`
   * `renderError`
+  
+### 书写格式
 
-### data
+#### 1）多个 attribute 的元素
+
+多个 attribute 的元素应该分多行撰写，每个 attribute 一行。
+
+推荐：
+
+```html
+<img
+  src="https://vuejs.org/images/logo.png"
+  alt="Vue Logo">
+
+<MyComponent
+  foo="a"
+  bar="b"
+  baz="c"/>
+```
+
+不推荐：
+
+```html
+<img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
+<MyComponent foo="a" bar="b" baz="c"/>
+```
+
+#### 2）模板中简单的表达式
+
+**组件模板应该只包含简单的表达式，复杂的表达式则应该重构为计算属性或方法**。
+
+复杂表达式会让你的模板变得不那么声明式。我们应该尽量描述应该出现的**是什么**，而非**如何**计算那个值。而且计算属性和方法使得代码可以重用。
+
+推荐：
+
+```html
+<!-- 在模板中 -->
+{{ normalizedFullName }}
+```
+
+```javascript
+// 复杂表达式已经移入一个计算属性
+computed: {
+  normalizedFullName: function () {
+    return this.fullName.split(' ').map(function (word) {
+      return word[0].toUpperCase() + word.slice(1)
+    }).join(' ')
+  }
+}
+```
+
+不推荐：
+
+```html
+<!-- 在模板中 -->
+{{
+  fullName.split(' ').map((word) => {
+    return word[0].toUpperCase() + word.slice(1)
+  }).join(' ')
+}}
+```
+
+#### 3）带引号的 attribute 值
+
+非空 HTML 特性值应该始终带双引号。
+
+推荐：
+
+```html
+<input type="text">
+<AppSidebar :style="{ width: sidebarWidth + 'px' }">
+```
+
+不推荐：
+
+```html
+<input type=text>
+<AppSidebar :style={width:sidebarWidth+'px'}>
+```
+
+#### 4）指令缩写
+
+* 用 `:` 表示 `v-bind:`
+* 用 `@` 表示 `v-on:`
+* 用 `#` 表示 `v-slot:`
+
+```html
+<input
+  :value="newTodoText"
+  :placeholder="newTodoInstructions">
+
+<input
+  @input="onInput"
+  @focus="onFocus">
+
+<template #header>
+  <h1>Here might be a page title</h1>
+</template>
+
+<template #footer>
+  <p>Here's some contact info</p>
+</template>
+```
+
+### 赋值要求
+
+#### 1）data
 
 组件的 `data` 必须是一个函数。
 
@@ -728,7 +839,7 @@ export default {
 }
 ```
 
-### prop
+#### 2）prop
 
 Prop 定义应该尽量详细。
 
@@ -751,7 +862,7 @@ export default {
 }
 ```
 
-### computed
+#### 3）computed
 
 **应该把复杂计算属性分割为尽可能多的更简单的属性**。小的、专注的计算属性减少了信息使用时的假设性限制，所以需求变更时也用不着那么多重构了。
 
@@ -785,7 +896,9 @@ computed: {
 }
 ```
 
-### 为 `v-for` 设置键值
+### API 用法要求
+
+#### 1）为 `v-for` 设置键值
 
 **在组件上必须用 `key` 搭配 `v-for`**，以便维护内部组件及其子树的状态。甚至在元素上维护可预测的行为，比如动画中的[对象固化（object constancy）](https://bost.ocks.org/mike/constancy/)。
 
@@ -799,7 +912,7 @@ computed: {
 </ul>
 ```
 
-### `v-if` 和 `v-for` 互斥
+#### 2）`v-if` 和 `v-for` 互斥
 
 永远不要把 `v-if` 和 `v-for` 同时用在同一个元素上。
 
@@ -867,107 +980,6 @@ computed: {
       {{ user.name }}
   </li>
 </ul>
-```
-
-### 多个 attribute 的元素
-
-多个 attribute 的元素应该分多行撰写，每个 attribute 一行。
-
-推荐：
-
-```html
-<img
-  src="https://vuejs.org/images/logo.png"
-  alt="Vue Logo">
-
-<MyComponent
-  foo="a"
-  bar="b"
-  baz="c"/>
-```
-
-不推荐：
-
-```html
-<img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
-<MyComponent foo="a" bar="b" baz="c"/>
-```
-
-### 模板中简单的表达式
-
-**组件模板应该只包含简单的表达式，复杂的表达式则应该重构为计算属性或方法**。
-
-复杂表达式会让你的模板变得不那么声明式。我们应该尽量描述应该出现的**是什么**，而非**如何**计算那个值。而且计算属性和方法使得代码可以重用。
-
-推荐：
-
-```html
-<!-- 在模板中 -->
-{{ normalizedFullName }}
-```
-
-```javascript
-// 复杂表达式已经移入一个计算属性
-computed: {
-  normalizedFullName: function () {
-    return this.fullName.split(' ').map(function (word) {
-      return word[0].toUpperCase() + word.slice(1)
-    }).join(' ')
-  }
-}
-```
-
-不推荐：
-
-```html
-<!-- 在模板中 -->
-{{
-  fullName.split(' ').map((word) => {
-    return word[0].toUpperCase() + word.slice(1)
-  }).join(' ')
-}}
-```
-
-### 带引号的 attribute 值
-
-非空 HTML 特性值应该始终带双引号。
-
-推荐：
-
-```html
-<input type="text">
-<AppSidebar :style="{ width: sidebarWidth + 'px' }">
-```
-
-不推荐：
-
-```html
-<input type=text>
-<AppSidebar :style={width:sidebarWidth+'px'}>
-```
-
-### 指令缩写
-
-* 用 `:` 表示 `v-bind:`
-* 用 `@` 表示 `v-on:`
-* 用 `#` 表示 `v-slot:`
-
-```html
-<input
-  :value="newTodoText"
-  :placeholder="newTodoInstructions">
-
-<input
-  @input="onInput"
-  @focus="onFocus">
-
-<template #header>
-  <h1>Here might be a page title</h1>
-</template>
-
-<template #footer>
-  <p>Here's some contact info</p>
-</template>
 ```
 
 （完）
