@@ -8,7 +8,7 @@
 
 <hr>
 
-这个系列主要梳理 JavaScript 基础知识点，内容涵盖 ECMAScript 5.1（**ES5**）和 ECMAScript 2015（**ES6**），以及少数 ECMAScript 2016（ES7）中常用的新特性。
+这个系列主要梳理 JavaScript 基础知识点，内容涵盖 ECMAScript 5.1（**ES5**）和 ECMAScript 2015（**ES6**），以及少数 ECMAScript 2016（**ES7**）中常用的新特性。
 
 关于 **ES7/ES8/ES9** 等后出的新语法，会单独拎出来作为一个系列（ES 规范系列）进行汇总。
 
