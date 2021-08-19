@@ -61,7 +61,7 @@ module.exports = [
     ]
   },
   {
-    title: 'JavaScript 用法',
+    title: 'JavaScript 专题',
     collapsable: true,
     children: [
       {
