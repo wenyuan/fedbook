@@ -113,11 +113,11 @@ DELETE /zoos/ID/animals/ID    删除某个指定动物园的指定动物
 
 HTTP 状态码就是一个三位数，分成五个类别。
 
-* 1xx：相关信息
-* 2xx：操作成功
-* 3xx：重定向
-* 4xx：客户端错误
-* 5xx：服务器错误
+* 1xx：接受的请求正在处理 （信息性状态码）
+* 2xx：表示请求正常处理完毕 （成功状态码）
+* 3xx：表示重定向状态，需要重新请求 （重定向状态码）
+* 4xx：服务器无法处理请求 （客户端错误状态码）
+* 5xx：服务器处理请求出错 （服务端错误状态码）
 
 这五大类总共包含 [100 多种](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)状态码，覆盖了绝大部分可能遇到的情况。每一种状态码都有标准的（或者约定的）解释，客户端只需查看状态码，就可以判断出发生了什么情况，所以服务器应该返回尽可能精确的状态码。
 
@@ -125,19 +125,19 @@ HTTP 状态码就是一个三位数，分成五个类别。
 
 ```
 200 OK                     - [GET]             服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。
-201 CREATED                - [POST/PUT/PATCH]  用户新建或修改数据成功。
+201 Created                - [POST/PUT/PATCH]  用户新建或修改数据成功。
 202 Accepted               - [*]               表示一个请求已经进入后台排队（异步任务）。
-204 NO CONTENT             - [DELETE]          用户删除数据成功。
+204 No Content             - [DELETE]          用户删除数据成功。
 400 Bad Request            - [POST/PUT/PATCH]  服务器不理解客户端的请求，未做任何处理。
 401 Unauthorized           - [*]               用户未提供身份验证凭据，或者没有通过身份验证。
 403 Forbidden              - [*]               用户通过了身份验证，但是不具有访问资源所需的权限。
 404 Not Found              - [*]               所请求的资源不存在，或不可用。
 405 Method Not Allowed     - [*]               用户已经通过身份验证，但是所用的 HTTP 方法不在他的权限之内。
-406 Not Acceptable         - [GET]             用户请求的格式不可得（比如用户请求 JSON 格式，但是只有 XML 格式）。
+406 Not Acceptable         - [GET]             请求的资源的内容特性无法满足请求头中的条件，因而无法生成响应实体，即我要的你不给（比如用户请求 JSON 格式，但是只有 XML 格式）。
 410 Gone                   - [GET]             所请求的资源已从这个地址转移，不再可用。
-415 Unsupported Media Type - [POST/PUT/PATCH]  客户端要求的返回格式不支持（比如，API 只能返回 JSON 格式，但是客户端要求返回 XML 格式）。
+415 Unsupported Media Type - [POST/PUT/PATCH]  服务器拒绝服务，原因是请求格式不被支持，即我给的你不要（比如 API 只能返回 JSON 格式，但是客户端要求返回 XML 格式）。
 422 Unprocesable entity    - [POST/PUT/PATCH]  客户端上传的附件无法处理，导致请求失败。
-429 Too Many Requests      - [POST/PUT/PATCH]  客户端的请求次数超过限额。
+429 Too Many Requests      - [*]               客户端的请求次数超过限额。
 500 Internal Server Error  - [*]               客户端请求有效，服务器处理时发生了意外。
 503 Service Unavailable    - [*]               服务器无法处理请求，一般用于网站维护状态。
 ```
@@ -149,31 +149,7 @@ HTTP 状态码就是一个三位数，分成五个类别。
 * API 用到的 3xx 状态码，主要是 303（See Other），表示参考另一个 URL。它与 302 和 307 的含义一样，也是「暂时重定向」，区别在于 302 和 307 用于 GET 请求，而 303 用于 POST、PUT 和 DELETE 请求。收到 303 以后，浏览器不会自动跳转，而会让用户自己决定下一步怎么办。
 * 一般来说，API 不会向用户透露服务器的详细信息，所以表示服务端错误的 5xx 状态码只要两个就够了：500 和 503。
 
-### 3）4xx 状态码
-
-4xx 状态码表示客户端错误，主要有下面几种：
-
-* `400` Bad Request：服务器不理解客户端的请求，未做任何处理。
-* `401` Unauthorized：用户未提供身份验证凭据，或者没有通过身份验证。
-* `403` Forbidden：用户通过了身份验证，但是不具有访问资源所需的权限。
-* `404` Not Found：所请求的资源不存在，或不可用。
-* `405` Method Not Allowed：用户已经通过身份验证，但是所用的 HTTP 方法不在他的权限之内。
-* `410` Gone：所请求的资源已从这个地址转移，不再可用。
-* `415` Unsupported Media Type：客户端要求的返回格式不支持。比如，API 只能返回 JSON 格式，但是客户端要求返回 XML 格式。
-* `422` Unprocessable Entity：客户端上传的附件无法处理，导致请求失败。
-* `429` Too Many Requests：客户端的请求次数超过限额。
-
 状态码的完全列表参见[这里](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)。
-
-## 错误处理（Error handling）
-
-如果状态码是 4xx，就应该向用户返回出错信息。一般来说，返回的信息中将 error 作为键名，出错信息作为键值即可。
-
-```
-{
-    error: "Invalid API key"
-}
-```
 
 ## 返回结果
 
