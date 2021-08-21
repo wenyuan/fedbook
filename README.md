@@ -60,6 +60,7 @@
   * [CSS 规范](https://fedbook.cn/style-guide/program/css-spec/)
   * [JavaScript 规范](https://fedbook.cn/style-guide/program/javascript-spec/)
   * [Vue 项目规范](https://fedbook.cn/style-guide/program/vuejs-spec/)
+* [接口设计](https://fedbook.cn/style-guide/apis/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

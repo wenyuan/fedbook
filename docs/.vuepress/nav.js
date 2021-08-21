@@ -3,7 +3,8 @@ module.exports = [
     text: '风格指南',
     items: [
       { text: '文档规范', link: '/style-guide/document/' },
-      { text: '代码风格', link: '/style-guide/program/' }
+      { text: '代码风格', link: '/style-guide/program/' },
+      { text: '接口设计', link: '/style-guide/apis/' },
     ]
   },
   {
