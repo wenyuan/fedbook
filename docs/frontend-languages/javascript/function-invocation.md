@@ -101,9 +101,14 @@ console.log(new o.m() === 1); // false
 
 构造函数通常不使用 `return` 关键字，它们通常初始化新对象，当构造函数的函数体执行完毕时，它会显式返回。在这种情况下，构造函数调用表达式的计算结果就是这个新对象的值。然而如果构造函数显式地使用 `return` 语句返回一个对象，那么调用表达式的值就是这个对象。如果构造函数使用 `return` 语句但是没有指定返回值，或者返回一个原始值，那么这时将忽略返回值，同时使用这个新对象作为返回结果。
 
+::: tip
+特别提醒一下，**`new` 调用时的返回值，如果没有显式返回对象或者函数**（包含 `Functoin`，`Array`，`Date`，`RegExg`，`Error`），**才是返回生成的新对象**。
+虽然实际使用时不会显示返回，但面试官可能会问到。
+:::
+
 ## 上下文调用
 
-上下文调用方式有三种，call、apply、bind，这是一种很强大的调用方式。
+上下文调用方式有三种，`call`、`apply`、`bind`，这是一种很强大的调用方式。
 
 ### call 和 apply
 
@@ -119,7 +124,7 @@ JavaScript 中的函数也是对象，函数对象也可以包含方法。其中
 // call()
 // obj: 这个对象将代替 func 里 this 对象
 // param1 ~ paramN: 这是一个参数列表
-func.call(obj, param1, …, paramN)
+func.call(obj, 'param1', 'param2')
 ```
 
 ```javascript
@@ -127,39 +132,29 @@ func.call(obj, param1, …, paramN)
 // 该方法能接收两个参数
 // obj: 这个对象将代替 func 里 this 对象
 // args: 这是一个数组，它将作为参数传给 func（args --> arguments）
-func.apply(obj, args)
+func.apply(obj, ['param1', 'param2'])
 ```
 
 注意：
 
-* `call()` 和 `apply()` 区别在于第二个参数：apply 传入的是一个参数数组，也就是将多个参数组合成为一个数组传入，而 call 则作为 call 的参数传入（从第二个参数开始）。
+* `call` 和 `apply` 区别在于第二个参数：`apply` 传入的是一个参数数组，也就是将多个参数组合成为一个数组传入，而 `call` 从第二个参数开始都是参数。
 * 在严格模式下，在调用函数时第一个参数会成为 `this` 的值，即使该参数不是一个对象。
 * 在非严格模下，如果第一个参数的值是 `null` 或 `undefined`，它将使用全局对象替代。
 
 ### bind
 
-bind 方式一般人用的比较少，但有的时候具有一些举足轻重的作用。
+`bind` 方式一般人用的比较少，但有的时候具有一些举足轻重的作用。
 
-与 call、apply 不同的是，call、apply 是立刻执行了这个函数，并且执行过程中绑定了 `this` 的值；bind 并没有立刻执行这个函数，而是创建了一个新的函数，新函数绑定了 `this` 的值，如果要执行还得在后面加个 `()`。
+不同的是，`call`、`apply` 是立刻执行了这个函数，并且执行过程中绑定了 `this` 的值；`bind` 并没有立刻执行这个函数，而是创建了一个新的函数，新函数绑定了 `this` 的值，如果要执行还得在后面加个 `()`。
 
 基本模式：
 
 ```javascript
-let func = function(){
-  console.log(this.name);
-}
-
-// 执行了 bind 方法之后，产生了一个新函数，这个新函数里面的逻辑和原来还是一样的，唯一的不同是 this 指向 { name: '张三' }
-let funcBind = func.bind({ name: '张三' });
-funcBind(); // "张三"
-```
-
-上述代码可以简化如下：
-
-```javascript
-(function func() {
-  console.log(this.name);
-}).bind({ name: '张三' })(); // "张三"
+// bind() 
+// 该方法能接收两个参数
+// obj: 这个对象将代替 func 里 this 对象
+// param1 ~ paramN: 这是一个参数列表
+func.bind(obj, 'param1', 'param2')()
 ```
 
 bind 函数在对象中：
@@ -196,14 +191,14 @@ obj.drink();
 
 ### call、apply、bind 小结
 
-通过 `call()`、`apply()`、`bind()` 方法把对象绑定到 `this` 上，叫做显式绑定。对于被调用的函数来说，叫做间接调用。
+通过 `call`、`apply`、`bind` 方法把对象绑定到 `this` 上，叫做显式绑定。对于被调用的函数来说，叫做间接调用。
 
-* call、apply、bind 三者的第一个参数都是 `this` 要指向的对象。
-* bind 只是返回函数，还未调用，所以如果要执行还得在后面加个 `()`；call、apply 是立即执行函数。
+* `call`、`apply`、`bind` 三者的第一个参数都是 `this` 要指向的对象。
+* `bind` 只是返回函数，还未调用，所以如果要执行还得在后面加个 `()`；`call`、`apply` 是立即执行函数。
 * 三者后面都可以带参数
-  * call 后面的参数用逗号隔开：`func.call(obj,value1,value2);`
-  * apply 后面的参数以数组的形式传入：`func.apply(obj,[value1,value2]);`
-  * bind 可以在指定对象的时候传参（同 call），以逗号隔开；也可以在执行的时候传参，写到后面的括号中：`func.bind(obj,value1,value2)();`  或 `func.bind(obj)(value1,value2);`
+  * `call` 后面的参数用逗号隔开：`func.call(obj, value1, value2);`
+  * `apply` 后面的参数以数组的形式传入：`func.apply(obj, [value1, value2]);`
+  * `bind` 可以在指定对象的时候传参（同 `call`），以逗号隔开；也可以在执行的时候传参，写到后面的括号中：`func.bind(obj,value1,value2)();`  或 `func.bind(obj)(value1,value2);`
 
 ## 参考资料
 
