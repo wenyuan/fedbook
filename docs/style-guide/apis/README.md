@@ -149,7 +149,7 @@ HTTP 状态码就是一个三位数，分成五个类别。
 * API 用到的 3xx 状态码，主要是 303（See Other），表示参考另一个 URL。它与 302 和 307 的含义一样，也是「暂时重定向」，区别在于 302 和 307 用于 GET 请求，而 303 用于 POST、PUT 和 DELETE 请求。收到 303 以后，浏览器不会自动跳转，而会让用户自己决定下一步怎么办。
 * 一般来说，API 不会向用户透露服务器的详细信息，所以表示服务端错误的 5xx 状态码只要两个就够了：500 和 503。
 
-状态码的完全列表参见[这里](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)。
+状态码的完全列表参见[这里](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)。
 
 ## 返回结果
 
