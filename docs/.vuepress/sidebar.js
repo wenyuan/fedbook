@@ -18,6 +18,7 @@ module.exports = {
   '/basic-skills/nginx': require('../basic-skills/nginx/sidebar'),
   /* --------- 编程进阶 --------- */
   '/advanced-programming/algorithm/': require('../advanced-programming/algorithm/sidebar'),
+  '/advanced-programming/source-code/': require('../advanced-programming/source-code/sidebar'),
   /* --------- 手写系列 --------- */
   '/handwritten/javascript': require('../handwritten/javascript/sidebar'),
   /* --------- 其它 --------- */
