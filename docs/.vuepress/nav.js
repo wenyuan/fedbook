@@ -60,7 +60,7 @@ module.exports = [
     text: '编程进阶',
     items: [
       { text: '数据结构与算法', link: '/advanced-programming/algorithm/' },
-      { text: '源码阅读与学习', link: '/advanced-programming/source-code/' }
+      { text: '源码阅读', link: '/advanced-programming/source-code/' }
     ]
   },
   {

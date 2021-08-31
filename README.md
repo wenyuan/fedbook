@@ -202,7 +202,7 @@
   * [数据结构之数组](https://fedbook.cn/advanced-programming/algorithm/array/)
   * [数据结构之链表](https://fedbook.cn/advanced-programming/algorithm/linked-list/)
   * 学习计划调整，延后学习
-* [源码阅读与学习](https://fedbook.cn/advanced-programming/source-code/)
+* [源码阅读](https://fedbook.cn/advanced-programming/source-code/)
   * 抽空学习，不占用主学习进程
 
 ### 手写系列
