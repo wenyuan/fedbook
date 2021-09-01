@@ -254,7 +254,39 @@ const remove = (arr, el) => {
 ```javascript
 // 第 1 个参数：从 0 计数，指定开始位置
 // 第 2 个参数：指定要移除的元素个数
-// 第 3~N 个参数（可选）：指定要插入数组的元素
+// 第 3 ~ N 个参数（可选）：指定要插入数组的元素，如果不指定，则 splice() 将只删除数组元素
+const months = ['Jan', 'March', 'April', 'June'];
+months.splice(1, 0, 'Feb');
+// inserts at index 1
+console.log(months);
+// expected output: Array ["Jan", "Feb", "March", "April", "June"]
+
+months.splice(4, 1, 'May');
+// replaces 1 element at index 4
+console.log(months);
+// expected output: Array ["Jan", "Feb", "March", "April", "May"]
+```
+
+但是，`splice()` 其实是一个很耗性能的方法，因为删除数组中的一项，其他元素都要移动位置。
+
+引申：在 [`axios InterceptorManager` 拦截器源码](https://github.com/axios/axios/blob/master/lib/core/InterceptorManager.js) 中，拦截器用数组存储的。但实际移除拦截器时，只是把拦截器置为 `null` 。而不是用 `splice` 移除。最后执行时为 `null` 的不执行，同样效果。axios 拦截器这个场景下，不得不说为性能做到了很好的考虑。
+
+看如下 axios 拦截器代码示例：
+
+```javascript
+// 代码有删减
+// 声明
+this.handlers = [];
+
+// 移除
+if (this.handlers[id]) {
+    this.handlers[id] = null;
+}
+
+// 执行
+if (h !== null) {
+    fn(h);
+}
 ```
 
 * TS 版
@@ -267,3 +299,575 @@ export const remove = <T>(arr: T[], el: T) => {
   }
 }
 ```
+
+这里用到了 TypeScript 中的泛型，泛型是指在定义函数，接口或者类的时候，不预先定义好具体的类型，而在使用的时候再指定类型，或者索性使用的时候也不手动指定类型，让代码根据你传入的值，用类型推论自动推算出来。
+
+泛型的语法是在函数名后添加范型变量 `<T>`（上例的匿名函数将函数名称省略了），其中 `T` 用来指代任意输入的类型，之后我们就可以使用这个类型。例如在后面的两个输入参数 `arr: T[]` 和 `el: T` 中再次使用，分别指定了数组元素的类型和变量的类型。
+
+### hasOwn
+
+hasOwn：是不是自己本身所拥有的属性
+
+* JS 版
+
+```javascript
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+const hasOwn = (val, key) => hasOwnProperty.call(val, key);
+```
+
+`hasOwnProperty` 是 `Object` 原型上的方法，几乎所有的对象都可以调用该方法。该方法用于判断对象自身属性中有没有指定的属性，会返回一个布尔值（和 `in` 运算符不同，该方法会忽略掉那些从原型链上继承到的属性）。
+
+* TS 版
+
+```typescript
+const hasOwnProperty = Object.prototype.hasOwnProperty
+export const hasOwn = (
+  val: object,
+  key: string | symbol
+): key is keyof typeof val => hasOwnProperty.call(val, key)
+```
+
+`key is keyof typeof val` 这句比较复杂，包含了三个 TypeScript 语法，意思是函数返回的 `key` 是属于 `val` 对象的键的联合类型。
+
+`is` 关键字：又被称为类型谓词。一般用在封装的类型判断函数中，用来判断参数是否属于某个类型，并根据结果返回对应的布尔类型。语法为 `prop is type`，例如：
+
+```typescript
+// val is number 指定函数返回类型，而不是将 boolean 用为函数返回类型。
+// 因为在调用 isNumber 之后，如果函数返回 true，TypeScript 会将类型范围缩小为 string，
+// 这样在编译时就能发现代码错误，有效缩小类型范围，从而避免一些隐藏的运行时错误。
+const isNumber = (val: unknown): val is number => typeof val === 'number'
+const isString = (val: unknown): val is string => typeof val === 'string'
+```
+
+`keyof` 操作符：用于获取某种类型的所有键，其返回类型是联合类型，例如：
+
+```typescript
+interface Person {
+  name: string,
+  age: number;
+  location: string;
+}
+
+// type 是 TypeScript 的保留关键字
+// 用来给一个类型起个新名字，常用于联合类型
+type K = keyof Person; // "name" | "age" | "location"
+let param1: K = "name"; // 正常
+let param2: K = 12;     // 报错，只能为 K 中字符串其一
+```
+
+`typeof` 操作符：js 中的 `typeof` 只能获取几种类型，而在 ts 中 `typeof` 用来获取一个变量或对象的类型，例如：
+
+```typescript
+interface Person {
+  name: string,
+  age: number;
+}
+
+const sem: Person = { name: 'semlinker', age: 30 };
+type Sem = typeof sem; // type Sem = Person
+```
+
+### isArray
+
+isArray：判断是否数组
+
+* JS 版
+
+```javascript
+const isArray = Array.isArray;
+```
+
+`Array.isArray` 比 `instanceof` 更加可靠，如下代码对比两者的区别：
+
+```javascript
+const arr = []
+const fakeArr = { __proto__: Array.prototype, length: 0 };
+
+// 如果参数是数组一定返回 true，否则一定返回 false
+// 在判断对象是否为数组时，采用Array.isArray 更加可靠
+Array.isArray(Array.prototype)   // true
+Array.isArray(arr)               // true
+Array.isArray(fakeArr);          // false
+
+// instanceof 操作符判断左边是否为右边的实例，其工作原理是判断右边参数的原型是否在左边参数的原型链上
+Array.prototype instanceof Array // false 不能正确判断 Array.prototype
+arr instanceof Array             // true
+fakeArr instanceof Array;        // true 可以被刻意误导
+```
+
+* TS 版
+
+```typescript
+export const isArray = Array.isArray
+```
+
+### isMap
+
+isMap：判断是否 Map 对象
+
+* JS 版
+
+```javascript
+const isMap = (val) => toTypeString(val) === '[object Map]';
+
+const objectToString = Object.prototype.toString;
+const toTypeString = (value) => objectToString.call(value);
+```
+
+Map 是 ES6 提供的数据结构，它类似于对象，也是键值对的集合。但是「键」的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了「字符串—值」的对应，Map 结构提供了「值—值」的对应，是一种更完善的 Hash 结构实现。如果你需要「键值对」的数据结构，Map 比 Object 更合适。
+
+Map 的用法：
+
+```javascript
+let map = new Map();
+let o = { p: 'Hello World' };
+
+map.set(o, 'content');
+map.get(o); // 'content'
+```
+
+* TS 版
+
+```typescript
+export const isMap = (val: unknown): val is Map<any, any> =>
+  toTypeString(val) === '[object Map]'
+
+export const objectToString = Object.prototype.toString
+export const toTypeString = (value: unknown): string =>
+  objectToString.call(value)
+```
+
+### isSet
+
+isSet：判断是否 Set 对象
+
+* JS 版
+
+```javascript
+const isSet = (val) => toTypeString(val) === '[object Set]';
+
+export const objectToString = Object.prototype.toString
+export const toTypeString = (value: unknown): string =>
+  objectToString.call(value)
+```
+
+Set 是 ES6 提供的数据结构，它类似于数组，但是成员的值都是唯一的，没有重复的值。
+
+Set 的用法：
+
+```javascript
+let set = new Set();
+// 在 Set 内部，两个NaN是相等的。
+let a = NaN;
+let b = NaN;
+set.add(a);
+set.add(b);
+set // Set { NaN }
+
+// 而两个对象总是不相等的
+set.add({});
+set.add({});
+set // Set { NaN, {}, {} }
+```
+
+* TS 版
+
+```typescript
+export const isSet = (val: unknown): val is Set<any> =>
+  toTypeString(val) === '[object Set]'
+
+export const objectToString = Object.prototype.toString
+export const toTypeString = (value: unknown): string =>
+  objectToString.call(value)
+```
+
+### 其它判断是否某种类型的函数
+
+* JS 版
+
+```javascript
+// 判断是否 Date 对象
+// instanceof 这种根据原型链向上查找的方式不太精确，但这里够用了。
+const isDate = (val) => val instanceof Date;
+
+// 判断是否函数
+const isFunction = (val) => typeof val === 'function';
+
+// 判断是否字符串
+const isString = (val) => typeof val === 'string';
+
+// 判断是否 Symbol
+// Symbol 是 ES6 引入的一种新的原始数据类型，表示独一无二的值。
+const isSymbol = (val) => typeof val === 'symbol';
+
+// 判断是否对象
+// 因为 typeof null 也是 "object"，所以这里同时判断了非 null 的值
+const isObject = (val) => val !== null && typeof val === 'object';
+
+// 判断是否 Promise
+const isPromise = (val) => {
+    return isObject(val) && isFunction(val.then) && isFunction(val.catch);
+};
+```
+
+* TS 版
+
+```typescript
+// 判断是否 Date 对象
+export const isDate = (val: unknown): val is Date => val instanceof Date
+
+// 判断是否函数
+export const isFunction = (val: unknown): val is Function =>
+  typeof val === 'function'
+
+// 判断是否字符串
+export const isString = (val: unknown): val is string => typeof val === 'string'
+
+// 判断是否 Symbol
+export const isSymbol = (val: unknown): val is symbol => typeof val === 'symbol'
+
+// 判断是否对象
+export const isObject = (val: unknown): val is Record<any, any> =>
+  val !== null && typeof val === 'object'
+
+// 判断是否 Promise
+export const isPromise = <T = any>(val: unknown): val is Promise<T> => {
+  return isObject(val) && isFunction(val.then) && isFunction(val.catch)
+}
+```
+
+### toRawType
+
+toRawType：对象转字符串，截取后第八位到倒数第二位
+
+* JS 版
+
+```javascript
+const toRawType = (value) => {
+    // extract "RawType" from strings like "[object RawType]"
+    return toTypeString(value).slice(8, -1);
+};
+```
+
+可以截取到 `String`、`Array` 等这些类型，这个函数可以用来做类型判断。
+
+JS 判断类型也有 `typeof` ，但不是很准确，而且能够识别出的不多。[MDN - typeof 文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof) 中介绍的比较详细，而且也实现了一个很完善的 `type` 函数。
+
+```
+// typeof 返回值目前有以下8种 
+'undefined'
+'object'
+'boolean'
+'number'
+'bigint'
+'string'
+'symobl'
+'function'
+```
+
+* TS 版
+
+```typescript
+export const toRawType = (value: unknown): string => {
+  // extract "RawType" from strings like "[object RawType]"
+  return toTypeString(value).slice(8, -1)
+}
+```
+
+### isPlainObject
+
+isPlainObject：判断是否纯粹的对象
+
+* JS 版
+
+```javascript
+const isPlainObject = (val) => toTypeString(val) === '[object Object]';
+```
+
+前面有一个 `isObject` 用来判断是否对象，这里的 `isPlainObject` 区别在于：
+
+```javascript
+isObject([])      // true  因为 type [] 为 'object'
+isPlainObject([]) // false
+```
+ 
+* TS 版
+
+```typescript
+export const isPlainObject = (val: unknown): val is object =>
+  toTypeString(val) === '[object Object]'
+```
+
+### isIntegerKey
+
+isIntegerKey：判断是不是数字型的字符串 key 值
+
+* JS 版
+
+```javascript
+const isIntegerKey = (key) => isString(key) &&
+    key !== 'NaN' &&
+    key[0] !== '-' &&
+    '' + parseInt(key, 10) === key;
+```
+
+第一步先判断 key 是否是字符串类型（作为 key 值有两种类型，`string` 和 `symbol`），第二步排除 `NaN` 值，第三步排除 `-` 值（排除负数），第四步将 key 转换成数字再隐式转换为字符串，与原 key 对比。
+
+* TS 版
+
+```typescript
+export const isIntegerKey = (key: unknown) =>
+  isString(key) &&
+  key !== 'NaN' &&
+  key[0] !== '-' &&
+  '' + parseInt(key, 10) === key
+```
+
+### isReservedProp
+
+isReservedProp：判断该属性是否为保留属性
+
+* JS 版
+
+```javascript
+/**
+ * Make a map and return a function for checking if a key
+ * is in that map.
+ * IMPORTANT: all calls of this function must be prefixed with
+ * \/\*#\_\_PURE\_\_\*\/
+ * So that rollup can tree-shake them if necessary.
+ */
+function makeMap(str, expectsLowerCase) {
+    const map = Object.create(null);
+    const list = str.split(',');
+    for (let i = 0; i < list.length; i++) {
+        map[list[i]] = true;
+    }
+    return expectsLowerCase ? val => !!map[val.toLowerCase()] : val => !!map[val];
+}
+
+const isReservedProp = /*#__PURE__*/ makeMap(
+// the leading comma is intentional so empty string "" is also included
+',key,ref,' +
+    'onVnodeBeforeMount,onVnodeMounted,' +
+    'onVnodeBeforeUpdate,onVnodeUpdated,' +
+    'onVnodeBeforeUnmount,onVnodeUnmounted');
+```
+
+这个函数依赖于 `makeMap`，也是 Vue3 源码中自用的工具函数，它传入一个以逗号分隔的字符串，将这个字符串转换成数组，并循环赋值 key 給一个空对象 map，然后返回一个包含参数 val 的闭包用来检查 val 是否是存在在字符串中。
+
+`isReservedProp("key")` 其实就相当于 `makeMap(str)("key")`。
+
+测试：
+
+```javascript
+// 保留的属性
+isReservedProp('key'); // true
+isReservedProp('ref'); // true
+isReservedProp('onVnodeBeforeMount'); // true
+isReservedProp('onVnodeMounted'); // true
+isReservedProp('onVnodeBeforeUpdate'); // true
+isReservedProp('onVnodeUpdated'); // true
+isReservedProp('onVnodeBeforeUnmount'); // true
+isReservedProp('onVnodeUnmounted'); // true
+```
+
+* TS 版
+
+```typescript
+/**
+ * Make a map and return a function for checking if a key
+ * is in that map.
+ * IMPORTANT: all calls of this function must be prefixed with
+ * \/\*#\_\_PURE\_\_\*\/
+ * So that rollup can tree-shake them if necessary.
+ */
+export function makeMap(
+  str: string,
+  expectsLowerCase?: boolean
+): (key: string) => boolean {
+  const map: Record<string, boolean> = Object.create(null)
+  const list: Array<string> = str.split(',')
+  for (let i = 0; i < list.length; i++) {
+    map[list[i]] = true
+  }
+  return expectsLowerCase ? val => !!map[val.toLowerCase()] : val => !!map[val]
+}
+
+export const isReservedProp = /*#__PURE__*/ makeMap(
+  // the leading comma is intentional so empty string "" is also included
+  ',key,ref,' +
+    'onVnodeBeforeMount,onVnodeMounted,' +
+    'onVnodeBeforeUpdate,onVnodeUpdated,' +
+    'onVnodeBeforeUnmount,onVnodeUnmounted'
+)
+```
+
+### cacheStringFunction
+
+cacheStringFunction：缓存字符串的函数
+
+* JS 版
+
+```javascript
+const cacheStringFunction = (fn) => {
+    const cache = Object.create(null);
+    return ((str) => {
+        const hit = cache[str];
+        return hit || (cache[str] = fn(str));
+    });
+};
+```
+
+这个函数和上面 `makeMap` 函数类似，传入一个 `fn` 参数，返回一个包含参数 `str` 的闭包，将这个 `str` 字符串作为 key 赋值给一个空对象 `cache`，闭包返回 `cache[str] || (cache[str] = fn(str))`。
+
+`cache[str] || (cache[str] = fn(str))` 的意思是，如果 `cache` 有缓存到 `str` 这个 key，直接返回对应的值；否则，先调用 `fn(str)`，再赋值给 `cache[str]`，这样可以将需要经过 `fn` 函数处理的字符串缓存起来，避免多次重复处理字符串。
+
+用法举例（也是来自于源码后面几行内容）：
+
+```javascript
+// \w 就是 [0-9a-zA-Z_]。表示数字、大小写字母和下划线。
+// () 小括号是分组捕获
+// g 是 global 的意思，表示全局匹配，即在目标字符串中按顺序找到满足匹配模式的所有子串
+const camelizeRE = /-(\w)/g;
+/**
+ * @private
+ */
+// 连字符 => 驼峰  on-click => onClick
+const camelize = cacheStringFunction((str) => {
+    return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));
+});
+
+// \B 是指非单词边界(与 \b 是反面意思)
+const hyphenateRE = /\B([A-Z])/g;
+/**
+ * @private
+ */
+// 驼峰 => 连字符  onClick => on-click
+const hyphenate = cacheStringFunction((str) => str.replace(hyphenateRE, '-$1').toLowerCase());
+
+/**
+ * @private
+ */
+// 首字母转大写
+const capitalize = cacheStringFunction((str) => str.charAt(0).toUpperCase() + str.slice(1));
+
+/**
+ * @private
+ */
+// 加上 on 字符串  click => onClick
+const toHandlerKey = cacheStringFunction((str) => str ? `on${capitalize(str)}` : ``);
+```
+
+* TS 版
+
+```typescript
+const cacheStringFunction = <T extends (str: string) => string>(fn: T): T => {
+  const cache: Record<string, string> = Object.create(null)
+  return ((str: string) => {
+    const hit = cache[str]
+    return hit || (cache[str] = fn(str))
+  }) as any
+}
+```
+
+用法举例（也是来自于源码后面几行内容）：
+
+```typescript
+const camelizeRE = /-(\w)/g
+/**
+ * @private
+ */
+export const camelize = cacheStringFunction((str: string): string => {
+  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
+})
+
+const hyphenateRE = /\B([A-Z])/g
+/**
+ * @private
+ */
+export const hyphenate = cacheStringFunction((str: string) =>
+  str.replace(hyphenateRE, '-$1').toLowerCase()
+)
+
+/**
+ * @private
+ */
+export const capitalize = cacheStringFunction(
+  (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
+)
+
+/**
+ * @private
+ */
+export const toHandlerKey = cacheStringFunction((str: string) =>
+  str ? `on${capitalize(str)}` : ``
+)
+```
+
+### hasChanged
+
+hasChanged：判断是否有变化
+
+* JS 版
+
+```javascript
+// compare whether a value has changed, accounting for NaN.
+const hasChanged = (value, oldValue) => !Object.is(value, oldValue);
+```
+
+`Object.is(value1, value2)` 是 ES6 提供的方法，用来比较两个值是否严格相等。它与严格比较运算符（`===`）的行为基本一致。不同之处只有两个：一是 `+0` 不等于 `-0`，而 `NaN` 等于自身。
+
+对比：
+
+```javascript
+Object.is('abc', 'abc'); // true
+Object.is({},{});        // false
+Object.is(+0, -0);       // false
+Object.is(NaN, NaN);     // true
+
++0 === -0;               // true
+NaN === NaN;             // false
+```
+
+因而基于 `Object.is` 的 `hasChanged` 会有如下比较结果：
+
+```javascript
+hasChanged(NaN, NaN); // false
+hasChanged(1, 1);     // false
+hasChanged(1, 2);     // true
+hasChanged(+0, -0);   // false
+
+// 场景
+// watch 监测值是否变化了
+// (value === value || oldValue === oldValue)
+// 为什么会有这句，因为要判断 NaN。hasChanged 认为 NaN 是不变的，通过 NaN === NaN 为 false 来判断。
+```
+
+ES5 可以通过以下代码实现 `Object.is`。
+
+```javascript
+Object.defineProperty(Object, 'is', {
+    value: function() {x, y} {
+        if (x === y) {
+           // 针对 +0 不等于 -0 的情况
+           return x !== 0 || 1 / x === 1 / y;
+        }
+        // 针对 NaN的情况
+        return x !== x && y !== y;
+    },
+    configurable: true,
+    enumerable: false,
+    writable: true
+});
+```
+
+* TS 版
+
+```typescript
+// compare whether a value has changed, accounting for NaN.
+export const hasChanged = (value: any, oldValue: any): boolean =>
+  !Object.is(value, oldValue)
+```
+
+### invokeArrayFns
