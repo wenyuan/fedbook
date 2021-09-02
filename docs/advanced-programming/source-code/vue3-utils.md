@@ -5,6 +5,7 @@
 * 学习调试源码：打包构建项目代码，生成 sourcemap 调试源码。
 * 学习优秀开源框架中工具函数是如何设计以达到优化的目的。
 * 工作中如果有用到类似的工具函数，可以借鉴参考。
+* 对 JavaScript 基础知识查漏补缺。
 * 复习巩固 TypeScript 语法和用法。
 
 ## 前期准备
@@ -662,14 +663,14 @@ const isReservedProp = /*#__PURE__*/ makeMap(
 
 ```javascript
 // 保留的属性
-isReservedProp('key'); // true
-isReservedProp('ref'); // true
-isReservedProp('onVnodeBeforeMount'); // true
-isReservedProp('onVnodeMounted'); // true
-isReservedProp('onVnodeBeforeUpdate'); // true
-isReservedProp('onVnodeUpdated'); // true
+isReservedProp('key');                  // true
+isReservedProp('ref');                  // true
+isReservedProp('onVnodeBeforeMount');   // true
+isReservedProp('onVnodeMounted');       // true
+isReservedProp('onVnodeBeforeUpdate');  // true
+isReservedProp('onVnodeUpdated');       // true
 isReservedProp('onVnodeBeforeUnmount'); // true
-isReservedProp('onVnodeUnmounted'); // true
+isReservedProp('onVnodeUnmounted');     // true
 ```
 
 * TS 版
@@ -871,3 +872,248 @@ export const hasChanged = (value: any, oldValue: any): boolean =>
 ```
 
 ### invokeArrayFns
+
+invokeArrayFns：执行数组里的函数
+
+当有多个函数要依次执行，且每个函数的参数存在包含关系（或个别函数没有参数）时，可以用这种写法来统一执行多个函数。
+
+* JS 版
+
+```javascript
+const invokeArrayFns = (fns, arg) => {
+    for (let i = 0; i < fns.length; i++) {
+        fns[i](arg);
+    }
+};
+```
+
+用法示例：
+
+```javascript
+const funcArr = [
+    function(val){
+        console.log('当前时间是:' + val);
+    },
+    function(val){
+        console.log('打印当前时间:' + val);
+    },
+    function(){
+        console.log('上面的时间是通过 new Date().toLocaleString() 计算出来的');
+    },
+]
+invokeArrayFns(funcArr, new Date().toLocaleString());
+```
+
+* TS 版
+
+```typescript
+export const invokeArrayFns = (fns: Function[], arg?: any) => {
+  for (let i = 0; i < fns.length; i++) {
+    fns[i](arg)
+  }
+}
+```
+
+这里对函数 `invokeArrayFns` 的参数进行了类型约束， `fns: Function[]` 指定第一个参数为数组且元素都是 `Function` 类型。`arg?: any` 用 `?` 表示第二个参数为可选，且值类型为任意值。
+
+### def
+
+def：定义对象属性
+
+* JS 版
+
+```javascript
+const def = (obj, key, value) => {
+    Object.defineProperty(obj, key, {
+        configurable: true,
+        enumerable: false,
+        value
+    });
+};
+```
+
+[`Object.defineProperty(obj, prop, descriptor)`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。还有一个方法能用于定义多个属性：[`Object.defineProperties(obj, props)`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties) (ES5)。
+
+引申：`Object.defineProperty` 涉及到比较重要的知识点：
+
+在 ES3 中，除了一些内置属性（如：`Math.PI`），对象的所有的属性在任何时候都可以被修改、插入、删除。在 ES5 中，我们可以设置属性是否可以被改变或是被删除 —— 在这之前，它是内置属性的特权。ES5 中引入了属性描述符的概念，我们可以通过它对所定义的属性有更大的控制权。这些属性描述符（特性）包括：
+
+> `value` —— 当试图获取属性时所返回的值。  
+> `writable` —— 该属性是否可写。  
+> `enumerable` —— 该属性在 `for in` 循环中是否会被枚举。  
+> `configurable`—— 该属性是否可被删除。  
+> `set()` —— 该属性的更新操作所调用的函数。  
+> `get()` —— 获取属性值时所调用的函数。
+
+另外，**数据描述符**（其中属性为：`enumerable`，`configurable`，`value`，`writable`）与**存取描述符**（其中属性为 `enumerable`，`configurable`，`set()`，`get()`）之间是有互斥关系的。在定义了 `set()` 和 `get()` 之后，描述符会认为存取操作已被 定义了，其中再定义 `value` 和 `writable` 会引起错误。
+
+以下是 ES3 风格的属性定义方式：
+
+```javascript
+var person = {};
+person.legs = 2;
+```
+
+以下是等价的 ES5 通过数据描述符定义属性的方式：
+
+```javascript
+var person = {};
+Object.defineProperty(person, 'legs', {
+    value: 2,
+    writable: true,
+    configurable: true,
+    enumerable: true
+});
+```
+
+其中， 除了 value 的默认值为 `undefined` 以外，其他的默认值都为 `false`。这就意味着，如果想要通过这一方式定义一个可写的属性，必须显示将它们设为 `true`。或者，我们也可以通过 ES5 的存储描述符来定义：
+
+```javascript
+var person = {};
+Object.defineProperty(person, 'legs', {
+    set:function(v) {
+        return this.value = v;
+    },
+    get: function(v) {
+        return this.value;
+    },
+    configurable: true,
+    enumerable: true
+});
+person.legs = 2;
+```
+
+这样一来，多了许多可以用来描述属性的代码，如果想要防止别人篡改我们的属性，就必须要用到它们。此外，也不要忘了浏览器向后兼容 ES3 方面所做的考虑。例如，跟添加 ``Array.prototype`` 属性不一样，我们不能再旧版的浏览器中使用 `shim` 这一特性。 另外，我们还可以（通过定义 `nonmalleable` 属性），在具体行为中运用这些描述符：
+
+```javascript
+var person = {};
+Object.defineProperty(person, 'heads', {value: 1});
+person.heads = 0;    // 0
+person.heads;        // 1  (改不了)
+delete person.heads; // false
+person.heads         // 1 (删不掉)
+```
+
+* TS 版
+
+```typescript
+export const def = (obj: object, key: string | symbol, value: any) => {
+  Object.defineProperty(obj, key, {
+    configurable: true,
+    enumerable: false,
+    value
+  })
+}
+```
+
+### toNumber
+
+toNumber：转数字
+
+* JS 版
+
+```javascript
+const toNumber = (val) => {
+    const n = parseFloat(val);
+    return isNaN(n) ? val : n;
+};
+```
+
+JavaScript 中将字符串转为数字的方法有三种：
+
+`Number()`（ES6）：将字符串转换为数字（空字符串转换为 `0`，其他的字符串会转换为 `NaN`）。
+`parseFloat()`：解析一个字符串，并返回一个浮点数（空字符串转换为 `NaN`，其他的字符串会返回非数字或无效数字字符之前的值）。
+`parseInt()`：解析一个字符串，并返回一个整数（空字符串转换为 `NaN`，其他的字符串会返回非数字或无效数字字符之前的值）。
+
+`isNaN` 本意是判断是不是 `NaN` 值，但是不准确。比如：`isNaN('a')` 为 `true`。所以 ES6 有了 `Number.isNaN` 这个判断方法，为了弥补这一个 API。
+
+```javascript
+isNaN(NaN);        // true
+Number.isNaN(NaN); // true
+
+isNaN('a');        // true
+Number.isNaN('a'); // false
+
+```
+
+* TS 版
+
+```typescript
+export const toNumber = (val: any): any => {
+  const n = parseFloat(val)
+  return isNaN(n) ? val : n
+}
+```
+
+### getGlobalThis
+
+getGlobalThis：获取全局对象
+
+* JS 版
+
+```javascript
+let _globalThis;
+const getGlobalThis = () => {
+    return (_globalThis ||
+        (_globalThis =
+            typeof globalThis !== 'undefined'
+                ? globalThis
+                : typeof self !== 'undefined'
+                    ? self
+                    : typeof window !== 'undefined'
+                        ? window
+                        : typeof global !== 'undefined'
+                            ? global
+                            : {}));
+};
+```
+
+这个方法用于获取全局 `this` 指向。
+
+**首次执行**时 `_globalThis` 是 `undefined`。所以会执行后面的赋值语句。
+
+如果存在 `globalThis` 就用 `globalThis`。[MDN - globalThis](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/globalThis)
+
+如果存在 `self`，就用 `self`。在 `Web Worker` 中不能访问到 `window` 对象，但是我们却能通过 `self` 访问到 `Worker` 环境中的全局对象。
+
+如果存在 `window`，就用 `window`。
+
+如果存在 `global`，就用 `global`。Node环境下，使用 `global`。
+
+如果都不存在，使用空对象。可能是微信小程序环境下。
+
+**下次执行**就直接返回 _`globalThis`，不需要第二次继续判断了。这种写法值得我们学习。
+
+* TS 版
+
+```typescript
+let _globalThis: any
+export const getGlobalThis = (): any => {
+  return (
+    _globalThis ||
+    (_globalThis =
+      typeof globalThis !== 'undefined'
+        ? globalThis
+        : typeof self !== 'undefined'
+        ? self
+        : typeof window !== 'undefined'
+        ? window
+        : typeof global !== 'undefined'
+        ? global
+        : {})
+  )
+}
+```
+
+## 总结
+
+以上这些是 Vue3 源码中的基础工具函数，但实际上跟 Vue3 框架本身的耦合性不是很强（除了个别函数比如 `isReservedProp` 是专门设计给框架内部用的），相对独立，能够很方便的上手阅读和调试。
+
+通过阅读这部分工具函数产生了不少价值：
+
+* 对 JavaScript 原生基础知识进行查漏补缺，特别像 Object 对象的那些 API 等等。
+* 刚学习完 TypeScript，在正式使用前先阅读高手代码里的 TS 写法，既能检验学习效果，也能为之后 TS 的运用提高熟练度。
+* 部分函数中用到了正则表达式的知识点，这块内容很大，如果需要专门学习就需要通读 《[JS 正则迷你书](https://github.com/qdlaoyao/js-regex-mini-book)》了，平时用正则表达式的使用需求查阅即可。
+* 汲取了一些优秀的设计思路，例如 `cacheStringFunction`、`invokeArrayFns`、`getGlobalThis` 等函数。
+
+（完）
