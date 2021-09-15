@@ -38,11 +38,12 @@ def do_telnet(host, username, password, commands):
         return False
 
     # 输入登录用户名
-    tn.read_until('Username:')
+    # 这里要设置下 timeout，否则会一直在等待关键字符出现，直至默认的超时时间（很久）
+    tn.read_until('Username:', timeout=2)
     tn.write(username + '\n')
 
     # 输入登录密码
-    tn.read_until('Password:')
+    tn.read_until('Password:', timeout=2)
     tn.write(password + '\n')
 
     time.sleep(2)
@@ -58,7 +59,7 @@ def do_telnet(host, username, password, commands):
         res = tn.read_very_eager()
         print(res)
 
-    # 执行完毕后，终止 Telnet 连接（或输入exit退出）
+    # 执行完毕后，终止 Telnet 连接（或输入 exit 退出）
     tn.close()
 
 
