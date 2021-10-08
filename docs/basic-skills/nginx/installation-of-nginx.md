@@ -143,7 +143,7 @@ cd nginx-1.18.0/
 
 ```bash
 # 预编译
-./configure --prefix=/usr/local/nginx --sbin-path=/usr/local/nginx/sbin --user=nginx --group=nginx --with-http_ssl_module --with-http_stub_status_module --with-http_gzip_static_module
+./configure --prefix=/usr/local/nginx --sbin-path=/usr/local/nginx/sbin/nginx --user=nginx --group=nginx --with-http_ssl_module --with-http_stub_status_module --with-http_gzip_static_module
 # 检查是否编译正确
 echo $?  # 如果返回值是 0，就是执行成功；如果是返回值是 0 以外的值，就是失败。
 
