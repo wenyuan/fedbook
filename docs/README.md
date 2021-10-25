@@ -7,11 +7,11 @@ action:
 - text: 进入小册 →
   link: /style-guide/document/
 features:
-- title: 前端开发
-  details: 以「前端开发」为主线，涵盖但不仅限于前端技术栈的知识点。
-- title: 持续学习
-  details: 记录每一天的进步，越努力，越幸运，欢迎收藏或 star。
-- title: WENYUAN
+- title: 知识沉淀
+  details: 专注前端开发，从前端到后端再到数据库，记录每一天的进步，越努力，越幸运。
+- title: 乐于分享
+  details: 一个人走得快，一群人走得远。分享能够产生沟通与交流的介质，实现共同进步。
+- title: 终身成长
   details: 一个 90 后程序员，终身学习者。座右铭：努力过，不后悔。
 footer: MIT Licensed | Copyright © 2018-present Wenyuan Xu
 copyrightText: false
