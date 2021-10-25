@@ -8,7 +8,7 @@ window.onload = function() {
     let urlRelativePath = getUrlRelativePath()
     if (language === 'zh-CN') {
       if (host !== cnDomain) {
-        swal('提示', '建议大陆用户访问部署在国内的站点，是否跳转？', {
+        swal('提示', '建议大陆用户访问部署在国内的站点(但内容可能会滞后)，是否跳转？', {
           buttons: ['取消', '确定'],
         }).then(value => {
           if (value) {
