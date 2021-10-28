@@ -34,6 +34,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '垃圾回收',
+        path: '/frontend-languages/javascript/gc',
+        collapsable: true
+      },
+      {
         title: '同步与异步',
         path: '/frontend-languages/javascript/sync-and-async',
         collapsable: true

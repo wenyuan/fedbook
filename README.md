@@ -92,6 +92,7 @@
   * [闭包](https://fedbook.cn/frontend-languages/javascript/closure/)
   * [this 指向](https://fedbook.cn/frontend-languages/javascript/this-keyword/)
   * [原型与原型链](https://fedbook.cn/frontend-languages/javascript/prototype-and-prototype-chain/)
+  * [垃圾回收](https://fedbook.cn/frontend-languages/javascript/gc/)
   * [数组遍历的几种方式](https://fedbook.cn/frontend-languages/javascript/array-iteration/)
   * [对象遍历的几种方式](https://fedbook.cn/frontend-languages/javascript/object-iteration/)
   * [继承的八种方式](https://fedbook.cn/frontend-languages/javascript/inheritance/)
