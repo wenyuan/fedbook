@@ -20,8 +20,8 @@ console.log(Foo.prototype); // { constructor: f Foo(), __proto__: Object }
 
 画图表示如下：
 
-<div style="text-align: center; width: 650px;">
-  <img src="./assets/foo-prototype.png" alt="Foo 的原型">
+<div style="text-align: center;">
+  <img src="./assets/foo-prototype.png" alt="Foo 的原型" style="width: 650px;">
   <p style="text-align: center; color: #888">（Foo 的原型）</p>
 </div>
 
@@ -37,8 +37,8 @@ const foo = new Foo();
 
 这里我们通过 `new` 操作符实例化了一个 `foo` 对象，来看此时的图解：
 
-<div style="text-align: center; width: 650px;">
-  <img src="./assets/new-foo.png" alt="new Foo">
+<div style="text-align: center;">
+  <img src="./assets/new-foo.png" alt="new Foo" style="width: 650px;">
   <p style="text-align: center; color: #888">（new Foo）</p>
 </div>
 
@@ -48,8 +48,8 @@ const foo = new Foo();
 
 那让我们回到 `Foo.prototype.__proto__`，来看看他的指向吧：
 
-<div style="text-align: center; width: 650px;">
-  <img src="./assets/foo-prototype-__proto__.png" alt="Foo 原型的 __proto__">
+<div style="text-align: center;">
+  <img src="./assets/foo-prototype-__proto__.png" alt="Foo 原型的 __proto__" style="width: 650px;">
   <p style="text-align: center; color: #888">（Foo 原型的 __proto__）</p>
 </div>
 
@@ -175,8 +175,8 @@ Date.__proto__.__proto__     === Object.prototype;   // true
 
 原型链是 JavaScript 作者为了继承而设计的。由上边的分析，`const foo = new Foo()` 语句，其实是产生了一个链条的，如下:
 
-<div style="text-align: center; width: 650px;">
-  <img src="./assets/prototype-chain.png" alt="原型链">
+<div style="text-align: center;">
+  <img src="./assets/prototype-chain.png" alt="原型链" style="width: 650px;">
   <p style="text-align: center; color: #888">（原型链）</p>
 </div>
 
