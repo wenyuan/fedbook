@@ -22,5 +22,6 @@ module.exports = {
   /* --------- 手写系列 --------- */
   '/handwritten/javascript': require('../handwritten/javascript/sidebar'),
   /* --------- 其它 --------- */
+  '/extracurricular': require('../extracurricular/sidebar'),
   '/': [],
 };

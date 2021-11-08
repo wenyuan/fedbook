@@ -83,6 +83,7 @@ module.exports = [
         text: '站内',
         items: [
           { text: '关于本站', link: '/about/' },
+          { text: '课外学习', link: '/extracurricular/' }
           // { text: '更新日志', link: '/history/' }
         ]
       },
