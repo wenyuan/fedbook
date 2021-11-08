@@ -41,6 +41,9 @@ sidebar: auto
 
 ## 小册历程
 
+* 2021.11.08 &emsp; 升级 vuepress-theme-hope 主题至最新版本（1.20.5）。
+  * `npm install` 下载依赖包时需要切换成官方源，淘宝镜像源未更新。
+  * 行业大事记：[淘宝 NPM 镜像站切换新域名啦](https://www.yuque.com/afx/blog/cnpm-new-registry)（npm.taobao.org => npmmirror.com）。
 * 2021.07.16 &emsp; 升级 vuepress-theme-hope 主题至最新版本（1.19.0），并删除/覆盖一些样式。
 * 2021.01.09 &emsp; 升级 vuepress-theme-hope 主题至最新版本（1.8.1），并覆盖一些过于酷炫的样式。
 * 2020.10.26 &emsp; 移除 vuepress-plugin-demo-block 插件，改用 CodePen。
