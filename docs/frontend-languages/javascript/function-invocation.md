@@ -19,7 +19,7 @@
 
 对于普通的函数调用，如果该函数没有指定返回值，返回值就是 `undefined`；如果该函数指定了返回值（有 `return`），返回值就是 `return` 之后的表达式的值；如果 `return` 语句没有值，则返回 `undefined`。
 
-如果函数是声明在 Window 对象中全局函数，非严格模式下的调用上下文（`this` 的值）是全局对象，严格模式 `this` 为 `undefined`。
+如果函数是声明在 window 对象中全局函数，非严格模式下的调用上下文（`this` 的值）是全局对象，严格模式 `this` 为 `undefined`。
 
 基本模式：
 
@@ -27,7 +27,7 @@
 function foo() {
   return this;
 }
-foo(); // 返回 Window 对象
+foo(); // 返回 window 对象
 ```
 
 ## 作为方法调用

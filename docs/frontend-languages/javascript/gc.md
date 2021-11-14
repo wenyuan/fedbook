@@ -35,7 +35,7 @@ GC（Garbage Collection）是垃圾回收机制的简写，它可以查找内存
 
 ```javascript
 function func() {
-  // 没有声明变量的关键字，name 被挂载在当前的 Window 对象下
+  // 没有声明变量的关键字，name 被挂载在当前的 window 对象下
   name = 'peter';
   return `${name} is a dog.`;
 }
@@ -255,3 +255,142 @@ V8 中常用的 GC 算法有：
 * 浏览器中的堆快照功能：可以很有针对性的查找界面对象中是否存在一些分离的 DOM，因为分离 DOM 的存在也就是一种内存上的泄露。
 
 至于怎样判断界面是否存在着频繁的垃圾回收，这就需要借助于不同的工具来获取当前内存的走势图，然后进行一个时间段的分析，从而得出判断。
+
+## 容易导致内存泄露的场景
+
+### 意外的全局变量
+
+全局变量的生命周期最长，直到页面关闭前，它都存活着，所以全局变量上的内存一直都不会被回收。当全局变量使用不当，没有及时回收（手动赋值 `null`），或者拼写错误等将某个变量挂载到全局变量时，也就发生内存泄漏了
+
+* 未声明变量
+
+```javascript
+function foo() {
+  name = 'global variable'
+}
+fn()
+```
+
+* 使用 `this` 创建的变量（this 的指向是 window）
+
+```javascript
+function foo() {
+  this.name = 'global variable'
+}
+fn()
+```
+
+解决方法：
+
+* 尽量避免创建全局变量。
+* 使用严格模式，在 JavaScript 文件头部或者函数的顶部加上 `use strict`。
+
+### 闭包使用不当
+
+函数本身会持有它定义时所在的词法环境的引用，但通常情况下，使用完函数后，该函数所申请的内存都会被回收了。
+
+但当函数内再返回一个函数时，由于返回的函数持有其外部函数的词法环境，而返回的函数又被其他生命周期东西所持有，导致外部函数虽然执行完了，但内存却无法被回收。
+
+所以，返回的函数，它的生命周期应尽量不宜过长，方便该闭包能够及时被回收。
+
+正常来说，闭包并不是内存泄漏，因为这种持有外部函数词法环境本就是闭包的特性，闭包就是为了让这块内存不被回收，从而方便我们在未来还能继续用到，但这无疑会造成内存的消耗，所以，不宜烂用就是了。
+
+原因：闭包可以读取函数内部的变量，然后让这些变量始终保存在内存中。如果在使用结束后没有将局部变量清除，就可能导致内存泄露。
+
+例如下面的代码，btn 元素本身存在于 DOM 中，是一个引用的存在；`foo` 函数内部的 `el` 也是对该节点的一个引用。如果未来某个时候该节点从 DOM 中被移除了，DOM 中的引用不存在了，但代码中 `el` 变量对它的引用依旧存在，那么垃圾回收机制（引用计数）在工作的时候并不会把这个元素对象当成垃圾进行回收。
+
+```javascript
+function foo() {
+  var el = document.getElementById('btn');
+  el.onclick = function() {
+    console.log(el.id);
+  }
+}
+
+foo()
+```
+
+解决：将闭包所产生的引用关系，在不使用的时候采取相应的手段释放掉，从而让内存得到回收。
+
+```javascript
+function foo() {
+  var el = document.getElementById('btn');
+  el.onclick = function() {
+    console.log(el.id);
+  }
+
+  el = null;
+}
+
+foo()
+```
+
+### 遗漏的 DOM 元素
+
+DOM 元素的生命周期正常是取决于是否挂载在 DOM 树上，当从 DOM 树上移除时，也就可以被销毁回收了。
+
+但如果某个 DOM 元素，在 JavaScript 代码中也持有它的引用，那么它的生命周期就由 JS 代码和是否在 DOM 树上两者决定了，在移除时，两个地方都需要去清理才能正常回收它。
+
+如下代码：虽然别的地方删除了，但是对象中还存在对 dom 的引用。
+
+```javascript
+// 在对象中引用DOM
+var elements = {
+  btn: document.getElementById('btn'),
+}
+function doSomeThing() {
+  elements.btn.click();
+}
+
+function removeBtn() {
+  // 将 body 中的 btn 移除, 也就是移除 DOM 树中的 btn
+  document.body.removeChild(document.getElementById('button'));
+  // 但是此时全局变量 elements 还是保留了对 btn 的引用, btn还是存在于内存中, 不能被 GC 回收
+}
+```
+
+解决方法：手动删除，`elements.btn = null`。
+
+### 被遗忘的定时器或者回调
+
+::: tip 结论
+现代浏览器更先进的垃圾回收算法已经可以正确的检测及处理了。
+:::
+
+`setTimeout` 和 `setInterval` 是由浏览器专门线程来维护它的生命周期，所以当在某个页面使用了定时器，即使该页面销毁时，没有手动去释放清理这些定时器的话，那么这些定时器还是存活着的。
+
+也就是说，定时器的生命周期并不挂靠在页面上，所以当在当前页面的 JavaScript 代码里通过定时器注册了某个回调函数，而该回调函数内又持有当前页面某个变量或某些 DOM 元素时，就会导致即使页面销毁了，由于定时器持有该页面部分引用而造成页面无法正常被回收，从而导致内存泄漏了。
+
+如果此时再次打开同个页面，内存中其实是有双份页面数据的，如果多次关闭、打开，那么内存泄漏会越来越严重。
+
+而且这种场景很容易出现，因为使用定时器的人很容易遗忘清除。
+
+如下代码：定时器中有 dom 的引用，即使 dom 删除了，但是定时器还在，所以内存中还是有这个 dom。
+
+```javascript
+// 定时器
+var serverData = loadData()
+setInterval(function () {
+  var renderer = document.getElementById('renderer');
+  if (renderer) {
+    renderer.innerHTML = JSON.stringify(serverData);
+  }
+}, 5000)
+
+// 观察者模式
+var btn = document.getElementById('btn');
+function onClick(element) {
+  element.innerHTMl = "I'm innerHTML";
+}
+btn.addEventListener('click', onClick);
+```
+
+解决方法：
+
+* 手动删除定时器和 dom
+* removeEventListener 移除事件监听
+
+## 参考资料
+
+* 《[浅析Chrome V8引擎中的垃圾回收机制和内存泄露优化策略](https://www.cnblogs.com/chengxs/p/10919311.html)》
+* 《[js 内存泄漏场景、如何监控以及分析](http://gitbook.dasu.fun/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%A7%AF%E7%B4%AF/)》
