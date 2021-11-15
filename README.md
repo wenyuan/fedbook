@@ -98,6 +98,7 @@
   * [继承的八种方式](https://fedbook.cn/frontend-languages/javascript/inheritance/)
   * [声明函数的六种方式](https://fedbook.cn/frontend-languages/javascript/function-declare/)
   * [调用函数的四种方式](https://fedbook.cn/frontend-languages/javascript/function-invocation/)
+  * [垃圾回收](https://fedbook.cn/frontend-languages/javascript/gc/)
   * [同步与异步](https://fedbook.cn/frontend-languages/javascript/sync-and-async/)
   * [事件循环机制，微任务和宏任务的关系](https://fedbook.cn/frontend-languages/javascript/event-loop/)
   * [浅克隆与深克隆](https://fedbook.cn/frontend-languages/javascript/shallow-clone-and-deep-clone/)
