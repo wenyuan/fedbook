@@ -8,11 +8,17 @@ action:
   link: /style-guide/document/
 features:
 - title: 知识沉淀
-  details: 专注前端开发，从前端到后端再到数据库，记录每一天的进步，越努力，越幸运。
-- title: 爱好分享
-  details: 一个人走得快，一群人走得远。分享能够产生沟通与交流的介质，实现共同进步。
+  details: 专注前端开发，知识体系涉及但不仅限于前后端技术。记录每一天的进步，拥抱变化，与时俱进。
+- title: 乐于分享
+  details: 一个人走得快，一群人走得远。分享能够产生沟通与交流的介质，实现共同进步。越努力，越幸运。
 - title: 终身成长
   details: 一个 90 后程序员，终身学习者。座右铭：努力过，不后悔。
+- title: 坚定不移
+  details: 坚信知识改变命运，技术改变世界。努力用技术创造无限可能。
+- title: 坚持锻炼
+  details: 为了生我的和将来我生的，坚持锻炼，拥有健康的身体才能创造美好的明天。
+- title: 常怀感恩
+  details: 感恩生命中的每一个遇见，愿大家：健康，自由。
 footer: MIT Licensed | Copyright © 2018-present Wenyuan Xu
 copyrightText: false
 ---
