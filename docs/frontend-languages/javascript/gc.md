@@ -365,8 +365,7 @@ btn.addEventListener('click', onClick);
 所以，返回的函数，它的生命周期应尽量不宜过长，方便该闭包能够及时被回收。
 
 ::: danger 误解
-闭包会造成内存泄漏。（:x:）
-
+闭包会造成内存泄漏。（:x:）  
 闭包不会造成内存泄漏，程序写错了才会造成内存泄漏。（:heavy_check_mark:）
 :::
 
@@ -402,8 +401,253 @@ foo()
 
 正常来说，闭包并不是内存泄漏，因为这种持有外部函数词法环境本就是闭包的特性，闭包就是为了让这块内存不被回收，从而方便我们在未来还能继续用到，但这无疑会造成内存的消耗，所以，不宜烂用就是了。
 
+## 实战中解决内存泄漏
+
+### Vue 中容易出现内存泄露的几种情况
+
+使用 Vue 开发单页应用（SPA）时，更要当心内存泄漏的问题。因为在 SPA 的设计中，用户使用它时是不需要刷新浏览器的，所以 JavaScript 应用需要自行清理组件来确保垃圾回收以预期的方式生效。因此开发过程中，你需要时刻警惕内存泄漏的问题。
+
+#### 1）全局变量造成的内存泄露
+
+声明的全局变量在切换页面的时候没有清空。
+
+```vue
+<template>
+  <div id="home">这里是首页</div>
+</template>
+
+<script>
+  export default {
+    mounted() {
+      window.test = {
+        // 此处在全局 window 对象中引用了本页面的 dom 对象
+        name: 'home',
+        node: document.getElementById('home'),
+      }
+    },
+  }
+</script>
+```
+
+解决方案：在页面卸载的时候顺便处理掉该引用。
+
+```vue
+destroyed () {
+  window.test = null // 页面卸载的时候解除引用
+}
+```
+
+#### 2）监听在 window/body 等的事件没有解绑
+
+特别注意 `window.addEventListener` 之类的时间监听。
+
+```vue
+<template>
+  <div id="home">这里是首页</div>
+</template>
+
+<script>
+  export default {
+    mounted () {
+      window.addEventListener('resize', this.func) // window对象引用了home页面的方法
+    }
+}
+</script>
+```
+
+解决方法：在页面销毁的时候，顺便解除引用，释放内存。
+
+```vue
+mounted () {
+  window.addEventListener('resize', this.func)
+},
+beforeDestroy () {
+  window.removeEventListener('resize', this.func)
+}
+```
+
+#### 3）绑在 EventBus 的事件没有解绑
+
+举个例子：
+
+```vue
+<template>
+  <div id="home">这里是首页</div>
+</template>
+
+<script>
+export default {
+  mounted () {
+    this.$EventBus.$on('homeTask', res => this.func(res))
+  }
+}
+</script>
+```
+
+解决方法：在页面卸载的时候也可以考虑解除引用。
+
+```vue
+mounted () {
+  this.$EventBus.$on('homeTask', res => this.func(res))
+},
+destroyed () {
+  this.$EventBus.$off()
+}
+```
+
+#### 4）Echarts
+
+每一个图例在没有数据的时候它会创建一个定时器去渲染气泡，页面切换后，Echarts 图例是销毁了，但是这个 Echarts 的实例还在内存当中，同时它的气泡渲染定时器还在运行。这就导致 Echarts 占用 CPU 高，导致浏览器卡顿，当数据量比较大时甚至浏览器崩溃。
+
+解决方法：加一个 `beforeDestroy()` 方法释放该页面的 `chart` 资源，我也试过使用 `dispose()` 方法，但是 dispose 销毁这个图例，图例是不存在了，但图例的 `resize()` 方法会启动，则会报没有 resize 这个方法，而 `clear()` 方法则是清空图例数据，不影响图例的 resize，而且能够释放内存，切换的时候就很顺畅了。
+
+```vue
+beforeDestroy () {
+  this.chart.clear()
+}
+```
+
+#### 5）v-if 指令产生的内存泄露
+
+`v-if` 绑定到 `false` 的值，但是实际上 Dom 元素在隐藏的时候没有被真实的释放掉。
+
+比如下面的示例中，我们加载了一个带有非常多选项的选择框，然后我们用到了一个显示/隐藏按钮，通过一个 `v-if` 指令从虚拟 DOM 中添加或移除它。这个示例的问题在于这个 `v-if` 指令会从 DOM 中移除父级元素，但是我们并没有清除由 `Choices.js` 新添加的 DOM 片段，从而导致了内存泄漏。
+
+```vue
+<div id="app">
+  <button v-if="showChoices" @click="hide">Hide</button>
+  <button v-if="!showChoices" @click="show">Show</button>
+  <div v-if="showChoices">
+    <select id="choices-single-default"></select>
+  </div>
+</div>
+
+<script>
+  export default {
+    data() {
+      return {
+        showChoices: true,
+      }
+    },
+    mounted: function () {
+      this.initializeChoices()
+    },
+    methods: {
+      initializeChoices: function () {
+        let list = []
+        // 我们来为选择框载入很多选项，这样的话它会占用大量的内存
+        for (let i = 0; i < 1000; i++) {
+          list.push({
+            label: 'Item ' + i,
+            value: i,
+          })
+        }
+        new Choices('#choices-single-default', {
+          searchEnabled: true,
+          removeItemButton: true,
+          choices: list,
+        })
+      },
+      show: function () {
+        this.showChoices = true
+        this.$nextTick(() => {
+          this.initializeChoices()
+        })
+      },
+      hide: function () {
+        this.showChoices = false
+      },
+    },
+  }
+</script>
+```
+
+在上述的示例中，我们可以用 `hide()` 方法在将选择框从 DOM 中移除之前做一些清理工作，来解决内存泄露问题。为了做到这一点，我们会在 Vue 实例的数据对象中保留一个属性，并会使用 Choices API 中的 `destroy()` 方法将其清除。
+
+```vue
+<div id="app">
+  <button v-if="showChoices" @click="hide">Hide</button>
+  <button v-if="!showChoices" @click="show">Show</button>
+  <div v-if="showChoices">
+    <select id="choices-single-default"></select>
+  </div>
+</div>
+
+<script>
+  export default {
+    data() {
+      return {
+        showChoices: true,
+        choicesSelect: null
+      }
+    },
+    mounted: function () {
+      this.initializeChoices()
+    },
+    methods: {
+      initializeChoices: function () {
+        let list = []
+        for (let i = 0; i < 1000; i++) {
+          list.push({
+            label: 'Item ' + i,
+            value: i,
+          })
+        }
+         // 在我们的 Vue 实例的数据对象中设置一个 `choicesSelect` 的引用
+        this.choicesSelect = new Choices("#choices-single-default", {
+          searchEnabled: true,
+          removeItemButton: true,
+          choices: list,
+        })
+      },
+      show: function () {
+        this.showChoices = true
+        this.$nextTick(() => {
+          this.initializeChoices()
+        })
+      },
+      hide: function () {
+        // 现在我们可以让 Choices 使用这个引用，从 DOM 中移除这些元素之前进行清理工作
+        this.choicesSelect.destroy()
+        this.showChoices = false
+      },
+    },
+  }
+</script>
+```
+
+### ES6 防止内存泄漏
+
+前面说过，及时清除引用非常重要。但是，你不可能记得那么多，有时候一疏忽就忘了，所以才有那么多内存泄漏。
+
+ES6 考虑到这点，推出了两种新的数据结构：weakset 和 weakmap。他们对值的引用都是不计入垃圾回收机制的，也就是说，如果其他对象都不再引用该对象，那么垃圾回收机制会自动回收该对象所占用的内存。
+
+```javascript
+const wm = new WeakMap()
+const element = document.getElementById('example')
+vm.set(element, 'something')
+vm.get(element)
+```
+
+上面代码中，先新建一个 Weakmap 实例。然后，将一个 DOM 节点作为键名存入该实例，并将一些附加信息作为键值，一起存放在 WeakMap 里面。这时，WeakMap 里面对 element 的引用就是弱引用，不会被计入垃圾回收机制。
+
+注册监听事件的 listener 对象很适合用 WeakMap 来实现。
+
+```javascript
+// 代码 1
+ele.addEventListener('click', handler, false)
+
+// 代码 2
+const listener = new WeakMap()
+listener.set(ele, handler)
+ele.addEventListener('click', listener.get(ele), false)
+```
+
+代码 2 比起代码 1 的好处是：由于监听函数是放在 WeakMap 里面，一旦 Dom 对象 ele 消失，与它绑定的监听函数 handler 也会自动消失。
+
 ## 参考资料
 
 * 《[浅析Chrome V8引擎中的垃圾回收机制和内存泄露优化策略](https://www.cnblogs.com/chengxs/p/10919311.html)》
-* 《[js 内存泄漏场景、如何监控以及分析](http://gitbook.dasu.fun/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%A7%AF%E7%B4%AF/)》
+* 《[js 内存泄漏场景、如何监控以及分析](https://github.com/woshidasusu/Doc/blob/master/面试题/浏览器/内存泄漏.md)》
+* 《[如何解决前端内存泄漏](https://github.com/Michael-lzg/my--article/blob/master/javascript/如何解决前端内存泄漏.md)》
 * 《JavaScript 设计模式与开发实践 》
