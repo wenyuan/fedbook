@@ -7,7 +7,7 @@
 必备知识点：
 
 <div style="text-align: center;">
-  <img src="./assets/git.png" alt="需要网上找张清楚点的图">
+  <img src="./assets/git.png" alt="Git 通用操作流程图">
   <p style="text-align: center; color: #888;">（Git 通用操作流程图，图来源于网络）</p>
 </div>
 

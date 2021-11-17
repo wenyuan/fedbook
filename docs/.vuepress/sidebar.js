@@ -15,6 +15,7 @@ module.exports = {
   '/backend-languages/python': require('../backend-languages/python/sidebar'),
   '/interview': require('../interview/sidebar'),
   /* --------- 必知必会 --------- */
+  '/basic-skills/git': require('../basic-skills/git/sidebar'),
   '/basic-skills/nginx': require('../basic-skills/nginx/sidebar'),
   /* --------- 编程进阶 --------- */
   '/advanced-programming/algorithm/': require('../advanced-programming/algorithm/sidebar'),
