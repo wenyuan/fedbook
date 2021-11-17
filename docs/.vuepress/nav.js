@@ -53,6 +53,7 @@ module.exports = [
   {
     text: '必知必会',
     items: [
+      { text: 'Git', link: '/basic-skills/git/' },
       { text: 'Nginx', link: '/basic-skills/nginx/' }
     ]
   },
