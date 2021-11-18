@@ -179,7 +179,7 @@
 * [Git](https://fedbook.cn/basic-skills/git/)
   * [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
   * [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
-  * [解决 clone 速度过慢问题](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
+  * [问题 1：clone 速度过慢](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
 * [Nginx](https://fedbook.cn/basic-skills/nginx/)
   * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
   * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)

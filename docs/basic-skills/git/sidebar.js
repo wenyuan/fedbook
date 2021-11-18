@@ -14,7 +14,7 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '解决 clone 速度过慢问题',
+        title: '问题 1：clone 速度过慢',
         path: '/basic-skills/git/solution-to-clone-too-slow',
         collapsable: true
       },
