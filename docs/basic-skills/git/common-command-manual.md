@@ -335,7 +335,7 @@ git stash show stash@{0}
 也就是说，没有在 Git 版本控制中的文件，是不能被 `git stash` 存起来的，此时需要先执行下 `git add` 将新增文件加到 Git 版本控制中，然后再 `git stash` 就可以了。
 :::
 
-## 撤销
+## 撤销操作
 
 ```bash
 # 恢复暂存区的指定文件到工作区
@@ -369,13 +369,6 @@ git revert [commit]
 # 暂时将未提交的变化移除, 稍后再移入
 git stash
 git stash pop
-```
-
-## 其他
-
-```bash
-# 生成一个可供发布的压缩包
-git archive
 ```
 
 （完）
