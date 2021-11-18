@@ -13,6 +13,11 @@ module.exports = [
         path: '/basic-skills/git/add-ssh-key',
         collapsable: true
       },
+      {
+        title: '解决 clone 速度过慢问题',
+        path: '/basic-skills/git/solution-to-clone-too-slow',
+        collapsable: true
+      },
     ]
   }
 ]
