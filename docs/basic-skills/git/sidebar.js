@@ -8,6 +8,11 @@ module.exports = [
         path: '/basic-skills/git/common-command-manual',
         collapsable: true
       },
+      {
+        title: '配置密钥实现免密操作',
+        path: '/basic-skills/git/add-ssh-key',
+        collapsable: true
+      },
     ]
   }
 ]
