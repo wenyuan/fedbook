@@ -26,7 +26,8 @@
 
 关于 Git 的知识点，主要参考： 
 
-* 网上各种资料
+* [官方文档](https://git-scm.com/book)
+* 《Git权威指南第二版》
 * 工作生产实践
 
 <div style="text-align: right">

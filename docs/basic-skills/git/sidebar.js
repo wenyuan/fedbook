@@ -12,7 +12,13 @@ module.exports = [
         title: '配置密钥实现免密操作',
         path: '/basic-skills/git/add-ssh-key',
         collapsable: true
-      },
+      }
+    ]
+  },
+  {
+    title: 'Git 常见问题',
+    collapsable: false,
+    children: [
       {
         title: '问题：clone 速度过慢影响效率',
         path: '/basic-skills/git/solution-to-clone-too-slow',
@@ -33,6 +39,11 @@ module.exports = [
         path: '/basic-skills/git/solution-to-missed-file-in-last-commit',
         collapsable: true
       },
+      {
+        title: '问题：刚刚提交错了，想要撤回并重新提交',
+        path: '/basic-skills/git/solution-to-withdraw-last-commit',
+        collapsable: true
+      }
     ]
   }
 ]
