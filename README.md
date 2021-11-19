@@ -121,7 +121,7 @@
   <a href="#目录">⬆️ 返回顶部</a>
 </p>
 
-### 前端工程化
+### 工程化
 
 * [Vue.js](https://fedbook.cn/frontend-engineering/vuejs/)
   * [基础用法要点](https://fedbook.cn/frontend-engineering/vuejs/basic-use/)
@@ -141,6 +141,59 @@
   * [性能优化 - 构建速度](https://fedbook.cn/frontend-engineering/webpack5/performance-optimization-in-build/)
   * [性能优化 - 产出代码](https://fedbook.cn/frontend-engineering/webpack5/performance-optimization-in-output/)
   * [最佳实践 - 通用模板](https://fedbook.cn/frontend-engineering/webpack5/generic-template/)
+
+<p align=right>
+  <a href="#目录">⬆️ 返回顶部</a>
+</p>
+
+### 必知必会
+
+* [Git](https://fedbook.cn/basic-skills/git/)
+  * [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
+  * [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
+  * [问题 1：clone 速度过慢影响效率](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
+* [Nginx](https://fedbook.cn/basic-skills/nginx/)
+  * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
+  * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
+  * [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
+  * [Nginx 的卸载](https://fedbook.cn/basic-skills/nginx/uninstallation-of-nginx/)
+  * [Nginx 常用命令](https://fedbook.cn/basic-skills/nginx/common-commands/)
+  * [Nginx 设置开机自启](https://fedbook.cn/basic-skills/nginx/set-auto-start-after-server-reboot/)
+  * [Nginx 配置文件详解](https://fedbook.cn/basic-skills/nginx/config-file-params-explanation/)
+  * [Nginx 配置文件模板](https://fedbook.cn/basic-skills/nginx/config-file-generic-template/)
+  * [Nginx 安全访问控制](https://fedbook.cn/basic-skills/nginx/ngx-http-access-module/)
+  * [Nginx 文件列表功能](https://fedbook.cn/basic-skills/nginx/ngx-http-autoindex-module/)
+  * [Nginx 页面安全认证](https://fedbook.cn/basic-skills/nginx/ngx-http-auth-basic-module/)
+  * [Nginx 部署 Https 安全认证](https://fedbook.cn/basic-skills/nginx/deploy-https-security-auth/)
+  * [Nginx 限流常用模块](https://fedbook.cn/basic-skills/nginx/traffic-limiting-modules/)
+  * [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
+  * 未完结，待更新
+
+<p align=right>
+  <a href="#目录">⬆️ 返回顶部</a>
+</p>
+
+### 深入学习
+
+* [数据结构与算法](https://fedbook.cn/in-depth-learning/algorithm/)
+  * [复杂度分析](https://fedbook.cn/in-depth-learning/algorithm/complexity-analysis/)
+  * [数据结构之数组](https://fedbook.cn/in-depth-learning/algorithm/array/)
+  * [数据结构之链表](https://fedbook.cn/in-depth-learning/algorithm/linked-list/)
+  * 学习计划调整，延后学习
+* [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
+  * 抽空学习，不占用主学习进程
+* [JavaScript 手写函数](https://fedbook.cn/handwritten/javascript/)
+  * [实现防抖函数（debounce）](https://fedbook.cn/handwritten/javascript/实现防抖函数-debounce/)
+  * [实现节流函数（throttle）](https://fedbook.cn/handwritten/javascript/实现节流函数-throttle/)
+  * [实现浅克隆（shallowClone）](https://fedbook.cn/handwritten/javascript/实现浅克隆-shallow-clone/)
+  * [实现深克隆（deepClone）](https://fedbook.cn/handwritten/javascript/实现深克隆-deep-clone/)
+  * [实现 instanceof 运算符](https://fedbook.cn/handwritten/javascript/实现instanceof运算符/)
+  * [实现 Object.create 方法](https://fedbook.cn/handwritten/javascript/实现object-create方法/)
+  * [实现 new 运算符](https://fedbook.cn/handwritten/javascript/实现new运算符/)
+  * [实现 call 方法](https://fedbook.cn/handwritten/javascript/实现call方法/)
+  * [实现 apply 方法](https://fedbook.cn/handwritten/javascript/实现apply方法/)
+  * [实现 bind 方法](https://fedbook.cn/handwritten/javascript/实现bind方法/)
+  * 未完结，待更新
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
@@ -173,58 +226,6 @@
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
 </p>
-
-### 必知必会
-
-* [Git](https://fedbook.cn/basic-skills/git/)
-  * [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
-  * [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
-  * [问题 1：clone 速度过慢](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
-* [Nginx](https://fedbook.cn/basic-skills/nginx/)
-  * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
-  * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
-  * [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
-  * [Nginx 的卸载](https://fedbook.cn/basic-skills/nginx/uninstallation-of-nginx/)
-  * [Nginx 常用命令](https://fedbook.cn/basic-skills/nginx/common-commands/)
-  * [Nginx 设置开机自启](https://fedbook.cn/basic-skills/nginx/set-auto-start-after-server-reboot/)
-  * [Nginx 配置文件详解](https://fedbook.cn/basic-skills/nginx/config-file-params-explanation/)
-  * [Nginx 配置文件模板](https://fedbook.cn/basic-skills/nginx/config-file-generic-template/)
-  * [Nginx 安全访问控制](https://fedbook.cn/basic-skills/nginx/ngx-http-access-module/)
-  * [Nginx 文件列表功能](https://fedbook.cn/basic-skills/nginx/ngx-http-autoindex-module/)
-  * [Nginx 页面安全认证](https://fedbook.cn/basic-skills/nginx/ngx-http-auth-basic-module/)
-  * [Nginx 部署 Https 安全认证](https://fedbook.cn/basic-skills/nginx/deploy-https-security-auth/)
-  * [Nginx 限流常用模块](https://fedbook.cn/basic-skills/nginx/traffic-limiting-modules/)
-  * [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
-  * 未完结，待更新
-
-<p align=right>
-  <a href="#目录">⬆️ 返回顶部</a>
-</p>
-
-### 深入学习
-
-* [数据结构与算法](https://fedbook.cn/in-depth-learning/algorithm/)
-  * [复杂度分析](https://fedbook.cn/in-depth-learning/algorithm/complexity-analysis/)
-  * [数据结构之数组](https://fedbook.cn/in-depth-learning/algorithm/array/)
-  * [数据结构之链表](https://fedbook.cn/in-depth-learning/algorithm/linked-list/)
-  * 学习计划调整，延后学习
-* [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
-  * 抽空学习，不占用主学习进程
-
-### 手写系列
-
-* [JavaScript 手写函数](https://fedbook.cn/handwritten/javascript/)
-  * [实现防抖函数（debounce）](https://fedbook.cn/handwritten/javascript/实现防抖函数-debounce/)
-  * [实现节流函数（throttle）](https://fedbook.cn/handwritten/javascript/实现节流函数-throttle/)
-  * [实现浅克隆（shallowClone）](https://fedbook.cn/handwritten/javascript/实现浅克隆-shallow-clone/)
-  * [实现深克隆（deepClone）](https://fedbook.cn/handwritten/javascript/实现深克隆-deep-clone/)
-  * [实现 instanceof 运算符](https://fedbook.cn/handwritten/javascript/实现instanceof运算符/)
-  * [实现 Object.create 方法](https://fedbook.cn/handwritten/javascript/实现object-create方法/)
-  * [实现 new 运算符](https://fedbook.cn/handwritten/javascript/实现new运算符/)
-  * [实现 call 方法](https://fedbook.cn/handwritten/javascript/实现call方法/)
-  * [实现 apply 方法](https://fedbook.cn/handwritten/javascript/实现apply方法/)
-  * [实现 bind 方法](https://fedbook.cn/handwritten/javascript/实现bind方法/)
-  * 未完结，待更新
 
 ### 面试相关
 

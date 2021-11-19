@@ -14,8 +14,13 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '问题 1：clone 速度过慢',
+        title: '问题 1：clone 速度过慢影响效率',
         path: '/basic-skills/git/solution-to-clone-too-slow',
+        collapsable: true
+      },
+      {
+        title: '问题 2：commit 信息写错想要修改',
+        path: '/basic-skills/git/solution-to-commit-info-mistake',
         collapsable: true
       },
     ]
