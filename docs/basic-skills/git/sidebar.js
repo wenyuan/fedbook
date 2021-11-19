@@ -24,8 +24,13 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '问题：刚刚提交的代码，发现写错了',
+        title: '问题：刚刚提交的代码，发现写错了怎么办',
         path: '/basic-skills/git/solution-to-last-commit-code-mistake',
+        collapsable: true
+      },
+      {
+        title: '问题：刚刚提交完，发现漏提交了文件',
+        path: '/basic-skills/git/solution-to-missed-file-in-last-commit',
         collapsable: true
       },
     ]
