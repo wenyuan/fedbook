@@ -28,7 +28,7 @@
 
 所以，在学习的过程中，我将筛选过的知识点记录在「前端修炼小册」，作为个人文档库，让每一天都在进步。我坚信：越努力，越幸运。
 
-近期正在学习：前端框架 - React（2021-08 ~ 现在）
+近期正在学习：前端工程化 - React（2021-08 ~ 现在）
 
 ## 目录
 
@@ -36,11 +36,11 @@
 * [目录](#目录)
 * [文章](#文章)
   * [风格指南](#风格指南)
-  * [前端语言](#前端语言)
-  * [前端框架](#前端框架)
-  * [后端语言](#后端语言)
+  * [前端基础](#前端基础)
+  * [前端工程化](#前端工程化)
+  * [后端知识](#后端知识)
   * [必知必会](#必知必会)
-  * [编程进阶](#编程进阶)
+  * [深入学习](#深入学习)
   * [手写系列](#手写系列)
   * [面试相关](#面试相关)
 * [计划](#计划)
@@ -66,108 +66,108 @@
   <a href="#目录">⬆️ 返回顶部</a>
 </p>
 
-### 前端语言
+### 前端基础
 
-* [HTML](https://fedbook.cn/frontend-languages/html/)
-  * [HTML 基本结构](https://fedbook.cn/frontend-languages/html/html-basic-structure/)
-  * [语义类标签](https://fedbook.cn/frontend-languages/html/semantic-elements/)
+* [HTML](https://fedbook.cn/frontend-basics/html/)
+  * [HTML 基本结构](https://fedbook.cn/frontend-basics/html/html-basic-structure/)
+  * [语义类标签](https://fedbook.cn/frontend-basics/html/semantic-elements/)
   * 未完结，待更新
-* [CSS](https://fedbook.cn/frontend-languages/css/)
-  * [CSS 引入方式](https://fedbook.cn/frontend-languages/css/ways-to-insert-css/)
-  * [选择器与样式优先级](https://fedbook.cn/frontend-languages/css/selectors-and-selector-priority/)
-  * [伪元素和伪类](https://fedbook.cn/frontend-languages/css/pseudo-elements-and-pseudo-classes/)
-  * [长度和单位](https://fedbook.cn/frontend-languages/css/length-and-units/)
-  * [盒模型](https://fedbook.cn/frontend-languages/css/box-model/)
-  * [定位（position）](https://fedbook.cn/frontend-languages/css/position-property/)
-  * [浮动（float）](https://fedbook.cn/frontend-languages/css/float-property/)
-  * [BFC](https://fedbook.cn/frontend-languages/css/bfc/)
-  * [经典布局](https://fedbook.cn/frontend-languages/css/layout/)
-  * [Flexbox 布局](https://fedbook.cn/frontend-languages/css/flexbox/)
-  * [Grid 布局](https://fedbook.cn/frontend-languages/css/grid/)
+* [CSS](https://fedbook.cn/frontend-basics/css/)
+  * [CSS 引入方式](https://fedbook.cn/frontend-basics/css/ways-to-insert-css/)
+  * [选择器与样式优先级](https://fedbook.cn/frontend-basics/css/selectors-and-selector-priority/)
+  * [伪元素和伪类](https://fedbook.cn/frontend-basics/css/pseudo-elements-and-pseudo-classes/)
+  * [长度和单位](https://fedbook.cn/frontend-basics/css/length-and-units/)
+  * [盒模型](https://fedbook.cn/frontend-basics/css/box-model/)
+  * [定位（position）](https://fedbook.cn/frontend-basics/css/position-property/)
+  * [浮动（float）](https://fedbook.cn/frontend-basics/css/float-property/)
+  * [BFC](https://fedbook.cn/frontend-basics/css/bfc/)
+  * [经典布局](https://fedbook.cn/frontend-basics/css/layout/)
+  * [Flexbox 布局](https://fedbook.cn/frontend-basics/css/flexbox/)
+  * [Grid 布局](https://fedbook.cn/frontend-basics/css/grid/)
   * 未完结，待更新
-* [JavaScript](https://fedbook.cn/frontend-languages/javascript/)
-  * [数据类型](https://fedbook.cn/frontend-languages/javascript/data-types/)
-  * [执行上下文](https://fedbook.cn/frontend-languages/javascript/execution-context/)
-  * [作用域](https://fedbook.cn/frontend-languages/javascript/scope/)
-  * [闭包](https://fedbook.cn/frontend-languages/javascript/closure/)
-  * [this 指向](https://fedbook.cn/frontend-languages/javascript/this-keyword/)
-  * [原型与原型链](https://fedbook.cn/frontend-languages/javascript/prototype-and-prototype-chain/)
-  * [垃圾回收](https://fedbook.cn/frontend-languages/javascript/gc/)
-  * [数组遍历的几种方式](https://fedbook.cn/frontend-languages/javascript/array-iteration/)
-  * [对象遍历的几种方式](https://fedbook.cn/frontend-languages/javascript/object-iteration/)
-  * [继承的八种方式](https://fedbook.cn/frontend-languages/javascript/inheritance/)
-  * [声明函数的六种方式](https://fedbook.cn/frontend-languages/javascript/function-declare/)
-  * [调用函数的四种方式](https://fedbook.cn/frontend-languages/javascript/function-invocation/)
-  * [垃圾回收](https://fedbook.cn/frontend-languages/javascript/gc/)
-  * [同步与异步](https://fedbook.cn/frontend-languages/javascript/sync-and-async/)
-  * [事件循环机制，微任务和宏任务的关系](https://fedbook.cn/frontend-languages/javascript/event-loop/)
-  * [浅克隆与深克隆](https://fedbook.cn/frontend-languages/javascript/shallow-clone-and-deep-clone/)
-  * [函数柯里化](https://fedbook.cn/frontend-languages/javascript/function-currying/)
+* [JavaScript](https://fedbook.cn/frontend-basics/javascript/)
+  * [数据类型](https://fedbook.cn/frontend-basics/javascript/data-types/)
+  * [执行上下文](https://fedbook.cn/frontend-basics/javascript/execution-context/)
+  * [作用域](https://fedbook.cn/frontend-basics/javascript/scope/)
+  * [闭包](https://fedbook.cn/frontend-basics/javascript/closure/)
+  * [this 指向](https://fedbook.cn/frontend-basics/javascript/this-keyword/)
+  * [原型与原型链](https://fedbook.cn/frontend-basics/javascript/prototype-and-prototype-chain/)
+  * [垃圾回收](https://fedbook.cn/frontend-basics/javascript/gc/)
+  * [数组遍历的几种方式](https://fedbook.cn/frontend-basics/javascript/array-iteration/)
+  * [对象遍历的几种方式](https://fedbook.cn/frontend-basics/javascript/object-iteration/)
+  * [继承的八种方式](https://fedbook.cn/frontend-basics/javascript/inheritance/)
+  * [声明函数的六种方式](https://fedbook.cn/frontend-basics/javascript/function-declare/)
+  * [调用函数的四种方式](https://fedbook.cn/frontend-basics/javascript/function-invocation/)
+  * [垃圾回收](https://fedbook.cn/frontend-basics/javascript/gc/)
+  * [同步与异步](https://fedbook.cn/frontend-basics/javascript/sync-and-async/)
+  * [事件循环机制，微任务和宏任务的关系](https://fedbook.cn/frontend-basics/javascript/event-loop/)
+  * [浅克隆与深克隆](https://fedbook.cn/frontend-basics/javascript/shallow-clone-and-deep-clone/)
+  * [函数柯里化](https://fedbook.cn/frontend-basics/javascript/function-currying/)
   * 未完结，待更新
-* [TypeScript](https://fedbook.cn/frontend-languages/typescript/)
-  * [数据类型简介](https://fedbook.cn/frontend-languages/typescript/data-types-introduction/)
-  * [布尔、数值与字符串](https://fedbook.cn/frontend-languages/typescript/boolean-number-string/)
-  * [数组和元组](https://fedbook.cn/frontend-languages/typescript/array-and-tuple/)
-  * [联合和字面量](https://fedbook.cn/frontend-languages/typescript/union-and-literal/)
-  * [枚举](https://fedbook.cn/frontend-languages/typescript/enum/)
-  * [任意类型与未知类型](https://fedbook.cn/frontend-languages/typescript/any-and-unknow/)
-  * [空值、未定义和不存在](https://fedbook.cn/frontend-languages/typescript/void-undefined-never/)
-  * [对象类型：接口](https://fedbook.cn/frontend-languages/typescript/interface/)
-  * [函数类型](https://fedbook.cn/frontend-languages/typescript/function-type/)
-  * [泛型](https://fedbook.cn/frontend-languages/typescript/generics/)
+* [TypeScript](https://fedbook.cn/frontend-basics/typescript/)
+  * [数据类型简介](https://fedbook.cn/frontend-basics/typescript/data-types-introduction/)
+  * [布尔、数值与字符串](https://fedbook.cn/frontend-basics/typescript/boolean-number-string/)
+  * [数组和元组](https://fedbook.cn/frontend-basics/typescript/array-and-tuple/)
+  * [联合和字面量](https://fedbook.cn/frontend-basics/typescript/union-and-literal/)
+  * [枚举](https://fedbook.cn/frontend-basics/typescript/enum/)
+  * [任意类型与未知类型](https://fedbook.cn/frontend-basics/typescript/any-and-unknow/)
+  * [空值、未定义和不存在](https://fedbook.cn/frontend-basics/typescript/void-undefined-never/)
+  * [对象类型：接口](https://fedbook.cn/frontend-basics/typescript/interface/)
+  * [函数类型](https://fedbook.cn/frontend-basics/typescript/function-type/)
+  * [泛型](https://fedbook.cn/frontend-basics/typescript/generics/)
   * 未完结，待更新
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
 </p>
 
-### 前端框架
+### 前端工程化
 
-* [Vue.js](https://fedbook.cn/frontend-frameworks/vuejs/)
-  * [基础用法要点](https://fedbook.cn/frontend-frameworks/vuejs/basic-use/)
-  * [高级用法特性](https://fedbook.cn/frontend-frameworks/vuejs/advanced-use/)
-  * [响应式原理](https://fedbook.cn/frontend-frameworks/vuejs/reactive-data/)
-  * [虚拟 DOM 与 diff 算法](https://fedbook.cn/frontend-frameworks/vuejs/virtual-dom-and-diff/)
-  * [模板编译](https://fedbook.cn/frontend-frameworks/vuejs/template-compile/)
-  * [组件渲染与更新](https://fedbook.cn/frontend-frameworks/vuejs/component-render-and-update/)
-  * [前端路由原理](https://fedbook.cn/frontend-frameworks/vuejs/vue-router/)
-* [React](https://fedbook.cn/frontend-frameworks/react/)
-  * [React JSX](https://fedbook.cn/frontend-frameworks/react/react-jsx/)
+* [Vue.js](https://fedbook.cn/frontend-engineering/vuejs/)
+  * [基础用法要点](https://fedbook.cn/frontend-engineering/vuejs/basic-use/)
+  * [高级用法特性](https://fedbook.cn/frontend-engineering/vuejs/advanced-use/)
+  * [响应式原理](https://fedbook.cn/frontend-engineering/vuejs/reactive-data/)
+  * [虚拟 DOM 与 diff 算法](https://fedbook.cn/frontend-engineering/vuejs/virtual-dom-and-diff/)
+  * [模板编译](https://fedbook.cn/frontend-engineering/vuejs/template-compile/)
+  * [组件渲染与更新](https://fedbook.cn/frontend-engineering/vuejs/component-render-and-update/)
+  * [前端路由原理](https://fedbook.cn/frontend-engineering/vuejs/vue-router/)
+* [React](https://fedbook.cn/frontend-engineering/react/)
+  * [React JSX](https://fedbook.cn/frontend-engineering/react/react-jsx/)
   * 近期在学习，每日更新
-* [Webpack5](https://fedbook.cn/frontend-frameworks/webpack5/)
-  * [核心概念](https://fedbook.cn/frontend-frameworks/webpack5/core-concept/)
-  * [基本配置](https://fedbook.cn/frontend-frameworks/webpack5/basic-config/)
-  * [高级配置](https://fedbook.cn/frontend-frameworks/webpack5/advanced-config/)
-  * [性能优化 - 构建速度](https://fedbook.cn/frontend-frameworks/webpack5/performance-optimization-in-build/)
-  * [性能优化 - 产出代码](https://fedbook.cn/frontend-frameworks/webpack5/performance-optimization-in-output/)
-  * [最佳实践 - 通用模板](https://fedbook.cn/frontend-frameworks/webpack5/generic-template/)
+* [Webpack5](https://fedbook.cn/frontend-engineering/webpack5/)
+  * [核心概念](https://fedbook.cn/frontend-engineering/webpack5/core-concept/)
+  * [基本配置](https://fedbook.cn/frontend-engineering/webpack5/basic-config/)
+  * [高级配置](https://fedbook.cn/frontend-engineering/webpack5/advanced-config/)
+  * [性能优化 - 构建速度](https://fedbook.cn/frontend-engineering/webpack5/performance-optimization-in-build/)
+  * [性能优化 - 产出代码](https://fedbook.cn/frontend-engineering/webpack5/performance-optimization-in-output/)
+  * [最佳实践 - 通用模板](https://fedbook.cn/frontend-engineering/webpack5/generic-template/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
 </p>
 
-### 后端语言
+### 后端知识
 
-* [Python](https://fedbook.cn/backend-languages/python/)
+* [Python](https://fedbook.cn/backend-knowledge/python/)
   * **Python 基础**
-  * [编译器与解释器](https://fedbook.cn/backend-languages/python/compiler-and-interpreter/)
-  * [语法规范](https://fedbook.cn/backend-languages/python/grammar/)
-  * [变量与常量](https://fedbook.cn/backend-languages/python/variables-and-constants/)
-  * [数据类型](https://fedbook.cn/backend-languages/python/data-types/)
-  * [函数参数](https://fedbook.cn/backend-languages/python/function-params/)
-  * [函数装饰器](https://fedbook.cn/backend-languages/python/function-decorators/)
-  * [面向对象编程](https://fedbook.cn/backend-languages/python/oop/)
-  * [类和实例](https://fedbook.cn/backend-languages/python/class-and-instance/)
-  * [类的继承](https://fedbook.cn/backend-languages/python/class-inheritance/)
-  * [类成员保护](https://fedbook.cn/backend-languages/python/class-access-modifiers/)
+  * [编译器与解释器](https://fedbook.cn/backend-knowledge/python/compiler-and-interpreter/)
+  * [语法规范](https://fedbook.cn/backend-knowledge/python/grammar/)
+  * [变量与常量](https://fedbook.cn/backend-knowledge/python/variables-and-constants/)
+  * [数据类型](https://fedbook.cn/backend-knowledge/python/data-types/)
+  * [函数参数](https://fedbook.cn/backend-knowledge/python/function-params/)
+  * [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
+  * [面向对象编程](https://fedbook.cn/backend-knowledge/python/oop/)
+  * [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
+  * [类的继承](https://fedbook.cn/backend-knowledge/python/class-inheritance/)
+  * [类成员保护](https://fedbook.cn/backend-knowledge/python/class-access-modifiers/)
   * **Python 模块**
-  * [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-languages/python/python-lib-xlrd/)
-  * [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-languages/python/python-lib-openpyxl/)
-  * [使用 smtplib 发送电子邮件](https://fedbook.cn/backend-languages/python/python-lib-smtplib/)
-  * [使用 subprocess 执行 cmd](https://fedbook.cn/backend-languages/python/python-lib-subprocess/)
-  * [使用 telnetlib 执行 Telnet](https://fedbook.cn/backend-languages/python/python-lib-telnetlib/)
-  * [使用 Paramiko 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-paramiko/)
-  * [使用 Fabric 执行 SSH](https://fedbook.cn/backend-languages/python/python-lib-fabric/)
+  * [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
+  * [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)
+  * [使用 smtplib 发送电子邮件](https://fedbook.cn/backend-knowledge/python/python-lib-smtplib/)
+  * [使用 subprocess 执行 cmd](https://fedbook.cn/backend-knowledge/python/python-lib-subprocess/)
+  * [使用 telnetlib 执行 Telnet](https://fedbook.cn/backend-knowledge/python/python-lib-telnetlib/)
+  * [使用 Paramiko 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-paramiko/)
+  * [使用 Fabric 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-fabric/)
   * 未完结，待更新
 
 <p align=right>
@@ -201,14 +201,14 @@
   <a href="#目录">⬆️ 返回顶部</a>
 </p>
 
-### 编程进阶
+### 深入学习
 
-* [数据结构与算法](https://fedbook.cn/advanced-programming/algorithm/)
-  * [复杂度分析](https://fedbook.cn/advanced-programming/algorithm/complexity-analysis/)
-  * [数据结构之数组](https://fedbook.cn/advanced-programming/algorithm/array/)
-  * [数据结构之链表](https://fedbook.cn/advanced-programming/algorithm/linked-list/)
+* [数据结构与算法](https://fedbook.cn/in-depth-learning/algorithm/)
+  * [复杂度分析](https://fedbook.cn/in-depth-learning/algorithm/complexity-analysis/)
+  * [数据结构之数组](https://fedbook.cn/in-depth-learning/algorithm/array/)
+  * [数据结构之链表](https://fedbook.cn/in-depth-learning/algorithm/linked-list/)
   * 学习计划调整，延后学习
-* [源码阅读](https://fedbook.cn/advanced-programming/source-code/)
+* [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
   * 抽空学习，不占用主学习进程
 
 ### 手写系列

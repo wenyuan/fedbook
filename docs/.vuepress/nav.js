@@ -8,46 +8,40 @@ module.exports = [
     ]
   },
   {
-    text: '前端语言',
+    text: '前端基础',
     items: [
       {
         text: '基础',
         items: [
-          { text: 'HTML', link: '/frontend-languages/html/' },
-          { text: 'CSS', link: '/frontend-languages/css/' },
-          { text: 'JavaScript', link: '/frontend-languages/javascript/' }
+          { text: 'HTML', link: '/frontend-basics/html/' },
+          { text: 'CSS', link: '/frontend-basics/css/' },
+          { text: 'JavaScript', link: '/frontend-basics/javascript/' }
         ]
       },
       {
         text: '进阶',
         items: [
-          { text: 'TypeScript', link: '/frontend-languages/typescript/' }
+          { text: 'TypeScript', link: '/frontend-basics/typescript/' }
         ]
       }
     ]
   },
   {
-    text: '前端框架',
+    text: '工程化',
     items: [
       {
         text: '框架',
         items: [
-          { text: 'Vue.js', link: '/frontend-frameworks/vuejs/' },
-          { text: 'React', link: '/frontend-frameworks/react/' },
+          { text: 'Vue.js', link: '/frontend-engineering/vuejs/' },
+          { text: 'React', link: '/frontend-engineering/react/' },
         ]
       },
       {
         text: '工具',
         items: [
-          { text: 'Webpack', link: '/frontend-frameworks/webpack5/' }
+          { text: 'Webpack', link: '/frontend-engineering/webpack5/' }
         ]
       }
-    ]
-  },
-  {
-    text: '后端语言',
-    items: [
-      { text: 'Python', link: '/backend-languages/python/' }
     ]
   },
   {
@@ -58,16 +52,17 @@ module.exports = [
     ]
   },
   {
-    text: '编程进阶',
+    text: '深入学习',
     items: [
-      { text: '数据结构与算法', link: '/advanced-programming/algorithm/' },
-      { text: '源码阅读', link: '/advanced-programming/source-code/' }
+      { text: '数据结构与算法', link: '/in-depth-learning/algorithm/' },
+      { text: '源码阅读与学习', link: '/in-depth-learning/source-code/' },
+      { text: 'JavaScript 手写函数', link: '/in-depth-learning/javascript-handwritten/' },
     ]
   },
   {
-    text: '手写系列',
+    text: '后端知识',
     items: [
-      { text: 'JavaScript 手写函数', link: '/handwritten/javascript/' }
+      { text: 'Python', link: '/backend-knowledge/python/' }
     ]
   },
   // {
