@@ -156,6 +156,7 @@
   * [问题：刚刚提交的代码，发现写错了怎么办](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
   * [问题：刚刚提交完，发现漏提交了文件](https://fedbook.cn/basic-skills/git/solution-to-missed-file-in-last-commit/)
   * [问题：刚刚提交错了，想要撤回并重新提交](https://fedbook.cn/basic-skills/git/solution-to-withdraw-last-commit/)
+  * [问题：pull 时发现代码冲突，如何妥善解决](https://fedbook.cn/basic-skills/git/solution-to-code-conflict/)
 * [Nginx](https://fedbook.cn/basic-skills/nginx/)
   * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
   * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)

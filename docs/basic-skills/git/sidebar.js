@@ -43,6 +43,11 @@ module.exports = [
         title: '问题：刚刚提交错了，想要撤回并重新提交',
         path: '/basic-skills/git/solution-to-withdraw-last-commit',
         collapsable: true
+      },
+      {
+        title: '问题：pull 时发现代码冲突，如何妥善解决',
+        path: '/basic-skills/git/solution-to-code-conflict',
+        collapsable: true
       }
     ]
   }
