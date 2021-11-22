@@ -53,6 +53,11 @@ module.exports = [
         title: '问题：如何修改历史 commits 中的用户名和邮箱',
         path: '/basic-skills/git/solution-to-change-name-and-email-in-history-commits',
         collapsable: true
+      },
+      {
+        title: '问题：如何迁移仓库并保留 commits 记录',
+        path: '/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits',
+        collapsable: true
       }
     ]
   }
