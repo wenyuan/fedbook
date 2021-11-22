@@ -17,11 +17,11 @@
 每次提交，commit message 都包括三个部分：header，body 和 footer。header 有一个特殊的格式包含有 type，scope 和 subject：
 
 ```bash
-<type>(<scope>): <subject> # header
+<type>(<scope>): <subject>  # header
 # 空一行
-<body>                     # body
+<body>                      # body
 # 空一行
-<footer>                   # footer
+<footer>                    # footer
 ```
 
 header、body、footer 之间都要空一行，header 是必填项，scope 是选填项。commit message 的每一行的文字不能超过 100 个字符。这样子在 GitHub 和 Git 工具上更便于阅读。
@@ -119,7 +119,7 @@ This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
 
 如果当前 commit 与被撤销的 commit，在同一个发布（release）里面，那么它们都不会出现在 Change log 里面。如果两者在不同的发布，那么当前 commit，会出现在 Change log 的 Reverts 小标题下面。
 
-## commit 模板
+## 模板参考
 
 ```bash
 feat($browser): onUrlChange event (popstate/hashchange/polling)
@@ -164,23 +164,28 @@ Couple of typos fixed:
 
 当然，这里的写完表示的是你的这个功能是没有问题的。
 
-## 开源项目提交历史
+## 开源项目提交记录一览
 
 * [angular-commit](https://github.com/angular/angular/commits/master)
 
 <div style="text-align: center;">
-  <img src="./assets/angular-commit.png" alt="Angular 的提交历史" style="height: 500px;">
+  <img src="./assets/angular-commit.png" alt="Angular 的提交历史" style="width: 600px;">
   <p style="text-align: center; color: #888;">（Angular 的提交历史）</p>
 </div>
 
 * [vuejs-commit](https://github.com/vuejs/vue/commits/dev)
 
 <div style="text-align: center;">
-  <img src="./assets/vuejs-commit.png" alt="Vue.js 的提交历史" style="height: 500px;">
+  <img src="./assets/vuejs-commit.png" alt="Vue.js 的提交历史" style="width: 600px;">
   <p style="text-align: center; color: #888;">（Vue.js 的提交历史）</p>
 </div>
 
-* [react-commit](https://github.com/facebook/react/commits/main)（react 的 commit 是另一种规范）
+* [react-commit](https://github.com/facebook/react/commits/main)（react 的 commit 不是这种规范，似乎就是首字母大写，但最近的提交记录中，看见有参与者在按照 Angular 的 commit 规范进行提交）
+
+<div style="text-align: center;">
+  <img src="./assets/react-commit.png" alt="React 的提交历史" style="width: 600px;">
+  <p style="text-align: center; color: #888;">（React 的提交历史）</p>
+</div>
 
 ## 参考资料
 
