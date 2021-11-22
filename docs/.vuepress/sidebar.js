@@ -1,6 +1,7 @@
 module.exports = {
   /* --------- 风格指南 --------- */
   '/style-guide/program': require('../style-guide/program/sidebar'),
+  '/style-guide/version-control': require('../style-guide/version-control/sidebar'),
   /* --------- 前端基础 --------- */
   '/frontend-basics/html': require('../frontend-basics/html/sidebar'),
   '/frontend-basics/css': require('../frontend-basics/css/sidebar'),
