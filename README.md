@@ -159,6 +159,7 @@
   * [问题：pull 时发现代码冲突，如何妥善解决](https://fedbook.cn/basic-skills/git/solution-to-code-conflict/)
   * [问题：如何修改历史 commits 中的用户名和邮箱](https://fedbook.cn/basic-skills/git/solution-to-change-name-and-email-in-history-commits/)
   * [问题：如何迁移仓库并保留 commits 记录](https://fedbook.cn/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits/)
+  * [问题：如何参与开源项目 - 提交 PR 与更新 Fork 分支](https://fedbook.cn/basic-skills/git/solution-to-participate-in-open-source-projects/)
 * [Nginx](https://fedbook.cn/basic-skills/nginx/)
   * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
   * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)

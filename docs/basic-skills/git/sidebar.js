@@ -58,6 +58,11 @@ module.exports = [
         title: '问题：如何迁移仓库并保留 commits 记录',
         path: '/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits',
         collapsable: true
+      },
+      {
+        title: '问题：如何参与开源项目 - 提交 PR 与更新 Fork 分支',
+        path: '/basic-skills/git/solution-to-participate-in-open-source-projects',
+        collapsable: true
       }
     ]
   }
