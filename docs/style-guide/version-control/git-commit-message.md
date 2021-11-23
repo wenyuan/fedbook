@@ -2,7 +2,7 @@
 
 > 无论是个人项目还是在团队协作中，commit message 都应该清晰明了，遵守一定规范。
 >
-> 目前，社区有多种 commit message 的写法规范。本文介绍 Angular 规范，这是目前使用最广的写法，比较合理和系统化，并且有配套的工具。
+> 目前，社区有多种 commit message 的写法规范。本文介绍 [Angular 规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)，这是目前使用最广的写法，比较合理和系统化，并且有配套的工具。
 
 ## 规范 commit 的好处
 
@@ -12,15 +12,40 @@
 
 以上的好处，个人认为要有一个大的前提，就是每一个提交，尽量保证其目的单一性。例如几个 bug 仅仅看上去类似，就合并成一次性修改提交，反而会让 commit 的信息变的复杂化，阅读不方便，也容易让人想到一些不必要的关联性。
 
+## 开源项目 commit 示例
+
+找了几个 star 较多的库，看看它们的提交格式。
+
+* [angular-commit](https://github.com/angular/angular/commits/master)
+
+<div style="text-align: center;">
+  <img src="./assets/angular-commit.png" alt="Angular 的提交历史" style="width: 500px;">
+  <p style="text-align: center; color: #888;">（Angular 的提交历史）</p>
+</div>
+
+* [vuejs-commit](https://github.com/vuejs/vue/commits/dev)
+
+<div style="text-align: center;">
+  <img src="./assets/vuejs-commit.png" alt="Vue.js 的提交历史" style="width: 500px;">
+  <p style="text-align: center; color: #888;">（Vue.js 的提交历史）</p>
+</div>
+
+* [react-commit](https://github.com/facebook/react/commits/main)：跟前两者的风格不一样，似乎就是首字母大写，但最近的提交记录中，看见有参与者在按照 Angular 的 commit 规范进行提交。
+
+<div style="text-align: center;">
+  <img src="./assets/react-commit.png" alt="React 的提交历史" style="width: 500px;">
+  <p style="text-align: center; color: #888;">（React 的提交历史）</p>
+</div>
+
 ## commit 的格式
 
 每次提交，commit message 都包括三个部分：header，body 和 footer。header 有一个特殊的格式包含有 type，scope 和 subject：
 
 ```bash
 <type>(<scope>): <subject>  # header
-# 空一行
+<BLANK LINE>                # 空行
 <body>                      # body
-# 空一行
+<BLANK LINE>                # 空行
 <footer>                    # footer
 ```
 
@@ -63,7 +88,7 @@ body 用于对 commit 详细描述。
 * 应该说明代码变动的动机，以及与以前行为的对比。
 * 可以分成多行。
 
-### Footer
+### footer
 
 footer 部分只用于两种情况。
 
@@ -164,33 +189,10 @@ Couple of typos fixed:
 
 当然，这里的写完表示的是你的这个功能是没有问题的。
 
-## 开源项目提交记录一览
-
-* [angular-commit](https://github.com/angular/angular/commits/master)
-
-<div style="text-align: center;">
-  <img src="./assets/angular-commit.png" alt="Angular 的提交历史" style="width: 600px;">
-  <p style="text-align: center; color: #888;">（Angular 的提交历史）</p>
-</div>
-
-* [vuejs-commit](https://github.com/vuejs/vue/commits/dev)
-
-<div style="text-align: center;">
-  <img src="./assets/vuejs-commit.png" alt="Vue.js 的提交历史" style="width: 600px;">
-  <p style="text-align: center; color: #888;">（Vue.js 的提交历史）</p>
-</div>
-
-* [react-commit](https://github.com/facebook/react/commits/main)（react 的 commit 不是这种规范，似乎就是首字母大写，但最近的提交记录中，看见有参与者在按照 Angular 的 commit 规范进行提交）
-
-<div style="text-align: center;">
-  <img src="./assets/react-commit.png" alt="React 的提交历史" style="width: 600px;">
-  <p style="text-align: center; color: #888;">（React 的提交历史）</p>
-</div>
-
 ## 参考资料
 
-* 《JavaScript高级程序设计（第3版）》  
-* 《ES6标准入门（第3版）》  
-* [Angular 规范](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#heading=h.greljkmo14y0)
+* [Angular 规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
+* [Angular 规范文档](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit)
+* [约定式提交](https://www.conventionalcommits.org/zh-hans/v1.0.0/)
 
 （完）
