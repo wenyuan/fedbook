@@ -88,6 +88,7 @@
   * [Grid 布局](https://fedbook.cn/frontend-basics/css/grid/)
   * 未完结，待更新
 * [JavaScript](https://fedbook.cn/frontend-basics/javascript/)
+  * JavaScript 核心
   * [数据类型](https://fedbook.cn/frontend-basics/javascript/data-types/)
   * [执行上下文](https://fedbook.cn/frontend-basics/javascript/execution-context/)
   * [作用域](https://fedbook.cn/frontend-basics/javascript/scope/)
@@ -95,16 +96,16 @@
   * [this 指向](https://fedbook.cn/frontend-basics/javascript/this-keyword/)
   * [原型与原型链](https://fedbook.cn/frontend-basics/javascript/prototype-and-prototype-chain/)
   * [垃圾回收](https://fedbook.cn/frontend-basics/javascript/gc/)
+  * [同步与异步](https://fedbook.cn/frontend-basics/javascript/sync-and-async/)
+  * [事件循环机制](https://fedbook.cn/frontend-basics/javascript/event-loop/)
+  * [浅克隆与深克隆](https://fedbook.cn/frontend-basics/javascript/shallow-clone-and-deep-clone/)
+  * [函数柯里化](https://fedbook.cn/frontend-basics/javascript/function-currying/)
+  * JavaScript 专题
   * [数组遍历的几种方式](https://fedbook.cn/frontend-basics/javascript/array-iteration/)
   * [对象遍历的几种方式](https://fedbook.cn/frontend-basics/javascript/object-iteration/)
   * [继承的八种方式](https://fedbook.cn/frontend-basics/javascript/inheritance/)
   * [声明函数的六种方式](https://fedbook.cn/frontend-basics/javascript/function-declare/)
   * [调用函数的四种方式](https://fedbook.cn/frontend-basics/javascript/function-invocation/)
-  * [垃圾回收](https://fedbook.cn/frontend-basics/javascript/gc/)
-  * [同步与异步](https://fedbook.cn/frontend-basics/javascript/sync-and-async/)
-  * [事件循环机制，微任务和宏任务的关系](https://fedbook.cn/frontend-basics/javascript/event-loop/)
-  * [浅克隆与深克隆](https://fedbook.cn/frontend-basics/javascript/shallow-clone-and-deep-clone/)
-  * [函数柯里化](https://fedbook.cn/frontend-basics/javascript/function-currying/)
   * 未完结，待更新
 * [TypeScript](https://fedbook.cn/frontend-basics/typescript/)
   * [数据类型简介](https://fedbook.cn/frontend-basics/typescript/data-types-introduction/)
@@ -151,7 +152,9 @@
 ### 必知必会
 
 * [Git](https://fedbook.cn/basic-skills/git/)
+  * Git 知识整理
   * [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
+  * Git 常见问题
   * [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
   * [问题：clone 速度过慢影响效率](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
   * [问题：commit 信息写错想要修改](https://fedbook.cn/basic-skills/git/solution-to-commit-info-mistake/)
@@ -163,6 +166,7 @@
   * [问题：如何迁移仓库并保留 commits 记录](https://fedbook.cn/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits/)
   * [问题：如何参与开源项目 - 提交 PR 与更新 Fork 分支](https://fedbook.cn/basic-skills/git/solution-to-participate-in-open-source-projects/)
 * [Nginx](https://fedbook.cn/basic-skills/nginx/)
+  * Nginx 用法整理
   * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
   * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
   * [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
@@ -176,6 +180,7 @@
   * [Nginx 页面安全认证](https://fedbook.cn/basic-skills/nginx/ngx-http-auth-basic-module/)
   * [Nginx 部署 Https 安全认证](https://fedbook.cn/basic-skills/nginx/deploy-https-security-auth/)
   * [Nginx 限流常用模块](https://fedbook.cn/basic-skills/nginx/traffic-limiting-modules/)
+  * Nginx 部署方案
   * [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
   * 未完结，待更新
 
@@ -191,6 +196,7 @@
   * [数据结构之链表](https://fedbook.cn/in-depth-learning/algorithm/linked-list/)
   * 学习计划调整，延后学习
 * [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
+  * [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
   * 抽空学习，不占用主学习进程
 * [JavaScript 手写函数](https://fedbook.cn/handwritten/javascript/)
   * [实现防抖函数（debounce）](https://fedbook.cn/handwritten/javascript/实现防抖函数-debounce/)
