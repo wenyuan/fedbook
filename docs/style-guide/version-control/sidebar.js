@@ -7,6 +7,11 @@ module.exports = [
         title: 'Git 提交信息规范',
         path: '/style-guide/version-control/git-commit-message',
         collapsable: true
+      },
+      {
+        title: 'Git 工作流',
+        path: '/style-guide/version-control/git-workflow',
+        collapsable: true
       }
     ]
   }
