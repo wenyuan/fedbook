@@ -22,7 +22,8 @@ module.exports = [
       {
         text: '进阶',
         items: [
-          { text: 'TypeScript', link: '/frontend-basics/typescript/' }
+          { text: 'TypeScript', link: '/frontend-basics/typescript/' },
+          { text: '浏览器工作原理', link: '/frontend-basics/browser/' }
         ]
       }
     ]

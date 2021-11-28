@@ -120,6 +120,8 @@
   * [函数类型](https://fedbook.cn/frontend-basics/typescript/function-type/)
   * [泛型](https://fedbook.cn/frontend-basics/typescript/generics/)
   * 未完结，待更新
+* [浏览器工作原理](https://fedbook.cn/frontend-basics/browser/)
+  * [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-basics/browser/kernel-and-javascript-engine/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

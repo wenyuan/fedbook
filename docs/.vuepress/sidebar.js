@@ -7,6 +7,7 @@ module.exports = {
   '/frontend-basics/css': require('../frontend-basics/css/sidebar'),
   '/frontend-basics/javascript': require('../frontend-basics/javascript/sidebar'),
   '/frontend-basics/typescript': require('../frontend-basics/typescript/sidebar'),
+  '/frontend-basics/browser': require('../frontend-basics/browser/sidebar'),
   /* --------- 前端工程化: 一切能提升前端开发效率，提高前端应用质量的手段和工具都是前端工程化 --------- */
   '/frontend-engineering/vuejs': require('../frontend-engineering/vuejs/sidebar'),
   '/frontend-engineering/react': require('../frontend-engineering/react/sidebar'),
