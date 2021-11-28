@@ -9,7 +9,7 @@ module.exports = [
     ]
   },
   {
-    text: '前端基础',
+    text: '前端知识',
     items: [
       {
         text: '基础',
@@ -28,7 +28,7 @@ module.exports = [
     ]
   },
   {
-    text: '工程化',
+    text: '前端工程化',
     items: [
       {
         text: '框架',
