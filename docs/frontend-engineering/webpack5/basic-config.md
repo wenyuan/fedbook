@@ -310,7 +310,7 @@ module.exports = merge(webpackCommonConf, {
 
 ## 模块化
 
-一个 WEB 工程通常会包含一系列的静态资源，并且这些资源一般会存在某种相互依赖的关系。一般静态资源包含：
+一个 Web 工程通常会包含一系列的静态资源，并且这些资源一般会存在某种相互依赖的关系。一般静态资源包含：
 
 * HTML/CSS/JavaScript
 * 图片/音视频

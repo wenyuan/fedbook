@@ -21,7 +21,7 @@ Python 的应用场景：
 * 自动化运维
 * 云计算
   * OpenStack 等
-* WEB 开发
+* Web 开发
   * Django，Tornado，Flask 等
 * 网络爬虫
 * 数据分析
