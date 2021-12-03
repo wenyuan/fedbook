@@ -4,9 +4,9 @@
 
 ## HTML、CSS 和 JavaScript 是如何变成页面的
 
-### 完整流程小结
+### 流程小结
 
-一个完整的渲染流程还是**复制之前一篇文章里归纳的 [8 个步骤](/frontend-basics/browser/browser-macro-knowledge/#输入-url-到页面展示)**，这里在每个步骤之下补充一些细节知识点：
+大体的渲染流程还是**复制之前一篇文章里归纳的 [8 个步骤](/frontend-basics/browser/browser-macro-knowledge/#输入-url-到页面展示)**，这里在每个步骤之下补充一些细节知识点：
 
 * **构建 DOM 树**：通过 HTML 解析器将 HTML 转换成 DOM 树。
 * **样式计算**：渲染引擎将 CSS 文本转换为 styleSheets，计算出 DOM 节点的样式。
