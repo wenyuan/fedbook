@@ -1,8 +1,17 @@
-# 渲染流程的执行细节
+# 渲染引擎的工作原理
 
 这个系列的第一篇文章中对「[浏览器从输入 URL 到页面展示](/frontend-basics/browser/browser-macro-knowledge/#导航流程-输入-url-到页面展示)」的整个流程做了小结，但其实最后一步在获得到 HTML、CSS 和 JavaScript 文件后，对渲染进程做的工作只是简单概括了一下，这里单独写一篇作为细节扩充。
 
 ## HTML、CSS 和 JavaScript 是如何变成页面的
+
+渲染引擎的工作过程相当复杂，所以渲染模块在执行过程中会被划分为很多子阶段，输入的 HTML 经过这些子阶段，最后输出像素。其大致流程如下图所示：
+
+<div style="text-align: center;">
+  <img src="./assets/simple-rendering-process.png" alt="简单的渲染流程示意图" style="width: 600px;">
+  <p style="text-align: center; color: #888;">（简单的渲染流程示意图，图来源于网络）</p>
+</div>
+
+按照渲染的时间顺序，整个渲染流程可分为如下几个子阶段：构建 DOM 树、样式计算、布局、分层、图层绘制、栅格化、合成和显示。为了方便记忆，每个子阶段都应该重点关注其**输入的内容**，**处理过程**，**输出内容**。
 
 ### 流程小结
 

@@ -14,12 +14,12 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '渲染流程的执行细节',
+        title: '渲染引擎的工作原理',
         path: '/frontend-basics/browser/execution-details-of-rendering-process',
         collapsable: true
       },
       {
-        title: 'V8 引擎的执行细节',
+        title: 'V8 引擎的工作原理',
         path: '/frontend-basics/browser/execution-details-of-v8-engine',
         collapsable: true
       }
