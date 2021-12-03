@@ -9,10 +9,10 @@ module.exports = [
         collapsable: true
       },
       {
-				title: '语义类标签',
-				path: '/frontend-basics/html/semantic-elements',
-				collapsable: true
-			},
+        title: '语义类标签',
+        path: '/frontend-basics/html/semantic-elements',
+        collapsable: true
+      },
       {
         title: '未完待续',
         path: '/frontend-basics/html/to-be-continued',

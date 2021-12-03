@@ -118,7 +118,7 @@ IE 浏览器会混淆元素的 `id` 和 `name` 属性， `document.getElementByI
 <div>
   <h1></h1>
   <p></p>
-</div>	
+</div>
 <p><span></span><span></span></p>
 ```
 
@@ -127,7 +127,7 @@ IE 浏览器会混淆元素的 `id` 和 `name` 属性， `document.getElementByI
 ```html
 <div>
   <h1></h1><p></p>
-</div>	
+</div>
 <p> 
   <span></span>
   <span></span>
@@ -184,13 +184,13 @@ IE 浏览器会混淆元素的 `id` 和 `name` 属性， `document.getElementByI
 推荐：
 
 ```html
-<!-- S Comment Text A -->	
+<!-- S Comment Text A -->
 <div class="mod-a">
   ...
 </div>
 <!-- E Comment Text A -->
-	
-<!-- S Comment Text B -->	
+
+<!-- S Comment Text B -->
 <div class="mod-b">
   ...
 </div>
@@ -205,7 +205,7 @@ IE 浏览器会混淆元素的 `id` 和 `name` 属性， `document.getElementByI
   ...
 </div>
 <!-- E Comment Text A -->
-<!-- S Comment Text B -->	
+<!-- S Comment Text B -->
 <div class="mod_b">
   ...
 </div>
@@ -221,17 +221,17 @@ IE 浏览器会混淆元素的 `id` 和 `name` 属性， `document.getElementByI
 ```html
 <!-- S Comment Text A -->
 <div class="mod-a">
-		
+
   <div class="mod-b">
     ...
   </div>
   <!-- /mod-b -->
-    	
+
   <div class="mod-c">
     ...
   </div>
   <!-- /mod-c -->
-		
+
 </div>
 <!-- E Comment Text A -->
 ```

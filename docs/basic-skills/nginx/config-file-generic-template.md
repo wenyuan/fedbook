@@ -21,8 +21,8 @@ mkdir vhosts
 http {
     ...
 
-	include /usr/local/nginx/conf/vhosts/*.conf;   # *.conf 代表所有 server 配置文件
-	include /usr/local/nginx/conf/vhosts/*.proxy;  # *.proxy 代表所有做反向代理的 server（看情况可选）
+    include /usr/local/nginx/conf/vhosts/*.conf;   # *.conf 代表所有 server 配置文件
+    include /usr/local/nginx/conf/vhosts/*.proxy;  # *.proxy 代表所有做反向代理的 server（看情况可选）
 }
 ```
 
