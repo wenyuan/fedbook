@@ -10,7 +10,7 @@
 * **Blink**：是 Webkit 的一个分支，Google 开发，目前应用于 Google Chrome、Edge、Opera 等。
 * 等等…
 
-我们经常说的浏览器内核指的是浏览器的**排版引擎**（layout engine），它负责处理 HTML 和 CSS，所以又被称为浏览器引擎（browser engine）、页面渲染引擎（rendering engine）或样版引擎。
+我们经常说的浏览器内核指的是浏览器的排版引擎（layout engine），它负责处理 HTML 和 CSS，所以又被称为浏览器引擎（browser engine）、页面**渲染引擎**（rendering engine）或样版引擎。
 
 ## JavaScript 引擎
 
@@ -48,6 +48,19 @@ JavaScript 引擎帮助我们将 JavaScript 代码翻译成 CPU 指令来执行�
 
 * **渲染引擎**：Rendering Engine，一般习惯将之称为「浏览器内核」，主要功能是解析 HTML/CSS 进行渲染页面，渲染引擎决定了浏览器如何显示网页的内容以及页面的格式信息。
 * **JS 引擎**：专门处理 JavaScript 脚本的虚拟机、解释器，用来解释执行 JS 代码。在早期内核也是包含 JS 引擎的，而现在 JS 引擎越来独立了，可以把它单独提出来。
+
+## 渲染引擎的原理
+
+渲染引擎的工作过程相当复杂，所以渲染模块在执行过程中会被划分为很多子阶段，输入的 HTML 经过这些子阶段，最后输出像素。其大致流程如下图所示：
+
+<div style="text-align: center;">
+  <img src="./assets/simple-rendering-process.png" alt="简单的渲染流程示意图" style="width: 600px;">
+  <p style="text-align: center; color: #888;">（简单的渲染流程示意图，图来源于网络）</p>
+</div>
+
+按照渲染的时间顺序，整个渲染流程可分为如下几个子阶段：构建 DOM 树、样式计算、布局、分层、图层绘制、栅格化、合成和显示。为了方便记忆，每个子阶段都应该重点关注其**输入的内容**，**处理过程**，**输出内容**。
+
+[渲染流程的执行细节](/frontend-basics/browser/execution-details-of-rendering-process/)会在后面单独拎出来整理。
 
 ## V8 引擎的原理
 
@@ -87,31 +100,6 @@ V8 引擎本身的源码非常复杂，大概有超过 100w 行 C++ 代码，作
 * [TurboFan 的 V8 官方文档](https://v8.dev/blog/turbofan-jit)
 :::
 
-## V8 执行的细节
+[V8 引擎的执行细节](/frontend-basics/browser/execution-details-of-rendering-process/)会在后面单独拎出来整理，而且这部分内容也跟 [JavaScript 系列](/frontend-basics/javascript/)的执行上下文、作用域、this 指向、内存管理等知识点关联，属于**重点中的重点**。
 
-<div style="text-align: center;">
-  <img src="./assets/v8-overview.svg" alt="V8 引擎的解析图">
-  <p style="text-align: center; color: #888;">（V8 引擎的解析图，图片来源于官方文档）</p>
-</div>
-
-上面这张图来自于 [V8 官方文档](https://v8.dev/blog/scanner)，它描述了 V8 执行的细节 —— JavaScript 源码是如何被解析（Parse 过程）的：
-
-* Blink 将源码交给 V8 引擎，Stream 获取到源码并且进行编码转换。
-* Scanner 会进行词法分析（lexical analysis），词法分析会将代码转换成 tokens。
-* 接下来 tokens 会被转换成 AST 树，经过 Parser 和 PreParser：
-  * Parser 就是直接将 tokens 转成 AST 树架构。
-  * PreParser 称之为预解析，为什么需要预解析呢？
-    * 这是因为并不是所有的 JavaScript 代码，在一开始时就会被执行。那么对所有的 JavaScript 代码进行解析，必然会影响网页的运行效率；
-    * 所以 V8 引擎就实现了 **Lazy Parsing（延迟解析）**的方案，它的作用是**将不必要的函数进行预解析**，也就是只解析暂时需要的内容（比如知道内部函数的函数名叫 `inner`），而对**函数的全量解析**是在**函数被调用时**才会进行；
-    * 比如我们在一个函数 `outer` 内部定义了另外一个函数 `inner`，那么 `inner` 函数就会进行预解析。
-* 生成 AST 树后，会被 Ignition 转成字节码（ByteCode），之后的过程就是[代码的执行过程](#代码的执行过程)。
-
-::: tip 小工具
-通过 [AST Explorer](https://astexplorer.net/) 在线小工具，可以观察 JS 语法经过转换后的 AST 是长什么样的。
-:::
-
-## 代码的执行过程
-
-简单分析一下 JavaScript 代码的执行过程，更详细的内容我在 [JavaScript 系列](/frontend-basics/javascript/)中有专门的梳理。
-
-TODO...
+（完）

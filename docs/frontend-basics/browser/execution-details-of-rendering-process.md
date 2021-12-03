@@ -1,21 +1,12 @@
 # 渲染流程的执行细节
 
+这个系列的第一篇文章中对「[浏览器从输入 URL 到页面展示](/frontend-basics/browser/browser-macro-knowledge/#导航流程-输入-url-到页面展示)」的整个流程做了小结，但其实最后一步在获得到 HTML、CSS 和 JavaScript 文件后，对渲染进程做的工作只是简单概括了一下，这里单独写一篇作为细节扩充。
+
 ## HTML、CSS 和 JavaScript 是如何变成页面的
-
-这个系列的一篇文章中对「[浏览器从输入 URL 到页面展示](/frontend-basics/browser/browser-macro-knowledge/#导航流程-输入-url-到页面展示)」的整个流程做了小结，但其实最后一步在获得到 HTML、CSS 和 JavaScript 文件后，对渲染进程做的工作只是做了简单的概括，其实每一步里面还有一些细节知识点，这里单独写一篇作为扩充。
-
-实际上如果把 HTML、CSS、JavaScript 数据当作输入源，渲染模块作为黑盒子的加工厂，它是经过了很复杂的流程才最终输出为屏幕上的像素。
-
-<div style="text-align: center;">
-  <img src="./assets/simple-rendering-process.png" alt="简单的渲染流程示意图" style="width: 480px;">
-  <p style="text-align: center; color: #888;">（简单的渲染流程示意图，图来源于网络）</p>
-</div>
-
-## 渲染流程各步骤细节
 
 ### 完整流程小结
 
-一个完整的渲染流程还是**复制之前那篇文章里归纳的 [8 个步骤](/frontend-basics/browser/browser-macro-knowledge/#输入-url-到页面展示)**，这里在每个步骤之下补充一些细节知识点：
+一个完整的渲染流程还是**复制之前一篇文章里归纳的 [8 个步骤](/frontend-basics/browser/browser-macro-knowledge/#输入-url-到页面展示)**，这里在每个步骤之下补充一些细节知识点：
 
 * **构建 DOM 树**：通过 HTML 解析器将 HTML 转换成 DOM 树。
 * **样式计算**：渲染引擎将 CSS 文本转换为 styleSheets，计算出 DOM 节点的样式。

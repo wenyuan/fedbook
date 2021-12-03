@@ -123,7 +123,8 @@
 * [浏览器工作原理](https://fedbook.cn/frontend-basics/browser/)
   * [浏览器宏观认识](https://fedbook.cn/frontend-basics/browser/browser-macro-knowledge/)
   * [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-basics/browser/kernel-and-javascript-engine/)
-  * [渲染流程的执行细节](https://fedbook.cn/frontend-basics/browser/complete-rendering-process/)
+  * [渲染流程的执行细节](https://fedbook.cn/frontend-basics/browser/execution-details-of-rendering-process/)
+  * [V8 引擎的执行细节](https://fedbook.cn/frontend-basics/browser/execution-details-of-v8-engine/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
