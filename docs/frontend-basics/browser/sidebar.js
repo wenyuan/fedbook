@@ -8,11 +8,16 @@ module.exports = [
         path: '/frontend-basics/browser/browser-macro-knowledge',
         collapsable: true
       },
-			{
-				title: '浏览器内核与 JavaScript 引擎',
-				path: '/frontend-basics/browser/kernel-and-javascript-engine',
-				collapsable: true
-			}
+      {
+        title: '浏览器内核与 JavaScript 引擎',
+        path: '/frontend-basics/browser/kernel-and-javascript-engine',
+        collapsable: true
+			},
+      {
+        title: '渲染流程的执行细节',
+        path: '/frontend-basics/browser/complete-rendering-process',
+        collapsable: true
+      }
     ]
   }
 ]
