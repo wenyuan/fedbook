@@ -9,7 +9,7 @@ module.exports = [
         collapsable: true
       },
       {
-        title: 'Git 工作流',
+        title: 'Git 工作流 — 分支策略',
         path: '/style-guide/version-control/git-workflow',
         collapsable: true
       }
