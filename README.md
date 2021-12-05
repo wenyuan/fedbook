@@ -91,6 +91,7 @@
 * [JavaScript](https://fedbook.cn/frontend-basics/javascript/)
   * JavaScript 核心
   * [数据类型](https://fedbook.cn/frontend-basics/javascript/data-types/)
+  * [栈空间和堆空间](https://fedbook.cn/frontend-basics/javascript/stack-and-heap/)
   * [执行上下文](https://fedbook.cn/frontend-basics/javascript/execution-context/)
   * [作用域](https://fedbook.cn/frontend-basics/javascript/scope/)
   * [闭包](https://fedbook.cn/frontend-basics/javascript/closure/)

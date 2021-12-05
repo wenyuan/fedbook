@@ -9,6 +9,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '栈空间和堆空间',
+        path: '/frontend-basics/javascript/stack-and-heap',
+        collapsable: true
+      },
+      {
         title: '执行上下文',
         path: '/frontend-basics/javascript/execution-context',
         collapsable: true
