@@ -14,7 +14,7 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '执行上下文',
+        title: '执行上下文和调用栈',
         path: '/frontend-basics/javascript/execution-context',
         collapsable: true
       },

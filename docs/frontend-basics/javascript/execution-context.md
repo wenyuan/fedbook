@@ -1,16 +1,50 @@
-# 执行上下文
+# 执行上下文和调用栈
 
-## 执行上下文是什么
+## 执行上下文
 
-我们知道 JavaScript 是单线程语言，也就是同一时间只能执行一个任务。当 JavaScript 解释器初始化代码后，默认会进入全局的执行环境，之后每调用一个函数， JavaScript 解释器会创建一个新的执行环境，确定该函数在执行期间用到的诸如 `this`、变量、对象以及函数等。
+执行上下文是 JavaScript 执行一段代码时的运行环境，它一共有三种：
 
-一言以蔽之：**执行环境是 JavaScript 执行一段代码时的运行环境**。
+* 全局执行上下文：一个程序只有一个全局对象即 `window` 对象，全局对象所处的执行上下文就是全局执行上下文。
+* 函数执行上下文：函数调用过程会创建函数的执行上下文，因此每个程序可以有无数个函数执行上下文。
+* Eval 执行上下文：`eval` 代码特定的执行上下文（永远不要使用 `eval`！—— [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval "eval() - JavaScript | MDN")）。
 
-## 执行上下文的分类
+## JS 代码的编译过程
 
-* 全局执行上下文：简单的理解，一个程序只有一个全局对象即 `window` 对象，全局对象所处的执行上下文就是全局执行上下文。
-* 函数执行环境：函数调用过程会创建函数的执行环境，因此每个程序可以有无数个函数执行环境。
-* Eval执行环境：`eval` 代码特定的环境（永远不要使用 `eval`！—— [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval "eval() - JavaScript | MDN")）。
+一段 JavaScript 代码在执行之前需要被编译，编译完成之后，才会进入执行阶段。
+
+编译阶段主要有**分词/词法分析**（Tokenizing/Lexing），**解析/语法分析**（Parsing）和**代码生成**（将 AST 转换为可执行代码）三个步骤。
+
+> 这里主要探讨 JavaScript，所以不深入写 V8 在每个步骤的处理细节（浏览器原理见《[V8 引擎的工作原理](/frontend-basics/browser/execution-details-of-v8-engine/)》）。
+
+从 JavaScript 层面来讲，输入一段代码，经过编译后，会生成两部分内容：**执行上下文**（Execution Context）和可执行代码。
+
+<div style="text-align: center;">
+  <svg id="SvgjsSvg1006" width="748.71875" height="287" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"><defs id="SvgjsDefs1007"><marker id="SvgjsMarker1028" markerWidth="16" markerHeight="12" refX="11" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1029" d="M0,0 L16,6 L0,12 L0,0" fill="#323232" stroke="#323232" stroke-width="1"></path></marker><marker id="SvgjsMarker1032" markerWidth="16" markerHeight="12" refX="11" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1033" d="M0,0 L16,6 L0,12 L0,0" fill="#323232" stroke="#323232" stroke-width="1"></path></marker></defs><g id="SvgjsG1008" transform="translate(25.006696428571445,116)"><path id="SvgjsPath1009" d="M 0 0L 120 0L 120 66L 0 66Z" stroke="rgba(138,138,138,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1010"><text id="SvgjsText1011" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="100px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="13.75" transform="rotate(0)"><tspan id="SvgjsTspan1012" dy="17" x="60"><tspan id="SvgjsTspan1013" style="text-decoration:;">输入一段</tspan></tspan><tspan id="SvgjsTspan1014" dy="17" x="60"><tspan id="SvgjsTspan1015" style="text-decoration:;">JavaScript 代码</tspan></tspan></text></g></g><g id="SvgjsG1016" transform="translate(220.578125,25)"><path id="SvgjsPath1017" d="M 0 0L 354 0L 354 237L 0 237Z" stroke="rgba(138,138,138,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1018"><text id="SvgjsText1019" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="334px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="108.875" transform="rotate(0)"></text></g></g><g id="SvgjsG1020" transform="translate(646.7209821428573,116)"><path id="SvgjsPath1021" d="M 0 0L 77 0L 77 66L 0 66Z" stroke="rgba(138,138,138,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1022"><text id="SvgjsText1023" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="57px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="22.25" transform="rotate(0)"><tspan id="SvgjsTspan1024" dy="17" x="38.5"><tspan id="SvgjsTspan1025" style="text-decoration:;">输出结果</tspan></tspan></text></g></g><g id="SvgjsG1026"><path id="SvgjsPath1027" d="M145.578125 151L180.578125 151L180.578125 151L215.578125 151" stroke="#323232" stroke-width="3" fill="none" marker-end="url(#SvgjsMarker1028)"></path></g><g id="SvgjsG1030"><path id="SvgjsPath1031" d="M575.8638392857143 151L609.3638392857143 151L609.3638392857143 151L642.8638392857143 151" stroke="#323232" stroke-width="3" fill="none" marker-end="url(#SvgjsMarker1032)"></path></g><g id="SvgjsG1034" transform="translate(228.578125,36)"><path id="SvgjsPath1035" d="M 0 0L 338 0L 338 122L 0 122Z" stroke="rgba(207,207,207,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1036"><text id="SvgjsText1037" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="318px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="51.375" transform="rotate(0)"></text></g></g><g id="SvgjsG1038" transform="translate(340.578125,36)"><path id="SvgjsPath1039" d="M 0 0L 120 0L 120 40L 0 40Z" stroke="none" fill="none"></path><g id="SvgjsG1040"><text id="SvgjsText1041" font-family="微软雅黑" text-anchor="middle" font-size="18px" width="120px" fill="#ff6666" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="18px" weight="400" font-style="" opacity="1" y="6.25" transform="rotate(0)"><tspan id="SvgjsTspan1042" dy="22" x="60"><tspan id="SvgjsTspan1043" style="text-decoration:;">执行上下文</tspan></tspan></text></g></g><g id="SvgjsG1044" transform="translate(234.078125,81)"><path id="SvgjsPath1045" d="M 0 0L 165.5 0L 165.5 64L 0 64Z" stroke="rgba(138,138,138,1)" stroke-width="2" fill-opacity="1" fill="#66b2ff"></path><g id="SvgjsG1046"><text id="SvgjsText1047" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="146px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="12.75" transform="rotate(0)"><tspan id="SvgjsTspan1048" dy="17" x="83"><tspan id="SvgjsTspan1049" style="text-decoration:;">变量环境</tspan></tspan><tspan id="SvgjsTspan1050" dy="17" x="83"><tspan id="SvgjsTspan1051" style="text-decoration:;">Variable Environment</tspan></tspan></text></g></g><g id="SvgjsG1052" transform="translate(404.078125,81)"><path id="SvgjsPath1053" d="M 0 0L 157.5 0L 157.5 64L 0 64Z" stroke="rgba(138,138,138,1)" stroke-width="2" fill-opacity="1" fill="#ebebeb"></path><g id="SvgjsG1054"><text id="SvgjsText1055" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="138px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="12.75" transform="rotate(0)"><tspan id="SvgjsTspan1056" dy="17" x="79"><tspan id="SvgjsTspan1057" style="text-decoration:;">词法环境</tspan></tspan><tspan id="SvgjsTspan1058" dy="17" x="79"><tspan id="SvgjsTspan1059" style="text-decoration:;">Lexical Environment</tspan></tspan></text></g></g><g id="SvgjsG1060" transform="translate(228.578125,169)"><path id="SvgjsPath1061" d="M 0 0L 338 0L 338 80L 0 80Z" stroke="rgba(138,138,138,1)" stroke-width="2" fill-opacity="1" fill="#66b2ff"></path><g id="SvgjsG1062"><text id="SvgjsText1063" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="318px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="29.25" transform="rotate(0)"><tspan id="SvgjsTspan1064" dy="17" x="169"><tspan id="SvgjsTspan1065" style="text-decoration:;">可执行代码</tspan></tspan></text></g></g><g id="SvgjsG1066" transform="translate(118.578125,112)"><path id="SvgjsPath1067" d="M 0 0L 120 0L 120 40L 0 40Z" stroke="none" fill="none"></path><g id="SvgjsG1068"><text id="SvgjsText1069" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="120px" fill="#323232" font-weight="700" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="14px" weight="700" font-style="" opacity="1" y="9.25" transform="rotate(0)"><tspan id="SvgjsTspan1070" dy="17" x="60"><tspan id="SvgjsTspan1071" style="text-decoration:;">编译代码</tspan></tspan></text></g></g><g id="SvgjsG1072" transform="translate(549.578125,112)"><path id="SvgjsPath1073" d="M 0 0L 120 0L 120 40L 0 40Z" stroke="none" fill="none"></path><g id="SvgjsG1074"><text id="SvgjsText1075" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="120px" fill="#323232" font-weight="700" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="14px" weight="700" font-style="" opacity="1" y="9.25" transform="rotate(0)"><tspan id="SvgjsTspan1076" dy="17" x="60"><tspan id="SvgjsTspan1077" style="text-decoration:;">执行代码</tspan></tspan></text></g></g></svg>
+  <p style="text-align: center; color: #888;">（JavaScript 代码编译过程）</p>
+</div>
+
+由上图可知，在 JavaScript 代码的编译过程中，还在执行上下文里创建了两个对象：
+
+* 变量环境（Viriable Environment）
+* 词法环境（Lexical Environment）
+
+### 变量环境
+
+**在编译阶段，会声明所有 `var` 变量（初始值设为 `undefined`），解析函数语句，然后将这些变量和函数存放到变量环境中**。
+
+这也是**变量提升**现象产生的原因：在一个变量定义之前使用它，不会报错，但是该变量的值此时为 `undefined`，而不是定义时的值。
+
+同时在编译阶段，如果存在两个相同的函数，那么后定义的会覆盖掉之前定义的，最终存放在变量环境中的是最后定义的那个。
+
+### 词法环境
+
+通过 `let` 和 `const` 声明的变量，在编译阶段会被存放到词法环境中。
+
+## JS 代码的执行过程
+
+JavaScript 引擎按照顺序逐行执行编译生成的可执行代码。
+
+对所有变量的分配（赋值）也是在这个过程按照一行一行的执行顺序完成的。
 
 ## 执行上下文的产生
 
