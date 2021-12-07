@@ -12,7 +12,7 @@
 
 执行上下文的产生涉及两个阶段：
 
-* JS 代码的编译过程：创建全局执行上下文
+* JS 代码的编译阶段：创建全局执行上下文
 * JS 代码的执行阶段：函数被调用时创建函数执行上下文
 
 ## JS 代码的编译阶段
@@ -31,21 +31,50 @@
 * 词法环境（Lexical Environment）
 * 变量环境（Viriable Environment）
 
+所以执行上下文可以用伪代码表示如下:
+
+```javascript
+ExecutionContext = {
+  LexicalEnvironment = <ref. to LexicalEnvironment in memory>,
+  VariableEnvironment = <ref. to VariableEnvironment in  memory>,
+}
+```
+
 ### 词法环境（Lexical Environment）
 
-#### 1）结构
+#### 1）定义
 
-词法环境是一种持有**标识符—变量映射**的结构。
+词法环境是一个包含**标识符变量映射**的结构。
 
-在词法环境的内部有两个组件：
+* 标识符：变量/函数的名字
+* 变量：对实际对象或原始数据的引用
 
-* **环境记录**（EnvironmentRecord）：储存变量和函数声明的实际位置。
-* **对外部环境的引用**（Outer）：当前可以访问的外部词法环境（作用域）。
+#### 2）结构
+
+词法环境由两个部分组成：
+
+* **环境记录**（enviroment record）：存储变量和函数声明，它分为两种：
+  * **声明式环境记录**（主要用于函数环境）：存储变量、函数和参数，主要用于函数。（函数环境下会存储 `arguments` 的值，形式 `{idx1:val1, idx2:val2, ..., length:num}`）
+  * **对象环境记录**（主要用于全局环境）：除了变量和函数声明，还存储了一个全局对象 `window`（浏览器中）以及该全局对象提供的属性和方法。
+* **对外部环境的引用**（outer）：可以通过它访问外部词法环境（也就是作用域链的原理）。
+* **This 绑定**：
+  * 全局执行上下文中，`this` 值指向全局变量（浏览器中是 `window` 对象）
+  * 函数执行上下文中，`this` 的值的指向取决于函数的调用方式
+    * 被对象调用：`this`＝对象
+    * 否则：`this`=全局对象（非严格模式），`this`=`undefined`（严格模式）
+
+#### 3）类型
 
 词法环境有两种类型：
 
-* **全局环境**：在全局执行上下文中，没有外部环境引用的词法环境。全局环境的外部环境引用是 `null`。它拥有内建的 Object/Array 等、在环境记录器内的原型函数（关联全局对象，比如 `window` 对象）还有任何用户定义的全局变量，并且 `this` 的值指向全局对象。
-* **函数环境**：用户在函数内部定义的变量储存在**环境记录**中。**对外部环境的引用**可以是全局环境，也可以是任何包含此内部函数的外部函数。
+* 全局环境：在全局执行上下文中。
+  * 拥有内建的 Object、Array 等。
+  * 在环境记录内还有任何用户定义的全局变量和函数。
+  * 外部环境引用是 `null`。
+  * `this` 指向全局对象。
+* 函数环境：在函数执行上下文中。
+  * 用户在函数内部定义的变量储存在环境记录中。
+  * 对外部环境的引用可以是全局环境，也可以是任何包含此内部函数的外部函数。
 
 词法环境的伪代码可以这么表示：
 
@@ -71,7 +100,7 @@ FunctionExectionContent = {
 }
 ```
 
-#### 2）特点
+#### 4）特点
 
 通过 `let` 和 `const` 声明的变量，在编译阶段会被存放到词法环境中。
 
@@ -79,15 +108,34 @@ FunctionExectionContent = {
 
 ### 变量环境（Viriable Environment）
 
-#### 1）结构
+#### 1）定义
 
-变量环境也是一个词法环境，他具有词法环境中所有的属性。
+变量环境也是词法环境，它具有上面定义的词法环境的所有属性和组件，主要的区别在于：
+
+在 ES6 中的区别：
+
+* 词法环境（Lexical Environment）用于存储函数声明和变量（通过 `let` 和 `const` 声明的变量）。
+* 变量环境（Variable Environment）仅用于存储变量（通过 `var` 声明的变量）。
 
 #### 2）特点
 
 在编译阶段，会声明所有 `var` 变量（初始值设为 `undefined`），然后将这些变量存放到变量环境中。
 
 这也是**变量提升**现象产生的原因：在一个变量定义之前使用它，不会报错，但是该变量的值此时为 `undefined`，而不是定义时的值。
+
+::: details 变量提升
+所谓变量提升，是指在 JavaScript 代码执行过程中，JavaScript 引擎把变量的声明部分和函数的声明部分提升到代码开头的「行为」。变量被提升后，会给变量设置默认值 `undefined`。
+
+<div style="text-align: center;">
+  <img src="./assets/declaration-and-assignment-of-variables.png" alt="变量的声明和赋值" style="width: 550px;">
+  <p style="text-align: center; color: #888;">（变量的声明和赋值，图片来源于网络）</p>
+</div>
+
+<div style="text-align: center;">
+  <img src="./assets/declaration-and-assignment-of-functions.png" alt="函数的声明和赋值" style="width: 550px;">
+  <p style="text-align: center; color: #888;">（函数的声明和赋值，图片来源于网络）</p>
+</div>
+:::
 
 ## JS 代码的执行阶段
 
@@ -105,7 +153,12 @@ JavaScript 引擎按照顺序逐行执行编译生成的可执行代码。
 
 ### 调用栈运行过程
 
-从一个简单的例子开始讲起：
+* 首先创建全局执行上下文，压入栈底。
+* 每当调用一个函数时，创建函数的函数执行上下文，并且压入栈顶。
+* 当函数执行完成后，会从调用栈中弹出，JS 引擎继续执栈顶的函数。
+* 程序执行结束时，全局执行上下文弹出调用栈。
+
+以如下代码为例：
 
 ```javascript
 function foo(i) {
@@ -127,7 +180,7 @@ foo(2);
 
 <div style="text-align: center;">
   <svg id="SvgjsSvg1264" width="815.875" height="201.25" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"><defs id="SvgjsDefs1265"><marker id="SvgjsMarker1378" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1379" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1382" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1383" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1386" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1387" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1390" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1391" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1394" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1395" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker><marker id="SvgjsMarker1398" markerWidth="16" markerHeight="12" refX="16" refY="6" viewBox="0 0 16 12" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1399" d="M0,2 L14,6 L0,11 L0,2" fill="#323232" stroke="#323232" stroke-width="2"></path></marker></defs><g id="SvgjsG1266" transform="translate(25,138.25)"><path id="SvgjsPath1267" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1268"><text id="SvgjsText1269" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="0.925" transform="rotate(0)"><tspan id="SvgjsTspan1270" dy="16" x="50"><tspan id="SvgjsTspan1271" style="text-decoration:;">全局</tspan></tspan><tspan id="SvgjsTspan1272" dy="16" x="50"><tspan id="SvgjsTspan1273" style="text-decoration:;">执行上下文</tspan></tspan></text></g></g><g id="SvgjsG1274" transform="translate(136.2917139614075,138.25)"><path id="SvgjsPath1275" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1276"><text id="SvgjsText1277" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="0.925" transform="rotate(0)"><tspan id="SvgjsTspan1278" dy="16" x="50"><tspan id="SvgjsTspan1279" style="text-decoration:;">全局</tspan></tspan><tspan id="SvgjsTspan1280" dy="16" x="50"><tspan id="SvgjsTspan1281" style="text-decoration:;">执行上下文</tspan></tspan></text></g></g><g id="SvgjsG1282" transform="translate(246.71396140749152,138.25)"><path id="SvgjsPath1283" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1284"><text id="SvgjsText1285" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="0.925" transform="rotate(0)"><tspan id="SvgjsTspan1286" dy="16" x="50"><tspan id="SvgjsTspan1287" style="text-decoration:;">全局</tspan></tspan><tspan id="SvgjsTspan1288" dy="16" x="50"><tspan id="SvgjsTspan1289" style="text-decoration:;">执行上下文</tspan></tspan></text></g></g><g id="SvgjsG1290" transform="translate(357.1362088535755,138.25)"><path id="SvgjsPath1291" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1292"><text id="SvgjsText1293" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="0.925" transform="rotate(0)"><tspan id="SvgjsTspan1294" dy="16" x="50"><tspan id="SvgjsTspan1295" style="text-decoration:;">全局</tspan></tspan><tspan id="SvgjsTspan1296" dy="16" x="50"><tspan id="SvgjsTspan1297" style="text-decoration:;">执行上下文</tspan></tspan></text></g></g><g id="SvgjsG1298" transform="translate(468.427922814983,138.25)"><path id="SvgjsPath1299" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1300"><text id="SvgjsText1301" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="0.925" transform="rotate(0)"><tspan id="SvgjsTspan1302" dy="16" x="50"><tspan id="SvgjsTspan1303" style="text-decoration:;">全局</tspan></tspan><tspan id="SvgjsTspan1304" dy="16" x="50"><tspan id="SvgjsTspan1305" style="text-decoration:;">执行上下文</tspan></tspan></text></g></g><g id="SvgjsG1306" transform="translate(579.7196367763905,138.25)"><path id="SvgjsPath1307" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1308"><text id="SvgjsText1309" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="0.925" transform="rotate(0)"><tspan id="SvgjsTspan1310" dy="16" x="50"><tspan id="SvgjsTspan1311" style="text-decoration:;">全局</tspan></tspan><tspan id="SvgjsTspan1312" dy="16" x="50"><tspan id="SvgjsTspan1313" style="text-decoration:;">执行上下文</tspan></tspan></text></g></g><g id="SvgjsG1314" transform="translate(691.8808172531214,138.25)"><path id="SvgjsPath1315" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1316"><text id="SvgjsText1317" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="0.925" transform="rotate(0)"><tspan id="SvgjsTspan1318" dy="16" x="50"><tspan id="SvgjsTspan1319" style="text-decoration:;">全局</tspan></tspan><tspan id="SvgjsTspan1320" dy="16" x="50"><tspan id="SvgjsTspan1321" style="text-decoration:;">执行上下文</tspan></tspan></text></g></g><g id="SvgjsG1322" transform="translate(136.2917139614075,100.5)"><path id="SvgjsPath1323" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1324"><text id="SvgjsText1325" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="8.925" transform="rotate(0)"><tspan id="SvgjsTspan1326" dy="16" x="50"><tspan id="SvgjsTspan1327" style="text-decoration:;">foo(2)</tspan></tspan></text></g></g><g id="SvgjsG1328" transform="translate(246.71396140749152,100.5)"><path id="SvgjsPath1329" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1330"><text id="SvgjsText1331" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="8.925" transform="rotate(0)"><tspan id="SvgjsTspan1332" dy="16" x="50"><tspan id="SvgjsTspan1333" style="text-decoration:;">foo(2)</tspan></tspan></text></g></g><g id="SvgjsG1334" transform="translate(357.1362088535755,100.5)"><path id="SvgjsPath1335" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1336"><text id="SvgjsText1337" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="8.925" transform="rotate(0)"><tspan id="SvgjsTspan1338" dy="16" x="50"><tspan id="SvgjsTspan1339" style="text-decoration:;">foo(2)</tspan></tspan></text></g></g><g id="SvgjsG1340" transform="translate(468.427922814983,100.5)"><path id="SvgjsPath1341" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1342"><text id="SvgjsText1343" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="8.925" transform="rotate(0)"><tspan id="SvgjsTspan1344" dy="16" x="50"><tspan id="SvgjsTspan1345" style="text-decoration:;">foo(2)</tspan></tspan></text></g></g><g id="SvgjsG1346" transform="translate(579.7196367763905,100.5)"><path id="SvgjsPath1347" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1348"><text id="SvgjsText1349" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="8.925" transform="rotate(0)"><tspan id="SvgjsTspan1350" dy="16" x="50"><tspan id="SvgjsTspan1351" style="text-decoration:;">foo(2)</tspan></tspan></text></g></g><g id="SvgjsG1352" transform="translate(246.71396140749152,62.75)"><path id="SvgjsPath1353" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1354"><text id="SvgjsText1355" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="8.925" transform="rotate(0)"><tspan id="SvgjsTspan1356" dy="16" x="50"><tspan id="SvgjsTspan1357" style="text-decoration:;">foo(1)</tspan></tspan></text></g></g><g id="SvgjsG1358" transform="translate(357.1362088535755,62.75)"><path id="SvgjsPath1359" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1360"><text id="SvgjsText1361" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="8.925" transform="rotate(0)"><tspan id="SvgjsTspan1362" dy="16" x="50"><tspan id="SvgjsTspan1363" style="text-decoration:;">foo(1)</tspan></tspan></text></g></g><g id="SvgjsG1364" transform="translate(468.427922814983,62.75)"><path id="SvgjsPath1365" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1366"><text id="SvgjsText1367" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="8.925" transform="rotate(0)"><tspan id="SvgjsTspan1368" dy="16" x="50"><tspan id="SvgjsTspan1369" style="text-decoration:;">foo(1)</tspan></tspan></text></g></g><g id="SvgjsG1370" transform="translate(357.1362088535755,25)"><path id="SvgjsPath1371" d="M 0 0L 99.11918274687855 0L 99.11918274687855 37.75L 0 37.75Z" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1372"><text id="SvgjsText1373" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="80px" fill="#323232" font-weight="400" align="middle" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="8.925" transform="rotate(0)"><tspan id="SvgjsTspan1374" dy="16" x="50"><tspan id="SvgjsTspan1375" style="text-decoration:;">foo(0)</tspan></tspan></text></g></g><g id="SvgjsG1376"><path id="SvgjsPath1377" d="M74.55959137343928 138.25L74.55959137343928 119.375L136.2917139614075 119.375" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1378)"></path></g><g id="SvgjsG1380"><path id="SvgjsPath1381" d="M185.85130533484678 100.5L185.85130533484678 81.625L246.71396140749152 81.625" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1382)"></path></g><g id="SvgjsG1384"><path id="SvgjsPath1385" d="M296.27355278093086 62.75L296.27355278093086 43.875L357.1362088535755 43.875" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1386)"></path></g><g id="SvgjsG1388"><path id="SvgjsPath1389" d="M456.2553916004541 43.875L517.9875141884223 43.875L517.9875141884223 62.75" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1390)"></path></g><g id="SvgjsG1392"><path id="SvgjsPath1393" d="M567.5471055618616 81.625L629.2792281498299 81.625L629.2792281498299 100.5" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1394)"></path></g><g id="SvgjsG1396"><path id="SvgjsPath1397" d="M678.8388195232691 119.375L741.4404086265608 119.375L741.4404086265608 138.25" stroke="#323232" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1398)"></path></g></svg>
-  <p style="text-align: center; color: #888;">（JavaScript 执行栈）</p>
+  <p style="text-align: center; color: #888;">（JavaScript 调用栈运行过程）</p>
 </div>
 
 最后输出结果：
@@ -165,185 +218,179 @@ console.log(division(1,2));
 
 理解了栈溢出原因后，你就可以使用一些方法来避免或者解决栈溢出的问题，比如把递归调用的形式改造成其他形式，或者使用加入定时器的方法来把当前任务拆分为其他很多小任务。
 
-## VO/AO
+## 伪代码演示全过程
+
+以执行下面这段代码为例，用伪代码来模拟从编译到执行全过程中，全局执行上下文和函数执行上下文的结构变化：
+
+```javascript
+let a = 20;
+const b = 30;
+var c;
+
+function multiply(e, f) {
+ var g = 20;
+ return e * f * g;
+}
+
+c = multiply(20, 30);
+```
+
+首先，上述代码在执行之前需要被编译，编译完成之后的全局执行上下文看起来像这样：
+
+```javascript
+// 全局执行上下文
+GlobalExectionContext = {
+  // 词法环境
+  LexicalEnvironment: {
+    // 对象环境记录(注意 Type 属性)
+    EnvironmentRecord: {
+      Type: "Object",
+      // 在这里绑定标识符,
+      // 注意到 let 和 const 声明的变量此时并没有任何初始值
+      a: < uninitialized >,
+      b: < uninitialized >,
+      multiply: < func >
+    }
+    // 外部引用
+    outer: <null>,
+    // this 绑定
+    ThisBinding: <Global Object>
+  },
+  // 变量环境
+  VariableEnvironment: {
+    // 对象环境记录(注意 Type 属性)
+    EnvironmentRecord: {
+      Type: "Object",
+      // 在这里绑定标识符
+      // 注意到 var 声明的变量此时被设置了初始值 undefined
+      c: undefined,
+    }
+    // 外部引用
+    outer: <null>,
+    // this 绑定
+    ThisBinding: <Global Object>
+  }
+}
+```
+
+在执行阶段，完成变量赋值。因此，在执行阶段，全局执行上下文看起来像这样：
+
+```javascript
+GlobalExectionContext = {
+  LexicalEnvironment: {
+    EnvironmentRecord: {
+      Type: "Object",
+      // Identifier bindings go here
+      a: 20,
+      b: 30,
+      multiply: < func >
+    }
+    outer: <null>,
+    ThisBinding: <Global Object>
+  },
+  VariableEnvironment: {
+    EnvironmentRecord: {
+      Type: "Object",
+      // Identifier bindings go here
+      c: undefined,
+    }
+    outer: <null>,
+    ThisBinding: <Global Object>
+  }
+}
+```
+
+当函数 `multiply(20,30)` 被调用时，将创建一个新的函数执行上下文来执行函数代码。因此，在这个阶段函数执行上下文看起来像这样：
+
+```javascript
+// 函数执行上下文
+FunctionExectionContext = {
+  // 词法环境
+  LexicalEnvironment: {
+    // 声明式环境记录(注意 Type 属性)
+    EnvironmentRecord: {
+      Type: "Declarative",
+      // 在这里绑定标识符
+      Arguments: {0: 20, 1: 30, length: 2},
+    },
+    // 外部引用
+    outer: <GlobalLexicalEnvironment>,
+    // this 绑定
+    ThisBinding: <Global Object or undefined>,
+  },
+  // 变量环境
+  VariableEnvironment: {
+    // 声明式环境记录(注意 Type 属性)
+    EnvironmentRecord: {
+      Type: "Declarative",
+      // 在这里绑定标识符
+      g: undefined
+    },
+    // 外部引用
+    outer: <GlobalLexicalEnvironment>,
+    // this 绑定
+    ThisBinding: <Global Object or undefined>
+  }
+}
+```
+
+在此之后，执行上下文将经历执行阶段，这意味着完成对函数内变量的赋值。所以在执行阶段，函数执行上下文看起来像这样：
+
+```javascript
+FunctionExectionContext = {
+  LexicalEnvironment: {
+    EnvironmentRecord: {
+      Type: "Declarative",
+      // Identifier bindings go here
+      Arguments: {0: 20, 1: 30, length: 2},
+    },
+    outer: <GlobalLexicalEnvironment>,
+    ThisBinding: <Global Object or undefined>,
+  },
+  VariableEnvironment: {
+    EnvironmentRecord: {
+      Type: "Declarative",
+      // Identifier bindings go here
+      g: 20
+    },
+    outer: <GlobalLexicalEnvironment>,
+    ThisBinding: <Global Object or undefined>
+  }
+}
+```
+
+函数完成后，返回值存储在 `c` 中。因此，更新全局词法环境。之后，全局代码完成，程序结束。
+
+
+**注意**：
+
+* 只有在调用函数 `multiply` 时，函数执行上下文才会被创建。
+* 在代码编译后执行前，`let` 和 `const` 定义的变量并没有关联任何值，但 `var` 定义的变量被设成了 `undefined`。
+  * 这是因为在创建阶段时，JS 引擎检查代码找出变量和函数声明，虽然函数声明完全存储在环境中，但是变量最初设置为 `undefined`（`var` 情况下），或者未初始化（`let` 和 `const` 情况下）。
+  * 这就是为什么你可以在声明之前访问 `var` 定义的变量（虽然是 `undefined`），但是在声明之前访问 `let` 和 `const` 的变量会得到一个引用错误。
+  * 这就是我们说的**变量声明提升**和**暂时性死区**。
+
+## 曾经的 VO/AO
 
 VO（变量对象）和 AO（活动对象）的概念是 ES3 提出的老概念，从 ES5 开始就用词法环境和变量环境替代了。
 
 虽然是过时的知识点，但也需要整理一下，因为不仅仅是换了个名字，功能和执行过程也是不一样的。
 
+### VO 变量对象
 
+* 在 JS 代码执行前，全局执行上下文进入调用栈底，此时会生成一个全局对象（`window`），它就是一个 VO（全局变量对象）。
+  * 该对象所有的作用域（scope）都可以访问。
+  * 里面会包含 Date、Array、String、Number、setTimeout、setInterval 等等。
+  * 其中还有一个 `window` 属性指向自己。
+  * 全局定义的变量、函数等也在这个 VO 中，但是并不会赋值 —— 变量提升。
+* 在 JS 代码执行时，每一个函数执行上下文中都有一个自己的 VO（函数上下文中的变量对象）。
+  * VO 用于存放当前上下文中（即当前函数中）定义的参数列表、内部变量和内部函数。
 
+### AO 活动对象
 
-
-
-
-
-
-
-
-
-
-
-## 如何创建
-
-上面是**宏观**介绍了执行环境是什么时候产生的：每次调用函数时，JavaScript 引擎都会创建一个新的执行环境；
-
-接下来从**微观**角度简单描述下执行环境是如何创建的：答案是执行器会分为两个阶段来完成， 分别是创建阶段和激活(执行)阶段。而即使步骤相同但是由于规范的不同，每个阶段执行的过程有很大的不同。
-
-**ES3 规范**
-
-* 创建阶段：  
-  ① 创建作用域链。  
-  ② 创建变量对象 VO（即 variable object，包括参数，函数，变量）。  
-  ③ 确定 `this` 的值。
-* 激活/执行阶段：  
-  完成变量分配，执行代码。
-
-**ES5 规范**
-
-* 创建阶段：  
-  ① 确定 `this` 的值。  
-  ② 创建词法环境（Lexical Environment）。  
-  ③ 创建变量环境（Variable Environment）。
-* 激活/执行阶段：  
-  完成变量分配，执行代码。
-
-从规范上可以发现，ES3 和 ES5 在执行环境的创建阶段存在差异，当然他们都会在这个阶段确定 `this` 的值。
-
-但为了避免混淆，下面的内容将围绕 ES5 规范来讲解。
-
-## 执行上下文的组成
-
-ES5 标准规定，执行上下文包括：词法环境、变量环境、this 绑定。
-
-* 词法环境
-* 变量环境
-* this 绑定
-
-在《JavaScript高级程序设计（第3版）》（P73）中介绍执行环境及作用域时，多次提到了变量对象和活动对象，而较新的材料里用的都是词法环境、变量环境。我在阅读该书时对此产生了疑问，一番查阅得到的答案是：变量对象与活动对象的概念是 ES3 提出的老概念，从 ES5 开始就用词法环境和变量环境替代了。
-
-ES3 的变量对象、活动对象为什么可以被抛弃？个人认为有两个原因，第一个是在创建过程中所执行的创建作用域链和创建变量对象（VO）都可以在创建词法环境的过程中完成。第二个是针对 ES6 中存储函数声明和变量（`let` 和 `const`），以及存储变量（`var`）的绑定，可以通过两个不同的过程（词法环境，变量环境）区分开来。
-
-### 词法环境（Lexical Environment）
-
-词法环境由两个部分组成：
-
-* 环境记录（enviroment record），存储变量和函数声明。
-* 对外部环境的引用（outer），可以通过它访问外部词法环境（作用域链）。
-
-环境记录分两部分：
-
-* 声明性环境记录（declarative environment records）：存储变量、函数和参数，但是主要用于函数 、`catch` 词法环境。  
-  注意：函数环境下会存储 arguments 的值。
-* 对象环境记录（object environment records），主要用于 `with` 和全局的词法环境。
-
-伪代码如下：
-
-```javascript
-// 全局环境
-GlobalExectionContext = {  
-// 词法环境
-  LexicalEnvironment: {  
-    EnvironmentRecord: {
-        ···
-    }
-    outer: <null>  
-  }  
-}
-
-// 函数环境
-FunctionExectionContext = {  
-// 词法环境
-  LexicalEnvironment: {  
-    EnvironmentRecord: {  
-        ···
-        // 包含argument
-    }
-    outer: <Global or outer function environment reference>  
-  }  
-}
-```
-
-### 变量环境（Variable Environment）
-
-变量环境也是个词法环境，主要的区别在于：  
-词法环境（Lexical Environment）用于存储函数声明和变量（通过 `let` 和 `const` 声明的变量）；  
-变量环境（Variable Environment）仅用于存储变量（通过 `var` 声明的变量）。
-
-### this 绑定
-
-每个执行环境中都有一个 `this`，前面提到过执行环境主要分为三种：全局执行环境、函数执行环境和 Eval执行环境，所以对应的 `this` 也只有这三种：  
-全局执行环境中的 `this`、函数中的 `this` 和 `eval` 中的 `this`。
-
-由于 `eval` 使用的不多，对此就不做介绍了。关于 `this` 后面会单独出一个章节。
-
-### 伪代码展示
-
-输入代码：
-
-```javascript
-let a = 20;  
-const b = 30;  
-var c;
-
-function d(e, f) {  
- var g = 20;  
- return e * f * g;  
-}
-
-c = d(20, 30);
-```
-
-整个创建过程的执行上下文：
-
-```javascript
-// 全局环境
-GlobalExectionContext = {
-
-  this: <Global Object>,
-  // 词法环境
-  LexicalEnvironment: {  
-    EnvironmentRecord: {  
-      Type: "Object",  // 环境记录分类：对象环境记录
-      a: < uninitialized >,  // 未初始化
-      b: < uninitialized >,  
-      d: < func >  
-    }  
-    outer: <null>  
-  },
-
-  // 变量环境
-  VariableEnvironment: {  
-    EnvironmentRecord: {  
-      Type: "Object",  // 环境记录分类：对象环境记录
-      c: undefined,  // undefined
-    }  
-    outer: <null>  
-  }  
-}
-
-// 函数环境
-FunctionExectionContext = {  
-   
-  this: <Global Object>,
-
-  LexicalEnvironment: {  
-    EnvironmentRecord: {  
-      Type: "Declarative",  // 环境记录分类： 声明环境记录
-      Arguments: {0: 20, 1: 30, length: 2},  // 函数环境下，环境记录比全局环境下的环境记录多了 argument 对象
-    },  
-    outer: <GlobalLexicalEnvironment>  
-  },
-
-  VariableEnvironment: {  
-    EnvironmentRecord: {  
-      Type: "Declarative",  // 环境记录分类： 声明环境记录
-      g: undefined  
-    },  
-    outer: <GlobalLexicalEnvironment>  
-  }  
-}
-```
+* 未进入执行阶段前，VO 中的属性不能直接访问。进入执行阶段后，AO 被创建并扮演 VO 的角色。
+  * 函数上下文中，活动对象 AO 作为变量对象 VO 使用。
+  * AO 中包含 VO、函数的形参、arguments
 
 ## 备注
 
