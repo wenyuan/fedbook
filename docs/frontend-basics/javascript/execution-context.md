@@ -76,30 +76,6 @@ ExecutionContext = {
   * 用户在函数内部定义的变量储存在环境记录中。
   * 对外部环境的引用可以是全局环境，也可以是任何包含此内部函数的外部函数。
 
-词法环境的伪代码可以这么表示：
-
-```javascript
-GlobalExectionContent = {
-  LexicalEnvironment: {
-    EnvironmentRecord: {
-      Type: "Object",
-      // 剩余标识符
-    },
-    Outer: null,
-  }
-}
-
-FunctionExectionContent = {
-  LexicalEnvironment: {
-    EnvironmentRecord: {
-      Type: "Declarative",
-      // 剩余标识符
-    },
-    Outer: [Global or outer function environment reference],
-  }
-}
-```
-
 #### 4）特点
 
 通过 `let` 和 `const` 声明的变量，在编译阶段会被存放到词法环境中。
@@ -280,7 +256,7 @@ GlobalExectionContext = {
   LexicalEnvironment: {
     EnvironmentRecord: {
       Type: "Object",
-      // Identifier bindings go here
+      // 此时 let 和 const 声明的变量可以被访问了
       a: 20,
       b: 30,
       multiply: < func >
@@ -291,7 +267,6 @@ GlobalExectionContext = {
   VariableEnvironment: {
     EnvironmentRecord: {
       Type: "Object",
-      // Identifier bindings go here
       c: undefined,
     }
     outer: <null>,
@@ -311,6 +286,7 @@ FunctionExectionContext = {
     EnvironmentRecord: {
       Type: "Declarative",
       // 在这里绑定标识符
+      // 函数的词法环境中必然会存在一个 arguments 对象
       Arguments: {0: 20, 1: 30, length: 2},
     },
     // 外部引用
@@ -324,6 +300,7 @@ FunctionExectionContext = {
     EnvironmentRecord: {
       Type: "Declarative",
       // 在这里绑定标识符
+      // 注意到 var 声明的变量此时被设置了初始值 undefined
       g: undefined
     },
     // 外部引用
@@ -341,7 +318,6 @@ FunctionExectionContext = {
   LexicalEnvironment: {
     EnvironmentRecord: {
       Type: "Declarative",
-      // Identifier bindings go here
       Arguments: {0: 20, 1: 30, length: 2},
     },
     outer: <GlobalLexicalEnvironment>,
@@ -350,7 +326,7 @@ FunctionExectionContext = {
   VariableEnvironment: {
     EnvironmentRecord: {
       Type: "Declarative",
-      // Identifier bindings go here
+      // 注意到 var 声明的变量此时被赋值了
       g: 20
     },
     outer: <GlobalLexicalEnvironment>,
