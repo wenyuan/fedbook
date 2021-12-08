@@ -61,9 +61,11 @@
   * [JavaScript 规范](https://fedbook.cn/style-guide/program/javascript-spec/)
   * [Vue 项目规范](https://fedbook.cn/style-guide/program/vuejs-spec/)
 * [接口设计](https://fedbook.cn/style-guide/apis/)
-* [版本控制](https://fedbook.cn/style-guide/version-control/git-commit-message/)
+* [版本控制](https://fedbook.cn/style-guide/version-control/)
   * [Git 提交信息规范](https://fedbook.cn/style-guide/version-control/git-commit-message/)
   * [Git 工作流 — 分支策略](https://fedbook.cn/style-guide/version-control/git-workflow/)
+* [文案指南](https://fedbook.cn/style-guide/product/)
+  * [B 端产品文案指南](https://fedbook.cn/style-guide/version-control/tob/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
