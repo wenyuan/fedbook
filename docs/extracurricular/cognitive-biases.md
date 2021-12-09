@@ -11,7 +11,7 @@
 > 这些偏差多半会影响信念的形成、商业与经济决策、以及其他一般的人类行为它们是可复制与再现的，面临特定情境时，一般可预期人们会有相应的偏差倾向。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/a.png" alt="决策、信念与行为偏差">
+  <img src="./assets/cognitive-biases/a.png" alt="决策、信念与行为偏差">
   <p style="text-align: center; color: #888">（决策、信念与行为偏差）</p>
 </div>
 
@@ -24,7 +24,7 @@
 CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联系或订阅等）应在其旁边包含信息性标签，以清除不确定性。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/1.png" alt="不明确性效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/1.png" alt="不明确性效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（不明确性效应）</p>
 </div>
 
@@ -37,7 +37,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 通常被利用在消费场景中的认知偏差，通过前后对比来放大优惠感知，进而促进用户做出有利于我们的决策。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/2.png" alt="锚定效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/2.png" alt="锚定效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（锚定效应）</p>
 </div>
 
@@ -50,7 +50,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 你是否发布过一项你认为会造成意外后果的功能，然后你就只盯着这个后果？
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/3.png" alt="注意力偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/3.png" alt="注意力偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（注意力偏差）</p>
 </div>
 
@@ -63,7 +63,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 通过创建一些与众不同的东西（在不影响一致性和熟悉度的情况下）让你的设计被记住。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/4.png" alt="获得性启发" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/4.png" alt="获得性启发" style="zoom:50%;">
   <p style="text-align: center; color: #888">（获得性启发）</p>
 </div>
 
@@ -92,7 +92,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 我们在设计中可以营造出一种群体选择的效果来吸引更多的用户，通过展示购买人数和滚动播放购买信息来体现出该商品的热门，让正在犹豫的用户「随大流」下单购买。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/7.png" alt="从众效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/7.png" alt="从众效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（从众效应）</p>
 </div>
 
@@ -113,7 +113,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 在用户做出购买决定并成功达成交易之后，是用户分享产品（或添加评论）的绝佳时机；显示肯定的信息，并祝贺他们达成了这一步骤以激励用户。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/9.png" alt="选择支持偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/9.png" alt="选择支持偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（选择支持偏差）</p>
 </div>
 
@@ -126,7 +126,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 在用户研究中，当你的预设想法是用户对 A 设计的满意度比 B 设计更高时，在研究中你可能会更关注用户提到的 A 设计的优点、收集更多用户对于 A 设计的正面评价。当用户表示对 A 设计满意时，会觉得「果然是这样」。这种偏误会让你遗漏许多其它信息。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/10.png" alt="确认偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/10.png" alt="确认偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（确认偏差）</p>
 </div>
 
@@ -139,7 +139,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 考虑一下大多数用户，他们的技术水平可能不如你想象的那样，并且对你熟悉的事物也不太熟悉。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/11.png" alt="知识的诅咒" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/11.png" alt="知识的诅咒" style="zoom:50%;">
   <p style="text-align: center; color: #888">（知识的诅咒）</p>
 </div>
 
@@ -158,7 +158,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 在这个情景，（2）是「诱饵」，用来引导顾客选择「目标选项」（3）。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/12.png" alt="诱饵效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/12.png" alt="诱饵效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（诱饵效应）</p>
 </div>
 
@@ -179,7 +179,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 禀赋效应是损失规避（loss aversion）的一种表现形式，免费试用是禀赋效应的最常见用法。 一旦用户开始使用某种产品并投入了一段时间，那么在试用期结束时，他们很难放手而停止使用。当用户准备离开时，他们会觉得自己即将失去很多美好的事物。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/14.png" alt="禀赋效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/14.png" alt="禀赋效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（禀赋效应）</p>
 </div>
 
@@ -208,7 +208,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 在大多数情况下，正向表达（例如玻璃杯已满一半）的转换率会更高。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/17.png" alt="框架效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/17.png" alt="框架效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（框架效应）</p>
 </div>
 
@@ -229,7 +229,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 后视偏见会给人带来快感，但也会在工作中影响决策的正确性和公平性，从而带来潜在风险。纠正后视偏见的方法就是在知道事情结果之前，记录下自己的想法，事后做验证并统计相关数据。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/19.png" alt="后见之明偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/19.png" alt="后见之明偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（后见之明偏差）</p>
 </div>
 
@@ -242,7 +242,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 为用户的立即购买提供小折扣（或免费送货），而非承诺他们在将来购买时提供更大的折扣。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/20.png" alt="当下偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/20.png" alt="当下偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（当下偏差）</p>
 </div>
 
@@ -255,7 +255,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 在讲产品故事时，请使用个体案例，而非一般性陈述。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/21.png" alt="可辨识受害者效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/21.png" alt="可辨识受害者效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（可辨识受害者效应）</p>
 </div>
 
@@ -268,7 +268,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 利用宜家效应提高用户粘性的核心是创造低投入、高回报、高贡献价值的任务，保证用户能够完成任务的基础上贡献自己的价值。在学习场景中我们可以利用宜家效应提高用户粘性，将用户留下来坚持学习。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/22.png" alt="宜家效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/22.png" alt="宜家效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（宜家效应）</p>
 </div>
 
@@ -305,7 +305,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 限制特价交易的时间以产生紧迫感：“此优惠在x小时内结束”。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/26.png" alt="损失趋避" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/26.png" alt="损失趋避" style="zoom:50%;">
   <p style="text-align: center; color: #888">（损失趋避）</p>
 </div>
 
@@ -318,7 +318,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 坚持使用用户熟悉的 UI 概念、行为、术语、符号和图标。在营销材料、网站和产品上保持一致来优化漏斗，用词保持和行业术语一致，确保你的用户感到舒适。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/27.png" alt="单纯接触效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/27.png" alt="单纯接触效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（单纯接触效应）</p>
 </div>
 
@@ -331,7 +331,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 通过解决负面体验来说明你的产品价值，如果希望自己的故事能够产生更大的影响,就要尝试多展现情感上负面的内容。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/28.png" alt="负面偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/28.png" alt="负面偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（负面偏差）</p>
 </div>
 
@@ -344,7 +344,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 在转换漏斗中，最小的不确定性可能导致用户对产品的不信任并停止使用。 需要确保所有细节均清晰明了并预先显示，尤其是涉及金钱的事物，例如总成本，折扣（如果存在），附加成本等。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/29.png" alt="忽略可能性" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/29.png" alt="忽略可能性" style="zoom:50%;">
   <p style="text-align: center; color: #888">（忽略可能性）</p>
 </div>
 
@@ -389,7 +389,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 我们都认为“标题党”属于旁门左道，但我们还是陷入其中，不是吗？
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/34.png" alt="自制偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/34.png" alt="自制偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（自制偏差）</p>
 </div>
 
@@ -438,7 +438,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 提供退款保证和无风险试用，以降低风险水平，使你的用户感到安全。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/39.png" alt="零风险偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/39.png" alt="零风险偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（零风险偏差）</p>
 </div>
 
@@ -451,7 +451,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 设计对于产品的成功比你想象的更为重要，多余的空间，错误的边框颜色和未对齐的文字，都会影响转化率，确保 UI 设计的优先程度。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/40.png" alt="感知价值偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/40.png" alt="感知价值偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（感知价值偏差）</p>
 </div>
 
@@ -464,7 +464,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 选择太多 = 转换率低
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/41.png" alt="分析瘫痪" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/41.png" alt="分析瘫痪" style="zoom:50%;">
   <p style="text-align: center; color: #888">（分析瘫痪）</p>
 </div>
 
@@ -479,7 +479,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 使用「限时优惠」，「有限数量」等修辞来形容你的产品或服务。给人的印象是许多人正观看此项目，并随时可以抢走最后的几件物品。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/42.png" alt="稀缺效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/42.png" alt="稀缺效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（稀缺效应）</p>
 </div>
 
@@ -500,7 +500,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 * 添加功能强大的跨产品搜索，以简化特定主题的查找
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/43.png" alt="流畅性启发" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/43.png" alt="流畅性启发" style="zoom:50%;">
   <p style="text-align: center; color: #888">（流畅性启发）</p>
 </div>
 
@@ -511,7 +511,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 > 这些偏差大多是由归因偏差导致。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/b.png" alt="社会偏差">
+  <img src="./assets/cognitive-biases/b.png" alt="社会偏差">
   <p style="text-align: center; color: #888">（社会偏差）</p>
 </div>
 
@@ -538,7 +538,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 * 如果能力差的人能够经过恰当训练大幅度提高能力水平，他们最终会认知到且能承认他们之前的无能程度。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/45.png" alt="达克效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/45.png" alt="达克效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（达克效应）</p>
 </div>
 
@@ -575,7 +575,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 比如 Booking 在查看评论的区域加入了筛选评论语言这一按钮，虽然设计的本意可能是为了方便用户更好地理解评论内容，但是在真实的使用过程中可以发现，用户更加信任自己所选标签内的评论内容，因为同语言往往意味着来自相同的国家或者相近的文化背景，用户通过这种方式找到一个小群体，然后被影响进而做出与群体内人们更为相似的决策。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/49.png" alt="群内偏差" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/49.png" alt="群内偏差" style="zoom:50%;">
   <p style="text-align: center; color: #888">（群内偏差）</p>
 </div>
 
@@ -596,7 +596,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 * 在产品展示和陈述中使用权威人物（例如医生、教授等）
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/50.png" alt="权威偏见" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/50.png" alt="权威偏见" style="zoom:50%;">
   <p style="text-align: center; color: #888">（权威偏见）</p>
 </div>
 
@@ -613,7 +613,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 * 把大块的内容分解成小块或容易解决的内容，让用户保持开心和参与度。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/51.png" alt="得寸进尺法" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/51.png" alt="得寸进尺法" style="zoom:50%;">
   <p style="text-align: center; color: #888">（得寸进尺法）</p>
 </div>
 
@@ -624,7 +624,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 > 在心理学和认知科学中，记忆偏差是一种认知偏差，导致记忆的强化、弱化（包括能否想起的机会、想起所需的时间，或两者皆有），或者记忆内容的改变。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/c.png" alt="记忆错误与偏差">
+  <img src="./assets/cognitive-biases/c.png" alt="记忆错误与偏差">
   <p style="text-align: center; color: #888">（记忆错误与偏差）</p>
 </div>
 
@@ -637,7 +637,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 你还记得你最好的朋友或孩子的电话号码吗？
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/52.png" alt="谷歌效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/52.png" alt="谷歌效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（谷歌效应）</p>
 </div>
 
@@ -666,7 +666,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 通过使产品的最佳功能变得更好，保持产品的竞争优势并提高产品高峰。另外也不要忽视产品的“购买后”体验，确保以精湛的品味结束体验。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/55.png" alt="峰终法则" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/55.png" alt="峰终法则" style="zoom:50%;">
   <p style="text-align: center; color: #888">（峰终法则）</p>
 </div>
 
@@ -687,7 +687,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 如果你打算展示一长串信息，请确保第一个是最重要的内容。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/57.png" alt="首因效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/57.png" alt="首因效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（首因效应）</p>
 </div>
 
@@ -700,7 +700,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 确保CTA按钮以不同的样式，大小，颜色和位置显示出来，以达到不同的目的。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/58.png" alt="雷斯多夫效应" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/58.png" alt="雷斯多夫效应" style="zoom:50%;">
   <p style="text-align: center; color: #888">（雷斯多夫效应）</p>
 </div>
 
@@ -719,7 +719,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 > 几率性推论是指根据有关几率的资讯推论事情的可能性，而几率的估算通常来自统计资料，因此两者密不可分。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/d.png" alt="统计与几率偏差">
+  <img src="./assets/cognitive-biases/d.png" alt="统计与几率偏差">
   <p style="text-align: center; color: #888">（统计与几率偏差）</p>
 </div>
 
@@ -740,7 +740,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 坚持事实，少依靠直觉，更多的依靠数据。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/61.png" alt="赌徒谬误" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/61.png" alt="赌徒谬误" style="zoom:50%;">
   <p style="text-align: center; color: #888">（赌徒谬误）</p>
 </div>
 
@@ -753,7 +753,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 通过强调一系列成功案例来建立自己的强大品牌。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/62.png" alt="热手谬误" style="zoom:50%;">
+  <img src="./assets/cognitive-biases/62.png" alt="热手谬误" style="zoom:50%;">
   <p style="text-align: center; color: #888">（热手谬误）</p>
 </div>
 
@@ -772,7 +772,7 @@ CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联�
 > 这是一些科学实验或统计研究容易发生的偏差。
 
 <div style="text-align: center;">
-  <img src="./cognitive-biases/e.png" alt="实验与研究偏差">
+  <img src="./assets/cognitive-biases/e.png" alt="实验与研究偏差">
   <p style="text-align: center; color: #888">（实验与研究偏差）</p>
 </div>
 
