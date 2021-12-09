@@ -55,16 +55,19 @@ header、body、footer 之间都要空一行，header 是必填项，scope 是�
 
 type 用于说明 commit 的类别，必须为以下类型的一种：
 
-type 用于说明 commit 的类别，只允许使用下面 7 个标识：
+type 用于说明 commit 的类别，一般常用的有下面几种标识：
 
 * `feat`：新功能（feature）
 * `fix`：修复 bug
 * `docs`：只是文档的更改（documentation）
-* `style`：不影响代码含义的更改（例如空格、格式化、少了分号）
-* `refactor`：即不是新增功能，也不是修改 bug 的代码变动（重构）
+* `style`：不影响程序逻辑的代码修改（例如格式化、修改空白字符，补全缺失的分号等）
+* `refactor`：即不是新增功能，也不是修改 bug 的代码变动（一般指重构代码）
 * `perf`：提高性能的代码更改
-* `test`：添加或修正测试
-* `chore`：对构建或者辅助工具的更改，例如生成文档
+* `test`：新增测试用例或是更新现有测试
+* `revert`：回滚某个更早之前的提交
+* `build`：主要目的是修改项目构建系统（例如 glup，webpack，rollup 的配置等）的提交
+* `ci`：主要目的是修改项目继续集成流程（例如 Travis，Jenkins，GitLab CI，Circle 等）的提交
+* `chore`：不属于以上类型的其他类型（日常事务，例如对构建或者辅助工具的更改、生成文档等）
 
 如果 type 为 feat 和 fix，则该 commit 将肯定出现在 Change log 之中。其他情况由你决定要不要放入 Change log，建议是不要。
 
