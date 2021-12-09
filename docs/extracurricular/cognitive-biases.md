@@ -21,7 +21,7 @@
 
 **🔺 示例** 
 
-CTA 按钮（引导人们做出某些特定行为的按钮，例如购买，联系或订阅等）应在其旁边包含信息性标签，以清除不确定性。
+CTA 按钮（Call to Action，引导人们做出某些特定行为的按钮，例如购买，联系或订阅等）应在其旁边包含信息性标签，以清除不确定性。
 
 <div style="text-align: center;">
   <img src="./assets/cognitive-biases/1.png" alt="不明确性效应" style="zoom:50%;">
