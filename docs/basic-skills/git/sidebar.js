@@ -12,6 +12,11 @@ module.exports = [
         title: '配置密钥实现免密操作',
         path: '/basic-skills/git/add-ssh-key',
         collapsable: true
+      },
+      {
+        title: 'git rebase 的两种用法',
+        path: '/basic-skills/git/git-rebase',
+        collapsable: true
       }
     ]
   },

@@ -163,8 +163,9 @@
 * [Git](https://fedbook.cn/basic-skills/git/)
   * Git 知识整理
   * [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
-  * Git 常见问题
+  * [git rebase 的两种用法](https://fedbook.cn/basic-skills/git/git-rebase/)
   * [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
+  * Git 常见问题
   * [clone 速度过慢影响效率](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
   * [commit 信息写错想要修改](https://fedbook.cn/basic-skills/git/solution-to-commit-info-mistake/)
   * [刚刚提交的代码，发现写错了](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
