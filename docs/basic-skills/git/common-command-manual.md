@@ -142,8 +142,11 @@ git branch --set-upstream [branch] [remote-branch]
 # 合并指定分支到当前分支
 git merge [branch]
 
-# 选择一个 commit, 合并进当前分支
-git cherry-pick [commit]
+# 从其它分支上挑选一个指定 commit, 合并进当前分支
+git cherry-pick [commit-id]
+
+# 保留原有作者信息进行合并
+git cherry-pick -x [commit-id]
 
 # 删除分支
 git branch -d [branch-name]
