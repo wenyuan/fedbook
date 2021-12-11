@@ -122,13 +122,13 @@ git branch -a
 git branch [branch-name]
 
 # 新建一个分支, 并切换到该分支
-git checkout -b [branch]
+git checkout -b [branch-name]
 
 # 新建一个分支, 指向指定 commit
-git branch [branch] [commit]
+git branch [branch-name] [commit-id]
 
 # 新建一个分支, 与指定的远程分支建立追踪关系
-git branch --track [branch] [remote-branch]
+git branch --track [branch-name] [remote-branch-name]
 
 # 切换到指定分支, 并更新工作区
 git checkout [branch-name]
@@ -137,10 +137,10 @@ git checkout [branch-name]
 git checkout -
 
 # 建立追踪关系, 在现有分支与指定的远程分支之间
-git branch --set-upstream [branch] [remote-branch]
+git branch --set-upstream [branch-name] [remote-branch-name]
 
 # 合并指定分支到当前分支
-git merge [branch]
+git merge [branch-name]
 
 # 从其它分支上挑选一个指定 commit, 合并进当前分支
 git cherry-pick [commit-id]
@@ -163,28 +163,28 @@ git branch -dr [remote/branch]
 git tag
 
 # 新建一个 tag 在当前 commit
-git tag [tag]
+git tag [tag-name]
 
 # 新建一个 tag 在指定 commit
-git tag [tag] [commit]
+git tag [tag-name] [commit-id]
 
 # 删除本地 tag
-git tag -d [tag]
+git tag -d [tag-name]
 
 # 删除远程 tag
-git push origin :refs/tags/[tagName]
+git push origin :refs/tags/[tag-name]
 
 # 查看 tag 信息
-git show [tag]
+git show [tag-name]
 
 # 提交指定 tag
-git push [remote] [tag]
+git push [remote-repo-name, 默认是 origin] [tag-name]
 
 # 提交所有 tag
-git push [remote] --tags
+git push [remote-repo-name, 默认是 origin] --tags
 
 # 新建一个分支, 指向某个 tag
-git checkout -b [branch] [tag]
+git checkout -b [branch-name] [tag-name]
 ```
 
 ## 查看信息
