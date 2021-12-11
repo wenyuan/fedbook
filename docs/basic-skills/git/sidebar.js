@@ -35,17 +35,17 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '刚刚提交的代码，发现写错了',
+        title: '刚刚 commit 的代码，发现写错了',
         path: '/basic-skills/git/solution-to-last-commit-code-mistake',
         collapsable: true
       },
       {
-        title: '刚刚提交完，发现漏提交了文件',
+        title: '刚刚 commit，发现漏提交了文件',
         path: '/basic-skills/git/solution-to-missed-file-in-last-commit',
         collapsable: true
       },
       {
-        title: '刚刚提交错了，想要撤回并重新提交',
+        title: '刚刚的 commit 有误，想要撤回',
         path: '/basic-skills/git/solution-to-withdraw-last-commit',
         collapsable: true
       },

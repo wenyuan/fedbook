@@ -168,9 +168,9 @@
   * Git 常见问题
   * [clone 速度过慢影响效率](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
   * [commit 信息写错想要修改](https://fedbook.cn/basic-skills/git/solution-to-commit-info-mistake/)
-  * [刚刚提交的代码，发现写错了](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
-  * [刚刚提交完，发现漏提交了文件](https://fedbook.cn/basic-skills/git/solution-to-missed-file-in-last-commit/)
-  * [刚刚提交错了，想要撤回并重新提交](https://fedbook.cn/basic-skills/git/solution-to-withdraw-last-commit/)
+  * [刚刚 commit 的代码，发现写错了](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
+  * [刚刚 commit，发现漏提交了文件](https://fedbook.cn/basic-skills/git/solution-to-missed-file-in-last-commit/)
+  * [刚刚的 commit 有误，想要撤回](https://fedbook.cn/basic-skills/git/solution-to-withdraw-last-commit/)
   * [pull 时发现代码冲突，如何妥善解决](https://fedbook.cn/basic-skills/git/solution-to-code-conflict/)
   * [如何修改历史 commits 中的用户名和邮箱](https://fedbook.cn/basic-skills/git/solution-to-change-name-and-email-in-history-commits/)
   * [如何迁移仓库并保留 commits 记录](https://fedbook.cn/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits/)
