@@ -50,6 +50,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '刚刚的 push 有误，想要撤回',
+        path: '/basic-skills/git/solution-to-withdraw-last-push',
+        collapsable: true
+      },
+      {
         title: 'pull 时发现代码冲突，如何妥善解决',
         path: '/basic-skills/git/solution-to-code-conflict',
         collapsable: true
