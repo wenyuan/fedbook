@@ -2,11 +2,9 @@
 
 ## this 的定义
 
-> 红宝书（第3版）：this 对象是在运行时基于函数的执行环境绑定的：在全局函数中，this 等于 window，而当函数被作为某个对象的方法调用时，this 等于那个对象。（P182）
-
-> 小黄书（上）：this 是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 既不指向函数自身也不指向函数的词法作用域（P80）
-
-> MDN：在绝大多数情况下，函数的调用方式决定了 this 的值。（[原链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this "this- JavaScript | MDN")）
+> * 红宝书（第3版）：this 对象是在运行时基于函数的执行环境绑定的：在全局函数中，this 等于 window，而当函数被作为某个对象的方法调用时，this 等于那个对象。（P182）
+> * 小黄书（上）：this 是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。this 既不指向函数自身也不指向函数的词法作用域（P80）
+> * MDN：在绝大多数情况下，函数的调用方式决定了 this 的值。（[原链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this "this- JavaScript | MDN")）
 
 概括一下：
 
@@ -68,9 +66,9 @@ mySite.printName();
 
 接下来进一步学习 `this`，不过在这之前需要强调一句，作用域链和 `this` 是两套不同的系统，它们之间基本没太多联系。明确了这点，可以避免你在学习 `this` 的过程中，和作用域产生一些不必要的关联。
 
-## 如何寻找函数的调用位置
+## 寻找函数的调用位置
 
-既然 `this` 的指向完全取决于函数在哪里被调用，我们就要学会寻找函数的调用位置，从而判断函数在执行过程中会如何绑定 `this`。
+既然 `this` 的指向完全取决于函数在哪里被调用，就要先寻找函数的调用位置，再去判断函数在执行过程中会如何绑定 `this`。
 
 ### 通过浏览器调试工具查找
 
@@ -137,11 +135,15 @@ baz(); // <-- baz 的调用位置
 
 找到函数的调用位置后，按照下面的步骤，就可以判断出 `this` 的绑定对象。
 
+### new 绑定
+
 * Step1 函数是否在 `new` 中调用（`new` 绑定）？如果是的话 `this` 绑定的是新创建的对象。
 
 ```javascript
 var bar = new foo();
 ```
+
+### 显式绑定
 
 * Step2 函数是否通过 `call`、`apply`、`bind`（显式绑定）调用？如果是的话 `this` 绑定的是指定的对象。
 
@@ -149,17 +151,23 @@ var bar = new foo();
 var bar = foo.call(obj);
 ```
 
+### 隐式绑定
+
 * Step3 函数是否在某个上下文对象中调用（隐式绑定）？如果是的话 `this` 绑定的是那个上下文对象。
 
 ```javascript
 var bar = obj.foo();
 ```
 
+### 默认绑定
+
 * Step4 如果都不是的话，使用默认绑定。如果在严格模式下，就绑定到 `undefined`，否则绑定到全局对象。
 
 ```javascript
 var bar = foo();
 ```
+
+### 例外情况
 
 还有两种例外情况：
 
