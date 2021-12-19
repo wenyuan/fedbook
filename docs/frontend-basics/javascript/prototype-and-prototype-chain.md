@@ -76,10 +76,10 @@ ECMAScript 规范约定了访问和操作 `prototype` 属性的 API：
 
 ```javascript
 // 实例对象的 __proto__  = 实例对象的构造函数的 prototype
-foo.__proto__ === Foo.prototype // true
+foo.__proto__ === Foo.prototype;      // true
 
 // 构造函数(也是个对象)的 __proto__ = Function 的 prototype
-Foo.__proto__ === Function.prototype // true
+Foo.__proto__ === Function.prototype; // true
 ```
 
 为什么叫隐式原型呢？因为这个 `__proto__` 是一个隐藏的属性，它只是开发者工具方便开发者查看原型而故意渲染出来的一个虚拟节点，实则并不存在于该对象上。这其实是一个历史问题，当时一些浏览器私自实现了` __proto__` 这个属性（后被 ES5 纳入规范），使得可以通过 `obj.__proto__` 来访问对象的原型。
@@ -117,16 +117,16 @@ console.log((new Object()).__proto__);
 
 ```javascript
 // 原型对象的 constructor 指向关联的构造函数
-Foo.prototype.constructor === Foo // true
+Foo.prototype.constructor === Foo;                // true
 // ES5 提供的 API
-Object.getPrototypeOf(foo) === Foo.prototype
+Object.getPrototypeOf(foo) === Foo.prototype;     // true
 ```
 
 换言之：只有原型对象（prototype 对象）才有这个属性。但对于通过函数创建的实例对象，虽然没有这个属性，也能通过 `__proto__` 获取原型对象然后间接找到这个属性。
 
 ```javascript
 // 通过 __proto__ 获取原型对象, 然后间接找到它的构造函数
-foo.__proto__.constructor === Foo.prototype.constructor // true
+foo.__proto__.constructor === Foo.prototype.constructor; // true
 ```
 
 所以任何对象最终都可以找到其对应的构造函数。
@@ -142,43 +142,50 @@ foo.__proto__.constructor === Foo.prototype.constructor // true
 **实例的 `__proto__` = 它的构造函数的 `prototype`**。
 :::
 
-基于这个结论，可以推到出几个公式：
+基于这个结论，可以推导出几个公式：
 
-* 如果前者作用在实例对象上，后者作用在该实例对象的构造函数上，那么它们是一个东西：
+* 如果 `__proto__` 作用在实例对象上，`prototype` 作用在该实例对象的构造函数上，那么得到的结果是一个东西：
 
 ```javascript
-foo.__proto__ === Foo.prototype // true
+foo.__proto__ === Foo.prototype;            // true
 ```
 
-* 如果前者作用在构造函数上，那么：
+* 如果 `__proto__` 作用在构造函数上，那么：
 
 ```javascript
-// JS 中所有函数都是 Function 的实例(因为函数也是对象), 此时又回归了上一条公式
-Foo.__proto__ === Function.prototype // true
+// JS 中所有函数都是 Function 的实例(函数也是对象 => 可以看成实例对象), 此时又回归了上一条公式
+Foo.__proto__ === Function.prototype;       // true
 
 // 由此可以类推内置函数, 因为它们也是由 Function 构造出来的
-Number.__proto__ === Function.prototype // true
-Object.__proto__ === Function.prototype // true
+Object.__proto__ === Function.prototype;    // true
+Number.__proto__ === Function.prototype;    // true
+Boolean.__proto__ === Function.prototype;   // true
+String.__proto__ === Function.prototype;    // true
+Array.__proto__ === Function.prototype;     // true
+RegExp.__proto__ === Function.prototype;    // true
+Error.__proto__ === Function.prototype;     // true
+Date.__proto__ === Function.prototype;      // true
 ```
 
 * `Function` 是老祖宗，它是它自己的构造函数：
 
 ```javascript
-Function.__proto__ === Function.prototype
+Function.__proto__ === Function.prototype;  // true
 ```
 
 ### 区分：Object 和 Function
 
 `Function` 和 `Object` 都是构造函数，构造函数都有 `prototype`。
 
-它们的关系比较绕，但是只要记住几个最根本的结论，一切就清楚了：
+所以它们的关系就比较绕了，但是只要记住几个最根本的结论，一切就可以慢慢推导了：
 
 * JS 中所有函数都是 `Function` 的实例，所以：
 
 ```javascript
+// JS 中所有函数都是 Function 的实例 (重要的结论 again)
 // 实例的 __proto__ = 它的构造函数的 prototype (重要的结论 again)
-Object.__proto__ === Function.prototype // true
-Function.__proto__ === Function.prototype // true
+Object.__proto__ === Function.prototype;         // true
+Function.__proto__ === Function.prototype;       // true
 ```
 
 * 万物皆对象，原型对象也是对象，对象的构造函数是 `Object`，所以：
@@ -186,12 +193,22 @@ Function.__proto__ === Function.prototype // true
 ```javascript
 // 构造函数的原型对象 => 是个对象 => 是 Object 构造函数的实例对象
 // 实例的 __proto__ = 它的构造函数的 prototype (重要的结论 again)
-Foo.prototype.__proto__==Object.prototype // true
-Function.prototype.__proto__==Object.prototype  // true
+Foo.prototype.__proto__==Object.prototype;        // true
+
+// 由此可以类推内置函数, 因为它们的原型对象的构造函数都是 Object
+Function.prototype.__proto__==Object.prototype;   // true
+Object.prototype.__proto__ === Object.prototype;  // true
+Number.prototype.__proto__ === Object.prototype;  // true
+Boolean.prototype.__proto__ === Object.prototype; // true
+String.prototype.__proto__ === Object.prototype;  // true
+Array.prototype.__proto__ === Object.prototype;   // true
+RegExp.prototype.__proto__ === Object.prototype;  // true
+Error.prototype.__proto__ === Object.prototype;   // true
+Date.prototype.__proto__ === Object.prototype;    // true
 
 // Object.prototype 是所有对象的顶层
 // 或者说 Object.prototype 没有原型，原型链的尽头是 null
-Object.prototype.__proto__ === null
+Object.prototype.__proto__ === null;              // true
 ```
 
 ## 原型链
@@ -207,72 +224,21 @@ Object.prototype.__proto__ === null
 
 由图可知，查找属性的时候查到 `Object.prototype` 就可以停止查找了。
 
+## 一张图回顾
 
-TODO...（原型链，完）
+下面这张图通过 `__proto__` 和 `prototype` 把实例对象、构造函数、Object 和 Function 这些概念关联起来，乍一看很绕，但是如果能看懂，那么原型的这块知识就算理解了。
 
-
-## 原型
-
-任何一个函数，都拥有一个 `prototype` 属性，它指向这个函数的原型对象，如：
-
-```javascript
-function Foo () {}
-console.log(Foo.prototype); // { constructor: f Foo(), __proto__: Object }
-```
-
-画图表示如下：
-
-<div style="text-align: center;">
-  <img src="./assets/foo-prototype.png" alt="Foo 的原型" style="width: 650px;">
-  <p style="text-align: center; color: #888">（Foo 的原型）</p>
-</div>
-
-上图左边代表 `Foo` 函数，它有一个 `prototype` 属性，指向右侧这个原型对象，每声明一个函数，都会有这样的一个原型对象，原型对象有一个 `constructor` 属性，指向 `Foo` 函数本身，也有个 `__proto__` 属性，这里我们暂且不讲。
-
----------------------------------------
-
-我们来看 `Foo` 函数的实例化：
-
-```javascript
-const foo = new Foo();
-```
-
-这里我们通过 `new` 操作符实例化了一个 `foo` 对象，来看此时的图解：
-
-<div style="text-align: center;">
-  <img src="./assets/new-foo.png" alt="new Foo" style="width: 650px;">
-  <p style="text-align: center; color: #888">（new Foo）</p>
-</div>
-
-`foo` 默认会有个 `__proto__` 属性，它也指向构造函数 `Foo` 的原型，这就是 `__proto__` 的作用，即**指向构造函数的原型**。
-
----------------------------------------
-
-那让我们回到 `Foo.prototype.__proto__`，来看看他的指向吧：
-
-<div style="text-align: center;">
-  <img src="./assets/foo-prototype-__proto__.png" alt="Foo 原型的 __proto__" style="width: 650px;">
-  <p style="text-align: center; color: #888">（Foo 原型的 __proto__）</p>
-</div>
-
-上图的 `Foo.prototype.__proto__` 指向 `Object.prototype`，也就是说：**每个函数的原型，都是 Object 的实例**。就好像每个函数的原型，是由 `new Object()` 产生一样。
-
-以上就是关于原型的阐述，如果看到这里似懂非懂，建议反复看几遍，注意文字与图片对应，线条的指向，看懂了再接着往下看。
-
-## 显式原型和隐式原型
-
-* `prototype`：显式原型对象，每一个函数（除了 bind）在创建之后都会拥有一个名为 `prototype` 的内部属性，它指向函数的原型对象。用来实现基于原型的继承与属性的共享。
-* `__proto__`：隐式原型对象，是每个对象都具有的属性，这个属性的值指向该对象的构造函数的原型对象。
-
-**一个对象的隐式原型指向构造该对象的构造函数的显式原型对象**：
-
-```javascript
-foo.__proto__ === Foo.prototype // true
-```
-
-::: warning
-`[[prototype]]` 和 `__proto__` 意义相同，均表示对象的内部属性，其值指向对象原型。前者在一些书籍、规范中表示一个对象的原型属性，默认情况下是不可以再被外部访问的，估计是会被一些内部方法使用的，例如用 for...in 来遍历原型链上可以被枚举的属性的时候，就需要通过这个指针找到当前对象所继承的对象；后者则是在浏览器实现中支持的一个属性，用于指向对象原型。
+::: tip 原型的核心还是那句话
+**实例的 `__proto__` = 它的构造函数的 `prototype`**。
 :::
+
+<div style="text-align: center;">
+  <svg id="SvgjsSvg1006" width="887.34375" height="561.578125" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"><defs id="SvgjsDefs1007"><marker id="SvgjsMarker1044" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1045" d="M0,0 L14,5 L0,10 L0,0" fill="#ae5d66" stroke="#ae5d66" stroke-width="1"></path></marker><marker id="SvgjsMarker1052" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1053" d="M0,0 L14,5 L0,10 L0,0" fill="#ae5d66" stroke="#ae5d66" stroke-width="1"></path></marker><marker id="SvgjsMarker1060" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1061" d="M0,0 L14,5 L0,10 L0,0" fill="#ae5d66" stroke="#ae5d66" stroke-width="1"></path></marker><marker id="SvgjsMarker1092" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1093" d="M0,0 L14,5 L0,10 L0,0" fill="#ae5d66" stroke="#ae5d66" stroke-width="1"></path></marker><marker id="SvgjsMarker1100" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1101" d="M0,0 L14,5 L0,10 L0,0" fill="#ae5d66" stroke="#ae5d66" stroke-width="1"></path></marker><marker id="SvgjsMarker1108" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1109" d="M0,0 L14,5 L0,10 L0,0" fill="#ae5d66" stroke="#ae5d66" stroke-width="1"></path></marker><marker id="SvgjsMarker1116" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1117" d="M0,0 L14,5 L0,10 L0,0" fill="#ae5d66" stroke="#ae5d66" stroke-width="1"></path></marker><marker id="SvgjsMarker1136" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1137" d="M0,0 L14,5 L0,10 L0,0" fill="#ae5d66" stroke="#ae5d66" stroke-width="1"></path></marker><marker id="SvgjsMarker1144" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1145" d="M0,0 L14,5 L0,10 L0,0" fill="#9e9e9e" stroke="#9e9e9e" stroke-width="1"></path></marker><marker id="SvgjsMarker1152" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1153" d="M0,0 L14,5 L0,10 L0,0" fill="#388e3c" stroke="#388e3c" stroke-width="1"></path></marker><marker id="SvgjsMarker1160" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1161" d="M0,0 L14,5 L0,10 L0,0" fill="#9e9e9e" stroke="#9e9e9e" stroke-width="1"></path></marker><marker id="SvgjsMarker1168" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1169" d="M0,0 L14,5 L0,10 L0,0" fill="#9e9e9e" stroke="#9e9e9e" stroke-width="1"></path></marker><marker id="SvgjsMarker1176" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1177" d="M0,0 L14,5 L0,10 L0,0" fill="#9e9e9e" stroke="#9e9e9e" stroke-width="1"></path></marker><marker id="SvgjsMarker1184" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1185" d="M0,0 L14,5 L0,10 L0,0" fill="#388e3c" stroke="#388e3c" stroke-width="1"></path></marker><marker id="SvgjsMarker1192" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1193" d="M0,0 L14,5 L0,10 L0,0" fill="#388e3c" stroke="#388e3c" stroke-width="1"></path></marker><marker id="SvgjsMarker1200" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1201" d="M0,0 L14,5 L0,10 L0,0" fill="#388e3c" stroke="#388e3c" stroke-width="1"></path></marker><marker id="SvgjsMarker1208" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1209" d="M0,0 L14,5 L0,10 L0,0" fill="#388e3c" stroke="#388e3c" stroke-width="1"></path></marker><marker id="SvgjsMarker1216" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1217" d="M0,0 L14,5 L0,10 L0,0" fill="#388e3c" stroke="#388e3c" stroke-width="1"></path></marker><marker id="SvgjsMarker1224" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1225" d="M0,0 L14,5 L0,10 L0,0" fill="#388e3c" stroke="#388e3c" stroke-width="1"></path></marker><marker id="SvgjsMarker1232" markerWidth="14" markerHeight="10" refX="10" refY="5" viewBox="0 0 14 10" orient="auto" markerUnits="userSpaceOnUse" stroke-dasharray="0,0"><path id="SvgjsPath1233" d="M0,0 L14,5 L0,10 L0,0" fill="#388e3c" stroke="#388e3c" stroke-width="1"></path></marker></defs><g id="SvgjsG1008" transform="translate(25,106.953125)"><path id="SvgjsPath1009" d="M 0 0L 191.5 0L 191.5 386L 0 386Z" stroke-dasharray="10,6" stroke="rgba(50,50,50,1)" stroke-width="2" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1010"><text id="SvgjsText1011" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="172px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="183.375" transform="rotate(0)"></text></g></g><g id="SvgjsG1012" transform="translate(59.75,487.953125)"><path id="SvgjsPath1013" d="M 0 0L 120 0L 120 40L 0 40Z" stroke="none" fill="none"></path><g id="SvgjsG1014"><text id="SvgjsText1015" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="120px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="8" transform="rotate(0)"><tspan id="SvgjsTspan1016" dy="20" x="60"><tspan id="SvgjsTspan1017" style="text-decoration:;">原型链</tspan></tspan></text></g></g><g id="SvgjsG1018" transform="translate(81,134.953125)"><path id="SvgjsPath1019" d="M 0 0L 78 0L 78 28L 0 28Z" stroke="rgba(128,130,255,1)" stroke-width="2" fill-opacity="1" fill="#8082ff"></path><g id="SvgjsG1020"><text id="SvgjsText1021" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="58px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="2" transform="rotate(0)"><tspan id="SvgjsTspan1022" dy="20" x="39"><tspan id="SvgjsTspan1023" style="text-decoration:;">foo</tspan></tspan></text></g></g><g id="SvgjsG1024" transform="translate(44.5,232.453125)"><path id="SvgjsPath1025" d="M 0 0L 153 0L 153 33L 0 33Z" stroke="rgba(128,130,255,1)" stroke-width="2" fill-opacity="1" fill="#8082ff"></path><g id="SvgjsG1026"><text id="SvgjsText1027" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="133px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="4.5" transform="rotate(0)"><tspan id="SvgjsTspan1028" dy="20" x="76.5"><tspan id="SvgjsTspan1029" style="text-decoration:;">Foo.prototype</tspan></tspan></text></g></g><g id="SvgjsG1030" transform="translate(44.5,332.453125)"><path id="SvgjsPath1031" d="M 0 0L 153 0L 153 33L 0 33Z" stroke="rgba(128,130,255,1)" stroke-width="2" fill-opacity="1" fill="#8082ff"></path><g id="SvgjsG1032"><text id="SvgjsText1033" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="133px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="4.5" transform="rotate(0)"><tspan id="SvgjsTspan1034" dy="20" x="76.5"><tspan id="SvgjsTspan1035" style="text-decoration:;">Object.prototype</tspan></tspan></text></g></g><g id="SvgjsG1036" transform="translate(80.75,435.203125)"><path id="SvgjsPath1037" d="M 0 0L 78 0L 78 28L 0 28Z" stroke="rgba(128,130,255,1)" stroke-width="2" fill-opacity="1" fill="#8082ff"></path><g id="SvgjsG1038"><text id="SvgjsText1039" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="58px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="2" transform="rotate(0)"><tspan id="SvgjsTspan1040" dy="20" x="39"><tspan id="SvgjsTspan1041" style="text-decoration:;">null</tspan></tspan></text></g></g><g id="SvgjsG1042"><path id="SvgjsPath1043" d="M121 163.953125L121 197.703125L121 197.703125L121 228.85312499999998" stroke="#ae5d66" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1044)"></path><rect id="SvgjsRect1046" width="62" height="18" x="89.5" y="181.75312499999998" fill="#ffffff"></rect><text id="SvgjsText1047" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="62px" fill="#ae5d66" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="180.00312499999998" transform="rotate(0)"><tspan id="SvgjsTspan1048" dy="17" x="120.5"><tspan id="SvgjsTspan1049" style="text-decoration:;">__proto__</tspan></tspan></text></g><g id="SvgjsG1050"><path id="SvgjsPath1051" d="M121 266.453125L121 298.71875L121 298.71875L121 328.853125" stroke="#ae5d66" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1052)"></path><rect id="SvgjsRect1054" width="62" height="18" x="88" y="285.953125" fill="#ffffff"></rect><text id="SvgjsText1055" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="62px" fill="#ae5d66" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="284.203125" transform="rotate(0)"><tspan id="SvgjsTspan1056" dy="17" x="119"><tspan id="SvgjsTspan1057" style="text-decoration:;">__proto__</tspan></tspan></text></g><g id="SvgjsG1058"><path id="SvgjsPath1059" d="M119.75 366.453125L119.75 400.4375L119.75 400.4375L119.75 431.603125" stroke="#ae5d66" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1060)"></path><rect id="SvgjsRect1062" width="62" height="18" x="88" y="388.953125" fill="#ffffff"></rect><text id="SvgjsText1063" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="62px" fill="#ae5d66" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="387.203125" transform="rotate(0)"><tspan id="SvgjsTspan1064" dy="17" x="119"><tspan id="SvgjsTspan1065" style="text-decoration:;">__proto__</tspan></tspan></text></g><g id="SvgjsG1066" transform="translate(408.5,134.953125)"><path id="SvgjsPath1067" d="M 0 0L 95 0L 95 28L 0 28Z" stroke="rgba(252,133,250,1)" stroke-width="2" fill-opacity="1" fill="#fc85fa"></path><g id="SvgjsG1068"><text id="SvgjsText1069" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="75px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="2" transform="rotate(0)"><tspan id="SvgjsTspan1070" dy="20" x="47.5"><tspan id="SvgjsTspan1071" style="text-decoration:;">Foo</tspan></tspan></text></g></g><g id="SvgjsG1072" transform="translate(370,232.453125)"><path id="SvgjsPath1073" d="M 0 0L 172 0L 172 33L 0 33Z" stroke="rgba(128,130,255,1)" stroke-width="2" fill-opacity="1" fill="#8082ff"></path><g id="SvgjsG1074"><text id="SvgjsText1075" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="152px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="4.5" transform="rotate(0)"><tspan id="SvgjsTspan1076" dy="20" x="86"><tspan id="SvgjsTspan1077" style="text-decoration:;">Function.prototype</tspan></tspan></text></g></g><g id="SvgjsG1078" transform="translate(408.5,334.953125)"><path id="SvgjsPath1079" d="M 0 0L 95 0L 95 28L 0 28Z" stroke="rgba(252,133,250,1)" stroke-width="2" fill-opacity="1" fill="#fc85fa"></path><g id="SvgjsG1080"><text id="SvgjsText1081" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="75px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="2" transform="rotate(0)"><tspan id="SvgjsTspan1082" dy="20" x="47.5"><tspan id="SvgjsTspan1083" style="text-decoration:;">Object</tspan></tspan></text></g></g><g id="SvgjsG1084" transform="translate(700.75,134.953125)"><path id="SvgjsPath1085" d="M 0 0L 95 0L 95 28L 0 28Z" stroke="rgba(252,133,250,1)" stroke-width="2" fill-opacity="1" fill="#fc85fa"></path><g id="SvgjsG1086"><text id="SvgjsText1087" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="75px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="2" transform="rotate(0)"><tspan id="SvgjsTspan1088" dy="20" x="47.5"><tspan id="SvgjsTspan1089" style="text-decoration:;">Function</tspan></tspan></text></g></g><g id="SvgjsG1090"><path id="SvgjsPath1091" d="M396.04615647920616 263.2534290756293L179.6838366748579 331.3720303277344" stroke="#ae5d66" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1092)"></path><rect id="SvgjsRect1094" width="62" height="18" x="266" y="284.953125" fill="#ffffff"></rect><text id="SvgjsText1095" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="62px" fill="#ae5d66" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="283.203125" transform="rotate(0)"><tspan id="SvgjsTspan1096" dy="17" x="297"><tspan id="SvgjsTspan1097" style="text-decoration:;">__proto__</tspan></tspan></text></g><g id="SvgjsG1098"><path id="SvgjsPath1099" d="M456 163.953125L456 228.85312499999998" stroke="#ae5d66" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1100)"></path><rect id="SvgjsRect1102" width="62" height="18" x="423" y="183.953125" fill="#ffffff"></rect><text id="SvgjsText1103" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="62px" fill="#ae5d66" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="182.203125" transform="rotate(0)"><tspan id="SvgjsTspan1104" dy="17" x="454"><tspan id="SvgjsTspan1105" style="text-decoration:;">__proto__</tspan></tspan></text></g><g id="SvgjsG1106"><path id="SvgjsPath1107" d="M455.9753595962883 333.9534286208403L454.3387054533621 267.5520319649748" stroke="#ae5d66" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1108)"></path><rect id="SvgjsRect1110" width="62" height="18" x="423" y="292.953125" fill="#ffffff"></rect><text id="SvgjsText1111" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="62px" fill="#ae5d66" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="291.203125" transform="rotate(0)"><tspan id="SvgjsTspan1112" dy="17" x="454"><tspan id="SvgjsTspan1113" style="text-decoration:;">__proto__</tspan></tspan></text></g><g id="SvgjsG1114"><path id="SvgjsPath1115" d="M721.0518900925599 163.2710677675131L518.1631956667844 231.30853103695284" stroke="#ae5d66" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1116)"></path><rect id="SvgjsRect1118" width="62" height="18" x="607.2875" y="185.228125" fill="#ffffff"></rect><text id="SvgjsText1119" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="62px" fill="#ae5d66" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="183.478125" transform="rotate(0)"><tspan id="SvgjsTspan1120" dy="17" x="638.2875"><tspan id="SvgjsTspan1121" style="text-decoration:;">__proto__</tspan></tspan></text></g><g id="SvgjsG1122" transform="translate(711.5,458.953125)"><path id="SvgjsPath1123" d="M 0 0L 95 0L 95 28L 0 28Z" stroke="rgba(252,133,250,1)" stroke-width="2" fill-opacity="1" fill="#fc85fa"></path><g id="SvgjsG1124"><text id="SvgjsText1125" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="75px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="2" transform="rotate(0)"><tspan id="SvgjsTspan1126" dy="20" x="47.5"><tspan id="SvgjsTspan1127" style="text-decoration:;">函数</tspan></tspan></text></g></g><g id="SvgjsG1128" transform="translate(711.5,503.953125)"><path id="SvgjsPath1129" d="M 0 0L 95 0L 95 28L 0 28Z" stroke="rgba(128,130,255,1)" stroke-width="2" fill-opacity="1" fill="#8082ff"></path><g id="SvgjsG1130"><text id="SvgjsText1131" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="75px" fill="#ffffff" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="2" transform="rotate(0)"><tspan id="SvgjsTspan1132" dy="20" x="47.5"><tspan id="SvgjsTspan1133" style="text-decoration:;">对象</tspan></tspan></text></g></g><g id="SvgjsG1134"><path id="SvgjsPath1135" d="M700.75 374.703125L814.75 374.703125" stroke="#ae5d66" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1136)"></path><rect id="SvgjsRect1138" width="58" height="16" x="722.75" y="366.703125" fill="#ffffff"></rect><text id="SvgjsText1139" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="58px" fill="#ae5d66" font-weight="400" align="top" lineHeight="16px" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="365.078125" transform="rotate(0)"><tspan id="SvgjsTspan1140" dy="16" x="751.75"><tspan id="SvgjsTspan1141" style="text-decoration:;">__proto__</tspan></tspan></text></g><g id="SvgjsG1142"><path id="SvgjsPath1143" d="M700.75 404.703125L814.75 404.703125" stroke="#9e9e9e" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1144)"></path><rect id="SvgjsRect1146" width="62" height="16" x="720.75" y="396.703125" fill="#ffffff"></rect><text id="SvgjsText1147" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="62px" fill="#9e9e9e" font-weight="400" align="top" lineHeight="16px" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="395.078125" transform="rotate(0)"><tspan id="SvgjsTspan1148" dy="16" x="751.75"><tspan id="SvgjsTspan1149" style="text-decoration:;">prototype</tspan></tspan></text></g><g id="SvgjsG1150"><path id="SvgjsPath1151" d="M700.75 434.703125L814.75 434.703125" stroke-dasharray="8,5" stroke="#388e3c" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1152)"></path><rect id="SvgjsRect1154" width="71" height="16" x="722.25" y="426.703125" fill="#ffffff"></rect><text id="SvgjsText1155" font-family="微软雅黑" text-anchor="middle" font-size="13px" width="71px" fill="#388e3c" font-weight="400" align="top" lineHeight="16px" anchor="middle" family="微软雅黑" size="13px" weight="400" font-style="" opacity="1" y="425.078125" transform="rotate(0)"><tspan id="SvgjsTspan1156" dy="16" x="757.75"><tspan id="SvgjsTspan1157" style="text-decoration:;">constructor</tspan></tspan></text></g><g id="SvgjsG1158"><path id="SvgjsPath1159" d="M407.5000239981856 350.4149471002233L200.0999136065318 348.9780654391962" stroke="#9e9e9e" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1160)"></path><rect id="SvgjsRect1162" width="67" height="18" x="270.2999688023587" y="340.69650626970974" fill="#ffffff"></rect><text id="SvgjsText1163" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="67px" fill="#9e9e9e" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="338.94650626970974" transform="rotate(0)"><tspan id="SvgjsTspan1164" dy="17" x="303.7999688023587"><tspan id="SvgjsTspan1165" style="text-decoration:;">prototype</tspan></tspan></text></g><g id="SvgjsG1166"><path id="SvgjsPath1167" d="M407.53993240059754 163.2328931264506L173.45624335784868 231.44595974477784" stroke="#9e9e9e" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1168)"></path><rect id="SvgjsRect1170" width="67" height="18" x="266.5" y="183.953125" fill="#ffffff"></rect><text id="SvgjsText1171" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="67px" fill="#9e9e9e" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="182.203125" transform="rotate(0)"><tspan id="SvgjsTspan1172" dy="17" x="300"><tspan id="SvgjsTspan1173" style="text-decoration:;">prototype</tspan></tspan></text></g><g id="SvgjsG1174"><path id="SvgjsPath1175" d="M734.9276651827662 133.95574459402857C 735 25.00386397474344 563 107.953125 481.0945013710376 229.5251454907272" stroke="#9e9e9e" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1176)"></path><rect id="SvgjsRect1178" width="67" height="18" x="588.5" y="93.953125" fill="#ffffff"></rect><text id="SvgjsText1179" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="67px" fill="#9e9e9e" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="92.203125" transform="rotate(0)"><tspan id="SvgjsTspan1180" dy="17" x="622"><tspan id="SvgjsTspan1181" style="text-decoration:;">prototype</tspan></tspan></text></g><g id="SvgjsG1182"><path id="SvgjsPath1183" d="M160 148.953125C 258.4 148.953125 308.1 148.953125 404.9 148.953125" stroke-dasharray="8,5" stroke="#388e3c" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1184)"></path><rect id="SvgjsRect1186" width="77" height="18" x="255.5" y="139.953125" fill="#ffffff"></rect><text id="SvgjsText1187" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="77px" fill="#388e3c" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="138.203125" transform="rotate(0)"><tspan id="SvgjsTspan1188" dy="17" x="294"><tspan id="SvgjsTspan1189" style="text-decoration:;">constructor</tspan></tspan></text></g><g id="SvgjsG1190"><path id="SvgjsPath1191" d="M198.49958320422138 248.92425602290507C 303 246.953125 371 224.953125 424.5514703996341 164.59219733628265" stroke-dasharray="8,5" stroke="#388e3c" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1192)"></path><rect id="SvgjsRect1194" width="77" height="18" x="268.5" y="225.953125" fill="#ffffff"></rect><text id="SvgjsText1195" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="77px" fill="#388e3c" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="224.203125" transform="rotate(0)"><tspan id="SvgjsTspan1196" dy="17" x="307"><tspan id="SvgjsTspan1197" style="text-decoration:;">constructor</tspan></tspan></text></g><g id="SvgjsG1198"><path id="SvgjsPath1199" d="M155.92312194690754 365.8376323096023C 327 440.953125 413 385.953125 443 364.953125" stroke-dasharray="8,5" stroke="#388e3c" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1200)"></path><rect id="SvgjsRect1202" width="77" height="18" x="266.5" y="393.953125" fill="#ffffff"></rect><text id="SvgjsText1203" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="77px" fill="#388e3c" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="392.203125" transform="rotate(0)"><tspan id="SvgjsTspan1204" dy="17" x="305"><tspan id="SvgjsTspan1205" style="text-decoration:;">constructor</tspan></tspan></text></g><g id="SvgjsG1206"><path id="SvgjsPath1207" d="M478.8436293514575 334.4161990112833L745.2129343347531 164.88605855938013" stroke-dasharray="8,5" stroke="#388e3c" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1208)"></path><rect id="SvgjsRect1210" width="77" height="18" x="516.3125" y="282.953125" fill="#ffffff"></rect><text id="SvgjsText1211" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="77px" fill="#388e3c" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="281.203125" transform="rotate(0)"><tspan id="SvgjsTspan1212" dy="17" x="554.8125"><tspan id="SvgjsTspan1213" style="text-decoration:;">constructor</tspan></tspan></text></g><g id="SvgjsG1214"><path id="SvgjsPath1215" d="M542.9999854061929 248.9585275365577C 638.6269437229934 248.953125 771.5 261.83006872299336 771.2552913148425 166.54479837872034" stroke-dasharray="8,5" stroke="#388e3c" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1216)"></path><rect id="SvgjsRect1218" width="77" height="18" x="711.6297423636457" y="230.13385718184009" fill="#ffffff"></rect><text id="SvgjsText1219" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="77px" fill="#388e3c" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="228.38385718184009" transform="rotate(0)"><tspan id="SvgjsTspan1220" dy="17" x="750.1297423636457"><tspan id="SvgjsTspan1221" style="text-decoration:;">constructor</tspan></tspan></text></g><g id="SvgjsG1222"><path id="SvgjsPath1223" d="M796.3747350935637 155.39583109374092C 862 88.953125 816 86.953125 751.347647387871 133.11884567001343" stroke-dasharray="8,5" stroke="#388e3c" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1224)"></path><rect id="SvgjsRect1226" width="77" height="18" x="784.2152978101793" y="93.0291783454693" fill="#ffffff"></rect><text id="SvgjsText1227" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="77px" fill="#388e3c" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="91.2791783454693" transform="rotate(0)"><tspan id="SvgjsTspan1228" dy="17" x="822.7152978101793"><tspan id="SvgjsTspan1229" style="text-decoration:;">constructor</tspan></tspan></text></g><g id="SvgjsG1230"><path id="SvgjsPath1231" d="M504.5 148.953125L697.15 148.953125" stroke-dasharray="8,5" stroke="#388e3c" stroke-width="2" fill="none" marker-end="url(#SvgjsMarker1232)"></path><rect id="SvgjsRect1234" width="77" height="18" x="572.5" y="139.953125" fill="#ffffff"></rect><text id="SvgjsText1235" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="77px" fill="#388e3c" font-weight="400" align="top" lineHeight="18px" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="138.203125" transform="rotate(0)"><tspan id="SvgjsTspan1236" dy="17" x="611"><tspan id="SvgjsTspan1237" style="text-decoration:;">constructor</tspan></tspan></text></g><g id="SvgjsG1238" transform="translate(475.5,478.578125)"><path id="SvgjsPath1239" d="M 0 0L 172 0L 172 58.75L 0 58.75Z" stroke="none" fill="none"></path><g id="SvgjsG1240"><text id="SvgjsText1241" font-family="微软雅黑" text-anchor="middle" font-size="14px" width="172px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="14px" weight="400" font-style="" opacity="1" y="10.125" transform="rotate(0)"><tspan id="SvgjsTspan1242" dy="17" x="86"><tspan id="SvgjsTspan1243" style="text-decoration:;">function Foo(){...};</tspan></tspan><tspan id="SvgjsTspan1244" dy="17" x="86"><tspan id="SvgjsTspan1245" style="text-decoration:;">let foo = new Foo();</tspan></tspan></text></g></g></svg>
+  <p style="text-align: center; color: #888;">（原型关系图）</p>
+</div>
+
+
+
 
 ## 原型方法
 
@@ -328,71 +294,5 @@ let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescr
 ```
 
 此调用可以对 `obj` 进行真正准确地拷贝，包括所有的属性：可枚举和不可枚举的，数据属性和 setters/getters —— 包括所有内容，并带有正确的 `[[Prototype]]`。
-
-## 原型的关系
-
-所有原生构造函数的 `__proto__` 都指向 `Function.prototype`，
-
-即：`原生构造函数.__proto__ === Function.prototype`
-
-```javascript
-Object.__proto__   === Function.prototype;   // true
-Function.__proto__ === Function.prototype;   // true
-Number.__proto__   === Function.prototype;   // true
-Boolean.__proto__  === Function.prototype;   // true
-String.__proto__   === Function.prototype;   // true
-Object.__proto__   === Function.prototype;   // true
-Array.__proto__    === Function.prototype;   // true
-RegExp.__proto__   === Function.prototype;   // true
-Error.__proto__    === Function.prototype;   // true
-Date.__proto__     === Function.prototype;   // true
-```
-
-进而有了：
-
-```javascript
-String.__proto__ === Boolean.__proto__
-RegExp.__proto__ === Error.__proto__
-Date.__proto__ === Number.__proto__
-```
-
-同理，函数原型的隐式原型都是对象，所以构造函数是 `Object`，
-
-即：`Function.prototype.__proto__ === Object.prototype`
-
-```javascript
-Object.__proto__.__proto__   === Object.prototype;   // true
-Function.__proto__.__proto__ === Object.prototype;   // true
-Number.__proto__.__proto__   === Object.prototype;   // true
-Boolean.__proto__.__proto__  === Object.prototype;   // true
-String.__proto__.__proto__   === Object.prototype;   // true
-Object.__proto__.__proto__   === Object.prototype;   // true
-Array.__proto__.__proto__    === Object.prototype;   // true
-RegExp.__proto__.__proto__   === Object.prototype;   // true
-Error.__proto__.__proto__    === Object.prototype;   // true
-Date.__proto__.__proto__     === Object.prototype;   // true
-```
-
-## 原型链
-
-原型链是 JavaScript 作者为了继承而设计的。由上边的分析，`const foo = new Foo()` 语句，其实是产生了一个链条的，如下:
-
-<div style="text-align: center;">
-  <img src="./assets/prototype-chain.png" alt="原型链" style="width: 650px;">
-  <p style="text-align: center; color: #888">（原型链）</p>
-</div>
-
-我们在 new 出 `foo` 对象后，并没有给 `foo` 对象添加任何方法，但我们依然能从 `foo` 对象中调用 `toString()`、 `hasOwnProperty()` 等方法。这是为什么呢？
-
-```javascript
-console.log(typeof foo.toString); // function
-console.log(typeof foo.hasOwnProperty); // function
-```
-
-原因是：JavaScript 在设计之初，`__proto__` 就是用来查找属性和方法的。
-
-从上图的链条来看，我们在 `foo` 这个对象中，查找 toString 方法，没找到，就循着 `foo.__proto__` 查找，`foo.__proto__` 里也没有找到，就循着 `foo.__proto__.__proto__` 找，这个时候找到了，则调用；如果还找不到，就再往上找，即 `foo.__proto__._proto__._proto__`，这个时候值为 `null`，查找结束。
-
-这就是原型链，我们也可以说，`Foo` 继承了 `Object`，所以 `foo` 中能访问到 Object 的原型属性。
 
 （完）
