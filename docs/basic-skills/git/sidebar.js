@@ -55,7 +55,7 @@ module.exports = [
         collapsable: true
       },
       {
-        title: 'pull 时发现代码冲突，如何妥善解决',
+        title: 'pull 时发现代码冲突，如何解决',
         path: '/basic-skills/git/solution-to-code-conflict',
         collapsable: true
       },
