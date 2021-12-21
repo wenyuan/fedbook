@@ -35,7 +35,7 @@ console.log(p1.say === p2.say); // false
 
 ## 原型链继承
 
-通过实例化一个新的函数，子类的原型指向了父类的实例，子类就可以调用其父类原型对象上的私有属性和公有方法。（本质就是重写了原型对象）
+通过实例化一个新的函数，子类的原型指向了父类的实例，子类就可以调用其父类原型对象上的私有属性和公有方法。（本质就是重写了子类的原型对象）
 
 代码示例：
 
@@ -59,34 +59,34 @@ var c = new Child();
 console.log(c.getParentName()); // '父类'
 ```
 
-### 需要注意的问题
+### 注意点
 
 #### 1）别忘记默认的类型
 
-我们知道，所有的引用类型都继承了 Object，而这个继承也是通过原型链实现的。所以所有的对象都拥有 Object 具有的一些默认的方法。如：`hasOwnProperty()`、`propertyIsEnumerable()`、`toLocaleString()`、`toString()` 和 `valueOf()`。
+所有的引用类型都继承了 `Object`，而这个继承也是通过原型链实现的。因此所有的对象都拥有 `Object` 的一些默认的方法。如：`hasOwnProperty()`、`propertyIsEnumerable()`、`toLocaleString()`、`toString()` 和 `valueOf()`。
 
 #### 2）确定原型和实例的关系
 
 可以通过两种方式来确定原型和实例之间的关系。
 
-* 第一种：使用 `instanceof` 操作符，只要用这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回 `true`。
-* 第二种：使用 `isPrototypeOf()` 方法。同样，只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型，因此 `isPrototypeOf()` 方法也会返回 `true`。
+* 第一种：使用 `instanceof` 操作符。用这个操作符检测实例，只要是原型链中出现过的构造函数，结果就会返回 `true`。
+* 第二种：使用 `isPrototypeOf()` 方法。只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型，因此该方法也会返回 `true`。
 
-还是上面的代码，尝试打印一些比对关系：
+对于前面创建的类和实例，尝试打印一些比对关系：
 
 ```javascript
 console.log(c instanceof Object); //true
 console.log(c instanceof Parent); //true
-console.log(c instanceof Child); //true
+console.log(c instanceof Child);  //true
 
 console.log(Object.prototype.isPrototypeOf(c)); //true
 console.log(Parent.prototype.isPrototypeOf(c)); //true
-console.log(Child.prototype.isPrototypeOf(c)); //true
+console.log(Child.prototype.isPrototypeOf(c));  //true
 ```
 
 #### 3）子类要在继承后定义新方法
 
-因为，原型链继承实质上是重写原型对象。所以，如果在继承前就在子类的 prototype 上定义了一些方法和属性，那么继承后，子类的这些属性和方法将会被覆盖。
+因为，原型链继承实质上是重写子类的原型对象。所以，如果在继承前就在子类的 `prototype` 上定义了一些方法和属性，那么继承后，子类的这些属性和方法将会被覆盖。
 
 #### 4）不能使用对象字面量创建原型方法
 
@@ -154,14 +154,14 @@ console.log(c2.hobbies);
 ["sing", "dance", "rap", "coding"]
 ```
 
-这个例子中的 Parent 构造函数定义了一个 hobbies 属性，该属性包含一个数组（引用类型值）。Parent 的每个实例都会有各自包含自己数组的 hobbies 属性。当 Child 通过原型链继承了 Parent 之后，Child.prototype 就变成了 Parent 的一个实例，因此它也拥有了一个它自己的 hobbies 属性 —— 就跟专门创建了一个 Child.prototype.hobbies 属性一样。但结果是什么呢？结果是 Child 的所有实例都会共享这一个 hobbies 属性。而我们对 c1.hobbies 的修改能够通过 c2.hobbies 反映出来。也就是说，这样的修改会影响各个实例。
+这个例子中的 `Parent` 构造函数定义了一个 `hobbies` 属性，该属性包含一个数组（引用类型值）。`Parent` 的每个实例都会有各自包含自己数组的 `hobbies` 属性。当 `Child` 通过原型链继承了 `Parent` 之后，`Child.prototype` 就变成了 `Parent` 的一个实例，因此它也拥有了一个它自己的 `hobbies` 属性 —— 就跟专门创建了一个 `Child.prototype.hobbies` 属性一样。但结果是什么呢？结果是 `Child` 的所有实例都会共享这一个 `hobbies` 属性。而我们对 `c1.hobbies` 的修改能够通过 `c2.hobbies` 反映出来。也就是说，这样的修改会影响各个实例。
 
-### 原型链继承的优点
+### 优点
 
 * 简单，易实现
 * 父类新增原型方法/原型属性，子类都能访问
 
-### 原型链继承的缺点
+### 缺点
 
 * 无法实现多继承
 * 引用类型的值会被实例共享
@@ -173,7 +173,7 @@ console.log(c2.hobbies);
 
 在解决原型链继承中包含引用类型值所带来问题的过程中，开发人员开始使用一种叫做借用构造函数（constructor stealing）的技术。
 
-这种技术的基本思想相当简单，即在子类型构造函数的内部调用超类型构造函数。
+这种技术的基本思想相当简单，即通过 `call` 将父类的 `this` 指向子类内部，从而达到隔离的效果。
 
 ```javascript
 function Parent(name) {
