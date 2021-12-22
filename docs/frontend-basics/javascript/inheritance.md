@@ -59,13 +59,13 @@ var c = new Child();
 console.log(c.getParentName()); // '父类'
 ```
 
-### 注意点
+#### 注意点
 
-#### 1）别忘记默认的类型
+**1）别忘记默认的类型**
 
 所有的引用类型都继承了 `Object`，而这个继承也是通过原型链实现的。因此所有的对象都拥有 `Object` 的一些默认的方法。如：`hasOwnProperty()`、`propertyIsEnumerable()`、`toLocaleString()`、`toString()` 和 `valueOf()`。
 
-#### 2）确定原型和实例的关系
+**2）确定原型和实例的关系**
 
 可以通过两种方式来确定原型和实例之间的关系。
 
@@ -84,11 +84,11 @@ console.log(Parent.prototype.isPrototypeOf(c)); //true
 console.log(Child.prototype.isPrototypeOf(c));  //true
 ```
 
-#### 3）子类要在继承后定义新方法
+**3）子类要在继承后定义新方法**
 
 因为，原型链继承实质上是重写子类的原型对象。所以，如果在继承前就在子类的 `prototype` 上定义了一些方法和属性，那么继承后，子类的这些属性和方法将会被覆盖。
 
-#### 4）不能使用对象字面量创建原型方法
+**4）不能使用对象字面量创建原型方法**
 
 这个的原理跟上一条的实际上是一样的。当你使用对象字面量创建原型方法重写原型的时候，实质上相当于重写了原型链，所以原来的原型链就被切断了。
 
@@ -107,7 +107,7 @@ function Child() {
 }
 // 继承 Parent
 Child.prototype = new Parent();
-// 使用对象字面量添加新方法，会导致上一行代码无效
+// 使用对象字面量添加新方法, 会导致上一行代码无效
 Child.prototype = {
   getChildName: function() {
     return this.childName;
@@ -121,7 +121,7 @@ var c = new Child()
 console.log(c.getParentName) // undefined
 ```
 
-#### 5）注意父类包含引用类型的情况
+**5）注意父类包含引用类型的情况**
 
 代码示例：
 
@@ -156,12 +156,12 @@ console.log(c2.hobbies);
 
 这个例子中的 `Parent` 构造函数定义了一个 `hobbies` 属性，该属性包含一个数组（引用类型值）。`Parent` 的每个实例都会有各自包含自己数组的 `hobbies` 属性。当 `Child` 通过原型链继承了 `Parent` 之后，`Child.prototype` 就变成了 `Parent` 的一个实例，因此它也拥有了一个它自己的 `hobbies` 属性 —— 就跟专门创建了一个 `Child.prototype.hobbies` 属性一样。但结果是什么呢？结果是 `Child` 的所有实例都会共享这一个 `hobbies` 属性。而我们对 `c1.hobbies` 的修改能够通过 `c2.hobbies` 反映出来。也就是说，这样的修改会影响各个实例。
 
-### 优点
+#### 优点
 
 * 简单，易实现
 * 父类新增原型方法/原型属性，子类都能访问
 
-### 缺点
+#### 缺点
 
 * 无法实现多继承
 * 引用类型的值会被实例共享
@@ -173,7 +173,7 @@ console.log(c2.hobbies);
 
 在解决原型链继承中包含引用类型值所带来问题的过程中，开发人员开始使用一种叫做借用构造函数（constructor stealing）的技术。
 
-这种技术的基本思想相当简单，即通过 `call` 将父类的 `this` 指向子类内部，从而达到隔离的效果。
+这种技术的基本思想，是通过 `call` 或者 `apply`，把父类中通过 `this` 指定的属性和方法复制（借用）到子类创建的实例中，从而达到隔离的效果。
 
 ```javascript
 function Parent(name) {
@@ -205,19 +205,17 @@ false
 true
 ```
 
-借用构造函数的基本思想就是利用 `call` 或者 `apply` 把父类中通过 `this` 指定的属性和方法复制（借用）到子类创建的实例中。
+因为 `this` 对象是在运行时基于函数的执行环境绑定的。也就是说，在全局中，`this` 等于 `window`，而当函数被作为某个对象的方法调用时，`this` 等于那个对象。`call`、`apply` 方法可将一个函数的对象上下文从初始的上下文改变为由第一个参数指定的新对象。
 
-因为 `this` 对象是在运行时基于函数的执行环境绑定的。也就是说，在全局中，`this` 等于 `window`，而当函数被作为某个对象的方法调用时，`this` 等于那个对象。`call` 、`apply` 方法可以用来代替另一个对象调用一个方法。`call`、`apply` 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。
+所以，这个借用构造函数就是，`new` 对象的时候（注意，`new` 操作符与直接调用是不同的，以函数的方式直接调用的时候，`this` 指向 `window`，`new` 创建的时候，`this` 指向创建的这个实例），创建了一个新的实例对象，并且执行 `Child` 里面的代码，里面用 `call` 调用了 `Parent`，由于这里的 `this` 指向是新的实例而不是 `Child`，所以就会把 `Parent` 里面的 `this` 相关属性和方法赋值到新的实例上，而不是赋值到 `Child` 上面。因此，所有实例各自拥有父类定义的这些 `this` 的属性和方法。
 
-所以，这个借用构造函数就是，`new` 对象的时候（注意，`new` 操作符与直接调用是不同的，以函数的方式直接调用的时候，`this` 指向 `window`，`new` 创建的时候，`this` 指向创建的这个实例），创建了一个新的实例对象，并且执行 Child 里面的代码，而 Child 里面用 `call` 调用了 Parent，也就是说把 `this` 指向改成了指向新的实例，所以就会把 Parent 里面的 `this` 相关属性和方法赋值到新的实例上，而不是赋值到 Child 上面。所有实例中就拥有了父类定义的这些 `this` 的属性和方法。
-
-### 借用构造函数的优点
+#### 优点
 
 * 解决了引用类型的值被实例共享的问题
 * 可以向超类传递参数
 * 可以实现多继承（call 若干个超类）
 
-### 借用构造函数的缺点
+#### 缺点
 
 * 不能继承超类原型上的属性和方法
 * 无法实现函数复用，由于 call 有多个父类实例的副本，性能损耗。
@@ -245,14 +243,14 @@ var c1 = new Child('c1');
 var c2 = new Child('c2');
 
 console.log(c1.hasOwnProperty('name')); // true
-console.log(c1.getName()); // "c1"
+console.log(c1.getName());              // "c1"
 
 c1.hobbies.push('coding');
-console.log(c1.hobbies); // ["sing", "dance", "rap", "coding"]
-console.log(c2.hobbies); // ["sing", "dance", "rap"]
+console.log(c1.hobbies);                // ["sing", "dance", "rap", "coding"]
+console.log(c2.hobbies);                // ["sing", "dance", "rap"]
 ```
 
-这种继承方式看起来似乎没有问题，但是它却调用了 2 次超类型构造函数：一次在子类构造函数内，另一次是将子类的原型指向父类构造的实例，导致生成了 2 次 name 和 hobbies，只不过实例屏蔽了原型上的（`console.log(c1)`）。虽然达成了目的，却不是我们最想要的。
+这种继承方式看起来似乎没有问题，但是它却调用了 2 次超类型构造函数：一次在子类构造函数内，另一次是将子类的原型指向父类构造的实例，导致生成了 2 次 `name` 和 `hobbies`，只不过实例屏蔽了原型上的（`console.log(c1)`）。虽然达成了目的，却不是我们最想要的。
 
 
 <div style="text-align: center;">
@@ -282,24 +280,24 @@ var c2 = new Child("c2", 24);
 c1.hobbies.push("coding");
 console.log(c1.hobbies); // ["sing", "dance", "rap", "coding"]
 console.log(c2.hobbies); // ["sing", "dance", "rap", "coding"]
-console.log(c1.name); // "c1"
-console.log(c2.name); // "c2"
+console.log(c1.name);    // "c1"
+console.log(c2.name);    // "c2"
 ```
 
-### 共享原型继承的优点
+#### 优点
 
-简单
+* 简单
 
-### 共享原型继承的缺点
+#### 缺点
 
 * 只能继承父类原型属性方法，不能继承构造函数属性方法
 * 与原型链继承一样，存在引用类型问题
 
 ## 原型式继承
 
-这种继承方式普遍用于基于当前已有对象创建新对象。
+这种继承方式普遍用于**基于当前已有对象创建新对象**的场景。
 
-在 ES5 之前实现方法：
+ES5 之前的实现方法：
 
 ```javascript
 function createAnother(o) {
@@ -317,19 +315,30 @@ var o2 = createAnother(o1);
 console.log(o2.name); // "父对象"
 ```
 
-ES5 新增了 `Object.create()` 方法规范化了原型式继承。调用方法为：`Object.create(o)`，如下代码所示：
+ES5 之后的实现方法：
+
+新增了 `Object.create()` 方法规范化了原型式继承，如下代码所示：
 
 ```javascript
-// 用法一：创建一个纯洁的对象：对象什么属性都没有
+// 用法一: 创建一个纯洁的对象: 对象什么属性都没有
 Object.create(null);
 
-// 用法二：创建一个子对象，它继承自某个父对象
+// 用法二: 创建一个子对象, 它继承自某个父对象
 var o1 = {
   name: '父对象',
   say: function() {}
 }
 var o2 = Object.create(o1);
 ```
+
+#### 优点
+
+* 简单
+
+#### 缺点
+
+* 包含引用类型的属性值始终都会共享相应的值（和原型链继承一样）
+* 无法实现复用（新实例属性都是后面添加的）
 
 ## 寄生式继承
 
@@ -338,10 +347,10 @@ var o2 = Object.create(o1);
 ```javascript
 function createAnother(origin) {
   var clone = Object.create(origin); // 通过调用函数创建一个新对象
-  clone.sayHi = function() { // 以某种方式来增强这个对象
+  clone.sayHi = function() {         // 以某种方式来增强这个对象
     alert("Hi");
   };
-  return clone; // 返回这个对象
+  return clone;                      // 返回这个对象
 }
 
 var o1 = {
@@ -352,19 +361,19 @@ var o2 = createAnother(o1);
 o2.sayHi();
 ```
 
-在上述例子中，createAnother 函数接收了一个参数，也就是将要被继承的对象。
+在上述例子中，`createAnother` 函数接收了一个参数，也就是将要被继承的对象。
 
-o2 是基于 o1 创建的一个新对象，新对象不仅具有 o1 的所有属性和方法，还有自己的 sayHi() 方法。
+`o2` 是基于 `o1` 创建的一个新对象，新对象不仅具有 `o1` 的所有属性和方法，还有自己的 `sayHi()` 方法。
 
 简单而言，寄生式继承在产生了这个继承父类的对象之后，为这个对象添加了一些增强方法。
 
-### 寄生式继承的优点
+#### 优点
 
-没啥优点
+* 没啥优点
 
-### 寄生式继承的缺点
+#### 缺点
 
-原型式继承有的缺点它都有，只是外面装个壳，就演化成了另一种继承模式。
+* 原型式继承有的缺点它都有，只是外面装个壳，就演化成了另一种继承模式。
 
 ## 寄生组合式继承
 
@@ -375,10 +384,15 @@ o2 是基于 o1 创建的一个新对象，新对象不仅具有 o1 的所有属
 基本写法：
 
 ```javascript
-function inheritPrototype(SubType, SuperType) {
-  var prototype = Object.create(SuperType.prototype);
-  prototype.constructor = SubType;
-  SubType.prototype = prototype;
+/**
+ * 寄生式组合继承的核心逻辑
+ * @param {subClass}   子类构造函数
+ * @param {superClass} 父类构造函数
+*/
+function inheritPrototype(subClass, superClass) {
+  let prototype = Object.create(superClass.prototype); // 创建原型对象(父类构造函数的原型对象的副本)
+  prototype.constructor = subClass;                    // 增强原型对象(解决由于重写原型导致默认 constructor 丢失的问题)
+  subClass.prototype = prototype;                      // 赋值原型对象
 }
 ```
 
@@ -391,21 +405,21 @@ function object(o) {
   W.prototype = o;
   return new W;
 }
-function inheritPrototype(SubType, SuperType) {
+function inheritPrototype(subClass, superClass) {
   var prototype;
   if (typeof Object.create === 'function') {
-    prototype = Object.create(SuperType.prototype);
+    prototype = Object.create(superClass.prototype);
   } else {
-    prototype = object(SuperType.prototype);
+    prototype = object(superClass.prototype);
   }         
-  prototype.constructor = SubType;
-  SubType.prototype = prototype;
+  prototype.constructor = subClass;
+  subClass.prototype = prototype;
 }
 ```
 
-本质是子类的原型继承自父类的原型，申明一个用于继承原型的 inheritPrototype 方法，通过这个方法我们能够将子类的原型指向超类的原型，从而避免超类二次实例化。
+本质是子类的原型继承自父类的原型，申明一个用于继承原型的 `inheritPrototype` 方法，通过这个方法我们能够将子类的原型指向超类的原型，从而避免超类二次实例化。
 
-实例代码：
+实例代码：这里只调用了一次 `Parent` 构造函数，避免了 `Child.prototype` 上不必要也用不到的属性，因此可以说这个例子的效率更高，而且原型链仍然保持不变。
 
 ```javascript
 function Parent(name) {
@@ -415,38 +429,43 @@ function Parent(name) {
 Parent.prototype.getHobbies = function(){
   return this.hobbies
 }
-function Child(name) {
-  Parent.call(this, name);
-  this.age = 24
-}
 
-Child.prototype = Object.create(Parent.prototype);
-Child.prototype.constructor = Child;
+function Child(name, age) {
+  Parent.call(this, name);  // 组合式继承的优点: 解决引用类型值被实例共享的问题
+  this.age = age
+}
+inheritPrototype(Child, Parent);
+// 注意: 一定要在继承后, 补充该原型方法, 否则会被覆盖
+Child.prototype.getAge = function () {
+  return this.age
+};
 
 // 测试结果
-var c1 = new Child('c1');
-var c2 = new Child('c2');
+var c1 = new Child('c1', 12);
+var c2 = new Child('c2', 13);
 
-console.log(c1 instanceof Child); // true
+console.log(c1 instanceof Child);  // true
 console.log(c1 instanceof Parent); // true
-console.log(c1.constructor); // Child
-console.log(Child.prototype.__proto__ === Parent.prototype); // true
+console.log(c1.constructor);       // Child
+console.log(Child.prototype.__proto__ === Parent.prototype);  // true
 console.log(Parent.prototype.__proto__ === Object.prototype); // true
 
 c1.hobbies.push('coding');
-console.log(c1.getHobbies()); // ["sing", "dance", "rap", "coding"]
-console.log(c2.getHobbies()); // ["sing", "dance", "rap"]
+console.log(c1.getHobbies());     // ["sing", "dance", "rap", "coding"]
+console.log(c2.getHobbies());     // ["sing", "dance", "rap"]
+console.log(c1.getAge());         // 12
+console.log(c2.getAge());         // 13
 ```
 
-这也是目前最完美的继承方案，它与 ES6 的 class 的实现方式最为接近。
+这也是目前最完美的继承方案，它与 ES6 的 class 实现方式最为接近。
 
-### 寄生组合式继承的优点
+#### 优点
 
-堪称完美
+* 堪称完美
 
-### 寄生组合式继承的缺点
+#### 缺点
 
-代码多
+* 代码多
 
 ## class 继承
 
@@ -477,18 +496,18 @@ class Child extends Parent {
 var c1 = new Child('c1');
 var c2 = new Child('c2');
 
-console.log(c1 instanceof Child); // true
+console.log(c1 instanceof Child);  // true
 console.log(c1 instanceof Parent); // true
 ```
 
-要点：
+#### 要点
 
 * `constructor` 为构造函数，即使未定义也会自动创建。
 * 在父类构造函数内 `this` 定义的都是实例属性和方法，其他方法包括 `constructor`、`getHobbies` 都是原型方法。
 * `static` 关键字定义的静态方法都必须通过类名调用，其 `this` 指向调用者而并非实例。
 * 通过 `extends` 可以继承父类的所有原型属性及 `static` 类方法，子类 `constructor` 调用 `super` 父类构造函数实现实例属性和方法的继承。
 
-对比：
+#### 对比
 
 * ES5 的继承，实质是先创造子类的实例对象 `this`，然后再将父类的方法添加到 `this` 上面（`Parent.apply(this)`）。
 * ES6 的继承机制完全不同，实质是先将父类实例对象的属性和方法，加到 `this` 上面（所以必须先调用 `super` 方法），然后再用子类的构造函数修改 `this`。
