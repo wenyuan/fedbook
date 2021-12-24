@@ -386,8 +386,8 @@ o2.sayHi();
 ```javascript
 /**
  * 寄生式组合继承的核心逻辑
- * @param {subClass}   子类构造函数
- * @param {superClass} 父类构造函数
+ * @param {string} subClass: 子类构造函数
+ * @param {string} superClass: 父类构造函数
 */
 function inheritPrototype(subClass, superClass) {
   let prototype = Object.create(superClass.prototype); // 创建原型对象(父类构造函数的原型对象的副本)
