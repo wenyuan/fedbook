@@ -4,11 +4,11 @@ module.exports = {
   '/style-guide/version-control': require('../style-guide/version-control/sidebar'),
   '/style-guide/product': require('../style-guide/product/sidebar'),
   /* --------- 前端知识 --------- */
-  '/frontend-basics/html': require('../frontend-basics/html/sidebar'),
-  '/frontend-basics/css': require('../frontend-basics/css/sidebar'),
-  '/frontend-basics/javascript': require('../frontend-basics/javascript/sidebar'),
-  '/frontend-basics/typescript': require('../frontend-basics/typescript/sidebar'),
-  '/frontend-basics/browser': require('../frontend-basics/browser/sidebar'),
+  '/frontend-knowledge/html': require('../frontend-knowledge/html/sidebar'),
+  '/frontend-knowledge/css': require('../frontend-knowledge/css/sidebar'),
+  '/frontend-knowledge/javascript': require('../frontend-knowledge/javascript/sidebar'),
+  '/frontend-knowledge/typescript': require('../frontend-knowledge/typescript/sidebar'),
+  '/frontend-knowledge/browser': require('../frontend-knowledge/browser/sidebar'),
   /* --------- 前端工程化: 一切能提升前端开发效率，提高前端应用质量的手段和工具都是前端工程化 --------- */
   '/frontend-engineering/vuejs': require('../frontend-engineering/vuejs/sidebar'),
   '/frontend-engineering/react': require('../frontend-engineering/react/sidebar'),

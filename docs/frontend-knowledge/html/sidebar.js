@@ -5,17 +5,17 @@ module.exports = [
     children: [
       {
         title: 'HTML 基本结构',
-        path: '/frontend-basics/html/html-basic-structure',
+        path: '/frontend-knowledge/html/html-basic-structure',
         collapsable: true
       },
       {
         title: '语义类标签',
-        path: '/frontend-basics/html/semantic-elements',
+        path: '/frontend-knowledge/html/semantic-elements',
         collapsable: true
       },
       {
         title: '未完待续',
-        path: '/frontend-basics/html/to-be-continued',
+        path: '/frontend-knowledge/html/to-be-continued',
         collapsable: true
       }
     ]

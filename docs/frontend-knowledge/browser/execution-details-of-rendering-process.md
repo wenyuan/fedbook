@@ -1,6 +1,6 @@
 # 渲染引擎的工作原理
 
-这个系列的第一篇文章中对「[浏览器从输入 URL 到页面展示](/frontend-basics/browser/browser-macro-knowledge/#导航流程-输入-url-到页面展示)」的整个流程做了小结，但其实最后一步在获得到 HTML、CSS 和 JavaScript 文件后，对渲染进程做的工作只是简单概括了一下，这里单独写一篇作为细节扩充。
+这个系列的第一篇文章中对「[浏览器从输入 URL 到页面展示](/frontend-knowledge/browser/browser-macro-knowledge/#导航流程-输入-url-到页面展示)」的整个流程做了小结，但其实最后一步在获得到 HTML、CSS 和 JavaScript 文件后，对渲染进程做的工作只是简单概括了一下，这里单独写一篇作为细节扩充。
 
 ## HTML、CSS 和 JavaScript 是如何变成页面的
 
@@ -15,7 +15,7 @@
 
 ### 流程小结
 
-大体的渲染流程还是**复制之前一篇文章里归纳的 [8 个步骤](/frontend-basics/browser/browser-macro-knowledge/#输入-url-到页面展示)**，这里在每个步骤之下补充一些细节知识点：
+大体的渲染流程还是**复制之前一篇文章里归纳的 [8 个步骤](/frontend-knowledge/browser/browser-macro-knowledge/#输入-url-到页面展示)**，这里在每个步骤之下补充一些细节知识点：
 
 * **构建 DOM 树**：通过 HTML 解析器将 HTML 转换成 DOM 树。
 * **样式计算**：渲染引擎将 CSS 文本转换为 styleSheets，计算出 DOM 节点的样式。

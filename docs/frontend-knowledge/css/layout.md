@@ -55,11 +55,11 @@ inherit 表示这个元素从父元素继承 display 属性值；none 表示这�
 
 ### position
 
-参见《[定位（position）](/frontend-basics/css/position-property/)》章节。
+参见《[定位（position）](/frontend-knowledge/css/position-property/)》章节。
 
 ### float
 
-参见《[浮动（float）](/frontend-basics/css/float-property/)》章节。
+参见《[浮动（float）](/frontend-knowledge/css/float-property/)》章节。
 
 ## 布局示例：两栏布局
 

@@ -15,16 +15,16 @@ module.exports = [
       {
         text: '基础',
         items: [
-          { text: 'HTML', link: '/frontend-basics/html/' },
-          { text: 'CSS', link: '/frontend-basics/css/' },
-          { text: 'JavaScript', link: '/frontend-basics/javascript/' }
+          { text: 'HTML', link: '/frontend-knowledge/html/' },
+          { text: 'CSS', link: '/frontend-knowledge/css/' },
+          { text: 'JavaScript', link: '/frontend-knowledge/javascript/' }
         ]
       },
       {
         text: '进阶',
         items: [
-          { text: 'TypeScript', link: '/frontend-basics/typescript/' },
-          { text: '浏览器工作原理', link: '/frontend-basics/browser/' }
+          { text: 'TypeScript', link: '/frontend-knowledge/typescript/' },
+          { text: '浏览器工作原理', link: '/frontend-knowledge/browser/' }
         ]
       }
     ]

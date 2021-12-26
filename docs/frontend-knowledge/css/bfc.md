@@ -34,7 +34,7 @@ Box 是 CSS 布局的对象和基本单位，直观来说，一个页面有很�
 * inline-level box：`display` 属性为 `inline`、`inline-block`、`inline-table` 的元素，会生成 inline-level box
 * run-in box：CSS3 特有
 
-PS：这里的 Box 即指盒模型，关于盒模型的具体内容可以查看[盒模型](/frontend-basics/css/box-model/ "盒模型")章节
+PS：这里的 Box 即指盒模型，关于盒模型的具体内容可以查看[盒模型](/frontend-knowledge/css/box-model/ "盒模型")章节
 
 ### Formatting Context
 
