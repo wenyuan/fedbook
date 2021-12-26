@@ -7,7 +7,7 @@ module.exports = {
   '/frontend-knowledge/html': require('../frontend-knowledge/html/sidebar'),
   '/frontend-knowledge/css': require('../frontend-knowledge/css/sidebar'),
   '/frontend-knowledge/javascript': require('../frontend-knowledge/javascript/sidebar'),
-  '/frontend-knowledge/ecmascript': require('../frontend-knowledge/ecmascript/sidebar'),
+  '/frontend-knowledge/es6-and-beyond': require('../frontend-knowledge/es6-and-beyond/sidebar'),
   '/frontend-knowledge/typescript': require('../frontend-knowledge/typescript/sidebar'),
   '/frontend-knowledge/browser': require('../frontend-knowledge/browser/sidebar'),
   /* --------- 前端工程化: 一切能提升前端开发效率，提高前端应用质量的手段和工具都是前端工程化 --------- */
