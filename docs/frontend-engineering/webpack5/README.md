@@ -69,7 +69,7 @@ Webpack5 主要是内部效率的优化，对比 Webpack4，没有太多使用�
 
 <hr>
 
-关于 Webpack5 的知识点，主要参考： 
+关于 Webpack5 的知识点，主要参考：
 
 * [官方文档](https://webpack.js.org)
 

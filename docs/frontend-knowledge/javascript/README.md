@@ -14,7 +14,7 @@
 
 <hr>
 
-关于 JavaScript 的知识点，主要参考： 
+关于 JavaScript 的知识点，主要参考：
 
 * 《JavaScript高级程序设计（第3版）》
 * 《JavaScript高级程序设计（第4版）》

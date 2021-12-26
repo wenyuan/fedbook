@@ -1,6 +1,6 @@
 # ES6 - ES12 新特性
 
-**什么是 ECMAScript（What）**:
+**什么是 ECMAScript（What）**：
 
 ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现。
 
@@ -8,19 +8,19 @@ ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前
 
 <hr>
 
-**为什么要学习 ES6+ 新特性（Why）**:
+**为什么要学习 ES6+ 新特性（Why）**：
 
 最新的 ES6 到 12 语法引入的很多新特性，能让很多依赖第三方库才能做到的事用原生 JS 寥寥几行代码就可迎刃而解。
 
 <hr>
 
-**如何使用 ES6+ 新语法（How）**:
+**如何使用 ES6+ 新语法（How）**：
 
 ES6+ 新特性是不能直接被所有浏览器直接识别的，需要通过 [Babel](https://babeljs.io/) 将 ES6+ 的代码转为 ES5 代码，从而在老版本的浏览器执行。
 
 <hr>
 
-关于 ECMAScript 的知识点，主要参考： 
+关于 ECMAScript 的知识点，主要参考：
 
 * 《[ES6 入门教程 - 阮一峰](https://es6.ruanyifeng.com/)》
 * 《[再学JavaScript ES(6-11)全版本语法大全](https://coding.imooc.com/class/444.html)》

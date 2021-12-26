@@ -32,7 +32,7 @@
 
 <hr>
 
-关于 HTML 的知识点，主要参考： 
+关于 HTML 的知识点，主要参考：
 
 * **W3school** 的 HTML/CSS 部分
 * **MDN** 中关于 HTML 的内容

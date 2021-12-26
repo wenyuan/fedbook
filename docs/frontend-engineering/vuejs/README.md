@@ -36,7 +36,7 @@ Model 和 View 并无直接关联，而是通过 ViewModel 来进行联系的，
 
 <hr>
 
-关于 Vue.js 的知识点，主要参考： 
+关于 Vue.js 的知识点，主要参考：
 
 * 官方文档
 

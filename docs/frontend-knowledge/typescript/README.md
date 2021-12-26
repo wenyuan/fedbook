@@ -1,6 +1,6 @@
 # TypeScript
 
-**什么是 TypeScript（What）**:
+**什么是 TypeScript（What）**：
 
 TypeScript 是 JavaScript 的超集，它不仅包含了 JavaScript 当前主流的 ES5 标准，还包含了 ES6/7/8 等未来的标准以及一些处于实验阶段的语法（例如 decorator 装饰器）。
 
@@ -8,7 +8,7 @@ TypeScript 为 JavaScript 带来了**强类型**的定义。
 
 <hr>
 
-**为什么要使用 TypeScript（Why）**:
+**为什么要使用 TypeScript（Why）**：
 
 TypeScript 强类型的特点可以带来一些好处，它能够：
 
@@ -17,7 +17,7 @@ TypeScript 强类型的特点可以带来一些好处，它能够：
 
 <hr>
 
-**如何使用 TypeScript（How）**:
+**如何使用 TypeScript（How）**：
 
 TypeScript 的命令行工具安装方法如下：
 
@@ -39,7 +39,7 @@ tsc hello.ts
 
 <hr>
 
-关于 TypeScript 的知识点，主要参考： 
+关于 TypeScript 的知识点，主要参考：
 
 * 《[TypeScript（官方手册）](https://www.typescriptlang.org/)》
 * 《[2小时极速入门 TypeScript（基础视频课程）](https://www.imooc.com/learn/1306)》
