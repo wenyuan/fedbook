@@ -23,6 +23,7 @@ module.exports = [
       {
         text: '进阶',
         items: [
+          { text: 'ES 6-12', link: '/frontend-knowledge/ecmascript/' },
           { text: 'TypeScript', link: '/frontend-knowledge/typescript/' },
           { text: '浏览器工作原理', link: '/frontend-knowledge/browser/' }
         ]
