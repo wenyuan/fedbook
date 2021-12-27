@@ -23,7 +23,7 @@ module.exports = [
       {
         text: '进阶',
         items: [
-          { text: 'ES 6-12', link: '/frontend-knowledge/es6-and-beyond/' },
+          { text: 'ECMAScript 6+', link: '/frontend-knowledge/es6-and-beyond/' },
           { text: 'TypeScript', link: '/frontend-knowledge/typescript/' },
           { text: '浏览器工作原理', link: '/frontend-knowledge/browser/' }
         ]
