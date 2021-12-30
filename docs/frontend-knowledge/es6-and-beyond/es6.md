@@ -142,7 +142,7 @@ console.log(wed) // Wednesday
 
 #### 6）rest 参数
 
-可以使用 `rest` 来接受赋值数组的剩余元素，不过要确保这个 `rest` 参数是放在被赋值变量的最后一个位置上。
+可以使用 rest 参数（形式为 `...变量名`）来接受赋值数组的剩余元素，不过要确保这个 rest 参数是放在被赋值变量的最后一个位置上。
 
 ```javascript
 let [mon, tues, ...rest] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -158,5 +158,188 @@ console.log(rest.length) // 5
 
 #### 7）默认值
 
-* 如果数组的内容少于变量的个数，没有分配到内容的变量会是 `undefined`。
-* 也可以给变量赋予默认值。
+如果数组的内容少于变量的个数，没有分配到内容的变量会是 `undefined`。
+
+```javascript
+let [firstName, lastName] = []
+
+console.log(firstName) // undefined
+console.log(lastName)  // undefined
+```
+
+也可以给变量赋予默认值，防止 `undefined` 的情况出现。
+
+```javascript
+let [firstName = 'Guest', lastName = 'Anonymous'] = ['Kobe']
+
+console.log(firstName) // Kobe
+console.log(lastName)  // Anonymous
+```
+
+### 对象解构赋值
+
+#### 1）基本用法
+
+左侧的变量名要和右侧对象中存在的 key 名一致，但是顺序无需一致。
+
+```javascript
+let options = {
+  title: 'Menu',
+  width: 100,
+  height: 200
+}
+
+let {title, width, height} = options
+
+console.log(title)  // Menu
+console.log(width)  // 100
+console.log(height) // 200
+```
+
+提取出来的值也可以赋值给其它的变量名。
+
+```javascript
+let options = {
+  title: 'Menu',
+  width: 100,
+  height: 200
+}
+
+let {title: t, width: w, height: h} = options
+
+console.log(t) // Menu
+console.log(w) // 100
+console.log(h) // 200
+```
+
+#### 2）rest 运算符
+
+可以像数组一样，只提取指定的属性，将其他可以暂存到一个变量下，这就要用到 rest 运算符（形式为 `...变量名`）了。
+
+```javascript
+let options = {
+  title: 'Menu',
+  height: 200,
+  width: 100
+}
+
+let {title, ...rest} = options
+
+console.log(rest.height) // 200
+console.log(rest.width)  // 100
+```
+
+#### 3）默认值
+
+赋值的过程中也可以指定默认值。
+
+```javascript
+let options = {
+  title: 'Menu'
+}
+
+let {width = 100, height = 200, title} = options
+
+console.log(title)  // Menu
+console.log(width)  // 100
+console.log(height) // 200
+```
+
+#### 4）嵌套对象
+
+如果一个 Array 或者 Object 比较复杂，它嵌套了 Array 或者 Object，那只要被赋值的结构和右侧赋值的元素一致就好了。
+
+就像这样：
+
+<div style="text-align: center;">
+  <img src="./assets/destructuring-complex.png" alt="嵌套对象的解构赋值" style="width: 550px;">
+  <p style="text-align: center; color: #888;">（嵌套对象的解构赋值）</p>
+</div>
+
+```javascript
+let options = {
+  size: {
+    width: 100,
+    height: 200
+  },
+  items: ["Cake", "Donut"],
+  extra: true    // 不提取这个值
+}
+
+let {
+  size: {
+    width,
+    height
+  },
+  items: [item1, item2],
+  title = 'Menu' // 默认参数
+} = options
+
+console.log(title)  // Menu
+console.log(width)  // 100
+console.log(height) // 200
+console.log(item1)  // Cake
+console.log(item2)  // Donut
+```
+
+### 字符串解构赋值
+
+本质上就是把字符串当做是数组来解构。
+
+```javascript
+let str = 'hello'
+
+let [a, b, c, d, e] = str
+
+console.log(a, b, c, d, e)
+```
+
+## Array
+
+### ES5 中数组遍历方式
+
+#### 1）for 循环
+
+```javascript
+let arr = ['a', 'b', 'c', 'b', 'd']
+
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i])
+}
+```
+
+#### 2）forEach()
+
+没有返回值，只是针对每个元素调用 func。
+
+优点是不需要通过索引来获取数组项，缺点是不支持 `break`、`continue`。
+
+易混淆点：在 `forEach()` 的循环体里使用 `return` 起的作用是 `continue`（离开当前循环，进入下一次循环），而不是原本的结束遍历。
+
+```javascript
+let arr = ['a', 'b', 'c', 'b', 'd']
+
+arr.forEach(function(ele, idx, array) {
+  if (arr[idx] == 'b') {
+    return;
+  }
+  console.log(idx, ele)
+})
+```
+
+#### 3）map()
+
+返回新的数组，每个元素为调用 func 的结果。
+
+```javascript
+let arr = ['a', 'b', 'c', 'b', 'd']
+
+let result = arr.map(function(value) {
+  value += value
+  console.log(value)
+  return value
+})
+console.log(arr, result)
+```
+
+
