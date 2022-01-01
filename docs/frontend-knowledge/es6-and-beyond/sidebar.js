@@ -10,12 +10,12 @@ module.exports = [
       },
       {
         title: '解构赋值',
-        path: '/frontend-knowledge/es6-and-beyond/destructuring',
+        path: '/frontend-knowledge/es6-and-beyond/es6-destructuring',
         collapsable: true
       },
       {
         title: 'Array',
-        path: '/frontend-knowledge/es6-and-beyond/array',
+        path: '/frontend-knowledge/es6-and-beyond/es6-array',
         collapsable: true
       }
     ]

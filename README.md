@@ -112,7 +112,7 @@
   * [调用函数的四种方式](https://fedbook.cn/frontend-knowledge/javascript/function-invocation/)
   * 未完结，待更新
 * [ES6 - ES12 新特性](https://fedbook.cn/frontend-knowledge/es6-and-beyond/)
-  * [ECMAScript2015(ES6)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es6/)
+  * [ECMAScript2015(ES6)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es6-let-const/)
 * [TypeScript](https://fedbook.cn/frontend-knowledge/typescript/)
   * [数据类型简介](https://fedbook.cn/frontend-knowledge/typescript/data-types-introduction/)
   * [布尔、数值与字符串](https://fedbook.cn/frontend-knowledge/typescript/boolean-number-string/)
