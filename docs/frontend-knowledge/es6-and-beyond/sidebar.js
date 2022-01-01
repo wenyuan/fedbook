@@ -17,6 +17,11 @@ module.exports = [
         title: 'Array',
         path: '/frontend-knowledge/es6-and-beyond/es6-array',
         collapsable: true
+      },
+      {
+        title: 'Function',
+        path: '/frontend-knowledge/es6-and-beyond/es6-function',
+        collapsable: true
       }
     ]
   }
