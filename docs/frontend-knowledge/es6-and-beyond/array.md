@@ -273,7 +273,9 @@ let arr = [1, 2, 3, 4, 5]
 console.log(arr.copyWithin(1, 3)) // [1, 4, 5, 4, 5]
 ```
 
-## 推荐阅读
+## 参考资料
 
 * [数组的扩展](https://es6.ruanyifeng.com/#docs/array)
 * [Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+（完）

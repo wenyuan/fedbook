@@ -217,7 +217,7 @@ let [a, b, c, d, e] = str
 console.log(a, b, c, d, e)
 ```
 
-## 推荐阅读
+## 参考资料
 
 * [变量的解构赋值](https://es6.ruanyifeng.com/#docs/destructuring)
 * [解构赋值](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
