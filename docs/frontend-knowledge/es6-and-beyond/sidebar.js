@@ -27,6 +27,11 @@ module.exports = [
         title: 'Object',
         path: '/frontend-knowledge/es6-and-beyond/es6-object',
         collapsable: true
+      },
+      {
+        title: 'Class',
+        path: '/frontend-knowledge/es6-and-beyond/es6-class',
+        collapsable: true
       }
     ]
   }
