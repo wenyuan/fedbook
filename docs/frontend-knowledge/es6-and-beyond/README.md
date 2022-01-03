@@ -27,6 +27,7 @@ ES6+ 新特性是不能直接被所有浏览器直接识别的，需要通过 [B
 关于 ECMAScript 的知识点，主要参考：
 
 * 《[ES6 入门教程 - 阮一峰](https://es6.ruanyifeng.com/)》
+* MDN
 * 《[再学JavaScript ES(6-11)全版本语法大全](https://coding.imooc.com/class/444.html)》
 
 <div style="text-align: right">

@@ -32,6 +32,11 @@ module.exports = [
         title: 'Class',
         path: '/frontend-knowledge/es6-and-beyond/es6-class',
         collapsable: true
+      },
+      {
+        title: 'Symbol',
+        path: '/frontend-knowledge/es6-and-beyond/es6-symbol',
+        collapsable: true
       }
     ]
   }
