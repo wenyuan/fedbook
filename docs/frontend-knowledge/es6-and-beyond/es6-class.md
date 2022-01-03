@@ -166,18 +166,18 @@ let Animal = function(type) {
 }
 // 定义方法
 Animal.prototype.walk = function() {
-  console.log( `I am walking` )
+  console.log('I am walking')
 }
 // 定义静态方法
 Animal.eat = function(food) {
-  console.log( `I am eating` )
+  console.log('I am eating')
 }
 // 定义子类
 let Dog = function() {
   // 初始化父类
   Animal.call(this, 'dog')
-  this.run = function() {
-    console.log('I can run')
+  this.woof = function() {
+    console.log('Wang Wang')
   }
 }
 // 继承
@@ -192,10 +192,10 @@ class Animal {
     this.type = type
   }
   walk() {
-    console.log( `I am walking` )
+    console.log('I am walking')
   }
   static eat() {
-    console.log( `I am eating` )
+    console.log('I am eating')
   }
 }
 
@@ -203,11 +203,13 @@ class Dog extends Animal {
   constructor () {
     super('dog')
   }
-  run () {
-    console.log('I can run')
+  woof () {
+    console.log('Wang Wang')
   }
 }
 ```
+
+上面代码中，需要注意的是**子类的构造函数必须执行一次 `super` 函数，否则 JavaScript 引擎会报错**。
 
 虽然 ES6 在类的定义上仅是 ES5 定义类的语法糖，但是从开发者的角度而言，开发更有效率了，代码可阅读性大大提升。
 
