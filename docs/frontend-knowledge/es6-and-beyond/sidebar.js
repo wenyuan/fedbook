@@ -42,6 +42,11 @@ module.exports = [
         title: 'Set',
         path: '/frontend-knowledge/es6-and-beyond/es6-set',
         collapsable: true
+      },
+      {
+        title: 'Map',
+        path: '/frontend-knowledge/es6-and-beyond/es6-map',
+        collapsable: true
       }
     ]
   }
