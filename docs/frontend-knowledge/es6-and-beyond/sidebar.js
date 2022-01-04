@@ -14,17 +14,17 @@ module.exports = [
         collapsable: true
       },
       {
-        title: 'Array',
+        title: 'Array 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es6-array',
         collapsable: true
       },
       {
-        title: 'Function',
+        title: 'Function 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es6-function',
         collapsable: true
       },
       {
-        title: 'Object',
+        title: 'Object 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es6-object',
         collapsable: true
       },
