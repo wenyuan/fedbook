@@ -47,6 +47,11 @@ module.exports = [
         title: 'Map',
         path: '/frontend-knowledge/es6-and-beyond/es6-map',
         collapsable: true
+      },
+      {
+        title: 'String 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es6-string',
+        collapsable: true
       }
     ]
   }
