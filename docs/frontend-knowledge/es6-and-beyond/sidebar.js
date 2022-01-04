@@ -37,6 +37,11 @@ module.exports = [
         title: 'Symbol',
         path: '/frontend-knowledge/es6-and-beyond/es6-symbol',
         collapsable: true
+      },
+      {
+        title: 'Set',
+        path: '/frontend-knowledge/es6-and-beyond/es6-set',
+        collapsable: true
       }
     ]
   }
