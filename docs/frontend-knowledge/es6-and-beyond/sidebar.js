@@ -52,6 +52,11 @@ module.exports = [
         title: 'String 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es6-string',
         collapsable: true
+      },
+      {
+        title: 'RegExp',
+        path: '/frontend-knowledge/es6-and-beyond/es6-regexp',
+        collapsable: true
       }
     ]
   }
