@@ -6,5 +6,5 @@ Grid 网格布局虽然强大，但由于其兼容性比 Flex 更差一点，目
 
 因此这一章节先放两篇比较好的Grid 网格布局文章，等以后用到了再系统整理。
 
-* 《[CSS Grid 网格布局教程 - 阮一峰](http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)》
-* 《[Flexbox 布局完全指南(图解 Flexbox 布局详细教程)](https://www.html.cn/archives/8510)》
+* [CSS Grid 网格布局教程](http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
+* [Flexbox 布局完全指南(图解 Flexbox 布局详细教程)](https://www.html.cn/archives/8510)

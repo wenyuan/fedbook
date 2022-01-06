@@ -575,6 +575,6 @@ f2();
 ## 参考资料
 
 * 《ES6标准入门（第3版）》  
-* 《[JavaScript Visualized: Event Loop](https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif)》（很赞）
+* [JavaScript Visualized: Event Loop](https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif)（很赞）
 
 （完）

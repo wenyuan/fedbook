@@ -654,7 +654,7 @@ ele.addEventListener('click', listener.get(ele), false)
 
 ## 参考资料
 
-* 《[浅析Chrome V8引擎中的垃圾回收机制和内存泄露优化策略](https://blog.csdn.net/arv002/article/details/109818109)》（分代回收算法那块写的比我详细）
-* 《[js 内存泄漏场景、如何监控以及分析](https://github.com/woshidasusu/Doc/blob/master/面试题/浏览器/内存泄漏.md)》（如何分析内存泄漏写的比较好）
-* 《[彻底掌握js内存泄漏以及如何避免](https://juejin.cn/post/6844903917986267143)》（引用 MDN 上的例子演示了垃圾回收算法）
+* [浅析Chrome V8引擎中的垃圾回收机制和内存泄露优化策略](https://blog.csdn.net/arv002/article/details/109818109)（分代回收算法那块写的比我详细）
+* [js 内存泄漏场景、如何监控以及分析](https://github.com/woshidasusu/Doc/blob/master/面试题/浏览器/内存泄漏.md)（如何分析内存泄漏写的比较好）
+* [彻底掌握js内存泄漏以及如何避免](https://juejin.cn/post/6844903917986267143)（引用 MDN 上的例子演示了垃圾回收算法）
 * 《JavaScript 设计模式与开发实践 》（讲了「闭包会造成内存泄漏」这一说法的历史背景）
