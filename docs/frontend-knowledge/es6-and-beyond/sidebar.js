@@ -54,7 +54,7 @@ module.exports = [
         collapsable: true
       },
       {
-        title: 'RegExp',
+        title: 'RegExp 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es6-regexp',
         collapsable: true
       }
