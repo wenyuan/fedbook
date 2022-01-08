@@ -62,6 +62,11 @@ module.exports = [
         title: 'Number 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es6-number',
         collapsable: true
+      },
+      {
+        title: 'Proxy',
+        path: '/frontend-knowledge/es6-and-beyond/es6-proxy',
+        collapsable: true
       }
     ]
   }
