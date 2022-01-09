@@ -67,6 +67,11 @@ module.exports = [
         title: 'Proxy',
         path: '/frontend-knowledge/es6-and-beyond/es6-proxy',
         collapsable: true
+      },
+      {
+        title: 'Reflect',
+        path: '/frontend-knowledge/es6-and-beyond/es6-reflect',
+        collapsable: true
       }
     ]
   }
