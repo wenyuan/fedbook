@@ -190,7 +190,7 @@ Function.prototype.apply.call(Math.floor, undefined, [1.75])
 
 ### Reflect.construct()
 
-Reflect.construct() 方法的行为有点像 new 操作符 构造函数，相当于运行 new target(...args)。
+Reflect.construct() 方法的行为有点像 `new` 操作符 构造函数，相当于运行 `new target(...args)`。
 
 **语法**
 
@@ -261,7 +261,7 @@ student.name // "zhangsan"
 
 ### Reflect.deleteProperty()
 
-Reflect.deleteProperty 允许你删除一个对象上的属性。返回一个 Boolean 值表示该属性是否被成功删除。它几乎与非严格的 delete operator 相同。
+Reflect.deleteProperty() 允许你删除一个对象上的属性。返回一个 Boolean 值表示该属性是否被成功删除。它几乎与非严格的 `delete` 操作符相同。
 
 **语法**
 
@@ -384,7 +384,7 @@ Object.getOwnPropertyDescriptor("foo", 0)
 
 ### Reflect.getPrototypeOf()
 
-静态方法 Reflect.getPrototypeOf() 与 Object.getPrototypeOf() 方法是一样的。都是返回指定对象的原型（即，内部的 `[[Prototype]]` 属性的值）。
+静态方法 Reflect.getPrototypeOf() 与 Object.getPrototypeOf() 方法是一样的。都是返回指定对象的原型（即内部的 `[[Prototype]]` 属性的值）。
 
 **语法**
 
@@ -398,7 +398,7 @@ Object.getOwnPropertyDescriptor("foo", 0)
 
 ### Reflect.has()
 
-Reflect.has 用于检查一个对象是否拥有某个属性， 相当于 in 操作符
+Reflect.has() 用于检查一个对象是否拥有某个属性， 相当于 `in` 操作符。
 
 **语法**
 
@@ -427,7 +427,9 @@ Reflect.isExtensible 判断一个对象是否可扩展 （即是否能够添加�
 
 ### Reflect.ownKeys()
 
-Reflect.ownKeys 方法返回一个由目标对象自身的属性键组成的数组。它的返回值等同于 Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target))
+Reflect.ownKeys() 方法返回一个由目标对象自身的属性键组成的数组。
+
+它的返回值等同于 `Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target))`。
 
 **语法**
 
@@ -470,7 +472,7 @@ Reflect.ownKeys(obj)
 
 ### Reflect.preventExtensions()
 
-Reflect.preventExtensions 方法阻止新属性添加到对象 例如：防止将来对对象的扩展被添加到对象中)。
+Reflect.preventExtensions() 方法阻止新属性添加到对象（例如：防止将来对对象的扩展被添加到对象中）。
 
 该方法与 Object.preventExtensions() 方法一致。
 
@@ -506,7 +508,7 @@ Object.preventExtensions(1)
 
 ### Reflect.set()
 
-Reflect.set 方法允许你在对象上设置属性。它的作用是给属性赋值并且就像 property accessor 语法一样，但是它是以函数的方式。
+Reflect.set 方法允许你在对象上设置属性。它的作用是给属性赋值并且就像[属性访问器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Property_Accessors)语法一样，但是它是以函数的方式。
 
 **语法**
 
@@ -547,7 +549,7 @@ Reflect.getOwnPropertyDescriptor(obj, "undefined")
 
 ### Reflect.setPrototypeOf()
 
-Reflect.setPrototypeOf 方法改变指定对象的原型 （即，内部的 `[[Prototype]]` 属性值）
+Reflect.setPrototypeOf() 方法改变指定对象的原型（即内部的 `[[Prototype]]` 属性值）。
 
 **语法**
 
