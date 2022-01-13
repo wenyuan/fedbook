@@ -72,6 +72,11 @@ module.exports = [
         title: 'Reflect',
         path: '/frontend-knowledge/es6-and-beyond/es6-reflect',
         collapsable: true
+      },
+      {
+        title: 'Promise',
+        path: '/frontend-knowledge/es6-and-beyond/es6-promise',
+        collapsable: true
       }
     ]
   }
