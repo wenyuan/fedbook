@@ -59,14 +59,14 @@ promise.then(function(value) {
 
 这段代码创建一个 Promise 对象，定义了处理 onFulfilled 和 onRejected 的函数（handler），然后返回这个 Promise 对象。
 
-这个 Promise 对象会在变为 resolve 或者 reject 的时候分别调用相应注册的回调函数。
+这个 Promise 对象会在变为 `resolve` 或者 `reject` 的时候分别调用相应注册的回调函数。
 
 * 当 handler 返回一个正常值的时候，这个值会传递给 Promise 对象的 onFulfilled 方法。
 * 定义的 handler 中产生异常的时候，这个值则会传递给 Promise 对象的 onRejected 方法。
 
 ## Promise.prototype.catch()
 
-捕获异常是程序质量保障最基本的要求，可以使用 Promise 对象的 `catch` 方法来捕获异步操作过程中出现的任何异常。
+可以使用 Promise 对象的 `catch` 方法来捕获异步操作过程中出现的任何异常。
 
 **基本语法**
 
@@ -88,24 +88,108 @@ test().catch((e) => {
 })
 ```
 
-这个代码展示了如何使用 `catch` 捕获 Promise 对象中的异常，那么 `catch` 捕获的是 Promise 内部的 Error 还是 Reject 呢？
+::: warning
+虽然都能被 `catch` 捕获到，但不建议在 Promise 内部使用 `throw new Error()` 来触发异常，而应该使用 `reject(new Error())` 的方式来做，因为 `throw` 的方式并没有改变 Promise 的状态。
+:::
+
+## Promise.resolve()
+
+静态方法 `Promise.resolve(value)` 可以认为是 `new Promise()` 方法的快捷方式。
+
+比如下面两个写法是等价的：
 
 ```javascript
-function test() {
-  return new Promise((resolve, reject) => {
-    throw new Error('wrong')
-  })
-}
+// 写法一
+Promise.resolve(42)
 
-test().catch((e) => {
-  console.log(e.message) // wrong
+// 写法二
+new Promise(function(resolve) {
+  resolve(42)
 })
 ```
 
-这个代码对比着上个代码就能明显感受出来的，`throw Error` 和 `reject` 都触发了 `catch` 的捕获，而第一个用法中虽然也有 Error 但是它不是 throw，只是 reject 的参数是 Error 对象，换句话说 `new Error` 不会触发 `catch`，而是 `reject`。
+上面代码中的 `resolve(42)` 会让这个 Promise 对象立即进入确定（即 resolved）状态，并将 `42` 传递给后面 `then` 里所指定的 onFulfilled 函数。
 
-::: warning
-不建议在 Promise 内部使用 `throw` 来触发异常，而是使用 `reject(new Error())` 的方式来做，因为 `throw` 的方式并没有改变 Promise 的状态。
-:::
+方法 `Promise.resolve(value)` 的返回值也是一个 Promise 对象，所以我们可以像下面那样接着对其返回值进行 `.then` 调用：
 
+```javascript
+Promise.resolve(42).then(function(value) {
+  console.log(value)
+})
+```
 
+这种简写方式在进行 Promise 对象的初始化或者编写测试代码的时候都非常方便。
+
+## Promise.reject()
+
+`Promise.reject(error)` 是和 `Promise.resolve(value)` 类似的静态方法，是 `new Promise()` 方法的快捷方式。
+
+下面两个写法是等价的：
+
+```javascript
+// 写法一
+Promise.reject(new Error("出错了"))
+
+// 写法二
+new Promise(function(resolve, reject) {
+  reject(new Error('出错了'))
+})
+```
+
+这段代码的功能是调用该 Promise 对象通过 `.then` 指定的 onRejected 函数，并将错误（Error）对象传递给这个 onRejected 函数。
+
+```javascript
+Promise.reject(new Error('BOOM!'))
+```
+
+## Promise.all()
+
+**基本语法**
+
+> Promise.all(promiseArray)
+
+**示例**
+
+```javascript
+var p1 = Promise.resolve(1)
+var p2 = Promise.resolve(2)
+var p3 = Promise.resolve(3)
+Promise.all([p1, p2, p3]).then(function(results) {
+  console.log(results) // [1, 2, 3]
+})
+```
+
+`Promise.all()` 生成并返回一个新的 Promise 对象，所以它可以使用 Promise 实例的所有方法。参数传递 promise 数组中所有的 Promise 对象都变为 `resolve` 的时候，该方法才会返回，新创建的 Promise 则会使用这些 promise 的值。
+
+如果参数中的任何一个 promise 为 `reject` 的话，则整个 Promise.all 调用会立即终止，并返回一个 `reject` 的新的 Promise 对象。
+
+由于参数数组中的每个元素都是由 Promise.resolve 包装（wrap）的，所以 Promise.all 可以处理不同类型的 Promise 对象。
+
+## Promise.race()
+
+**基本语法**
+
+> Promise.race(promiseArray)
+
+**示例**
+
+```javascript
+var p1 = Promise.resolve(1)
+var p2 = Promise.resolve(2)
+var p3 = Promise.resolve(3)
+Promise.race([p1, p2, p3]).then(function(value) {
+  console.log(value) // 1
+})
+```
+
+`Promise.race()` 生成并返回一个新的 Promise 对象。
+
+参数 promise 数组中的任何一个 Promise 对象如果变为 `resolve` 或者 `reject` 的话，该函数就会返回，并使用这个 Promise 对象的值进行 `resolve` 或者 `reject`。
+
+## 参考文档
+
+* [Promise 对象](https://es6.ruanyifeng.com/#docs/promise)
+* [Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* [Fetch](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
+
+（完）
