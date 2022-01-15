@@ -77,6 +77,11 @@ module.exports = [
         title: 'Promise',
         path: '/frontend-knowledge/es6-and-beyond/es6-promise',
         collapsable: true
+      },
+      {
+        title: 'Generator',
+        path: '/frontend-knowledge/es6-and-beyond/es6-generator',
+        collapsable: true
       }
     ]
   }
