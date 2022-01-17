@@ -82,6 +82,11 @@ module.exports = [
         title: 'Generator',
         path: '/frontend-knowledge/es6-and-beyond/es6-generator',
         collapsable: true
+      },
+      {
+        title: 'Module',
+        path: '/frontend-knowledge/es6-and-beyond/es6-module',
+        collapsable: true
       }
     ]
   }
