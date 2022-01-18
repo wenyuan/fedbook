@@ -89,5 +89,16 @@ module.exports = [
         collapsable: true
       }
     ]
+  },
+  {
+    title: 'ECMAScript2016(ES7)',
+    collapsable: true,
+    children: [
+      {
+        title: 'Array.prototype.includes()',
+        path: '/frontend-knowledge/es6-and-beyond/es7-array',
+        collapsable: true
+      },
+    ]
   }
 ]
