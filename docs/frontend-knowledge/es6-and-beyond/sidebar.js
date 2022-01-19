@@ -114,6 +114,11 @@ module.exports = [
         title: 'async / await',
         path: '/frontend-knowledge/es6-and-beyond/es8-async-await',
         collapsable: true
+      },
+      {
+        title: 'Object 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es8-object',
+        collapsable: true
       }
     ]
   }
