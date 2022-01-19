@@ -99,6 +99,11 @@ module.exports = [
         path: '/frontend-knowledge/es6-and-beyond/es7-array',
         collapsable: true
       },
+      {
+        title: '幂运算符',
+        path: '/frontend-knowledge/es6-and-beyond/es7-pow',
+        collapsable: true
+      }
     ]
   }
 ]
