@@ -105,5 +105,16 @@ module.exports = [
         collapsable: true
       }
     ]
+  },
+  {
+    title: 'ECMAScript2017(ES8)',
+    collapsable: true,
+    children: [
+      {
+        title: 'async / await',
+        path: '/frontend-knowledge/es6-and-beyond/es8-async-await',
+        collapsable: true
+      }
+    ]
   }
 ]
