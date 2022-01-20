@@ -27,6 +27,12 @@ module.exports = [
           { text: 'TypeScript', link: '/frontend-knowledge/typescript/' },
           { text: '浏览器工作原理', link: '/frontend-knowledge/browser/' }
         ]
+      },
+      {
+        text: '手写',
+        items: [
+          { text: 'JS 手写函数', link: '/frontend-knowledge/javascript-handwritten/' }
+        ]
       }
     ]
   },

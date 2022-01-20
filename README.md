@@ -91,7 +91,7 @@
   * [Grid 布局](https://fedbook.cn/frontend-knowledge/css/grid/)
   * 未完结，待更新
 * [JavaScript](https://fedbook.cn/frontend-knowledge/javascript/)
-  * JavaScript 核心
+  * **JavaScript 核心**
   * [数据类型](https://fedbook.cn/frontend-knowledge/javascript/data-types/)
   * [栈空间和堆空间](https://fedbook.cn/frontend-knowledge/javascript/stack-and-heap/)
   * [执行上下文和调用栈](https://fedbook.cn/frontend-knowledge/javascript/execution-context/)
@@ -104,7 +104,7 @@
   * [事件循环机制](https://fedbook.cn/frontend-knowledge/javascript/event-loop/)
   * [浅克隆与深克隆](https://fedbook.cn/frontend-knowledge/javascript/shallow-clone-and-deep-clone/)
   * [函数柯里化](https://fedbook.cn/frontend-knowledge/javascript/function-currying/)
-  * JavaScript 专题
+  * **JavaScript 专题**
   * [数组遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/array-iteration/)
   * [对象遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/object-iteration/)
   * [继承的八种方式](https://fedbook.cn/frontend-knowledge/javascript/inheritance/)
@@ -130,6 +130,18 @@
   * [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)
   * [渲染引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-rendering-process/)
   * [V8 引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-v8-engine/)
+* [JS 手写函数](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
+  * [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
+  * [实现节流函数（throttle）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现节流函数-throttle/)
+  * [实现浅克隆（shallowClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现浅克隆-shallow-clone/)
+  * [实现深克隆（deepClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现深克隆-deep-clone/)
+  * [实现 instanceof 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现instanceof运算符/)
+  * [实现 Object.create 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现object-create方法/)
+  * [实现 new 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现new运算符/)
+  * [实现 call 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现call方法/)
+  * [实现 apply 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现apply方法/)
+  * [实现 bind 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现bind方法/)
+  * 未完结，待更新
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
@@ -163,11 +175,11 @@
 ### 必知必会
 
 * [Git](https://fedbook.cn/basic-skills/git/)
-  * Git 知识整理
+  * **Git 知识整理**
   * [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
   * [git rebase 的两种用法](https://fedbook.cn/basic-skills/git/git-rebase/)
   * [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
-  * Git 常见问题
+  * **Git 常见问题**
   * [clone 速度过慢影响效率](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
   * [commit 信息写错想要修改](https://fedbook.cn/basic-skills/git/solution-to-commit-info-mistake/)
   * [刚刚 commit 的代码，发现写错了](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
@@ -179,7 +191,7 @@
   * [如何迁移仓库并保留 commits 记录](https://fedbook.cn/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits/)
   * [如何参与开源项目 - 提交 PR 与更新 Fork 分支](https://fedbook.cn/basic-skills/git/solution-to-participate-in-open-source-projects/)
 * [Nginx](https://fedbook.cn/basic-skills/nginx/)
-  * Nginx 用法整理
+  * **Nginx 用法整理**
   * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
   * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
   * [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
@@ -193,7 +205,7 @@
   * [Nginx 页面安全认证](https://fedbook.cn/basic-skills/nginx/ngx-http-auth-basic-module/)
   * [Nginx 部署 Https 安全认证](https://fedbook.cn/basic-skills/nginx/deploy-https-security-auth/)
   * [Nginx 限流常用模块](https://fedbook.cn/basic-skills/nginx/traffic-limiting-modules/)
-  * Nginx 部署方案
+  * **Nginx 部署方案**
   * [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
   * 未完结，待更新
 
@@ -211,18 +223,6 @@
 * [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
   * [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
   * 抽空学习，不占用主学习进程
-* [JavaScript 手写函数](https://fedbook.cn/handwritten/javascript/)
-  * [实现防抖函数（debounce）](https://fedbook.cn/handwritten/javascript/实现防抖函数-debounce/)
-  * [实现节流函数（throttle）](https://fedbook.cn/handwritten/javascript/实现节流函数-throttle/)
-  * [实现浅克隆（shallowClone）](https://fedbook.cn/handwritten/javascript/实现浅克隆-shallow-clone/)
-  * [实现深克隆（deepClone）](https://fedbook.cn/handwritten/javascript/实现深克隆-deep-clone/)
-  * [实现 instanceof 运算符](https://fedbook.cn/handwritten/javascript/实现instanceof运算符/)
-  * [实现 Object.create 方法](https://fedbook.cn/handwritten/javascript/实现object-create方法/)
-  * [实现 new 运算符](https://fedbook.cn/handwritten/javascript/实现new运算符/)
-  * [实现 call 方法](https://fedbook.cn/handwritten/javascript/实现call方法/)
-  * [实现 apply 方法](https://fedbook.cn/handwritten/javascript/实现apply方法/)
-  * [实现 bind 方法](https://fedbook.cn/handwritten/javascript/实现bind方法/)
-  * 未完结，待更新
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
