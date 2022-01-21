@@ -75,6 +75,12 @@ module.exports = [
       { text: 'Python', link: '/backend-knowledge/python/' }
     ]
   },
+  {
+    text: '项目相关',
+    items: [
+      { text: '解决方案', link: '/project/solution/' }
+    ]
+  },
   // {
   //   text: '面试相关',
   //   items: [
