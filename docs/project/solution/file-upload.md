@@ -21,10 +21,6 @@
 * 借助 http 的可并发性，同时上传多个切片（比起传一个大文件可以减少上传时间）
 * 等监听到所有请求都成功发出去以后，再给服务端发出一个合并的信号
 
-::: tip 注意点
-由于是并行上传，传输到服务端的顺序可能会发生变化，所以我们还需要给每个切片记录顺序
-:::
-
 #### 断点续传
 
 * 为每一个文件切割块添加不同的标识
@@ -42,7 +38,7 @@
 
 ### 上传控件
 
-首先创建上传控件和进度条控件，从使用体验角度考虑，采取手动上传的方式，而不是默认的提交文件立刻上传。
+首先创建上传控件和进度条控件，因为要自定义一个上传的实现，所以 `el-upload` 组件的 `auto-upload` 要设定为 `false`；`action` 为必选参数，此处可以不填值。
 
 ::: tip
 ElementUI 的上传组件，默认是基于文件流的：
@@ -50,6 +46,8 @@ ElementUI 的上传组件，默认是基于文件流的：
 * 数据格式：form-data
 * 传递的数据： file 文件流信息；filename 文件名字
 :::
+
+代码如下：
 
 ```vue
 <template>
@@ -81,14 +79,17 @@ export default {
   data() {
     return {
       file: null,
+      chunkList: [],
+      hash: '',
+      percentCount: 0,
       percent: 0,
-      upload: true,
-      percentCount: 0
+      upload: true
     }
   },
   methods: {
     // 提交文件后触发
     handleChange(file) {
+      Object.assign(this.$data, this.$options.data()) // 将 data 重置为初始状态
       this.file = file
     },
     // 点击上传按钮后触发
@@ -136,15 +137,17 @@ export default {
 
 ### 转二进制
 
-将文件变成二进制，方便后续分片。
+转成 ArrayBuffer 是因为后面要用 SparkMD5 这个库生成 hash 值，对文件进行命名。
 
 JS 常见的二进制格式有 Blob，ArrayBuffer 和 Buffer，如果对二进制流不了解，可以查看[这篇文章](https://www.cnblogs.com/penghuwan/p/12053775.html)。
 
 这里采用 ArrayBuffer，并且因为解析过程可能会比较久，所以我们采用 promise 异步处理的方式。
 
+代码如下：
+
 ```javascript
-// 在 ElementUI 中, 自带方法中的 file 并不是文件本身
-// 以下所有的 fileObj = file.raw, 即待上传的文件对象
+// 在 ElementUI 中, 自带方法中的 file 并不是 File 对象
+// 要获取 File 对象需要通过 file.raw, 以下所有的 fileObj = file.raw
 fileToBuffer(fileObj) {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader()
@@ -163,25 +166,20 @@ fileToBuffer(fileObj) {
 
 接下来将大文件按固定大小（10M）进行切片，就像操作数组一样（注意此处同时声明了多个常量）。
 
-当然了，我们在拆分切片大文件的时候，还要考虑大文件的合并，所以我们的拆分必须有规律，比如 1-1，1-2，1-3 ，1-5 这样的，到时候服务端拿到切片数据，当接收到合并信号的时候，就可以将这些切片排序合并了。
+我们在拆分切片大文件的时候，还要考虑大文件的合并，所以我们的拆分必须有规律，比如 `1_1`，`1_2`，`1_3`，`1_5` 这样的，到时候服务端拿到切片数据，当接收到合并信号的时候，就可以将这些切片排序合并了。
 
 同时，为了避免同一个文件（改名字）多次上传，我们引入了 spark-md5，它能根据具体文件内容，生成 hash 值。
 
-这么一来，为每一个切片命名的时候，也就成了 hash-1，hash-2 这种形式。
+这么一来，为每一个切片命名的时候，也就成了 `hash_1`，`hash_2` 这种形式。
+
+> 切割文件用到的是 [`Blob.slice()`](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/slice)。
+
+代码如下：
 
 ```javascript
-const SIZE = 10 * 1024 * 1024; // 切片大小
+const SIZE = 10 * 1024 * 1024 // 切片大小
 
-createChunks(fileObj, size = SIZE) {
-  // 获取文件并转成 ArrayBuffer 对象
-  const fileObj = file.raw
-  let buffer
-  try {
-    buffer = await this.fileToBuffer(fileObj)
-  } catch (e) {
-    console.log(e)
-  }
-
+createChunks(buffer, fileObj, chunkSize = SIZE) {
   // 声明几个变量, 后面切分文件要用
   const chunkList = [] // 保存所有切片的数组
   const chunkListLength = Math.ceil(fileObj.size / chunkSize) // 计算总共多个切片
@@ -193,138 +191,145 @@ createChunks(fileObj, size = SIZE) {
   const hash = spark.end()
   
   // 生成切片, 这里后端要求传递的参数为字节数据块(chunk)和每个数据块的文件名(fileName)
-  let curChunk = 0 // 切片时的初始位置
+  let cur = 0 // 切片时的初始位置
   for (let i = 0; i < chunkListLength; i++) {
     const item = {
-      chunk: fileObj.slice(curChunk, curChunk + chunkSize),
+      chunk: fileObj.slice(cur, cur + chunkSize),
       fileName: `${hash}_${i}.${suffix}` // 文件名规则按照 hash_1.jpg 命名
     }
-    curChunk += chunkSize
+    cur += chunkSize
     chunkList.push(item)
   }
-  this.chunkList = chunkList // sendRequest 要用到
-  this.hash = hash           // sendRequest 要用到
-  this.uploadChunks()
+  console.log('切片完后的数组：', chunkList)
+  this.chunkList = chunkList // uploadChunks 要用到
+  this.hash = hash           // uploadChunks 要用到
 }
 ```
 
 ::: tip
-分割大文件的时候，一般可以采用「定切片数量」和「定切片大小」两种方式，这里采用定切片大小的方式，规定每个切片 10MB，也就是说 100 MB 的文件会被分成 10 个切片。
+分割大文件的时候，一般可以采用「定切片数量」和「定切片大小」两种方式。
+
+为了避免由于 JS 使用的 IEEE754 二进制浮点数算术标准可能导致的误差，这里采用定切片大小的方式，规定每个切片 10MB，也就是说 100 MB 的文件会被分成 10 个切片。
 :::
 
-### 并行发送切片
+### 发送请求
 
-随后调用 `uploadChunks` 上传所有的文件切片，将文件切片、切片 hash，以及文件名放入 FormData 中，再使用 axios 发送 ajax 请求，最后调用 `Promise.all()` 并发上传所有的切片。
+上传切片的请求可以是并行的或是串行的，这里选择串行发送。每个切片都新建一个请求，为了后面能实现断点续传，将请求封装到函数 `fn` 里，用一个数组 `requestList` 来保存请求集合，然后封装一个 `send` 函数，用于请求发送，这样一旦按下暂停键，可以方便的终止上传。
 
-```vue
-<script>
-import axios from 'axios'
+切片发送完成后，何时合并它们呢，一般有两种思路：
 
-const BaseUrl = 'http://localhost:8080'
-const SIZE = 10 * 1024 * 1024; // 切片大小
+* 前端在每个切片中都携带切片最大数量的信息，当服务端接受到这个数量的切片时自动合并
+* 前端额外发一个请求，主动通知服务端进行合并，服务端接受到这个请求时主动合并切片
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      file: null,
-      fileChunkList: []
+这里采用第二种方式，即前端主动通知服务端进行合并。为此需要再发送一个 get 请求并把文件的 hash 值传给服务器，我们定义一个 `complete` 方法来实现。
+
+代码如下：
+
+```javascript
+const BaseUrl = 'http://localhost:7777'
+
+uploadChunks() {
+  const requestList = [] // 请求集合
+  this.chunkList.forEach((item, index) => {
+    const fn = () => {
+      const formData = new FormData()
+      formData.append('chunk', item.chunk)
+      formData.append('filename', item.fileName)
+      return axios({
+        url: BaseUrl + '/upload/',
+        method: 'post',
+        headers: { 'Content-Type': 'multipart/form-data' },
+        data: formData
+      }).then(res => {
+        if (res.data.code === 0) { // 成功
+          if (this.percentCount === 0) { // 避免上传成功后会删除切片改变 chunkList 的长度影响到 percentCount 的值
+            this.percentCount = 100 / this.chunkList.length
+          }
+          this.percent += this.percentCount // 改变进度
+          this.chunkList.splice(index, 1)   // 一旦上传成功就删除这一个 chunk, 方便断点续传
+        }
+      }).catch(error => {
+        console.log('上传失败：', error)
+        this.$message.error('上传失败，请检查服务端是否正常')
+      })
     }
-  },
-  methods: {
-    handleFileChange(e) {},
-    async handleUpload() {
-      if (!this.file) return
-      // 创建切片
-      // ...
-      // 上传切片
-      await this.uploadChunks()
-    },
-    // 生成文件切片
-    createFileChunk (file, size = SIZE) {},
-    // 并行上传切片
-    async uploadChunks() {
-      const requestList = this.fileChunkList
-        .map(({ chunk, hash }) => {
-          const formData = new FormData()
-          formData.append("chunk", chunk)
-          formData.append("hash", hash)
-          formData.append("filename", this.file.name)
-          return { formData } // TODO...为什么要加{}
+    requestList.push(fn)
+  })
+
+  let i = 0 // 记录发送的请求个数
+  // 文件切片全部发送完毕后, 需要请求 merge 接口, 把文件的 hash 传递给服务器
+  const complete = () => {
+    axios({
+      url: BaseUrl + '/merge/',
+      method: 'get',
+      params: { hash: this.hash }
+    }).then(res => {
+      if (res.data.code === 0) { // 请求发送成功
+        this.$message({
+          message: '恭喜你，文件上传成功',
+          type: 'success'
         })
-        .map(async ({ formData }) => {
-          axios.post({
-            url: BaseUrl + "/upload/",
-            data: formData,
-            headers: {"Content-Type": "multipart/form-data"}
-          })
-        })
-      await Promise.all(requestList); // 并发切片
-    }
+      }
+    })
   }
+  const send = async () => {
+    if (i >= requestList.length) {
+      // 全部发送完毕
+      complete()
+      return
+    }
+    await requestList[i]()
+    i++
+    send()
+  }
+  send() // 发送请求
 }
-</script>
 ```
 
 ::: tip
 这里需要注意的就是，我们发出去的数据采用的是 FormData 数据格式。（[为什么](https://segmentfault.com/q/1010000025217412)）
 :::
 
-### 发送合并请求
+### 断点续传
 
-服务端接收到一个个切片后，何时合并它们呢？
+暂停按钮文字的处理，用了一个过滤器，如果 `upload` 值为 `true` 则显示「暂停」，否则显示「继续」：
 
-一般有两种思路：
-
-* 前端在每个切片中都携带切片最大数量的信息，当服务端接受到这个数量的切片时自动合并
-* 前端额外发一个请求，主动通知服务端进行合并，服务端接受到这个请求时主动合并切片
-
-这里采用第二种方式，即前端主动通知服务端进行合并。
-
-```vue
-<script>
-import axios from 'axios'
-
-const BaseUrl = 'http://localhost:8080'
-const SIZE = 10 * 1024 * 1024; // 切片大小
-
-export default {
-  name: 'App',
-  data() {
-    return {
-      file: null,
-      fileChunkList: []
-    }
-  },
-  methods: {
-    handleFileChange(e) {},
-    async handleUpload() {
-      if (!this.file) return
-      // 创建切片
-      // 上传切片
-    },
-    // 生成文件切片
-    createFileChunk (file, size = SIZE) {},
-    // 并行上传切片
-    async uploadChunks() {
-      const requestList = this.fileChunkList.map().map() // 这里为了减少篇幅, 省略 .map() 里面的处理
-      await Promise.all(requestList) // 并发切片
-      // 合并切片
-      await this.mergeRequest()
-    },
-    // 发送合并通知
-    async mergeRequest() {
-      await axios.post({
-        url: BaseUrl + "/merge/",
-        data: JSON.stringify({
-          filename: this.file.name
-        }),
-        headers: {"Content-Type": "application/json"}
-      })
-    }
+```javascript
+filters: {
+  btnTextFilter(val) {
+    return val ? '暂停' : '继续'
   }
 }
-</script>
+```
+
+当按下暂停按钮，触发 `handleClickBtn()` 方法：
+
+```javascript
+handleClickBtn() {
+  this.upload = !this.upload
+  // 如果不暂停则继续上传
+  if (this.upload) this.uploadChunks()
+}
+```
+
+同时需要在 `send()` 方法里增加判断是否暂停的逻辑：只要 `upload` 这个变量为 `false` 就不会继续上传了。
+
+为了在暂停完后可以继续发送，需要在每次成功发送一个切片后将这个切片从 `chunkList` 数组里删除 `this.chunkList.splice(index, 1)`（所以前面在写上传接口的时候有了这么一行代码）。
+
+代码中增加一行如下：
+
+```javascript {2}
+const send = async () => {
+  if (!this.upload) return
+  if (i >= requestList.length) {
+    // 全部发送完毕
+    complete()
+    return
+  }
+  await requestList[i]()
+  i++
+  send()
+}
 ```
 
 ## 后端代码
@@ -343,7 +348,7 @@ server.on("request", async (req, res) => {
     res.end()
     return
   }
-});
+})
 
 server.listen(5000, () => console.log("正在监听 5000 端口"))
 ```
