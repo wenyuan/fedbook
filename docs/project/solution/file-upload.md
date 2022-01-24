@@ -98,7 +98,7 @@ export default {
     fileToBuffer() {
     },
     // 生成文件切片
-    createFileChunk() {
+    createChunks() {
     },
     // 上传文件切片
     uploadChunks() {
@@ -134,51 +134,83 @@ export default {
 </style>
 ```
 
-### 创建切片
+### 转二进制
 
-接下来将大文件进行切片：
+将文件变成二进制，方便后续分片。
 
-```vue
-<script>
-const SIZE = 10 * 1024 * 1024; // 切片大小
+JS 常见的二进制格式有 Blob，ArrayBuffer 和 Buffer，如果对二进制流不了解，可以查看[这篇文章](https://www.cnblogs.com/penghuwan/p/12053775.html)。
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      file: null,
-      fileChunkList: []
+这里采用 ArrayBuffer，并且因为解析过程可能会比较久，所以我们采用 promise 异步处理的方式。
+
+```javascript
+// 在 ElementUI 中, 自带方法中的 file 并不是文件本身
+// 以下所有的 fileObj = file.raw, 即待上传的文件对象
+fileToBuffer(fileObj) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader()
+    fileReader.onload = event => {
+      resolve(event.target.result)
     }
-  },
-  methods: {
-    handleFileChange(e) {},
-    async handleUpload() {
-      if (!this.file) return
-      // 创建切片
-      const fileChunkList = this.createFileChunk(this.file)
-      this.fileChunkList = fileChunkList.map(({ file }, idx)=>{
-        return { chunk: file, hash: this.file.name + '-' + idx } 
-      })
-      // TODO...上传切片
-    },
-    // 生成文件切片
-    createFileChunk (file, size = SIZE) {
-      const fileChunkList = []
-      let cur = 0
-      while (cur < file.size) {
-        fileChunkList.push({ file: file.slice(cur, cur+size) })
-        cur += size
-      }
-      return fileChunkList
+    fileReader.readAsArrayBuffer(fileObj)
+    fileReader.onerror = () => {
+      reject(new Error('转换文件格式发生错误'))
     }
-  }
+  })
 }
-</script>
 ```
 
-当点击上传按钮后，调用 `createFileChunk` 将文件切片。一般可以采用「定切片数量」和「定切片大小」两种方式，这里采用定切片大小的方式，规定每个切片 10MB，也就是说 100 MB 的文件会被分成 10 个切片。
+### 创建切片
 
-在生成文件切片时，需要给每个切片一个标识作为 hash，这里暂时使用`文件名 + 下标`，这样后端可以知道当前切片是第几个切片，在之后合并切片时需要。
+接下来将大文件按固定大小（10M）进行切片，就像操作数组一样（注意此处同时声明了多个常量）。
+
+当然了，我们在拆分切片大文件的时候，还要考虑大文件的合并，所以我们的拆分必须有规律，比如 1-1，1-2，1-3 ，1-5 这样的，到时候服务端拿到切片数据，当接收到合并信号的时候，就可以将这些切片排序合并了。
+
+同时，为了避免同一个文件（改名字）多次上传，我们引入了 spark-md5，它能根据具体文件内容，生成 hash 值。
+
+这么一来，为每一个切片命名的时候，也就成了 hash-1，hash-2 这种形式。
+
+```javascript
+const SIZE = 10 * 1024 * 1024; // 切片大小
+
+createChunks(fileObj, size = SIZE) {
+  // 获取文件并转成 ArrayBuffer 对象
+  const fileObj = file.raw
+  let buffer
+  try {
+    buffer = await this.fileToBuffer(fileObj)
+  } catch (e) {
+    console.log(e)
+  }
+
+  // 声明几个变量, 后面切分文件要用
+  const chunkList = [] // 保存所有切片的数组
+  const chunkListLength = Math.ceil(fileObj.size / chunkSize) // 计算总共多个切片
+  const suffix = /\.([0-9A-z]+)$/.exec(fileObj.name)[1] // 文件后缀名(文件格式)
+
+  // 根据文件内容生成 hash 值
+  const spark = new SparkMD5.ArrayBuffer()
+  spark.append(buffer)
+  const hash = spark.end()
+  
+  // 生成切片, 这里后端要求传递的参数为字节数据块(chunk)和每个数据块的文件名(fileName)
+  let curChunk = 0 // 切片时的初始位置
+  for (let i = 0; i < chunkListLength; i++) {
+    const item = {
+      chunk: fileObj.slice(curChunk, curChunk + chunkSize),
+      fileName: `${hash}_${i}.${suffix}` // 文件名规则按照 hash_1.jpg 命名
+    }
+    curChunk += chunkSize
+    chunkList.push(item)
+  }
+  this.chunkList = chunkList // sendRequest 要用到
+  this.hash = hash           // sendRequest 要用到
+  this.uploadChunks()
+}
+```
+
+::: tip
+分割大文件的时候，一般可以采用「定切片数量」和「定切片大小」两种方式，这里采用定切片大小的方式，规定每个切片 10MB，也就是说 100 MB 的文件会被分成 10 个切片。
+:::
 
 ### 并行发送切片
 
