@@ -6,7 +6,7 @@
 
 本文将从零搭建前端和服务端，实现一个大文件分片上传和断点续传的小案例。
 
-* 前端：Vue.js、Element-Ui
+* 前端：Vue.js、Element-Ui、Axios
 * 后端：Node.js 
 * 实例代码仓库：[file-upload](https://github.com/wenyuan/file-upload)
 
@@ -226,17 +226,18 @@ createChunks(buffer, fileObj, chunkSize = SIZE) {
 代码如下：
 
 ```javascript
-const BaseUrl = 'http://localhost:7777'
+const BaseUrl = 'http://localhost:5000'
 
 uploadChunks() {
   const requestList = [] // 请求集合
   this.chunkList.forEach((item, index) => {
     const fn = () => {
       const formData = new FormData()
+      formData.append('hash', this.hash)
       formData.append('chunk', item.chunk)
       formData.append('filename', item.fileName)
       return axios({
-        url: BaseUrl + '/upload/',
+        url: BaseUrl + '/api/upload/',
         method: 'post',
         headers: { 'Content-Type': 'multipart/form-data' },
         data: formData
@@ -260,14 +261,19 @@ uploadChunks() {
   // 文件切片全部发送完毕后, 需要请求 merge 接口, 把文件的 hash 传递给服务器
   const complete = () => {
     axios({
-      url: BaseUrl + '/merge/',
-      method: 'get',
-      params: { hash: this.hash }
+      url: BaseUrl + '/api/merge/',
+      method: 'post',
+      data: { hash: this.hash, filename: this.file.name, size: this.chunkList.length}
     }).then(res => {
       if (res.data.code === 0) { // 请求发送成功
         this.$message({
-          message: '恭喜你，文件上传成功',
+          message: res.data.message,
           type: 'success'
+        })
+      } else {
+        this.$message({
+          message: res.data.message,
+          type: 'error'
         })
       }
     })
@@ -334,162 +340,45 @@ const send = async () => {
 
 ## 后端代码
 
-简单使用 http 模块搭建服务端。
+简单使用 http 模块搭建服务端，主要实现两个接口的处理逻辑：
 
-```javascript
-const http = require("http")
-const server = http.createServer()
+* 上传切片（`/api/upload/`）
+* 合并切片（`/api/merge/`）
 
-server.on("request", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*")
-  res.setHeader("Access-Control-Allow-Headers", "*")
-  if (req.method === "OPTIONS") {
-    res.status = 200
-    res.end()
-    return
-  }
-})
+代码比较简单，主要是一些第三方和内置模块的使用，关键的地方加了一些注释，参见 [file-upload/backend/](https://github.com/wenyuan/file-upload/tree/main/backend)。
 
-server.listen(5000, () => console.log("正在监听 5000 端口"))
-```
+## 问题总结
 
-### 接受切片
+当前的例子，基于前端大文件分片上传和断点续传的场景，总结了实现思路，并用代码进行了简单的实现。
 
-使用 `multiparty` 包处理前端传来的 FormData。
+如果是在复杂的生产环境中，可能会有更多的问题需要考虑，下面是我能想到的一些以及思路：
 
-在 `multiparty.parse` 的回调中，`files` 参数保存了 FormData 中文件，`fields` 参数保存了 FormData 中非文件的字段。
+* 断网（或者电脑重启）后，再次选择文件，如何续传？
 
-```javascript
-const http = require("http");
-const path = require("path");
-const fse = require("fs-extra");
-const multiparty = require("multiparty");
+> 思路：前端把已经上传的信息存在 Local Storage 里，或者向后端请求接口去获得，更偏向于让后端来存这个信息。
 
-const server = http.createServer();
-const UPLOAD_DIR = path.resolve(__dirname, "..", "target"); // 大文件存储目录
+* 基于上面的问题，如何判别新的上次文件，是新建上传还是续传文件？
 
-server.on("request", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  if (req.method === "OPTIONS") {
-    res.status = 200;
-    res.end();
-    return;
-  }
+> 思路：根据 SparkMD5 生成的 hash 来判断（这个 hash 值是依据文件内容来的）。
 
-  const multipart = new multiparty.Form();
+* 多人同时上传同一文件冲突、换电脑之后再次上传同一文件处理。
 
-  multipart.parse(req, async (err, fields, files) => {
-    if (err) {
-      return;
-    }
-    const [chunk] = files.chunk;
-    const [hash] = fields.hash;
-    const [filename] = fields.filename;
-    const chunkDir = path.resolve(UPLOAD_DIR, filename);
+> 思路：多人上传可以考虑用用户 token 来区分，或者从生成浏览器唯一 id 的思路出发，id 结合文件 hash 来标识这个文件。
 
-   // 切片目录不存在，创建切片目录
-    if (!fse.existsSync(chunkDir)) {
-      await fse.mkdirs(chunkDir);
-    }
+* 更大的文件（比如 100G）上传时，计算 MD5 切片时会遇到资源不够用的问题，浏览器会卡死。
 
-      // fs-extra 专用方法，类似 fs.rename 并且跨平台
-      // fs-extra 的 rename 方法 windows 平台会有权限问题
-      // https://github.com/meteor/meteor/issues/7852#issuecomment-255767835
-      await fse.move(chunk.path, `${chunkDir}/${hash}`);
-    res.end("received file chunk");
-  });
-});
+> JS 单线程逻辑异步的效果不会很明显，整个过程（计算 Md5 - 获取切片 - 上传切片 - 文件合并）可以用 worker api，开多线程调用 CPU 另外的核去做，主线程只负责接收 Message，这样性能和体验应该会好很多。但因为 V8 对内存的限制，并没有完美的解决方案。
 
-server.listen(5000, () => console.log("正在监听 5000 端口"));
-```
+* 多文件上传的优化思路
 
-查看 multiparty 处理后的 chunk 对象，path 是存储临时文件的路径，size 是临时文件大小，在 multiparty 文档中提到可以使用 fs.rename(由于我用的是 fs-extra，它的 rename 方法 windows 平台权限问题，所以换成了 fse.move) 移动临时文件，即移动文件切片
+> 大文件用 worker 切片保证线程不卡，但多个大文件内存肯定不够用，所以只能尽可能优化。
 
-在接受文件切片时，需要先创建存储切片的文件夹，由于前端在发送每个切片时额外携带了唯一值 hash，所以以 hash 作为文件名，将切片从临时路径移动切片文件夹中，最后的结果如下：
+## 不错的项目
 
-图片
+实际业务中，可能对大文件上传有更细化的需求，并且需要兼容和考虑很多种情况，因此可以借鉴现成的轮子，经过调研，我发现了几个不错的项目：
 
-### 合并切片
+* [vue-simple-uploader](https://github.com/simple-uploader/vue-uploader)
+* [file-chunk](https://github.com/yangrds/file-chunk)
+* [webuploader](https://github.com/fex-team/webuploader)
 
-在接收到前端发送的合并请求后，服务端将文件夹下的所有切片进行合并。
-
-```javascript
-const http = require("http");
-const path = require("path");
-const fse = require("fs-extra");
-
-const server = http.createServer();
-const UPLOAD_DIR = path.resolve(__dirname, "..", "target"); // 大文件存储目录
-
-const resolvePost = req =>
-   new Promise(resolve => {
-     let chunk = "";
-     req.on("data", data => {
-       chunk += data;
-     });
-     req.on("end", () => {
-       resolve(JSON.parse(chunk));
-     });
-   });
-
- const pipeStream = (path, writeStream) =>
-  new Promise(resolve => {
-    const readStream = fse.createReadStream(path);
-    readStream.on("end", () => {
-      fse.unlinkSync(path);
-      resolve();
-    });
-    readStream.pipe(writeStream);
-  });
-
-// 合并切片
- const mergeFileChunk = async (filePath, filename, size) => {
-  const chunkDir = path.resolve(UPLOAD_DIR, filename);
-  const chunkPaths = await fse.readdir(chunkDir);
-  // 根据切片下标进行排序
-  // 否则直接读取目录的获得的顺序可能会错乱
-  chunkPaths.sort((a, b) => a.split("-")[1] - b.split("-")[1]);
-  await Promise.all(
-    chunkPaths.map((chunkPath, index) =>
-      pipeStream(
-        path.resolve(chunkDir, chunkPath),
-        // 指定位置创建可写流
-        fse.createWriteStream(filePath, {
-          start: index * size,
-          end: (index + 1) * size
-        })
-      )
-    )
-  );
-  fse.rmdirSync(chunkDir); // 合并后删除保存切片的目录
-};
-
-server.on("request", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  if (req.method === "OPTIONS") {
-    res.status = 200;
-    res.end();
-    return;
-  }
-
-   if (req.url === "/merge") {
-     const data = await resolvePost(req);
-     const { filename,size } = data;
-     const filePath = path.resolve(UPLOAD_DIR, `${filename}`);
-     await mergeFileChunk(filePath, filename);
-     res.end(
-       JSON.stringify({
-         code: 0,
-         message: "file merged success"
-       })
-     );
-   }
-
-});
-
-server.listen(5000, () => console.log("正在监听 5000 端口"));
-```
-
-由于前端在发送合并请求时会携带文件名，服务端根据文件名可以找到上一步创建的切片文件夹
+（完）
