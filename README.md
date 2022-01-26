@@ -6,7 +6,7 @@
 
 <p align="center">
   <img alt="author" src="https://img.shields.io/badge/author-wenyuan-blue.svg?style=flat-square">
-  <img alt="updated" src="https://img.shields.io/badge/update-2021.12-blue.svg?style=flat-square">
+  <img alt="updated" src="https://img.shields.io/badge/update-2022.01-blue.svg?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-CC BY NC 4.0-blue.svg?style=flat-square">
   <a href="https://www.wenyuanblog.com/gift.html" target="_blank">
     <img alt="sponsor" src="https://img.shields.io/badge/sponsor-❤-ff69b4.svg?style=flat-square">
@@ -113,6 +113,8 @@
   * 未完结，待更新
 * [ES6 - ES12 新特性](https://fedbook.cn/frontend-knowledge/es6-and-beyond/)
   * [ECMAScript2015(ES6)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es6-let-const/)
+  * [ECMAScript2016(ES7)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es7-array/)
+  * [ECMAScript2017(ES8)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es8-async-await/)
 * [TypeScript](https://fedbook.cn/frontend-knowledge/typescript/)
   * [数据类型简介](https://fedbook.cn/frontend-knowledge/typescript/data-types-introduction/)
   * [布尔、数值与字符串](https://fedbook.cn/frontend-knowledge/typescript/boolean-number-string/)
