@@ -98,7 +98,7 @@ defineProperty 的第三个参数就是属性描述符（descriptor）它包括�
 
 具体可参考 [Object.defineProperty](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)。
 
-### 功能介绍
+### 函数介绍
 
 获取对象指定属性的描述符：
 

@@ -119,6 +119,11 @@ module.exports = [
         title: 'Object 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es8-object',
         collapsable: true
+      },
+      {
+        title: 'String 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es8-string',
+        collapsable: true
       }
     ]
   }
