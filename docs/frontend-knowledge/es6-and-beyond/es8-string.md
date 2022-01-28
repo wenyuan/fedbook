@@ -12,10 +12,10 @@
 
 **解释**
 
-| 参数          | 含义                                   | 必选 |
-| ------------ | -------------------------------------- | ---- |
-| targetLength | 目标字符要保持的长度值                     | Y   |
-| padString    | 如果目标字符的长度不够需要的补白字符，默认为空  | N   |
+| 参数          | 含义                                                       | 必选 |
+| ------------ | ---------------------------------------------------------- | ---- |
+| targetLength | 目标字符要保持的长度值。如果小于当前字符串的长度，则返回当前字符串本身。 | Y   |
+| padString    | 用于填充的字符串，默认为空。如果这个字符串太长，在达到目标长度后会被截断。| N   |
 
 **示例**
 
@@ -29,3 +29,16 @@ console.log(str.padEnd(8, 'world'))   // hellowor
 ```
 
 **场景1：日期格式化**
+
+希望把当前日期格式化成：yyyy-mm-dd 的格式：
+
+```javascript
+const now = new Date()
+const year = now.getFullYear()
+const month = (now.getMonth() + 1).toString().padStart(2, '0')
+const day = (now.getDate()).toString().padStart(2, '0')
+console.log(year, month, day)
+console.log(`${year}-${month}-${day}`)
+```
+
+**场景2：数字替换**
