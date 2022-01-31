@@ -124,6 +124,11 @@ module.exports = [
         title: 'String 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es8-string',
         collapsable: true
+      },
+      {
+        title: '尾逗号 Trailing commas',
+        path: '/frontend-knowledge/es6-and-beyond/es8-trailing-commas',
+        collapsable: true
       }
     ]
   }
