@@ -131,5 +131,16 @@ module.exports = [
         collapsable: true
       }
     ]
+  },
+  {
+    title: 'ECMAScript2018(ES9)',
+    collapsable: true,
+    children: [
+      {
+        title: 'for await of',
+        path: '/frontend-knowledge/es6-and-beyond/es9-for-await-of',
+        collapsable: true
+      }
+    ]
   }
 ]
