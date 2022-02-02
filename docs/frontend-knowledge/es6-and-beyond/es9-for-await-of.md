@@ -89,4 +89,9 @@ test()
 
 更多的知识点参考[for await...of](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for-await...of)。
 
+::: tip
+上面代码中用到了一个语法糖 `item.then(console.log)`，  
+它等价于 `item.then(value => console.log(value))`。（[参考这里](https://stackoverflow.com/questions/50836242/how-does-thenconsole-log-and-then-console-log-in-a-promise-chain)）
+:::
+
 （完）
