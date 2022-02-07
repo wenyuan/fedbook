@@ -150,6 +150,11 @@ module.exports = [
         title: 'Object 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es9-object',
         collapsable: true
+      },
+      {
+        title: 'Promise.prototype.finally()',
+        path: '/frontend-knowledge/es6-and-beyond/es9-promise',
+        collapsable: true
       }
     ]
   }
