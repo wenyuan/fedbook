@@ -145,6 +145,11 @@ module.exports = [
         title: 'RegExp 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es9-regexp',
         collapsable: true
+      },
+      {
+        title: 'Object 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es9-object',
+        collapsable: true
       }
     ]
   }
