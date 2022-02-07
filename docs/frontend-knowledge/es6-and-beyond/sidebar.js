@@ -140,6 +140,11 @@ module.exports = [
         title: 'for await of',
         path: '/frontend-knowledge/es6-and-beyond/es9-for-await-of',
         collapsable: true
+      },
+      {
+        title: 'RegExp 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es9-regexp',
+        collapsable: true
       }
     ]
   }
