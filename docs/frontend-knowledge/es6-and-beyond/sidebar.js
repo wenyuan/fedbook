@@ -181,6 +181,11 @@ module.exports = [
         title: '修订 Function.prototype.toString()',
         path: '/frontend-knowledge/es6-and-beyond/es10-function',
         collapsable: true
+      },
+      {
+        title: '可选的 Catch Binding',
+        path: '/frontend-knowledge/es6-and-beyond/es10-catch',
+        collapsable: true
       }
     ]
   }
