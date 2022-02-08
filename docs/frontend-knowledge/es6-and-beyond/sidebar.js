@@ -157,5 +157,16 @@ module.exports = [
         collapsable: true
       }
     ]
+  },
+  {
+    title: 'ECMAScript2019(ES10)',
+    collapsable: true,
+    children: [
+      {
+        title: 'Object.fromEntries()',
+        path: '/frontend-knowledge/es6-and-beyond/es10-object',
+        collapsable: true
+      }
+    ]
   }
 ]
