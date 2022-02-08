@@ -176,6 +176,11 @@ module.exports = [
         title: 'Array 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es10-array',
         collapsable: true
+      },
+      {
+        title: '修订 Function.prototype.toString()',
+        path: '/frontend-knowledge/es6-and-beyond/es10-function',
+        collapsable: true
       }
     ]
   }
