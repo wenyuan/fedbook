@@ -166,6 +166,11 @@ module.exports = [
         title: 'Object.fromEntries()',
         path: '/frontend-knowledge/es6-and-beyond/es10-object',
         collapsable: true
+      },
+      {
+        title: 'String 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es10-string',
+        collapsable: true
       }
     ]
   }
