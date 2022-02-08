@@ -171,6 +171,11 @@ module.exports = [
         title: 'String 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es10-string',
         collapsable: true
+      },
+      {
+        title: 'Array 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es10-array',
+        collapsable: true
       }
     ]
   }
