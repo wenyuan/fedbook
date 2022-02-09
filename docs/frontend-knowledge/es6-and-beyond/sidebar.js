@@ -186,6 +186,11 @@ module.exports = [
         title: '可选的 Catch Binding',
         path: '/frontend-knowledge/es6-and-beyond/es10-catch',
         collapsable: true
+      },
+      {
+        title: 'JSON 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es10-json',
+        collapsable: true
       }
     ]
   }
