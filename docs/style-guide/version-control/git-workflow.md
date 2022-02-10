@@ -4,46 +4,58 @@
 
 设想这样一个场景：某企业的开发团队使用 Git 管理日常开发工作，最初开发团队的代码有一条主干分支（master/main）。后来为了开发新功能，从主干分支拉出一条特性分支，但新功能完成后，该特性分支没有合入主干分支，而是作为下次开发的主干分支，重新拉出一条新的特性分支，导致主干分支一直形同虚设，团队没有一条稳定的代码分支。
 
-这个问题很大程度上源于团队对分支策略的不了解，导致分支策略使用很混乱。因此，本文总结目前主流的几种 Git 工作流 —— 分支策略，方便团队开发时，根据自身情况选择最合适的方案。
+这个问题很大程度上源于团队对分支策略的不了解，导致分支策略使用很混乱。因此，我们需要采用 Git 工作流 —— 分支策略来此类问题。
 
-## 常见的分支策略
+目前业界常见的 Git 分支策略主要有：GitFlow、GitHubFlow 以及 GitLabFlow，本文一一作介绍，方便团队开发时，根据自身情况选择最合适的方案。
 
-目前业界 Git 工作流主要有：GitFlow、GitHubFlow 以及 GitLabFlow。
-
-### Git Flow
+## GitFlow 策略
 
 GitFlow 是这三种分支策略中最早出现的。
 
 GitFlow 通常包含五种类型的分支：`master` 分支、`develop` 分支、`feature` 分支、`release` 分支以及 `hotfix` 分支。
 
-* **master 分支**：主干分支，这是一个稳定的分支，又称为保护分支，表示正式发布的历史，所有对外正式版本发布都会合并到这里，并打上版本标签。通常情况下只允许其他分支将代码合入，不允许向 `master` 分支直接提交代码。
-* **develop 分支**：开发分支，用来用来整合功能分支，表示最新的开发状态。包含要发布到下一个 `release` 的代码。
-* **feature 分支**：功能分支，通常从 `develop` 分支拉出，每个新功能的开发对应一个功能分支，用于开发人员提交代码并进行自测。自测完成后，会将 `feature` 分支的代码合并至 `develop` 分支，进入下一个 `release`。
-* **release 分支**：发布分支，发布新版本时，基于 `develop` 分支创建，从此刻开始新的功能不会加到这个分支，这个分支只应该做 bug 修复、文档生成和其他面向发布的任务。当发布分支足够稳定后，它的生命周期就可以结束了，这时候将 `release` 分支 合并到 `master` 分支，然后打上 tag 版本号；接着还需要将 `release` 分支合并回 `develop` 分支。
-* **hotfix 分支**：热修复分支，生产环境发现新 bug 时创建的临时分支，问题验证通过后，合并到 `master` 和 `develop` 分支。
+### 分支定义
+
+**master 分支**：主干分支，这是一个稳定的分支，又称为保护分支，表示正式发布的历史，所有对外正式版本发布都会合并到这里，并打上版本标签。通常情况下只允许其他分支将代码合入，不允许向 `master` 分支直接提交代码。
 
 > 注意每次合并到 `master` 都要打上 tag，方便定位。
 
+**develop 分支**：开发分支，用来用来整合功能分支，表示最新的开发状态。包含要发布到下一个 `release` 的代码。
+
+**feature 分支**：功能分支，通常从 `develop` 分支拉出，每个新功能的开发对应一个功能分支，用于开发人员提交代码并进行自测。自测完成后，会将 `feature` 分支的代码合并至 `develop` 分支，进入下一个 `release`。
+
+**release 分支**：发布分支，发布新版本时，基于 `develop` 分支创建，从此刻开始新的功能不会加到这个分支，这个分支只应该做 bug 修复、文档生成和其他面向发布的任务。当发布分支足够稳定后，它的生命周期就可以结束了，这时候将 `release` 分支 合并到 `master` 分支，然后打上 tag 版本号；接着还需要将 `release` 分支合并回 `develop` 分支。
+
 > `release` 分支可以删掉，因为在 `master` 上打了 tag，即使删掉了发布分支，你也可以很方便的重新创建一个：
 > ```bash
-> # 基于tag v1.0. 0创建一个分支
+> # 基于 tag v1.0. 0 创建一个分支
 > $ git checkout -b release/v1.0.0 v1.0.0
 > ```
+> release 分支是 develop 和 master 之间的缓冲区，对于一个发布，往往会在发布分支中停留一段时间，等待稳定后才合并到 master。  
+> release 分支使得团队可以在完善当前发布版本的同时，不阻拦新功能的开发。
 
-通常开发过程中新特性的开发过程如下：
+**hotfix 分支**：热修复分支，生产环境发现新 bug 时创建的临时分支，这些 bug 可能比较紧急，而且跨越多个分支，所以可以创建一个 `hotfix` 分支快速修复 `master` 上面的 bug。问题验证通过后，合并到 `master` 和 `develop` 分支，并打上 tag。
 
-* 从 develop 分支拉取一条 feature 分支，开发团队在 feature 分支上进行新功能开发。
-* 开发完成后，将 feature 分支合入到 develop 分支，并进行开发环境的验证。
-* 开发环境验证完成，从 develop 分支拉取一条 release 分支，到测试环境进行 SIT/UAT 测试。
-* 测试无问题后，可将 develop 分支合入 master 分支。
-* 待发版时，直接将 master 分支代码部署到生产环境。
+> `hotfix` 分支是唯一一个可以从 `master` 分叉出来的分支类型。
+
+### 开发流程
+
+通常开发过程中新功能的开发过程如下：
+
+* 从 `develop` 分支拉取一条 `feature` 分支，开发团队在 `feature` 分支上进行新功能开发。
+* 开发完成后，将 `feature` 分支合入到 `develop` 分支，并进行开发环境的验证。
+* 开发环境验证完成，从 `develop` 分支拉取一条 `release` 分支，到测试环境进行 SIT/UAT 测试。
+* 测试无问题后，可将 `develop` 分支合入 `master` 分支。
+* 待发版时，直接将 `master` 分支代码部署到生产环境。
 
 可参考下图：
 
 <div style="text-align: center;">
   <img src="./assets/gitflow.png" alt="GitFlow">
-  <p style="text-align: center; color: #888;">（GitFlow，图来源于网络）</p>
+  <p style="text-align: center; color: #888;">（GitFlow 示意图）</p>
 </div>
+
+### 优缺点
 
 GitFlow 的优点：
 
@@ -57,23 +69,37 @@ GitFlow 的缺点：
 * 违反 Git 提倡的 short-lived 分支原则。
 * 如果特性分支过多的话很容易造成代码冲突，从而提高了合入的成本。
 * 由于每次提交都涉及多个分支，所以 GitFlow 也太不适合提交频率较高的项目。
-* master 分支历史记录并不干净，只能通过打 Tag 标记哪些是 master 真正要部署的。
+* master 分支历史记录并不干净，只能通过打 tag 标记哪些是 master 真正要部署的。
 * 对持续部署和 [Monorepo](https://zhuanlan.zhihu.com/p/77577415) 仓库不友好。
 
-### GitHubFlow
+## GitHubFlow 策略
 
 GitHubFlow 看名字也知道和 GitHub 有关，它来源于 GitHub 团队的工作实践。当代码托管在 GitHub 上时，则需要使用 GitHubFlow。相比 GitFlow 而言，GitHubFlow 没有那么多分支。
 
-GitHubFlow 通常只有一个 master 分支是固定的（[现在被更名为 main 了](https://github.com/github/renaming)），而且 GitHubFlow 中的 master 分支通常是受保护的，只有特定权限的人才可以向 master 分支合入代码。
+GitHubFlow 通常只有一个 `master` 分支是固定的（[现在被更名为 main 了](https://github.com/github/renaming)），而且 GitHubFlow 中的 `master` 分支通常是受保护的，只有特定权限的人才可以向 `master` 分支合入代码。
 
-在 GitHubFlow 中，新功能开发或修复 Bug 需要从 master 分支拉取一个新分支，在这个新分支上进行代码提交；功能开发完成，开发者创建 Pull Request（简称 PR），通知源仓库开发者进行代码修改 Review，确认无误后，将由源仓库开发人员将代码合入 master 分支。
+### 适用场景
+
+* 适合开源项目。开源项目需要接受任何开发者的代码共享，无需给他们正式的代码库的写权限。
+* 适合大型的，自发性的团队。fork 的方式可以提供灵活的方式来安全协作。
+
+### 开发流程
+
+* 在 GitHubFlow 中，要求每个成员先 fork 项目到自己的目录（fork 的本质就是让 GitHub 将项目克隆到你的个人目录）。
+* 每次有新功能开发或修复 bug 时，需要从 `master` 分支拉取一个新的 `feature` 分支，在这个新分支上进行代码提交。
+* 功能开发完成，开发者创建 `feature` 分支合并到上游（upstream）项目的 Pull Request（简称 PR），通知源仓库开发者进行代码修改 Review。
+* 上游项目的所有者决定是否合并你的代码，如果确认无误，他会将代码合入 `master` 分支。
+
+可参考下图：
 
 <div style="text-align: center;">
   <img src="./assets/githubflow.png" alt="GitHubFlow">
-  <p style="text-align: center; color: #888;">（GitHubFlow，图来源于网络）</p>
+  <p style="text-align: center; color: #888;">（GitHubFlow 示意图）</p>
 </div>
 
 很多人可能会问，提交代码通常是 `commit` 或者 `push`，拉取代码才是 `pull`，为什么 GitHubFlow 中提交代码是「Pull Request」。因为在 GitHubFlow 中，PR 是通知其他人员到你的代码库去拉取代码至本地，然后由他们进行最终的提交，所以用 `pull` 而非 `push`。
+
+### 优缺点
 
 GitHubFlow 的优点：
 
@@ -83,13 +109,13 @@ GitHubFlow 的缺点：
 
 * 因为只有一条 master 分支，万一代码合入后，由于某些因素 master 分支不能立刻发布，就会导致最终发布的版本和计划不同。
 
-### GitLabFlow
+## GitLabFlow 策略
 
 GitLabFlow 出现的最晚，GitLabFlow 是开源工具 GitLab 推荐的做法。
 
 GitLabFlow 支持 GitFlow 的分支策略，也支持 GitHubFlow 的「Pull Request」（在 GitLabFlow 中被称为「Merge Request」）。
 
-相比于 GitHubFlow，GitLabFlow 增加了对预生产环境和生产环境的管理，即 master 分支对应为开发环境的分支，预生产和生产环境由其他分支（如 pre-production、production）进行管理。在这种情况下，master 分支是 pre-production 分支的上游，pre-production 是 production 分支的上游；GitLabFlow 规定代码必须从上游向下游发展，即新功能或修复 Bug 时，特性分支的代码测试无误后，必须先合入 master 分支，然后才能由 master 分支向 pre-production 环境合入，最后由 pre-production 合入到 production。
+相比于 GitHubFlow，GitLabFlow 增加了对预生产环境和生产环境的管理，即 `master` 分支对应为开发环境的分支，预生产和生产环境由其他分支（如 `pre-production`、`production`）进行管理。在这种情况下，`master` 分支是 `pre-production` 分支的上游，`pre-production` 是 `production` 分支的上游；GitLabFlow 规定代码必须从上游向下游发展，即新功能或修复 bug 时，特性分支的代码测试无误后，必须先合入 `master` 分支，然后才能由 `master` 分支向 `pre-production` 环境合入，最后由 `pre-production` 合入到 `production`。
 
 基于环境：
 
@@ -115,6 +141,8 @@ GitLabFlow 中的 Merge Request 是将一个分支合入到另一个分支的请
 GitLabFlow 并不像 GitFlow、GitHubFlow 一样具有明显的规范，它更多是在 GitHubFlow 基础上，综合考虑环境部署、项目管理等问题而得出的一种实践。
 
 ## 团队定制的分支策略
+
+比较流行的 Git 分支策略是 GitFlow，但是大部分团队会根据自己的情况制定自己的 Git 工作流规范，例如我们团队的分支规范：
 
 ## 总结
 
