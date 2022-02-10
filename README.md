@@ -61,6 +61,7 @@
   * [Vue 项目规范](https://fedbook.cn/style-guide/program/vuejs-spec/)
 * [接口设计](https://fedbook.cn/style-guide/apis/)
 * [版本控制](https://fedbook.cn/style-guide/version-control/)
+  * [版本号定义规范](https://fedbook.cn/style-guide/version-control/version-number/)
   * [Git 提交信息规范](https://fedbook.cn/style-guide/version-control/git-commit-message/)
   * [Git 工作流 — 分支策略](https://fedbook.cn/style-guide/version-control/git-workflow/)
 * [文案指南](https://fedbook.cn/style-guide/product/)

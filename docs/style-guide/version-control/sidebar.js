@@ -4,6 +4,11 @@ module.exports = [
     collapsable: false,
     children: [
       {
+        title: '版本号定义规范',
+        path: '/style-guide/version-control/version-number',
+        collapsable: true
+      },
+      {
         title: 'Git 提交信息规范',
         path: '/style-guide/version-control/git-commit-message',
         collapsable: true
