@@ -14,17 +14,29 @@
 
 GitFlow 是这三种分支策略中最早出现的。
 
-GitFlow 通常包含五种类型的分支：master 分支、develop 分支、feature 分支、release 分支以及 hotfix 分支。
+GitFlow 通常包含五种类型的分支：`master` 分支、`develop` 分支、`feature` 分支、`release` 分支以及 `hotfix` 分支。
 
-* **master 分支**：主干分支，也是正式发布版本的分支，其包含可以部署到生产环境中的代码，通常情况下只允许其他分支将代码合入，不允许向 master 分支直接提交代码（对应生产环境）。
-* **develop 分支**：开发分支，用来集成测试最新合入的开发成果，包含要发布到下一个 release 的代码（对应开发环境）。
-* **feature 分支**：特性分支，通常从 develop 分支拉出，每个新特性的开发对应一个特性分支，用于开发人员提交代码并进行自测。自测完成后，会将 feature 分支的代码合并至 develop 分支，进入下一个 release。
-* **release 分支**：发布分支，发布新版本时，基于 develop 分支创建，发布完成后，合并到 master 和 develop 分支（对应集成测试环境）。
-* **hot fix 分支**：热修复分支，生产环境发现新 bug 时创建的临时分支，问题验证通过后，合并到 master 和 develop 分支。
+* **master 分支**：主干分支，这是一个稳定的分支，又称为保护分支，表示正式发布的历史，所有对外正式版本发布都会合并到这里，并打上版本标签。通常情况下只允许其他分支将代码合入，不允许向 `master` 分支直接提交代码。
+* **develop 分支**：开发分支，用来用来整合功能分支，表示最新的开发状态。包含要发布到下一个 `release` 的代码。
+* **feature 分支**：功能分支，通常从 `develop` 分支拉出，每个新功能的开发对应一个功能分支，用于开发人员提交代码并进行自测。自测完成后，会将 `feature` 分支的代码合并至 `develop` 分支，进入下一个 `release`。
+* **release 分支**：发布分支，发布新版本时，基于 `develop` 分支创建，从此刻开始新的功能不会加到这个分支，这个分支只应该做 bug 修复、文档生成和其他面向发布的任务。当发布分支足够稳定后，它的生命周期就可以结束了，这时候将 `release` 分支 合并到 `master` 分支，然后打上 tag 版本号；接着还需要将 `release` 分支合并回 `develop` 分支。
+* **hotfix 分支**：热修复分支，生产环境发现新 bug 时创建的临时分支，问题验证通过后，合并到 `master` 和 `develop` 分支。
+
+> 注意每次合并到 `master` 都要打上 tag，方便定位。
+
+> `release` 分支可以删掉，因为在 `master` 上打了 tag，即使删掉了发布分支，你也可以很方便的重新创建一个：
+> ```bash
+> # 基于tag v1.0. 0创建一个分支
+> $ git checkout -b release/v1.0.0 v1.0.0
+> ```
 
 通常开发过程中新特性的开发过程如下：
 
-从 develop 分支拉取一条 feature 分支，开发团队在 feature 分支上进行新功能开发；开发完成后，将 feature 分支合入到 develop 分支，并进行开发环境的验证；开发环境验证完成，从 develop 分支拉取一条 release 分支，到测试环境进行 SIT/UAT 测试；测试无问题后，可将 develop 分支合入 master 分支，待发版时，直接将 master 分支代码部署到生产环境。
+* 从 develop 分支拉取一条 feature 分支，开发团队在 feature 分支上进行新功能开发。
+* 开发完成后，将 feature 分支合入到 develop 分支，并进行开发环境的验证。
+* 开发环境验证完成，从 develop 分支拉取一条 release 分支，到测试环境进行 SIT/UAT 测试。
+* 测试无问题后，可将 develop 分支合入 master 分支。
+* 待发版时，直接将 master 分支代码部署到生产环境。
 
 可参考下图：
 
@@ -101,6 +113,8 @@ GitLabFlow 支持 GitFlow 的分支策略，也支持 GitHubFlow 的「Pull Requ
 GitLabFlow 中的 Merge Request 是将一个分支合入到另一个分支的请求，通过 Merge Request 可以对比合入分支和被合入分支的差异，也可以做代码的 Review。
 
 GitLabFlow 并不像 GitFlow、GitHubFlow 一样具有明显的规范，它更多是在 GitHubFlow 基础上，综合考虑环境部署、项目管理等问题而得出的一种实践。
+
+## 团队定制的分支策略
 
 ## 总结
 
