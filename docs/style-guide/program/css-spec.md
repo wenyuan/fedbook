@@ -251,7 +251,7 @@ CSS 属性值需要用到引号时，统一使用单引号。
 }
 ```
 
-完整的属性列表及其排列顺序请参考 [Bootstrap property order for Stylelint](https://github.com/twbs/stylelint-config-twbs-bootstrap/blob/master/css/index.js)。
+完整的属性列表及其排列顺序请参考 [Bootstrap property order for Stylelint](https://github.com/stormwarning/stylelint-config-recess-order/blob/main/index.js)。
 
 ## CSS3 浏览器私有前缀
 
