@@ -1,5 +1,5 @@
 module.exports = {
-  /* --------- 风格指南 --------- */
+  /* --------- 技术规范 --------- */
   '/style-guide/program/': require('../style-guide/program/sidebar'),
   '/style-guide/version-control/': require('../style-guide/version-control/sidebar'),
   '/style-guide/product/': require('../style-guide/product/sidebar'),

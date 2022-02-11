@@ -35,7 +35,7 @@
 * [简介](#简介)
 * [目录](#目录)
 * [文章](#文章)
-  * [风格指南](#风格指南)
+  * [技术规范](#技术规范)
   * [前端知识](#前端知识)
   * [前端工程化](#前端工程化)
   * [必知必会](#必知必会)
@@ -51,19 +51,19 @@
 
 > **持续更新，学习不止**。
 
-### 风格指南
+### 技术规范
 
-* [文档规范](https://fedbook.cn/style-guide/document/)
+* [版本控制](https://fedbook.cn/style-guide/version-control/)
+  * [版本号定义规范](https://fedbook.cn/style-guide/version-control/version-number/)
+  * [Git 工作流 — 分支策略](https://fedbook.cn/style-guide/version-control/git-workflow/)
+  * [Git 提交信息规范](https://fedbook.cn/style-guide/version-control/git-commit-message/)
 * [代码风格](https://fedbook.cn/style-guide/program/)
   * [HTML 规范](https://fedbook.cn/style-guide/program/html-spec/)
   * [CSS 规范](https://fedbook.cn/style-guide/program/css-spec/)
   * [JavaScript 规范](https://fedbook.cn/style-guide/program/javascript-spec/)
   * [Vue 项目规范](https://fedbook.cn/style-guide/program/vuejs-spec/)
+* [文档规范](https://fedbook.cn/style-guide/document/)
 * [接口设计](https://fedbook.cn/style-guide/apis/)
-* [版本控制](https://fedbook.cn/style-guide/version-control/)
-  * [版本号定义规范](https://fedbook.cn/style-guide/version-control/version-number/)
-  * [Git 工作流 — 分支策略](https://fedbook.cn/style-guide/version-control/git-workflow/)
-  * [Git 提交信息规范](https://fedbook.cn/style-guide/version-control/git-commit-message/)
 * [文案指南](https://fedbook.cn/style-guide/product/)
   * [B 端产品文案指南](https://fedbook.cn/style-guide/version-control/tob/)
 
