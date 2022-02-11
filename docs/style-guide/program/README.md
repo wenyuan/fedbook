@@ -12,7 +12,7 @@ Tips：
 
 <hr>
 
-在制定代码风格指南时，主要借鉴了一些大厂和开源组织的前端代码规范： 
+**与其自己建立编码规范，更推荐选择社区沉淀下来的规范**。因此，在制定代码风格指南时，主要借鉴了一些大厂和开源组织的前端代码规范： 
 
 * [腾讯](https://tgideas.qq.com/doc/index.html "TGideas 文档库")
 * [京东](https://guide.aotu.io/index.html "凹凸实验室")（比较齐全）
@@ -20,7 +20,7 @@ Tips：
 * [网易](http://nec.netease.com/standard "NEC")
 * [Airbnb](https://github.com/airbnb/javascript "Airbnb")
 * [JavaScript Standard Style](https://github.com/standard/standard "JavaScript Standard Style")
-* [Vue.js 风格指南](https://cn.vuejs.org/v2/style-guide/ "Vue.js 风格指南")
+* [Vue.js 官网的风格指南](https://cn.vuejs.org/v2/style-guide/ "Vue.js 风格指南")
 * [Bootstrap 编码规范](https://codeguide.bootcss.com/ "Bootstrap 编码规范")
 * [ES6 编程风格](https://es6.ruanyifeng.com/#docs/style "Prettier")
 

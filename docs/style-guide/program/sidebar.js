@@ -23,6 +23,11 @@ module.exports = [
         title: 'Vue 项目规范',
         path: '/style-guide/program/vuejs-spec',
         collapsable: true
+      },
+      {
+        title: 'Code Review',
+        path: '/style-guide/program/code-review',
+        collapsable: true
       }
     ]
   }

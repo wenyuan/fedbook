@@ -62,6 +62,7 @@
   * [CSS 规范](https://fedbook.cn/style-guide/program/css-spec/)
   * [JavaScript 规范](https://fedbook.cn/style-guide/program/javascript-spec/)
   * [Vue 项目规范](https://fedbook.cn/style-guide/program/vuejs-spec/)
+  * [Code Review](https://fedbook.cn/style-guide/program/code-review/)
 * [文档规范](https://fedbook.cn/style-guide/document/)
 * [接口设计](https://fedbook.cn/style-guide/apis/)
 * [文案指南](https://fedbook.cn/style-guide/product/)
