@@ -73,6 +73,11 @@ module.exports = [
         title: '如何参与开源项目 - 提交 PR 与更新 Fork 分支',
         path: '/basic-skills/git/solution-to-participate-in-open-source-projects',
         collapsable: true
+      },
+      {
+        title: '如何使用 GitFlow 工作流进行团队协作',
+        path: '/basic-skills/git/solution-to-gitflow',
+        collapsable: true
       }
     ]
   }
