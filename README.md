@@ -193,6 +193,7 @@
   * [如何修改历史 commits 中的用户名和邮箱](https://fedbook.cn/basic-skills/git/solution-to-change-name-and-email-in-history-commits/)
   * [如何迁移仓库并保留 commits 记录](https://fedbook.cn/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits/)
   * [如何参与开源项目 - 提交 PR 与更新 Fork 分支](https://fedbook.cn/basic-skills/git/solution-to-participate-in-open-source-projects/)
+  * [如何使用 GitFlow 工作流进行团队协作](https://fedbook.cn/basic-skills/git/solution-to-gitflow/)
 * [Nginx](https://fedbook.cn/basic-skills/nginx/)
   * **Nginx 用法整理**
   * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
