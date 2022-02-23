@@ -80,13 +80,6 @@ module.exports = [
       { text: '解决方案', link: '/project/solution/' }
     ]
   },
-  // {
-  //   text: '面试相关',
-  //   items: [
-  //     { text: 'HTML 问题', link: '/interview/html/' },
-  //     { text: 'CSS 问题', link: '/interview/css/' }
-  //   ]
-  // },
   {
     text: '其它',
     items: [
@@ -95,7 +88,6 @@ module.exports = [
         items: [
           { text: '关于本站', link: '/about/' },
           { text: '课外学习', link: '/extracurricular/' }
-          // { text: '更新日志', link: '/history/' }
         ]
       },
       {
