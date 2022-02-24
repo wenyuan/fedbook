@@ -198,5 +198,16 @@ module.exports = [
         collapsable: true
       }
     ]
+  },
+  {
+    title: 'ECMAScript2020(ES11)',
+    collapsable: true,
+    children: [
+      {
+        title: 'String 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es11-string',
+        collapsable: true
+      }
+    ]
   }
 ]
