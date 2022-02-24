@@ -262,8 +262,8 @@
 
 ### 项目相关
 
-* [前端解决方案](https://fedbook.cn/project/solution/)
-  * [大文件分片上传和断点续传](https://fedbook.cn/project/solution/file-upload/)
+* [前端解决方案](https://fedbook.cn/project/solutions/)
+  * [大文件分片上传和断点续传](https://fedbook.cn/project/solutions/file-upload/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

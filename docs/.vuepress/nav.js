@@ -77,7 +77,7 @@ module.exports = [
   {
     text: '项目相关',
     items: [
-      { text: '解决方案', link: '/project/solution/' }
+      { text: '解决方案', link: '/project/solutions/' }
     ]
   },
   {
