@@ -222,6 +222,11 @@ module.exports = [
         title: 'Promise.allSettled()',
         path: '/frontend-knowledge/es6-and-beyond/es11-promise',
         collapsable: true
+      },
+      {
+        title: 'globalThis',
+        path: '/frontend-knowledge/es6-and-beyond/es11-globalthis',
+        collapsable: true
       }
     ]
   }
