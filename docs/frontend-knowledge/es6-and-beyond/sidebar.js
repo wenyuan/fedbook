@@ -217,6 +217,11 @@ module.exports = [
         title: 'BigInt',
         path: '/frontend-knowledge/es6-and-beyond/es11-bigint',
         collapsable: true
+      },
+      {
+        title: 'Promise.allSettled()',
+        path: '/frontend-knowledge/es6-and-beyond/es11-promise',
+        collapsable: true
       }
     ]
   }
