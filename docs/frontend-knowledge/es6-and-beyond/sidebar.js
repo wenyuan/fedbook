@@ -207,6 +207,16 @@ module.exports = [
         title: 'String 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es11-string',
         collapsable: true
+      },
+      {
+        title: '动态引入',
+        path: '/frontend-knowledge/es6-and-beyond/es11-dynamic-import',
+        collapsable: true
+      },
+      {
+        title: 'BigInt',
+        path: '/frontend-knowledge/es6-and-beyond/es11-bigint',
+        collapsable: true
       }
     ]
   }
