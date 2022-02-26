@@ -248,6 +248,11 @@ module.exports = [
         title: 'String 扩展',
         path: '/frontend-knowledge/es6-and-beyond/es12-string',
         collapsable: true
+      },
+      {
+        title: '类的私有方法',
+        path: '/frontend-knowledge/es6-and-beyond/es12-private-class-fields',
+        collapsable: true
       }
     ]
   }
