@@ -253,6 +253,11 @@ module.exports = [
         title: '类的私有方法',
         path: '/frontend-knowledge/es6-and-beyond/es12-private-class-fields',
         collapsable: true
+      },
+      {
+        title: 'Promise.any() 和 AggregateError',
+        path: '/frontend-knowledge/es6-and-beyond/es12-promise',
+        collapsable: true
       }
     ]
   }
