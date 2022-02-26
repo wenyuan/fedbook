@@ -232,6 +232,11 @@ module.exports = [
         title: '可选链 Optional chaining',
         path: '/frontend-knowledge/es6-and-beyond/es11-chaining',
         collapsable: true
+      },
+      {
+        title: '空值合并运算符',
+        path: '/frontend-knowledge/es6-and-beyond/es11-nullish',
+        collapsable: true
       }
     ]
   }
