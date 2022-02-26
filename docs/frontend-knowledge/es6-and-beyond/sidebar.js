@@ -239,5 +239,16 @@ module.exports = [
         collapsable: true
       }
     ]
+  },
+  {
+    title: 'ECMAScript2021(ES12)',
+    collapsable: true,
+    children: [
+      {
+        title: 'String 扩展',
+        path: '/frontend-knowledge/es6-and-beyond/es12-string',
+        collapsable: true
+      }
+    ]
   }
 ]
