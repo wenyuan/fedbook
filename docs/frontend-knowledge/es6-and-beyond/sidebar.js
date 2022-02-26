@@ -227,6 +227,11 @@ module.exports = [
         title: 'globalThis',
         path: '/frontend-knowledge/es6-and-beyond/es11-globalthis',
         collapsable: true
+      },
+      {
+        title: '可选链 Optional chaining',
+        path: '/frontend-knowledge/es6-and-beyond/es11-chaining',
+        collapsable: true
       }
     ]
   }
