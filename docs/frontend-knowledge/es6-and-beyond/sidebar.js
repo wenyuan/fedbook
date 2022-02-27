@@ -258,6 +258,11 @@ module.exports = [
         title: 'Promise.any() 和 AggregateError',
         path: '/frontend-knowledge/es6-and-beyond/es12-promise',
         collapsable: true
+      },
+      {
+        title: '数字分隔符',
+        path: '/frontend-knowledge/es6-and-beyond/es12-number',
+        collapsable: true
       }
     ]
   }
