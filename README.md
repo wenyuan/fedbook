@@ -37,7 +37,7 @@
 * [文章](#文章)
   * [技术规范](#技术规范)
   * [前端知识](#前端知识)
-  * [前端工程化](#前端工程化)
+  * [工程化](#工程化)
   * [必知必会](#必知必会)
   * [深入学习](#深入学习)
   * [后端知识](#后端知识)
@@ -150,7 +150,7 @@
   <a href="#目录">⬆️ 返回顶部</a>
 </p>
 
-### 前端工程化
+### 工程化
 
 * [Vue.js](https://fedbook.cn/frontend-engineering/vuejs/)
   * [基础用法要点](https://fedbook.cn/frontend-engineering/vuejs/basic-use/)

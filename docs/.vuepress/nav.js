@@ -37,7 +37,7 @@ module.exports = [
     ]
   },
   {
-    text: '前端工程化',
+    text: '工程化',
     items: [
       {
         text: '框架',

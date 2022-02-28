@@ -11,7 +11,7 @@ module.exports = {
   '/frontend-knowledge/typescript/': require('../frontend-knowledge/typescript/sidebar'),
   '/frontend-knowledge/browser/': require('../frontend-knowledge/browser/sidebar'),
   '/frontend-knowledge/javascript-handwritten/': require('../frontend-knowledge/javascript-handwritten/sidebar'),
-  /* --------- 前端工程化: 一切能提升前端开发效率，提高前端应用质量的手段和工具都是前端工程化 --------- */
+  /* --------- 工程化: 一切能提升前端开发效率，提高前端应用质量的手段和工具都是前端工程化 --------- */
   '/frontend-engineering/vuejs/': require('../frontend-engineering/vuejs/sidebar'),
   '/frontend-engineering/react/': require('../frontend-engineering/react/sidebar'),
   '/frontend-engineering/webpack5/': require('../frontend-engineering/webpack5/sidebar'),
