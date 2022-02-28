@@ -263,6 +263,11 @@ module.exports = [
         title: '数字分隔符',
         path: '/frontend-knowledge/es6-and-beyond/es12-number',
         collapsable: true
+      },
+      {
+        title: '新的逻辑操作符',
+        path: '/frontend-knowledge/es6-and-beyond/es12-logical',
+        collapsable: true
       }
     ]
   }
