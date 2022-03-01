@@ -57,8 +57,19 @@ module.exports = [
   {
     text: '必知必会',
     items: [
-      { text: 'Git', link: '/basic-skills/git/' },
-      { text: 'Nginx', link: '/basic-skills/nginx/' }
+      {
+        text: '日常使用',
+        items: [
+          { text: 'Git', link: '/basic-skills/git/' },
+          { text: 'Nginx', link: '/basic-skills/nginx/' }
+        ]
+      },
+      {
+        text: '数据库/中间件',
+        items: [
+          { text: 'MySQL', link: '/basic-skills/mysql/' },
+        ]
+      }
     ]
   },
   {
