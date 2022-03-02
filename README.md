@@ -212,6 +212,11 @@
   * **Nginx 部署方案**
   * [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
   * 未完结，待更新
+* [MySQL](https://fedbook.cn/basic-skills/mysql/)
+  * **MySQL 基本使用**
+  * [MySQL 的安装](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
+  * [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
+  * 未完结，待更新
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
