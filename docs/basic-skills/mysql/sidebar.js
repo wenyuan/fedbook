@@ -12,6 +12,11 @@ module.exports = [
         title: 'MySQL 常用命令',
         path: '/basic-skills/mysql/common-commands',
         collapsable: true
+      },
+      {
+        title: 'MySQL 数据库设计规范',
+        path: '/basic-skills/mysql/db-design-spec',
+        collapsable: true
       }
     ]
   }
