@@ -56,7 +56,7 @@ cd D:\mysql-8.0\bin
 .\mysqld --initialize-insecure
 ```
 
-执行完初始化命令后，可以发现解压路径下多了一个 `data` 的文件夹，在里面找到 `计算机名.err` 的文件，并打开。如果你设置了随机密码，在里面就能找到初始密码：`root@localhost: (后面跟的字符串就是临时密码)`。
+执行完初始化命令后，可以发现解压路径下多了一个 `data` 的文件夹，在里面找到 `计算机名.err` 的文件，并打开。如果你设置了随机密码，在里面就能找到初始密码：`root@localhost: (这个位置的字符串就是临时密码)`。
 
 ### 安装 mysqld
 
@@ -137,4 +137,89 @@ net stop mysql
 
 ### 编写批处理脚本实现 MySQL 启停
 
-## Linux 下安装
+## CentOS 7.6 下安装
+
+### 安装对比
+
+MySQL 有两种安装方式：
+
+* yum 安装：安装过程人为无法干预，不能按需安装。rpm 包里面有什么就安装什么，安装的版本也比较低。
+* 源码包安装：分为编译安装和免编译安装：可以设定参数，按照需求进行安装，并且安装的版本，可以自己选择，灵活性比较大。
+
+这里我们采用源码包 - 免编译的方式安装 MySQL。
+
+### 下载并解压安装包
+
+MySQL 源码包下载地址：[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
+
+CentOS 是基于红帽的，因此操作系统选择 Red Hat，OS 版本选择 Linux 7 (x86, 64-bit)。
+
+选择 **Compressed TAR Archive** 点击 Download，获取到下载链接如下：
+
+```bash
+https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.28-el7-x86_64.tar.gz
+```
+
+登录服务器，切换到 `/opt` 目录并新建一个 `mysql` 文件夹，下载 MySQL 安装包（如果下载慢的话，可以在本地下载后传到服务器）：
+
+```bash
+# 切换目录
+cd /opt
+# 新建一个文件夹用于放 mysql
+mkdir mysql
+# 切换目录
+cd mysql/
+# 下载安装包
+wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.28-el7-x86_64.tar.gz
+```
+
+解压并重命名：
+
+```bash
+# 解压
+tar -zxvf mysql-8.0.28-el7-x86_64.tar.gz
+# 重命名，原来的名字太长了
+mv ./mysql-8.0.28-el7-x86_64 mysql-8
+# 创建 data 目录
+mkdir data
+```
+
+### 创建数据文件夹以及用户并赋予权限
+
+以下步骤需要在 `/opt/mysql/` 目录下执行。
+
+创建数据文件夹：
+
+```bash
+# 创建 data 目录
+mkdir data
+```
+
+创建用户组，并授权操作：
+
+```bash
+# 为 MySQL 创建一个不能 ssh 登陆的用户, 且不创建用户主目录
+useradd mysql -s /sbin/nologin -M
+# 修改文件所有者
+chown -R mysql:mysql /opt/mysql/
+```
+
+> 在 useradd 命令后跟了两个参数，它们分别表示：
+> * -s：表示指定用户所用的 shell，此处为 `/sbin/nologin`，表示不登录
+> * -M：表示不创建用户主目录
+
+### 初始化数据库
+
+以下步骤需要在 `/opt/mysql/` 目录下执行。
+
+初始化数据库：
+
+```bash
+/opt/mysql/mysql-8/bin/mysqld --initialize --user=mysql --basedir=/opt/mysql/mysql-8/ --datadir=/opt/mysql/data/
+```
+
+在这行命令的输出中，这里我们会看到初始密码（应该实在最后一行），记下来：
+
+```bash
+A temporary password is generated for root@localhost: (这个位置的字符串就是临时密码)
+```
