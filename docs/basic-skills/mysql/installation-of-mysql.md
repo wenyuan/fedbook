@@ -4,7 +4,7 @@
 
 > Windows 下的 MySQL 不能用于生产，一般用于开发目的或者尝鲜体验。
 
-### 安装
+### 安装 MySQL
 
 我比较喜欢免安装版本的，轻便干净，删起来方便。
 
@@ -76,7 +76,7 @@ PS：`mysql` 用于执行 SQL 命令，`mysqld` 用于执行数据库命令：
 # 启动数据库
 net start mysql
 
-# 使用 root 连接数据库，没有密码的话直接回车即可
+# 使用 root 连接数据库, 没有密码的话直接回车即可
 .\mysql -u root -p
 
 # 关闭数据库
@@ -126,7 +126,7 @@ quit
 .\mysql -u root -p
 ```
 
-### 卸载
+### 卸载 MySQL
 
 同样是以管理员身份运行命名提示符，先停止服务，然后执行卸载命令卸载：
 
@@ -134,8 +134,6 @@ quit
 net stop mysql
 .\mysqld --remove mysql
 ```
-
-### 编写批处理脚本实现 MySQL 启停
 
 ## CentOS 7.6 下安装
 
@@ -178,8 +176,8 @@ wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.28-el7-x86_64.tar.g
 ```bash
 # 解压
 tar -zxvf mysql-8.0.28-el7-x86_64.tar.gz
-# 重命名，原来的名字太长了
-mv ./mysql-8.0.28-el7-x86_64 mysql-8
+# 重命名, 原来的名字太长了
+mv ./mysql-8.0.28-el7-x86_64 mysql-8.0
 # 创建 data 目录
 mkdir data
 ```
@@ -191,7 +189,7 @@ mkdir data
 创建数据文件夹：
 
 ```bash
-# 创建 data 目录
+# 创建 data 目录(用于放置 mysql 数据文件)
 mkdir data
 ```
 
@@ -215,11 +213,221 @@ chown -R mysql:mysql /opt/mysql/
 初始化数据库：
 
 ```bash
-/opt/mysql/mysql-8/bin/mysqld --initialize --user=mysql --basedir=/opt/mysql/mysql-8/ --datadir=/opt/mysql/data/
+/opt/mysql/mysql-8.0/bin/mysqld --initialize --user=mysql --basedir=/opt/mysql/mysql-8.0/ --datadir=/opt/mysql/data/
 ```
 
 在这行命令的输出中，这里我们会看到初始密码（应该实在最后一行），记下来：
 
 ```bash
 A temporary password is generated for root@localhost: (这个位置的字符串就是临时密码)
+```
+
+### 创建 MySQL 配置文件 my.cnf
+
+通过阅读 `support-files/mysql.server` 这个脚本知道，如果我们的 MySQL 不是安装在默认的 `/usr/local/mysql` 里，就需要新建一个 `/etc/my.cnf` 文件，在 `[mysqld]` 段中设置 `basedir` 参数。
+
+新建文本文档 `my.cnf`：
+
+```bash
+# 该配置文件必须建立在该目录下
+vim /etc/my.cnf
+```
+
+将下面的内容添加到该配置文件中（这是学习用的配置示例，详细参数[见官网](https://dev.mysql.com/doc/refman/8.0/en/server-configuration-defaults.html)）：
+
+```text
+[mysqld]
+# mysql 服务的唯一编号, 每个 mysql 服务 id 需唯一
+server-id=1
+
+# mysql 服务端口号, 默认3306
+port=3306
+
+# mysql 安装目录, 默认 /usr
+basedir=/opt/mysql/mysql-8.0
+
+# mysql 数据文件放置位置
+datadir=/opt/mysql/data
+
+# 记录的是当前 mysqld 进程的 pid
+pid-file=/opt/mysql/mysql-8.0/mysql.pid
+
+# 设置 socket 文件所在目录
+socket=/opt/mysql/mysql-8.0/mysql.sock
+
+# 设置用来保存临时文件的目录
+tmpdir=/opt/mysql/mysql-8.0/tmp
+
+# 用户
+user=mysql
+
+# 允许访问的IP网段
+bind-address=0.0.0.0
+
+# 数据库默认字符集为 utf8, 并支持一些特殊表情符号(占用 4 个字节)
+character-set-server=utf8mb4
+
+# 数据库字符集对应一些排序等规则, 注意要和 character-set-server 对应
+collation-server=utf8mb4_general_ci
+
+# 是否对 sql 语句大小写敏感, 1 表示不敏感
+lower_case_table_names=1
+
+# 允许最大连接进程数
+max_connections=400
+
+# 最大错误连接数, 这是为了防止有人从该主机试图攻击数据库系统
+# 如果某个用户发起的连接 error 超过该数值, 则该用户的下次连接将被阻塞, 直到管理员执行 flush hosts
+max_connect_errors=100
+
+# TIMESTAMP 如果没有显示声明 NOT NULL, 允许 NULL 值
+explicit_defaults_for_timestamp=true
+
+# SQL 数据包发送的大小, 如果有 BLOB 对象建议修改成 1G
+max_allowed_packet=128M
+
+# MySQL连接闲置超过一定时间后(秒)将会被强行关闭
+# MySQL 默认的 wait_timeout 值为 8 个小时, interactive_timeout 参数需要同时配置才能生效
+interactive_timeout=1800
+wait_timeout=1800
+
+# 内部内存临时表的最大值, 设置成 128M
+# 比如大数据量的 group by, order by 时可能用到临时表
+# 超过了这个值将写入磁盘, 系统 IO 压力增大
+tmp_table_size=128M
+max_heap_table_size=128M
+
+# 数据库错误日志文件
+log-error=/opt/mysql/mysql-8.0/err/mysqld.err
+
+# 数据库日志文件存放的位置(一般不会开启该功能, 因为 log 的量会非常庞大)
+general_log_file=/opt/mysql/mysql-8.0/log/mysql.log
+# 日志文件是否开启(0 是关闭、1 是开启)
+general_log=0
+```
+
+创建配置文件中所需的目录：
+
+```bash
+mkdir /opt/mysql/mysql-8.0/err /opt/mysql/mysql-8.0/tmp
+# 新建了文件, 需要再次修改文件所有者
+chown -R mysql:mysql /opt/mysql/
+```
+
+### 启动 MySQL 服务并修改密码
+
+```bash
+# 启动 MySQL 服务
+/opt/mysql/mysql-8.0/support-files/mysql.server start
+
+# 登录 root 用户
+mysql -uroot -p密码
+```
+
+通过下面这句代码就可直接修改密码，不用像之前的老版本一样那么复杂：
+
+```bash
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';
+```
+
+接着需要继续执行命令：
+
+```bash
+flush privileges;
+```
+
+### 开机自启配置
+
+将服务文件拷贝到 `/etc/init.d/` 下，并重命名为 `mysqld`：
+
+```bash
+cp /opt/mysql/mysql-8.0/support-files/mysql.server /etc/init.d/mysqld
+```
+
+赋予可执行权限：
+
+```bash
+chmod +x /etc/init.d/mysqld
+```
+
+添加服务：
+
+```bash
+chkconfig --add mysqld
+```
+
+显示服务列表：
+
+```bash
+chkconfig --list
+```
+
+注：如果看到 mysqld 的服务，并且 3，4，5 都是 `on` 的话则成功，如果是 `off`，则：
+
+```bash
+chkconfig --level 345 mysqld on
+```
+
+测试开机自启，重启电脑：
+
+```bash
+reboot
+# 重启后查看 mysql 服务是否开机自启。
+ps -ef | grep mysql
+```
+
+接下来可以通过一些命令操作 MySQL 服务：
+
+* 启动 MySQL 服务：`service mysql start`
+* 停止 MySQL 服务：`service mysql stop`
+* 查看错误日志（如果上面两个命令执行后没效果）：`systemctl status mysqld`
+
+### 卸载 MySQL
+
+首先输入命令 `ps -ef | grep mysql` 检查一下 MySQL 服务是否在运行，在卸载之前需要先停止服务：
+
+```bash
+service mysql stop
+```
+
+关闭并删除自启动脚本：
+
+```bash
+cd /etc/init.d
+# 查看该服务进程状态
+chkconfig --list mysqld
+# 删除 chkconfig 管理的 MySQL 启动服务
+chkconfig --del /etc/init.d/mysqld
+# 删除自启动脚本
+rm -rf /etc/init.d/mysqld
+```
+
+删除 MySQL 安装目录（如果是按照我上文的步骤安装， 删除安装目录的命令如下）：
+
+```bash
+rm -rf /opt/mysql/
+```
+
+删除 MySQL 配置文件：
+
+```bash
+rm /etc/my.cnf
+```
+
+find 查找相关文件并删除：
+
+```bash
+# 查找相关文件
+find / -name mysql
+
+# 判断是否能删除后, 执行删除命令
+...
+```
+
+删除 mysql 用户和用户组：
+
+```bash
+id mysql
+userdel mysql
+groupdel mysql
 ```
