@@ -154,7 +154,7 @@ CentOS 是基于红帽的，因此操作系统选择 Red Hat，OS 版本选择 L
 
 选择 **Compressed TAR Archive** 点击 Download，获取到下载链接如下：
 
-```bash
+```text
 https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.28-el7-x86_64.tar.gz
 ```
 
@@ -178,8 +178,6 @@ wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.28-el7-x86_64.tar.g
 tar -zxvf mysql-8.0.28-el7-x86_64.tar.gz
 # 重命名, 原来的名字太长了
 mv ./mysql-8.0.28-el7-x86_64 mysql-8.0
-# 创建 data 目录
-mkdir data
 ```
 
 ### 创建数据文件夹以及用户并赋予权限
@@ -213,8 +211,10 @@ chown -R mysql:mysql /opt/mysql/
 初始化数据库：
 
 ```bash
-/opt/mysql/mysql-8.0/bin/mysqld --initialize --user=mysql --basedir=/opt/mysql/mysql-8.0/ --datadir=/opt/mysql/data/
+/opt/mysql/mysql-8.0/bin/mysqld --initialize --user=mysql --basedir=/opt/mysql/mysql-8.0/ --datadir=/opt/mysql/data/ --lower_case_table_names=1
 ```
+
+> MySQL 8.0 后，在 Linux 端，对于 lower_case_table_names 参数，只又在初始化的时候设置才有效，若初始化的时候没设置，后面修改配置文件后再启动服务就会报错了。
 
 在这行命令的输出中，这里我们会看到初始密码（应该实在最后一行），记下来：
 
@@ -233,7 +233,7 @@ A temporary password is generated for root@localhost: (这个位置的字符串�
 vim /etc/my.cnf
 ```
 
-将下面的内容添加到该配置文件中（这是学习用的配置示例，详细参数[见官网](https://dev.mysql.com/doc/refman/8.0/en/server-configuration-defaults.html)）：
+将下面的内容添加到该配置文件中（此处是学习用的配置示例，生产环境需要根据实际情况定制，详细参数[见官网](https://dev.mysql.com/doc/refman/8.0/en/server-configuration-defaults.html)）：
 
 ```text
 [mysqld]
@@ -261,7 +261,8 @@ tmpdir=/opt/mysql/mysql-8.0/tmp
 # 用户
 user=mysql
 
-# 允许访问的IP网段
+# 允许访问的 IP 网段(系统默认配置监听所有网卡, 即允许所有 IP 访问)
+# 生产环境下建议设置为: 127.0.0.1(只允许本机访问) 或某个网卡的 IP
 bind-address=0.0.0.0
 
 # 数据库默认字符集为 utf8, 并支持一些特殊表情符号(占用 4 个字节)
@@ -304,14 +305,42 @@ log-error=/opt/mysql/mysql-8.0/err/mysqld.err
 general_log_file=/opt/mysql/mysql-8.0/log/mysql.log
 # 日志文件是否开启(0 是关闭、1 是开启)
 general_log=0
+
+[client]
+# 默认路径是在 /tmp/mysql.sock
+# 因为我们修改了默认的路径, 所以需要在 [client] 段再指定一下
+# 如果不指定, 虽然数据库能正常启动, 但使用 mysql 命令时还是会报找不到 mysql.sock 错误
+socket=/opt/mysql/mysql-8.0/mysql.sock
 ```
 
 创建配置文件中所需的目录：
 
 ```bash
 mkdir /opt/mysql/mysql-8.0/err /opt/mysql/mysql-8.0/tmp
+echo "" > /opt/mysql/mysql-8.0/err/mysqld.err
 # 新建了文件, 需要再次修改文件所有者
 chown -R mysql:mysql /opt/mysql/
+```
+
+### 配置全局环境变量
+
+MySQL 命令默认读取的是 `/usr/local/bin` 目录，由于我们修改了 MySQL 的默认安装路径。为了可直接使用 `mysql` 命令，而不用 `/opt/mysql/mysql-8.0/bin/mysql` 这样一大串，可以添加环境变量：
+
+```bash
+vim /etc/profile
+```
+
+在最下面添加这两行代码：
+
+```text
+# MySQL
+export PATH=$PATH:/opt/mysql/mysql-8.0/bin
+```
+
+保存文件后，执行刷新操作：
+
+```bash
+source /etc/profile
 ```
 
 ### 启动 MySQL 服务并修改密码
@@ -320,25 +349,29 @@ chown -R mysql:mysql /opt/mysql/
 # 启动 MySQL 服务
 /opt/mysql/mysql-8.0/support-files/mysql.server start
 
-# 登录 root 用户
-mysql -uroot -p密码
+# 登录 root 用户, 记得输入之前默认生成的密码
+mysql -uroot -p
 ```
 
 通过下面这句代码就可直接修改密码，不用像之前的老版本一样那么复杂：
 
 ```bash
+# 两种改密方式二选一, 跟 5.7 版本的改密命令不同
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';
+
+set password for root@localhost = '新密码';
 ```
 
 接着需要继续执行命令：
 
 ```bash
+// 刷新权限
 flush privileges;
 ```
 
 ### 开机自启配置
 
-将服务文件拷贝到 `/etc/init.d/` 下，并重命名为 `mysqld`：
+下面的命令是将服务文件拷贝到 `/etc/init.d/` 下，并重命名为 `mysqld`：
 
 ```bash
 cp /opt/mysql/mysql-8.0/support-files/mysql.server /etc/init.d/mysqld
@@ -382,6 +415,59 @@ ps -ef | grep mysql
 * 停止 MySQL 服务：`service mysql stop`
 * 查看错误日志（如果上面两个命令执行后没效果）：`systemctl status mysqld`
 
+### 开放远程连接
+
+先通过 `mysql -uroot -p` 命令连接 MySQL，然后在 MySQL 窗口下执行如下命令：
+
+```bash
+# 选择 mysql 这个数据库
+use mysql;
+# 查看原来数据, 方便修改以后重置回来
+select host, user, authentication_string, plugin from user;
+# 修改值
+update user set host='%' where user='root' limit 1;
+# 刷新权限
+flush privileges;
+```
+
+> * `root` 可以改为你自己定义的用户名。
+> * `localhost` 指的是该用户开放的 IP，可以是 `localhost` 或 `127.0.0.1`（仅本机访问），可以是具体的某一 IP，也可以是 `%` （所有 IP 均可访问)。
+> * `password` 是你想使用的验证密码。
+
+如果使用 Navicat 连接时报 `2003 - Can't connect to MySQL server on ...` 错误，那就是要设置一下服务器的防火墙，开放 MySQL 监听的端口号：
+
+```bash
+# 查看状态, 发现当前是 dead 状态, 即防火墙未开启
+systemctl status firewalld
+
+# 开启防火墙, 没有任何提示即开启成功
+# 再次查看状态, 显示 running 即已开启了
+systemctl start firewalld
+
+# 开放默认端口号 3306, 提示 success, 表示设置成功
+firewall-cmd --permanent --zone=public --add-port=3306/tcp
+
+# 修改后需要重新加载配置才生效
+firewall-cmd --reload;
+
+# 查看已经开放的端口
+firewall-cmd --permanent --list-port
+
+# 关闭默认的端口号 3306(如果需要的话, 执行这个命令就行了)
+firewall-cmd --permanent --zone=public --remove-port=3306/tcp
+
+# 关闭防火墙(如果需要的话, 执行这个命令就行了)
+systemctl stop firewalld
+```
+
+此时，如果使用的是阿里云等云厂家的服务器，可能还是无法连接，就需要去云管理平台进行一些设置。大致的入口是：
+
+进入云服务管理控制平台 ——> 进入云服务器 ——> 选择实例 ——> 管理。
+
+* 阿里云就找到：本实例安全组 --> 配置规则 --> 添加安全组规则，端口范围写 `3306/3306`，授权对象写 `0.0.0.0/0`。
+* 腾讯云就找到：防火墙 --> 管理规则 --> 添加规则，应用类型下拉框选择 MySQL(3306) 就可以了。
+* 如果改了 MySQL 的默认端口，或者想进行更多限制，或者是别的云服务商，稍微摸索下即可，这个没多少坑。
+
 ### 卸载 MySQL
 
 首先输入命令 `ps -ef | grep mysql` 检查一下 MySQL 服务是否在运行，在卸载之前需要先停止服务：
@@ -414,6 +500,18 @@ rm -rf /opt/mysql/
 rm /etc/my.cnf
 ```
 
+删除环境变量：
+
+```bash
+vim /etc/profile
+```
+
+删掉之前添加的 MySQL 相关的代码后，保存文件后，执行刷新操作：
+
+```bash
+source /etc/profile
+```
+
 find 查找相关文件并删除：
 
 ```bash
@@ -428,6 +526,16 @@ find / -name mysql
 
 ```bash
 id mysql
-userdel mysql
+userdel -rf mysql
 groupdel mysql
 ```
+
+> 注意：`-rf` 参数表示删除当前已登陆的用户，并删除与其相关的所有文件。
+>
+> 慎用 `-r` 选项，如果用户目录下有重要文件，删除前请备份。
+
+## 参考资料
+
+* [那些你不知道的MySQL配置文件的坑](https://blog.51cto.com/luecsc/1953842)
+
+（完）
