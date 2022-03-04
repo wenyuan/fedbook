@@ -18,16 +18,38 @@ whereis nginx
 rm -rf /usr/local/nginx
 ```
 
-## 删除 Nginx 自启动
+## Ubuntu 删除 Nginx 自启动
 
 如果安装了 Nginx 自启动（后面章节会讲），按照如下命令将自启动脚本删除。
 
 ```bash
-# 取消开机启动
-sudo update-rc.d -f nginx remove
+# 进入 /etc/init.d 查看哪些服务进程是开机自启动的
+cd /etc/init.d
+ls
 
-# 删除自启动脚本
-sudo rm -rf /etc/init.d/nginx
+# 取消 Nginx 开机启动
+update-rc.d -f nginx remove
+
+# 删除 Nginx 自启动脚本
+rm /etc/init.d/nginx
+```
+
+## CentOS 7.x 删除 Nginx 自启动
+
+在 CentOS 7.x 中，如果你跟我一样是通过 systemd 实现 Nginx 自启动的（后面章节会讲），按照如下命令将自启动脚本删除。
+
+```bash
+# 查看开机启动项里有没有 nginx.service
+systemctl list-unit-files --type=service | grep enabled
+
+# 停止 Nginx 服务进程
+systemctl stop bluetooth.service
+
+# 使 Nginx 开机不启动
+sudo systemctl disable bluetooth.service
+
+# 删除 Nginx 服务文件
+rm /usr/lib/systemd/system/nginx.service
 ```
 
 ## find 查找相关文件并删除

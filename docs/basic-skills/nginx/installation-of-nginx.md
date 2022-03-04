@@ -119,7 +119,7 @@ yum install -y openssl openssl-devel
 
 > 以下命令，如果你是 root 账户，直接执行即可，不是的话前面加 `sudo` 获取权限。
 
-从 [官方网站](http://nginx.org/en/download.html) 下载稳定版本到任意目录（自己规划好），并解压。
+从 [官方网站](http://nginx.org/en/download.html) 下载稳定版本到任意目录（例如我一般会把软件放到 `/opt`），并解压。
 
 ```bash
 # 下载
@@ -144,6 +144,7 @@ cd nginx-1.18.0/
 ```bash
 # 预编译
 ./configure --prefix=/usr/local/nginx --sbin-path=/usr/local/nginx/sbin/nginx --user=nginx --group=nginx --with-http_ssl_module --with-http_stub_status_module --with-http_gzip_static_module
+
 # 检查是否编译正确
 echo $?  # 如果返回值是 0，就是执行成功；如果是返回值是 0 以外的值，就是失败。
 
@@ -210,6 +211,40 @@ netstat -lntup | grep nginx
   <img src="./assets/welcome-to-nginx.png" alt="Welcome to nginx">
   <p style="text-align: center; color: #888;">（Welcome to nginx）</p>
 </div>
+
+如果不能访问，就要先看下服务器是不是开启了防火墙但又没开放端口（你可以选择不开防火墙，或者开完防火墙后记得开需要的端口）。
+
+```bash
+# 查看状态, 发现当前是 dead 状态, 即防火墙未开启
+systemctl status firewalld
+
+# 开启防火墙, 没有任何提示即开启成功
+# 再次查看状态, 显示 running 即已开启了
+systemctl start firewalld
+
+# 开放默认端口号 80, 提示 success, 表示设置成功
+firewall-cmd --permanent --zone=public --add-port=80/tcp
+
+# 修改后需要重新加载配置才生效
+firewall-cmd --reload;
+
+# 查看已经开放的端口
+firewall-cmd --permanent --list-port
+
+# 关闭默认的端口号 80(如果需要的话, 执行这个命令就行了)
+firewall-cmd --permanent --zone=public --remove-port=80/tcp
+
+# 关闭防火墙(如果需要的话, 执行这个命令就行了)
+systemctl stop firewalld
+```
+
+如果使用的是阿里云等云厂家的服务器，`80` 端口是默认开启的，如果用了其它端口，则需要去云管理平台进行一些设置。大致的入口是：
+
+进入云服务管理控制平台 ——> 进入云服务器 ——> 选择实例 ——> 管理。
+
+* 阿里云就找到：本实例安全组 --> 配置规则 --> 添加安全组规则。
+* 腾讯云就找到：防火墙 --> 管理规则 --> 添加规则。
+* 新增的规则就参考自带的 `80` 端口写就好了。
 
 这里就是测一下能不能启停，生产环境要把 Nginx 加到系统自启。现在先关闭 Nginx。
 

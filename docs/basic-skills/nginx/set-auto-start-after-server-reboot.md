@@ -197,13 +197,7 @@ sudo /etc/init.d/nginx start
 sudo update-rc.d -f nginx remove
 ```
 
-## CentOS 设置开机自启
-
-> 以下所有命令，如果你是 root 账户，直接执行即可，不是的话前面加 `sudo` 获取权限。
-
-在 CentOS 和 RedHat 下，我们通过 chkconfig 设置 Nginx 的开机启动。
-
-经实验，以下步骤适用于 CentOS 7.x 版本的系统。
+## CentOS 6.x 设置开机自启
 
 ### 创建启动脚本
 
@@ -361,6 +355,14 @@ nginx="/usr/sbin/nginx"
 NGINX_CONF_FILE="/etc/nginx/nginx.conf"
 ```
 
+还需要修改 PID 文件路径，大约在启动脚本中的第 11 行可以看到被注释的默认路径，在下面加一行，手动指定成和 nginx.conf 文件中的 PID 路径一致即可：
+
+```bash
+设置成和 nginx.conf 中一致。例如我的一般是：/usr/local/nginx/logs/nginx.pid
+# pidfile:     /var/run/nginx.pid
+pidfile:     /usr/local/nginx/logs/nginx.pid
+```
+
 ### 添加执行权限
 
 上述脚本保存为 `/etc/init.d/nginx`，然后设置文件的执行权限：
@@ -408,7 +410,7 @@ chkconfig /etc/init.d/nginx off
 chkconfig --del /etc/init.d/nginx
 ```
 
-## 开机自启脚本提供的快捷命令
+### 开机自启脚本提供的快捷命令
 
 通过 Nginx 开机自启脚本本身提供了一些 Nginx 常用操作的快捷命令，一旦我们通过这个脚本实现开机自启后，就可以通过这些快捷命令来操作 Nginx 了：
 
@@ -424,5 +426,179 @@ chkconfig --del /etc/init.d/nginx
 ```
 
 这些命令通过看脚本代码就能找到。
+
+## CentOS 7.x 设置开机自启
+
+> 以下所有命令，如果你是 root 账户，直接执行即可，不是的话前面加 `sudo` 获取权限。
+
+在 CentOS 7.x 版本的系统开始，就不太好通过 chkconfig + [Red Hat NGINX Init Script](https://www.nginx.com/resources/wiki/start/topics/examples/redhatnginxinit/) 的方式来设置 Nginx 的开机启动了。
+
+因为会留下了一个 bug：通过 `/etc/init.d/nginx` 脚本方式来控制 Nginx 的启动、停止时，start 一直卡着（实际端口是开启了，必须通过 Ctrl + C 强制关闭），stop 不生效（提示成功，但是端口没关闭）。
+
+那么对于 CentOS 7.x 系统，可以通过 systemd 来管理 Nginx。
+
+### 建立服务文件
+
+新建文件：
+
+```bash
+vim /usr/lib/systemd/system/nginx.service
+```
+
+往该文件内写入以下内容（内容模版参考官网 [NGINX systemd service file](https://www.nginx.com/resources/wiki/start/topics/examples/systemd/)）：
+
+```bash
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t
+ExecStart=/usr/sbin/nginx
+ExecReload=/usr/sbin/nginx -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+文件内容解释：
+
+```bash
+[Unit]:服务的说明
+Description:描述服务
+After:描述服务类别
+
+[Service]服务运行参数的设置
+Type=forking是后台运行的形式
+ExecStart为服务的具体运行命令
+ExecReload为重启命令
+ExecStop为停止命令
+PrivateTmp=True表示给服务分配独立的临时空间
+注意：启动、重启、停止命令全部要求使用绝对路径
+
+[Install]服务安装的相关设置，可设置为多用户
+```
+
+### 修改部分参数
+
+如果你的 Nginx 是通过编译安装的，则需要根据实际安装时的设置，修改文件中的部分参数，修改后的示例如下：
+
+```bash
+[Unit]
+Description=The NGINX HTTP and reverse proxy server
+After=syslog.target network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/usr/local/nginx/logs/nginx.pid
+ExecStartPre=/usr/local/nginx/sbin/nginx -t -c /usr/local/nginx/conf/nginx.conf
+ExecStart=/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s quit
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### 添加执行权限
+
+给上述文件添加执行权限：
+
+```bash
+chmod +x /usr/lib/systemd/system/nginx.service
+```
+
+### 添加至开机自启动
+
+设置开机自启动：
+
+```bash
+systemctl enable nginx.service
+```
+
+### Nginx 服务管理
+
+此时可以使用一些快捷命令进行 Nginx 服务管理：
+
+```bash
+# Nginx 启动
+systemctl start nginx.service
+
+# 查看 Nginx 服务当前状态
+systemctl status nginx.service
+
+# Nginx 重载
+systemctl reload nginx.service
+
+# Nginx 停止
+systemctl stop nginx.service
+
+# 重新启动 Nginx 服务
+systemctl restart nginx.service
+
+# 停止 Nginx 的开机自启动
+systemctl disable nginx.service
+```
+
+Nginx 启动日志查看：
+
+```bash
+journalctl -f -u nginx.service
+```
+
+### systemd 提供的一些命令
+
+查看所有已启动的服务：
+
+```bash
+systemctl list-units --type=service
+```
+
+命令集合：
+
+```bash
+# 查看所有开机启动项
+systemctl list-unit-files --type=service | grep enabled
+
+# 查询服务是否开机启动
+systemctl is-enabled servicename.service
+
+# 开机运行服务
+systemctl enable *.service
+
+# 取消开机运行
+systemctl disable *.service
+
+# 启动服务
+systemctl start *.service
+
+# 停止服务
+systemctl stop *.service
+
+# 重启服务
+systemctl restart *.service
+
+# 重新加载服务配置文件
+systemctl reload *.service
+
+# 查询服务运行状态
+systemctl status *.service
+
+# 显示启动失败的服务
+systemctl --failed
+```
+
+注：`*` 代表某个服务的名字，如 http 的服务名为 httpd。
+
+## 参考文档
+
+* [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 
 （完）
