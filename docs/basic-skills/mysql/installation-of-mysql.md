@@ -1,4 +1,4 @@
-# MySQL 的安装
+# MySQL 的安装与卸载
 
 ## Windows 下安装
 
@@ -434,7 +434,7 @@ flush privileges;
 > * `localhost` 指的是该用户开放的 IP，可以是 `localhost` 或 `127.0.0.1`（仅本机访问），可以是具体的某一 IP，也可以是 `%` （所有 IP 均可访问)。
 > * `password` 是你想使用的验证密码。
 
-如果使用 Navicat 连接时报 `2003 - Can't connect to MySQL server on ...` 错误，那就是要设置一下服务器的防火墙，开放 MySQL 监听的端口号：
+如果使用 Navicat 连接时报 `2003 - Can't connect to MySQL server on ...` 错误，就要先看下服务器是不是开启了防火墙但又没开放端口（你可以选择不开防火墙，或者开完防火墙后记得开放 MySQL 监听的端口号）。
 
 ```bash
 # 查看状态, 发现当前是 dead 状态, 即防火墙未开启
@@ -460,7 +460,7 @@ firewall-cmd --permanent --zone=public --remove-port=3306/tcp
 systemctl stop firewalld
 ```
 
-此时，如果使用的是阿里云等云厂家的服务器，可能还是无法连接，就需要去云管理平台进行一些设置。大致的入口是：
+另外，如果使用的是阿里云等云厂家的服务器，无法连接的原因可能是需要去云管理平台进行一些设置。大致的入口是：
 
 进入云服务管理控制平台 ——> 进入云服务器 ——> 选择实例 ——> 管理。
 

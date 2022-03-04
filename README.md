@@ -214,7 +214,7 @@
   * 未完结，待更新
 * [MySQL](https://fedbook.cn/basic-skills/mysql/)
   * **MySQL 基本使用**
-  * [MySQL 的安装](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
+  * [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
   * [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
   * [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
   * 未完结，待更新

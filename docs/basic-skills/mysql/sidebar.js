@@ -4,7 +4,7 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: 'MySQL 的安装',
+        title: 'MySQL 的安装与卸载',
         path: '/basic-skills/mysql/installation-of-mysql',
         collapsable: true
       },
