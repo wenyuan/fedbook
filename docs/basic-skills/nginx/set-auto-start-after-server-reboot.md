@@ -199,6 +199,8 @@ sudo update-rc.d -f nginx remove
 
 ## CentOS 6.x 设置开机自启
 
+> 以下所有命令，如果你是 root 账户，直接执行即可，不是的话前面加 `sudo` 获取权限。
+
 ### 创建启动脚本
 
 在 Linux 系统的 `/etc/init.d/` 目录下创建 `nginx` 文件：

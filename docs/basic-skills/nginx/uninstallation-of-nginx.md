@@ -43,10 +43,10 @@ rm /etc/init.d/nginx
 systemctl list-unit-files --type=service | grep enabled
 
 # 停止 Nginx 服务进程
-systemctl stop bluetooth.service
+systemctl stop nginx.service
 
 # 使 Nginx 开机不启动
-sudo systemctl disable bluetooth.service
+systemctl disable nginx.service
 
 # 删除 Nginx 服务文件
 rm /usr/lib/systemd/system/nginx.service
