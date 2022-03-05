@@ -133,7 +133,8 @@
   * [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)
   * [渲染引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-rendering-process/)
   * [V8 引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-v8-engine/)
-* [JS 手写函数](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
+* [JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
+  * **简单手写：函数**
   * [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
   * [实现节流函数（throttle）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现节流函数-throttle/)
   * [实现浅克隆（shallowClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现浅克隆-shallow-clone/)
@@ -144,6 +145,9 @@
   * [实现 call 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现call方法/)
   * [实现 apply 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现apply方法/)
   * [实现 bind 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现bind方法/)
+  * 未完结，待更新
+  * **复杂手写：类库**
+  * [实现符合 Promises/A+ 规范的 Promise](https://fedbook.cn/frontend-knowledge/javascript-handwritten/my-promise/)
   * 未完结，待更新
 
 <p align=right>

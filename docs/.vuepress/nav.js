@@ -31,7 +31,7 @@ module.exports = [
       {
         text: '手写',
         items: [
-          { text: 'JS 手写函数', link: '/frontend-knowledge/javascript-handwritten/' }
+          { text: 'JS 手写', link: '/frontend-knowledge/javascript-handwritten/' }
         ]
       }
     ]
