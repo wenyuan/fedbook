@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'JavaScript 手写函数',
+    title: '简单手写：函数',
     collapsable: false,
     children: [
       {
@@ -56,6 +56,17 @@ module.exports = [
       {
         title: '未完待续',
         path: '/frontend-knowledge/javascript-handwritten/to-be-continued',
+        collapsable: true
+      }
+    ]
+  },
+  {
+    title: '复杂手写：类库',
+    collapsable: false,
+    children: [
+      {
+        title: '实现符合 Promises/A+ 规范的 Promise',
+        path: '/frontend-knowledge/javascript-handwritten/my-promise',
         collapsable: true
       }
     ]
