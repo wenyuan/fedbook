@@ -1,5 +1,111 @@
 # Promise
 
+## Promise 简介
+
+Promise 是一种处理异步代码的方式，支持链式调用，可以解决回调地狱问题。
+
+::: details jQuery 回调地狱写法
+```javascript
+// 一个异步事件要依赖另一个异步事件的返回值
+// 可以发现每个异步请求是在函数里面一层一层嵌套的
+function ajax1() {
+  $.ajax({
+    type: 'POST',
+    url: '',
+    data: {},
+    dataType: 'json',
+    success: function(res) {
+      ajax2(res.data)
+    }
+  })
+}
+function ajax2(data) {
+  $.ajax({
+    type: 'POST',
+    url: '',
+    data: data,
+    dataType: 'json',
+    success: function (res) {
+      ajax3(res.data)
+    }
+  })
+}
+function ajax3(data) {
+  $.ajax({
+    type: 'POST',
+    url: '',
+    data: data,
+    dataType: 'json',
+    success: function (res) {
+      console.log(res)
+    }
+  })
+}
+
+// 运行
+ajax1()
+```
+:::
+
+::: details Promise 链式调用写法
+```javascript
+// Promise 是支持链式调用的
+// 使用方法是将 Promise 封装, 每次在 then 中执行完毕后返回一个新的 Promise
+const ajax1 = new Promise(function (resolve,reject) {
+  $.ajax({
+    type: 'POST',
+    url: '',
+    data: {},
+    dataType: 'json',
+    success: function (res) {
+      resolve(res.data)
+    }
+  })
+})
+function ajax2 (data) {
+  return new Promise(function (resolve,reject) {
+    $.ajax({
+      type: 'POST',
+      url: '',
+      data: data,
+      dataType: 'json',
+      success: function (res) {
+        resolve(res.data)
+      }
+    })
+  })
+}
+function ajax3 (data) {
+  return new Promise(function (resolve,reject) {
+    $.ajax({
+      type: 'POST',
+      url: '',
+      data: data,
+      dataType: 'json',
+      success: function (res) {
+        resolve(res.data)
+      }
+    })
+  })
+}
+
+// 运行
+ajax1.then(function (data) {
+  return ajax2(data)
+}).then(function (data) {
+  return ajax3(data)
+})
+```
+:::
+
+Promise 对象有三种状态：pending（等待中）、fulfilled（已成功）和 rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。
+
+一个 Promise 必然处于以下几种状态之一：
+
+* 等待中（pending）：初始状态，既没有被兑现，也没有被拒绝。
+* 已成功（fulfilled）：意味着操作成功。
+* 已拒绝（rejected）：意味着操作失败。
+
 ## 基本语法
 
 创建 Promise 实例：
@@ -16,20 +122,10 @@ const promise = new Promise(function(resolve, reject) {
 })
 ```
 
-Promise 构造函数接受一个函数作为参数，该函数的两个参数分别是 `resolve` 和 `reject`，它们是两个函数，由 JavaScript 引擎提供，不用自己部署。
+Promise 构造函数接受一个函数作为参数，该函数的两个参数分别是 `resolve` 和 `reject`，它们都是函数类型，由 JavaScript 引擎提供，不用自己实现。
 
-* 处理结果正常的话，调用 `resolve`（处理结果值），将 Promise 对象的状态从「未完成」变为「成功」（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去。
-* 处理结果错误的话，调用 `reject`（Error 对象），将 Promise 对象的状态从「未完成」变为「失败」（即从 pending 变为 rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。
-
-Promise 实例生成以后，可以用 `then` 方法分别指定 resolved 状态和 rejected 状态的回调函数：
-
-```javascript
-promise.then(function(value) {
-  // success
-}, function(error) {
-  // failure
-})
-```
+* 处理结果正常的话，调用 `resolve(处理结果值)`，将 Promise 对象的状态从「等待中」变为「成功」（即从 pending 变为 fulfilled）。该函数在异步操作成功时调用，并将异步操作的结果，作为参数传递出去。
+* 处理结果错误的话，调用 `reject(错误信息)`，将 Promise 对象的状态从「等待中」变为「失败」（即从 pending 变为 rejected）。该函数在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。
 
 Promise 内部的状态（pending、fulfilled、rejected）走向如下图所示：
 
@@ -44,25 +140,62 @@ Promise 内部的状态（pending、fulfilled、rejected）走向如下图所示
 
 > promise.then(onFulfilled, onRejected)
 
-**示例**
+Promise 实例生成以后，可以用 `then` 方法指定 fulfilled 状态和 rejected 状态的回调函数。该方法的第一个参数又名 onFulfilled，第二个参数又名 onRejected，都应是函数类型。
 
 ```javascript
-var promise = new Promise(function(resolve, reject) {
-  resolve('传递给then的值')
-})
 promise.then(function(value) {
-  console.log(value)
+  // success
 }, function(error) {
-  console.error(error)
+  // failure
 })
 ```
 
-这段代码创建一个 Promise 对象，定义了处理 onFulfilled 和 onRejected 的函数（handler），然后返回这个 Promise 对象。
+**示例**
 
-这个 Promise 对象会在变为 `resolve` 或者 `reject` 的时候分别调用相应注册的回调函数。
+```javascript
+let p1 = new Promise((resolve, reject) => {
+  resolve('p1 成功')
+  reject('p1 失败')
+})
 
-* 当 handler 返回一个正常值的时候，这个值会传递给 Promise 对象的 onFulfilled 方法。
-* 定义的 handler 中产生异常的时候，这个值则会传递给 Promise 对象的 onRejected 方法。
+let p2 = new Promise((resolve, reject) => {
+  reject('p2 失败')
+  resolve('p2 成功')
+})
+
+let p3 = new Promise((resolve, reject) => {
+  throw('p3 报错')
+})
+
+p1.then(value => {
+  console.log(value)
+}, error => {
+  console.log(error)
+})
+
+p2.then(value => {
+  console.log(value)
+}, error => {
+  console.log(error)
+})
+
+p3.then(value => {
+  console.log(value)
+}, error => {
+  console.log(error)
+})
+
+// "p1 成功"
+// "p2 失败"
+// "p3 报错"
+```
+
+这里包含了四个知识点：
+
+* 执行了 `resolve`，Promise 状态会变成 `fulfilled`，即「已完成状态」。
+* 执行了 `reject`，Promise 状态会变成 `rejected`，即「被拒绝状态」。
+* Promise 状态的改变不可逆，第一次成功就永久为 `fulfilled`，第一次失败就永久为 `rejected`。
+* Promise 中有 `throw` 的话，就相当于执行了 `reject`。
 
 ## Promise.prototype.catch()
 
@@ -108,7 +241,7 @@ new Promise(function(resolve) {
 })
 ```
 
-上面代码中的 `resolve(42)` 会让这个 Promise 对象立即进入确定（即 resolved）状态，并将 `42` 传递给后面 `then` 里所指定的 onFulfilled 函数。
+上面代码中的 `resolve(42)` 会让这个 Promise 对象立即进入确定（即 fulfilled）状态，并将 `42` 传递给后面 `then` 里所指定的 onFulfilled 函数。
 
 方法 `Promise.resolve(value)` 的返回值也是一个 Promise 对象，所以我们可以像下面那样接着对其返回值进行 `.then` 调用：
 
