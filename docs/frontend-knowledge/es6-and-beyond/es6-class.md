@@ -33,6 +33,8 @@ let dog = new Animal('dog')
 let monkey = new Animal('monkey')
 ```
 
+上面这两种写法跟传统的面向对象语言差异很大，很容易让新学习这门语言的程序员感到困惑。
+
 在 ES6 中把类的声明专业化了，通过 class 语法来代替 function 的方式:
 
 ```javascript
@@ -49,7 +51,7 @@ let dog = new Animal('dog')
 let monkey = new Animal('monkey')
 ```
 
-这样就和其他编程语言（Java、Python）保持一致了：声明一个类时有构造函数、方法。
+这样就和其他编程语言（Java、Python）保持一致了，声明一个类时有构造函数、方法。
 
 但 `class` 不是新的数据类型，它本质上还是一个 `function`，通过观察原型可以发现，`Animal.prototype` 对象上有两个方法，一个是构造函数（`constructor`）、一个是自定义的方法（`walk`），这和上面 ES5 的第二种写法是一样的。而且和 ES5 一样，都有个 API 用来判断对象的自有属性（`hasOwnProperty`）。
 
@@ -66,7 +68,14 @@ class Animal {
 console.log(Animal.prototype)
 ```
 
-所以可以得出结论：`class` 的方式是 `function` 方式的语法糖。
+从上面代码可以看出：
+
+* 类里面有一个 `constructor()` 方法，这就是构造方法。
+* `this` 关键字指向实例对象。
+* 给类增加自定义方法的时候，前面不需要加上 `function` 关键字，直接把函数定义放进去了就可以了。另外，方法与方法之间不需要逗号分隔，加了会报错。
+* 类的所有方法（包括 `constructor()` 和自定义方法）都定义在类的 `prototype` 属性上面，因此在类的实例上面调用方法，其实就是调用原型上的方法。
+
+所以可以得出结论：`class` 的方式是 `function` 方式的语法糖，它诞生的目的是让对象原型的写法更加清晰、更像面向对象编程的语法。
 
 ## Setters & Getters
 
