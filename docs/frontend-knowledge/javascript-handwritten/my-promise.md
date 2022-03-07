@@ -85,7 +85,7 @@ Promise 的解析过程是一个抽象的操作，它需要输入一个 promise 
 * 如果 `promise` 和 `x` 指向同一个对象，以 `TypeError` 为 reason 拒绝执行 `promise`。
 * 如果 `x` 是 `promise`，则使 `promise` 接受 `x` 的状态：
   * 如果 `x` 处于 pending 状态，`promise` 需保持为等待状态直至 `x` 被执行或拒绝。
-  * 如果 `x` 处于 resolved 状态，用相同的 value 执行 `promise`。
+  * 如果 `x` 处于 fulfilled 状态，用相同的 value 执行 `promise`。
   * 如果 `x` 处于 rejected 状态，用相同的 reason 执行 `promise`。
 * 如果 `x` 是对象或者函数：
   * 把 `x.then` 赋值给 `then`。
