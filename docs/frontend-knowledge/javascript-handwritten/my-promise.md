@@ -120,9 +120,15 @@ promise.then((value) => {
 })
 ```
 
-Promise 是个构造函数，在使用前需要实例化，然后里面其实有个参数是 `executor`（函数类型），它相当于一个执行器，当 `new Promise()` 的时候就会自动执行。
+Promise 是个构造函数（ES5），在使用前需要实例化。实例化的时候传入了一个参数：
 
-基于这样的要求，我们先将自己写的 Promise 命名为 MyPromise，它是一个类（或者 ES5 的构造函数）。这里用 ES6 的方式来写：
+```javascript
+let promise = new Promise(() => {})
+```
+
+并且这个参数是一个函数，它相当于一个执行器，当 `new Promise()` 的时候就会自动执行。
+
+基于这样的要求，我们先将自己写的 Promise 命名为 MyPromise，它是一个类（或者 ES5 的构造函数），在类的构造函数 constructor 里面添加一个参数，这里就用 executor 来做形参，且执行一下这个参数（记住了它是一个函数类型）。用 ES6 的方式来写如下：
 
 ```javascript
 class MyPromise {
@@ -178,20 +184,41 @@ module.exports = MyPromise;
 
 这里有一个注意点，在哪里定义这两个函数：
 
-* 定义在 constructor 外面，就是定义到了 Promise 的 prototype 上面，每一个 Promise 的实例会继承同一个 resolve 和 reject。
-* 定义在 constructor 里面，每一次实例化的时候，都会在构造函数里重新声明 resolve 和 reject 函数。
+* 方案一：定义在 constructor 外面，用类方法的形式来创建这两个函数。本质上是定义到了 Promise 的 prototype 上面，每一个 Promise 的实例会继承同一个 resolve 和 reject。  
+  这种方案需注意，在 constructor 中调用 resolve 和 reject 时，要使用 bind 来绑定 this，从而解决 this 指向问题。
+  ```javascript {9}
+  class MyPromise {
+    constructor(executor) {
+      this.status = PENDING;
+      this.value = undefined;
+      this.reason = undefined;
 
-每一个 Promise 的执行器（executor）都应该有自己的 resolve 和 reject，所以选择第二种定义方式：
+      // 对于 resolve 来说, 这里就是将实例的 resolve 方法内的 this 指向当前实例对象
+      // 对于 reject 来说, 这里就是将实例的 reject 方法内的 this 指向当前实例对象
+      execute(this.resolve.bind(this), this.reject.bind(this));
+    }
+    resolve(value) {}
+    reject(reason) {}
+  }
+  ```
 
-::: details 如果 resolve 和 reject 定义在 Promise 的原型对象上会发生一个可怕的事
-假设这样一个场景：我们用 `new Promise()` 封装一个异步任务，这个异步任务需要 10s 完成，完成后调用 resolve 和 reject 来设置 Promise 对象的状态。
+* 方案二：定义在 constructor 里面，每一次实例化的时候，都会在构造函数里重新声明 resolve 和 reject 函数。
+  ```javascript
+  class MyPromise {
+    constructor(executor) {
+      this.status = PENDING;
+      this.value = undefined;
+      this.reason = undefined;
 
-但是 `new Promise()` 是同步的，它不会等到异步任务完成再继续执行，而是直接返回一个状态 pending 的 Promise 对象（暂定这个实例对象名为 promise），继续后面的代码。
+      const resolve = (value) => {}  
+      const reject  = (reason) => {}  
+  
+      executor(resolve, reject);
+    }
+  }
+  ```
 
-此时你突然脑子一动，写了一行代码 `promise.resolve()`，结果你发现异步任务还没完成呢，你的 promise 对象状态就成功了。
-
-结果就可能与预期的不一样了。
-:::
+两种方案都可以继续往下做，这里我们选择第二种定义方式。下面是定义 resolve 和 reject 方法后的完整代码：
 
 ```javascript
 const PENDING = 'pending';
@@ -233,7 +260,10 @@ module.exports = MyPromise;
 
 then 作为 Promise 的一个方法，直接写在 MyPromise 里面就行了。
 
-它包含了两个参数：onFulfilled（成功的回调）和 onRejected（失败的回调）：
+它包含了两个参数：
+
+* onFulfilled（成功的回调）：当状态变成 fulfilled 时执行的代码
+* onRejected（失败的回调）：当状态变成 rejected 时执行的代码
 
 ```javascript
 const PENDING = 'pending';
