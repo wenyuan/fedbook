@@ -34,25 +34,25 @@ error: RPC failed; curl 18 transfer closed with outstanding read data remaining
 ```bash
 # 使用 http 协议(推荐)
 git config --global http.proxy 127.0.0.1:1081
-# 或使用 socks 协议
+# 或使用 socks 协议(不推荐, 忘记会有什么坑了)
 git config --global http.proxy socks5://127.0.0.1:1080
 ```
 
 局部代理：在 github clone 的仓库内执行，不是很方便，一般不推荐。
 
 ```bash
-# 使用 http 协议
+# 使用 http 协议(推荐)
 git config --local http.proxy 127.0.0.1:1081
-# 或使用 socks 协议
+# 或使用 socks 协议(不推荐, 忘记会有什么坑了)
 git config --local http.proxy socks5://127.0.0.1:1080
 ```
 
 专用代理：只对 github 进行代理，对国内的仓库不影响，推荐！
 
 ```bash
-# 使用 http 协议
+# 使用 http 协议(推荐)
 git config --global http.https://github.com.proxy 127.0.0.1:1081
-# 或使用 socks 协议
+# 或使用 socks 协议(不推荐, 忘记会有什么坑了)
 git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 ```
 
