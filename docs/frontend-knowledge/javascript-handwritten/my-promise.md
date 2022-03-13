@@ -519,3 +519,419 @@ class MyPromise {
 
 module.exports = MyPromise;
 ```
+
+## 实现 Promise 的链式调用功能
+
+### 原生 Promise 链式调用的特性
+
+这块比较复杂，对应 Promises/A+ 规范的 [The Promise Resolution Procedure](https://promisesaplus.com/#the-promise-resolution-procedure)。规范理解起来比较拗口，所以先总结下所有原生 Promise 链式调用的特点。
+
+* 通过 return 可以直接将结果结果给下一个 then。
+
+```javascript {6}
+let promise = new Promise((resolve, reject) => {
+  resolve('First resolve'); // 传递一个普通值
+})
+
+promise.then(value => {
+  return value;
+})
+.then(value => {
+  console.log(value); // 可以直接打印出 "First resolve"
+})
+```
+
+* 通过新的 promise 去 resolve 结果
+
+```javascript {9-11}
+let promise = new Promise((resolve, reject) => {
+  resolve('First resolve'); // 传递一个普通值
+})
+
+promise.then(value => {
+  return value;
+})
+.then(value => {
+  return new Promise((resolve, reject) => {
+    resolve(value);
+  })
+})
+.then(value => {
+  console.log(value); // 可以打印出 "First resolve"
+})
+```
+
+* 在 then 中只要 new 了新的 promise，哪怕有异步代码，也可以 resolve 结果给下一个 then 的 onFulfilled 回调。
+
+```javascript {10-12}
+let promise = new Promise((resolve, reject) => {
+  resolve('First resolve'); // 传递一个普通值
+})
+
+promise.then(value => {
+  return value;
+})
+.then(value => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(value);
+    }, 2000)
+  })
+})
+.then(value => {
+  console.log(value); // 两秒后可以打印出 "First resolve"
+})
+```
+
+* 通过新的 promise 去 reject 时, 可以 reject 结果给下一个 then 的 onRejected 回调。
+
+```javascript {11}
+let promise = new Promise((resolve, reject) => {
+  resolve('First resolve'); // 传递一个普通值
+})
+
+promise.then(value => {
+  return value;
+})
+.then(value => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('Error');
+    }, 2000)
+  })
+})
+.then(value => {
+  console.log(value);
+}, reason => {
+  console.log('Rejected: ' + reason); // 两秒后可以打印出 "Rejected: Error"
+})
+```
+
+* then 走了失败的回调函数后，再走 then。
+  * 默认会 `return undefined;` 给下一个 then 的 onFulfilled 回调。
+  * 即：即便走了 onRejected 回调，如果下面继续 then，这条链会把失败的**返回结果**直接传给下一个 then 的 onFulfilled 回调中去。
+
+```javascript {20-24}
+let promise = new Promise((resolve, reject) => {
+  resolve('First resolve'); // 传递一个普通值
+})
+
+promise.then(value => {
+  return value;
+})
+.then(value => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('Error');
+    }, 2000)
+  })
+})
+.then(value => {
+  console.log(value);
+}, reason => {
+  console.log('Rejected: ' + reason); // 两秒后可以打印出 "Rejected: Error"
+})
+.then(value => {
+  console.log('失败后, 下一个 then 的 onFulfilled: ' + value); // "失败后, 下一个 then 的 onFulfilled: undefined"
+}, reason => {
+  console.log('失败后, 下一个 then 的 onRejected: ' + reason);
+})
+```
+
+* 在 then 中抛出异常时，如果下面还有 then，一定会走到失败的回调函数中去。
+
+```javascript {21}
+let promise = new Promise((resolve, reject) => {
+  resolve('First resolve'); // 传递一个普通值
+})
+
+promise.then(value => {
+  return value;
+})
+.then(value => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('Error');
+    }, 2000)
+  })
+})
+.then(value => {
+  console.log(value);
+}, reason => {
+  console.log('Rejected: ' + reason); // 两秒后可以打印出 "Rejected: Error"
+})
+.then(value => {
+  throw new Error('Throw Error');
+})
+.then(value => {
+  console.log('抛出异常后, 下一个 then 的 onFulfilled: ' + reason);
+}, reason => {
+  console.log('抛出异常后, 下一个 then 的 onRejected: ' + reason); // "抛出异常后, 下一个 then 的 onRejected: Error: Throw Error"
+})
+```
+
+* 用 catch 捕获的情况：抛出异常后会找离它最近的失败回调函数。
+  * 在 then 中抛出异常时，如果下面还有 then，且指定了失败的回调函数，那么会走这个失败的回调函数。
+  * 在 then 中抛出异常时，如果下面还有 then，且没有指定失败的回调函数，那么会走 catch 捕获。
+
+```javascript {26-28}
+let promise = new Promise((resolve, reject) => {
+  resolve('First resolve'); // 传递一个普通值
+})
+
+promise.then(value => {
+  return value;
+})
+.then(value => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('Error');
+    }, 2000)
+  })
+})
+.then(value => {
+  console.log(value);
+}, reason => {
+  console.log('Rejected: ' + reason); // 两秒后可以打印出 "Rejected: Error"
+})
+.then(value => {
+  throw new Error('Throw Error');
+})
+.then(value => {
+  console.log('抛出异常后, 下一个 then 的 onFulfilled: ' + reason);
+})
+.catch(err => {
+  console.log('Catch: ' + err);
+})
+```
+
+* 如果在 catch 里面 return 一个值，后面继续 then，那么还能继续走成功的回调。
+  * 因此 catch 在 Promise 的源码层面上就是一个 then，它也是遵循 then 的运行原则的。
+  * 示例比较简单，基于上面的代码再拼接一个 then 就可以了，此处省略。
+
+小节上面的特性：
+
+* 走成功回调（onFulfilled）的条件：
+  * 在上一个 then 里 return 一个普通值（value：对应 Promises/A+ 规范的 [1.3](https://promisesaplus.com/#point-8)）
+  * 在上一个 then 里 return 一个新的 Promise，并且这个 Promise 里面是成功态的结果（即里面调用了 `resolve(value)` 方法）。
+* 走失败回调（onRejected）的条件：
+  * 在上一个 then 里 return 一个新的 Promise，并且这个 Promise 里面是失败态的原因（即里面调用了 `reject(reason)` 方法）。
+  * 在上一个 then 里抛出了异常（`throw new Error()`）。
+  
+最后，**Promise 要实现链式调用，是因为每个 then 都需要返回一个新的 Promise 对象**。
+
+::: details 明白了这一点，顺便也就可以区分这样一种情况了。
+下面两个写法的 promise2 不一样：
+
+* 第一个 promise2 是第二次 then 返回的新的 Promise 对象
+* 第二个 promise2 是第一次 then 返回的新的 Promise 对象
+
+```javascript
+// 第一种 promise2
+let promise = new Promise((resolve, reject) => {
+  resolve('First resolve'); // 传递一个普通值
+})
+
+let promise2 = promise.then(() => {
+
+}).then(() => {
+
+})
+```
+
+```javascript
+// 第二种 promise2
+let promise = new Promise((resolve, reject) => {
+  resolve('First resolve'); // 传递一个普通值
+})
+
+let promise2 = promise.then(() => {
+
+})
+
+promise2.then(() => {
+
+})
+```
+::: 
+
+接下来，在 MyPromise 中逐步实现以上提到的 Promise 链式调用特性。
+
+### 每个 then 中返回新的 Promise 对象
+
+前面提到，Promise 链式调用的原理是：在 then 中返回一个新的 Promise，这个 Promise 本身又提供了 then 方法。
+
+并且当前 then 中的返回值可以传递到下一个 then 中，作为回调函数（onFulfilled 或 onRejected）的参数。
+
+先修改 then 函数的代码如下（根据 Promises/A+ 规范的 [2.2.7](https://promisesaplus.com/#point-40) 所述，在 then 中返回一个 promise2）：
+
+```javascript
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // 定义一个 promise2
+    let promise2 = new Promise((resolve, reject) => {
+      // 将之前写的代码都放到 promise2 里面
+      if (this.status === FULFILLED) {
+        onFulfilled(this.value);
+      }
+      
+      if (this.status === REJECTED) {
+        onRejected(this.reason);
+      }
+      
+      if (this.status === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          onFulfilled(this.value);
+        });
+        this.onRejectedCallbacks.push(() => {
+          onRejected(this.reason);
+        });
+      }
+    });
+
+    // 返回 promise2
+    return promise2;
+  }
+```
+
+### 新 Promise 对象的成功或失败回调需要返回一个值 x
+
+接下来按照 Promises/A+ 规范的顺序来继续改写代码。规范的 [2.2.7.1](https://promisesaplus.com/#point-41) 规定：成功或失败的回调函数（onFulfilled 或 onRejected）执行完以后，都需要返回一个值 x。
+
+这里先定义好 x，把 onFulfilled 或 onRejected 的返回结果赋值给它，后面要对 x 做处理。
+
+```javascript {7,11,16,19}
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // 定义一个 promise2
+    let promise2 = new Promise((resolve, reject) => {
+      // 将之前写的代码都放到 promise2 里面
+      if (this.status === FULFILLED) {
+        let x = onFulfilled(this.value);
+      }
+
+      if (this.status === REJECTED) {
+        let x = onRejected(this.reason);
+      }
+
+      if (this.status === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          let x = onFulfilled(this.value);
+        });
+        this.onRejectedCallbacks.push(() => {
+          let x = onRejected(this.reason);
+        });
+      }
+    });
+
+    // 返回 promise2
+    return promise2;
+  }
+```
+
+另外，根据 Promises/A+ 规范 [2.2.7.2](https://promisesaplus.com/#point-42) 所述，如果 then 里面有异常抛出，需要进行捕获，然后 reject 出去，如果有下一个 then 就可以直接走失败的回调了。
+
+代码增加 try...catch 机型捕获即可：
+
+```javascript {7-11,15-19,24-28,31-35}
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // 定义一个 promise2
+    let promise2 = new Promise((resolve, reject) => {
+      // 将之前写的代码都放到 promise2 里面
+      if (this.status === FULFILLED) {
+        try {
+          let x = onFulfilled(this.value);
+        } catch (e) {
+          reject(e);
+        }
+      }
+
+      if (this.status === REJECTED) {
+        try {
+          let x = onRejected(this.reason);
+        } catch (e) {
+          reject(e);
+        }
+      }
+
+      if (this.status === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          try {
+            let x = onFulfilled(this.value);
+          } catch (e) {
+            reject(e);
+          }
+        });
+        this.onRejectedCallbacks.push(() => {
+          try {
+            let x = onRejected(this.reason);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }
+    });
+
+    // 返回 promise2
+    return promise2;
+  }
+```
+
+现在开始处理 x。考虑到 x 有可能是普通值，也可能是一个 Promise 对象，就需要一个专门处理 x 的函数（根据规范，这个函数就命名为 resolvePromise）：
+
+* 如果是普通值，通过 `Promise.resolve()` 方法将它转换成 Promise 对象后再 return 出去。
+* 如果是 Promise 对象，可以直接 return 出去。
+
+```javascript
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // 定义一个 promise2
+    let promise2 = new Promise((resolve, reject) => {
+      // 将之前写的代码都放到 promise2 里面
+      if (this.status === FULFILLED) {
+        try {
+          let x = onFulfilled(this.value);
+        } catch (e) {
+          reject(e);
+        }
+      }
+
+      if (this.status === REJECTED) {
+        try {
+          let x = onRejected(this.reason);
+        } catch (e) {
+          reject(e);
+        }
+      }
+
+      // 对 pending 状态的处理(异步时会进来)
+      if (this.status === PENDING) {
+        // 订阅过程
+        // 为什么 push 的内容是 ()=>{onFulfilled(this.value);}
+        // 而不是 onFulfilled 呢
+        // 因为这样在后面发布时, 只需要遍历数组并直接执行每个元素就可以了
+        this.onFulfilledCallbacks.push(() => {
+          try {
+            let x = onFulfilled(this.value);
+          } catch (e) {
+            reject(e);
+          }
+        });
+        // 同上
+        this.onRejectedCallbacks.push(() => {
+          try {
+            let x = onRejected(this.reason);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }
+    });
+
+    // 返回 promise2
+    return promise2;
+  }
+```
+
+
