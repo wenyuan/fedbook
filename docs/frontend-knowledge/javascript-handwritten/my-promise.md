@@ -65,16 +65,18 @@ promise.then(onFulfilled, onRejected)
   ```javascript
   promise2 = promise1.then(onFulfilled, onRejected);
   ```
-  * 2.2.7.1. 如果 `onFulfilled` 或者 `onRejected` 返回一个值 `x`，就进入 Promise 的解析过程 `[[Resolve]](promise2, x)`。
+  * 2.2.7.1. 如果 `onFulfilled` 或者 `onRejected` 返回一个值 `x`，就进入 Promise 的解决过程 `[[Resolve]](promise2, x)`。
   * 2.2.7.2. 如果 `onFulfilled` 或者 `onRejected` 抛出一个异常 `e`，则 `promise2` 必须过渡到 rejected 状态，并以 `e` 为 reason 参数。
   * 2.2.7.3. 如果 `onFulfilled` 不是一个函数，并且 `promise1` 已过渡到 fulfilled 状态，那么 `promise2` 必须也过渡到 fulfilled 状态并返回和 `promise1` 相同的 value。
   * 2.2.7.4. 如果 `onRejected` 不是一个函数，并且 `promise1` 已过渡到 rejected 状态，那么 `promise2` 必须也过渡到 rejected 状态并返回和 `promise1` 相同的原因 reason。
 
-#### 2.3. Promise 的解析过程
+#### 2.3. Promise 的解决过程
 
-> 译者注：这段逻辑很复杂，理解起来有点绕，不过可以搭配后面手写时的注释来理解。
+> 译者注：
+> * Resolution Procedure：这个词不知道怎么翻译比较贴切，就直译为「解决过程」了。
+> * 这段逻辑很复杂，理解起来有点绕，不过可以搭配后面手写时的注释来理解。
 
-Promise 的解析过程是一个抽象的操作，它需要输入一个 promise 和一个 value，可以表示为 `[[Resolve]](promise, x)`。如果 `x` 有 `then` 方法且看上去像一个 Promise 的实例，解析过程中就会让 `promise` 接受这个 `x` 的状态；否则就用 `x` 的值来执行 `promise`。
+Promise 的解决过程是一个抽象的操作，它需要输入一个 promise 和一个 value，可以表示为 `[[Resolve]](promise, x)`。如果 `x` 有 `then` 方法且看上去像一个 Promise 的实例，解决过程中就会让 `promise` 接受这个 `x` 的状态；否则就用 `x` 的值来执行 `promise`。
 
 这种 thenable 的特性使得 promise 的实现更具有通用性：只要它暴露出一个符合 Promises/A+ 规范的 `then` 方法即可。这使得那些符合 Promises/A+ 规范的实现可以与不符合规范但可用的实现能良好的共存。
 
@@ -421,8 +423,29 @@ let promise = new MyPromise((resolve, reject) => {
   }, 2000);
 })
 
-// 解决异步问题的时候, 顺便把多次调用 then 的问题也一起解决了
-// 所以此处调用两个 promise.then
+promise.then((value) => {
+  console.log('Resolved:', value);
+}, (reason) => {
+  console.log('Rejected:', reason);
+});
+``` 
+
+因为 setTimeout 是一段异步代码，在 `new MyPromise()` 执行完以后，状态没有马上改变（依旧是 pending），所以在 `promise.then` 里面 onFulfilled 和 onRejected 两个地方都不会执行。
+
+为了跟原生 Promise 一样支持异步逻辑，我们在前面编写的 then 函数里，除了处理 fulfilled 和 rejected 两种状态，现在还需要加入 pending 状态的处理。
+
+多次调用的意思就是多次调用 then 方法，就像这样：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+let promise = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success');
+  }, 2000);
+})
+
+// 此处调用两次 promise.then
 promise.then((value) => {
   console.log('Resolved 1:', value);
 }, (reason) => {
@@ -434,13 +457,11 @@ promise.then((value) => {
 }, (reason) => {
   console.log('Rejected 2:', reason);
 });
-``` 
+```
 
-因为 setTimeout 是一段异步代码，在 `new MyPromise()` 执行完以后，状态没有马上改变（依旧是 pending），所以在 `promise.then` 里面 onFulfilled 和 onRejected 两个地方都不会执行。
+我们这里在解决异步问题的时候，可以顺便把多次调用 then 这个功能也一起实现了。
 
-为了跟原生 Promise 一样支持异步逻辑，我们在前面编写的 then 函数里，除了处理 fulfilled 和 rejected 两种状态，现在还需要加入 pending 状态的处理。
-
-同时，在有多个 `promise.then` 的情况下，原生 Promise 会依次去执行 onFulfilled 或依次去执行 onRejected（这条规则对应 Promises/A+ 规范的 [2.2.6](https://promisesaplus.com/#point-36)）。因为状态的变化是不可逆的，一旦从 pending 变成 fulfilled（或 rejected），就会调用 `resolve()`（或 `reject()`），接下里只会依次执行每个 then 里面的成功回调（或失败回调），而不会成功回调与失败回调穿插执行。
+根据 Promises/A+ 规范的 [2.2.6](https://promisesaplus.com/#point-36) 所述：在有多个 `promise.then` 的情况下，原生 Promise 会依次去执行 onFulfilled 或依次去执行 onRejected。换个说法：因为状态的变化是不可逆的，一旦从 pending 变成 fulfilled（或 rejected），就会调用 `resolve()`（或 `reject()`），接下里只会依次执行每个 then 里面的成功回调（或失败回调），而不会成功回调与失败回调穿插执行。
 
 为了实现这样的功能，我们需要用到发布订阅的设计模式，把 `promise.then` 里面的成功回调（或失败回调）都收集起来放到数组中，等到 `resolve()`（或 `reject()`） 执行的时候，再依次去执行数组里放的成功回调（或失败回调）。
 
@@ -521,6 +542,8 @@ module.exports = MyPromise;
 ```
 
 ## 实现 Promise 的链式调用功能
+
+我们常常用到的 `new Promise().then().then()`，这就是链式调用，用来解决回调地狱。
 
 ### 原生 Promise 链式调用的特性
 
@@ -757,7 +780,7 @@ promise2.then(() => {
 
 接下来，在 MyPromise 中逐步实现以上提到的 Promise 链式调用特性。
 
-### 每个 then 中返回新的 Promise 对象
+### then 方法返回一个新的 Promise
 
 前面提到，Promise 链式调用的原理是：在 then 中返回一个新的 Promise，这个 Promise 本身又提供了 then 方法。
 
@@ -794,9 +817,11 @@ promise2.then(() => {
   }
 ```
 
-### 新 Promise 对象的成功或失败回调需要返回一个值 x
+### 新 Promise 对象的回调函数返回值 x
 
-接下来按照 Promises/A+ 规范的顺序来继续改写代码。规范的 [2.2.7.1](https://promisesaplus.com/#point-41) 规定：成功或失败的回调函数（onFulfilled 或 onRejected）执行完以后，都需要返回一个值 x。
+接下来按照 Promises/A+ 规范的顺序来继续改写代码。
+
+规范的 [2.2.7.1](https://promisesaplus.com/#point-41) 规定：上面返回的这个新 Promise 对象，它的成功或失败的回调函数（onFulfilled 或 onRejected）执行完以后，都需要返回一个值 x。
 
 这里先定义好 x，把 onFulfilled 或 onRejected 的返回结果赋值给它，后面要对 x 做处理。
 
@@ -829,7 +854,9 @@ promise2.then(() => {
   }
 ```
 
-另外，根据 Promises/A+ 规范 [2.2.7.2](https://promisesaplus.com/#point-42) 所述，如果 then 里面有异常抛出，需要进行捕获，然后 reject 出去，如果有下一个 then 就可以直接走失败的回调了。
+### then 方法内部异常捕获
+
+规范的 [2.2.7.2](https://promisesaplus.com/#point-42) 规定：如果 then 里面有异常抛出，需要进行捕获，然后 reject 出去，如果有下一个 then 就可以直接走失败的回调了。
 
 代码增加 `try...catch` 进行捕获即可：
 
@@ -878,12 +905,18 @@ promise2.then(() => {
   }
 ```
 
-现在开始处理 x。考虑到 x 有可能是普通值，也可能是一个 Promise 对象，就需要一个专门处理 x 的函数（根据规范，这个函数就命名为 resolvePromise）：
+### x 值的处理
+
+还是回到规范的 [2.2.7.1](https://promisesaplus.com/#point-41)：如果 onFulfilled 或者 onRejected 返回一个值 x ，则运行下面的 Promise 的解决过程。
+
+规范的 [2.3](https://promisesaplus.com/#the-promise-resolution-procedure) 详细描述了 Promise 解决过程，其中首先要对 x 值进行处理。
+
+考虑到 x 有可能是普通值，也可能是一个 Promise 对象，就需要一个专门处理 x 的函数（根据规范，这个函数就命名为 resolvePromise）：
 
 * 如果是普通值，通过 `Promise.resolve()` 方法将它转换成 Promise 对象后再 return 出去。
 * 如果是 Promise 对象，可以直接 return 出去。
 
-```javascript {9-14,23,33,41}
+```javascript {9,18,28,36}
   // 定义 then 方法
   then (onFulfilled, onRejected) {
     // 定义一个 promise2
@@ -892,11 +925,6 @@ promise2.then(() => {
       if (this.status === FULFILLED) {
         try {
           let x = onFulfilled(this.value);
-          // 四个参数
-          // promise2: 携带成功或失败的信息
-          // x: 待处理值
-          // resolve: 外部需要使用该方法
-          // reject: 外部需要使用该方法
           resolvePromise(promise2, x, resolve, reject);
         } catch (e) {
           reject(e);
@@ -937,20 +965,32 @@ promise2.then(() => {
   }
 ```
 
-同时在最外面声明一个 resolvePromise 函数：
+resolvePromise() 各参数的意义：
 
 ```javascript
-function resolvePromise(promise2, x, resolve, reject) {
-
-}
+/**
+ * Promise 解决过程, 即规范所说的 [[Resolve]](promise2, x)
+ * 对 resolve()、reject() 中的返回值 x 进行处理
+ * @param {promise} promise2: promise1.then 方法返回的新的 promise 对象
+ * @param {[type]} x: promise1 中 onFulfilled 或 onRejected 的返回值
+ * @param {[type]} resolve: promise2 的 resolve 方法
+ * @param {[type]} reject: promise2 的 reject 方法
+ */
+function resolvePromise(promise2, x, resolve, reject) {}
 ```
+
+这里的 resolvePromise 函数我们先当作黑盒子，暂时先不去编写它的具体实现。
+
+### 用异步设置事件循环顺序
 
 根据 Promises/A+ 规范 [3.1](https://promisesaplus.com/#point-67) 所述，onFulfilled 和 onRejected 必须是异步的，且以宏任务的方式执行，这里就用规范里给的 setTimeout 来包裹：
 
 为什么要包裹成异步代码呢？有两个原因：
 
 * 如果不包裹，`let promise2 = new Promise((resolve, reject) => {})` 函数体里面的代码以同步的方式执行，其中的 `resolvePromise()` 提前使用到了 `promise2` 这个变量。但此时 new Promise 的过程还没执行完，是拿不到 promise2 的，会报引用错误。
-* `resolvePromise();` 函数必须等异步的 `let x = onFulfilled(this.value);` 函数运行完，才能执行。
+* `resolvePromise();` 函数必须等异步的 `let x = onFulfilled(this.value);` 函数运行完，才能执行。只有把这一大块包裹成异步代码才能实现这一点。
+
+其实本质就是利用事件循环机制，把代码放在事件循环末尾去执行。而 `status === PENDING` 的分支不需要包裹，因为只有 resolve 或 reject 的时候才会进来。
 
 ::: tip
 下面的代码里，虽然我们把 setTimeout 延时设置为 0，但实际延时 >= 4ms。详情参见：[实际延时比设定值更久的原因：最小延迟时间](https://developer.mozilla.org/zh-CN/docs/Web/API/setTimeout#实际延时比设定值更久的原因：最小延迟时间)
@@ -979,12 +1019,14 @@ function resolvePromise(promise2, x, resolve, reject) {
       }
 
       if (this.status === REJECTED) {
-        try {
-          let x = onRejected(this.reason);
-          resolvePromise(promise2, x, resolve, reject);
-        } catch (e) {
-          reject(e);
-        }
+        setTimeout(() => {
+          try {
+            let x = onRejected(this.reason);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        }, 0);
       }
 
       // 对 pending 状态的处理(异步时会进来)
@@ -1017,5 +1059,3 @@ function resolvePromise(promise2, x, resolve, reject) {
     return promise2;
   }
 ```
-
-
