@@ -118,7 +118,7 @@ Promise 的解析过程是一个抽象的操作，它需要输入一个 promise 
 
 ### 定义一个 MyPromise
 
-首先我们看一下原生 Promise 的基础用法：
+首先看一下原生 Promise 的基础用法：
 
 ```javascript
 let promise = new Promise((resolve, reject) => {
@@ -169,7 +169,7 @@ const REJECTED = 'rejected';
 * 初始状态为 pending
 * resolve 和 reject 都是函数，它们都有参数，分别是 value 和 reason，也需要初始化
 
-```javascript
+```javascript {7-12}
 const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
@@ -198,7 +198,7 @@ module.exports = MyPromise;
 
 * 方案一：定义在 constructor 外面，用类方法的形式来创建这两个函数。本质上是定义到了 Promise 的 prototype 上面，每一个 Promise 的实例会继承同一个 resolve 和 reject。  
   这种方案需注意，在 constructor 中调用 resolve 和 reject 时，要使用 bind 来绑定 this，从而解决 this 指向问题。
-  ```javascript {9}
+  ```javascript {9,11-12}
   class MyPromise {
     constructor(executor) {
       this.status = PENDING;
@@ -215,7 +215,7 @@ module.exports = MyPromise;
   ```
 
 * 方案二：定义在 constructor 里面，每一次实例化的时候，都会在构造函数里重新声明 resolve 和 reject 函数。
-  ```javascript
+  ```javascript {7-8,10}
   class MyPromise {
     constructor(executor) {
       this.status = PENDING;
@@ -232,7 +232,7 @@ module.exports = MyPromise;
 
 两种方案都可以继续往下做，这里我们选择第二种定义方式。下面是定义 resolve 和 reject 方法后的完整代码：
 
-```javascript
+```javascript {11-29}
 const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
@@ -277,7 +277,7 @@ then 作为 Promise 的一个方法，直接写在 MyPromise 里面就行了。
 * onFulfilled（成功的回调）：当状态变成 fulfilled 时执行的代码
 * onRejected（失败的回调）：当状态变成 rejected 时执行的代码
 
-```javascript
+```javascript {28-37}
 const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
@@ -355,9 +355,9 @@ promise.then((value) => {
 });
 ``` 
 
-这个错误是在执行器（`executor`）执行以后抛出来的，那么只要用 `try... catch` 捕获它就可以了：
+这个错误是在执行器（`executor`）执行以后抛出来的，那么只要用 `try...catch` 捕获它就可以了：
 
-```javascript
+```javascript {25-30}
 const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
@@ -406,13 +406,13 @@ class MyPromise {
 module.exports = MyPromise;
 ```
 
-至此，一个最基本的 Promise 就写好了。但还有很多问题需要解决，比如多个 promise.then 的处理，所以还得继续往下。
+至此，一个最基本的 Promise 就写好了。但还有很多问题需要解决，比如多个 `promise.then` 的处理，所以还得继续往下。
 
 ## 处理 Promise 中的异步与多次调用的问题
 
 如果在原本的代码里，加入异步的逻辑（比如 setTimeout），执行代码会发现什么也没有打印出来：
 
-```javascript
+```javascript {4-6}
 const MyPromise = require('./MyPromise');
 
 let promise = new MyPromise((resolve, reject) => {
@@ -444,7 +444,7 @@ promise.then((value) => {
 
 为了实现这样的功能，我们需要用到发布订阅的设计模式，把 `promise.then` 里面的成功回调（或失败回调）都收集起来放到数组中，等到 `resolve()`（或 `reject()`） 执行的时候，再依次去执行数组里放的成功回调（或失败回调）。
 
-```javascript
+```javascript {11-14,22-24,33-35,55-68}
 const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
@@ -831,7 +831,7 @@ promise2.then(() => {
 
 另外，根据 Promises/A+ 规范 [2.2.7.2](https://promisesaplus.com/#point-42) 所述，如果 then 里面有异常抛出，需要进行捕获，然后 reject 出去，如果有下一个 then 就可以直接走失败的回调了。
 
-代码增加 try...catch 机型捕获即可：
+代码增加 `try...catch` 进行捕获即可：
 
 ```javascript {7-11,15-19,24-28,31-35}
   // 定义 then 方法
