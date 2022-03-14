@@ -883,7 +883,7 @@ promise2.then(() => {
 * 如果是普通值，通过 `Promise.resolve()` 方法将它转换成 Promise 对象后再 return 出去。
 * 如果是 Promise 对象，可以直接 return 出去。
 
-```javascript
+```javascript {9-14,23,33,41}
   // 定义 then 方法
   then (onFulfilled, onRejected) {
     // 定义一个 promise2
@@ -892,6 +892,12 @@ promise2.then(() => {
       if (this.status === FULFILLED) {
         try {
           let x = onFulfilled(this.value);
+          // 四个参数
+          // promise2: 携带成功或失败的信息
+          // x: 待处理值
+          // resolve: 外部需要使用该方法
+          // reject: 外部需要使用该方法
+          resolvePromise(promise2, x, resolve, reject);
         } catch (e) {
           reject(e);
         }
@@ -900,6 +906,82 @@ promise2.then(() => {
       if (this.status === REJECTED) {
         try {
           let x = onRejected(this.reason);
+          resolvePromise(promise2, x, resolve, reject);
+        } catch (e) {
+          reject(e);
+        }
+      }
+
+      if (this.status === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          try {
+            let x = onFulfilled(this.value);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        });
+        this.onRejectedCallbacks.push(() => {
+          try {
+            let x = onRejected(this.reason);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }
+    });
+
+    // 返回 promise2
+    return promise2;
+  }
+```
+
+同时在最外面声明一个 resolvePromise 函数：
+
+```javascript
+function resolvePromise(promise2, x, resolve, reject) {
+
+}
+```
+
+根据 Promises/A+ 规范 [3.1](https://promisesaplus.com/#point-67) 所述，onFulfilled 和 onRejected 必须是异步的，且以宏任务的方式执行，这里就用规范里给的 setTimeout 来包裹：
+
+为什么要包裹成异步代码呢？有两个原因：
+
+* 如果不包裹，`let promise2 = new Promise((resolve, reject) => {})` 函数体里面的代码以同步的方式执行，其中的 `resolvePromise()` 提前使用到了 `promise2` 这个变量。但此时 new Promise 的过程还没执行完，是拿不到 promise2 的，会报引用错误。
+* `resolvePromise();` 函数必须等异步的 `let x = onFulfilled(this.value);` 函数运行完，才能执行。
+
+::: tip
+下面的代码里，虽然我们把 setTimeout 延时设置为 0，但实际延时 >= 4ms。详情参见：[实际延时比设定值更久的原因：最小延迟时间](https://developer.mozilla.org/zh-CN/docs/Web/API/setTimeout#实际延时比设定值更久的原因：最小延迟时间)
+:::
+
+```javascript
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // 定义一个 promise2
+    let promise2 = new Promise((resolve, reject) => {
+      // 将之前写的代码都放到 promise2 里面
+      if (this.status === FULFILLED) {
+        setTimeout(() => {
+          try {
+            let x = onFulfilled(this.value);
+            // 四个参数
+            // promise2: 携带成功或失败的信息
+            // x: 待处理值
+            // resolve: 外部需要使用该方法
+            // reject: 外部需要使用该方法
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        }, 0);
+      }
+
+      if (this.status === REJECTED) {
+        try {
+          let x = onRejected(this.reason);
+          resolvePromise(promise2, x, resolve, reject);
         } catch (e) {
           reject(e);
         }
@@ -914,14 +996,16 @@ promise2.then(() => {
         this.onFulfilledCallbacks.push(() => {
           try {
             let x = onFulfilled(this.value);
+            resolvePromise(promise2, x, resolve, reject);
           } catch (e) {
             reject(e);
           }
         });
-        // 同上
+        // 订阅过程(同上)
         this.onRejectedCallbacks.push(() => {
           try {
             let x = onRejected(this.reason);
+            resolvePromise(promise2, x, resolve, reject);
           } catch (e) {
             reject(e);
           }
