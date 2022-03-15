@@ -792,7 +792,7 @@ promise2.then(() => {
   // 定义 then 方法
   then (onFulfilled, onRejected) {
     // 定义一个 promise2
-    let promise2 = new Promise((resolve, reject) => {
+    let promise2 = new MyPromise((resolve, reject) => {
       // 将之前写的代码都放到 promise2 里面
       if (this.status === FULFILLED) {
         onFulfilled(this.value);
@@ -829,7 +829,7 @@ promise2.then(() => {
   // 定义 then 方法
   then (onFulfilled, onRejected) {
     // 定义一个 promise2
-    let promise2 = new Promise((resolve, reject) => {
+    let promise2 = new MyPromise((resolve, reject) => {
       // 将之前写的代码都放到 promise2 里面
       if (this.status === FULFILLED) {
         let x = onFulfilled(this.value);
@@ -864,7 +864,7 @@ promise2.then(() => {
   // 定义 then 方法
   then (onFulfilled, onRejected) {
     // 定义一个 promise2
-    let promise2 = new Promise((resolve, reject) => {
+    let promise2 = new MyPromise((resolve, reject) => {
       // 将之前写的代码都放到 promise2 里面
       if (this.status === FULFILLED) {
         try {
@@ -920,7 +920,7 @@ promise2.then(() => {
   // 定义 then 方法
   then (onFulfilled, onRejected) {
     // 定义一个 promise2
-    let promise2 = new Promise((resolve, reject) => {
+    let promise2 = new MyPromise((resolve, reject) => {
       // 将之前写的代码都放到 promise2 里面
       if (this.status === FULFILLED) {
         try {
@@ -996,21 +996,16 @@ function resolvePromise(promise2, x, resolve, reject) {}
 下面的代码里，虽然我们把 setTimeout 延时设置为 0，但实际延时 >= 4ms。详情参见：[实际延时比设定值更久的原因：最小延迟时间](https://developer.mozilla.org/zh-CN/docs/Web/API/setTimeout#实际延时比设定值更久的原因：最小延迟时间)
 :::
 
-```javascript
+```javascript {7,14,18,25}
   // 定义 then 方法
   then (onFulfilled, onRejected) {
     // 定义一个 promise2
-    let promise2 = new Promise((resolve, reject) => {
+    let promise2 = new MyPromise((resolve, reject) => {
       // 将之前写的代码都放到 promise2 里面
       if (this.status === FULFILLED) {
         setTimeout(() => {
           try {
             let x = onFulfilled(this.value);
-            // 四个参数
-            // promise2: 携带成功或失败的信息
-            // x: 待处理值
-            // resolve: 外部需要使用该方法
-            // reject: 外部需要使用该方法
             resolvePromise(promise2, x, resolve, reject);
           } catch (e) {
             reject(e);
@@ -1029,12 +1024,7 @@ function resolvePromise(promise2, x, resolve, reject) {}
         }, 0);
       }
 
-      // 对 pending 状态的处理(异步时会进来)
       if (this.status === PENDING) {
-        // 订阅过程
-        // 为什么 push 的内容是 ()=>{onFulfilled(this.value);}
-        // 而不是 onFulfilled 呢
-        // 因为这样在后面发布时, 只需要遍历数组并直接执行每个元素就可以了
         this.onFulfilledCallbacks.push(() => {
           try {
             let x = onFulfilled(this.value);
@@ -1043,7 +1033,6 @@ function resolvePromise(promise2, x, resolve, reject) {}
             reject(e);
           }
         });
-        // 订阅过程(同上)
         this.onRejectedCallbacks.push(() => {
           try {
             let x = onRejected(this.reason);
@@ -1058,4 +1047,268 @@ function resolvePromise(promise2, x, resolve, reject) {}
     // 返回 promise2
     return promise2;
   }
+```
+
+### 实现 resolvePromise 方法
+
+接下来实现 resolvePromise 方法，也就是规范的 [2.3. The Promise Resolution Procedure](https://promisesaplus.com/#the-promise-resolution-procedure) 这一部分。
+
+* [2.3.1](https://promisesaplus.com/#point-48)：如果 promise 和 x 指向同一对象，以 TypeError 为拒因拒绝执行 promise。
+
+```javascript
+function resolvePromise(promise2, x, resolve, reject) {
+  // 2.3.1 如果 promise 和 x 指向同一对象，以 TypeError 为拒因拒绝执行 promise
+  if (promise2 === x) {
+    return reject(new TypeError('Chaining cycle detected for promise #<MyPromise>'))
+  }
+}
+```
+
+因为如果从 onFulfilled 或 onRejected 中返回的 x 就是 promise2，会导致循环引用报错。
+
+例如下面这种情况，使用原生 Promise 执行这个代码，会报类型错误：
+
+```javascript
+const promise = new Promise((resolve, reject) => {
+  resolve(100)
+})
+const p1 = promise.then(value => {
+  console.log(value)
+  return p1
+})
+```
+
+* [2.3.3](https://promisesaplus.com/#point-53)：如果 x 为对象或者函数。
+
+```javascript
+function resolvePromise(promise2, x, resolve, reject) {
+  // 2.3.1 如果 promise 和 x 指向同一对象，以 TypeError 为拒因拒绝执行 promise
+  if (promise2 === x) {
+    return reject(new TypeError('Chaining cycle detected for promise #<MyPromise>'))
+  }
+
+  // 2.3.3 注意 null 也是 object, 需要排除
+  if ((typeof x === 'object' && x !== null) || (typeof x === 'function')) {
+    // 2.3.3.2 捕获错误异常
+    try {
+      // 2.3.3.1 如果 x 是 Promise 对象, 它一定有 then 方法
+      let then = x.then;
+      // 2.3.3.3 这样暂且就可以认定 x 是个 Promise 对象(但不能绝对排除人为给 x 设置了一个 then 方法的情况)
+      if (typeof then === 'function') {
+        then.call(x, (y) => {
+          // 2.3.3.3.1 注意这里是一个新的 promise, 需要递归调用
+          // 就是支持处理 resolve(new Promise(()=>{}) 这种在 resolve() 里无限嵌套 new Promise() 的场景
+          resolvePromise(promise2, y, resolve, reject)
+        }, (r) => {
+          // 2.3.3.3.2
+          reject(r)
+        })
+      } else {
+        // 2.3.3.4 如果 x 不是个 Promise 对象
+        resolve(x);
+      }
+    } catch (e) {
+      // 2.3.3.2
+      reject(e);
+    }
+  } else {
+    // 2.3.4
+    resolve(e);
+  }
+}
+```
+
+* 细节处理，[2.3.3.3.3](https://promisesaplus.com/#point-59)：如果 resolvePromise 和 rejectPromise 均被调用，或者被同一参数调用了多次，则优先采用首次调用并忽略剩下的调用。
+
+什么意思呢，就像下面这样，调用了 resolve() 后又调用了 reject()：
+
+```javascript {7,8}
+let promise1 = new Promise((resolve, reject) => {
+  resolve('promise 1');
+});
+
+let promise2 = promise1.then(() => {
+  return new Promise((resolve, reject) => {
+    resolve();
+    reject();
+  });
+}, (reason) => {
+  return reason
+});
+```
+
+这个时候可以增加一个表示 `called`，记录是否调用过：
+
+```javascript {7-8,19-20,25-26,35-36}
+function resolvePromise(promise2, x, resolve, reject) {
+  // 2.3.1 如果 promise 和 x 指向同一对象，以 TypeError 为拒因拒绝执行 promise
+  if (promise2 === x) {
+    return reject(new TypeError('Chaining cycle detected for promise #<MyPromise>'))
+  }
+
+  // 2.3.3.3.3 避免多次调用
+  let called = false;
+
+  // 2.3.3 注意 null 也是 object, 需要排除
+  if ((typeof x === 'object' && x !== null) || (typeof x === 'function')) {
+    // 2.3.3.2 捕获错误异常
+    try {
+      // 2.3.3.1 如果 x 是 Promise 对象, 它一定有 then 方法
+      let then = x.then;
+      // 2.3.3.3 这样暂且就可以认定 x 是个 Promise 对象(但不能绝对排除人为给 x 设置了一个 then 方法的情况)
+      if (typeof then === 'function') {
+        then.call(x, (y) => {
+          if (called) return;
+          called = true;
+          // 2.3.3.3.1 注意这里是一个新的 promise, 需要递归调用
+          // 就是支持处理 resolve(new Promise(()=>{}) 这种在 resolve() 里无限嵌套 new Promise() 的场景
+          resolvePromise(promise2, y, resolve, reject)
+        }, (r) => {
+          if (called) return;
+          called = true;
+          // 2.3.3.3.2
+          reject(r)
+        })
+      } else {
+        // 2.3.3.4 如果 x 不是个 Promise 对象
+        resolve(x);
+      }
+    } catch (e) {
+      if (called) return;
+      called = true;
+      // 2.3.3.2
+      reject(e);
+    }
+  } else {
+    // 2.3.4
+    resolve(e);
+  }
+}
+```
+
+### 修补 bug：支持 then 不带参数
+
+前面写的代码有一个 bug，就是当 then 不带参数调用时，会报错：
+
+```javascript
+promise2.then().then().then((value) => {
+  console.log(value)
+}, (reason) => {
+  console.log(reason)
+})
+```
+
+根据规范 [2.2.1](https://promisesaplus.com/#point-23) 所述，onFulfilled 和 onRejected 应该是可选参数。因此要重新修改下 then 方法，增加回调函数的默认值：
+
+```javascript {3-6}
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // 设置默认值, 如果是函数就赋值给它本身, 如果不是就将成功的回调的参数 value 返给它
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value;
+    // 设置默认值, 如果是函数就赋值给它本身, 如果不是就将失败的回调的参数 reason 作为错误原因抛出去
+    onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason};
+    // 定义一个 promise2
+    let promise2 = new MyPromise((resolve, reject) => {
+      // 将之前写的代码都放到 promise2 里面
+      if (this.status === FULFILLED) {
+        setTimeout(() => {
+          try {
+            let x = onFulfilled(this.value);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        }, 0);
+      }
+
+      if (this.status === REJECTED) {
+        setTimeout(() => {
+          try {
+            let x = onRejected(this.reason);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        }, 0);
+      }
+
+      if (this.status === PENDING) {
+        this.onFulfilledCallbacks.push(() => {
+          try {
+            let x = onFulfilled(this.value);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        });
+        this.onRejectedCallbacks.push(() => {
+          try {
+            let x = onRejected(this.reason);
+            resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }
+    });
+
+    // 返回 promise2
+    return promise2;
+  }
+```
+
+### 修补 bug：补充 catch 方法
+
+目前完成的 MyPromise 还有一个小问题，执行以下代码：
+
+```javascript {20-22}
+const MyPromise = require('./MyPromise');
+
+let promise1 = new MyPromise((resolve, reject) => {
+  resolve('promise 1')
+})
+
+let promise2 = promise1.then(() => {
+  return new MyPromise((resolve, reject) => {
+    resolve('new Promise resolve');
+  })
+}, (reason) => {
+  return reason;
+})
+
+promise2.then().then().then((value) => {
+  throw Error('Error');
+}, (reason) => {
+  console.log(reason);
+})
+.catch((e) => {
+  console.log(e);
+})
+```
+
+会发现报错：`TypeError: promise2.then(...).then(...).then(...).catch is not a function`。
+
+根据报错，就需要在我们的 MyPromise 类里定义一个 catch 方法：
+
+* catch 方法和 then 方法比较相似
+* 唯一的区别是 catch 方法的第一个参数是 null
+
+```javascript {11-15}
+const PENDING = 'pending';
+const FULFILLED = 'fulfilled';
+const REJECTED = 'rejected';
+
+class MyPromise {
+  constructor (executor) {}
+
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {}
+
+  // 用 then 模拟 catch
+  // catch 本身是 then 的一个语法糖
+  catch (errorCallback) {
+    return this.then(null, errorCallback);
+  }
+
+}
 ```
