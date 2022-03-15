@@ -1098,10 +1098,10 @@ function resolvePromise(promise2, x, resolve, reject) {
         then.call(x, (y) => {
           // 2.3.3.3.1 注意这里是一个新的 promise, 需要递归调用
           // 就是支持处理 resolve(new Promise(()=>{}) 这种在 resolve() 里无限嵌套 new Promise() 的场景
-          resolvePromise(promise2, y, resolve, reject)
+          resolvePromise(promise2, y, resolve, reject);
         }, (r) => {
           // 2.3.3.3.2
-          reject(r)
+          reject(r);
         })
       } else {
         // 2.3.3.4 如果 x 不是个 Promise 对象
@@ -1113,7 +1113,7 @@ function resolvePromise(promise2, x, resolve, reject) {
     }
   } else {
     // 2.3.4
-    resolve(e);
+    resolve(x);
   }
 }
 ```
@@ -1162,12 +1162,12 @@ function resolvePromise(promise2, x, resolve, reject) {
           called = true;
           // 2.3.3.3.1 注意这里是一个新的 promise, 需要递归调用
           // 就是支持处理 resolve(new Promise(()=>{}) 这种在 resolve() 里无限嵌套 new Promise() 的场景
-          resolvePromise(promise2, y, resolve, reject)
+          resolvePromise(promise2, y, resolve, reject);
         }, (r) => {
           if (called) return;
           called = true;
           // 2.3.3.3.2
-          reject(r)
+          reject(r);
         })
       } else {
         // 2.3.3.4 如果 x 不是个 Promise 对象
@@ -1181,7 +1181,7 @@ function resolvePromise(promise2, x, resolve, reject) {
     }
   } else {
     // 2.3.4
-    resolve(e);
+    resolve(x);
   }
 }
 ```
