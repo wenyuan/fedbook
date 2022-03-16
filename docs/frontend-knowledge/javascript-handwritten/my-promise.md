@@ -465,7 +465,7 @@ promise.then((value) => {
 
 为了实现这样的功能，我们需要用到发布订阅的设计模式，把 `promise.then` 里面的成功回调（或失败回调）都收集起来放到数组中，等到 `resolve()`（或 `reject()`） 执行的时候，再依次去执行数组里放的成功回调（或失败回调）。
 
-```javascript {11-14,22-24,33-35,55-68}
+```javascript {11-14,20-22,30-32,53-66}
 const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
@@ -485,22 +485,20 @@ class MyPromise {
       if (this.status === PENDING) {
         this.status = FULFILLED;
         this.value = value;
+        // 发布
+        // 处理异步里的 resolve()
+        this.onFulfilledCallbacks.forEach(fn => fn());
       }
-
-      // 发布
-      // 处理异步里的 resolve()
-      this.onFulfilledCallbacks.forEach(fn => fn());
     }
     
     const reject = (reason) => {
       if (this.status === PENDING) {
         this.status = REJECTED;
         this.reason = reason;
+        // 发布
+        // 处理异步里的 reject()
+        this.onRejectedCallbacks.forEach(fn => fn());
       }
-
-      // 发布
-      // 处理异步里的 reject()
-      this.onRejectedCallbacks.forEach(fn => fn());
     }
 
     try {
@@ -1312,3 +1310,163 @@ class MyPromise {
 
 }
 ```
+
+## Promises/A+ 测试
+
+如何证明写的这个 MyPromise 就符合 Promises/A+ 规范呢？
+
+跑一下 Promise A+ 测试就好啦。
+
+### 安装官方测试工具
+
+我们使用 Promises/A+ 官方的测试工具 promises-aplus-tests 来对我们的 MyPromise 进行测试。
+
+```bash
+# 安装 promises-aplus-tests
+npm install promises-aplus-tests -D
+```
+
+### 使用 ES6 Module 对外暴露 MyPromise 类
+
+```javascript
+class MyPromise {
+  // ...
+}
+
+function resolvePromise(promise2, x, resolve, reject) { 
+  // ...
+}
+
+module.exports = MyPromise;
+```
+
+### 实现静态方法 deferred
+
+要使用 promises-aplus-tests 这个工具测试，必须实现一个静态方法 `deferred()`，通过查看[官方](https://github.com/promises-aplus/promises-tests)对这个方法的定义可知：
+
+我们要给自己手写的 MyPromise 上实现一个静态方法 `deferred()`，该方法要返回一个包含 `{ promise, resolve, reject }` 的对象：
+
+* promise 是一个处于 pending 状态的 Promsie 对象。
+* resolve(value) 用 value「解决」上面那个 promise。
+* reject(reason) 用 reason「拒绝」上面那个 promise。
+
+`deferred()` 的实现如下：
+
+```javascript
+class MyPromise {
+  // ...
+}
+
+function resolvePromise(promise2, x, resolve, reject) { 
+  // ...
+}
+
+MyPromise.deferred = function () {
+  let result = {};
+  result.promise = new MyPromise((resolve, reject) => {
+    result.resolve = resolve;
+    result.reject = reject;
+  });
+  return result;
+}
+
+module.exports = MyPromise;
+```
+
+### 配置 package.json
+
+我们实现了 deferred 方法，也通过 ES6 Module 对外暴露了 MyPromise，最后配置一下 package.json 就可以跑测试了：
+
+```javascript
+// package.json
+{
+  "devDependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  },
+  "scripts": {
+    "test": "promises-aplus-tests MyPromise"
+  }
+}
+```
+
+### 执行测试命令
+
+```bash
+npm run test
+```
+
+发现结果是：
+
+```bash
+866 passing (34s)
+  6 failing
+```
+
+官方一共有 872 个测试用例，通过了 866 个，有 6 个没通过。
+
+**不要慌**，哪几个没通过它给出了提示：
+
+```bash
+1) 2.2.2: If `onFulfilled` is a function, 2.2.2.2: it must not be called before `promise` is fulfilled fulfilled after a delay:
+
+2) 2.2.3: If `onRejected` is a function, 2.2.3.2: it must not be called before `promise` is rejected rejected after a delay:
+
+3) 2.2.4: `onFulfilled` or `onRejected` must not be called until the execution context stack contains only platform code. Clean-stack execution ordering tests (fulfillment case) when `on
+Fulfilled` is added immediately before the promise is fulfilled:
+
+4) 2.2.4: `onFulfilled` or `onRejected` must not be called until the execution context stack contains only platform code. Clean-stack execution ordering tests (fulfillment case) when the
+ promise is fulfilled asynchronously:
+
+5) 2.2.4: `onFulfilled` or `onRejected` must not be called until the execution context stack contains only platform code. Clean-stack execution ordering tests (rejection case) when `onRe
+jected` is added immediately before the promise is rejected:
+
+6) 2.2.4: `onFulfilled` or `onRejected` must not be called until the execution context stack contains only platform code. Clean-stack execution ordering tests (rejection case) when the p
+romise is rejected asynchronously:
+```
+
+这个错误提示语很明确了，前面那么多代码写下来，自然而然就能想到跟事件循环有关，对着规范打一下补丁试试看。
+
+### 修补最后一个 bug
+
+```javascript {3,7,13,17}
+    const resolve = (value) => {
+      if (this.status === PENDING) {
+        setTimeout(() => {
+          this.status = FULFILLED;
+          this.value = value;
+          this.onFulfilledCallbacks.forEach(fn => fn());
+        }, 0)
+      }
+    }
+
+    const reject = (reason) => {
+      if (this.status === PENDING) {
+        setTimeout(() => {
+          this.status = REJECTED;
+          this.reason = reason;
+          this.onRejectedCallbacks.forEach(fn => fn());
+        }, 0)
+      }
+    }
+```
+
+为什么 resolve 和 reject 要加 setTimeout？
+
+根据规范的 [2.2.4](https://promisesaplus.com/#point-34) 所述：onFulfilled 和 onRejected 只允许在 execution context 栈仅包含平台代码时运行。
+
+* 这里的平台代码指的是引擎、环境以及 promise 的实施代码。实践中要确保 onFulfilled 和 onRejected 方法异步执行，且应该在 then 方法被调用的那一轮事件循环之后的新执行栈中执行。
+* 这个事件队列可以采用宏任务（macro-task）机制，比如 setTimeout 或者 setImmediate；也可以采用微任务（micro-task）机制来实现，比如 MutationObserver 或者 process.nextTick。 
+
+### 再次执行测试命令
+
+```bash
+npm run test
+```
+
+发现结果是：
+
+```bash
+872 passing (49s)
+```
+
+**Promises/A+ 官方测试总共 872 用例，我们手写的 MyPromise 现在完美通过了所有用例**，棒！撒花！！！
