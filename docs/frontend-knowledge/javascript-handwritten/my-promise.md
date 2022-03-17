@@ -13,8 +13,8 @@
 1.1. "promise" 是一个对象或者函数，并且拥有符合本规范的 `then` 方法。  
 1.2. "thenable" 是定义 `then` 方法的对象或者函数。  
 1.3. "value" 是任意合法的 JavaScript 值（包括 `undefined`，thenable，promise）。  
-1.4 "exception" 是使用 `throw` 语句抛出的值。  
-1.5 "reason" 表示一个 promise 被拒绝的原因。
+1.4. "exception" 是使用 `throw` 语句抛出的值。  
+1.5. "reason" 表示一个 promise 被拒绝的原因。
 
 ### 2. 要求
 
@@ -114,7 +114,7 @@ Promise 的解决过程是一个抽象的操作，它需要输入一个 promise 
 
 3.5. 这步我们先是存储了一个指向 `x.then` 的引用，然后测试并调用该引用，以避免多次访问 `x.then` 属性。这种预防措施确保了该属性的一致性，因为其值可能在检索调用时被改变。
 
-3.6 实现不应该对 thenable 链的深度设限，并假定超出本限制的递归就是无限循环。只有真正的循环递归才应能导致 `TypeError` 异常；如果一条无限长的链上 thenable 均不相同，那么递归下去永远是正确的行为。
+3.6. 实现不应该对 thenable 链的深度设限，并假定超出本限制的递归就是无限循环。只有真正的循环递归才应能导致 `TypeError` 异常；如果一条无限长的链上 thenable 均不相同，那么递归下去永远是正确的行为。
 
 ## 完成一个基本的 Promise
 
@@ -1470,3 +1470,868 @@ npm run test
 ```
 
 **Promises/A+ 官方测试总共 872 用例，我们手写的 MyPromise 现在完美通过了所有用例**，棒！撒花！！！
+
+## Promise 其他扩展方法
+
+在 ES6 的官方 Promise 还有很多 API，比如：
+
+* Promise.resolve
+* Promise.reject
+* Promise.prototype.catch
+* Promise.prototype.finally
+* Promise.all
+* Promise.allSettled
+* Promise.any
+* Promise.race
+
+虽然这些都不在 Promises/A+ 规范里面，但是我们也来实现一下吧，加深理解。其实我们前面我们用了很大功夫实现了 Promises/A+，现在再来实现这些已经是小菜一碟了，因为这些 API 全部是前面的封装而已。
+
+### 实现 Promise.resolve
+
+方法介绍：[Promise.resolve()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)
+
+这是一个静态方法，什么是静态方法呢？
+
+类（class）通过 `static` 关键字定义静态方法。不能在类的实例上调用静态方法，而应该通过类本身调用。这些通常是实用程序方法，例如创建或克隆对象的功能。
+
+类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上 `static` 关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为「静态方法」。
+
+手写实现：
+
+```javascript
+class MyPromise {
+  constructor (executor) {
+    // ...
+  }
+
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // ...
+  }
+
+  // 用 then 模拟 catch
+  // catch 本身是 then 的一个语法糖
+  catch (errorCallback) {
+    // ...
+  }
+
+  /**
+   * Promise.resolve()
+   * @param {[type]} value 要解析为 Promise 对象的值 
+  */
+  static resolve(value) {
+    // 如果这个值是一个 promise, 那么将返回这个 promise
+    if (value instanceof MyPromise) {
+      return value;
+    } else if (value instanceof Object && 'then' in value) {
+      // 如果这个值是 thenable(即带有 then 方法), 返回的 promise 会跟随这个 thenable 的对象, 采用它的最终状态
+      return new MyPromise((resolve, reject) => {
+        value.then(resolve, reject);
+      })
+    }
+
+    // 否则返回的 promise 将以此值完成, 即以此值执行 resolve() 方法(状态为 fulfilled)
+    return new MyPromise((resolve) => {
+      resolve(value)
+    })
+  }
+
+}
+
+function resolvePromise(promise2, x, resolve, reject) {
+  // ...
+}
+
+module.exports = MyPromise;
+```
+
+测试用例：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+const promise1 = MyPromise.resolve(123);
+
+promise1.then((value) => {
+  console.log(value);
+  // expected output: 123
+});
+
+// Resolve 一个 thenable 对象
+let p1 = MyPromise.resolve({
+  then: function (onFulfill) {
+    onFulfill("Resolving");
+  }
+});
+console.log(p1 instanceof MyPromise) // true, 这是一个 Promise 对象
+
+setTimeout(() => {
+  console.log('p1 :>> ', p1);
+}, 1000);
+
+p1.then(function (v) {
+  console.log(v); // 输出"fulfilled!"
+}, function (e) {
+  // 不会被调用
+});
+
+// Thenable 在 callback 之前抛出异常
+// MyPromise rejects
+let thenable = {
+  then: function (resolve) {
+    throw new TypeError("Throwing");
+    resolve("Resolving");
+  }
+};
+
+let p2 = MyPromise.resolve(thenable);
+p2.then(function (v) {
+  // 不会被调用
+}, function (e) {
+  console.log(e); // TypeError: Throwing
+});
+```
+
+输出结果：
+
+```bash
+true
+123
+Resolving
+TypeError: Throwing
+p1 :>> MyPromise {PromiseState: 'fulfilled', PromiseResult: 'Resolving', onFulfilledCallbacks: Array(1), onRejectedCallbacks: Array(1)}
+```
+
+### 实现 Promise.reject
+
+方法介绍：[Promise.reject()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject)
+
+手写实现：
+
+```javascript
+class MyPromise {
+  constructor (executor) {
+    // ...
+  }
+
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // ...
+  }
+
+  // 用 then 模拟 catch
+  // catch 本身是 then 的一个语法糖
+  catch (errorCallback) {
+    // ...
+  }
+
+  /**
+   * Promise.reject()
+   * @param {*} reason 表示 Promise 被拒绝的原因
+   * @returns 
+  */
+  static reject(reason) {
+    return new MyPromise((resolve, reject) => {
+      reject(reason);
+    })
+  }
+
+}
+
+function resolvePromise(promise2, x, resolve, reject) {
+  // ...
+}
+
+module.exports = MyPromise;
+```
+
+测试用例：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+MyPromise.reject(new Error('fail')).then(function () {
+  // not called
+}, function (error) {
+  console.error(error); // Error: fail
+});
+```
+
+输出结果：
+
+```bash
+Error: fail
+```
+
+### 实现 Promise.prototype.catch
+
+方法介绍：[Promise.prototype.catch()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)
+
+这个方法其实在前面已经实现过了。
+
+事实上，我们显式使用 `obj.catch(onRejected)`，内部实际调用的是 `obj.then(undefined, onRejected)`。
+
+`Promise.prototype.catch()` 方法是 `.then(null, rejection)` 或 `.then(undefined, rejection)` 的别名，用于指定发生错误时的回调函数。
+
+测试用例：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+let p1 = new MyPromise(function (resolve, reject) {
+  resolve('Success');
+});
+
+p1.then(function (value) {
+  console.log(value); // "Success!"
+  throw 'oh, no!';
+}).catch(function (e) {
+  console.log(e); // "oh, no!"
+}).then(function () {
+  console.log('after a catch the chain is restored');
+}, function () {
+  console.log('Not fired due to the catch');
+});
+
+// 以下行为与上述相同
+p1.then(function (value) {
+  console.log(value); // "Success!"
+  return Promise.reject('oh, no!');
+}).catch(function (e) {
+  console.log(e); // "oh, no!"
+}).then(function () {
+  console.log('after a catch the chain is restored');
+}, function () {
+  console.log('Not fired due to the catch');
+});
+
+// 捕获异常
+const p2 = new MyPromise(function (resolve, reject) {
+  throw new Error('test');
+});
+p2.catch(function (error) {
+  console.log(error);
+});
+// Error: test
+```
+
+输出结果：
+
+```bash
+Success
+Success
+Error: test
+oh, no!
+oh, no!
+after a catch the chain is restored
+after a catch the chain is restored
+```
+
+### 实现 Promise.prototype.finally
+
+方法介绍：[Promise.prototype.finally()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally)
+
+该方法是 ES2018 引入标准的。
+
+由于无法知道 promise 的最终状态，所以 finally 的回调函数中不接收任何参数，它仅用于无论最终结果如何都要执行的情况。
+
+手写实现：
+
+```javascript
+class MyPromise {
+  constructor (executor) {
+    // ...
+  }
+
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // ...
+  }
+
+  // 用 then 模拟 catch
+  // catch 本身是 then 的一个语法糖
+  catch (errorCallback) {
+    // ...
+  }
+
+  /**
+   * finally
+   * @param {*} callBack 无论结果是 fulfilled 或者是 rejected, 都会执行的回调函数
+   * @returns 
+  */
+  finally(callBack) {
+    return this.then(callBack, callBack)
+  }
+
+}
+
+function resolvePromise(promise2, x, resolve, reject) {
+  // ...
+}
+
+module.exports = MyPromise;
+```
+
+测试用例：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+let p1 = new MyPromise(function (resolve, reject) {
+  resolve(1)
+}).then(function (value) {
+  console.log(value);
+}).catch(function (e) {
+  console.log(e);
+}).finally(function () {
+  console.log('finally');
+});
+```
+
+输出结果：
+
+```bash
+1
+finally
+```
+
+### 实现 Promise.all
+
+方法介绍：[Promise.all()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+
+手写实现：
+
+```javascript
+class MyPromise {
+  constructor (executor) {
+    // ...
+  }
+
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // ...
+  }
+
+  // 用 then 模拟 catch
+  // catch 本身是 then 的一个语法糖
+  catch (errorCallback) {
+    // ...
+  }
+
+  /**
+   * Promise.all()
+   * @param {iterable} promises 一个 promise 的 iterable 类型(注: Array, Map, Set 都属于 ES6 的 iterable 类型)的输入
+   * @returns
+   */
+  static all(promises) {
+    return new MyPromise((resolve, reject) => {
+      // 参数校验
+      if (Array.isArray(promises)) {
+        let result = []; // 存储结果
+        let count = 0; // 计数器
+
+        // 如果传入的参数是一个空的可迭代对象，则返回一个已完成（already resolved）状态的 Promise
+        if (promises.length === 0) {
+          return resolve(promises);
+        }
+
+        promises.forEach((item, index) => {
+          // MyPromise.resolve方法中已经判断了参数是否为promise与thenable对象，所以无需在该方法中再次判断
+          MyPromise.resolve(item).then(
+            value => {
+              count++;
+              // 每个promise执行的结果存储在result中
+              result[index] = value;
+              // Promise.all 等待所有都完成（或第一个失败）
+              count === promises.length && resolve(result);
+            },
+            reason => {
+              /**
+               * 如果传入的 promise 中有一个失败(rejected),
+               * Promise.all 异步地将失败的那个结果给失败状态的回调函数，而不管其它 promise 是否完成
+               */
+              reject(reason);
+            }
+          )
+        })
+      } else {
+        return reject(new TypeError('Argument is not iterable'))
+      }
+    })
+  }
+
+}
+
+function resolvePromise(promise2, x, resolve, reject) {
+  // ...
+}
+
+module.exports = MyPromise;
+```
+
+测试用例：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+const promise1 = MyPromise.resolve(3);
+const promise2 = 42;
+const promise3 = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 100, 'foo');
+});
+
+MyPromise.all([promise1, promise2, promise3]).then((values) => {
+  console.log(values);
+});
+// expected output: Array [3, 42, "foo"]
+```
+
+输出结果：
+
+```bash
+(3) [3, 42, 'foo']
+```
+
+测试 Promise.all 的快速返回失败行为：
+
+Promise.all 在任意一个传入的 promise 失败时返回失败。例如，如果你传入的 promise 中，有四个 promise 在一定的时间之后调用成功函数，有一个立即调用失败函数，那么 Promise.all 将立即变为失败。
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+let p1 = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 1000, 'one');
+});
+let p2 = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 2000, 'two');
+});
+let p3 = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 3000, 'three');
+});
+let p4 = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 4000, 'four');
+});
+let p5 = new MyPromise((resolve, reject) => {
+  reject('reject');
+});
+
+MyPromise.all([p1, p2, p3, p4, p5]).then(values => {
+  console.log(values);
+}, reason => {
+  console.log(reason)
+});
+
+//From console:
+//"reject"
+```
+
+输出结果：
+
+```bash
+reject
+```
+
+### 实现 Promise.allSettled
+
+方法介绍：[Promise.allSettled()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled)
+
+手写实现：
+
+```javascript
+class MyPromise {
+  constructor (executor) {
+    // ...
+  }
+
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // ...
+  }
+
+  // 用 then 模拟 catch
+  // catch 本身是 then 的一个语法糖
+  catch (errorCallback) {
+    // ...
+  }
+
+  /**
+   * Promise.allSettled()
+   * @param {iterable} promises 一个 promise 的 iterable 类型(注: Array, Map, Set 都属于 ES6 的 iterable 类型)的输入
+   * @returns
+   */
+  static allSettled(promises) {
+    return new MyPromise((resolve, reject) => {
+      // 参数校验
+      if (Array.isArray(promises)) {
+        let result = []; // 存储结果
+        let count = 0;   // 计数器
+
+        // 如果传入的是一个空数组, 那么就直接返回一个 resolved 的空数组 promise 对象
+        if (promises.length === 0) return resolve(promises);
+
+        promises.forEach((item, index) => {
+          // 非 promise 值, 通过 Promise.resolve 转换为 promise 进行统一处理
+          MyPromise.resolve(item).then(
+            value => {
+              count++;
+              // 对于每个结果对象, 都有一个 status 字符串. 如果它的值为 fulfilled, 则结果对象上存在一个 value
+              result[index] = {
+                status: 'fulfilled',
+                value
+              }
+              // 所有给定的 promise 都已经 fulfilled 或 rejected 后, 返回这个 promise
+              count === promises.length && resolve(result);
+            },
+            reason => {
+              count++;
+              /**
+               * 对于每个结果对象, 都有一个 status 字符串. 如果值为 rejected, 则存在一个 reason
+               * value(或 reason)反映了每个 promise 决议(或拒绝)的值
+               */
+              result[index] = {
+                status: 'rejected',
+                reason
+              }
+              // 所有给定的promise都已经fulfilled或rejected后,返回这个promise
+              count === promises.length && resolve(result);
+            }
+          )
+        })
+      } else {
+        return reject(new TypeError('Argument is not iterable'))
+      }
+    })
+  }
+
+}
+
+function resolvePromise(promise2, x, resolve, reject) {
+  // ...
+}
+
+module.exports = MyPromise;
+```
+
+测试用例：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+const promise1 = MyPromise.resolve(3);
+const promise2 = 1;
+const promises = [promise1, promise2];
+
+MyPromise.allSettled(promises).
+then((results) => results.forEach((result) => console.log(result)));
+
+setTimeout(() => {
+  const p1 = MyPromise.resolve(3);
+  const p2 = new MyPromise((resolve, reject) => setTimeout(reject, 100, 'foo'));
+  const ps = [p1, p2];
+
+  MyPromise.allSettled(ps).
+  then((results) => results.forEach((result) => console.log(result)));
+}, 1000);
+
+MyPromise.allSettled([]).then((results) => console.log(results))
+```
+
+输出结果：
+
+```bash
+(0) []
+{status: 'fulfilled', value: 3}
+{status: 'fulfilled', value: 1}
+{status: 'fulfilled', value: 3}
+{status: 'rejected', reason: 'foo'}
+```
+
+### 实现 Promise.any
+
+方法介绍：[Promise.any()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/any)
+
+本质上，这个方法和 Promise.all() 是相反的。
+
+> 注意：Promise.any() 方法依然是实验性的，尚未被所有的浏览器完全支持。它当前处于 TC39 第四阶段草案（Stage 4）。
+
+手写实现：
+
+```javascript
+class MyPromise {
+  constructor (executor) {
+    // ...
+  }
+
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // ...
+  }
+
+  // 用 then 模拟 catch
+  // catch 本身是 then 的一个语法糖
+  catch (errorCallback) {
+    // ...
+  }
+
+  /**
+   * Promise.any()
+   * @param {iterable} promises 一个 promise 的 iterable 类型(注: Array, Map, Set 都属于 ES6 的 iterable 类型)的输入
+   * @returns
+   */
+  static any(promises) {
+    return new MyPromise((resolve, reject) => {
+      // 参数校验
+      if (Array.isArray(promises)) {
+        let errors = []; // 
+        let count = 0; // 计数器
+
+        // 如果传入的参数是一个空的可迭代对象, 则返回一个已失败(already rejected)状态的 Promise
+        if (promises.length === 0) return reject(new AggregateError([], 'All promises were rejected'));
+
+        promises.forEach(item => {
+          // 非 Promise 值, 通过 Promise.resolve 转换为 Promise
+          MyPromise.resolve(item).then(
+            value => {
+              // 只要其中的一个 promise 成功, 就返回那个已经成功的 promise 
+              resolve(value);
+            },
+            reason => {
+              count++;
+              errors.push(reason);
+              /**
+               * 如果可迭代对象中没有一个 promise 成功，就返回一个失败的 promise 和 AggregateError类型的实例,
+               * AggregateError是 Error 的一个子类, 用于把单一的错误集合在一起
+               */
+              count === promises.length && reject(new AggregateError(errors, 'All promises were rejected'));
+            }
+          )
+        })
+      } else {
+        return reject(new TypeError('Argument is not iterable'))
+      }
+    })
+  }
+
+}
+
+function resolvePromise(promise2, x, resolve, reject) {
+  // ...
+}
+
+module.exports = MyPromise;
+```
+
+测试用例：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+console.log(new AggregateError('All promises were rejected'));
+
+MyPromise.any([]).catch(e => {
+  console.log(e);
+})
+```
+
+> 注意：和 Promise.any() 一样，这个 AggregateError 也是一个实验中的功能，处于 Stage 3 Draft（第三阶段草案）。
+>
+> 因此需要使用 `node v16.13.0` 及以上版本才能支持，否则会报错。
+
+输出结果：
+
+```bash
+AggregateError
+AggregateError
+```
+
+用其他用例测试一下该方法：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+/**
+ * 验证 Promise.any() 方法
+ */
+
+// console.log(new AggregateError('All promises were rejected'));
+
+MyPromise.any([]).catch(e => {
+  console.log(e);
+});
+
+const pErr = new MyPromise((resolve, reject) => {
+  reject("总是失败");
+});
+
+const pSlow = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 500, "最终完成");
+});
+
+const pFast = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 100, "很快完成");
+});
+
+MyPromise.any([pErr, pSlow, pFast]).then((value) => {
+  console.log(value);
+  // 期望输出: "很快完成"
+})
+
+
+const pErr1 = new MyPromise((resolve, reject) => {
+  reject("总是失败");
+});
+
+const pErr2 = new MyPromise((resolve, reject) => {
+  reject("总是失败");
+});
+
+const pErr3 = new MyPromise((resolve, reject) => {
+  reject("总是失败");
+});
+
+MyPromise.any([pErr1, pErr2, pErr3]).catch(e => {
+  console.log(e);
+})
+```
+
+输出结果：
+
+```bash
+AggregateError: All promises were rejected
+AggregateError: All promises were rejected
+很快完成
+```
+
+### 实现 Promise.race()
+
+方法介绍：[Promise.race()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race)
+
+手写实现：
+
+```javascript
+class MyPromise {
+  constructor (executor) {
+    // ...
+  }
+
+  // 定义 then 方法
+  then (onFulfilled, onRejected) {
+    // ...
+  }
+
+  // 用 then 模拟 catch
+  // catch 本身是 then 的一个语法糖
+  catch (errorCallback) {
+    // ...
+  }
+
+  /**
+   * Promise.race()
+   * @param {iterable} promises 可迭代对象, 类似 Array. 详见 iterable
+   * @returns
+   */
+  static race(promises) {
+    return new MyPromise((resolve, reject) => {
+      // 参数校验
+      if (Array.isArray(promises)) {
+        // 如果传入的迭代 promises 是空的, 则返回的 promise 将永远等待
+        if (promises.length > 0) {
+          promises.forEach(item => {
+            /**
+             * 如果迭代包含一个或多个非承诺值和/或已解决/拒绝的承诺,
+             * 则 Promise.race 将解析为迭代中找到的第一个值
+             */
+            MyPromise.resolve(item).then(resolve, reject);
+          })
+        }
+      } else {
+        return reject(new TypeError('Argument is not iterable'))
+      }
+    })
+  }
+
+}
+
+function resolvePromise(promise2, x, resolve, reject) {
+  // ...
+}
+
+module.exports = MyPromise;
+```
+
+测试用例：
+
+```javascript
+const MyPromise = require('./MyPromise');
+
+/**
+ * 验证 Promise.race() 方法
+ */
+
+// 数组全是非 Promise 值, 测试通过
+let p1 = MyPromise.race([1, 3, 4]);
+setTimeout(() => {
+  console.log('p1 :>> ', p1);
+});
+
+// 空数组, 测试通过
+let p2 = MyPromise.race([]);
+setTimeout(() => {
+  console.log('p2 :>> ', p2);
+});
+
+const p11 = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 500, 'one');
+});
+
+const p22 = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 100, 'two');
+});
+
+// // 数组里有非Promise值, 测试通过
+MyPromise.race([p11, p22, 10]).then((value) => {
+  console.log('p3 :>> ', value);
+  // Both resolve, but p22 is faster
+});
+// expected output: 10
+
+// 数组里有'已解决的Promise' 和 非Promise值 测试通过
+let p12 = MyPromise.resolve('已解决的Promise')
+setTimeout(() => {
+  MyPromise.race([p12, p22, 10]).then((value) => {
+    console.log('p4 :>> ', value);
+  });
+  // expected output:已解决的Promise
+});
+
+// Promise.race 的一般情况 测试通过
+const p13 = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 500, 'one');
+});
+
+const p14 = new MyPromise((resolve, reject) => {
+  setTimeout(resolve, 100, 'two');
+});
+
+MyPromise.race([p13, p14]).then((value) => {
+  console.log('p5 :>> ', value);
+  // Both resolve, but promise2 is faster
+});
+// expected output: "two"
+```
+
+输出结果：
+
+```bash
+p1 :>>  MyPromise {PromiseState: 'pending', PromiseResult: null, onFulfilledCallbacks: Array(0), onRejectedCallbacks: Array(0)}
+p2 :>>  MyPromise {PromiseState: 'pending', PromiseResult: null, onFulfilledCallbacks: Array(0), onRejectedCallbacks: Array(0)}
+p3 :>>  10
+p4 :>>  已解决的Promise
+p5 :>>  two
+```
+
+## 源码仓库
+
+以上所有的代码，我都放在了仓库 [my-promise](https://github.com/wenyuan/my-promise) 中。
+
+（完）
