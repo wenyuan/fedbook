@@ -76,6 +76,7 @@ module.exports = [
     text: '深入学习',
     items: [
       { text: '数据结构与算法', link: '/in-depth-learning/algorithm/' },
+      { text: '设计模式', link: '/in-depth-learning/design-patterns/' },
       { text: '源码阅读与学习', link: '/in-depth-learning/source-code/' }
     ]
   },

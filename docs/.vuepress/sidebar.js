@@ -21,6 +21,7 @@ module.exports = {
   '/basic-skills/mysql/': require('../basic-skills/mysql/sidebar'),
   /* --------- 深入学习 --------- */
   '/in-depth-learning/algorithm/': require('../in-depth-learning/algorithm/sidebar'),
+  '/in-depth-learning/design-patterns/': require('../in-depth-learning/design-patterns/sidebar'),
   '/in-depth-learning/source-code/': require('../in-depth-learning/source-code/sidebar'),
   /* --------- 后端开发 --------- */
   '/backend-knowledge/python/': require('../backend-knowledge/python/sidebar'),
