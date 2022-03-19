@@ -240,6 +240,7 @@
   * 学习计划调整，延后学习
 * [设计模式](https://fedbook.cn/in-depth-learning/design-patterns/)
   * [设计原则](https://fedbook.cn/in-depth-learning/design-patterns/design-principles/)
+  * [设计模式简介](https://fedbook.cn/in-depth-learning/design-patterns/patterns-introduction/)
 * [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
   * [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
   * 抽空学习，不占用主学习进程

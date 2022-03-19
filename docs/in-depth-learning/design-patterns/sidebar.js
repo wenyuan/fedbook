@@ -8,6 +8,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/design-principles',
         collapsable: true
       },
+      {
+        title: '设计模式简介',
+        path: '/in-depth-learning/design-patterns/patterns-introduction',
+        collapsable: true
+      },
     ]
   }
 ]
