@@ -239,8 +239,12 @@
   * [数据结构之链表](https://fedbook.cn/in-depth-learning/algorithm/linked-list/)
   * 学习计划调整，延后学习
 * [设计模式](https://fedbook.cn/in-depth-learning/design-patterns/)
+  * **前置知识**
   * [设计原则](https://fedbook.cn/in-depth-learning/design-patterns/design-principles/)
   * [设计模式简介](https://fedbook.cn/in-depth-learning/design-patterns/patterns-introduction/)
+  * [UML 类图](https://fedbook.cn/in-depth-learning/design-patterns/uml-class-diagram/)
+  * **创建型模式**
+  * [工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/factory-pattern/)
 * [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
   * [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
   * 抽空学习，不占用主学习进程
