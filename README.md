@@ -240,8 +240,8 @@
   * 学习计划调整，延后学习
 * [设计模式](https://fedbook.cn/in-depth-learning/design-patterns/)
   * **前置知识**
-  * [设计原则](https://fedbook.cn/in-depth-learning/design-patterns/design-principles/)
-  * [设计模式简介](https://fedbook.cn/in-depth-learning/design-patterns/patterns-introduction/)
+  * [设计原则](https://fedbook.cn/in-depth-learning/design-patterns/5-principles/)
+  * [设计模式简介](https://fedbook.cn/in-depth-learning/design-patterns/23-patterns/)
   * [UML 类图](https://fedbook.cn/in-depth-learning/design-patterns/uml-class-diagram/)
   * **创建型模式**
   * [工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/factory-pattern/)

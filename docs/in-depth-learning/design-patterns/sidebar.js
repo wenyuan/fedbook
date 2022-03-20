@@ -4,13 +4,13 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: '设计原则',
-        path: '/in-depth-learning/design-patterns/design-principles',
+        title: '五大设计原则',
+        path: '/in-depth-learning/design-patterns/5-principles',
         collapsable: true
       },
       {
-        title: '设计模式简介',
-        path: '/in-depth-learning/design-patterns/patterns-introduction',
+        title: '23 种设计模式',
+        path: '/in-depth-learning/design-patterns/23-patterns',
         collapsable: true
       },
       {
