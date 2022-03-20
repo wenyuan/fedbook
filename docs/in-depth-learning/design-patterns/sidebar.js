@@ -29,6 +29,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/factory-pattern',
         collapsable: true
       },
+      {
+        title: '单例模式',
+        path: '/in-depth-learning/design-patterns/singleton-pattern',
+        collapsable: true
+      },
     ]
   }
 ]
