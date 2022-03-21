@@ -289,7 +289,181 @@ console.log(person1 === person2); // true
 
 ### 惰性单例、懒汉式-饿汉式
 
+有时候一个实例化过程比较耗费性能的类，但是却一直用不到，如果一开始就对这个类进行实例化就显得有些浪费，那么这时我们就可以使用**惰性创建**，即延迟创建该类的单例。之前的例子都属于惰性单例，实例的创建都是 `new` 的时候才进行。
 
+惰性单例又被成为**懒汉式**，相对应的概念是**饿汉式**：
 
+* 懒汉式单例是在使用时才实例化
+* 饿汉式是当程序启动时或单例模式类一加载的时候就被创建
 
+举一个简单的例子比较一下：
 
+```javascript
+class FuncClass {
+  constructor() { this.bar = 'bar' };
+}
+
+// 饿汉式
+const HungrySingleton = (function() {
+  const _instance = new FuncClass();
+    
+  return function() {
+    return _instance;
+  }
+})()
+
+// 懒汉式
+const LazySingleton = (function() {
+  let _instance = null;
+    
+  return function() {
+    return _instance || (_instance = new FuncClass());
+  }
+})()
+
+// 测试
+const visitor1 = new HungrySingleton();
+const visitor2 = new HungrySingleton();
+const visitor3 = new LazySingleton();
+const visitor4 = new LazySingleton();
+
+console.log(visitor1 === visitor2)	// true
+console.log(visitor3 === visitor4)	// true
+```
+
+通过打上 `debugger` 可以在控制台中观察到：
+
+* 饿汉式在 `HungrySingleton` 这个 IIFE 执行的时候就进入到 `FuncClass` 的实例化流程了。
+* 懒汉式的 `LazySingleton` 中 `FuncClass` 的实例化过程是在第一次 `new` 的时候才进行的。
+
+惰性创建在实际开发中使用很普遍，了解一下对以后的开发工作很有帮助。
+
+## 单例模式的实际应用
+
+### 模拟登录框
+
+```javascript
+class LoginForm {
+  constructor() {
+    this.state = 'hide';
+  }
+  show() {
+    if (this.state === 'show') {
+      console.log('登录框已经显示');
+      return;
+    }
+    this.state = 'show';
+    console.log('登录框显示成功');
+  }
+  hide() {
+    if (this.state === 'hide') {
+      console.log('登录框已经隐藏');
+      return;
+    }
+    this.state = 'hide';
+    console.log('登录框隐藏成功');
+  }
+}
+
+// 定义获取单例的静态方法
+// 自执行函数的目的是方便里面添加闭包变量，防止把变量添加在外面造成变量污染
+LoginForm.getInstance = (function() {
+  let _instance; // 闭包
+  return function() {
+    if (!_instance) {
+      _instance = new LoginForm();
+    }
+    return _instance;
+  }
+})()
+
+// 测试
+let login1 = LoginForm.getInstance();
+login1.show();
+let login2 = LoginForm.getInstance();
+login2.show();
+console.log('login1 === login2', login1 === login2)
+```
+
+### ElementUI 中的 Loading
+
+以 ElementUI 为例，ElementUI 中的全屏 Loading 蒙层调用有两种形式：
+
+```javascript
+// 1. 指令形式
+Vue.use(Loading.directive)
+// 2. 服务形式
+Vue.prototype.$loading = service
+```
+
+* 上面的是指令形式注册，使用的方式 `<div :v-loading.fullscreen="true">...</div>`
+* 下面的是服务形式注册，使用的方式 `this.$loading({ fullscreen: true })`
+
+用服务方式使用全屏 Loading 是单例的，即在前一个全屏 Loading 关闭前再次调用全屏 Loading，并不会创建一个新的 Loading 实例，而是返回现有全屏 Loading 的实例。
+
+下面我们可以看看 ElementUI 2.9.2 的[源码](https://github.com/ElemeFE/element/blob/v2.9.2/packages/loading/src/index.js)是如何实现的，为了观看方便，省略了部分代码：
+
+```javascript
+import Vue from 'vue'
+import loadingVue from './loading.vue'
+
+const LoadingConstructor = Vue.extend(loadingVue)
+
+let fullscreenLoading
+
+const Loading = (options = {}) => {
+  if (options.fullscreen && fullscreenLoading) {
+    return fullscreenLoading
+  }
+
+  let instance = new LoadingConstructor({
+    el: document.createElement('div'),
+    data: options
+  })
+
+  if (options.fullscreen) {
+    fullscreenLoading = instance
+  }
+  return instance
+}
+
+export default Loading
+```
+
+这里的单例是 `fullscreenLoading`，是存放在闭包中的，如果用户传的 `options` 的 `fullscreen` 为 `true` 且已经创建了单例的情况下则回直接返回之前创建的单例，如果之前没有创建过，则创建单例并赋值给闭包中的 `fullscreenLoading` 后返回新创建的单例实例。
+
+这是一个典型的单例模式的应用，通过复用之前创建的全屏蒙层单例，不仅减少了实例化过程，而且避免了蒙层叠加蒙层出现的底色变深的情况。
+
+### 其他
+
+* 购物车（和登录框类似）
+* vuex 和 redux 中的 store
+
+## 设计原则验证
+
+* 符合单一职责原则，只实例化唯一的对象（意思是初始化的动作都放到 `getInstance` 函数里去了，没有交给外面的人来做）
+* 没法具体体现开放封闭原则，但是绝对不违反开放封闭原则
+
+## 单例模式的优缺点
+
+单例模式主要解决的问题就是**节约资源，保持访问一致性**。
+
+优点：
+
+* 单例模式在创建后在内存中只存在一个实例，节约了内存开支和实例化时的性能开支，特别是需要重复使用一个创建开销比较大的类时，比起实例不断地销毁和重新实例化，单例能节约更多资源，比如数据库连接。
+* 单例模式可以解决对资源的多重占用，比如写文件操作时，因为只有一个实例，可以避免对一个文件进行同时操作。
+* 只使用一个实例，也可以减小垃圾回收机制 GC（Garbage Collection）的压力，表现在浏览器中就是系统卡顿减少，操作更流畅，CPU 资源占用更少。
+
+缺点：
+
+* 单例模式对扩展不友好，一般**不容易扩展**，因为单例模式一般自行实例化，没有接口。
+* **与单一职责原则冲突**，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化（从这个方面来讲确实）。
+
+## 单例模式的使用场景
+
+那在什么时候使用单例模式呢：
+
+* 当一个类的**实例化过程消耗的资源过多**，可以使用单例模式来避免性能浪费。
+* 当项目中需要一个公共的状态，那么需要使用单例模式来**保证访问一致性**。
+
+（完）
