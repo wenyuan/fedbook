@@ -238,6 +238,43 @@ h1, h2, h3, h4, h5, h6 {
   /*border-left: 3px solid #2486b9;*/
   /*background: #42affa12;*/
   /*font-size: 1rem*/
+  font-size: 0.9em;
+  overflow: auto;
+  color: rgb(106, 115, 125);
+  padding: 10px 10px 10px 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  line-height: 1.75em;
+  border-radius: 5px;
+  box-sizing: inherit;
+  border-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-color: rgb(255, 191, 82);
+  background: rgb(255, 248, 230);
+}
+
+.theme-default-content.content__default blockquote:before {
+  margin-left: -15px;
+  color: #f48a00;
+  font-size: 32px;
+  content: "\201C";
+}
+
+.theme-default-content.content__default blockquote p {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  /*font-size: 16px;*/
+  line-height: 26px;
+  margin-top: -15px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.theme-default-content.content__default blockquote ul {
+  /*font-size: 16px;*/
+  margin-top: 5px;
+  color: rgba(0, 0, 0, 0.85);
 }
 
 /* sidebar */
