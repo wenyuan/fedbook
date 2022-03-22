@@ -35,5 +35,16 @@ module.exports = [
         collapsable: true
       },
     ]
+  },
+  {
+    title: '结构型模式',
+    collapsable: false,
+    children: [
+      {
+        title: '适配器模式',
+        path: '/in-depth-learning/design-patterns/adapter-pattern',
+        collapsable: true
+      },
+    ]
   }
 ]

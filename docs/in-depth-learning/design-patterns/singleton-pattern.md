@@ -6,11 +6,6 @@
 
 单例模式（Singleton Pattern）又称为单体模式，保证一个类只有一个实例，并提供一个访问它的全局访问点。也就是说，第二次使用同一个类创建新对象的时候，应该得到与第一次创建的对象完全相同的对象。
 
-特点：
-
-* 系统中被唯一使用
-* 一个类只有一个实例
-
 ## 通俗的示例
 
 * 登录框：一个系统有好多页面，但登录框只有一个。
@@ -84,8 +79,8 @@ public class SingletonPatternDemo {
 结构如下：
 
 <div style="text-align: center;">
-  <img src="./assets/singleton-pattern.jpg" alt="简易单例模式结构图">
-  <p style="text-align: center; color: #888;">（简易单例模式结构图）</p>
+  <img src="./assets/singleton-pattern.jpg" alt="单例模式结构图">
+  <p style="text-align: center; color: #888;">（单例模式结构图）</p>
 </div>
 
 代码如下：

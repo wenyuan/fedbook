@@ -246,6 +246,8 @@
   * **创建型模式**
   * [工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/factory-pattern/)
   * [单例模式](https://fedbook.cn/in-depth-learning/design-patterns/singleton-pattern/)
+  * **结构型模式**
+  * [适配器模式](https://fedbook.cn/in-depth-learning/design-patterns/adapter-pattern/) 
 * [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
   * [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
   * 抽空学习，不占用主学习进程
