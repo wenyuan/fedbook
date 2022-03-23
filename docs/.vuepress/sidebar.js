@@ -18,6 +18,7 @@ module.exports = {
   /* --------- 必知必会 --------- */
   '/basic-skills/git/': require('../basic-skills/git/sidebar'),
   '/basic-skills/nginx/': require('../basic-skills/nginx/sidebar'),
+  '/basic-skills/linux/': require('../basic-skills/linux/sidebar'),
   '/basic-skills/mysql/': require('../basic-skills/mysql/sidebar'),
   /* --------- 深入学习 --------- */
   '/in-depth-learning/algorithm/': require('../in-depth-learning/algorithm/sidebar'),

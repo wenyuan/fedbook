@@ -77,7 +77,7 @@
 * [HTML](https://fedbook.cn/frontend-knowledge/html/)
   * [HTML 基本结构](https://fedbook.cn/frontend-knowledge/html/html-basic-structure/)
   * [语义类标签](https://fedbook.cn/frontend-knowledge/html/semantic-elements/)
-  * 未完结，待更新
+  * 其它知识点，待后续继续补充
 * [CSS](https://fedbook.cn/frontend-knowledge/css/)
   * [CSS 引入方式](https://fedbook.cn/frontend-knowledge/css/ways-to-insert-css/)
   * [选择器与样式优先级](https://fedbook.cn/frontend-knowledge/css/selectors-and-selector-priority/)
@@ -90,7 +90,7 @@
   * [经典布局](https://fedbook.cn/frontend-knowledge/css/layout/)
   * [Flexbox 布局](https://fedbook.cn/frontend-knowledge/css/flexbox/)
   * [Grid 布局](https://fedbook.cn/frontend-knowledge/css/grid/)
-  * 未完结，待更新
+  * 其它知识点，待后续继续补充
 * [JavaScript](https://fedbook.cn/frontend-knowledge/javascript/)
   * **JavaScript 核心**
   * [数据类型](https://fedbook.cn/frontend-knowledge/javascript/data-types/)
@@ -111,7 +111,7 @@
   * [继承的八种方式](https://fedbook.cn/frontend-knowledge/javascript/inheritance/)
   * [声明函数的六种方式](https://fedbook.cn/frontend-knowledge/javascript/function-declare/)
   * [调用函数的四种方式](https://fedbook.cn/frontend-knowledge/javascript/function-invocation/)
-  * 未完结，待更新
+  * 其它知识点，待后续继续补充
 * [ES6 - ES12 新特性](https://fedbook.cn/frontend-knowledge/es6-and-beyond/)
   * [ECMAScript2015(ES6)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es6-let-const/)
   * [ECMAScript2016(ES7)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es7-array/)
@@ -131,7 +131,7 @@
   * [对象类型：接口](https://fedbook.cn/frontend-knowledge/typescript/interface/)
   * [函数类型](https://fedbook.cn/frontend-knowledge/typescript/function-type/)
   * [泛型](https://fedbook.cn/frontend-knowledge/typescript/generics/)
-  * 未完结，待更新
+  * 其它知识点，待后续继续补充
 * [浏览器工作原理](https://fedbook.cn/frontend-knowledge/browser/)
   * [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
   * [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)
@@ -149,10 +149,10 @@
   * [实现 call 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现call方法/)
   * [实现 apply 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现apply方法/)
   * [实现 bind 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现bind方法/)
-  * 未完结，待更新
+  * 其它知识点，待后续继续补充
   * **复杂手写：类库**
   * [实现符合 Promises/A+ 规范的 Promise](https://fedbook.cn/frontend-knowledge/javascript-handwritten/my-promise/)
-  * 未完结，待更新
+  * 其它知识点，待后续继续补充
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
@@ -219,13 +219,16 @@
   * [Nginx 限流常用模块](https://fedbook.cn/basic-skills/nginx/traffic-limiting-modules/)
   * **Nginx 部署方案**
   * [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
-  * 未完结，待更新
+  * 其它知识点，待后续继续补充
+* [Linux](https://fedbook.cn/basic-skills/linux/common-commands/)
+  * **Linux 基础知识**
+  * [常用命令](https://fedbook.cn/basic-skills/linux/common-commands/)
 * [MySQL](https://fedbook.cn/basic-skills/mysql/)
   * **MySQL 基本使用**
   * [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
   * [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
   * [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
-  * 未完结，待更新
+  * 其它知识点，待后续继续补充
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
@@ -278,7 +281,7 @@
   * [使用 telnetlib 执行 Telnet](https://fedbook.cn/backend-knowledge/python/python-lib-telnetlib/)
   * [使用 Paramiko 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-paramiko/)
   * [使用 Fabric 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-fabric/)
-  * 未完结，待更新
+  * 其它知识点，待后续继续补充
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

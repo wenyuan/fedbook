@@ -61,7 +61,8 @@ module.exports = [
         text: '日常使用',
         items: [
           { text: 'Git', link: '/basic-skills/git/' },
-          { text: 'Nginx', link: '/basic-skills/nginx/' }
+          { text: 'Nginx', link: '/basic-skills/nginx/' },
+          { text: 'Linux', link: '/basic-skills/linux/common-commands/' }
         ]
       },
       {
