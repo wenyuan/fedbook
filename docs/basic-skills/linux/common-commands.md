@@ -38,25 +38,11 @@ getconf LONG_BIT
 cat /proc/cpuinfo | grep flags | grep ' lm ' | wc -l
 ```
 
-### 建立软连接
-
-```bash
-ln -s /usr/local/jdk1.8/ jdk
-```
-
 ### rpm 相关
 
 ```bash
 # 查看是否通过 rpm 安装了该软件
 rpm -qa | grep 软件名
-```
-
-### sshkey
-
-```bash
-# 创建 sshkey
-ssh-keygen -t rsa -C your_email@example.com
-# id_rsa.pub 的内容拷贝到要控制的服务器的 home/username/.ssh/authorized_keys 中，如果没有则新建（.ssh 权限为 700，authorized_keys 权限为 600）
 ```
 
 ### 命令重命名
@@ -85,13 +71,6 @@ nohup xxx > /dev/null &
 nohup xxx >out.log 2>&1 &
 ```
 
-### 强制活动用户退出
-
-```bash
-# 命令来完成强制活动用户退出。其中 TTY 表示终端名称
-pkill -kill -t [TTY]
-```
-
 ### 查看命令路径
 
 ```bash
@@ -102,12 +81,6 @@ which <命令>
 
 ```bash
 ulimit -n
-```
-
-### 配置 dns
-
-```bash
-vim /etc/resolv.conf
 ```
 
 ### nslookup，查看域名路由表
@@ -121,33 +94,6 @@ nslookup google.com
 ```bash
 # 最近登录的 5 个账号
 last -n 5
-```
-
-### 设置固定 ip
-
-```bash
-ifconfig em1  192.168.5.177 netmask 255.255.255.0
-```
-
-### 查看进程内加载的环境变量
-
-```bash
-# 也可以去 cd /proc 目录下，查看进程内存中加载的东西
-ps eww -p  XXXXX(进程号)
-```
-
-### 查看进程树找到服务器进程
-
-```bash
-ps auwxf
-```
-
-### 查看进程启动路径
-
-```bash
-cd /proc/xxx(进程号)
-ls -all
-# cwd对应的是启动路径
 ```
 
 ### 添加用户，配置 sudo 权限
@@ -164,45 +110,34 @@ vim /etc/sudoers
 # 用户名    ALL=(ALL) ALL
 ```
 
-### 强制关闭进程名包含 xxx 的所有进程
-
-```bash
-ps aux|grep xxx | grep -v grep | awk '{print $2}' | xargs kill -9
-```
-
 ## 文件管理
 
-#### 1）cat：用于连接文件并打印到标准输出设备上
+### cat 命令
 
-**语法格式**：
+```bash
+# 把 text1 的文档内容加上行号后输入 text2 这个文档里
+cat -n text1 > text2
 
-`cat [-nbs] [–help] [–version] fileName`
+# 把 text1 和 text2 的文档内容加上行号（空白行不加）之后将内容附加到 text3 文档里
+cat -b text1 text2 >> text3
 
-> 参数说明
+# 清空 /etc/test.txt 文档内容
+cat /dev/null > /etc/test.txt
+```
+
+> 语法格式：`cat [-nbs] [--help] [--version] fileName`
+>
+> 参数说明：
 >
 > * -n 或 --number：由 1 开始对所有输出的行数编号。
 > * -b 或 --number-nonblank：和 -n 相似，只不过对于空白行不编号。
 > * -s 或 --squeeze-blank：当遇到有连续两行以上的空白行，就代换为一行的空白行。
 
-**实例应用**：
 
-* 把 `textfile1` 的文档内容加上行号后输入 `textfile2` 这个文档里：
+TODO...
 
-```bash
-cat -n textfile1 > textfile2
-```
 
-* 把 `textfile1` 和 `textfile2` 的文档内容加上行号（空白行不加）之后将内容附加到 `textfile3` 文档里：
 
-```bash
-cat -b textfile1 textfile2 >> textfile3
-```
-
-* 清空 `/etc/test.txt` 文档内容：
-
-```bash
-cat /dev/null > /etc/test.txt
-```
 
 #### 2）more：用于一页一页地显示文件内容
 
@@ -440,7 +375,6 @@ ls -AF
 
 ## 网络通讯
 
-#### 1）telnet
 
 
 
