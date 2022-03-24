@@ -50,6 +50,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/decorator-pattern',
         collapsable: true
       },
+      {
+        title: '代理模式',
+        path: '/in-depth-learning/design-patterns/proxy-pattern',
+        collapsable: true
+      },
     ]
   }
 ]
