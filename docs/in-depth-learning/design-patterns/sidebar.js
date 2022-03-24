@@ -45,6 +45,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/adapter-pattern',
         collapsable: true
       },
+      {
+        title: '装饰器模式',
+        path: '/in-depth-learning/design-patterns/decorator-pattern',
+        collapsable: true
+      },
     ]
   }
 ]
