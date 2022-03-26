@@ -163,6 +163,11 @@ Vue 2.x 中通过 `Object.defineProperty` 来劫持各个属性的 `setter/gette
   <p style="text-align: center; color: #888;">（正向代理与反向代理）</p>
 </div>
 
+## 设计原则验证
+
+* 代理类和目标类分离，隔离开目标类和使用者
+* 符合开放封闭原则
+
 ## 代理模式的优缺点
 
 优点：

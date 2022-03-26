@@ -55,6 +55,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/proxy-pattern',
         collapsable: true
       },
+      {
+        title: '外观模式',
+        path: '/in-depth-learning/design-patterns/facade-pattern',
+        collapsable: true
+      },
     ]
   }
 ]
