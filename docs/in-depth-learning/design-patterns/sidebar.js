@@ -61,5 +61,16 @@ module.exports = [
         collapsable: true
       },
     ]
+  },
+  {
+    title: '行为型模式',
+    collapsable: false,
+    children: [
+      {
+        title: '观察者模式',
+        path: '/in-depth-learning/design-patterns/observer-pattern',
+        collapsable: true
+      },
+    ]
   }
 ]

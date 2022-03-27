@@ -277,6 +277,11 @@ h1, h2, h3, h4, h5, h6 {
   color: rgba(0, 0, 0, 0.85);
 }
 
+.theme-default-content.content__default blockquote div {
+  /*font-size: 16px;*/
+  margin-top: -10px;
+}
+
 /* sidebar */
 .sidebar-heading.clickable.active {
   font-weight: bold !important;
