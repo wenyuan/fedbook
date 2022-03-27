@@ -76,6 +76,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/iterator-pattern',
         collapsable: true
       },
+      {
+        title: '状态模式',
+        path: '/in-depth-learning/design-patterns/state-pattern',
+        collapsable: true
+      },
     ]
   }
 ]

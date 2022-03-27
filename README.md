@@ -257,6 +257,7 @@
   * **行为型模式**
   * [观察者模式](https://fedbook.cn/in-depth-learning/design-patterns/observer-pattern/)
   * [迭代器模式](https://fedbook.cn/in-depth-learning/design-patterns/iterator-pattern/)
+  * [状态模式](https://fedbook.cn/in-depth-learning/design-patterns/state-pattern/)
 * [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
   * [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
   * 抽空学习，不占用主学习进程
