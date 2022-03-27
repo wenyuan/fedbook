@@ -71,6 +71,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/observer-pattern',
         collapsable: true
       },
+      {
+        title: '迭代器模式',
+        path: '/in-depth-learning/design-patterns/iterator-pattern',
+        collapsable: true
+      },
     ]
   }
 ]
