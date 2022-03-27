@@ -34,6 +34,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/singleton-pattern',
         collapsable: true
       },
+      {
+        title: '原型模式(前端不常用)',
+        path: '/in-depth-learning/design-patterns/prototype-pattern',
+        collapsable: true
+      }
     ]
   },
   {

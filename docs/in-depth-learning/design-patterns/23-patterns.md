@@ -14,7 +14,7 @@
   * 建造者模式（Builder Pattern）
   * JS 中受限于使用场景和语言本身，所以把三种模式合并成一种工厂模式
 * **单例模式**（Singleton Pattern）
-* **原型模式**（Prototype Pattern）
+* 原型模式（Prototype Pattern）
 
 ## 结构型
 

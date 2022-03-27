@@ -249,6 +249,7 @@
   * **创建型模式**
   * [工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/factory-pattern/)
   * [单例模式](https://fedbook.cn/in-depth-learning/design-patterns/singleton-pattern/)
+  * [原型模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/prototype-pattern/)
   * **结构型模式**
   * [适配器模式](https://fedbook.cn/in-depth-learning/design-patterns/adapter-pattern/)
   * [装饰器模式](https://fedbook.cn/in-depth-learning/design-patterns/decorator-pattern/)
