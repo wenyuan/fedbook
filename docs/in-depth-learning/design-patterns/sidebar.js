@@ -70,6 +70,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/bridge-pattern',
         collapsable: true
       },
+      {
+        title: '组合模式(前端不常用)',
+        path: '/in-depth-learning/design-patterns/composite-pattern',
+        collapsable: true
+      },
     ]
   },
   {
