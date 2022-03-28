@@ -65,6 +65,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/facade-pattern',
         collapsable: true
       },
+      {
+        title: '桥接模式(前端不常用)',
+        path: '/in-depth-learning/design-patterns/bridge-pattern',
+        collapsable: true
+      },
     ]
   },
   {

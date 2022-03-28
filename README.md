@@ -255,6 +255,7 @@
   * [装饰器模式](https://fedbook.cn/in-depth-learning/design-patterns/decorator-pattern/)
   * [代理模式](https://fedbook.cn/in-depth-learning/design-patterns/proxy-pattern/)
   * [外观模式](https://fedbook.cn/in-depth-learning/design-patterns/facade-pattern/)
+  * [桥接模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/bridge-pattern/)
   * **行为型模式**
   * [观察者模式](https://fedbook.cn/in-depth-learning/design-patterns/observer-pattern/)
   * [迭代器模式](https://fedbook.cn/in-depth-learning/design-patterns/iterator-pattern/)
