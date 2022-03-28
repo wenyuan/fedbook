@@ -257,6 +257,7 @@
   * [外观模式](https://fedbook.cn/in-depth-learning/design-patterns/facade-pattern/)
   * [桥接模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/bridge-pattern/)
   * [组合模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/composite-pattern/)
+  * [享元模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/flyweight-pattern/)
   * **行为型模式**
   * [观察者模式](https://fedbook.cn/in-depth-learning/design-patterns/observer-pattern/)
   * [迭代器模式](https://fedbook.cn/in-depth-learning/design-patterns/iterator-pattern/)

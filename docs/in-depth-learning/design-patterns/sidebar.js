@@ -75,6 +75,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/composite-pattern',
         collapsable: true
       },
+      {
+        title: '享元模式(前端不常用)',
+        path: '/in-depth-learning/design-patterns/flyweight-pattern',
+        collapsable: true
+      },
     ]
   },
   {
