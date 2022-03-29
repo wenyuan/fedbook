@@ -36,7 +36,7 @@
 * 模板方法模式（Template Method Pattern）
 * **观察者模式**（Observer Pattern）
 * **迭代器模式**（Iterator Pattern）
-* 职责连模式（Chain of Responsibility Pattern）
+* 职责链模式（Chain of Responsibility Pattern）
 * 命令模式（Command Pattern）
 * 备忘录模式（Memento Pattern）
 * **状态模式**（State Pattern）
