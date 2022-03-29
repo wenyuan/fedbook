@@ -265,6 +265,7 @@
   * [策略模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/strategy-pattern/)
   * [模板方法模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/template-method-pattern/)
   * [职责链模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/chain-of-responsibility-pattern/)
+  * [命令模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/command-pattern/)
 * [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
   * [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
   * 抽空学习，不占用主学习进程
