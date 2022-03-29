@@ -79,7 +79,7 @@ module.exports = [
         title: '享元模式(前端不常用)',
         path: '/in-depth-learning/design-patterns/flyweight-pattern',
         collapsable: true
-      },
+      }
     ]
   },
   {
@@ -99,6 +99,11 @@ module.exports = [
       {
         title: '状态模式',
         path: '/in-depth-learning/design-patterns/state-pattern',
+        collapsable: true
+      },
+      {
+        title: '策略模式(前端不常用)',
+        path: '/in-depth-learning/design-patterns/strategy-pattern',
         collapsable: true
       },
     ]
