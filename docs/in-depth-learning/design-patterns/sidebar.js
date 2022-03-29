@@ -106,6 +106,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/strategy-pattern',
         collapsable: true
       },
+      {
+        title: '模板方法模式(前端不常用)',
+        path: '/in-depth-learning/design-patterns/template-method-pattern',
+        collapsable: true
+      },
     ]
   }
 ]
