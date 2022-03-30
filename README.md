@@ -248,6 +248,7 @@
   * [UML 类图](https://fedbook.cn/in-depth-learning/design-patterns/uml-class-diagram/)
   * **创建型模式**
   * [工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/factory-pattern/)
+  * [抽象工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/abstract-factory-pattern/)
   * [单例模式](https://fedbook.cn/in-depth-learning/design-patterns/singleton-pattern/)
   * [原型模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/prototype-pattern/)
   * **结构型模式**

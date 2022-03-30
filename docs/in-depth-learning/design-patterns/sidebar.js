@@ -30,6 +30,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '抽象工厂模式',
+        path: '/in-depth-learning/design-patterns/abstract-factory-pattern',
+        collapsable: true
+      },
+      {
         title: '单例模式',
         path: '/in-depth-learning/design-patterns/singleton-pattern',
         collapsable: true
