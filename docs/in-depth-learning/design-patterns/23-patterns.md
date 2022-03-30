@@ -12,8 +12,8 @@
 
 * **工厂模式**（Factory Pattern）
   * 工厂方法模式（Factory Method Pattern）：根据输入的不同返回不同类的实例，一般用来创建同一类对象。
-  * 抽象工厂模式（Abstract Factory Pattern）：通过对类的工厂抽象，使其业务用于对产品类簇的创建
-  * 建造者模式（Builder Pattern）：分步构建一个复杂对象，使得同样的构建过程可以采用不同的表示
+  * 抽象工厂模式（Abstract Factory Pattern）：通过对类的工厂抽象，使其业务用于对产品类簇的创建。
+  * 建造者模式（Builder Pattern）：分步构建一个复杂对象，使得同样的构建过程可以采用不同的表示。
 * **单例模式**（Singleton Pattern）：保证一个类只有一个实例，并提供一个访问它的全局访问点。
 * 原型模式（Prototype Pattern）：已经在 JavaScript 内建的一种模式。
 
@@ -24,7 +24,7 @@
 * **适配器模式**（Adapter Pattern）： 解决两个软件实体间接口不兼容的问题。
 * **装饰器模式**（Decorator Pattern）：向一个现有的对象添加新的功能，同时又不改变其结构。
 * **代理模式**（Proxy pattern）：为目标对象创造一个代理对象，以控制对目标对象的访问。
-* **外观模式**（Facade Pattern）：为多个复杂的子系统提供一个一致的接口，使这些子系统更加容易被访问
+* **外观模式**（Facade Pattern）：为多个复杂的子系统提供一个一致的接口，使这些子系统更加容易被访问。
 * 桥接模式（Bridge Pattern）：将类的抽象部分与实现部分分离，使它们可以独立地变化。
 * 组合模式（Composite Pattern）：用小的子对象构建更大的对象，使得对单个对象和组合对象具有一致的访问性。
 * 享元模式（Flyweight Pattern）：运用共享技术来有效地支持大量细粒度对象的复用，减少创建的对象的数量。

@@ -35,6 +35,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '建造者模式',
+        path: '/in-depth-learning/design-patterns/builder-pattern',
+        collapsable: true
+      },
+      {
         title: '单例模式',
         path: '/in-depth-learning/design-patterns/singleton-pattern',
         collapsable: true
@@ -140,7 +145,7 @@ module.exports = [
         title: '访问者模式和解释器模式(不常用)',
         path: '/in-depth-learning/design-patterns/visitor-pattern-and-interpreter-pattern',
         collapsable: true
-      },
+      }
     ]
   }
 ]
