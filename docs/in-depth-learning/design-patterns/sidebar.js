@@ -131,6 +131,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/mediator-pattern',
         collapsable: true
       },
+      {
+        title: '访问者模式和解释器模式(不常用)',
+        path: '/in-depth-learning/design-patterns/visitor-pattern-and-interpreter-pattern',
+        collapsable: true
+      },
     ]
   }
 ]
