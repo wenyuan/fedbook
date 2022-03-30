@@ -16,7 +16,7 @@
 无论冲饮的是咖啡、茶、牛奶，他们的制作过程都类似，可以被总结为这几个流程。也就是说这个流程是存在着类似的流程结构的，这就给我们留下了将操作流程抽象封装出来的余地。
 
 <div style="text-align: center;">
-  <img src="./assets/make-drinks.jpg" alt="制作饮料步骤图" style="width: 640px;">
+  <img src="./assets/make-drinks.jpg" alt="制作饮料步骤图">
   <p style="text-align: center; color: #888;">（制作饮料步骤图）</p>
 </div>
 
@@ -44,7 +44,7 @@
 结构如下：
 
 <div style="text-align: center;">
-  <img src="./assets/template-method-pattern.jpg" alt="模板方法模式结构图" style="width: 640px;">
+  <img src="./assets/template-method-pattern.jpg" alt="模板方法模式结构图">
   <p style="text-align: center; color: #888;">（模板方法模式结构图）</p>
 </div>
 

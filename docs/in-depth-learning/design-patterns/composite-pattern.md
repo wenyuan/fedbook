@@ -111,7 +111,7 @@ foldMovies.scan(item => {
 组合模式的示意图如下：
 
 <div style="text-align: center;">
-  <img src="./assets/factory-pattern.jpg" alt="组合模式示意图" style="width: 640px;">
+  <img src="./assets/composite-pattern.png" alt="组合模式示意图" style="width: 640px;">
   <p style="text-align: center; color: #888;">（组合模式示意图）</p>
 </div>
 

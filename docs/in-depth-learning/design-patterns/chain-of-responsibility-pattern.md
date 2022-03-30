@@ -238,7 +238,7 @@ zhangSan
 事件冒泡示意图如下：：
 
 <div style="text-align: center;">
-  <img src="./assets/event-bubble.jpg" alt="事件冒泡示意图" style="width: 640px;">
+  <img src="./assets/event-bubble.jpg" alt="事件冒泡示意图">
   <p style="text-align: center; color: #888;">（事件冒泡示意图）</p>
 </div>
 

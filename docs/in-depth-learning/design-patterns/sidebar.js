@@ -126,6 +126,11 @@ module.exports = [
         path: '/in-depth-learning/design-patterns/memento-pattern',
         collapsable: true
       },
+      {
+        title: '中介者模式(前端不常用)',
+        path: '/in-depth-learning/design-patterns/mediator-pattern',
+        collapsable: true
+      },
     ]
   }
 ]
