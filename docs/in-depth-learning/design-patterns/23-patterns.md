@@ -2,46 +2,47 @@
 
 一共有 23 种设计模式，它们分为三种类型。
 
-> 下面加粗的是前端常用的设计模式，未加粗的是前端不常用的设计模式。
+> 对于前端开发来说，并不是所有设计模式都是适合 JavaScript 的，需要重点的是工厂模式、单例模式、观察者模式。
+> 
+> 因此，对于一些不那么常用的模式，了解一下，知道其主要思想即可。下面加粗的是前端常用的设计模式，未加粗的是前端不常用的设计模式。
 
-## 创建型
+## 创建型模式
 
-> 创建型：对象怎么创建、生成的
+创建型模式关注**如何创建对象**，主要特点是将对象的创建和使用分离。一般抽象了对象实例化的过程，用来帮助创建对象的实例。
 
 * **工厂模式**（Factory Pattern）
-  * 工厂方法模式（Factory Method Pattern）
-  * 抽象工厂模式（Abstract Factory Pattern）
-  * 建造者模式（Builder Pattern）
-  * JS 中受限于使用场景和语言本身，所以把三种模式合并成一种工厂模式
-* **单例模式**（Singleton Pattern）
-* 原型模式（Prototype Pattern）
+  * 工厂方法模式（Factory Method Pattern）：根据输入的不同返回不同类的实例，一般用来创建同一类对象。
+  * 抽象工厂模式（Abstract Factory Pattern）：通过对类的工厂抽象，使其业务用于对产品类簇的创建
+  * 建造者模式（Builder Pattern）：分步构建一个复杂对象，使得同样的构建过程可以采用不同的表示
+* **单例模式**（Singleton Pattern）：保证一个类只有一个实例，并提供一个访问它的全局访问点。
+* 原型模式（Prototype Pattern）：已经在 JavaScript 内建的一种模式。
 
-## 结构型
+## 结构型模式
 
-> 结构型：对象、类是怎样的一种组合形式
+结构型模式关注如何**将对象按某种布局组成更大的结构**。
 
-* **适配器模式**（Adapter Pattern）
-* **装饰器模式**（Decorator Pattern）
-* **代理模式**（Proxy pattern）
-* **外观模式**（Facade Pattern）
-* 桥接模式（Bridge Pattern）
-* 组合模式（Composite Pattern）
-* 享元模式（Flyweight Pattern）
+* **适配器模式**（Adapter Pattern）： 解决两个软件实体间接口不兼容的问题。
+* **装饰器模式**（Decorator Pattern）：向一个现有的对象添加新的功能，同时又不改变其结构。
+* **代理模式**（Proxy pattern）：为目标对象创造一个代理对象，以控制对目标对象的访问。
+* **外观模式**（Facade Pattern）：为多个复杂的子系统提供一个一致的接口，使这些子系统更加容易被访问
+* 桥接模式（Bridge Pattern）：将类的抽象部分与实现部分分离，使它们可以独立地变化。
+* 组合模式（Composite Pattern）：用小的子对象构建更大的对象，使得对单个对象和组合对象具有一致的访问性。
+* 享元模式（Flyweight Pattern）：运用共享技术来有效地支持大量细粒度对象的复用，减少创建的对象的数量。
 
-## 行为型
+## 行为型模式
 
-> 行为型：日常开发中的常用行为如何布置
+行为型模式关注**对象之间的通信**，描述对象之间怎样相互协作，以及怎样分配职责。
 
-* 策略模式（Strategy Pattern）
-* 模板方法模式（Template Method Pattern）
-* **观察者模式**（Observer Pattern）
-* **迭代器模式**（Iterator Pattern）
-* 职责链模式（Chain of Responsibility Pattern）
-* 命令模式（Command Pattern）
-* 备忘录模式（Memento Pattern）
-* **状态模式**（State Pattern）
-* 访问者模式（Visitor Pattern）
-* 中介者模式（Mediator Pattern）
-* 解释器模式（Interpreter Pattern）
+* **观察者模式**（Observer Pattern）：多个对象间存在一对多关系，当一个对象发生改变时，把这种改变通知给其他多个对象，从而影响其他对象的行为。
+* **迭代器模式**（Iterator Pattern）：提供一种方法来顺序访问聚合对象中的一系列数据，而不暴露聚合对象的内部表示。
+* **状态模式**（State Pattern）：允许一个对象在其内部状态发生改变时改变其行为能力。
+* 策略模式（Strategy Pattern）：定义了一系列算法，并将每个算法封装起来，使它们可以相互替换。
+* 模板方法模式（Template Method Pattern）：定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。
+* 职责链模式（Chain of Responsibility Pattern）：把请求从链中的一个对象传到下一个对象，直到请求被响应为止。
+* 命令模式（Command Pattern）：将一个请求封装为一个对象，使发出请求的责任和执行请求的责任分割开。
+* 备忘录模式（Memento Pattern）：用于随时记录一个对象的状态变化，随时可以恢复之前的某个状态（如撤销功能）。
+* 中介者模式（Mediator Pattern）：定义一个中介对象来简化原有对象之间的复杂耦合关系。
+* 访问者模式（Visitor Pattern）：用于将数据操作和数据结构进行分离。
+* 解释器模式（Interpreter Pattern）：用于描述语言语法如何定义，如何解释和编译
 
 （完）

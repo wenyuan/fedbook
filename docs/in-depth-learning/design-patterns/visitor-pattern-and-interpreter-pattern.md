@@ -6,6 +6,6 @@
 
 ## 解释器模式
 
-解释器模式（Interpreter Pattern）用于描述语言语法如何定义，如何解释和编译，用于一些专业场景（比如 babel 解析 ES6 语法，SCSS、LESS 解析成 CSS 等），此外使用场景都不多。
+解释器模式（Interpreter Pattern）用于描述语言语法如何定义，如何解释和编译。主要用在一些专业场景（比如 babel 解析 ES6 语法，SCSS、LESS 解析成 CSS 等），此外使用场景都不多。
 
 （完）
