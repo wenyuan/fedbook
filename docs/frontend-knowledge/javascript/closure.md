@@ -88,6 +88,7 @@ var a = 2;
 
 * 模块化（利用闭包的原理，将一个大的系统放在一个自调用函数中）
 * 防止变量被破坏（封装私有变量，保护函数内的变量安全）
+* 利用闭包实现结果缓存（备忘模式）
 
 如下代码所示，在开发一些组件的时候，要实现模块化就可以使用闭包：
 
@@ -102,6 +103,102 @@ var common = (function() {
     }
   }
 })()
+```
+
+备忘模式就是应用闭包的特点的一个典型应用。比如有个函数：
+
+```javascript
+function add(a) {
+  return a + 1;
+}
+```
+
+多次运行 `add()` 时，每次得到的结果都是重新计算得到的，如果是开销很大的计算操作的话就比较消耗性能了，这里可以对已经计算过的输入做一个缓存。
+
+所以这里可以利用闭包的特点来实现一个简单的缓存，在函数内部用一个对象存储输入的参数，如果下次再输入相同的参数，那就比较一下对象的属性，如果有缓存，就直接把值从这个对象里面取出来。
+
+```javascript
+/* 备忘函数 */
+function memorize(fn) {
+  var cache = {};
+  return function() {
+    var args = Array.prototype.slice.call(arguments);
+    var key = JSON.stringify(args);
+    return cache[key] || (cache[key] = fn.apply(fn, args));
+  }
+}
+
+/* 复杂计算函数 */
+function add(a) {
+  return a + 1;
+}
+
+var adder = memorize(add);
+
+adder(1); // 输出: 2    当前: cache: { '[1]': 2 }
+adder(1); // 输出: 2    当前: cache: { '[1]': 2 }
+adder(2); // 输出: 3    当前: cache: { '[1]': 2, '[2]': 3 }
+```
+
+使用 ES6 的方式会更优雅一些：
+
+```javascript
+/* 备忘函数 */
+function memorize(fn) {
+  const cache = {};
+  return function(...args) {
+    const key = JSON.stringify(args);
+    return cache[key] || (cache[key] = fn.apply(fn, args));
+  }
+}
+
+/* 复杂计算函数 */
+function add(a) {
+  return a + 1;
+}
+
+const adder = memorize(add);
+
+adder(1); // 输出: 2    当前: cache: { '[1]': 2 }
+adder(1); // 输出: 2    当前: cache: { '[1]': 2 }
+adder(2); // 输出: 3    当前: cache: { '[1]': 2, '[2]': 3 }
+```
+
+稍微解释一下：
+
+备忘函数中用 `JSON.stringify` 把传给 `adder` 函数的参数序列化成字符串，把它当做 `cache` 的索引，将 `add` 函数运行的结果当做索引的值传递给 `cache`，这样 `adder` 运行的时候如果传递的参数之前传递过，那么就返回缓存好的计算结果，不用再计算了，如果传递的参数没计算过，则计算并缓存 `fn.apply(fn, args)`，再返回计算的结果。
+
+当然这里的实现如果要实际应用的话，还需要继续改进一下，比如：
+
+* 缓存不可以永远扩张下去，这样太耗费内存资源，我们可以只缓存最新传入的 n 个。
+* 在浏览器中使用的时候，我们可以借助浏览器的持久化手段，来进行缓存的持久化，比如 cookie、localStorage 等。
+
+这里的复杂计算函数可以是过去的某个状态，比如对某个目标的操作，这样把过去的状态缓存起来，方便地进行状态回退。
+
+复杂计算函数也可以是一个返回时间比较慢的异步操作，这样如果把结果缓存起来，下次就可以直接从本地获取，而不是重新进行异步请求。
+
+::: warning
+cache 不可以是 `Map`，因为 `Map` 的键是使用 `===` 比较的，因此当传入引用类型值作为键时，虽然它们看上去是相等的，但实际并不是，比如 `[1]!==[1]`，所以还是被存为不同的键。
+:::
+
+```javascript
+//  X 错误示范
+function memorize(fn) {
+  const cache = new Map();
+  return function(...args) {
+    return cache.get(args) || cache.set(args, fn.apply(fn, args)).get(args);
+  }
+}
+
+function add(a) {
+  return a + 1;
+}
+
+const adder = memorize(add);
+
+adder(1); // 2    cache: { [ 1 ] => 2 }
+adder(1); // 2    cache: { [ 1 ] => 2, [ 1 ] => 2 }
+adder(2); // 3    cache: { [ 1 ] => 2, [ 1 ] => 2, [ 2 ] => 3 }
 ```
 
 ## 闭包内存释放
