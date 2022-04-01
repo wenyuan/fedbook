@@ -104,7 +104,7 @@
   * [同步与异步](https://fedbook.cn/frontend-knowledge/javascript/sync-and-async/)
   * [事件循环机制](https://fedbook.cn/frontend-knowledge/javascript/event-loop/)
   * [浅克隆与深克隆](https://fedbook.cn/frontend-knowledge/javascript/shallow-clone-and-deep-clone/)
-  * [函数柯里化](https://fedbook.cn/frontend-knowledge/javascript/function-currying/)
+  * [高阶函数](https://fedbook.cn/frontend-knowledge/javascript/higher-order-function/)
   * **JavaScript 专题**
   * [数组遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/array-iteration/)
   * [对象遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/object-iteration/)

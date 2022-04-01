@@ -1,20 +1,32 @@
-# 函数柯里化
+# 高阶函数
 
-## 柯里化的定义
+## 前言
 
-> 红宝书（第3版）：用于创建已经设置好了一个或多个参数的函数。基本方法是使用一个闭包返回一个函数。（P604）
+「JavaScript 中，函数是一等公民」，在各种书籍和文章中我们总能看到这句话。
 
-> 维基百科：柯里化（英语：Currying），是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。（[原链接](https://zh.wikipedia.org/wiki/柯里化)）
+通俗地解释就是：JS 中的函数也是对象，可以有属性，可以赋值给一个变量，可以放在数组里作为元素，可以作为其他对象的属性，普通对象能做的它能做，普通对象不能做的它也能做。
+
+而所谓的高阶函数（Higher-order function），就是输入参数里有函数，或者输出是函数的函数。
+
+最常见的高阶函数有 `map()`、`reduce()`、`filter()`、`sort()`、`setTimeout`、`setInterval` 和 ajax 请求，我们称之为回调函数，因为它将函数作为参数传递给另一个函数。
+
+另一个经常看到的高阶函数的场景是在一个函数内部输出另一个函数，比如闭包，还有接下来要讲的柯里化、反柯里化和偏函数。
+
+## 柯里化
+
+### 定义
+
+> * 红宝书（第3版）：用于创建已经设置好了一个或多个参数的函数。基本方法是使用一个闭包返回一个函数。（P604）
+> * 维基百科：柯里化（英语：Currying），是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。（[原链接](https://zh.wikipedia.org/wiki/柯里化)）
+> * 柯里化的原理就是利用闭包，可以形成一个不销毁的私有作用域，把预先处理的内容都存在这个不销毁的作用域里面，并且返回一个函数，以后要执行的就是这个函数。
 
 官方解释看得有点懵，大白话概括一下：
 
-柯里化技术，**主要体现在函数里面返回函数**。就是将多变量函数拆解为单变量（或部分变量）的多个函数并依次调用。
+**柯里化**（Currying）又称部分求值（Partial Evaluation），是把接受多个参数的原函数变换成接受一个单一参数（原函数的第一个参数）的函数，并且返回一个新函数，新函数能够接受余下的参数，最后返回同原函数一样的结果。
 
-再直白一点：利用闭包，可以形成一个不销毁的私有作用域，把预先处理的内容都存在这个不销毁的作用域里面，并且返回一个函数，以后要执行的就是这个函数。
+核心思想是把多参数传入的函数拆成单（或部分）参数函数，内部再返回调用下一个单（或部分）参数函数，依次处理剩余的参数。
 
-PS：如果还是不理解也没关系，跟闭包一样不用死扣定义，继续往下面看应用就行了。
-
-## 柯里化的应用
+### 应用
 
 柯里化有 3 个常见应用：
 
@@ -22,7 +34,43 @@ PS：如果还是不理解也没关系，跟闭包一样不用死扣定义，继
 * 提前返回 – 多次调用多次内部判断，可以直接把第一次判断的结果返回外部接收
 * 延迟计算/运行 – 避免重复的去执行程序，等真正需要结果的时候再执行
 
-## 应用一：参数复用
+### 通用实现
+
+```javascript
+// ES5 方式
+function currying(fn) {
+  var rest1 = Array.prototype.slice.call(arguments)
+  rest1.shift()
+  return function() {
+    var rest2 = Array.prototype.slice.call(arguments)
+    return fn.apply(null, rest1.concat(rest2))
+  }
+}
+
+// ES6 方式
+function currying(fn, ...rest1) {
+  return function(...rest2) {
+    return fn.apply(null, rest1.concat(rest2))
+  }
+}
+```
+
+用它将一个 `sayHello` 函数柯里化试试：
+
+```javascript
+// 接上面
+function sayHello(name, age, fruit) {
+  console.log(`我叫 ${name},我 ${age} 岁了, 我喜欢吃 ${fruit}`)
+}
+
+var curryingShowMsg1 = currying(sayHello, '小明')
+curryingShowMsg1(22, '苹果')           // 输出: 我叫 小明,我 22 岁了, 我喜欢吃 苹果
+
+var curryingShowMsg2 = currying(sayHello, '小衰', 20)
+curryingShowMsg2('西瓜')               // 输出: 我叫 小衰,我 20 岁了, 我喜欢吃 西瓜
+```
+
+### 应用一：参数复用
 
 如下名为 `uri` 的函数，接收 3 个参数，函数的作用是返回三个参数拼接的字符串。
 
@@ -63,7 +111,7 @@ console.log(uri2);
 console.log(uri3);
 ```
 
-## 应用二：兼容性检测
+### 应用二：兼容性检测
 
 ::: warning
 以下代码为了编写方便，会使用 ES6 的语法。实际生产环境中如果要做兼容性检测功能，需要转换成 ES5 语法。
@@ -145,7 +193,7 @@ addEvent(span, 'click', (e) => {console.log('点击了 span');}, true);
 
 这里使用了函数柯里化的两个特点：提前返回和延迟执行。
 
-## 应用三：实现一个 add 函数
+### 应用三：实现一个 add 函数
 
 这是一道经典面试题，要求我们实现一个 add 函数，可以实现以下计算结果：
 
@@ -199,5 +247,114 @@ console.log(result);
 知道了这一点，我们就可以利用这个特性自定义返回的内容：重写 `inner` 函数的 `toString` 方法，在里面实现参数相加的执行代码。
 
 值得一提的是，这种处理后能够返回正确的累加结果，但返回的结果是个函数类型（`function`），这是因为我们在用递归返回函数，内部函数在被隐式转换为字符串之前本来就是一个函数。
+
+## 反柯里化
+
+### 定义
+
+柯里化是固定部分参数，返回一个接受剩余参数的函数，也称为部分计算函数，目的是为了缩小适用范围，创建一个针对性更强的函数。核心思想是把多参数传入的函数拆成单参数（或部分）函数，内部再返回调用下一个单参数（或部分）函数，依次处理剩余的参数。
+
+而**反柯里化**，从字面讲，意义和用法跟函数柯里化相比正好相反，扩大适用范围，创建一个应用范围更广的函数。使本来只有特定对象才适用的方法，扩展到更多的对象。
+
+### 通用实现
+
+```javascript
+// ES5 方式
+Function.prototype.unCurrying = function() {
+  var self = this
+  return function() {
+    var rest = Array.prototype.slice.call(arguments)
+    return Function.prototype.call.apply(self, rest)
+  }
+}
+
+// ES6 方式
+Function.prototype.unCurrying = function() {
+  const self = this
+  return function(...rest) {
+    return Function.prototype.call.apply(self, rest)
+  }
+}
+```
+
+如果觉得把函数放在 Function 的原型上不太好，也可以这样：
+
+```javascript
+// ES5 方式
+function unCurrying(fn) {
+  return function (tar) {
+    var rest = Array.prototype.slice.call(arguments)
+    rest.shift()
+    return fn.apply(tar, rest)
+  }
+}
+
+// ES6 方式
+function unCurrying(fn) {
+  return function(tar, ...argu) {
+    return fn.apply(tar, argu)
+  }
+}
+```
+
+下面简单试用一下反柯里化通用实现，我们将 Array 上的 `push` 方法借出来给 arguments 这样的类数组增加一个元素：
+
+```javascript
+// 接上面
+var push = unCurrying(Array.prototype.push)
+
+function execPush() {
+  push(arguments, 4)
+  console.log(arguments)
+}
+
+execPush(1, 2, 3)    // 输出: [1, 2, 3, 4]
+```
+
+### 区别
+
+简单说，函数柯里化就是对高阶函数的降阶处理，缩小适用范围，创建一个针对性更强的函数。
+
+```javascript
+function(arg1, arg2)              // => function(arg1)(arg2)
+function(arg1, arg2, arg3)        // => function(arg1)(arg2)(arg3)
+function(arg1, arg2, arg3, arg4)  // => function(arg1)(arg2)(arg3)(arg4)
+function(arg1, arg2, ..., argn)   // => function(arg1)(arg2)…(argn)
+```
+
+而反柯里化就是反过来，增加适用范围，让方法使用场景更大。使用反柯里化，可以把原生方法借出来，让任何对象拥有原生对象的方法。
+
+```javascript
+obj.func(arg1, arg2)        // => func(obj, arg1, arg2)
+```
+
+可以这样理解柯里化和反柯里化的区别：
+
+* 柯里化是在运算前提前传参，可以传递多个参数。
+* 反柯里化是延迟传参，在运算时把原来已经固定的参数或者 this 上下文等当作参数延迟到未来传递。
+
+## 偏函数
+
+偏函数是创建一个调用另外一个部分（参数或变量已预制的函数）的函数，函数可以根据传入的参数来生成一个真正执行的函数。其本身不包括我们真正需要的逻辑代码，只是根据传入的参数返回其他的函数，返回的函数中才有真正的处理逻辑比如：
+
+```javascript
+var isType = function(type) {
+  return function(obj) {
+    return Object.prototype.toString.call(obj) === `[object ${type}]`
+  }
+}
+
+var isString = isType('String')
+var isFunction = isType('Function')
+```
+
+这样就用偏函数快速创建了一组判断对象类型的方法。
+
+偏函数和柯里化的区别：
+
+* **柯里化**是把一个接受 n 个参数的函数，由原本的一次性传递所有参数并执行变成了可以分多次接受参数再执行，例如：`add = (x, y, z) => x + y + z→curryAdd = x => y => z => x + y + z`。
+* **偏函数**固定了函数的某个部分，通过传入的参数或者方法返回一个新的函数来接受剩余的参数，数量可能是一个也可能是多个
+
+当一个柯里化函数只接受两次参数时，比如 `curry()()`，这时的柯里化函数和偏函数概念类似，可以认为偏函数是柯里化函数的退化版。
 
 （完）

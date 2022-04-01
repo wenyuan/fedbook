@@ -59,8 +59,8 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '函数柯里化',
-        path: '/frontend-knowledge/javascript/function-currying',
+        title: '高阶函数',
+        path: '/frontend-knowledge/javascript/higher-order-function',
         collapsable: true
       },
       {
