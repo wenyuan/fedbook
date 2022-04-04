@@ -4,6 +4,11 @@ module.exports = [
     collapsable: false,
     children: [
       {
+        title: '基础类型',
+        path: '/frontend-knowledge/typescript/basic-types',
+        collapsable: true
+      },
+      {
         title: '数据类型简介',
         path: '/frontend-knowledge/typescript/data-types-introduction',
         collapsable: true

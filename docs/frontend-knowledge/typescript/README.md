@@ -35,6 +35,11 @@ tsc hello.ts
 
 执行完上述命令后，会在当前目录生成一个 `hello.js` 文件，然后就可以使用命令 `node hello.js` 来执行该文件。
 
+官方也提供了一个在线开发 TypeScript 的云环境 —— Playground：
+
+* [点击查看中文版地址](https://www.typescriptlang.org/zh/play)
+* [点击查看英文版地址](https://www.typescriptlang.org/play/)
+
 > 我们约定使用 TypeScript 编写的文件以 .ts 为后缀，用 TypeScript 编写 React 时，以 .tsx 为后缀。
 
 <hr>

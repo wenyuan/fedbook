@@ -121,6 +121,7 @@
   * [ECMAScript2020(ES11)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es11-string/)
   * [ECMAScript2021(ES12)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es12-string/)
 * [TypeScript](https://fedbook.cn/frontend-knowledge/typescript/)
+  * [基础类型](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
   * [数据类型简介](https://fedbook.cn/frontend-knowledge/typescript/data-types-introduction/)
   * [布尔、数值与字符串](https://fedbook.cn/frontend-knowledge/typescript/boolean-number-string/)
   * [数组和元组](https://fedbook.cn/frontend-knowledge/typescript/array-and-tuple/)
