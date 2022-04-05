@@ -9,5 +9,16 @@ module.exports = [
         collapsable: true
       }
     ]
+  },
+  {
+    title: 'Linux 常见问题',
+    collapsable: false,
+    children: [
+      {
+        title: '解决 vim 中文乱码问题',
+        path: '/basic-skills/linux/solution-to-vim-encoding',
+        collapsable: true
+      }
+    ]
   }
 ]
