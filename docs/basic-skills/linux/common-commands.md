@@ -83,12 +83,6 @@ gg        # 跳到文件头
 
 # 检索的关键字会高亮，取消高亮显示
 :noh
-
-# 解决系统原因造成的特殊字符和文件格式问题
-:set fileencoding        # 显示文件编码格式
-:set fileencoding=utf-8  # 然后 w（存盘）一下即可转换为 utf8 格式
-:set fileformat          # 显示文件格式
-:set fileformat=unix     # 然后 w（存盘）一下即可转换为 unix 格式文件
 ```
 
 ### 查找文件的四个命令

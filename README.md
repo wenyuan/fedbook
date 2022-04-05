@@ -122,16 +122,7 @@
   * [ECMAScript2021(ES12)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es12-string/)
 * [TypeScript](https://fedbook.cn/frontend-knowledge/typescript/)
   * [基础类型](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
-  * [数据类型简介](https://fedbook.cn/frontend-knowledge/typescript/data-types-introduction/)
-  * [布尔、数值与字符串](https://fedbook.cn/frontend-knowledge/typescript/boolean-number-string/)
-  * [数组和元组](https://fedbook.cn/frontend-knowledge/typescript/array-and-tuple/)
-  * [联合和字面量](https://fedbook.cn/frontend-knowledge/typescript/union-and-literal/)
-  * [枚举](https://fedbook.cn/frontend-knowledge/typescript/enum/)
-  * [任意类型与未知类型](https://fedbook.cn/frontend-knowledge/typescript/any-and-unknow/)
-  * [空值、未定义和不存在](https://fedbook.cn/frontend-knowledge/typescript/void-undefined-never/)
-  * [对象类型：接口](https://fedbook.cn/frontend-knowledge/typescript/interface/)
-  * [函数类型](https://fedbook.cn/frontend-knowledge/typescript/function-type/)
-  * [泛型](https://fedbook.cn/frontend-knowledge/typescript/generics/)
+  * [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal-type/)
   * 其它知识点，待后续继续补充
 * [浏览器工作原理](https://fedbook.cn/frontend-knowledge/browser/)
   * [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
@@ -224,6 +215,8 @@
 * [Linux](https://fedbook.cn/basic-skills/linux/common-commands/)
   * **Linux 基础知识**
   * [常用命令](https://fedbook.cn/basic-skills/linux/common-commands/)
+  * **Linux 常见问题**
+  * [vim 中文乱码问题](https://fedbook.cn/basic-skills/linux/solution-to-vim-encoding/) 
 * [MySQL](https://fedbook.cn/basic-skills/mysql/)
   * **MySQL 基本使用**
   * [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
