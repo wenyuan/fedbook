@@ -13,6 +13,11 @@ module.exports = [
         path: '/frontend-knowledge/typescript/literal-type',
         collapsable: true
       },
+      {
+        title: '函数类型',
+        path: '/frontend-knowledge/typescript/function-type',
+        collapsable: true
+      },
     ]
   }
 ]
