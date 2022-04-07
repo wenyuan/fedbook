@@ -124,6 +124,7 @@
   * [基础类型](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
   * [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal-type/)
   * [函数类型](https://fedbook.cn/frontend-knowledge/typescript/function-type/)
+  * [类类型](https://fedbook.cn/frontend-knowledge/typescript/class-type/)
   * 其它知识点，待后续继续补充
 * [浏览器工作原理](https://fedbook.cn/frontend-knowledge/browser/)
   * [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)

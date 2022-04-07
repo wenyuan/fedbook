@@ -18,6 +18,11 @@ module.exports = [
         path: '/frontend-knowledge/typescript/function-type',
         collapsable: true
       },
+      {
+        title: '类类型',
+        path: '/frontend-knowledge/typescript/class-type',
+        collapsable: true
+      },
     ]
   }
 ]
