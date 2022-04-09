@@ -23,6 +23,11 @@ module.exports = [
         path: '/frontend-knowledge/typescript/class-type',
         collapsable: true
       },
+      {
+        title: '接口类型与类型别名',
+        path: '/frontend-knowledge/typescript/interface-and-type',
+        collapsable: true
+      },
     ]
   }
 ]
