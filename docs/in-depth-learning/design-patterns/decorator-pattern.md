@@ -22,7 +22,7 @@
 结构如下：
 
 <div style="text-align: center;">
-  <img src="./assets/decorator-pattern.jpg" alt="装饰器模式结构图" style="width: 640px;">
+  <img src="./assets/decorator-pattern.jpg" alt="装饰器模式结构图">
   <p style="text-align: center; color: #888;">（装饰器模式结构图）</p>
 </div>
 
