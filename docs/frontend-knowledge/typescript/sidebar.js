@@ -28,6 +28,11 @@ module.exports = [
         path: '/frontend-knowledge/typescript/interface-and-type',
         collapsable: true
       },
+      {
+        title: '联合类型与交叉类型',
+        path: '/frontend-knowledge/typescript/union-and-intersection-types',
+        collapsable: true
+      },
     ]
   }
 ]
