@@ -6,8 +6,6 @@
 
 ### 介绍
 
-在面向对象语言中，接口（Interface）是一个很重要的概念，它是对行为的抽象，而具体如何行动需要由类（class）去实现（implement）。
-
 TypeScript 中的接口是一个非常灵活的概念，除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。
 
 ### 简单的例子
@@ -78,18 +76,6 @@ let p1: Person = {
 };
 ```
 
-```typescript
-interface Person {
-  name: string;
-  age?: number;
-}
-
-let p1: Person = {
-  name: 'p1',
-  age: 13
-};
-```
-
 可选属性的含义是该属性可以不存在。
 
 这时**仍然不允许添加未定义的属性**：
@@ -110,9 +96,15 @@ let p1: Person = {
 //   Object literal may only specify known properties, and 'gender' does not exist in type 'Person'.
 ```
 
-### 任意属性
+### 索引签名
 
-有时候我们希望一个接口允许有任意的属性，可以使用如下方式：
+索引签名的思想是在只知道键和值类型的情况下对结构未知的对象进行类型划分。
+
+它的语法相当简单，只需在方括号内写上键的类型，而不是具体的某个属性名：
+
+* `{ [key: KeyType]: ValueType }`。
+
+例如下面的代码：
 
 ```typescript
 interface Person {
@@ -127,14 +119,52 @@ let p1: Person = {
 };
 ```
 
-使用 `[propName: string]` 定义了任意属性取 `string` 类型的值。
+`[propName: string]: any` 是索引签名，它定义了任意键只要是 `string` 类型时，值就为 `any` 类型。
 
-需要注意的是，**一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集**：
+**需要注意的是，签名的键只能是一个 `string`、`number` 或 `symbol`，其他类型是不允许的**。
+
+数字作为对象索引时，它的类型既可以与数字兼容，也可以与字符串兼容，这与 JavaScript 的行为一致。因此，使用 `0` 或 `'0'` 索引对象时，这两者等价，如下代码所示：
+
+```typescript
+interface LanguageRankInterface {
+  [rank: number]: string;
+}
+interface LanguageYearInterface {
+  [name: string]: number;
+}
+
+// 测试
+let LanguageRankMap: LanguageRankInterface = {
+  1: 'TypeScript', // ok
+  2: 'JavaScript', // ok
+  'WrongIndex': '2012' // ts(2322) 不存在的属性名
+};
+  
+let LanguageMap: LanguageYearInterface = {
+  TypeScript: 2012, // ok
+  JavaScript: 1995, // ok
+  1: 1970 // ok
+};
+```
+
+同样，可以使用 `readonly` 注解索引签名，此时将对应属性设置为只读就行，如下代码所示：
+
+```typescript
+interface LanguageRankInterface {
+  readonly [rank: number]: string;
+}
+
+interface LanguageYearInterface {
+  readonly [name: string]: number;
+}
+```
+
+一旦定义了索引签名，那么确定属性和可选属性的类型都必须是它的类型的子集：
 
 ```typescript
 interface Person {
   name: string;
-  age?: number;
+  age?: number; // ts(2411) age 属性的 number 类型不能赋值给字符串索引类型 string
   [propName: string]: string;
 }
 
@@ -143,16 +173,11 @@ let p1: Person = {
   age: 13,
   gender: 'male'
 };
-
-// error: Property 'age' of type 'number' is not assignable to string index type 'string'.
-// error: Type '{ name: string; age: number; gender: string; }' is not assignable to type 'Person'.
-//   Property 'age' is incompatible with index signature.
-//     Type 'number' is not assignable to type 'string'.
 ```
 
-上例中，任意属性的值允许是 `string`，但是可选属性 `age` 的值却是 `number`，`number` 不是 `string` 的子属性，所以报错了。
+上例中，索引签名的值允许是 `string`，但是可选属性 `age` 的值却是 `number`，`number` 不是 `string` 的子属性，所以报错了。
 
-一个接口中只能定义一个任意属性。如果接口中有多个类型的属性，则可以在任意属性中使用联合类型：
+一个接口中只能定义一个索引签名。如果接口中有多个类型的属性，则可以在任意属性中使用联合类型：
 
 ```typescript
 interface Person {
