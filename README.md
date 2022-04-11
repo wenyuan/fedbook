@@ -127,6 +127,7 @@
   * [类类型](https://fedbook.cn/frontend-knowledge/typescript/class-type/)
   * [接口类型与类型别名](https://fedbook.cn/frontend-knowledge/typescript/interface-and-type/)
   * [联合类型与交叉类型](https://fedbook.cn/frontend-knowledge/typescript/union-and-intersection-types/)
+  * [枚举类型](https://fedbook.cn/frontend-knowledge/typescript/enum-type/)
   * 其它知识点，待后续继续补充
 * [浏览器工作原理](https://fedbook.cn/frontend-knowledge/browser/)
   * [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)

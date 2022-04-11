@@ -33,6 +33,11 @@ module.exports = [
         path: '/frontend-knowledge/typescript/union-and-intersection-types',
         collapsable: true
       },
+      {
+        title: '枚举类型',
+        path: '/frontend-knowledge/typescript/enum-type',
+        collapsable: true
+      },
     ]
   }
 ]
