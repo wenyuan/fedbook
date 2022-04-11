@@ -30,17 +30,17 @@ module.exports = [
         collapsable: true
       },
       {
-        title: 'commit 信息写错想要修改',
+        title: '修改 commit 信息',
         path: '/basic-skills/git/solution-to-commit-info-mistake',
         collapsable: true
       },
       {
-        title: '刚刚 commit 的代码，发现写错了',
+        title: '已 commit 未 push，想修改代码',
         path: '/basic-skills/git/solution-to-last-commit-code-mistake',
         collapsable: true
       },
       {
-        title: '刚刚 commit，发现漏提交了文件',
+        title: '已 commit 未 push，漏提交文件',
         path: '/basic-skills/git/solution-to-missed-file-in-last-commit',
         collapsable: true
       },

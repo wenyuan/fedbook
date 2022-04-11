@@ -188,9 +188,9 @@
   * [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
   * **Git 常见问题**
   * [clone 速度过慢影响效率](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
-  * [commit 信息写错想要修改](https://fedbook.cn/basic-skills/git/solution-to-commit-info-mistake/)
-  * [刚刚 commit 的代码，发现写错了](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
-  * [刚刚 commit，发现漏提交了文件](https://fedbook.cn/basic-skills/git/solution-to-missed-file-in-last-commit/)
+  * [修改 commit 信息](https://fedbook.cn/basic-skills/git/solution-to-commit-info-mistake/)
+  * [已 commit 未 push，想修改代码](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
+  * [已 commit 未 push，漏提交文件](https://fedbook.cn/basic-skills/git/solution-to-missed-file-in-last-commit/)
   * [刚刚的 commit 有误，想要撤回](https://fedbook.cn/basic-skills/git/solution-to-withdraw-last-commit/)
   * [刚刚的 push 有误，想要撤回](https://fedbook.cn/basic-skills/git/solution-to-withdraw-last-push/)
   * [pull 时发现代码冲突，如何解决](https://fedbook.cn/basic-skills/git/solution-to-code-conflict/)
