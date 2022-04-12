@@ -60,3 +60,45 @@ const arr = reflectArray([1, '1']); // arr 是 (string | number)[]
 ```
 
 这里我们约束了 `param` 的类型是数组，数组的元素类型是泛型入参。
+
+通过泛型，我们可以约束函数参数和返回值的类型关系。并且可以给函数定义任意个数的泛型入参，如下代码所示：
+
+```typescript
+function reflectExtraParams<P, Q>(p1: P, p2: Q): [P, Q] {
+  return [p1, p2];
+}
+```
+
+在上述代码中，我们定义了一个拥有两个泛型入参（`P` 和 `Q`）的函数 `reflectExtraParams`，并通过 `P` 和 `Q` 约束函数参数 `p1`、`p2` 和返回值的类型。
+
+## 泛型类
+
+在类的定义中，我们还可以使用泛型用来约束构造函数、属性、方法的类型，如下代码所示：
+
+```typescript
+class Memory<S> {
+  store: S;
+  constructor(store: S) {
+    this.store = store;
+  }
+  set(store: S) {
+    this.store = store;
+  }
+  get() {
+    return this.store;
+  }
+}
+const numMemory = new Memory<number>(1); // <number> 可缺省
+const getNumMemory = numMemory.get();    // 类型是 number
+numMemory.set(2); // 只能写入 number 类型
+
+const strMemory = new Memory('');        // 缺省 <string>
+const getStrMemory = strMemory.get();    // 类型是 string
+strMemory.set('string'); // 只能写入 string 类型
+```
+
+首先，定义了一个支持读写的寄存器类 `Memory`，并使用泛型约束了 `Memory` 类的构造器函数、`set` 和 `get` 方法形参的类型，最后实例化了泛型入参分别是 `number` 和 `string` 类型的两种寄存器。
+
+泛型类和泛型函数类似的地方在于，在创建类实例时，如果受泛型约束的参数传入了明确值，则泛型入参（确切地说是传入的类型）可缺省。
+
+## 泛型类型
