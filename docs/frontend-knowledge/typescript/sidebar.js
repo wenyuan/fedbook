@@ -10,17 +10,17 @@ module.exports = [
       },
       {
         title: '字面量类型',
-        path: '/frontend-knowledge/typescript/literal-type',
+        path: '/frontend-knowledge/typescript/literal',
         collapsable: true
       },
       {
-        title: '函数类型',
-        path: '/frontend-knowledge/typescript/function-type',
+        title: '函数',
+        path: '/frontend-knowledge/typescript/function',
         collapsable: true
       },
       {
-        title: '类类型',
-        path: '/frontend-knowledge/typescript/class-type',
+        title: '类',
+        path: '/frontend-knowledge/typescript/class',
         collapsable: true
       },
       {
@@ -30,12 +30,17 @@ module.exports = [
       },
       {
         title: '联合类型与交叉类型',
-        path: '/frontend-knowledge/typescript/union-and-intersection-types',
+        path: '/frontend-knowledge/typescript/union-and-intersection',
         collapsable: true
       },
       {
-        title: '枚举类型',
-        path: '/frontend-knowledge/typescript/enum-type',
+        title: '枚举',
+        path: '/frontend-knowledge/typescript/enum',
+        collapsable: true
+      },
+      {
+        title: '泛型',
+        path: '/frontend-knowledge/typescript/generics',
         collapsable: true
       },
     ]
