@@ -121,6 +121,7 @@
   * [ECMAScript2020(ES11)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es11-string/)
   * [ECMAScript2021(ES12)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es12-string/)
 * [TypeScript](https://fedbook.cn/frontend-knowledge/typescript/)
+  * **TypeScript 基础**
   * [基础类型](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
   * [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal/)
   * [函数](https://fedbook.cn/frontend-knowledge/typescript/function/)
@@ -129,7 +130,8 @@
   * [联合类型与交叉类型](https://fedbook.cn/frontend-knowledge/typescript/union-and-intersection/)
   * [枚举](https://fedbook.cn/frontend-knowledge/typescript/enum/)
   * [泛型](https://fedbook.cn/frontend-knowledge/typescript/generics/)
-  * 其它知识点，待后续继续补充
+  * **TypeScript 进阶**
+  * [类型守卫](https://fedbook.cn/frontend-knowledge/typescript/type-guard/)
 * [浏览器工作原理](https://fedbook.cn/frontend-knowledge/browser/)
   * [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
   * [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)

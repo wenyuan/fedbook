@@ -44,5 +44,16 @@ module.exports = [
         collapsable: true
       },
     ]
+  },
+  {
+    title: 'TypeScript 进阶',
+    collapsable: false,
+    children: [
+      {
+        title: '类型守卫',
+        path: '/frontend-knowledge/typescript/type-guard',
+        collapsable: true
+      },
+    ]
   }
 ]
