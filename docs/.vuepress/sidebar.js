@@ -14,7 +14,7 @@ module.exports = {
   /* --------- 工程化: 一切能提升前端开发效率，提高前端应用质量的手段和工具都是前端工程化 --------- */
   '/frontend-engineering/vuejs/': require('../frontend-engineering/vuejs/sidebar'),
   '/frontend-engineering/react/': require('../frontend-engineering/react/sidebar'),
-  '/frontend-engineering/webpack5/': require('../frontend-engineering/webpack5/sidebar'),
+  '/frontend-engineering/webpack/': require('../frontend-engineering/webpack/sidebar'),
   /* --------- 必知必会 --------- */
   '/basic-skills/git/': require('../basic-skills/git/sidebar'),
   '/basic-skills/nginx/': require('../basic-skills/nginx/sidebar'),

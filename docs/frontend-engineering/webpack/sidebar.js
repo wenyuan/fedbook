@@ -5,32 +5,32 @@ module.exports = [
     children: [
       {
         title: '核心概念',
-        path: '/frontend-engineering/webpack5/core-concept',
+        path: '/frontend-engineering/webpack/core-concept',
         collapsable: true
       },
       {
         title: '基本配置',
-        path: '/frontend-engineering/webpack5/basic-config',
+        path: '/frontend-engineering/webpack/basic-config',
         collapsable: true
       },
       {
         title: '高级配置',
-        path: '/frontend-engineering/webpack5/advanced-config',
+        path: '/frontend-engineering/webpack/advanced-config',
         collapsable: true
       },
       {
         title: '性能优化 - 构建速度',
-        path: '/frontend-engineering/webpack5/performance-optimization-in-build',
+        path: '/frontend-engineering/webpack/performance-optimization-in-build',
         collapsable: true
       },
       {
         title: '性能优化 - 产出代码',
-        path: '/frontend-engineering/webpack5/performance-optimization-in-output',
+        path: '/frontend-engineering/webpack/performance-optimization-in-output',
         collapsable: true
       },
       {
         title: '最佳实践 - 通用模板',
-        path: '/frontend-engineering/webpack5/generic-template',
+        path: '/frontend-engineering/webpack/generic-template',
         collapsable: true
       }
     ]

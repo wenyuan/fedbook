@@ -171,13 +171,13 @@
 * [React](https://fedbook.cn/frontend-engineering/react/)
   * [React JSX](https://fedbook.cn/frontend-engineering/react/react-jsx/)
   * 近期在学习，每日更新
-* [Webpack5](https://fedbook.cn/frontend-engineering/webpack5/)
-  * [核心概念](https://fedbook.cn/frontend-engineering/webpack5/core-concept/)
-  * [基本配置](https://fedbook.cn/frontend-engineering/webpack5/basic-config/)
-  * [高级配置](https://fedbook.cn/frontend-engineering/webpack5/advanced-config/)
-  * [性能优化 - 构建速度](https://fedbook.cn/frontend-engineering/webpack5/performance-optimization-in-build/)
-  * [性能优化 - 产出代码](https://fedbook.cn/frontend-engineering/webpack5/performance-optimization-in-output/)
-  * [最佳实践 - 通用模板](https://fedbook.cn/frontend-engineering/webpack5/generic-template/)
+* [Webpack](https://fedbook.cn/frontend-engineering/webpack/)
+  * [核心概念](https://fedbook.cn/frontend-engineering/webpack/core-concept/)
+  * [基本配置](https://fedbook.cn/frontend-engineering/webpack/basic-config/)
+  * [高级配置](https://fedbook.cn/frontend-engineering/webpack/advanced-config/)
+  * [性能优化 - 构建速度](https://fedbook.cn/frontend-engineering/webpack/performance-optimization-in-build/)
+  * [性能优化 - 产出代码](https://fedbook.cn/frontend-engineering/webpack/performance-optimization-in-output/)
+  * [最佳实践 - 通用模板](https://fedbook.cn/frontend-engineering/webpack/generic-template/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

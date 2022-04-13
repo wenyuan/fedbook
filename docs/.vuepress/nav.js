@@ -49,7 +49,7 @@ module.exports = [
       {
         text: '工具',
         items: [
-          { text: 'Webpack', link: '/frontend-engineering/webpack5/' }
+          { text: 'Webpack', link: '/frontend-engineering/webpack/' }
         ]
       }
     ]
