@@ -173,7 +173,7 @@ if __name__ == "__main__":
         # 检查通道的数据是否准备好读取，即数据是否被缓冲
         if shell.recv_ready():
             # .recv(bufsize) 通过 recv 函数获取回显
-            stdout = ssh.recv(1024)
+            stdout = shell.recv(1024)
             print(stdout.decode('utf-8'))
     # 关闭 SSHClient
     client.close()
