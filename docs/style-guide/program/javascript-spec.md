@@ -356,6 +356,8 @@ function numberFormatter(num, digits) {
 }
 ```
 
+更多关于注释中标签参数的写法，可以参考选择性借鉴[JSDoc 中文文档](http://shouce.jb51.net/jsdoc/tags-param.html)里的内容。
+
 ### 文件注释
 
 * 用于告诉不熟悉这段代码的读者这个文件中包含哪些东西。
