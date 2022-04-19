@@ -485,7 +485,7 @@ class MyPromise {
       if (this.status === PENDING) {
         this.status = FULFILLED;
         this.value = value;
-        // 发布
+        // 发布过程
         // 处理异步里的 resolve()
         this.onFulfilledCallbacks.forEach(fn => fn());
       }
@@ -495,7 +495,7 @@ class MyPromise {
       if (this.status === PENDING) {
         this.status = REJECTED;
         this.reason = reason;
-        // 发布
+        // 发布过程
         // 处理异步里的 reject()
         this.onRejectedCallbacks.forEach(fn => fn());
       }
@@ -969,10 +969,10 @@ resolvePromise() 各参数的意义：
 /**
  * Promise 解决过程, 即规范所说的 [[Resolve]](promise2, x)
  * 对 resolve()、reject() 中的返回值 x 进行处理
- * @param {promise} promise2: promise1.then 方法返回的新的 promise 对象
- * @param {[type]} x: promise1 中 onFulfilled 或 onRejected 的返回值
- * @param {[type]} resolve: promise2 的 resolve 方法
- * @param {[type]} reject: promise2 的 reject 方法
+ * @param {object} promise2: promise1.then 方法返回的新的 Promise 对象
+ * @param {*} x: promise1 中 onFulfilled 或 onRejected 的返回值
+ * @param {function} resolve: promise2 的 resolve 方法
+ * @param {function} reject: promise2 的 reject 方法
  */
 function resolvePromise(promise2, x, resolve, reject) {}
 ```
@@ -1517,7 +1517,7 @@ class MyPromise {
 
   /**
    * Promise.resolve()
-   * @param {[type]} value 要解析为 Promise 对象的值 
+   * @param {*} value 要解析为 Promise 对象的值 
   */
   static resolve(value) {
     // 如果这个值是一个 promise, 那么将返回这个 promise
@@ -1628,7 +1628,7 @@ class MyPromise {
   /**
    * Promise.reject()
    * @param {*} reason 表示 Promise 被拒绝的原因
-   * @returns 
+   * @return
   */
   static reject(reason) {
     return new MyPromise((resolve, reject) => {
@@ -1757,7 +1757,7 @@ class MyPromise {
   /**
    * finally
    * @param {*} callBack 无论结果是 fulfilled 或者是 rejected, 都会执行的回调函数
-   * @returns 
+   * @return
   */
   finally(callBack) {
     return this.then(callBack, callBack)
@@ -1821,7 +1821,7 @@ class MyPromise {
   /**
    * Promise.all()
    * @param {iterable} promises 一个 promise 的 iterable 类型(注: Array, Map, Set 都属于 ES6 的 iterable 类型)的输入
-   * @returns
+   * @return
    */
   static all(promises) {
     return new MyPromise((resolve, reject) => {
@@ -1957,7 +1957,7 @@ class MyPromise {
   /**
    * Promise.allSettled()
    * @param {iterable} promises 一个 promise 的 iterable 类型(注: Array, Map, Set 都属于 ES6 的 iterable 类型)的输入
-   * @returns
+   * @return
    */
   static allSettled(promises) {
     return new MyPromise((resolve, reject) => {
@@ -1966,7 +1966,7 @@ class MyPromise {
         let result = []; // 存储结果
         let count = 0;   // 计数器
 
-        // 如果传入的是一个空数组, 那么就直接返回一个 resolved 的空数组 promise 对象
+        // 如果传入的是一个空数组, 那么就直接返回一个 resolved 的空数组 Promise 对象
         if (promises.length === 0) return resolve(promises);
 
         promises.forEach((item, index) => {
@@ -2076,7 +2076,7 @@ class MyPromise {
   /**
    * Promise.any()
    * @param {iterable} promises 一个 promise 的 iterable 类型(注: Array, Map, Set 都属于 ES6 的 iterable 类型)的输入
-   * @returns
+   * @return
    */
   static any(promises) {
     return new MyPromise((resolve, reject) => {
@@ -2228,7 +2228,7 @@ class MyPromise {
   /**
    * Promise.race()
    * @param {iterable} promises 可迭代对象, 类似 Array. 详见 iterable
-   * @returns
+   * @return
    */
   static race(promises) {
     return new MyPromise((resolve, reject) => {
