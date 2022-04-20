@@ -121,3 +121,5 @@ Formatting Context 是 W3C CSS2.1 规范中的一个概念。他是页面的一�
 ## 参考资料
 
 * [MDN：块格式化上下文](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context "块格式化上下文")
+
+（完）
