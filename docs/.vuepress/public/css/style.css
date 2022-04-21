@@ -298,3 +298,20 @@ a.sidebar-link.active {
 .back-to-top {
   z-index: 100 !important;
 }
+
+/* table */
+.theme-default-content.content__default table tr th {
+  font-weight: 700;
+  background-color: #eff3f5;
+}
+
+.theme-default-content.content__default table tr td, .theme-default-content.content__default table tr th {
+  font-size: 14px;
+  color: #4f4f4f;
+  line-height: 22px;
+  /*border: 1px solid #ddd;*/
+}
+
+.theme-default-content.content__default table tr:nth-child(2n) {
+  background-color: #f7f7f7;
+}
