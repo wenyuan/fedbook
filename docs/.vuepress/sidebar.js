@@ -15,6 +15,7 @@ module.exports = {
   '/frontend-engineering/vuejs/': require('../frontend-engineering/vuejs/sidebar'),
   '/frontend-engineering/react/': require('../frontend-engineering/react/sidebar'),
   '/frontend-engineering/webpack/': require('../frontend-engineering/webpack/sidebar'),
+  '/frontend-engineering/package/': require('../frontend-engineering/package/sidebar'),
   /* --------- 必知必会 --------- */
   '/basic-skills/git/': require('../basic-skills/git/sidebar'),
   '/basic-skills/nginx/': require('../basic-skills/nginx/sidebar'),

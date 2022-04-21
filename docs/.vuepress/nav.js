@@ -49,7 +49,8 @@ module.exports = [
       {
         text: '工具',
         items: [
-          { text: 'Webpack', link: '/frontend-engineering/webpack/' }
+          { text: 'Webpack', link: '/frontend-engineering/webpack/' },
+          { text: '包管理工具', link: '/frontend-engineering/package/' }
         ]
       }
     ]
@@ -58,7 +59,7 @@ module.exports = [
     text: '必知必会',
     items: [
       {
-        text: '日常使用',
+        text: '常用工具',
         items: [
           { text: 'Git', link: '/basic-skills/git/' },
           { text: 'Nginx', link: '/basic-skills/nginx/' },
