@@ -203,9 +203,10 @@
   * [如何参与开源项目 - 提交 PR 与更新 Fork 分支](https://fedbook.cn/basic-skills/git/solution-to-participate-in-open-source-projects/)
   * [如何使用 GitFlow 工作流进行团队协作](https://fedbook.cn/basic-skills/git/solution-to-gitflow/)
 * [Nginx](https://fedbook.cn/basic-skills/nginx/)
-  * **Nginx 用法整理**
+  * **Nginx 基础知识**
   * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
   * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
+  * **Nginx 用法整理**
   * [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
   * [Nginx 的卸载](https://fedbook.cn/basic-skills/nginx/uninstallation-of-nginx/)
   * [Nginx 常用命令](https://fedbook.cn/basic-skills/nginx/common-commands/)

@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'Nginx 用法整理',
+    title: 'Nginx 基础知识',
     collapsable: false,
     children: [
       {
@@ -12,7 +12,13 @@ module.exports = [
         title: '负载均衡',
         path: '/basic-skills/nginx/load-balancing',
         collapsable: true
-      },
+      }
+    ]
+  },
+  {
+    title: 'Nginx 用法整理',
+    collapsable: false,
+    children: [
       {
         title: 'Nginx 的安装',
         path: '/basic-skills/nginx/installation-of-nginx',
