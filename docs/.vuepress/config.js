@@ -39,7 +39,11 @@ module.exports = config({
     blog: false,
     pageInfo: false,
     mdEnhance: {
-      enableAll: false
+      enableAll: false,
+      // 启用下角标功能（H~2~O）
+      sub: true,
+      // 启用上角标（19^th^）
+      sup: true,
     },
     comment: false,
     copyright: false,
