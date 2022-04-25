@@ -1,6 +1,17 @@
 module.exports = [
   {
-    title: 'MySQL 基本使用',
+    title: 'MySQL 基础知识',
+    collapsable: false,
+    children: [
+      {
+        title: 'MySQL 数据类型',
+        path: '/basic-skills/mysql/data-types',
+        collapsable: true
+      }
+    ]
+  },
+  {
+    title: 'MySQL 日常运维',
     collapsable: false,
     children: [
       {
