@@ -7,6 +7,11 @@ module.exports = [
         title: 'MySQL 数据类型',
         path: '/basic-skills/mysql/data-types',
         collapsable: true
+      },
+      {
+        title: '主键和自增 ID',
+        path: '/basic-skills/mysql/primary-key-and-increment-id',
+        collapsable: true
       }
     ]
   },
