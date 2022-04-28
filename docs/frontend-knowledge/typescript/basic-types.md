@@ -70,6 +70,8 @@ let sym2: symbol = Symbol('42');
 
 ### 数组（Array）
 
+在 TypeScript 中，array 一般指**所有元素类型相同**的值的集合。
+
 可以直接使用 `[]` 的形式定义数组类型：
 
 ```typescript
@@ -90,7 +92,7 @@ let arrayOfString: Array<string> = ['x', 'y', 'z']; // 子元素是字符串类�
 
 ### 元祖（Tuple）
 
-TypeScript 的数组和元组转译为 JavaScript 后都是数组，但元组最重要的特性是可以限制数组元素的个数和类型，它特别适合用来实现多值返回。
+TypeScript 的数组和元组转译为 JavaScript 后都是数组，但元组最重要的特性是**数量固定，类型可以各异**。
 
 在写法上，元祖类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同：
 
