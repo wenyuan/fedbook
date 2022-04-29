@@ -232,6 +232,7 @@
   * [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
   * [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
   * 其它知识点，待后续继续补充
+* [Redis](https://fedbook.cn/basic-skills/redis/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

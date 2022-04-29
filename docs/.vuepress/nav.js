@@ -70,6 +70,7 @@ module.exports = [
         text: '数据库/中间件',
         items: [
           { text: 'MySQL', link: '/basic-skills/mysql/' },
+          { text: 'Redis', link: '/basic-skills/redis/' },
         ]
       }
     ]
