@@ -30,7 +30,9 @@ stderr=None, preexec_fn=None, cwd=None, env=None, startupinfo=None, creationflag
 * executable：指定替换程序。
 * stdin、stdout 和 stderr：这些参数分别定义标准输入、标准输出和标准错误。
 * close_fds：在 Linux 中，如果 close_fds 为 True，则程序在执行子进程之前将关闭除 0、1 和 2 之外的所有文件描述符。在 Windows 中，如果 close_fds 为 True，则子进程将不继承句柄。
-* shell：它表示是否使用 Shell 执行程序，默认为 False。如果 shell 为 True，则会将 args 作为字符串传递。在 Linux 中，如果 shell 为 True，则 Shell 程序默认为 `/bin/sh`。如果 args 是一个字符串，则该字符串指定要通过 Shell 执行的命令。
+* shell：它表示是否使用 Shell 执行程序，默认为 False。
+  * 如果 shell 为 True，则会将 args 作为字符串传递。在 Linux 中，如果 shell 为 True，则 Shell 程序默认为 `/bin/sh`。如果 args 是一个字符串，则该字符串指定要通过 Shell 执行的命令。
+  * 如果 shell 为 False，则需要将 args 作为数组传递，并将数组的第一个元素作为命令，剩下的全部作为该命令的参数。
 * preexec_fn：设置可调用对象，将在执行子进程之前调用。
 * env：如果值不是 None，则映射将为新进程定义环境变量。
 * universal_newlines：如果值为 True，则 stdout 和 stderr 将以自动换行模式打开文本文件。
@@ -44,7 +46,7 @@ import subprocess
 
 def exec_without_block():
     # 或者：child = subprocess.Popen(['ping', '-c', '4', 'www.baidu.com'])
-    child = subprocess.Popen(['ping -c 4 www.baidu.com'], shell=True)
+    child = subprocess.Popen('ping -c 4 www.baidu.com', shell=True)
     print(child)
     print('hello world')
 ```
@@ -59,7 +61,7 @@ def exec_without_block():
 import subprocess
 
 def exec_with_block():
-    child = subprocess.Popen(['ping -c 4 www.baidu.com'], shell=True)
+    child = subprocess.Popen('ping -c 4 www.baidu.com', shell=True)
     child.wait()
     print(child)
     print('hello world')
@@ -74,7 +76,7 @@ import subprocess
 
 # 获取命令执行结果
 def get_exec_result():
-    child = subprocess.Popen(['cat /etc/issue'],
+    child = subprocess.Popen('cat /etc/issue',
                              shell=True,
                              stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
