@@ -9,7 +9,7 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '主键和自增 ID',
+        title: 'MySQL 主键和自增 ID',
         path: '/basic-skills/mysql/primary-key-and-increment-id',
         collapsable: true
       }

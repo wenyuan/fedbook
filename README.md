@@ -227,7 +227,9 @@
   * **Linux 常见问题**
   * [vim 中文乱码问题](https://fedbook.cn/basic-skills/linux/solution-to-vim-encoding/) 
 * [MySQL](https://fedbook.cn/basic-skills/mysql/)
-  * **MySQL 基本使用**
+  * **MySQL 基础知识**
+  * [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)
+  * **MySQL 日常运维**
   * [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
   * [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
   * [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
