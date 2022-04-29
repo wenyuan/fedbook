@@ -228,6 +228,7 @@
   * [vim 中文乱码问题](https://fedbook.cn/basic-skills/linux/solution-to-vim-encoding/) 
 * [MySQL](https://fedbook.cn/basic-skills/mysql/)
   * **MySQL 基础知识**
+  * [MySQL 数据类型](https://fedbook.cn/basic-skills/mysql/data-types/)
   * [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)
   * **MySQL 日常运维**
   * [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
