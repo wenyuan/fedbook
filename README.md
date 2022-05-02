@@ -238,6 +238,7 @@
 * [Redis](https://fedbook.cn/basic-skills/redis/)
   * **Redis 基础知识**
   * [Redis 数据类型](https://fedbook.cn/basic-skills/redis/data-types/)
+  * [Redis 缓存三大问题](https://fedbook.cn/basic-skills/redis/three-cache-problems/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
