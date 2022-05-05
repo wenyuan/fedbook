@@ -32,10 +32,12 @@ function reflect<P>(param: P) {
 
 ```typescript
 const str = reflect<string>('string'); // str 类型是 string
-const num = reflect<number>(1); // num 类型 number
+const num = reflect<number>(1);        // num 类型 number
 ```
 
-也可以使用泛型显式地注解返回值的类型，比如调用如下所示的 `reflect` 时，我们可以通过尖括号 `<>` 语法给泛型参数 `P` 显式地传入一个明确的类型。
+也可以使用泛型显式地注解返回值的类型，不过没必要，因为返回值的类型可以基于上下文推断出来。
+
+比如调用如下所示的 `reflect` 时，我们可以通过尖括号 `<>` 语法给泛型参数 `P` 显式地传入一个明确的类型，相应地，返回值类型也被指定了。
 
 ```typescript
 function reflect<P>(param: P):P {
@@ -43,14 +45,17 @@ function reflect<P>(param: P):P {
 }
 ```
 
-另外，如果调用泛型函数时受泛型约束的参数有传值，泛型参数的入参可以从参数的类型中进行推断，而无须再显式指定类型（可缺省），既调用的代码可以写成这样：
+另外，如果调用泛型函数时受泛型约束的参数有传值，泛型参数的入参可以从参数的类型中进行推断，而无须再显式指定类型（可缺省）：
 
 ```typescript
-const str = reflect('string'); // str 类型是 string
-const num = reflect(1); // num 类型 number
+// const str = reflect<string>('string'); 可以简写如下：
+const str = reflect('string');
+
+// const num = reflect<number>(1); 可以简写如下：
+const num = reflect(1);
 ```
 
-泛型不仅可以约束函数整个参数的类型，还可以约束参数属性、成员的类型，比如参数的类型可以是数组、对象，如下示例：
+泛型不仅可以约束函数整个参数的类型，还可以约束参数属性、成员的类型，比如参数的类型可以是数组或对象，如下代码所示：
 
 ```typescript
 function reflectArray<P>(param: P[]) {
