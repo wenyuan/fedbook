@@ -132,7 +132,8 @@
   * [泛型](https://fedbook.cn/frontend-knowledge/typescript/generics/)
   * **TypeScript 进阶**
   * [类型守卫](https://fedbook.cn/frontend-knowledge/typescript/type-guard/)
-* [浏览器工作原理](https://fedbook.cn/frontend-knowledge/browser/)
+* [浏览器相关](https://fedbook.cn/frontend-knowledge/browser/)
+  * **浏览器工作原理**
   * [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
   * [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)
   * [渲染引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-rendering-process/)
