@@ -126,9 +126,16 @@ function BlogView({ id }) {
 
 ### 和类组件区别
 
-对应到 Class 组件，那么 useEffect 就涵盖了 ComponentDidMount、componentDidUpdate 和 componentWillUnmount 三个生命周期方法。
+对应到 Class 组件，那么 useEffect 可以类似等价于 ComponentDidMount、componentDidUpdate 和 componentWillUnmount 三个生命周期方法。
 
-但不是等价的，useEffect 更确切的执行时机是每次组件 `render` 完后判断依赖并执行的。
+但不是完全等价的：
+
+* 回调函数跟 componentDidUpdate 区别
+  * useEffect 接收的回调函数（callback），只有在依赖项变化时才被执行。这样设计的好处是不需要手动判断某个状态是否发生变化，然后再执行特定的逻辑。
+  * 类组件的 componentDidUpdate 则一定会执行。
+* 回调函数返回的函数跟 componentWillUnmount 区别
+  * useEffect 中返回的函数（一般用于清理工作），不只是会在组件销毁时执行，它在每次 Effect 重新执行之前都会执行。因此只是清理当前执行的 Effect 本身，也就是说它的作用是用于清理上一次 Effect 的结果。
+  * 类组件的 componentWillUnmount 只在组件销毁时才会执行。
 
 ### 特殊用法
 
