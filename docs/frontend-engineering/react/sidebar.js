@@ -12,6 +12,11 @@ module.exports = [
         title: 'React Hooks（内置）',
         path: '/frontend-engineering/react/react-internal-hooks',
         collapsable: true
+      },
+      {
+        title: 'React Hooks（自定义）',
+        path: '/frontend-engineering/react/react-custom-hooks',
+        collapsable: true
       }
     ]
   }
