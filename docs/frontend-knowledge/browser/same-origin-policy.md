@@ -36,4 +36,8 @@
 * 跨域请求要用 CORS 机制
 * 引用第三方资源要用 CSP
 
+## 参考资料
+
+* [跨域资源共享 CORS 详解](https://www.ruanyifeng.com/blog/2016/04/cors.html)
+
 （完）
