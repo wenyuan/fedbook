@@ -24,5 +24,16 @@ module.exports = [
         collapsable: true
       }
     ]
+  },
+  {
+    title: '浏览器安全',
+    collapsable: false,
+    children: [
+      {
+        title: '同源策略',
+        path: '/frontend-knowledge/browser/same-origin-policy',
+        collapsable: true
+      },
+    ]
   }
 ]

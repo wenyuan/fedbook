@@ -138,6 +138,8 @@
   * [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)
   * [渲染引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-rendering-process/)
   * [V8 引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-v8-engine/)
+  * **浏览器安全**
+  * [同源策略](https://fedbook.cn/frontend-knowledge/browser/same-origin-policy/)
 * [JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
   * **简单手写：函数**
   * [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
