@@ -34,6 +34,11 @@ module.exports = [
         path: '/frontend-knowledge/browser/same-origin-policy',
         collapsable: true
       },
+      {
+        title: '跨站脚本攻击（XSS）',
+        path: '/frontend-knowledge/browser/xss',
+        collapsable: true
+      },
     ]
   }
 ]

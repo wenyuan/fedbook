@@ -140,6 +140,7 @@
   * [V8 引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-v8-engine/)
   * **浏览器安全**
   * [同源策略](https://fedbook.cn/frontend-knowledge/browser/same-origin-policy/)
+  * [跨站脚本攻击（XSS）](https://fedbook.cn/frontend-knowledge/browser/xss/)
 * [JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
   * **简单手写：函数**
   * [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
