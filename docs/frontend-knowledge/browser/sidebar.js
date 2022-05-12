@@ -39,6 +39,11 @@ module.exports = [
         path: '/frontend-knowledge/browser/xss',
         collapsable: true
       },
+      {
+        title: 'CSRF 攻击',
+        path: '/frontend-knowledge/browser/csrf',
+        collapsable: true
+      },
     ]
   }
 ]
