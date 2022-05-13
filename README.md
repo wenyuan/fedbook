@@ -142,6 +142,7 @@
   * [同源策略](https://fedbook.cn/frontend-knowledge/browser/same-origin-policy/)
   * [跨站脚本攻击（XSS）](https://fedbook.cn/frontend-knowledge/browser/xss/)
   * [CSRF 攻击](https://fedbook.cn/frontend-knowledge/browser/csrf/)
+  * [网络安全协议（HTTPS）](https://fedbook.cn/frontend-knowledge/browser/https/)
 * [JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
   * **简单手写：函数**
   * [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)

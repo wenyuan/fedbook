@@ -44,6 +44,11 @@ module.exports = [
         path: '/frontend-knowledge/browser/csrf',
         collapsable: true
       },
+      {
+        title: '网络安全协议（HTTPS）',
+        path: '/frontend-knowledge/browser/https',
+        collapsable: true
+      },
     ]
   }
 ]
