@@ -214,7 +214,7 @@ chown -R mysql:mysql /opt/mysql/
 /opt/mysql/mysql-8.0/bin/mysqld --initialize --user=mysql --basedir=/opt/mysql/mysql-8.0/ --datadir=/opt/mysql/data/ --lower_case_table_names=1
 ```
 
-> MySQL 8.0 后，在 Linux 端，对于 lower_case_table_names 参数，只又在初始化的时候设置才有效，若初始化的时候没设置，后面修改配置文件后再启动服务就会报错了。
+> MySQL 8.0 后，在 Linux 端，对于 `lower_case_table_names` 参数，只又在初始化的时候设置才有效，若初始化的时候没设置，后面修改配置文件后再启动服务就会报错了。
 
 在这行命令的输出中，这里我们会看到初始密码（应该实在最后一行），记下来：
 
@@ -356,16 +356,14 @@ mysql -uroot -p
 通过下面这句代码就可直接修改密码，不用像之前的老版本一样那么复杂：
 
 ```bash
-# 两种改密方式二选一, 跟 5.7 版本的改密命令不同
+# 注意跟 5.7 版本的改密命令不同
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码';
-
-set password for root@localhost = '新密码';
 ```
 
 接着需要继续执行命令：
 
 ```bash
-// 刷新权限
+# 刷新权限
 flush privileges;
 ```
 
@@ -430,9 +428,8 @@ update user set host='%' where user='root' limit 1;
 flush privileges;
 ```
 
-> * `root` 可以改为你自己定义的用户名。
-> * `localhost` 指的是该用户开放的 IP，可以是 `localhost` 或 `127.0.0.1`（仅本机访问），可以是具体的某一 IP，也可以是 `%` （所有 IP 均可访问)。
-> * `password` 是你想使用的验证密码。
+> * `host='%'` 指的是允许访问 MySQL 的 IP，默认是 `localhost` 或 `127.0.0.1`，可以指定具体的某个 IP，也可以是 `%`（所有 IP 均可访问)。
+> * `user='root'` 表示用于访问 MySQL 的用户名，可以改为你自己定义的用户名。
 
 如果使用 Navicat 连接时报 `2003 - Can't connect to MySQL server on ...` 错误，就要先看下服务器是不是开启了防火墙但又没开放端口（你可以选择不开防火墙，或者开完防火墙后记得开放 MySQL 监听的端口号）。
 
