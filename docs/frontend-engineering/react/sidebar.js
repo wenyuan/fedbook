@@ -17,7 +17,12 @@ module.exports = [
         title: 'React Hooks（自定义）',
         path: '/frontend-engineering/react/react-custom-hooks',
         collapsable: true
-      }
+      },
+      {
+        title: '函数组件设计模式',
+        path: '/frontend-engineering/react/function-component-design-patterns',
+        collapsable: true
+      },
     ]
   }
 ]
