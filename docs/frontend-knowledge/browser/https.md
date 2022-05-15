@@ -14,7 +14,7 @@ HTTP 协议最初是为了传输超文本文件，没有加密传输数据的需
 
 <div style="text-align: center;">
   <img src="./assets/http-vs-https.jpg" alt="HTTP VS HTTPS">
-  <p style="text-align:center; color: #888;">（HTTP VS HTTPS，图来源于官网文档）</p>
+  <p style="text-align:center; color: #888;">（HTTP VS HTTPS，图来源于课程）</p>
 </div>
 
 总的来说，安全层有两个主要的职责：对发起 HTTP 请求的数据进行加密操作和对接收到 HTTP 的内容进行解密操作。下面有几种加解密方式来实现 HTTPS 协议。
@@ -33,7 +33,7 @@ HTTP 协议最初是为了传输超文本文件，没有加密传输数据的需
 
 <div style="text-align: center;">
   <img src="./assets/https-using-symmetric-encryption.jpg" alt="使用对称加密实现 HTTPS">
-  <p style="text-align:center; color: #888;">（使用对称加密实现 HTTPS，图来源于官网文档）</p>
+  <p style="text-align:center; color: #888;">（使用对称加密实现 HTTPS，图来源于课程）</p>
 </div>
 
 缺点：
@@ -56,7 +56,7 @@ HTTP 协议最初是为了传输超文本文件，没有加密传输数据的需
 
 <div style="text-align: center;">
   <img src="./assets/https-using-asymmetric-encryption.jpg" alt="非对称加密实现 HTTPS">
-  <p style="text-align:center; color: #888;">（非对称加密实现 HTTPS，图来源于官网文档）</p>
+  <p style="text-align:center; color: #888;">（非对称加密实现 HTTPS，图来源于课程）</p>
 </div>
 
 缺点：
@@ -79,7 +79,7 @@ HTTP 协议最初是为了传输超文本文件，没有加密传输数据的需
 
 <div style="text-align: center;">
   <img src="./assets/https-using-hybrid-encryption.jpg" alt="混合加密实现 HTTPS">
-  <p style="text-align:center; color: #888;">（混合加密实现 HTTPS，图来源于官网文档）</p>
+  <p style="text-align:center; color: #888;">（混合加密实现 HTTPS，图来源于课程）</p>
 </div>
 
 需要特别注意的一点，`pre-master` 是经过公钥加密之后传输的，所以黑客无法获取到 `pre-master`，他就无法生成密钥，也就保证了传输过程中的数据安全性。
@@ -103,7 +103,7 @@ HTTP 协议最初是为了传输超文本文件，没有加密传输数据的需
 
 <div style="text-align: center;">
   <img src="./assets/complete-https-request-process.jpg" alt="完整的 HTTPS 请求流程">
-  <p style="text-align:center; color: #888;">（完整的 HTTPS 请求流程，图来源于官网文档）</p>
+  <p style="text-align:center; color: #888;">（完整的 HTTPS 请求流程，图来源于课程）</p>
 </div>
 
 通过引入数字证书，就实现了服务器的身份认证功能，这样即便黑客伪造了服务器，但是由于证书是没有办法伪造的，所以依然无法欺骗用户。
