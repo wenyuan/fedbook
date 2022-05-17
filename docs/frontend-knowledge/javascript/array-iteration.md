@@ -60,7 +60,7 @@ arr.forEach(function (item, index, array) {
 
 ## map
 
-遍历每一个元素并且返回对应的元素（可以返回处理后的元素），返回的新数组和旧数组的长度是一样的
+遍历每一个元素并且返回对应的元素（可以返回处理后的元素），返回的新数组和旧数组的长度是一样的。
 
 该方法使用比较广泛，但其性能还不如 forEach。
 
@@ -72,6 +72,8 @@ let newArr = arr.map(function (item, index) {
 
 console.log(newArr);
 ```
+
+map 方法更多的应用场景是数组的重组，不改变数组本身，返回一个元素被处理过的新数组。比如 React 中的列表渲染就经常用该方法来遍历数据。
 
 ## filter
 
