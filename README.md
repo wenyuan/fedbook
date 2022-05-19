@@ -167,15 +167,18 @@
 ### 工程化
 
 <details>
-<summary>[Vue.js](https://fedbook.cn/frontend-engineering/vuejs/)</summary>
-  * [基础用法要点](https://fedbook.cn/frontend-engineering/vuejs/basic-use/)
-  * [高级用法特性](https://fedbook.cn/frontend-engineering/vuejs/advanced-use/)
-  * [响应式原理](https://fedbook.cn/frontend-engineering/vuejs/reactive-data/)
-  * [虚拟 DOM 与 diff 算法](https://fedbook.cn/frontend-engineering/vuejs/virtual-dom-and-diff/)
-  * [模板编译](https://fedbook.cn/frontend-engineering/vuejs/template-compile/)
-  * [组件渲染与更新](https://fedbook.cn/frontend-engineering/vuejs/component-render-and-update/)
-  * [前端路由原理](https://fedbook.cn/frontend-engineering/vuejs/vue-router/)
+<summary>Vue.js</summary>
+
+- [基础用法要点](https://fedbook.cn/frontend-engineering/vuejs/basic-use/)
+- [高级用法特性](https://fedbook.cn/frontend-engineering/vuejs/advanced-use/)
+- [响应式原理](https://fedbook.cn/frontend-engineering/vuejs/reactive-data/)
+- [虚拟 DOM 与 diff 算法](https://fedbook.cn/frontend-engineering/vuejs/virtual-dom-and-diff/)
+- [模板编译](https://fedbook.cn/frontend-engineering/vuejs/template-compile/)
+- [组件渲染与更新](https://fedbook.cn/frontend-engineering/vuejs/component-render-and-update/)
+- [前端路由原理](https://fedbook.cn/frontend-engineering/vuejs/vue-router/)
+
 </details>
+
 * [React](https://fedbook.cn/frontend-engineering/react/)
   * **React 基础** 
   * [React JSX](https://fedbook.cn/frontend-engineering/react/react-jsx/)
