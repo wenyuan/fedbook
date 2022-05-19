@@ -88,6 +88,26 @@ JSX 可以总结出下列语法规则。
 
 > 如果跟平时 HTML 中的一样写 `style="color:white;"`，会报错：`Uncaught Invariant Violation: The 'style' prop expects a mapping from style properties to values, not a string.`
 
+### label 标签 for 属性写法
+
+label 标签中有一个 `for` 属性，它用于跟指定的 input 标签建立绑定关系（通过设置 `for` 的值为 input 标签的 `id` 值）。当点击 label 的时候，会自动获取 input 的焦点，input 会变成输入状态。
+
+但是在 jsx 语法中 `for` 默认是循环，所以 label 标签的 `for` 属性需要替换成 `htmlFor`。
+
+```html {5-6}
+<script type="text/babel" >
+  // 1. 创建虚拟 DOM
+  const VDOM = (
+    <div>
+      <label htmlFor="male">男</label>
+      <input type="radio" id="male"/>
+    </div>
+  )
+  // 2. 渲染虚拟 DOM 到页面
+  ReactDOM.render(VDOM, document.getElementById('example'))
+</script>
+```
+
 ### 多级结构使用小括号包裹
 
 使用小括号 `()` 包裹后，代表一个整体，并且可以缩进结构，让代码像 HTML 模板一样美观可读。
