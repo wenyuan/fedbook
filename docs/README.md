@@ -7,12 +7,12 @@ action:
 - text: 进入小册 →
   link: /style-guide/document/
 features:
-- title: 知识沉淀
-  details: 专注前端开发，知识体系涉及但不仅限于前后端技术。记录每一天的进步，拥抱变化，与时俱进。
-- title: 乐于分享
-  details: 一个人走得快，一群人走得远。分享能够产生沟通与交流的介质，实现共同进步。越努力，越幸运。
-- title: 终身成长
-  details: 一个 90 后程序员，终身学习者。座右铭：努力过，不后悔。感恩生命中的每一个遇见，愿大家：健康，自由。
+- title: 人生四戒
+  details: 毋意、毋必、毋固、毋我。
+- title: 持之以恒
+  details: 流水不争先，争的是滔滔不绝。
+- title: 终身学习
+  details: 一年之计，莫如树谷；十年之计，莫如树木；终身之计，莫如树人。
 footer: MIT Licensed | Copyright © 2018-present Wenyuan Xu
 copyrightText: false
 ---
