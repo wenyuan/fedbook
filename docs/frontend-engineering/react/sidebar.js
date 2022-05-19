@@ -23,6 +23,11 @@ module.exports = [
         path: '/frontend-engineering/react/function-component-design-patterns',
         collapsable: true
       },
+      {
+        title: 'React 表单知识点',
+        path: '/frontend-engineering/react/form',
+        collapsable: true
+      },
     ]
   }
 ]
