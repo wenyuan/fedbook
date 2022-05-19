@@ -167,7 +167,7 @@
 ### 工程化
 
 <details>
-<summary>Vue.js</summary>
+<summary><b>Vue.js</b></summary>
 
 - [基础用法要点](https://fedbook.cn/frontend-engineering/vuejs/basic-use/)
 - [高级用法特性](https://fedbook.cn/frontend-engineering/vuejs/advanced-use/)
