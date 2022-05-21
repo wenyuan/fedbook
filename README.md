@@ -78,7 +78,6 @@
   - [HTML 基本结构](https://fedbook.cn/frontend-knowledge/html/html-basic-structure/)
   - [语义类标签](https://fedbook.cn/frontend-knowledge/html/semantic-elements/)
   - 其它知识点，待后续继续补充
-
 - [CSS](https://fedbook.cn/frontend-knowledge/css/)
   - [CSS 引入方式](https://fedbook.cn/frontend-knowledge/css/ways-to-insert-css/)
   - [选择器与样式优先级](https://fedbook.cn/frontend-knowledge/css/selectors-and-selector-priority/)
@@ -92,7 +91,6 @@
   - [Flexbox 布局](https://fedbook.cn/frontend-knowledge/css/flexbox/)
   - [Grid 布局](https://fedbook.cn/frontend-knowledge/css/grid/)
   - 其它知识点，待后续继续补充
-
 - [JavaScript](https://fedbook.cn/frontend-knowledge/javascript/)
   - **JavaScript 核心**
   - [数据类型](https://fedbook.cn/frontend-knowledge/javascript/data-types/)
@@ -114,7 +112,6 @@
   - [声明函数的六种方式](https://fedbook.cn/frontend-knowledge/javascript/function-declare/)
   - [调用函数的四种方式](https://fedbook.cn/frontend-knowledge/javascript/function-invocation/)
   - 其它知识点，待后续继续补充
-
 - [ES6 - ES12 新特性](https://fedbook.cn/frontend-knowledge/es6-and-beyond/)
   - [ECMAScript2015(ES6)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es6-let-const/)
   - [ECMAScript2016(ES7)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es7-array/)
@@ -123,8 +120,7 @@
   - [ECMAScript2019(ES10)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es10-object/)
   - [ECMAScript2020(ES11)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es11-string/)
   - [ECMAScript2021(ES12)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es12-string/)
-
--[TypeScript](https://fedbook.cn/frontend-knowledge/typescript/)
+- [TypeScript](https://fedbook.cn/frontend-knowledge/typescript/)
   - **TypeScript 基础**
   - [基础类型](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
   - [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal/)
@@ -136,7 +132,6 @@
   - [泛型](https://fedbook.cn/frontend-knowledge/typescript/generics/)
   - **TypeScript 进阶**
   - [类型守卫](https://fedbook.cn/frontend-knowledge/typescript/type-guard/)
-
 - [浏览器相关](https://fedbook.cn/frontend-knowledge/browser/)
   - **浏览器工作原理**
   - [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
@@ -148,8 +143,7 @@
   - [跨站脚本攻击（XSS）](https://fedbook.cn/frontend-knowledge/browser/xss/)
   - [CSRF 攻击](https://fedbook.cn/frontend-knowledge/browser/csrf/)
   - [网络安全协议（HTTPS）](https://fedbook.cn/frontend-knowledge/browser/https/)
-
--[JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
+- [JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
   - **简单手写：函数**
   - [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
   - [实现节流函数（throttle）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现节流函数-throttle/)
@@ -180,7 +174,6 @@
   - [模板编译](https://fedbook.cn/frontend-engineering/vuejs/template-compile/)
   - [组件渲染与更新](https://fedbook.cn/frontend-engineering/vuejs/component-render-and-update/)
   - [前端路由原理](https://fedbook.cn/frontend-engineering/vuejs/vue-router/)
-
 - [React](https://fedbook.cn/frontend-engineering/react/)
   - **React 基础**
   - [React JSX](https://fedbook.cn/frontend-engineering/react/react-jsx/)
@@ -189,7 +182,6 @@
   - [函数组件设计模式](https://fedbook.cn/frontend-engineering/react/function-component-design-patterns/)
   - [React 表单知识点](https://fedbook.cn/frontend-engineering/react/form/)
   - 近期在学习，每日更新
-
 - [Webpack](https://fedbook.cn/frontend-engineering/webpack/)
   - [核心概念](https://fedbook.cn/frontend-engineering/webpack/core-concept/)
   - [基本配置](https://fedbook.cn/frontend-engineering/webpack/basic-config/)
@@ -221,7 +213,6 @@
   - [如何迁移仓库并保留 commits 记录](https://fedbook.cn/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits/)
   - [如何参与开源项目 - 提交 PR 与更新 Fork 分支](https://fedbook.cn/basic-skills/git/solution-to-participate-in-open-source-projects/)
   - [如何使用 GitFlow 工作流进行团队协作](https://fedbook.cn/basic-skills/git/solution-to-gitflow/)
-
 - [Nginx](https://fedbook.cn/basic-skills/nginx/)
   - **Nginx 基础知识**
   - [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
@@ -241,13 +232,11 @@
   - **Nginx 部署方案**
   - [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
   - 其它知识点，待后续继续补充
-
 - [Linux](https://fedbook.cn/basic-skills/linux/)
   - **Linux 基础知识**
   - [常用命令](https://fedbook.cn/basic-skills/linux/common-commands/)
   - **Linux 常见问题**
   - [vim 中文乱码问题](https://fedbook.cn/basic-skills/linux/solution-to-vim-encoding/)
-
 - [MySQL](https://fedbook.cn/basic-skills/mysql/)
   - MySQL 基础知识
   - [MySQL 数据类型](https://fedbook.cn/basic-skills/mysql/data-types/)
@@ -257,7 +246,6 @@
   - [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
   - [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
   - 其它知识点，待后续继续补充
-
 - [Redis](https://fedbook.cn/basic-skills/redis/)
   - **Redis 基础知识**
   - [Redis 数据类型](https://fedbook.cn/basic-skills/redis/data-types/)
@@ -274,7 +262,6 @@
   - [数据结构之数组](https://fedbook.cn/in-depth-learning/algorithm/array/)
   - [数据结构之链表](https://fedbook.cn/in-depth-learning/algorithm/linked-list/)
   - 学习计划调整，延后学习
-
 - [设计模式](https://fedbook.cn/in-depth-learning/design-patterns/)
   - **前置知识**
   - [设计原则](https://fedbook.cn/in-depth-learning/design-patterns/5-principles/)
@@ -305,7 +292,6 @@
   - [备忘录模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/memento-pattern/)
   - [中介者模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/mediator-pattern/)
   - [访问者模式和解释器模式(不常用)](https://fedbook.cn/in-depth-learning/design-patterns/visitor-pattern-and-interpreter-pattern/)
-
 - [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
   - [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
   - 抽空学习，不占用主学习进程
