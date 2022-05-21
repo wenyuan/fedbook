@@ -226,13 +226,17 @@
 
 </details>
 
-* [Webpack](https://fedbook.cn/frontend-engineering/webpack/)
-  * [核心概念](https://fedbook.cn/frontend-engineering/webpack/core-concept/)
-  * [基本配置](https://fedbook.cn/frontend-engineering/webpack/basic-config/)
-  * [高级配置](https://fedbook.cn/frontend-engineering/webpack/advanced-config/)
-  * [性能优化 - 构建速度](https://fedbook.cn/frontend-engineering/webpack/performance-optimization-in-build/)
-  * [性能优化 - 产出代码](https://fedbook.cn/frontend-engineering/webpack/performance-optimization-in-output/)
-  * [最佳实践 - 通用模板](https://fedbook.cn/frontend-engineering/webpack/generic-template/)
+<details>
+<summary><b>Webpack</b></summary>
+
+- [核心概念](https://fedbook.cn/frontend-engineering/webpack/core-concept/)
+- [基本配置](https://fedbook.cn/frontend-engineering/webpack/basic-config/)
+- [高级配置](https://fedbook.cn/frontend-engineering/webpack/advanced-config/)
+- [性能优化 - 构建速度](https://fedbook.cn/frontend-engineering/webpack/performance-optimization-in-build/)
+- [性能优化 - 产出代码](https://fedbook.cn/frontend-engineering/webpack/performance-optimization-in-output/)
+- [最佳实践 - 通用模板](https://fedbook.cn/frontend-engineering/webpack/generic-template/)
+
+</details>
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
@@ -240,60 +244,84 @@
 
 ### 必知必会
 
-* [Git](https://fedbook.cn/basic-skills/git/)
-  * **Git 知识整理**
-  * [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
-  * [git rebase 的两种用法](https://fedbook.cn/basic-skills/git/git-rebase/)
-  * [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
-  * **Git 常见问题**
-  * [clone 速度过慢影响效率](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
-  * [修改 commit 信息](https://fedbook.cn/basic-skills/git/solution-to-commit-info-mistake/)
-  * [已 commit 未 push，想修改代码](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
-  * [已 commit 未 push，漏提交文件](https://fedbook.cn/basic-skills/git/solution-to-missed-file-in-last-commit/)
-  * [刚刚的 commit 有误，想要撤回](https://fedbook.cn/basic-skills/git/solution-to-withdraw-last-commit/)
-  * [刚刚的 push 有误，想要撤回](https://fedbook.cn/basic-skills/git/solution-to-withdraw-last-push/)
-  * [pull 时发现代码冲突，如何解决](https://fedbook.cn/basic-skills/git/solution-to-code-conflict/)
-  * [如何修改历史 commits 中的用户名和邮箱](https://fedbook.cn/basic-skills/git/solution-to-change-name-and-email-in-history-commits/)
-  * [如何迁移仓库并保留 commits 记录](https://fedbook.cn/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits/)
-  * [如何参与开源项目 - 提交 PR 与更新 Fork 分支](https://fedbook.cn/basic-skills/git/solution-to-participate-in-open-source-projects/)
-  * [如何使用 GitFlow 工作流进行团队协作](https://fedbook.cn/basic-skills/git/solution-to-gitflow/)
-* [Nginx](https://fedbook.cn/basic-skills/nginx/)
-  * **Nginx 基础知识**
-  * [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
-  * [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
-  * **Nginx 用法整理**
-  * [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
-  * [Nginx 的卸载](https://fedbook.cn/basic-skills/nginx/uninstallation-of-nginx/)
-  * [Nginx 常用命令](https://fedbook.cn/basic-skills/nginx/common-commands/)
-  * [Nginx 设置开机自启](https://fedbook.cn/basic-skills/nginx/set-auto-start-after-server-reboot/)
-  * [Nginx 配置文件详解](https://fedbook.cn/basic-skills/nginx/config-file-params-explanation/)
-  * [Nginx 配置文件模板](https://fedbook.cn/basic-skills/nginx/config-file-generic-template/)
-  * [Nginx 安全访问控制](https://fedbook.cn/basic-skills/nginx/ngx-http-access-module/)
-  * [Nginx 文件列表功能](https://fedbook.cn/basic-skills/nginx/ngx-http-autoindex-module/)
-  * [Nginx 页面安全认证](https://fedbook.cn/basic-skills/nginx/ngx-http-auth-basic-module/)
-  * [Nginx 部署 Https 安全认证](https://fedbook.cn/basic-skills/nginx/deploy-https-security-auth/)
-  * [Nginx 限流常用模块](https://fedbook.cn/basic-skills/nginx/traffic-limiting-modules/)
-  * **Nginx 部署方案**
-  * [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
-  * 其它知识点，待后续继续补充
-* [Linux](https://fedbook.cn/basic-skills/linux/common-commands/)
-  * **Linux 基础知识**
-  * [常用命令](https://fedbook.cn/basic-skills/linux/common-commands/)
-  * **Linux 常见问题**
-  * [vim 中文乱码问题](https://fedbook.cn/basic-skills/linux/solution-to-vim-encoding/) 
-* [MySQL](https://fedbook.cn/basic-skills/mysql/)
-  * **MySQL 基础知识**
-  * [MySQL 数据类型](https://fedbook.cn/basic-skills/mysql/data-types/)
-  * [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)
-  * **MySQL 日常运维**
-  * [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
-  * [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
-  * [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
-  * 其它知识点，待后续继续补充
-* [Redis](https://fedbook.cn/basic-skills/redis/)
-  * **Redis 基础知识**
-  * [Redis 数据类型](https://fedbook.cn/basic-skills/redis/data-types/)
-  * [Redis 缓存三大问题](https://fedbook.cn/basic-skills/redis/three-cache-problems/)
+<details>
+<summary><b>Git</b></summary>
+
+- **Git 知识整理**
+- [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
+- [git rebase 的两种用法](https://fedbook.cn/basic-skills/git/git-rebase/)
+- [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
+- **Git 常见问题**
+- [clone 速度过慢影响效率](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
+- [修改 commit 信息](https://fedbook.cn/basic-skills/git/solution-to-commit-info-mistake/)
+- [已 commit 未 push，想修改代码](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
+- [已 commit 未 push，漏提交文件](https://fedbook.cn/basic-skills/git/solution-to-missed-file-in-last-commit/)
+- [刚刚的 commit 有误，想要撤回](https://fedbook.cn/basic-skills/git/solution-to-withdraw-last-commit/)
+- [刚刚的 push 有误，想要撤回](https://fedbook.cn/basic-skills/git/solution-to-withdraw-last-push/)
+- [pull 时发现代码冲突，如何解决](https://fedbook.cn/basic-skills/git/solution-to-code-conflict/)
+- [如何修改历史 commits 中的用户名和邮箱](https://fedbook.cn/basic-skills/git/solution-to-change-name-and-email-in-history-commits/)
+- [如何迁移仓库并保留 commits 记录](https://fedbook.cn/basic-skills/git/solution-to-migrate-repository-without-losing-history-commits/)
+- [如何参与开源项目 - 提交 PR 与更新 Fork 分支](https://fedbook.cn/basic-skills/git/solution-to-participate-in-open-source-projects/)
+- [如何使用 GitFlow 工作流进行团队协作](https://fedbook.cn/basic-skills/git/solution-to-gitflow/)
+
+</details>
+
+<details>
+<summary><b>Nginx</b></summary>
+
+- **Nginx 基础知识**
+- [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
+- [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
+- **Nginx 用法整理**
+- [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
+- [Nginx 的卸载](https://fedbook.cn/basic-skills/nginx/uninstallation-of-nginx/)
+- [Nginx 常用命令](https://fedbook.cn/basic-skills/nginx/common-commands/)
+- [Nginx 设置开机自启](https://fedbook.cn/basic-skills/nginx/set-auto-start-after-server-reboot/)
+- [Nginx 配置文件详解](https://fedbook.cn/basic-skills/nginx/config-file-params-explanation/)
+- [Nginx 配置文件模板](https://fedbook.cn/basic-skills/nginx/config-file-generic-template/)
+- [Nginx 安全访问控制](https://fedbook.cn/basic-skills/nginx/ngx-http-access-module/)
+- [Nginx 文件列表功能](https://fedbook.cn/basic-skills/nginx/ngx-http-autoindex-module/)
+- [Nginx 页面安全认证](https://fedbook.cn/basic-skills/nginx/ngx-http-auth-basic-module/)
+- [Nginx 部署 Https 安全认证](https://fedbook.cn/basic-skills/nginx/deploy-https-security-auth/)
+- [Nginx 限流常用模块](https://fedbook.cn/basic-skills/nginx/traffic-limiting-modules/)
+- **Nginx 部署方案**
+- [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
+- 其它知识点，待后续继续补充
+
+</details>
+
+<details>
+<summary><b>Linux</b></summary>
+
+- **Linux 基础知识**
+- [常用命令](https://fedbook.cn/basic-skills/linux/common-commands/)
+- **Linux 常见问题**
+- [vim 中文乱码问题](https://fedbook.cn/basic-skills/linux/solution-to-vim-encoding/)
+
+</details>
+
+<details>
+<summary><b>MySQL</b></summary>
+
+- **MySQL 基础知识**
+- [MySQL 数据类型](https://fedbook.cn/basic-skills/mysql/data-types/)
+- [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)
+- **MySQL 日常运维**
+- [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
+- [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
+- [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
+- 其它知识点，待后续继续补充
+
+</details>
+
+<details>
+<summary><b>Redis</b></summary>
+
+- **Redis 基础知识**
+- [Redis 数据类型](https://fedbook.cn/basic-skills/redis/data-types/)
+- [Redis 缓存三大问题](https://fedbook.cn/basic-skills/redis/three-cache-problems/)
+
+</details>
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
@@ -301,44 +329,58 @@
 
 ### 深入学习
 
-* [数据结构与算法](https://fedbook.cn/in-depth-learning/algorithm/)
-  * [复杂度分析](https://fedbook.cn/in-depth-learning/algorithm/complexity-analysis/)
-  * [数据结构之数组](https://fedbook.cn/in-depth-learning/algorithm/array/)
-  * [数据结构之链表](https://fedbook.cn/in-depth-learning/algorithm/linked-list/)
-  * 学习计划调整，延后学习
-* [设计模式](https://fedbook.cn/in-depth-learning/design-patterns/)
-  * **前置知识**
-  * [设计原则](https://fedbook.cn/in-depth-learning/design-patterns/5-principles/)
-  * [设计模式简介](https://fedbook.cn/in-depth-learning/design-patterns/23-patterns/)
-  * [UML 类图](https://fedbook.cn/in-depth-learning/design-patterns/uml-class-diagram/)
-  * **创建型模式**
-  * [工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/factory-pattern/)
-  * [抽象工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/abstract-factory-pattern/)
-  * [建造者模式](https://fedbook.cn/in-depth-learning/design-patterns/builder-pattern/)
-  * [单例模式](https://fedbook.cn/in-depth-learning/design-patterns/singleton-pattern/)
-  * [原型模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/prototype-pattern/)
-  * **结构型模式**
-  * [适配器模式](https://fedbook.cn/in-depth-learning/design-patterns/adapter-pattern/)
-  * [装饰器模式](https://fedbook.cn/in-depth-learning/design-patterns/decorator-pattern/)
-  * [代理模式](https://fedbook.cn/in-depth-learning/design-patterns/proxy-pattern/)
-  * [外观模式](https://fedbook.cn/in-depth-learning/design-patterns/facade-pattern/)
-  * [桥接模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/bridge-pattern/)
-  * [组合模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/composite-pattern/)
-  * [享元模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/flyweight-pattern/)
-  * **行为型模式**
-  * [观察者模式](https://fedbook.cn/in-depth-learning/design-patterns/observer-pattern/)
-  * [迭代器模式](https://fedbook.cn/in-depth-learning/design-patterns/iterator-pattern/)
-  * [状态模式](https://fedbook.cn/in-depth-learning/design-patterns/state-pattern/)
-  * [策略模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/strategy-pattern/)
-  * [模板方法模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/template-method-pattern/)
-  * [职责链模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/chain-of-responsibility-pattern/)
-  * [命令模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/command-pattern/)
-  * [备忘录模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/memento-pattern/)
-  * [中介者模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/mediator-pattern/)
-  * [访问者模式和解释器模式(不常用)](https://fedbook.cn/in-depth-learning/design-patterns/visitor-pattern-and-interpreter-pattern/)
-* [源码阅读与学习](https://fedbook.cn/in-depth-learning/source-code/)
-  * [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
-  * 抽空学习，不占用主学习进程
+<details>
+<summary><b>数据结构与算法</b></summary>
+
+- [复杂度分析](https://fedbook.cn/in-depth-learning/algorithm/complexity-analysis/)
+- [数据结构之数组](https://fedbook.cn/in-depth-learning/algorithm/array/)
+- [数据结构之链表](https://fedbook.cn/in-depth-learning/algorithm/linked-list/)
+- 学习计划调整，延后学习
+
+</details>
+
+<details>
+<summary><b>设计模式</b></summary>
+
+- **前置知识**
+- [设计原则](https://fedbook.cn/in-depth-learning/design-patterns/5-principles/)
+- [设计模式简介](https://fedbook.cn/in-depth-learning/design-patterns/23-patterns/)
+- [UML 类图](https://fedbook.cn/in-depth-learning/design-patterns/uml-class-diagram/)
+- **创建型模式**
+- [工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/factory-pattern/)
+- [抽象工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/abstract-factory-pattern/)
+- [建造者模式](https://fedbook.cn/in-depth-learning/design-patterns/builder-pattern/)
+- [单例模式](https://fedbook.cn/in-depth-learning/design-patterns/singleton-pattern/)
+- [原型模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/prototype-pattern/)
+- **结构型模式**
+- [适配器模式](https://fedbook.cn/in-depth-learning/design-patterns/adapter-pattern/)
+- [装饰器模式](https://fedbook.cn/in-depth-learning/design-patterns/decorator-pattern/)
+- [代理模式](https://fedbook.cn/in-depth-learning/design-patterns/proxy-pattern/)
+- [外观模式](https://fedbook.cn/in-depth-learning/design-patterns/facade-pattern/)
+- [桥接模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/bridge-pattern/)
+- [组合模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/composite-pattern/)
+- [享元模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/flyweight-pattern/)
+- **行为型模式**
+- [观察者模式](https://fedbook.cn/in-depth-learning/design-patterns/observer-pattern/)
+- [迭代器模式](https://fedbook.cn/in-depth-learning/design-patterns/iterator-pattern/)
+- [状态模式](https://fedbook.cn/in-depth-learning/design-patterns/state-pattern/)
+- [策略模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/strategy-pattern/)
+- [模板方法模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/template-method-pattern/)
+- [职责链模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/chain-of-responsibility-pattern/)
+- [命令模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/command-pattern/)
+- [备忘录模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/memento-pattern/)
+- [中介者模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/mediator-pattern/)
+- [访问者模式和解释器模式(不常用)](https://fedbook.cn/in-depth-learning/design-patterns/visitor-pattern-and-interpreter-pattern/)
+
+</details>
+
+<details>
+<summary><b>源码阅读与学习</b></summary>
+
+- [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
+- 抽空学习，不占用主学习进程
+
+</details>
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
@@ -346,27 +388,31 @@
 
 ### 后端知识
 
-* [Python](https://fedbook.cn/backend-knowledge/python/)
-  * **Python 基础**
-  * [编译器与解释器](https://fedbook.cn/backend-knowledge/python/compiler-and-interpreter/)
-  * [语法规范](https://fedbook.cn/backend-knowledge/python/grammar/)
-  * [变量与常量](https://fedbook.cn/backend-knowledge/python/variables-and-constants/)
-  * [数据类型](https://fedbook.cn/backend-knowledge/python/data-types/)
-  * [函数参数](https://fedbook.cn/backend-knowledge/python/function-params/)
-  * [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
-  * [面向对象编程](https://fedbook.cn/backend-knowledge/python/oop/)
-  * [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
-  * [类的继承](https://fedbook.cn/backend-knowledge/python/class-inheritance/)
-  * [类成员保护](https://fedbook.cn/backend-knowledge/python/class-access-modifiers/)
-  * **Python 模块**
-  * [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
-  * [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)
-  * [使用 smtplib 发送电子邮件](https://fedbook.cn/backend-knowledge/python/python-lib-smtplib/)
-  * [使用 subprocess 执行 cmd](https://fedbook.cn/backend-knowledge/python/python-lib-subprocess/)
-  * [使用 telnetlib 执行 Telnet](https://fedbook.cn/backend-knowledge/python/python-lib-telnetlib/)
-  * [使用 Paramiko 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-paramiko/)
-  * [使用 Fabric 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-fabric/)
-  * 其它知识点，待后续继续补充
+<details>
+<summary><b>Python</b></summary>
+
+- **Python 基础**
+- [编译器与解释器](https://fedbook.cn/backend-knowledge/python/compiler-and-interpreter/)
+- [语法规范](https://fedbook.cn/backend-knowledge/python/grammar/)
+- [变量与常量](https://fedbook.cn/backend-knowledge/python/variables-and-constants/)
+- [数据类型](https://fedbook.cn/backend-knowledge/python/data-types/)
+- [函数参数](https://fedbook.cn/backend-knowledge/python/function-params/)
+- [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
+- [面向对象编程](https://fedbook.cn/backend-knowledge/python/oop/)
+- [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
+- [类的继承](https://fedbook.cn/backend-knowledge/python/class-inheritance/)
+- [类成员保护](https://fedbook.cn/backend-knowledge/python/class-access-modifiers/)
+- **Python 模块**
+- [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
+- [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)
+- [使用 smtplib 发送电子邮件](https://fedbook.cn/backend-knowledge/python/python-lib-smtplib/)
+- [使用 subprocess 执行 cmd](https://fedbook.cn/backend-knowledge/python/python-lib-subprocess/)
+- [使用 telnetlib 执行 Telnet](https://fedbook.cn/backend-knowledge/python/python-lib-telnetlib/)
+- [使用 Paramiko 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-paramiko/)
+- [使用 Fabric 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-fabric/)
+- 其它知识点，待后续继续补充
+
+</details>
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
@@ -374,9 +420,13 @@
 
 ### 项目相关
 
-* [前端解决方案](https://fedbook.cn/project/solutions/)
-  * [前端登录方案总结](https://fedbook.cn/project/solutions/login/)
-  * [大文件分片上传和断点续传](https://fedbook.cn/project/solutions/file-upload/)
+<details>
+<summary><b>前端解决方案</b></summary>
+
+- [前端登录方案总结](https://fedbook.cn/project/solutions/login/)
+- [大文件分片上传和断点续传](https://fedbook.cn/project/solutions/file-upload/)
+
+</details>
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
