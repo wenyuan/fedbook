@@ -32,20 +32,20 @@
 
 ## 目录
 
-* [简介](#简介)
-* [目录](#目录)
-* [文章](#文章)
-  * [技术规范](#技术规范)
-  * [前端知识](#前端知识)
-  * [工程化](#工程化)
-  * [必知必会](#必知必会)
-  * [深入学习](#深入学习)
-  * [后端知识](#后端知识)
-  * [项目相关](#项目相关)
-* [计划](#计划)
-* [支持](#支持)
-* [版权信息](#版权信息)
-* [鸣谢](#鸣谢)
+- [简介](#简介)
+- [目录](#目录)
+- [文章](#文章)
+  - [技术规范](#技术规范)
+  - [前端知识](#前端知识)
+  - [工程化](#工程化)
+  - [必知必会](#必知必会)
+  - [深入学习](#深入学习)
+  - [后端知识](#后端知识)
+  - [项目相关](#项目相关)
+- [计划](#计划)
+- [支持](#支持)
+- [版权信息](#版权信息)
+- [鸣谢](#鸣谢)
 
 ## 文章
 
@@ -53,20 +53,20 @@
 
 ### 技术规范
 
-* [版本控制](https://fedbook.cn/style-guide/version-control/)
-  * [版本号定义规范](https://fedbook.cn/style-guide/version-control/version-number/)
-  * [Git 工作流 — 分支策略](https://fedbook.cn/style-guide/version-control/git-workflow/)
-  * [Git 提交信息规范](https://fedbook.cn/style-guide/version-control/git-commit-message/)
-* [代码风格](https://fedbook.cn/style-guide/program/)
-  * [HTML 规范](https://fedbook.cn/style-guide/program/html-spec/)
-  * [CSS 规范](https://fedbook.cn/style-guide/program/css-spec/)
-  * [JavaScript 规范](https://fedbook.cn/style-guide/program/javascript-spec/)
-  * [Vue 项目规范](https://fedbook.cn/style-guide/program/vuejs-spec/)
-  * [Code Review](https://fedbook.cn/style-guide/program/code-review/)
-* [文档规范](https://fedbook.cn/style-guide/document/)
-* [接口设计](https://fedbook.cn/style-guide/apis/)
-* [文案指南](https://fedbook.cn/style-guide/product/)
-  * [B 端产品文案指南](https://fedbook.cn/style-guide/version-control/tob/)
+- [版本控制](https://fedbook.cn/style-guide/version-control/)
+  - [版本号定义规范](https://fedbook.cn/style-guide/version-control/version-number/)
+  - [Git 工作流 — 分支策略](https://fedbook.cn/style-guide/version-control/git-workflow/)
+  - [Git 提交信息规范](https://fedbook.cn/style-guide/version-control/git-commit-message/)
+  - [代码风格](https://fedbook.cn/style-guide/program/)
+    - [HTML 规范](https://fedbook.cn/style-guide/program/html-spec/)
+    - [CSS 规范](https://fedbook.cn/style-guide/program/css-spec/)
+    - [JavaScript 规范](https://fedbook.cn/style-guide/program/javascript-spec/)
+    - [Vue 项目规范](https://fedbook.cn/style-guide/program/vuejs-spec/)
+    - [Code Review](https://fedbook.cn/style-guide/program/code-review/)
+  - [文档规范](https://fedbook.cn/style-guide/document/)
+  - [接口设计](https://fedbook.cn/style-guide/apis/)
+  - [文案指南](https://fedbook.cn/style-guide/product/)
+    - [B 端产品文案指南](https://fedbook.cn/style-guide/version-control/tob/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
@@ -74,91 +74,125 @@
 
 ### 前端知识
 
-* [HTML](https://fedbook.cn/frontend-knowledge/html/)
-  * [HTML 基本结构](https://fedbook.cn/frontend-knowledge/html/html-basic-structure/)
-  * [语义类标签](https://fedbook.cn/frontend-knowledge/html/semantic-elements/)
-  * 其它知识点，待后续继续补充
-* [CSS](https://fedbook.cn/frontend-knowledge/css/)
-  * [CSS 引入方式](https://fedbook.cn/frontend-knowledge/css/ways-to-insert-css/)
-  * [选择器与样式优先级](https://fedbook.cn/frontend-knowledge/css/selectors-and-selector-priority/)
-  * [伪元素和伪类](https://fedbook.cn/frontend-knowledge/css/pseudo-elements-and-pseudo-classes/)
-  * [长度和单位](https://fedbook.cn/frontend-knowledge/css/length-and-units/)
-  * [盒模型](https://fedbook.cn/frontend-knowledge/css/box-model/)
-  * [定位（position）](https://fedbook.cn/frontend-knowledge/css/position-property/)
-  * [浮动（float）](https://fedbook.cn/frontend-knowledge/css/float-property/)
-  * [BFC](https://fedbook.cn/frontend-knowledge/css/bfc/)
-  * [经典布局](https://fedbook.cn/frontend-knowledge/css/layout/)
-  * [Flexbox 布局](https://fedbook.cn/frontend-knowledge/css/flexbox/)
-  * [Grid 布局](https://fedbook.cn/frontend-knowledge/css/grid/)
-  * 其它知识点，待后续继续补充
-* [JavaScript](https://fedbook.cn/frontend-knowledge/javascript/)
-  * **JavaScript 核心**
-  * [数据类型](https://fedbook.cn/frontend-knowledge/javascript/data-types/)
-  * [栈空间和堆空间](https://fedbook.cn/frontend-knowledge/javascript/stack-and-heap/)
-  * [执行上下文和调用栈](https://fedbook.cn/frontend-knowledge/javascript/execution-context/)
-  * [作用域](https://fedbook.cn/frontend-knowledge/javascript/scope/)
-  * [闭包](https://fedbook.cn/frontend-knowledge/javascript/closure/)
-  * [this 指向](https://fedbook.cn/frontend-knowledge/javascript/this-keyword/)
-  * [原型与原型链](https://fedbook.cn/frontend-knowledge/javascript/prototype-and-prototype-chain/)
-  * [垃圾回收](https://fedbook.cn/frontend-knowledge/javascript/gc/)
-  * [同步与异步](https://fedbook.cn/frontend-knowledge/javascript/sync-and-async/)
-  * [事件循环机制](https://fedbook.cn/frontend-knowledge/javascript/event-loop/)
-  * [浅克隆与深克隆](https://fedbook.cn/frontend-knowledge/javascript/shallow-clone-and-deep-clone/)
-  * [高阶函数](https://fedbook.cn/frontend-knowledge/javascript/higher-order-function/)
-  * **JavaScript 专题**
-  * [数组遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/array-iteration/)
-  * [对象遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/object-iteration/)
-  * [继承的八种方式](https://fedbook.cn/frontend-knowledge/javascript/inheritance/)
-  * [声明函数的六种方式](https://fedbook.cn/frontend-knowledge/javascript/function-declare/)
-  * [调用函数的四种方式](https://fedbook.cn/frontend-knowledge/javascript/function-invocation/)
-  * 其它知识点，待后续继续补充
-* [ES6 - ES12 新特性](https://fedbook.cn/frontend-knowledge/es6-and-beyond/)
-  * [ECMAScript2015(ES6)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es6-let-const/)
-  * [ECMAScript2016(ES7)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es7-array/)
-  * [ECMAScript2017(ES8)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es8-async-await/)
-  * [ECMAScript2018(ES9)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es9-for-await-of/)
-  * [ECMAScript2019(ES10)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es10-object/)
-  * [ECMAScript2020(ES11)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es11-string/)
-  * [ECMAScript2021(ES12)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es12-string/)
-* [TypeScript](https://fedbook.cn/frontend-knowledge/typescript/)
-  * **TypeScript 基础**
-  * [基础类型](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
-  * [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal/)
-  * [函数](https://fedbook.cn/frontend-knowledge/typescript/function/)
-  * [类](https://fedbook.cn/frontend-knowledge/typescript/class/)
-  * [接口类型与类型别名](https://fedbook.cn/frontend-knowledge/typescript/interface-and-type/)
-  * [联合类型与交叉类型](https://fedbook.cn/frontend-knowledge/typescript/union-and-intersection/)
-  * [枚举](https://fedbook.cn/frontend-knowledge/typescript/enum/)
-  * [泛型](https://fedbook.cn/frontend-knowledge/typescript/generics/)
-  * **TypeScript 进阶**
-  * [类型守卫](https://fedbook.cn/frontend-knowledge/typescript/type-guard/)
-* [浏览器相关](https://fedbook.cn/frontend-knowledge/browser/)
-  * **浏览器工作原理**
-  * [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
-  * [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)
-  * [渲染引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-rendering-process/)
-  * [V8 引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-v8-engine/)
-  * **浏览器安全**
-  * [同源策略](https://fedbook.cn/frontend-knowledge/browser/same-origin-policy/)
-  * [跨站脚本攻击（XSS）](https://fedbook.cn/frontend-knowledge/browser/xss/)
-  * [CSRF 攻击](https://fedbook.cn/frontend-knowledge/browser/csrf/)
-  * [网络安全协议（HTTPS）](https://fedbook.cn/frontend-knowledge/browser/https/)
-* [JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
-  * **简单手写：函数**
-  * [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
-  * [实现节流函数（throttle）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现节流函数-throttle/)
-  * [实现浅克隆（shallowClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现浅克隆-shallow-clone/)
-  * [实现深克隆（deepClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现深克隆-deep-clone/)
-  * [实现 instanceof 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现instanceof运算符/)
-  * [实现 Object.create 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现object-create方法/)
-  * [实现 new 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现new运算符/)
-  * [实现 call 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现call方法/)
-  * [实现 apply 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现apply方法/)
-  * [实现 bind 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现bind方法/)
-  * 其它知识点，待后续继续补充
-  * **复杂手写：类库**
-  * [实现符合 Promises/A+ 规范的 Promise](https://fedbook.cn/frontend-knowledge/javascript-handwritten/my-promise/)
-  * 其它知识点，待后续继续补充
+<details>
+<summary><b>HTML</b></summary>
+
+- [HTML 基本结构](https://fedbook.cn/frontend-knowledge/html/html-basic-structure/)
+- [语义类标签](https://fedbook.cn/frontend-knowledge/html/semantic-elements/)
+- 其它知识点，待后续继续补充
+
+</details>
+
+<details>
+<summary><b>CSS</b></summary>
+
+- [CSS 引入方式](https://fedbook.cn/frontend-knowledge/css/ways-to-insert-css/)
+- [选择器与样式优先级](https://fedbook.cn/frontend-knowledge/css/selectors-and-selector-priority/)
+- [伪元素和伪类](https://fedbook.cn/frontend-knowledge/css/pseudo-elements-and-pseudo-classes/)
+- [长度和单位](https://fedbook.cn/frontend-knowledge/css/length-and-units/)
+- [盒模型](https://fedbook.cn/frontend-knowledge/css/box-model/)
+- [定位（position）](https://fedbook.cn/frontend-knowledge/css/position-property/)
+- [浮动（float）](https://fedbook.cn/frontend-knowledge/css/float-property/)
+- [BFC](https://fedbook.cn/frontend-knowledge/css/bfc/)
+- [经典布局](https://fedbook.cn/frontend-knowledge/css/layout/)
+- [Flexbox 布局](https://fedbook.cn/frontend-knowledge/css/flexbox/)
+- [Grid 布局](https://fedbook.cn/frontend-knowledge/css/grid/)
+- 其它知识点，待后续继续补充
+
+</details>
+
+<details>
+<summary><b>JavaScript</b></summary>
+
+- **JavaScript 核心**
+- [数据类型](https://fedbook.cn/frontend-knowledge/javascript/data-types/)
+- [栈空间和堆空间](https://fedbook.cn/frontend-knowledge/javascript/stack-and-heap/)
+- [执行上下文和调用栈](https://fedbook.cn/frontend-knowledge/javascript/execution-context/)
+- [作用域](https://fedbook.cn/frontend-knowledge/javascript/scope/)
+- [闭包](https://fedbook.cn/frontend-knowledge/javascript/closure/)
+- [this 指向](https://fedbook.cn/frontend-knowledge/javascript/this-keyword/)
+- [原型与原型链](https://fedbook.cn/frontend-knowledge/javascript/prototype-and-prototype-chain/)
+- [垃圾回收](https://fedbook.cn/frontend-knowledge/javascript/gc/)
+- [同步与异步](https://fedbook.cn/frontend-knowledge/javascript/sync-and-async/)
+- [事件循环机制](https://fedbook.cn/frontend-knowledge/javascript/event-loop/)
+- [浅克隆与深克隆](https://fedbook.cn/frontend-knowledge/javascript/shallow-clone-and-deep-clone/)
+- [高阶函数](https://fedbook.cn/frontend-knowledge/javascript/higher-order-function/)
+- **JavaScript 专题**
+- [数组遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/array-iteration/)
+- [对象遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/object-iteration/)
+- [继承的八种方式](https://fedbook.cn/frontend-knowledge/javascript/inheritance/)
+- [声明函数的六种方式](https://fedbook.cn/frontend-knowledge/javascript/function-declare/)
+- [调用函数的四种方式](https://fedbook.cn/frontend-knowledge/javascript/function-invocation/)
+- 其它知识点，待后续继续补充
+
+</details>
+
+<details>
+<summary><b>ES6 - ES12 新特性</b></summary>
+
+- [ECMAScript2015(ES6)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es6-let-const/)
+- [ECMAScript2016(ES7)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es7-array/)
+- [ECMAScript2017(ES8)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es8-async-await/)
+- [ECMAScript2018(ES9)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es9-for-await-of/)
+- [ECMAScript2019(ES10)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es10-object/)
+- [ECMAScript2020(ES11)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es11-string/)
+- [ECMAScript2021(ES12)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es12-string/)
+
+</details>
+
+<details>
+<summary><b>TypeScript</b></summary>
+
+- **TypeScript 基础**
+- [基础类型](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
+- [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal/)
+- [函数](https://fedbook.cn/frontend-knowledge/typescript/function/)
+- [类](https://fedbook.cn/frontend-knowledge/typescript/class/)
+- [接口类型与类型别名](https://fedbook.cn/frontend-knowledge/typescript/interface-and-type/)
+- [联合类型与交叉类型](https://fedbook.cn/frontend-knowledge/typescript/union-and-intersection/)
+- [枚举](https://fedbook.cn/frontend-knowledge/typescript/enum/)
+- [泛型](https://fedbook.cn/frontend-knowledge/typescript/generics/)
+- **TypeScript 进阶**
+- [类型守卫](https://fedbook.cn/frontend-knowledge/typescript/type-guard/)
+
+</details>
+
+<details>
+<summary><b>浏览器相关</b></summary>
+
+- **浏览器工作原理**
+- [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
+- [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)
+- [渲染引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-rendering-process/)
+- [V8 引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-v8-engine/)
+- **浏览器安全**
+- [同源策略](https://fedbook.cn/frontend-knowledge/browser/same-origin-policy/)
+- [跨站脚本攻击（XSS）](https://fedbook.cn/frontend-knowledge/browser/xss/)
+- [CSRF 攻击](https://fedbook.cn/frontend-knowledge/browser/csrf/)
+- [网络安全协议（HTTPS）](https://fedbook.cn/frontend-knowledge/browser/https/)
+
+</details>
+
+<details>
+<summary><b>JS 手写</b></summary>
+
+- **简单手写：函数**
+- [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
+- [实现节流函数（throttle）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现节流函数-throttle/)
+- [实现浅克隆（shallowClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现浅克隆-shallow-clone/)
+- [实现深克隆（deepClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现深克隆-deep-clone/)
+- [实现 instanceof 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现instanceof运算符/)
+- [实现 Object.create 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现object-create方法/)
+- [实现 new 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现new运算符/)
+- [实现 call 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现call方法/)
+- [实现 apply 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现apply方法/)
+- [实现 bind 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现bind方法/)
+- 其它知识点，待后续继续补充
+- **复杂手写：类库**
+- [实现符合 Promises/A+ 规范的 Promise](https://fedbook.cn/frontend-knowledge/javascript-handwritten/my-promise/)
+- 其它知识点，待后续继续补充
+
+</details>
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
