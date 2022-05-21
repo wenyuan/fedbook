@@ -104,7 +104,7 @@
 <details>
 <summary><b>JavaScript</b></summary>
 
-- **JavaScript 核心**
+- JavaScript 核心
 - [数据类型](https://fedbook.cn/frontend-knowledge/javascript/data-types/)
 - [栈空间和堆空间](https://fedbook.cn/frontend-knowledge/javascript/stack-and-heap/)
 - [执行上下文和调用栈](https://fedbook.cn/frontend-knowledge/javascript/execution-context/)
@@ -117,7 +117,7 @@
 - [事件循环机制](https://fedbook.cn/frontend-knowledge/javascript/event-loop/)
 - [浅克隆与深克隆](https://fedbook.cn/frontend-knowledge/javascript/shallow-clone-and-deep-clone/)
 - [高阶函数](https://fedbook.cn/frontend-knowledge/javascript/higher-order-function/)
-- **JavaScript 专题**
+- JavaScript 专题
 - [数组遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/array-iteration/)
 - [对象遍历的几种方式](https://fedbook.cn/frontend-knowledge/javascript/object-iteration/)
 - [继承的八种方式](https://fedbook.cn/frontend-knowledge/javascript/inheritance/)
@@ -143,7 +143,7 @@
 <details>
 <summary><b>TypeScript</b></summary>
 
-- **TypeScript 基础**
+- TypeScript 基础
 - [基础类型](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
 - [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal/)
 - [函数](https://fedbook.cn/frontend-knowledge/typescript/function/)
@@ -152,7 +152,7 @@
 - [联合类型与交叉类型](https://fedbook.cn/frontend-knowledge/typescript/union-and-intersection/)
 - [枚举](https://fedbook.cn/frontend-knowledge/typescript/enum/)
 - [泛型](https://fedbook.cn/frontend-knowledge/typescript/generics/)
-- **TypeScript 进阶**
+- TypeScript 进阶
 - [类型守卫](https://fedbook.cn/frontend-knowledge/typescript/type-guard/)
 
 </details>
@@ -160,12 +160,12 @@
 <details>
 <summary><b>浏览器相关</b></summary>
 
-- **浏览器工作原理**
+- 浏览器工作原理
 - [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
 - [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)
 - [渲染引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-rendering-process/)
 - [V8 引擎的工作原理](https://fedbook.cn/frontend-knowledge/browser/execution-details-of-v8-engine/)
-- **浏览器安全**
+- 浏览器安全
 - [同源策略](https://fedbook.cn/frontend-knowledge/browser/same-origin-policy/)
 - [跨站脚本攻击（XSS）](https://fedbook.cn/frontend-knowledge/browser/xss/)
 - [CSRF 攻击](https://fedbook.cn/frontend-knowledge/browser/csrf/)
@@ -176,7 +176,7 @@
 <details>
 <summary><b>JS 手写</b></summary>
 
-- **简单手写：函数**
+- 简单手写：函数
 - [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
 - [实现节流函数（throttle）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现节流函数-throttle/)
 - [实现浅克隆（shallowClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现浅克隆-shallow-clone/)
@@ -188,7 +188,7 @@
 - [实现 apply 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现apply方法/)
 - [实现 bind 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现bind方法/)
 - 其它知识点，待后续继续补充
-- **复杂手写：类库**
+- 复杂手写：类库
 - [实现符合 Promises/A+ 规范的 Promise](https://fedbook.cn/frontend-knowledge/javascript-handwritten/my-promise/)
 - 其它知识点，待后续继续补充
 
@@ -216,7 +216,7 @@
 <details>
 <summary><b>React</b></summary>
 
-- **React 基础** 
+- React 基础
 - [React JSX](https://fedbook.cn/frontend-engineering/react/react-jsx/)
 - [React Hooks（内置）](https://fedbook.cn/frontend-engineering/react/react-internal-hooks/)
 - [React Hooks（自定义）](https://fedbook.cn/frontend-engineering/react/react-custom-hooks/)
@@ -247,11 +247,11 @@
 <details>
 <summary><b>Git</b></summary>
 
-- **Git 知识整理**
+- Git 知识整理
 - [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
 - [git rebase 的两种用法](https://fedbook.cn/basic-skills/git/git-rebase/)
 - [配置密钥实现免密操作](https://fedbook.cn/basic-skills/git/add-ssh-key/)
-- **Git 常见问题**
+- Git 常见问题
 - [clone 速度过慢影响效率](https://fedbook.cn/basic-skills/git/solution-to-clone-too-slow/)
 - [修改 commit 信息](https://fedbook.cn/basic-skills/git/solution-to-commit-info-mistake/)
 - [已 commit 未 push，想修改代码](https://fedbook.cn/basic-skills/git/solution-to-last-commit-code-mistake/)
@@ -269,10 +269,10 @@
 <details>
 <summary><b>Nginx</b></summary>
 
-- **Nginx 基础知识**
+- Nginx 基础知识
 - [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
 - [负载均衡](https://fedbook.cn/basic-skills/nginx/load-balancing/)
-- **Nginx 用法整理**
+- Nginx 用法整理
 - [Nginx 的安装](https://fedbook.cn/basic-skills/nginx/installation-of-nginx/)
 - [Nginx 的卸载](https://fedbook.cn/basic-skills/nginx/uninstallation-of-nginx/)
 - [Nginx 常用命令](https://fedbook.cn/basic-skills/nginx/common-commands/)
@@ -284,7 +284,7 @@
 - [Nginx 页面安全认证](https://fedbook.cn/basic-skills/nginx/ngx-http-auth-basic-module/)
 - [Nginx 部署 Https 安全认证](https://fedbook.cn/basic-skills/nginx/deploy-https-security-auth/)
 - [Nginx 限流常用模块](https://fedbook.cn/basic-skills/nginx/traffic-limiting-modules/)
-- **Nginx 部署方案**
+- Nginx 部署方案
 - [Nginx 部署前后端分离项目](https://fedbook.cn/basic-skills/nginx/practice-in-front-end-separation-project/)
 - 其它知识点，待后续继续补充
 
@@ -293,9 +293,9 @@
 <details>
 <summary><b>Linux</b></summary>
 
-- **Linux 基础知识**
+- Linux 基础知识
 - [常用命令](https://fedbook.cn/basic-skills/linux/common-commands/)
-- **Linux 常见问题**
+- Linux 常见问题
 - [vim 中文乱码问题](https://fedbook.cn/basic-skills/linux/solution-to-vim-encoding/)
 
 </details>
@@ -303,10 +303,10 @@
 <details>
 <summary><b>MySQL</b></summary>
 
-- **MySQL 基础知识**
+- MySQL 基础知识
 - [MySQL 数据类型](https://fedbook.cn/basic-skills/mysql/data-types/)
 - [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)
-- **MySQL 日常运维**
+- MySQL 日常运维
 - [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
 - [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
 - [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
@@ -317,7 +317,7 @@
 <details>
 <summary><b>Redis</b></summary>
 
-- **Redis 基础知识**
+- Redis 基础知识
 - [Redis 数据类型](https://fedbook.cn/basic-skills/redis/data-types/)
 - [Redis 缓存三大问题](https://fedbook.cn/basic-skills/redis/three-cache-problems/)
 
@@ -342,17 +342,17 @@
 <details>
 <summary><b>设计模式</b></summary>
 
-- **前置知识**
+- 前置知识
 - [设计原则](https://fedbook.cn/in-depth-learning/design-patterns/5-principles/)
 - [设计模式简介](https://fedbook.cn/in-depth-learning/design-patterns/23-patterns/)
 - [UML 类图](https://fedbook.cn/in-depth-learning/design-patterns/uml-class-diagram/)
-- **创建型模式**
+- 创建型模式
 - [工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/factory-pattern/)
 - [抽象工厂模式](https://fedbook.cn/in-depth-learning/design-patterns/abstract-factory-pattern/)
 - [建造者模式](https://fedbook.cn/in-depth-learning/design-patterns/builder-pattern/)
 - [单例模式](https://fedbook.cn/in-depth-learning/design-patterns/singleton-pattern/)
 - [原型模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/prototype-pattern/)
-- **结构型模式**
+- 结构型模式
 - [适配器模式](https://fedbook.cn/in-depth-learning/design-patterns/adapter-pattern/)
 - [装饰器模式](https://fedbook.cn/in-depth-learning/design-patterns/decorator-pattern/)
 - [代理模式](https://fedbook.cn/in-depth-learning/design-patterns/proxy-pattern/)
@@ -360,7 +360,7 @@
 - [桥接模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/bridge-pattern/)
 - [组合模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/composite-pattern/)
 - [享元模式(前端不常用)](https://fedbook.cn/in-depth-learning/design-patterns/flyweight-pattern/)
-- **行为型模式**
+- 行为型模式
 - [观察者模式](https://fedbook.cn/in-depth-learning/design-patterns/observer-pattern/)
 - [迭代器模式](https://fedbook.cn/in-depth-learning/design-patterns/iterator-pattern/)
 - [状态模式](https://fedbook.cn/in-depth-learning/design-patterns/state-pattern/)
@@ -391,7 +391,7 @@
 <details>
 <summary><b>Python</b></summary>
 
-- **Python 基础**
+- Python 基础
 - [编译器与解释器](https://fedbook.cn/backend-knowledge/python/compiler-and-interpreter/)
 - [语法规范](https://fedbook.cn/backend-knowledge/python/grammar/)
 - [变量与常量](https://fedbook.cn/backend-knowledge/python/variables-and-constants/)
@@ -402,7 +402,7 @@
 - [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
 - [类的继承](https://fedbook.cn/backend-knowledge/python/class-inheritance/)
 - [类成员保护](https://fedbook.cn/backend-knowledge/python/class-access-modifiers/)
-- **Python 模块**
+- Python 模块
 - [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
 - [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)
 - [使用 smtplib 发送电子邮件](https://fedbook.cn/backend-knowledge/python/python-lib-smtplib/)
