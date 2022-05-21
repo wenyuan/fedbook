@@ -77,6 +77,8 @@
 <details>
 <summary><b>HTML</b></summary>
 
+<br>
+
 - [HTML 基本结构](https://fedbook.cn/frontend-knowledge/html/html-basic-structure/)
 - [语义类标签](https://fedbook.cn/frontend-knowledge/html/semantic-elements/)
 - 其它知识点，待后续继续补充
@@ -85,6 +87,8 @@
 
 <details>
 <summary><b>CSS</b></summary>
+
+<br>
 
 - [CSS 引入方式](https://fedbook.cn/frontend-knowledge/css/ways-to-insert-css/)
 - [选择器与样式优先级](https://fedbook.cn/frontend-knowledge/css/selectors-and-selector-priority/)
@@ -103,6 +107,8 @@
 
 <details>
 <summary><b>JavaScript</b></summary>
+
+<br>
 
 - JavaScript 核心
 - [数据类型](https://fedbook.cn/frontend-knowledge/javascript/data-types/)
@@ -130,6 +136,8 @@
 <details>
 <summary><b>ES6 - ES12 新特性</b></summary>
 
+<br>
+
 - [ECMAScript2015(ES6)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es6-let-const/)
 - [ECMAScript2016(ES7)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es7-array/)
 - [ECMAScript2017(ES8)](https://fedbook.cn/frontend-knowledge/es6-and-beyond/es8-async-await/)
@@ -142,6 +150,8 @@
 
 <details>
 <summary><b>TypeScript</b></summary>
+
+<br>
 
 - TypeScript 基础
 - [基础类型](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
@@ -160,6 +170,8 @@
 <details>
 <summary><b>浏览器相关</b></summary>
 
+<br>
+
 - 浏览器工作原理
 - [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
 - [浏览器内核与 JavaScript 引擎](https://fedbook.cn/frontend-knowledge/browser/kernel-and-javascript-engine/)
@@ -175,6 +187,8 @@
 
 <details>
 <summary><b>JS 手写</b></summary>
+
+<br>
 
 - 简单手写：函数
 - [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
@@ -203,6 +217,8 @@
 <details>
 <summary><b>Vue.js</b></summary>
 
+<br>
+
 - [基础用法要点](https://fedbook.cn/frontend-engineering/vuejs/basic-use/)
 - [高级用法特性](https://fedbook.cn/frontend-engineering/vuejs/advanced-use/)
 - [响应式原理](https://fedbook.cn/frontend-engineering/vuejs/reactive-data/)
@@ -216,6 +232,8 @@
 <details>
 <summary><b>React</b></summary>
 
+<br>
+
 - React 基础
 - [React JSX](https://fedbook.cn/frontend-engineering/react/react-jsx/)
 - [React Hooks（内置）](https://fedbook.cn/frontend-engineering/react/react-internal-hooks/)
@@ -228,6 +246,8 @@
 
 <details>
 <summary><b>Webpack</b></summary>
+
+<br>
 
 - [核心概念](https://fedbook.cn/frontend-engineering/webpack/core-concept/)
 - [基本配置](https://fedbook.cn/frontend-engineering/webpack/basic-config/)
@@ -246,6 +266,8 @@
 
 <details>
 <summary><b>Git</b></summary>
+
+<br>
 
 - Git 知识整理
 - [常用命令清单](https://fedbook.cn/basic-skills/git/common-command-manual/)
@@ -268,6 +290,8 @@
 
 <details>
 <summary><b>Nginx</b></summary>
+
+<br>
 
 - Nginx 基础知识
 - [正向代理与反向代理](https://fedbook.cn/basic-skills/nginx/forward-proxy-and-reverse-proxy/)
@@ -293,6 +317,8 @@
 <details>
 <summary><b>Linux</b></summary>
 
+<br>
+
 - Linux 基础知识
 - [常用命令](https://fedbook.cn/basic-skills/linux/common-commands/)
 - Linux 常见问题
@@ -302,6 +328,8 @@
 
 <details>
 <summary><b>MySQL</b></summary>
+
+<br>
 
 - MySQL 基础知识
 - [MySQL 数据类型](https://fedbook.cn/basic-skills/mysql/data-types/)
@@ -316,6 +344,8 @@
 
 <details>
 <summary><b>Redis</b></summary>
+
+<br>
 
 - Redis 基础知识
 - [Redis 数据类型](https://fedbook.cn/basic-skills/redis/data-types/)
@@ -332,6 +362,8 @@
 <details>
 <summary><b>数据结构与算法</b></summary>
 
+<br>
+
 - [复杂度分析](https://fedbook.cn/in-depth-learning/algorithm/complexity-analysis/)
 - [数据结构之数组](https://fedbook.cn/in-depth-learning/algorithm/array/)
 - [数据结构之链表](https://fedbook.cn/in-depth-learning/algorithm/linked-list/)
@@ -341,6 +373,8 @@
 
 <details>
 <summary><b>设计模式</b></summary>
+
+<br>
 
 - 前置知识
 - [设计原则](https://fedbook.cn/in-depth-learning/design-patterns/5-principles/)
@@ -377,6 +411,8 @@
 <details>
 <summary><b>源码阅读与学习</b></summary>
 
+<br>
+
 - [Vue3 源码中的基础工具函数](https://fedbook.cn/in-depth-learning/source-code/vue3-utils/)
 - 抽空学习，不占用主学习进程
 
@@ -390,6 +426,8 @@
 
 <details>
 <summary><b>Python</b></summary>
+
+<br>
 
 - Python 基础
 - [编译器与解释器](https://fedbook.cn/backend-knowledge/python/compiler-and-interpreter/)
@@ -422,6 +460,8 @@
 
 <details>
 <summary><b>前端解决方案</b></summary>
+
+<br>
 
 - [前端登录方案总结](https://fedbook.cn/project/solutions/login/)
 - [大文件分片上传和断点续传](https://fedbook.cn/project/solutions/file-upload/)
