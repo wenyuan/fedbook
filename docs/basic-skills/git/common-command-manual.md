@@ -183,7 +183,7 @@ git push [remote-repo-name, 默认是 origin] [tag-name]
 # 提交所有 tag
 git push [remote-repo-name, 默认是 origin] --tags
 
-# 新建一个分支, 指向某个 tag
+# 基于某个 tag 新建一个分支, 并切换到这个分支
 git checkout -b [branch-name] [tag-name]
 ```
 
