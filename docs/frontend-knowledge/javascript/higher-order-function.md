@@ -8,7 +8,7 @@
 
 而所谓的高阶函数（Higher-order function），就是输入参数里有函数，或者输出是函数的函数。
 
-最常见的高阶函数有 `map()`、`reduce()`、`filter()`、`sort()`、`setTimeout`、`setInterval` 和 ajax 请求，我们称之为回调函数，因为它将函数作为参数传递给另一个函数。
+最常见的高阶函数有 `map()`、`reduce()`、`filter()`、`sort()`、`setTimeout`、`setInterval` 和 Ajax 请求，我们称之为回调函数，因为它将函数作为参数传递给另一个函数。
 
 另一个经常看到的高阶函数的场景是在一个函数内部输出另一个函数，比如闭包，还有接下来要讲的柯里化、反柯里化和偏函数。
 

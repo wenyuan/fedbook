@@ -89,7 +89,7 @@ $.ajax = function(options) {
   return ajax2AxiosAdapter(options);
 }
 
-// 测试：用 jQuery 的方式发送一个 ajax 请求
+// 测试：用 jQuery 的方式发送一个 Ajax 请求
 $.ajax({
   url: '/demo-url',
   type: 'POST',
