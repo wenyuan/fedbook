@@ -24,8 +24,8 @@ module.exports = [
         collapsable: true
       },
       {
-        title: 'React 表单知识点',
-        path: '/frontend-engineering/react/form',
+        title: '受控组件和非受控组件',
+        path: '/frontend-engineering/react/controlled-and-uncontrolled-components',
         collapsable: true
       },
     ]

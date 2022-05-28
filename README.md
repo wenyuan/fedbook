@@ -180,7 +180,7 @@
   - [React Hooks（内置）](https://fedbook.cn/frontend-engineering/react/react-internal-hooks/)
   - [React Hooks（自定义）](https://fedbook.cn/frontend-engineering/react/react-custom-hooks/)
   - [函数组件设计模式](https://fedbook.cn/frontend-engineering/react/function-component-design-patterns/)
-  - [React 表单知识点](https://fedbook.cn/frontend-engineering/react/form/)
+  - [受控组件和非受控组件](https://fedbook.cn/frontend-engineering/react/controlled-and-uncontrolled-components/)
   - 近期在学习，每日更新
 - [Webpack](https://fedbook.cn/frontend-engineering/webpack/)
   - [核心概念](https://fedbook.cn/frontend-engineering/webpack/core-concept/)
