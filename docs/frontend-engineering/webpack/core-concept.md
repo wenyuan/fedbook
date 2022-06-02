@@ -62,11 +62,11 @@ Mode 有三种固定的写法（名称固定，不能改）：
 
 通过 `process.env.NODE_ENV` 可以获得当前的 Mode。
 
-## module chunk  bundle 的区别
+## module chunk bundle 的区别
 
-* module：各个源码文件，Webpack 中一切皆模块
-* chunk：多模块合并成的，如 entry import() splitChunk 定义的很多文件的集合称为一个 chunk
-* bundle：最终的输出文件，由 chunk 构建分析完后输出
+* module：各个源码文件，Webpack 中一切皆模块。
+* chunk：多模块合并成的，如 entry、import() 异步加载的时候也生成一个 chunk、splitChunk 拆分代码块的时候定义 chunk。
+* bundle：最终的输出文件，由 chunk 构建分析完后输出。
 
 <div style="text-align: center;">
   <img src="./assets/webpack-module-chunk-bundle.png" alt="module chunk  bundle">
