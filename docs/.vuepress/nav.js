@@ -71,6 +71,7 @@ module.exports = [
         items: [
           { text: 'MySQL', link: '/basic-skills/mysql/' },
           { text: 'Redis', link: '/basic-skills/redis/' },
+          { text: 'Elasticsearch', link: '/basic-skills/elasticsearch/' },
         ]
       }
     ]
