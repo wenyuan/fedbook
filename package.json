@@ -14,7 +14,7 @@
   "author": "",
   "license": "CC BY-NC 4.0",
   "devDependencies": {
-    "vuepress": "^1.8.2",
+    "vuepress": "^1.9.7",
     "vuepress-plugin-one-click-copy": "^1.0.5",
     "vuepress-theme-hope": "^1.20.5"
   },
