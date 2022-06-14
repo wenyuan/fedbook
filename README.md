@@ -250,8 +250,9 @@
   - **Redis 基础知识**
   - [Redis 数据类型](https://fedbook.cn/basic-skills/redis/data-types/)
   - [Redis 缓存三大问题](https://fedbook.cn/basic-skills/redis/three-cache-problems/)
-- [Elasticsearch](https://fedbook.cn/basic-skills/redis/)
+- [Elasticsearch](https://fedbook.cn/basic-skills/elasticsearch/)
   - **Elasticsearch 基础知识**
+  - [ES 中的概念与名词](https://fedbook.cn/basic-skills/elasticsearch/concepts-and-noun/)
   - **Elasticsearch 日常运维**
 
 <p align=right>
