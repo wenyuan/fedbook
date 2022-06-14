@@ -39,7 +39,7 @@ ES 版本变化比较快，所以各个节点类型的配置方式也会变动�
 分片（Shard）是 ES 底层基本的读写单元，分片是为了分割巨大的索引数据，让读写可以由多台机器来完成，从而提高系统的吞吐量。
 
 <div style="text-align: center;">
-  <img src="./assets/shard.jpg" alt="Shard 示例">
+  <img src="./assets/shard.jpg" alt="Shard 示例" style="height: 240px;">
   <p style="text-align: center; color: #888;">（Shard 示例）</p>
 </div>
 
@@ -100,7 +100,7 @@ PUT books
 索引是一类相似文档的集合。ES 将数据存储在一个或者多个 Index 中，例如将用户数据存储在 User Index 中，而将订单数据存储在 Order Index 中。一个索引有一个或者多个分片，索引的数据会以某种方式分散到各个分片上去存储。
 
 <div style="text-align: center;">
-  <img src="./assets/index.jpg" alt="Index 示例">
+  <img src="./assets/index.jpg" alt="Index 示例" style="height: 240px;">
   <p style="text-align: center; color: #888;">（Index 示例）</p>
 </div>
 
@@ -109,3 +109,117 @@ PUT books
 可以发现主分片和其副本分片不会同时分配在同一个节点上，这样是为了保证当一个节点上的主分片下线时，其他节点上的从副本可以升级为主分片，保证数据的可靠性。
 
 ### Mapping
+
+Mapping 定义了索引里的文档到底有哪些字段及这些字段的类型，类似于数据库中表结构的定义。Mapping 有两种作用：
+
+* 定义了索引中各个字段的名称和对应的类型
+* 定义各个字段、倒排索引的相关设置，如使用什么分词器等
+
+需要注意的是，Mapping 一旦定义后，已经定义的字段的类型是不能更改的。
+
+### 文档（Doc）
+
+我们向 ES 中写入的每一条数据都是一个文档（类似数据库中的一条记录），并且我们搜索也是以文档为单位的，所以文档是 ES 中的主要实体。
+
+在 Kibana 中运行下面指令来插入一条书本的记录：
+
+```bash
+# 我们指定了文档的 id 为1
+POST /books/_doc/1
+{
+  "book_id":"123",
+  "name":"linux 从入门到放弃"
+}
+```
+
+在 Kibana 中运行以下命令来查询指定 key-value 的数据：
+
+```bash
+# 搜索
+POST books/_search
+{
+  "query": {
+    "match_phrase": {
+      "book_id": "123"
+    }
+  }
+}
+
+# 返回的结果
+{
+  ......
+  "hits" : {
+    ......
+    "max_score" : 0.2876821,
+    "hits" : [
+      {
+        "_index" : "books",
+        "_type" : "_doc",
+        "_id" : "1",
+        "_score" : 0.2876821,
+        "_source" : {
+          "book_id" : "123",
+          "name" : "linux 从入门到放弃"
+        }
+      }
+    ]
+  }
+}
+```
+
+从返回结果中可以看到，之前插入的数据包含在 `_source` 字段里，结果中还带有其他字段，这些额外的字段都是 ES 为文档加上的元数据，下面是这些字段的解析。
+
+* **`_index`**：文档所属的索引名字，上述是 books。
+* **`_type`**：文档所属的类型名字，现在 ES 7.x 版本的类型统一为 "`_doc`" 。
+* **`_id`**：文档的唯一 id。如果我们插入时不指定文档 id，ES 会随机分配，这样有利于数据均匀分散到各个分片。
+* **`_version`**：文档的版本信息，并发读写时可以解决文档冲突。
+* **`_score`**：相关性算分，代表着查询的匹配性，用来排序。
+* **`_seq_no`** 和 **`_primary_term`**：是 ES 内部用来保证主分片和副本数据一致性的。
+
+总体来说，文档有以下几个特性。
+
+* ES 是面向文档的并且以文档为单位进行搜索的，如一条书本记录。
+* 文档以 JSON 格式进行序列化存储。
+* 每个文档都有唯一的 ID。插入数据时不手动指定 ID 的性能会好点，因为系统不需要进一步判断这个 ID 是否已经存在。
+
+### 字段（Field）
+
+每个文档都有一个或者多个字段，例如 books 索引指定了书本的记录有 `book_id` 和 `name` 两个字段，这些字段都有指定的类型。字段本质上就是 JSON 中的 Key。
+
+### 词项（Term）
+
+将全文本的内容进行分词后得到的词语就是词项了。例如 "`Programmers Love Cat`" 使用标准分词器分词后得到 `[programmer, love, cat]` 这 3 个词项。需要注意的是：分词器除了进行分词外还会进行大小写转换等其他操作。
+
+### 倒排索引与正排索引
+
+这是两种数据结构。
+
+正排索引保存了实体 ID 到实体数据的关联关系。MySQL InnoDB 的索引就是正排索引，使用的是 B+ 树来实现。
+
+<div style="text-align: center;">
+  <img src="./assets/forward-index.jpg" alt="正排索引示例" style="height: 160px;">
+  <p style="text-align: center; color: #888;">（正排索引示例）</p>
+</div>
+
+正排索引保存了词项到文档实体的关联关系。倒排索引的具体实现先不展开，先简单了解一下这个概念就可以了。
+
+<div style="text-align: center;">
+  <img src="./assets/inverted-index.jpg" alt="倒排索引示例" style="height: 160px;">
+  <p style="text-align: center; color: #888;">（倒排索引示例）</p>
+</div>
+
+## 系统层面上的基本概念
+
+### 近实时系统
+
+ES 是一个近实时系统，我们写入的数据默认的情况下会在 1 秒后才能被查询到。
+
+ES 每秒都会把缓存中的数据写入到 Segment 文件中（写入到 Segment 中才能被检索），然后根据某些规则进行刷盘，并且合并这些 Segment。所以需要注意的是，不能在写入数据成功后，立刻进行查询，这个时候可能会出现查询不到数据或者获取到旧数据的情况。
+
+### Lucene 与 ES 的关系
+
+Lucene 是一个用于全文检索的开源项目，ES 在搜索的底层实现上用的就是 Lucene。可以简单认为，ES 就是在 Lucene 上增加了分布式特性的系统服务。
+
+Lucene 也有索引，那 Lucene 的索引和 ES 的索引是个怎么样的关系呢？其实 ES 上的分片（Shard）就是一个完整的 Lucene 索引。
+
+（完）
