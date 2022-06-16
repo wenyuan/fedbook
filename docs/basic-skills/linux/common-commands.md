@@ -184,10 +184,10 @@ zip -r test.zip test
 
 ```bash
 # 解压后缀为 .tar 格式的压缩包
-tar zxvf test.tar
+tar -zxvf test.tar
 
 # 解压后缀为 .tar.gz 格式的压缩包
-tar zxvf test.tar.gz
+tar -zxvf test.tar.gz
 
 # 解压后缀为 .zip 格式的压缩包
 unzip test.zip
