@@ -254,6 +254,7 @@
   - **Elasticsearch 基础知识**
   - [ES 中的概念与名词](https://fedbook.cn/basic-skills/elasticsearch/concepts-and-noun/)
   - **Elasticsearch 日常运维**
+  - [ES 的安装](https://fedbook.cn/basic-skills/elasticsearch/installation-of-elasticsearch/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

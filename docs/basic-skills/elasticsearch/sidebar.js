@@ -15,8 +15,8 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: 'ES 的安装与卸载',
-        path: '/basic-skills/mysql/installation-of-elasticsearch',
+        title: 'ES 的安装',
+        path: '/basic-skills/elasticsearch/installation-of-elasticsearch',
         collapsable: true
       }
     ]
