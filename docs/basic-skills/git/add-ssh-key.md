@@ -24,7 +24,7 @@ Git 支持 https 和 git 两种传输协议，例如在 GitHub 在 clone 代码�
 
 打开终端，执行 `ssh-keygen -t rsa -C "你在GitHub上使用的邮箱地址"`，如果执行成功，切换到 `~/.ssh` 目录下，此时目录应该如下所示。
 
-```bash
+```
 ├── id_rsa       # 私钥
 ├── id_rsa.pub   # 公钥
 └── known_hosts  # 记录每个你访问过的计算机的公钥(public key), 防止 DNS 攻击

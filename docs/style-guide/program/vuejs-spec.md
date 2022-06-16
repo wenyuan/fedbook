@@ -23,7 +23,7 @@
 
 例如：
 
-```bash
+```
 src/
 ├── App.vue
 ├── assets
@@ -70,7 +70,7 @@ pic_TV.jpg
 
 全部采用小写方式， 优先选择单个单词命名，多个单词命名以**下划线**分隔。
 
-```bash
+```
 ├── error_report.html
 ├── success_report.html
 ```
@@ -79,7 +79,7 @@ pic_TV.jpg
 
 全部采用小写方式， 优先选择单个单词命名，多个单词命名以**短横线**分隔。
 
-```bash
+```
 ├── normalize.less
 ├── base.less
 ├── date-picker.scss
@@ -90,7 +90,7 @@ pic_TV.jpg
 
 全部采用小写方式， 优先选择单个单词命名，多个单词命名以**短横线**分隔。
 
-```bash
+```
 ├── index.js
 ├── plugin.js
 ├── util.js
@@ -120,7 +120,7 @@ pic_TV.jpg
 
 例如：
 
-```bash
+```
 src/
 ├── App.vue
 ├── assets
@@ -159,7 +159,7 @@ src/
 
 推荐：
 
-```bash
+```
 src/
 ├── MyComponent.vue
 ```
@@ -174,7 +174,7 @@ src/
 
 推荐：
 
-```bash
+```
 components/
 ├── TheHeading.vue
 ├── TheSidebar.vue
@@ -182,7 +182,7 @@ components/
 
 不推荐：
 
-```bash
+```
 components/
 ├── Heading.vue
 ├── MySidebar.vue
@@ -200,7 +200,7 @@ components/
 
 推荐：
 
-```bash
+```
 components/
 ├── BaseButton.vue
 ├── BaseTable.vue
@@ -209,7 +209,7 @@ components/
 
 不推荐：
 
-```bash
+```
 components/
 ├── MyButton.vue
 ├── VueTable.vue
@@ -227,7 +227,7 @@ components/
 
 推荐：
 
-```bash
+```
 components/
 ├── CustomCard.vue
 ```
@@ -240,7 +240,7 @@ components/
 
 推荐：
 
-```bash
+```
 components/
 ├── TodoList.vue
 ├── TodoListItem.vue
@@ -249,7 +249,7 @@ components/
 
 不推荐：
 
-```bash
+```
 components/
 ├── TodoList.vue
 ├── ItemForTodoList.vue
@@ -264,7 +264,7 @@ components/
 
 推荐：
 
-```bash
+```
 components/
 ├── SearchButtonClear.vue
 ├── SearchButtonRun.vue
@@ -276,7 +276,7 @@ components/
 
 不推荐：
 
-```bash
+```
 components/
 ├── ClearSearchButton.vue
 ├── ExcludeFromSearchInput.vue
@@ -302,7 +302,7 @@ components/
 
 不推荐：
 
-```bash
+```
 components/
 ├── SdSettings.vue
 ├── UProfOpts.vue
@@ -325,7 +325,7 @@ components/
 
 例如：
 
-```bash
+```
 src/
 ├── components
 │   ├── BackToTop               # 通用组件的文件夹

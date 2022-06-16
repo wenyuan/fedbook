@@ -46,7 +46,7 @@ server{
 
 此时的 Nginx 文件目录结构：
 
-```bash
+```
 ├── nginx
     │── html
     │── logs
