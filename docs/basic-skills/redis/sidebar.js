@@ -15,4 +15,15 @@ module.exports = [
       },
     ]
   },
+  {
+    title: 'Redis 日常运维',
+    collapsable: false,
+    children: [
+      {
+        title: 'Redis 的安装与卸载',
+        path: '/basic-skills/redis/installation-of-redis',
+        collapsable: true
+      },
+    ]
+  }
 ]
