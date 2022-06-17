@@ -10,7 +10,7 @@
 
 到官网的开发者专区下载 MySQL（Community版）免安装软件包：
 
-* [下载地址](https://dev.mysql.com/downloads/mysql/)。
+* [下载地址](https://dev.mysql.com/downloads/mysql/)
 * 安装包名字：mysql-8.0.28-winx64.zip
 
 > 当前最新版本是 8.0，如果需要下载其它版本，可以点击页面中的 **Looking for previous GA versions?**（网站可能会更新，未来入口也许会变化）
@@ -19,7 +19,7 @@
 
 将下载的软件包解压并重命名到 `D:\mysql-8.0` 目录下。
 
-```bash
+```
 ├── mysql-8.0
     │── bin
     │── docs
@@ -76,7 +76,7 @@ PS：`mysql` 用于执行 SQL 命令，`mysqld` 用于执行数据库命令：
 # 启动数据库
 net start mysql
 
-# 使用 root 连接数据库, 没有密码的话直接回车即可
+# 使用 root 连接数据库，没有密码的话直接回车即可
 .\mysql -u root -p
 
 # 关闭数据库
@@ -176,7 +176,7 @@ wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.28-el7-x86_64.tar.g
 ```bash
 # 解压
 tar -zxvf mysql-8.0.28-el7-x86_64.tar.gz
-# 重命名, 原来的名字太长了
+# 重命名，原来的名字太长了
 mv ./mysql-8.0.28-el7-x86_64 mysql-8.0
 ```
 
@@ -187,14 +187,14 @@ mv ./mysql-8.0.28-el7-x86_64 mysql-8.0
 创建数据文件夹：
 
 ```bash
-# 创建 data 目录(用于放置 mysql 数据文件)
+# 创建 data 目录（用于放置 mysql 数据文件）
 mkdir data
 ```
 
 创建用户组，并授权操作：
 
 ```bash
-# 为 MySQL 创建一个不能 ssh 登陆的用户, 且不创建用户主目录
+# 为 MySQL 创建一个不能 ssh 登陆的用户，且不创建用户主目录
 useradd mysql -s /sbin/nologin -M
 # 修改文件所有者
 chown -R mysql:mysql /opt/mysql/
@@ -237,13 +237,13 @@ vim /etc/my.cnf
 
 ```text
 [mysqld]
-# mysql 服务的唯一编号, 每个 mysql 服务 id 需唯一
+# mysql 服务的唯一编号，每个 mysql 服务 id 需唯一
 server-id=1
 
-# mysql 服务端口号, 默认3306
+# mysql 服务端口号，默认 3306
 port=3306
 
-# mysql 安装目录, 默认 /usr
+# mysql 安装目录，默认 /usr
 basedir=/opt/mysql/mysql-8.0
 
 # mysql 数据文件放置位置
@@ -261,55 +261,55 @@ tmpdir=/opt/mysql/mysql-8.0/tmp
 # 用户
 user=mysql
 
-# 允许访问的 IP 网段(系统默认配置监听所有网卡, 即允许所有 IP 访问)
-# 生产环境下建议设置为: 127.0.0.1(只允许本机访问) 或某个网卡的 IP
+# 允许访问的 IP 网段（系统默认配置监听所有网卡，即允许所有 IP 访问）
+# 生产环境下建议设置为：127.0.0.1（只允许本机访问）或某个网卡的 IP
 bind-address=0.0.0.0
 
-# 数据库默认字符集为 utf8, 并支持一些特殊表情符号(占用 4 个字节)
+# 数据库默认字符集为 utf8，并支持一些特殊表情符号（占用 4 个字节）
 character-set-server=utf8mb4
 
-# 数据库字符集对应一些排序等规则, 注意要和 character-set-server 对应
+# 数据库字符集对应一些排序等规则，注意要和 character-set-server 对应
 collation-server=utf8mb4_general_ci
 
-# 是否对 sql 语句大小写敏感, 1 表示不敏感
+# 是否对 sql 语句大小写敏感，1 表示不敏感
 lower_case_table_names=1
 
 # 允许最大连接进程数
 max_connections=400
 
-# 最大错误连接数, 这是为了防止有人从该主机试图攻击数据库系统
-# 如果某个用户发起的连接 error 超过该数值, 则该用户的下次连接将被阻塞, 直到管理员执行 flush hosts
+# 最大错误连接数，这是为了防止有人从该主机试图攻击数据库系统
+# 如果某个用户发起的连接 error 超过该数值，则该用户的下次连接将被阻塞，直到管理员执行 flush hosts
 max_connect_errors=100
 
-# TIMESTAMP 如果没有显示声明 NOT NULL, 允许 NULL 值
+# TIMESTAMP 如果没有显示声明 NOT NULL，允许 NULL 值
 explicit_defaults_for_timestamp=true
 
-# SQL 数据包发送的大小, 如果有 BLOB 对象建议修改成 1G
+# SQL 数据包发送的大小，如果有 BLOB 对象建议修改成 1G
 max_allowed_packet=128M
 
-# MySQL连接闲置超过一定时间后(秒)将会被强行关闭
-# MySQL 默认的 wait_timeout 值为 8 个小时, interactive_timeout 参数需要同时配置才能生效
+# MySQL连接闲置超过一定时间后（秒）将会被强行关闭
+# MySQL 默认的 wait_timeout 值为 8 个小时，interactive_timeout 参数需要同时配置才能生效
 interactive_timeout=1800
 wait_timeout=1800
 
-# 内部内存临时表的最大值, 设置成 128M
-# 比如大数据量的 group by, order by 时可能用到临时表
-# 超过了这个值将写入磁盘, 系统 IO 压力增大
+# 内部内存临时表的最大值，设置成 128M
+# 比如大数据量的 group by，order by 时可能用到临时表
+# 超过了这个值将写入磁盘，系统 IO 压力增大
 tmp_table_size=128M
 max_heap_table_size=128M
 
 # 数据库错误日志文件
 log-error=/opt/mysql/mysql-8.0/err/mysqld.err
 
-# 数据库日志文件存放的位置(一般不会开启该功能, 因为 log 的量会非常庞大)
+# 数据库日志文件存放的位置（一般不会开启该功能，因为 log 的量会非常庞大）
 general_log_file=/opt/mysql/mysql-8.0/log/mysql.log
 # 日志文件是否开启(0 是关闭、1 是开启)
 general_log=0
 
 [client]
 # 默认路径是在 /tmp/mysql.sock
-# 因为我们修改了默认的路径, 所以需要在 [client] 段再指定一下
-# 如果不指定, 虽然数据库能正常启动, 但使用 mysql 命令时还是会报找不到 mysql.sock 错误
+# 因为我们修改了默认的路径，所以需要在 [client] 段再指定一下
+# 如果不指定，虽然数据库能正常启动，但使用 mysql 命令时还是会报找不到 mysql.sock 错误
 socket=/opt/mysql/mysql-8.0/mysql.sock
 ```
 
@@ -318,7 +318,7 @@ socket=/opt/mysql/mysql-8.0/mysql.sock
 ```bash
 mkdir /opt/mysql/mysql-8.0/err /opt/mysql/mysql-8.0/tmp
 echo "" > /opt/mysql/mysql-8.0/err/mysqld.err
-# 新建了文件, 需要再次修改文件所有者
+# 新建了文件，需要再次修改文件所有者
 chown -R mysql:mysql /opt/mysql/
 ```
 
@@ -349,7 +349,7 @@ source /etc/profile
 # 启动 MySQL 服务
 /opt/mysql/mysql-8.0/support-files/mysql.server start
 
-# 登录 root 用户, 记得输入之前默认生成的密码
+# 登录 root 用户，记得输入之前默认生成的密码
 mysql -uroot -p
 ```
 
@@ -403,7 +403,7 @@ chkconfig --level 345 mysqld on
 
 ```bash
 reboot
-# 重启后查看 mysql 服务是否开机自启。
+# 重启后查看 mysql 服务是否开机自启
 ps -ef | grep mysql
 ```
 
@@ -420,7 +420,7 @@ ps -ef | grep mysql
 ```bash
 # 选择 mysql 这个数据库
 use mysql;
-# 查看原来数据, 方便修改以后重置回来
+# 查看原来数据，方便修改以后重置回来
 select host, user, authentication_string, plugin from user;
 # 修改值
 update user set host='%' where user='root' limit 1;
@@ -434,14 +434,14 @@ flush privileges;
 如果使用 Navicat 连接时报 `2003 - Can't connect to MySQL server on ...` 错误，就要先看下服务器是不是开启了防火墙但又没开放端口（你可以选择不开防火墙，或者开完防火墙后记得开放 MySQL 监听的端口号）。
 
 ```bash
-# 查看状态, 发现当前是 dead 状态, 即防火墙未开启
+# 查看状态，发现当前是 dead 状态，即防火墙未开启
 systemctl status firewalld
 
-# 开启防火墙, 没有任何提示即开启成功
-# 再次查看状态, 显示 running 即已开启了
+# 开启防火墙，没有任何提示即开启成功
+# 再次查看状态，显示 running 即已开启了
 systemctl start firewalld
 
-# 开放默认端口号 3306, 提示 success, 表示设置成功
+# 开放默认端口号 3306，提示 success，表示设置成功
 firewall-cmd --permanent --zone=public --add-port=3306/tcp
 
 # 修改后需要重新加载配置才生效
@@ -450,10 +450,10 @@ firewall-cmd --reload;
 # 查看已经开放的端口
 firewall-cmd --permanent --list-port
 
-# 关闭默认的端口号 3306(如果需要的话, 执行这个命令就行了)
+# 关闭默认的端口号 3306（如果需要的话，执行这个命令就行了）
 firewall-cmd --permanent --zone=public --remove-port=3306/tcp
 
-# 关闭防火墙(如果需要的话, 执行这个命令就行了)
+# 关闭防火墙（如果需要的话，执行这个命令就行了）
 systemctl stop firewalld
 ```
 
@@ -515,7 +515,7 @@ find 查找相关文件并删除：
 # 查找相关文件
 find / -name mysql
 
-# 判断是否能删除后, 执行删除命令
+# 判断是否能删除后，执行删除命令
 ...
 ```
 
