@@ -114,7 +114,18 @@ vm.max_map_count=262144
 
 然后执行 `sysctl -p`。
 
-### 运行 ES
+### 创建用户并赋予权限
+
+创建一个名为 elasticsearch 的用户：
+
+```bash
+# 为 ES 创建一个不能 ssh 登陆的用户，且不创建用户主目录
+useradd elasticsearch -s /sbin/nologin -M
+# 修改文件所有者
+chown -R elasticsearch:elasticsearch /opt/elasticsearch-7.13.0/
+```
+
+### 前台运行 ES
 
 注意，ES 不能使用 root 来运行！！！！
 
@@ -164,7 +175,14 @@ server.host: "0.0.0.0"  # 线上一定不能配置ip为 0.0.0.0，这是非常�
 elasticsearch.hosts: ["http://localhost:9211"]
 ```
 
-### 前台运行 ES
+前面创建过一个名为 elasticsearch 的用户，这里的 Kibana 也用这个用户来运行吧，保持一致。
+
+```bash
+# 修改文件所有者
+chown -R elasticsearch:elasticsearch /opt/kibana-7.13.0/
+```
+
+### 前台运行 Kibana
 
 ```bash
 ./bin/kibana >> run.log 2>&1 &
