@@ -7,6 +7,11 @@ module.exports = [
         title: 'ES 中的概念与名词',
         path: '/basic-skills/elasticsearch/concepts-and-noun',
         collapsable: true
+      },
+      {
+        title: '文档的基本操作',
+        path: '/basic-skills/elasticsearch/document-crud',
+        collapsable: true
       }
     ]
   },
