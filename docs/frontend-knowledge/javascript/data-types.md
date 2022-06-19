@@ -25,17 +25,17 @@
 
 我们可以看下表来对照一下。
 
-| 示例表达式         | typeof 结果   | 运行时类型行为     |
-| ----------------- | ------------- | ---------------- |
-| void(0)           | `undefined`   | Undefined        |
-| null              | `object`      | Null             |
-| true              | `boolean`     | Boolean          |
-| 3                 | `number`      | Number           |
-| 9007199254740992n | `bigint`      | BigInt           |
-| "ok"              | `string`      | String           |
-| Symbol("a")       | `symbol`      | Symbol           |
-| (function(){})    | `function`    | Function object  |
-| {}                | `object`      | Any other object |
+| 示例表达式             | typeof 结果   | 运行时类型行为          |
+|-------------------|-------------|------------------|
+| void(0)           | `undefined` | Undefined        |
+| null              | `object`    | Null             |
+| true              | `boolean`   | Boolean          |
+| 3                 | `number`    | Number           |
+| 9007199254740992n | `bigint`    | BigInt           |
+| "ok"              | `string`    | String           |
+| Symbol("a")       | `symbol`    | Symbol           |
+| (function(){})    | `function`  | Function object  |
+| {}                | `object`    | Any other object |
 
 在表格中，多数项是对应的，但是请注意 `object —— Null` 和 `function —— Object` 是特例，我们理解类型的时候需要特别注意这个区别。
 
