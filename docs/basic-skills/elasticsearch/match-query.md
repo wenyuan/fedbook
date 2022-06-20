@@ -218,9 +218,9 @@ multi-match API 还提供了多种类型来设置其执行的方式：
 
 * `best_fields`：默认的类型，会执行 match 查询并且将所有与查询匹配的文档作为结果返回，但是只使用评分最高的字段的评分来作为评分结果返回。
 * `most_fields`：会执行 match 查询并且将所有与查询匹配的文档作为结果返回，并将所有匹配字段的评分加起来作为评分结果。
-* `phrase`：在 `fields` 中的每个字段上均执行 `match_phrase` 查询，并将最佳匹配字段的评分作为结果返回。
-* `phrase_prefix`：在 `fields` 中的字段上均执行 `match_phrase_prefix` 查询，并将最佳匹配字段的评分作为结果返回。
-* `cross_fields`：它将所有字段当成一个大字段，并在每个字段中查找每个词。例如当需要查询英文人名的时候，可以将 `first_name` 和 `last_name` 两个字段组合起来当作 `full_name` 来查询。
+* `phrase`：在指定的每个字段上均执行 `match_phrase` 查询，并将最佳匹配字段的评分作为结果返回。
+* `phrase_prefix`：在指定的每个字段上均执行 `match_phrase_prefix` 查询，并将最佳匹配字段的评分作为结果返回。
+* `cross_fields`：它将所有字段当成一个大字段，并在每个字段中查找每个词。例如当需要查询英文人名的时候，可以将名和姓两个字段组合起来当作全名来查询。
 * `bool_prefix`：在每个字段上创建一个 [`match_bool_prefix`](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/query-dsl-match-bool-prefix-query.html) 查询，并且合并每个字段的评分作为评分结果。
 
 上述的这几种类型，无非就是设置算分的方式和匹配文档的方式不一样，可以使用 `type` 字段来指定这些类型，以 `best_fields` 为例，示例如下：
@@ -249,6 +249,14 @@ GET /books/_search
 > * 令算分最高的字段的得分为 s1
 > * 令其他匹配的字段的算分 * `tie_breaker` 的和为 s2
 > * 最终算分为：s1 + s2
+
+`tie_breaker` 的取值范围为：`[0.0, 1.0]`。
+
+* 当其为 0.0 的时候，按照上述公式来计算，表示使用最佳匹配字段的得分作为相关性算分。
+* 当其为 1.0 的时候，表示所有字段的得分同等重要。
+* 当其在 0.0 到 1.0 之间的时候，代表其他字段的得分也需要参与到总得分的计算当中去。
+
+通俗来说就是其他字段可以使用 `tie_breaker` 来进行「维权」。
 
 ## 参考文档
 
