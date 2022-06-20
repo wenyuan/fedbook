@@ -9,8 +9,13 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '文档的基本操作',
+        title: '文档基本操作',
         path: '/basic-skills/elasticsearch/document-crud',
+        collapsable: true
+      },
+      {
+        title: '全文搜索语法',
+        path: '/basic-skills/elasticsearch/match-query',
         collapsable: true
       }
     ]
