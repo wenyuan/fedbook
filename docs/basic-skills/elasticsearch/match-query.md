@@ -66,7 +66,7 @@ POST books/_search
 }
 ```
 
-在进行全文本字段检索的时候， match API 提供了 `operator` 和 `minimum_should_match` 参数：
+在进行全文本字段检索的时候， match 这个 API 提供了 `operator` 和 `minimum_should_match` 参数：
 
 * `operator`：参数值可以为 `or` 或者 `and` 来控制检索词项间的关系。默认值为 `or`，表示被分词后，只要含有部分词项的文档都可以匹配上。
 * `minimum_should_match`：可以指定词项的最少匹配个数，其值可以指定为某个具体的数字，但因为我们无法预估检索内容的词项数量，一般将其设置为一个百分比。
@@ -87,7 +87,7 @@ POST books/_search
 }
 ```
 
-除了处理全文本外，我们还可以使用 match API 查询包含精确字段的文档：
+除了处理全文本外，我们还可以使用 match 查询包含精确字段的文档：
 
 ```bash
 POST books/_search
@@ -186,13 +186,13 @@ POST books/_search
 }
 ```
 
-一般来说，`match_phrase_prefix` API 可以实现比较粗糙的自动建议功能，但要实现自动建议的功能，可以使用 Suggest API（后面再单独介绍）。
+一般来说，`match_phrase_prefix` 可以实现比较粗糙的自动建议功能，但要实现自动建议的功能，可以使用 Suggest API（后面再单独介绍）。
 
 ## multi match
 
 ### 多字段查询 
 
-multi-match API 构建在 match 查询的基础上，可以允许在多个字段上执行相同的查询。
+multi-match 构建在 match 查询的基础上，可以允许在多个字段上执行相同的查询。
 
 ```bash
 # multi match API
@@ -214,7 +214,7 @@ GET /books/_search
 
 ### 设置计分方式
 
-multi-match API 还提供了多种类型来设置其执行的方式：
+multi-match 还提供了多种类型来设置其执行的方式：
 
 * `best_fields`：默认的类型，会执行 match 查询并且将所有与查询匹配的文档作为结果返回，但是只使用评分最高的字段的评分来作为评分结果返回。
 * `most_fields`：会执行 match 查询并且将所有与查询匹配的文档作为结果返回，并将所有匹配字段的评分加起来作为评分结果。
