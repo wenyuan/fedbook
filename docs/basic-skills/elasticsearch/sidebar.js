@@ -17,6 +17,11 @@ module.exports = [
         title: '全文搜索语法',
         path: '/basic-skills/elasticsearch/match-query',
         collapsable: true
+      },
+      {
+        title: 'Term 查询语法',
+        path: '/basic-skills/elasticsearch/term-query',
+        collapsable: true
       }
     ]
   },
