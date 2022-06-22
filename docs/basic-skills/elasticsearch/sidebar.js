@@ -22,6 +22,11 @@ module.exports = [
         title: 'Term 查询语法',
         path: '/basic-skills/elasticsearch/term-query',
         collapsable: true
+      },
+      {
+        title: '组合查询语法',
+        path: '/basic-skills/elasticsearch/compound-query',
+        collapsable: true
       }
     ]
   },
