@@ -117,8 +117,8 @@ module.exports = [
       {
         text: '线路',
         items: [
-          { text: '国内', link: 'https://fedbook.gitee.io/' },
-          { text: '国外', link: 'https://www.fedbook.cn/' }
+          { text: '国内', link: 'https://www.fedbook.cn/' },
+          { text: '国外', link: 'https://wenyuan.github.io/' }
         ]
       }
     ]

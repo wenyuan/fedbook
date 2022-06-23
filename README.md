@@ -15,7 +15,7 @@
 
 ## 简介
 
-[在线预览](https://www.fedbook.cn/) | [国内镜像](https://fedbook.gitee.io/)
+[在线预览](https://www.fedbook.cn/) | [国外镜像](https://wenyuan.github.io/)
 
 建立小册的目的：用输出倒逼输入，写文档的过程，是对自己所学知识的沉淀，分享交流的过程是对知识的复盘，这些都能够加深对知识的理解。（[费曼学习法](https://36kr.com/p/1721599983617)）
 

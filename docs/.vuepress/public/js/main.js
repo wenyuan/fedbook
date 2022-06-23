@@ -1,18 +1,24 @@
 window.onload = function() {
   function webLocation() {
+    console.log(navigator.language)
+    // 只在首页做判断吧
+    if (window.location.pathname !== '/') {
+      return
+    }
     // 判断浏览器的首选语言
     let protocol = 'https://'
-    let cnDomain = 'fedbook.gitee.io'
+    let enDomain = 'wenyuan.github.io'
     let language = navigator.language
     let host = window.location.host
     let urlRelativePath = getUrlRelativePath()
+    // 国内的也跳一下弹窗吧（纯属好玩）
     if (language === 'zh-CN') {
-      if (host !== cnDomain) {
-        swal('提示', '建议大陆用户访问部署在国内的站点(但内容可能会滞后)，是否跳转？', {
+      if (host !== enDomain) {
+        swal('提示', '建议国外用户访问部署在 GitHub Pages 的站点(速度可能会快一些)，是否跳转？', {
           buttons: ['取消', '确定'],
         }).then(value => {
           if (value) {
-            location.href = protocol + cnDomain + urlRelativePath
+            location.href = protocol + enDomain + urlRelativePath
           }
         })
       }
