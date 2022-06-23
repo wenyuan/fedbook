@@ -315,18 +315,20 @@
 ### 后端知识
 
 - [Python](https://fedbook.cn/backend-knowledge/python/)
-  - **Python 基础**
+  - **Python 基础知识**
   - [编译器与解释器](https://fedbook.cn/backend-knowledge/python/compiler-and-interpreter/)
   - [语法规范](https://fedbook.cn/backend-knowledge/python/grammar/)
   - [变量与常量](https://fedbook.cn/backend-knowledge/python/variables-and-constants/)
   - [数据类型](https://fedbook.cn/backend-knowledge/python/data-types/)
   - [函数参数](https://fedbook.cn/backend-knowledge/python/function-params/)
   - [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
+  - **Python 面向对象**
   - [面向对象编程](https://fedbook.cn/backend-knowledge/python/oop/)
   - [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
+  - [类变量和实例变量](https://fedbook.cn/backend-knowledge/python/class-variables-and-instance-variables/)
   - [类的继承](https://fedbook.cn/backend-knowledge/python/class-inheritance/)
   - [类成员保护](https://fedbook.cn/backend-knowledge/python/class-access-modifiers/)
-  - **Python 模块**
+  - **Python 常用模块**
   - [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
   - [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)
   - [使用 smtplib 发送电子邮件](https://fedbook.cn/backend-knowledge/python/python-lib-smtplib/)

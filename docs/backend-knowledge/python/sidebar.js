@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'Python 基础',
+    title: 'Python 基础知识',
     collapsable: true,
     children: [
       {
@@ -32,15 +32,26 @@ module.exports = [
         title: '函数装饰器',
         path: '/backend-knowledge/python/function-decorators',
         collapsable: true
-      },
+      }
+    ]
+  },
+  {
+    title: 'Python 面向对象',
+    collapsable: true,
+    children: [
       {
-        title: '面向对象编程',
+        title: '面向对象与面向过程',
         path: '/backend-knowledge/python/oop',
         collapsable: true
       },
       {
         title: '类和实例',
         path: '/backend-knowledge/python/class-and-instance',
+        collapsable: true
+      },
+      {
+        title: '类变量和实例变量',
+        path: '/backend-knowledge/python/class-variables-and-instance-variables',
         collapsable: true
       },
       {
@@ -56,7 +67,7 @@ module.exports = [
     ]
   },
   {
-    title: 'Python 模块',
+    title: 'Python 常用模块',
     collapsable: true,
     children: [
       {
