@@ -60,13 +60,13 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '类的继承',
-        path: '/backend-knowledge/python/class-inheritance',
+        title: '公共属性、私有属性、保护属性',
+        path: '/backend-knowledge/python/public-private-protected',
         collapsable: true
       },
       {
-        title: '类成员保护',
-        path: '/backend-knowledge/python/class-access-modifiers',
+        title: '类的继承',
+        path: '/backend-knowledge/python/class-inheritance',
         collapsable: true
       }
     ]

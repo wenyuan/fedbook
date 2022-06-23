@@ -327,8 +327,8 @@
   - [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
   - [类变量和实例变量](https://fedbook.cn/backend-knowledge/python/class-variables-and-instance-variables/)
   - [实例方法、类方法、静态方法](https://fedbook.cn/backend-knowledge/python/instancemethod-classmethod-staticmethod/)
+  - [公共变量、私有变量、保护变量](https://fedbook.cn/backend-knowledge/python/public-private-protected/)
   - [类的继承](https://fedbook.cn/backend-knowledge/python/class-inheritance/)
-  - [类成员保护](https://fedbook.cn/backend-knowledge/python/class-access-modifiers/)
   - **Python 常用模块**
   - [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
   - [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)
