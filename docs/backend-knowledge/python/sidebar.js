@@ -55,6 +55,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '实例方法、类方法、静态方法',
+        path: '/backend-knowledge/python/instancemethod-classmethod-staticmethod',
+        collapsable: true
+      },
+      {
         title: '类的继承',
         path: '/backend-knowledge/python/class-inheritance',
         collapsable: true

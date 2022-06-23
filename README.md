@@ -326,6 +326,7 @@
   - [面向对象编程](https://fedbook.cn/backend-knowledge/python/oop/)
   - [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
   - [类变量和实例变量](https://fedbook.cn/backend-knowledge/python/class-variables-and-instance-variables/)
+  - [实例方法、类方法、静态方法](https://fedbook.cn/backend-knowledge/python/instancemethod-classmethod-staticmethod/)
   - [类的继承](https://fedbook.cn/backend-knowledge/python/class-inheritance/)
   - [类成员保护](https://fedbook.cn/backend-knowledge/python/class-access-modifiers/)
   - **Python 常用模块**
