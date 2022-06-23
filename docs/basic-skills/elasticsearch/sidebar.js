@@ -27,6 +27,11 @@ module.exports = [
         title: '组合查询语法',
         path: '/basic-skills/elasticsearch/compound-query',
         collapsable: true
+      },
+      {
+        title: '搜索词自动补全',
+        path: '/basic-skills/elasticsearch/suggester-query',
+        collapsable: true
       }
     ]
   },
