@@ -259,7 +259,8 @@
   - [全文搜索语法](https://fedbook.cn/basic-skills/elasticsearch/match-query/)
   - [Term 查询语法](https://fedbook.cn/basic-skills/elasticsearch/term-query/)
   - [组合查询语法](https://fedbook.cn/basic-skills/elasticsearch/compound-query/)
-  - [搜索词自动补全](https://fedbook.cn/basic-skills/elasticsearch/suggester-query/)
+  - [搜索词自动补全语法](https://fedbook.cn/basic-skills/elasticsearch/suggester-query/)
+  - [统计语法：聚合查询](https://fedbook.cn/basic-skills/elasticsearch/aggregations/)
   - **Elasticsearch 日常运维**
   - [ES 的安装](https://fedbook.cn/basic-skills/elasticsearch/installation-of-elasticsearch/)
 

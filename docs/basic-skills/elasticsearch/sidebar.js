@@ -29,8 +29,13 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '搜索词自动补全',
+        title: '搜索词自动补全语法',
         path: '/basic-skills/elasticsearch/suggester-query',
+        collapsable: true
+      },
+      {
+        title: '统计语法：聚合查询',
+        path: '/basic-skills/elasticsearch/aggregations',
         collapsable: true
       }
     ]
