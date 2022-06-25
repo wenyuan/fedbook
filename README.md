@@ -263,6 +263,7 @@
   - [统计语法：聚合查询](https://fedbook.cn/basic-skills/elasticsearch/aggregations/)
   - **Elasticsearch 日常运维**
   - [ES 的安装](https://fedbook.cn/basic-skills/elasticsearch/installation-of-elasticsearch/)
+  - [集群管理 API](https://fedbook.cn/basic-skills/elasticsearch/cluster-manage-apis/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

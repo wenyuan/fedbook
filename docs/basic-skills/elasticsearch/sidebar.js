@@ -48,6 +48,11 @@ module.exports = [
         title: 'ES 的安装',
         path: '/basic-skills/elasticsearch/installation-of-elasticsearch',
         collapsable: true
+      },
+      {
+        title: '集群管理 API',
+        path: '/basic-skills/elasticsearch/cluster-manage-apis',
+        collapsable: true
       }
     ]
   }
