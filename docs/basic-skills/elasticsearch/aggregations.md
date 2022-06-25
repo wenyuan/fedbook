@@ -48,10 +48,10 @@ POST your_index/_search
 
 Metric Aggregations 可以计算一组文档中的某个指标，它分为单值分析和多值分析两类：
 
-* 单值分析：只输出一个分析结果的聚合操作，例如：`min`、`max`、`sum`、`avg`、`cardinality`（类似于 SQL 中的 distinct count）等。
-* 多值分析：会输出多个分析结果的聚合操作，例如：`stats`、`extended_stats`、`percentiles`、`percentile ranks`、`top hits` 等。
+* **单值分析**：只输出一个分析结果的聚合操作，例如：`min`、`max`、`sum`、`avg`、`cardinality`（类似于 SQL 中的 distinct count）等。
+* **多值分析**：会输出多个分析结果的聚合操作，例如：`stats`、`extended_stats`、`percentiles`、`percentile ranks`、`top hits` 等。
 
-下面是几个例子：
+下面是几个例子。
 
 ### 查看最高售价
 
@@ -183,11 +183,11 @@ Bucket 可以理解为一个桶，或者一个分组，当遍历文档库的时�
 
 ES 提供的 Bucket Aggregations 中常用的有以下几个：
 
-* Terms：根据某个字段进行分组，例如根据出版社进行分组。
-* Range、Data Range：根据用户指定的范围参数作为分组的依据来进行聚合操作。
-* Histogram、Date Histogram：可以指定间隔区间来进行聚合操作。
+* **Terms**：根据某个字段进行分组，例如根据出版社进行分组。
+* **Range、Data Range**：根据用户指定的范围参数作为分组的依据来进行聚合操作。
+* **Histogram**、**Date Histogram**：可以指定间隔区间来进行聚合操作。
 
-下面是几个例子：
+下面是几个例子。
 
 ### 统计每个出版社的书本数量
 
@@ -227,8 +227,8 @@ POST books/_search
 
 返回结果中，还有两个字段，它们是对本次聚合的评估结果：
 
-* `doc_count_error_upper_bound`：没有在本次聚合返回的分桶中，包含文档数的**可能最大值**的和。如果是 0，说明聚合结果是准确的。
-* `sum_other_doc_count`：除了返回结果中的 terms 外，其他没有返回的 terms 的文档数量之和。
+* **`doc_count_error_upper_bound`**：没有在本次聚合返回的分桶中，包含文档数的**可能最大值**的和。如果是 0，说明聚合结果是准确的。
+* **`sum_other_doc_count`**：除了返回结果中的 terms 外，其他没有返回的 terms 的文档数量之和。
 
 ### 统计每个价格区间的书本数量
 
@@ -418,8 +418,8 @@ POST books/_search
 
 Pipeline 分析的结果会输出到原查询的结果中，根据位置的不同可以分为两类：
 
-* Sibling：结果和原结果同级，如上面的列子就是 Sibling。Sibling 可以有 Max Bucket、Min Bucket、Avg Bucket、Sum Bucket 等。
-* Parent：结果会内嵌到现有的聚合分析结果中。提供如 Derivative （求导）、Moving Function （滑动窗口）等功能。
+* **Sibling**：结果和原结果同级，如上面的列子就是 Sibling。Sibling 可以有 Max Bucket、Min Bucket、Avg Bucket、Sum Bucket 等。
+* **Parent**：结果会内嵌到现有的聚合分析结果中。提供如 Derivative （求导）、Moving Function （滑动窗口）等功能。
 
 更多 Pipeline Aggregations 的使用案例可以参考[官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/search-aggregations-pipeline.html)。
 
