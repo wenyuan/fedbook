@@ -53,6 +53,11 @@ module.exports = [
         title: '集群管理 API',
         path: '/basic-skills/elasticsearch/cluster-manage-apis',
         collapsable: true
+      },
+      {
+        title: '索引管理 API',
+        path: '/basic-skills/elasticsearch/index-manage-apis',
+        collapsable: true
       }
     ]
   }
