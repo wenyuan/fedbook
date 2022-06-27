@@ -60,8 +60,13 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '公共属性、私有属性、保护属性',
+        title: '公共变量、私有变量、保护变量',
         path: '/backend-knowledge/python/public-private-protected',
+        collapsable: true
+      },
+      {
+        title: '@property 装饰器',
+        path: '/backend-knowledge/python/decorator-property',
         collapsable: true
       },
       {

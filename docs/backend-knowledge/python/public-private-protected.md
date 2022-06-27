@@ -18,7 +18,7 @@ class Student:
     def print_age(self):
         print('%s: %s' % (self.name, self.age))
 
-p = Student("zhangsan", 13)
+p = Student("张三", 13)
 print(p.title)
 print(p.name)
 ```
