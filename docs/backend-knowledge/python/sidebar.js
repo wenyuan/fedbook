@@ -73,6 +73,11 @@ module.exports = [
         title: '类的继承',
         path: '/backend-knowledge/python/class-inheritance',
         collapsable: true
+      },
+      {
+        title: 'super() 函数',
+        path: '/backend-knowledge/python/super',
+        collapsable: true
       }
     ]
   },

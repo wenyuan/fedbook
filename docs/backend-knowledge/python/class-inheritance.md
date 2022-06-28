@@ -120,33 +120,4 @@ print(C.__mro__)
 
 在搜索方法时，是按照 `__mro__` 的输出结果从左往右的顺序查找的。
 
-
-## super() 函数
-
-在子类中如果有与父类同名的成员，那就会覆盖（Override）掉父类里的成员。
-
-此时如果想强制调用父类的成员，可以使用 `super()` 函数。这是一个非常重要的函数，最常见的就是通过 `super` 调用父类的实例化方法 `__init__`。
-
-语法：`super(子类名, self).方法名()`，需要传入的是子类名和 `self`，调用的是父类里的方法，按父类的方法需要传入参数。如下例所示：
-
-```python
-class A:
-    def __init__(self, name):
-        self.name = name
-        print("父类的__init__方法被执行了！")
-    def show(self):
-        print("父类的show方法被执行了！")
-
-class B(A):
-    def __init__(self, name, age):
-        super(B, self).__init__(name=name)
-        self.age = age
-
-    def show(self):
-        super(B, self).show()
-
-obj = B("zhangsan", 13)
-obj.show()
-```
-
 （完）
