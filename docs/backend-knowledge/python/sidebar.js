@@ -76,7 +76,7 @@ module.exports = [
       },
       {
         title: 'super() 函数',
-        path: '/backend-knowledge/python/super',
+        path: '/backend-knowledge/python/method-super',
         collapsable: true
       }
     ]

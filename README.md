@@ -334,7 +334,7 @@
   - [公共变量、私有变量、保护变量](https://fedbook.cn/backend-knowledge/python/public-private-protected/)
   - [@property 装饰器](https://fedbook.cn/backend-knowledge/python/decorator-property/)
   - [类的继承](https://fedbook.cn/backend-knowledge/python/class-inheritance/)
-  - [super() 函数](https://fedbook.cn/backend-knowledge/python/super/)
+  - [super() 函数](https://fedbook.cn/backend-knowledge/python/method-super/)
   - **Python 常用模块**
   - [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
   - [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)
