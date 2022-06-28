@@ -58,6 +58,11 @@ module.exports = [
         title: '索引管理 API',
         path: '/basic-skills/elasticsearch/index-manage-apis',
         collapsable: true
+      },
+      {
+        title: '定义字段类型：Mapping',
+        path: '/basic-skills/elasticsearch/mapping',
+        collapsable: true
       }
     ]
   }
