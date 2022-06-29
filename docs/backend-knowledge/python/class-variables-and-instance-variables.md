@@ -66,11 +66,11 @@ class 类名:
 可以通过实例名加圆点的方式调用实例变量，比如：
 
 ```python
-p1 = new Student('张三', 13) 
-p2 = new Student('李四', 14) 
+s1 = Student('张三', 13) 
+s2 = Student('李四', 14) 
 
-print(p1.name)
-print(p2.age)
+print(s1.name)
+print(s2.age)
 ```
 
 **不推荐实例变量和类变量同名**：

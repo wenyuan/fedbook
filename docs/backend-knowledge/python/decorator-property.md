@@ -29,13 +29,13 @@ class Student:
         return self.name
 
 
-p = Student("张三")
-# 获取 p 实例对象的 name 实例变量
-print(p.get_name())
+s = Student("张三")
+# 获取 s 实例对象的 name 实例变量
+print(s.get_name())
 
 # 设置 name 实例属性
-p.set_name("李四")
-print(p.get_name())
+s.set_name("李四")
+print(s.get_name())
 ```
 
 ## property() 方法
@@ -82,18 +82,18 @@ class Student:
 # help(Student.name)
 print(Student.name.__doc__)
 
-p = Student("张三")
+s = Student("张三")
 
 # 自动调用 get_name()
-print(p.name)
+print(s.name)
 
 # 自动调用 set_name()
-p.name = "李四"
-print(p.name)
+s.name = "李四"
+print(s.name)
 
 # 自动调用 del_name()
-del p.name
-print(p.name)
+del s.name
+print(s.name)
 
 
 # 输出结果
@@ -151,15 +151,15 @@ class Student:
         return self.__name
 
 
-p = Student("张三")
-print(p.name)
+s = Student("张三")
+print(s.name)
 
 
 # 输出结果
 张三
 
 # 如果尝试修改
-p.name = "李四"
+s.name = "李四"
 # 输出报错信息
 AttributeError: can't set attribute
 ```
@@ -179,8 +179,8 @@ class Student:
     name = property(get_name)
 
 
-p = Student("张三")
-print(p.name)
+s = Student("张三")
+print(s.name)
 ```
 
 ## setter 装饰器
@@ -212,12 +212,12 @@ class Student:
         self.__name = name
 
 
-p = Student("张三")
+s = Student("张三")
 # 打印属性值
-print(p.name)
+print(s.name)
 # 修改属性
-p.name = "李四"
-print(p.name)
+s.name = "李四"
+print(s.name)
 
 
 # 输出结果
@@ -257,13 +257,13 @@ class Student:
         print("删除 __name")
 
 
-p = Student("张三")
+s = Student("张三")
 # 打印属性值
-print(p.name)
+print(s.name)
 # 修改属性
-p.name = "李四"
+s.name = "李四"
 # 删除属性
-del p.name
+del s.name
 
 
 # 输出结果

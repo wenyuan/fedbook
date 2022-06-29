@@ -27,19 +27,19 @@ class Student:
 
 
 # 调用实例方法
-p1 = Student("张三", 13)
-p2 = Student("李四", 14)
+s1 = Student("张三", 13)
+s2 = Student("李四", 14)
 
-p1.print_age()
-p2.print_age()
+s1.print_age()
+s2.print_age()
 ```
 
 Python 也支持通过类名调用实例方法，但需要手动给 `self` 参数传实例对象。
 
 ```python
-p1 = Student("张三", 13)
+s1 = Student("张三", 13)
 
-Student.print_age(p1)  # 假设不传实例对象，PyCharm 会有 warning
+Student.print_age(s1)  # 假设不传实例对象，PyCharm 会有 warning
 ```
 
 ### 使用场景

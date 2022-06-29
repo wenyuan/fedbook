@@ -18,9 +18,9 @@ class Student:
     def print_age(self):
         print('%s: %s' % (self.name, self.age))
 
-p = Student("张三", 13)
-print(p.title)
-print(p.name)
+s = Student("张三", 13)
+print(s.title)
+print(s.name)
 ```
 
 但 Python 也可以设置受保护、私有类型的变量或方法。
@@ -52,9 +52,9 @@ class Student:
     def print_age(self):
         print('%s: %s' % (self.__name, self.__age))
 
-obj = Student("zhangsan", 13)
-print(obj.title)
-print(obj.__name) # 这里会报错
+s = Student("张三", 13)
+print(s.title)
+print(s.__name) # 这里会报错
 ```
 
 ### 外部访问和修改私有成员
@@ -86,9 +86,9 @@ class Student:
     def set_age(self, age):
         self.__age = age
 
-obj = Student("张三", 13)
-obj.get_name()
-obj.set_name("李四")
+s = Student("张三", 13)
+s.get_name()
+s.set_name("李四")
 ```
 
 这样做，不但对数据进行了保护的同时也提供了外部访问的接口，而且在 `get_name`，`set_name` 这些方法中，可以额外添加对数据进行检测、处理、加工、包裹等等各种操作。
@@ -112,8 +112,8 @@ def set_age(self, age):
 知道了这样一个原理，我们就要规避这样一个问题：
 
 ```python
-p = Student("张三", 13)
-p.__name = "李四"  # 注意这一行
+s = Student("张三", 13)
+s.__name = "李四"  # 注意这一行
 ```
 
 注意上面第二行，千万不要写这样的代码，因为这相当于给 `p` 实例添加了一个新的实例变量 `__name`，而不是对原有私有成员 `__name` 重新赋值。
