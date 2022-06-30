@@ -15,7 +15,7 @@
 Python 中虽然不能自动生成，但也可以自己写。
 
 ```python
-class Student:
+class Student(object):
     # 构造方法
     def __init__(self, name):
         self.name = name
@@ -57,7 +57,7 @@ print(s.get_name())
 
 ```python
 # property() 函数
-class Student:
+class Student(object):
     # 构造方法
     def __init__(self, name):
         self.__name = name
@@ -142,7 +142,7 @@ name = property(get_name, set_name,del_name)
 ### 代码示例
 
 ```python
-class Student:
+class Student(object):
     def __init__(self, name):
         self.__name = name
 
@@ -169,7 +169,7 @@ AttributeError: can't set attribute
 等价写法：
 
 ```python
-class Student:
+class Student(object):
     def __init__(self, name):
         self.__name = name
 
@@ -199,7 +199,7 @@ def 方法名(self, value):
 ### 代码示例
 
 ```python
-class Student:
+class Student(object):
     def __init__(self, name):
         self.__name = name
 
@@ -240,7 +240,7 @@ def 方法名(self):
 ### 代码示例
 
 ```python
-class Student:
+class Student(object):
     def __init__(self, name):
         self.__name = name
 

@@ -11,7 +11,7 @@ Python 采用多继承机制，一个类可以同时继承多个父类（也叫�
 下面是一个学生类：
 
 ```python
-class Student:
+class Student(object):
     classroom = '101'
     address = 'beijing' 
 

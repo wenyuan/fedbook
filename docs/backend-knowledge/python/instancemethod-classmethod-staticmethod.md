@@ -16,7 +16,7 @@ Python 的类中包含实例方法、类方法、静态方法三种方法。这�
 实例方法通常会用实例对象直接调用。
 
 ```python
-class Student:
+class Student(object):
     def __init__(self, name, age):
         self.name = name
         self.age = age

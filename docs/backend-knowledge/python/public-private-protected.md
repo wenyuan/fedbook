@@ -5,7 +5,7 @@
 在 Python 的类里面，所有变量和方法默认都是公共的。
 
 ```python
-class Student:
+class Student(object):
     # 公共变量
     title = "学生"
 
@@ -42,7 +42,7 @@ print(s.name)
 如下所示，在 `Student` 类中，`title` 可以在外部访问；而 `__name` 和 `__age` 由于加了两个下划线，已经变成了私有成员，只能在类的内部访问，外部访问时会报错。
 
 ```python
-class Student:
+class Student(object):
     title = "学生"
 
     def __init__(self, name, age):
@@ -64,7 +64,7 @@ print(s.__name) # 这里会报错
 如下代码所示：
 
 ```python
-class Student:
+class Student(object):
     title = "学生"
 
     def __init__(self, name, age):
