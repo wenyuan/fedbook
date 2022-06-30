@@ -335,6 +335,7 @@
   - [@property 装饰器](https://fedbook.cn/backend-knowledge/python/decorator-property/)
   - [类的继承](https://fedbook.cn/backend-knowledge/python/class-inheritance/)
   - [super() 函数](https://fedbook.cn/backend-knowledge/python/method-super/)
+  - [魔术方法（双下划线方法）](https://fedbook.cn/backend-knowledge/python/magic-methods/)
   - **Python 常用模块**
   - [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
   - [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)

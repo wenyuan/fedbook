@@ -78,6 +78,11 @@ module.exports = [
         title: 'super() 函数',
         path: '/backend-knowledge/python/method-super',
         collapsable: true
+      },
+      {
+        title: '魔术方法（双下划线方法）',
+        path: '/backend-knowledge/python/magic-methods',
+        collapsable: true
       }
     ]
   },
