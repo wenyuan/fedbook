@@ -36,6 +36,12 @@ module.exports = [
     ]
   },
   {
+    title: 'Python 高级进阶',
+    collapsable: true,
+    children: [
+    ]
+  },
+  {
     title: 'Python 面向对象',
     collapsable: true,
     children: [
@@ -77,6 +83,11 @@ module.exports = [
       {
         title: 'super() 函数',
         path: '/backend-knowledge/python/method-super',
+        collapsable: true
+      },
+      {
+        title: '反射',
+        path: '/backend-knowledge/python/reflect',
         collapsable: true
       },
       {
