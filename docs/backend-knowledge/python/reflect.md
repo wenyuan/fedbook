@@ -106,7 +106,7 @@ class Student(object):
 
 ### hasattr 例子
 
-```pythonm
+```python
 s = Student('张三')
 
 print(hasattr(s, 'name'))        # 实例对象-实例属性
@@ -124,7 +124,7 @@ False
 
 ### getattr 例子
 
-```pythonm
+```python
 s = Student('张三')
 
 print(getattr(s, 'name'))                 # 实例对象-实例属性
