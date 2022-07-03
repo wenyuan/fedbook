@@ -39,6 +39,11 @@ module.exports = [
     title: 'Python 高级进阶',
     collapsable: true,
     children: [
+      {
+        title: '实现单例模式',
+        path: '/backend-knowledge/python/singleton-pattern',
+        collapsable: true
+      },
     ]
   },
   {

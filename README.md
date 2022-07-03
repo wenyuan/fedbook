@@ -326,6 +326,8 @@
   - [数据类型](https://fedbook.cn/backend-knowledge/python/data-types/)
   - [函数参数](https://fedbook.cn/backend-knowledge/python/function-params/)
   - [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
+  - **Python 高级进阶**
+  - [实现单例模式](https://fedbook.cn/backend-knowledge/python/singleton-pattern/)
   - **Python 面向对象**
   - [面向对象编程](https://fedbook.cn/backend-knowledge/python/oop/)
   - [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
