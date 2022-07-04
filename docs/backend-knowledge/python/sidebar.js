@@ -40,8 +40,8 @@ module.exports = [
     collapsable: true,
     children: [
       {
-        title: '实现单例模式',
-        path: '/backend-knowledge/python/singleton-pattern',
+        title: '生成器 generator',
+        path: '/backend-knowledge/python/generator',
         collapsable: true
       },
     ]
@@ -98,6 +98,11 @@ module.exports = [
       {
         title: '魔术方法（双下划线方法）',
         path: '/backend-knowledge/python/magic-methods',
+        collapsable: true
+      },
+      {
+        title: '实现单例模式',
+        path: '/backend-knowledge/python/singleton-pattern',
         collapsable: true
       }
     ]

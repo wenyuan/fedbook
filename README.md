@@ -327,7 +327,7 @@
   - [函数参数](https://fedbook.cn/backend-knowledge/python/function-params/)
   - [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
   - **Python 高级进阶**
-  - [实现单例模式](https://fedbook.cn/backend-knowledge/python/singleton-pattern/)
+  - [生成器 generator](https://fedbook.cn/backend-knowledge/python/generator/)
   - **Python 面向对象**
   - [面向对象编程](https://fedbook.cn/backend-knowledge/python/oop/)
   - [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
@@ -339,6 +339,7 @@
   - [super() 函数](https://fedbook.cn/backend-knowledge/python/method-super/)
   - [反射](https://fedbook.cn/backend-knowledge/python/reflect/)
   - [魔术方法（双下划线方法）](https://fedbook.cn/backend-knowledge/python/magic-methods/)
+  - [实现单例模式](https://fedbook.cn/backend-knowledge/python/singleton-pattern/)
   - **Python 常用模块**
   - [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
   - [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)
