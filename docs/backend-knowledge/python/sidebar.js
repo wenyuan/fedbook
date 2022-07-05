@@ -44,6 +44,11 @@ module.exports = [
         path: '/backend-knowledge/python/generator',
         collapsable: true
       },
+      {
+        title: '迭代器 Iterator',
+        path: '/backend-knowledge/python/iterator',
+        collapsable: true
+      },
     ]
   },
   {

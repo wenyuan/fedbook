@@ -328,6 +328,7 @@
   - [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
   - **Python 高级进阶**
   - [生成器 generator](https://fedbook.cn/backend-knowledge/python/generator/)
+  - [迭代器 Iterator](https://fedbook.cn/backend-knowledge/python/iterator/)
   - **Python 面向对象**
   - [面向对象编程](https://fedbook.cn/backend-knowledge/python/oop/)
   - [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)
