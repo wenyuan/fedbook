@@ -327,6 +327,7 @@
   - [函数参数](https://fedbook.cn/backend-knowledge/python/function-params/)
   - [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
   - **Python 高级进阶**
+  - [切片](https://fedbook.cn/backend-knowledge/python/slicing/)
   - [生成器 generator](https://fedbook.cn/backend-knowledge/python/generator/)
   - [迭代器 Iterator](https://fedbook.cn/backend-knowledge/python/iterator/)
   - **Python 面向对象**

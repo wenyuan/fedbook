@@ -40,6 +40,11 @@ module.exports = [
     collapsable: true,
     children: [
       {
+        title: '切片',
+        path: '/backend-knowledge/python/slicing',
+        collapsable: true
+      },
+      {
         title: '生成器 generator',
         path: '/backend-knowledge/python/generator',
         collapsable: true
