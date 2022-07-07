@@ -328,6 +328,7 @@
   - [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
   - **Python 高级进阶**
   - [切片](https://fedbook.cn/backend-knowledge/python/slicing/)
+  - [多线程、多进程](https://fedbook.cn/backend-knowledge/python/threading-and-multiprocess/)
   - [生成器 generator](https://fedbook.cn/backend-knowledge/python/generator/)
   - [迭代器 Iterator](https://fedbook.cn/backend-knowledge/python/iterator/)
   - **Python 面向对象**

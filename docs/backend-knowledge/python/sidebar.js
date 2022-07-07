@@ -45,6 +45,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '多线程、多进程',
+        path: '/backend-knowledge/python/threading-and-multiprocess',
+        collapsable: true
+      },
+      {
         title: '生成器 generator',
         path: '/backend-knowledge/python/generator',
         collapsable: true
