@@ -112,13 +112,84 @@ if __name__ == '__main__':
 这里是: Process-5, 父进程 id: 6192, 当前子进程 id: 17808
 ```
 
+多进程实战：
+
+```python
+# 模拟下载文件，不使用多进程时，需要等第一个文件下载完才能下载第二个文件
+from random import randint
+from time import time, sleep
+
+
+def download_task(filename):
+    print('开始下载: %s...' % filename)
+    time_to_download = randint(5, 10)
+    sleep(time_to_download)
+    print('%s 下载完成! 耗时%d秒' % (filename, time_to_download))
+
+def main():
+    start = time()
+    download_task('Python入门教程.pdf')
+    download_task('程序员养身之道.pdf')
+    end = time()
+    print('总共耗费了%.2f秒.' % (end - start))
+
+
+if __name__ == '__main__':
+    main()
+
+
+# 输出结果
+开始下载: Python入门教程.pdf...
+Python入门教程.pdf 下载完成! 耗时6秒
+开始下载: 程序员养身之道.pdf...
+程序员养身之道.pdf 下载完成! 耗时9秒
+总共耗费了15.01秒.
+```
+
+```python
+# 模拟下载文件，使用多进程时，两个任务同时执行，总耗时不再是两个任务的时间总和
+from random import randint
+from time import time, sleep
+from multiprocessing import Process
+
+
+def download_task(filename):
+    print('开始下载: %s...' % filename)
+    time_to_download = randint(5, 10)
+    sleep(time_to_download)
+    print('%s 下载完成! 耗费了%d秒' % (filename, time_to_download))
+
+def main():
+    start = time()
+    p1 = Process(target=download_task,args=("Python入门教程.pdf",))
+    p1.start()
+    p2 = Process(target=download_task, args=("程序员养身之道.pdf",))
+    p2.start()
+    p1.join()
+    p2.join()
+    end = time()
+    print('总共耗费了%.2f秒.' % (end - start))
+
+
+if __name__ == '__main__':
+    main()
+
+
+# 输出结果
+开始下载: Python入门教程.pdf...
+开始下载: 程序员养身之道.pdf...
+程序员养身之道.pdf 下载完成! 耗费了5秒
+Python入门教程.pdf 下载完成! 耗费了10秒
+总共耗费了10.11秒.
+```
+
 知识点：
 
-* Process：通过 `Process` 类创建进程对象
-* target：通过 `target` 参数传入一个函数名来表示进程启动后要执行的代码
-* args：是一个元组，代表传递给函数的参数列表
-* start：Process 的 `start()` 方法来启动进程
-* join：Process 的 `join()` 方法表示等待进程执行结束，才会往下执行
+* **Process**：通过 `Process` 类创建进程对象
+* **target**：通过 `target` 参数传入一个函数名来表示进程启动后要执行的代码
+* **args**：是一个元组，代表传递给函数的参数列表
+* **start**：Process 的 `start()` 方法来启动进程
+* **join**：Process 的 `join()` 方法表示等待进程执行结束，才会往下执行
 
 ### 进程间数据共享
 
