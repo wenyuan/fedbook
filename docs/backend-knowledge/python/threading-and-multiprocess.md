@@ -562,3 +562,220 @@ threading.Thread(self, group=None, target=None, name=None,
 | `join([timeout])`                | 调用该方法将会使主调线程堵塞，直到被调用线程运行结束或超时。参数 `timeout` 是一个数值类型，表示超时时间，如果未提供该参数，那么主调线程将一直堵塞到被调线程结束。                                                 |
 
 ### 让主线程等待子线程
+
+在多线程执行过程中，每个线程各自执行自己的任务，不等待其它的线程，比如下面的例子：
+
+```python
+import time
+import threading
+
+
+def do_waiting():
+    print('start waiting:', time.strftime('%H:%M:%S'))
+    time.sleep(3)
+    print('stop waiting', time.strftime('%H:%M:%S'))
+
+
+if __name__ == '__main__':
+    t = threading.Thread(target=do_waiting)
+    t.start()
+    # 确保线程t已经启动
+    time.sleep(1)
+    print('start job')
+    print('end job')
+
+
+# 执行结果
+start waiting: 11:32:33
+start job
+end job
+stop waiting 11:32:36
+```
+
+可以发现上面例子中，主线程没有等待子线程 `t` 执行完毕，就开始继续执行主线程里的代码了（`print('start job')`）。而且主线程执行完毕后（`print('end job')`）也没有结束整个程序，而是等待子线程 `t` 执行完毕，整个程序才结束。
+
+**Python 默认会等待最后一个线程执行完毕后才退出**。
+
+如果希望主线程等待子线程执行完后再继续执行，可以使用 `join()` 方法。如下所示：
+
+```python
+import time
+import threading
+
+
+def do_waiting():
+    print('start waiting:', time.strftime('%H:%M:%S'))
+    time.sleep(3)
+    print('stop waiting', time.strftime('%H:%M:%S'))
+
+
+if __name__ == '__main__':
+    t = threading.Thread(target=do_waiting)
+    t.start()
+    # 确保线程t已经启动
+    time.sleep(1)
+    print('start join')
+    # 将一直堵塞，直到t运行结束。
+    t.join()
+    print('end join')
+
+
+# 执行结果
+start waiting: 14:16:20
+start join
+stop waiting 14:16:23
+end join
+```
+
+还可以使用 `setDaemon(True)` 把所有的子线程都变成主线程的守护线程，当主线程结束后，守护子线程也会随之结束，整个程序也跟着退出。如下所示：
+
+```python
+import threading
+import time
+
+
+def run():
+    print(threading.current_thread().getName(), "开始工作")
+    time.sleep(2)       # 子线程停2s
+    print("子线程工作完毕")
+
+
+if __name__ == '__main__':
+    for i in range(3):
+        t = threading.Thread(target=run,)
+        t.setDaemon(True)   # 把子线程设置为守护线程，必须在start()之前设置
+        t.start()
+    
+    time.sleep(1)     # 主线程停1秒
+    print("主线程结束了！")
+    print(threading.active_count())  # 输出活跃的线程数
+
+
+# 执行结果
+Thread-1 开始工作
+Thread-2 开始工作
+Thread-3 开始工作
+主线程结束了！
+4
+```
+
+### 自定义线程类
+
+对于 `threading` 模块中的 `Thread` 类，本质上是执行了它的 `run` 方法。因此可以自定义线程类，让它继承 `Thread` 类，然后重写 `run` 方法。
+
+```python
+import threading
+
+
+class MyThreading(threading.Thread):
+
+    def __init__(self, func, arg):
+        super().__init__()
+        self.func = func
+        self.arg = arg
+
+    def run(self):
+        self.func(self.arg)
+
+def my_func(args):
+    """
+    你可以把任何你想让线程做的事定义在这里
+    """
+    pass
+
+
+if __name__ == '__main__':
+    obj = MyThreading(my_func, 123)
+    obj.start()
+```
+
+### 线程锁
+
+由于线程之间的任务执行是 CPU 进行随机调度的，并且每个线程可能只执行了 n 条指令之后就被切换到别的线程了。
+
+当多个线程同时操作一个对象，如果没有很好地保护该对象，会造成程序结果的不可预期，这被称为「线程不安全」。比如如下代码：
+
+```python
+import threading
+import time
+
+number = 0
+
+
+def plus():
+    global number             # global 声明此处的 number 是外面的全局变量 number
+    for _ in range(1000000):  # 进行一个大数级别的循环加一运算（太小的数不容易复现问题）
+        number += 1
+    print("子线程%s运算结束后，number = %s" % (threading.current_thread().getName(), number))
+
+
+if __name__ == '__main__':
+    # 用 2 个子线程，就可以观察到脏数据
+    t1 = threading.Thread(target=plus)
+    t1.start()
+    t2 = threading.Thread(target=plus)
+    t2.start()
+
+    # 确保 2 个子线程都已经结束运算
+    t1.join()
+    t2.join()
+    print("主线程执行完毕后，number = %s" % number)
+
+
+# 执行结果
+子线程Thread-1运算结束后，number = 1095778
+子线程Thread-2运算结束后，number = 1363125
+主线程执行完毕后，number = 1363125
+```
+
+可以发现上面的代码执行下来，结果不等于 2000000（理论上应该是两个线程各执行了 1000000 次加一操作，累加就应该是 2000000）。而且多执行几次上述代码，会发现每次的结果都不一样。
+
+这是因为两个线程在运行过程中，CPU 随机调度，你算一会我算一会，在没有对 `number` 变量进行保护的情况下，就发生了数据错误。如果想获得正确结果，可以使用 `join()` 方法对每个线程进行单独，让多线程变成顺序执行，如下修改代码片段：
+
+```python
+import threading
+import time
+
+number = 0
+
+
+def plus():
+    global number             # global 声明此处的 number 是外面的全局变量 number
+    for _ in range(1000000):  # 进行一个大数级别的循环加一运算（太小的数不容易复现问题）
+        number += 1
+    print("子线程%s运算结束后，number = %s" % (threading.current_thread().getName(), number))
+
+
+if __name__ == '__main__':
+    # 用 2 个子线程，就可以观察到脏数据
+    t1 = threading.Thread(target=plus)
+    t1.start()
+    # 添加这一行就让两个子线程变成了顺序执行
+    t1.join()
+    t2 = threading.Thread(target=plus)
+    t2.start()
+    t2.join()
+    print("主线程执行完毕后，number = %s" % number)
+
+
+# 执行结果
+子线程Thread-1运算结束后，number = 1000000
+子线程Thread-2运算结束后，number = 2000000
+主线程执行完毕后，number = 2000000
+```
+
+但是这种方法让多线程变成了单线程，属于因噎废食的做法，正确的做法是使用线程锁。即同一时刻只允许一个线程操作该数据。线程锁用于锁定资源，可以同时使用多个锁，当你需要独占某一资源时，任何一个锁都可以锁这个资源。
+
+Python 在 `threading` 模块中定义了几种线程锁类，分别是：
+
+* Lock 互斥锁
+* RLock 可重入锁
+* Semaphore 信号
+* Event 事件
+* Condition 条件
+* Barrier「阻碍」
+
+#### 1）互斥锁 Lock
+
+
+
