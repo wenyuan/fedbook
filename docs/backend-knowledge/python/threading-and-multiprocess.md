@@ -322,7 +322,7 @@ if __name__ == '__main__':
 
 #### 3）使用 queues 的 Queue 类共享数据
 
-multiprocessing 是一个包，它内部有一个 queues 模块，提供了一个 Queue 队列类，可以实现进程间的数据共享。
+multiprocessing 是一个包，它内部有一个 `queues` 模块，提供了一个 Queue 队列类，可以实现进程间的数据共享。
 
 代码示例：
 
@@ -777,5 +777,218 @@ Python 在 `threading` 模块中定义了几种线程锁类，分别是：
 
 #### 1）互斥锁 Lock
 
+同一时刻只有一个线程可以访问共享的数据。使用很简单，初始化锁对象，然后将锁当做参数传递给任务函数，在任务中加锁，使用后释放锁。
+
+```python
+import threading
+import time
+
+number = 0
+lock = threading.Lock()
 
 
+def plus(lk):
+    global number       # global 声明此处的 number 是外面的全局变量 number
+    lk.acquire()        # 开始加锁
+    for _ in range(1000000):    # 进行一个大数级别的循环加一运算
+        number += 1
+    print("子线程%s运算结束后，number = %s" % (threading.current_thread().getName(), number))
+    lk.release()        # 释放锁，让别的线程也可以访问number
+
+
+if __name__ == '__main__':
+    for i in range(2):      # 用 2 个子线程，就可以观察到脏数据
+        t = threading.Thread(target=plus, args=(lock,))  # 需要把锁当做参数传递给 plus 函数
+        t.start()
+    time.sleep(2)       # 等待 2 秒，确保 2 个子线程都已经结束运算。
+    print("主线程执行完毕后，number = ", number)
+
+
+# 执行结果
+子线程Thread-1运算结束后，number = 1000000
+子线程Thread-2运算结束后，number = 2000000
+主线程执行完毕后，number =  2000000
+```
+
+RLock 的使用方法和 Lock 一模一样，只不过它支持重入锁。该锁对象内部维护着一个 Lock 和一个 counter 对象。counter 对象记录了 acquire 的次数，使得资源可以被多次 require。最后，当所有 RLock 被 release 后，其他线程才能获取资源。在同一个线程中，`RLock.acquire()` 可以被多次调用，利用该特性，可以解决部分死锁问题。
+
+#### 2）信号 Semaphore
+
+类名：BoundedSemaphore
+
+这种锁允许一定数量的线程同时更改数据，它不是互斥锁。比如地铁安检，排队人很多，工作人员只允许一定数量的人进入安检区，其它的人继续排队。
+
+```python
+import time
+import threading
+
+
+def run(n, se):
+    se.acquire()
+    print("run the thread: %s" % n)
+    time.sleep(1)
+    se.release()
+
+
+if __name__ == '__main__':
+    # 设置允许5个线程同时运行
+    semaphore = threading.BoundedSemaphore(5)
+    for i in range(20):
+        t = threading.Thread(target=run, args=(i, semaphore))
+        t.start()
+```
+
+运行后，可以看到 5 个一批的线程被放行。
+
+#### 3）事件 Event
+
+类名：Event
+
+事件线程锁的运行机制：全局定义了一个 `Flag`，如果 `Flag` 的值为 `False`，那么当程序执行 `wait()` 方法时就会阻塞；如果 `Flag` 值为 `True`，线程不再阻塞。
+
+这种锁，类似交通红绿灯（默认是红灯），它属于在红灯的时候一次性阻挡所有线程，在绿灯的时候，**一次性放行所有**排队中的线程。
+
+事件主要提供了四个方法 `set()`、`wait()`、`clear()` 和 `is_set()`。
+
+* 调用 `clear()` 方法会将事件的 `Flag` 设置为 `False`。
+* 调用 `set()` 方法会将事件的 `Flag` 设置为 `True`。
+* 调用 `wait()` 方法将等待「红绿灯」信号。
+* `is_set()`：判断当前是否「绿灯放行」状态。
+
+下面是一个模拟红绿灯，然后汽车通行的例子：
+
+```python
+# 利用 Event 类模拟红绿灯
+import threading
+import time
+
+event = threading.Event()
+
+
+def lighter():
+    green_time = 5       # 绿灯时间
+    red_time = 5         # 红灯时间
+    event.set()          # 初始设为绿灯
+    while True:
+        print("\33[32;0m 绿灯亮...\033[0m")
+        time.sleep(green_time)
+        event.clear()
+        print("\33[31;0m 红灯亮...\033[0m")
+        time.sleep(red_time)
+        event.set()
+
+def run(name):
+    while True:
+        if event.is_set():      # 判断当前是否"放行"状态
+            print("一辆[%s] 呼啸开过..." % name)
+            time.sleep(1)
+        else:
+            print("一辆[%s]开来，看到红灯，无奈的停下了..." % name)
+            event.wait()
+            print("[%s] 看到绿灯亮了，瞬间飞起....." % name)
+
+
+if __name__ == '__main__':
+    light = threading.Thread(target=lighter,)
+    light.start()
+
+    for name in ['奔驰', '宝马', '奥迪']:
+        car = threading.Thread(target=run, args=(name,))
+        car.start()
+```
+
+#### 4）条件 Condition
+
+类名：Condition
+
+Condition 称作条件锁，依然是通过 `acquire()`/`release()` 加锁解锁。
+
+`wait([timeout])` 方法将使线程进入 Condition 的等待池等待通知，并释放锁。使用前线程必须已获得锁定，否则将抛出异常。
+
+`notify()` 方法将从等待池挑选一个线程并通知，收到通知的线程将自动调用 `acquire()` 尝试获得锁定（进入锁定池），其他线程仍然在等待池中。调用这个方法不会释放锁定。使用前线程必须已获得锁定，否则将抛出异常。
+
+`notifyAll()` 方法将通知等待池中所有的线程，这些线程都将进入锁定池尝试获得锁定。调用这个方法不会释放锁定。使用前线程必须已获得锁定，否则将抛出异常。
+
+如下示例：
+
+```python
+import threading
+import time
+
+num = 0
+con = threading.Condition()
+
+
+class Foo(threading.Thread):
+
+    def __init__(self, name, action):
+        super(Foo, self).__init__()
+        self.name = name
+        self.action = action
+
+    def run(self):
+        global num
+        con.acquire()
+        print("%s开始执行..." % self.name)
+        while True:
+            if self.action == "add":
+                num += 1
+            elif self.action == 'reduce':
+                num -= 1
+            else:
+                exit(1)
+            print("num当前为：", num)
+            time.sleep(1)
+            if num == 5 or num == 0:
+                print("暂停执行%s！" % self.name)
+                con.notify()
+                con.wait()
+                print("%s开始执行..." % self.name)
+        con.release()
+
+
+if __name__ == '__main__':
+    a = Foo("线程A", 'add')
+    b = Foo("线程B", 'reduce')
+    a.start()
+    b.start()
+```
+
+如果不强制停止，程序会一直循环执行下去。
+
+### 定时器 Timer
+
+定时器 `Timer` 类是 `threading` 模块中的一个小工具，用于指定 n 秒后执行某操作。
+
+```python
+from threading import Timer
+
+
+def hello():
+    print("hello, world")
+
+# 表示 1 秒后执行 hello 函数
+t = Timer(1, hello)
+t.start()
+```
+
+### 通过 with 语句使用线程锁
+
+所有的线程锁都有一个加锁和释放锁的动作，非常类似文件的打开和关闭。在加锁后，如果线程执行过程中出现异常或者错误，没有正常的释放锁，那么其他的线程会造到致命性的影响。通过 `with` 上下文管理器，可以确保锁被正常释放。其格式如下：
+
+```python
+with some_lock:
+    # 执行任务...
+```
+
+这相当于：
+
+```python
+some_lock.acquire()
+try:
+    # 执行任务..
+finally:
+    some_lock.release()
+```
+
+（完）
