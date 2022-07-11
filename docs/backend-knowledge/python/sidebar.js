@@ -36,32 +36,6 @@ module.exports = [
     ]
   },
   {
-    title: 'Python 高级进阶',
-    collapsable: true,
-    children: [
-      {
-        title: '切片',
-        path: '/backend-knowledge/python/slicing',
-        collapsable: true
-      },
-      {
-        title: '多线程、多进程',
-        path: '/backend-knowledge/python/threading-and-multiprocess',
-        collapsable: true
-      },
-      {
-        title: '生成器 generator',
-        path: '/backend-knowledge/python/generator',
-        collapsable: true
-      },
-      {
-        title: '迭代器 Iterator',
-        path: '/backend-knowledge/python/iterator',
-        collapsable: true
-      },
-    ]
-  },
-  {
     title: 'Python 面向对象',
     collapsable: true,
     children: [
@@ -120,6 +94,32 @@ module.exports = [
         path: '/backend-knowledge/python/singleton-pattern',
         collapsable: true
       }
+    ]
+  },
+  {
+    title: 'Python 高级进阶',
+    collapsable: true,
+    children: [
+      {
+        title: '切片',
+        path: '/backend-knowledge/python/slicing',
+        collapsable: true
+      },
+      {
+        title: '多线程、多进程',
+        path: '/backend-knowledge/python/threading-and-multiprocess',
+        collapsable: true
+      },
+      {
+        title: '生成器 generator',
+        path: '/backend-knowledge/python/generator',
+        collapsable: true
+      },
+      {
+        title: '迭代器 Iterator',
+        path: '/backend-knowledge/python/iterator',
+        collapsable: true
+      },
     ]
   },
   {
