@@ -111,6 +111,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '全局解释器锁（GIL）',
+        path: '/backend-knowledge/python/global-interpreter-lock',
+        collapsable: true
+      },
+      {
         title: '生成器 generator',
         path: '/backend-knowledge/python/generator',
         collapsable: true
