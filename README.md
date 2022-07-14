@@ -261,6 +261,7 @@
   - [组合查询语法](https://fedbook.cn/basic-skills/elasticsearch/compound-query/)
   - [搜索词自动补全语法](https://fedbook.cn/basic-skills/elasticsearch/suggester-query/)
   - [统计语法：聚合查询](https://fedbook.cn/basic-skills/elasticsearch/aggregations/)
+  - [嵌套类型和父子文档](https://fedbook.cn/basic-skills/elasticsearch/nested-and-join/)
   - **Elasticsearch 日常运维**
   - [ES 的安装](https://fedbook.cn/basic-skills/elasticsearch/installation-of-elasticsearch/)
   - [集群管理 API](https://fedbook.cn/basic-skills/elasticsearch/cluster-manage-apis/)

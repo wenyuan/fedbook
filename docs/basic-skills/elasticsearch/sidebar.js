@@ -37,6 +37,11 @@ module.exports = [
         title: '统计语法：聚合查询',
         path: '/basic-skills/elasticsearch/aggregations',
         collapsable: true
+      },
+      {
+        title: '嵌套类型和父子文档',
+        path: '/basic-skills/elasticsearch/nested-and-join',
+        collapsable: true
       }
     ]
   },
