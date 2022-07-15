@@ -329,6 +329,7 @@
   - [函数装饰器](https://fedbook.cn/backend-knowledge/python/function-decorators/)
   - [错误和异常](https://fedbook.cn/backend-knowledge/python/try-exception/)
   - [类型提示 Type Hints](https://fedbook.cn/backend-knowledge/python/type-hints/)
+  - [类型提示增强：typing 模块](https://fedbook.cn/backend-knowledge/python/typing-for-type-hints/)
   - **Python 面向对象**
   - [面向对象编程](https://fedbook.cn/backend-knowledge/python/oop/)
   - [类和实例](https://fedbook.cn/backend-knowledge/python/class-and-instance/)

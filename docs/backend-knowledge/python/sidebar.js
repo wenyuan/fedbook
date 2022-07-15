@@ -42,6 +42,11 @@ module.exports = [
         title: '类型提示 Type Hints',
         path: '/backend-knowledge/python/type-hints',
         collapsable: true
+      },
+      {
+        title: '类型提示增强：typing 模块',
+        path: '/backend-knowledge/python/typing-for-type-hints',
+        collapsable: true
       }
     ]
   },

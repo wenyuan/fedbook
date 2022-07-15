@@ -84,7 +84,7 @@ user_info: Dict[str, float] = {'score': 99}
 
 ```python
 # 以前的写法
-def add_func(a, b):
+def add(a, b):
     """
     :param a: int
     :param b: int
@@ -93,7 +93,7 @@ def add_func(a, b):
     return a + b
 
 # 现在的写法
-def add_func(b:int, a:int) -> int:
+def add(b:int, a:int) -> int:
     return a + b
 ```
 
