@@ -37,6 +37,11 @@ module.exports = [
         title: '错误和异常',
         path: '/backend-knowledge/python/try-exception',
         collapsable: true
+      },
+      {
+        title: '类型提示 Type Hints',
+        path: '/backend-knowledge/python/type-hints',
+        collapsable: true
       }
     ]
   },
