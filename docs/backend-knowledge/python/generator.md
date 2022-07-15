@@ -24,7 +24,38 @@ print(type(L))
 <class 'generator'>
 ```
 
-只要把一个列表生成式的 `[]` 改成 `()` ，就创建了一个 generator。
+只要把一个**列表生成式**的 `[]` 改成 `()` ，就创建了一个 generator。
+
+::: tip 列表生成式
+可以理解为一种生成列表的简易写法，它跟用 for 循环生成列表是一样的效果。
+* 一般写法
+  ```python
+  res = [i * i for i in range(11)]
+  ```
+* 带 if 条件
+  ```python
+  res = [i * i for i in range(11) if i % 2 == 0]
+  ```
+* 双重循环
+  ```python
+  res = [i + j for i in range(5) for j in range(6, 11)]
+  ```
+* 多个变量
+  ```python
+  obj = {'name': '张三', 'age': '13'}
+  res = [(k, v) for k, v in obj.items()]
+  ```
+* 包含函数
+  ```python
+  lis = ['Hello', 'World', 'Java', 'Python']
+  res = [s.lower() for s in lis]
+  ```
+* 包含 if...else
+  ```python
+  # 要将 if...else 放在前面写
+  res = [i if i % 2 == 0 else "奇数" for i in range(11)]
+  ```
+:::
 
 ## 打印生成器的元素
 
