@@ -12,11 +12,11 @@ Python 内置了一套 try...except 的异常处理机制，来帮助我们进�
 
 ```python
 try:
-    pass
+    ...
 except AttributeError as e:
-    pass
+    ...
 except ValueError as e:
-    pass
+    ...
 ```
 
 其工作顺序是：
@@ -35,11 +35,11 @@ except ValueError as e:
 import sys
 
 try:
-    pass
+    ...
 except OSError as e:
-    pass
+    ...
 except ValueError as e:
-    pass
+    ...
 except:
     print("Unexpected error:", sys.exc_info()[0])
     raise
@@ -59,11 +59,11 @@ finally 里面的代码块，无论是否报异常都会执行：
 import sys
 
 try:
-    pass
+    ...
 except OSError as e:
-    pass
+    ...
 except ValueError as e:
-    pass
+    ...
 except:
     print("Unexpected error:", sys.exc_info()[0])
     raise
