@@ -32,6 +32,11 @@ module.exports = [
         title: '函数装饰器',
         path: '/backend-knowledge/python/function-decorators',
         collapsable: true
+      },
+      {
+        title: '错误和异常',
+        path: '/backend-knowledge/python/try-exception',
+        collapsable: true
       }
     ]
   },
