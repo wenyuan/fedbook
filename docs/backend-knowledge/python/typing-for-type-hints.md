@@ -126,4 +126,127 @@ t2: Tuple[Dict[str, str], ...] = ({"name": "张三"}, {"age": "13"})
 
 ## 类型别名
 
+可以给复杂的类型给个别名，这样使用起来方便一些。
 
+变量的例子：
+
+```python
+from typing import List
+
+# 别名
+vector = List[float]
+
+var: vector = [1.1, 2.2]
+# 等价写法
+var: List[float] = [1.1, 2.2]
+```
+
+函数的例子：
+
+```python
+from typing import List, Dict
+
+# float 组成的列表别名
+vector_list_es = List[float]
+# 字典别名
+vector_dict = Dict[str, vector_list_es]
+# 字典组成列表别名
+vector_list = List[vector_dict]
+
+# vector_list 等价写法，不用别名的话，有点像套娃
+vector = List[Dict[str, List[float]]]
+
+# 函数
+def scale(scalar: float, vector: vector_list) -> vector_list:
+    for item in vector:
+        for key, value in item.items():
+            item[key] = [scalar * num for num in value]
+    print(vector)
+    return vector
+
+# 调用函数
+scale(2.2, [{"a": [1, 2, 3]}, {"b": [4, 5, 6]}])
+
+
+# 输出结果
+[{'a': [2.2, 4.4, 6.6000000000000005]}, {'b': [8.8, 11.0, 13.200000000000001]}]
+```
+
+实际应用举例：
+
+```python
+from typing import Dict, Tuple
+
+# 更接近实际应用的栗子
+ConnectionOptions = Dict[str, str]
+Address = Tuple[str, int]
+Server = Tuple[Address, ConnectionOptions]
+
+
+def broadcast_message(message: str, servers: Server) -> None:
+    print(message, servers)
+
+
+# 调用函数
+message = "发送服务器消息"
+servers = (("127.0.0.1", 127), {"name": "测试服务器"})
+broadcast_message(message, servers)
+
+
+# 输出结果
+发送服务器消息 (('127.0.0.1', 127), {'name': '测试服务器'})
+```
+
+## NewType
+
+可以自定义创建一个新类型：
+
+* 主要用于类型检查
+* `NewType(name, tp)` 返回一个函数，这个函数返回其原本的值
+* 静态类型检查器会将新类型看作是原始类型的一个子类
+* `tp` 就是原始类型
+
+代码举例：
+
+```python
+from typing import NewType
+
+UserId = NewType('UserId', int)
+
+
+def name_by_id(user_id: UserId):
+    print(user_id)
+
+
+# 测试一下
+UserId('user')   # Expected type 'int', got 'str' instead
+num = UserId(5)  # type: int
+
+name_by_id(42)          # Expected type 'UserId', got 'int' instead
+name_by_id(UserId(42))  # OK
+
+print(type(UserId(5)))
+
+
+# 输出结果
+42
+42
+<class 'int'>
+```
+
+可以看到 `UserId` 其实也是 int 类型。
+
+使用 `UserId` 类型做算术运算，得到的是 int 类型数据：
+
+```python
+# 'output' is of type 'int', not 'UserId'
+output = UserId(23413) + UserId(54341)
+print(output)
+print(type(output))
+
+# 输出结果
+77754
+<class 'int'>
+```
+
+## Callable
