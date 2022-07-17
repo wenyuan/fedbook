@@ -250,3 +250,70 @@ print(type(output))
 ```
 
 ## Callable
+
+这是一个可调用对象类型。
+
+查看对象是否可调用（函数是可调用的，变量不是可调用对象）：
+
+```python
+# 返回 True 或 False
+isinstance(对象, Callable)    
+```
+
+Callable 作为函数参数用法举例：
+
+```python
+def print_name(name: str):
+    print(name)
+
+
+# Callable 作为函数参数使用，其实只是做一个类型检查的作用，检查传入的参数值 get_func 是否为可调用对象
+def get_name(get_func: Callable[[str], None]):
+    return get_func
+
+# 调用函数
+vars = get_name(print_name)
+vars("test 1")
+
+
+# 等价写法，其实就是将函数作为参数传入
+def get_name_test(func):
+    return func
+
+# 调用函数
+vars2 = get_name_test(print_name)
+vars2("test 2")
+
+
+# 输出结果
+test 1
+test 2
+```
+
+Callable 作为函数返回值用法举例：
+
+```python
+# Callable 作为函数返回值使用，其实只是做一个类型检查的作用，看看返回值是否为可调用对象
+def get_name_return() -> Callable[[str], None]:
+    return print_name
+
+# 调用函数
+vars = get_name_return()
+vars("test 1")
+
+
+# 等价写法，相当于直接返回一个函数对象
+def get_name_test():
+    return print_name
+
+# 调用函数
+vars2 = get_name_test()
+vars2("test 2")
+
+
+# 输出结果
+test 1
+test 2
+```
+
+## TypeVar 泛型
