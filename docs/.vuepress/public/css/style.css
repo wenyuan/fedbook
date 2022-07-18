@@ -282,6 +282,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: -10px;
 }
 
+.theme-default-content.content__default blockquote div .line-numbers-wrapper {
+  margin-top: 0;
+}
+
 /* sidebar */
 .sidebar-heading.clickable.active {
   font-weight: bold !important;
