@@ -323,6 +323,7 @@
   - **Python 基础知识**
   - [编译器与解释器](https://fedbook.cn/backend-knowledge/python/compiler-and-interpreter/)
   - [语法规范](https://fedbook.cn/backend-knowledge/python/grammar/)
+  - [PEP8 风格](https://fedbook.cn/backend-knowledge/python/pep-0008/)
   - [变量与常量](https://fedbook.cn/backend-knowledge/python/variables-and-constants/)
   - [数据类型](https://fedbook.cn/backend-knowledge/python/data-types/)
   - [函数参数](https://fedbook.cn/backend-knowledge/python/function-params/)

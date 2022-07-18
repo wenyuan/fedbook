@@ -14,6 +14,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: 'PEP8 风格',
+        path: '/backend-knowledge/python/pep-0008',
+        collapsable: true
+      },
+      {
         title: '变量与常量',
         path: '/backend-knowledge/python/variables-and-constants',
         collapsable: true
