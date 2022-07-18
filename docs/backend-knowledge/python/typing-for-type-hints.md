@@ -1,4 +1,4 @@
-# 类型提示增强：typing 模块
+# 类型提示进阶：typing 模块
 
 [typing 模块](https://github.com/python/cpython/blob/main/Lib/typing.py)为类型提示（Type Hints）提供运行时支持，从 Python 3.5 版本开始被作为标准库引入。
 
@@ -317,3 +317,224 @@ test 2
 ```
 
 ## TypeVar 泛型
+
+任意类型：
+
+```python
+# 可以是任意类型
+T = TypeVar('T')
+
+def test(name: T) -> T:
+    print(name)
+    return name
+
+# 调用函数
+test(11)
+test("aa")
+
+
+# 输出结果
+11
+aa
+```
+
+指定类型：
+
+```python
+# 可以是 int，也可以是 str 类型
+AA = TypeVar('AA', int, str)
+
+# 使用 AA 类型
+num1: AA = 1
+num2: AA = "123"
+print(num1, num2)
+
+num3: AA = []  # Expected type 'AA', got 'list' instead
+
+
+# 输出结果
+1 123
+```
+
+自定义泛型类（目前 Python 中用的不多）：
+
+```python
+# 自定义泛型
+from typing import Generic
+
+T = TypeVar('T')
+
+
+class UserInfo(Generic[T]):  # 继承 Generic[T]，UserInfo[T] 也就是有效类型
+    def __init__(self, v: T):
+        self.v = v
+
+    def get(self):
+        return self.v
+
+
+l = UserInfo("张三")
+
+print(l.get())
+
+
+# 输出结果
+张三
+```
+
+## Any Type
+
+Any 是一种特殊的类型，静态类型检查器会将每种类型都视为与 Any 兼容，将 Any 视为与每种类型兼容。
+
+```python
+# Any
+from typing import Any
+
+a = None  # type: Any
+a1 = []  # OK
+a2 = 2  # OK
+
+s = ''  # type: str
+s1 = a  # OK
+
+
+def foo(item: Any) -> int:
+    # Typechecks; 'item' 可以是任意类型
+    print(item)
+    return 1
+
+
+# 调用函数
+foo(a)
+foo(a1)
+foo(a2)
+foo(s)
+foo(s1)
+```
+
+隐式使用 Any：
+
+```python
+def legacy_parser(text):
+    ...
+    return data
+
+# 上述写法等价于下述写法
+# 所有没有返回类型或参数类型的函数将隐式默认使用 Any
+
+def legacy_parser(text: Any) -> Any:
+    ...
+    return data
+```
+
+## Union
+
+联合类型，`Union[int, str]` 表示既可以是 `int`，也可以是 `str`。
+
+```python
+from typing import Union
+
+# vars 变量可以是 int 也可以是 str 类型
+vars: Union[int, str]
+vars = 1
+vars = '123'
+
+# 如果赋值成其他的会有 warning
+vars = []  # Expected type 'Union[int, str]', got 'list' instead
+```
+
+等价写法：
+
+```python
+vars: Union[int, str]
+# 等价于
+vars: [int or str]
+
+vars: Union[int]
+# 等价于
+vars: int
+```
+
+细节注意点：
+
+```python
+# 最终 Union[int] 返回的也是 int 类型
+Union[int] == int
+
+# 重复的类型参数会自动忽略掉
+Union[int, str, int] == Union[int, str]
+
+# 自动忽略类型参数顺序
+Union[int, str] == Union[str, int]
+
+# union 嵌套 union 会自动解包
+Union[Union[int, str], float] == Union[int, str, float]
+```
+
+## Optional
+
+可选类型。
+
+和默认参数有什么不一样？
+
+* 官方原话：可选参数具有默认值，具有默认值的可选参数不需要在其类型批注上使用 Optional，因为它是可选的
+* 不过 Optional 和默认参数其实没啥实质上的区别，只是写法不同
+* 使用 Optional 是为了让 IDE 识别到该参数有一个类型提示，可以传指定的类型和 None，且参数是可选非必传的
+
+```python
+# 可选参数
+def foo(arg: int = 0) -> None:
+    ...
+
+# 不传 arg 默认取 0
+foo()
+```
+
+重点：
+
+* `Optional[int]` 等价于 `Union[int, None]`
+* 意味着：既可以传指定的类型 `int`，也可以传 `None`
+
+```python
+def foo_func(arg: Optional[int] = None):
+    print(arg)
+
+# 调用函数
+foo_func()
+foo_func(1)
+
+# 输出结果
+None
+1
+```
+
+使用默认参数的写法（这种写法，Pycharm 并不会 warning）：
+
+```python
+def foo_func(arg: int = None):
+    print(arg)
+
+# 调用函数
+foo_func()
+foo_func(1)
+
+
+# 输出结果
+None
+1
+```
+
+`Optional[]` 里面只能写一个数据类型：
+
+```python
+# 正确
+Optional[str]
+Optional[List[str]]
+Optional[Dict[str, Any]]
+
+# 错误
+Optional[str, int]
+Optional[Union[str, int, float]]
+```
+
+（完）
