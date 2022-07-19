@@ -255,6 +255,7 @@
 - [Elasticsearch](https://fedbook.cn/basic-skills/elasticsearch/)
   - **Elasticsearch 基础知识**
   - [ES 中的概念与名词](https://fedbook.cn/basic-skills/elasticsearch/concepts-and-noun/)
+  - [正排索引与倒排索引](https://fedbook.cn/basic-skills/elasticsearch/forward-and-inverted-index/)
   - [文档基本操作](https://fedbook.cn/basic-skills/elasticsearch/document-crud/)
   - [全文搜索语法](https://fedbook.cn/basic-skills/elasticsearch/match-query/)
   - [Term 查询语法](https://fedbook.cn/basic-skills/elasticsearch/term-query/)

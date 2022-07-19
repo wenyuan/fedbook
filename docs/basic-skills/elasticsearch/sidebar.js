@@ -9,6 +9,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: '正排索引与倒排索引',
+        path: '/basic-skills/elasticsearch/forward-and-inverted-index',
+        collapsable: true
+      },
+      {
         title: '文档基本操作',
         path: '/basic-skills/elasticsearch/document-crud',
         collapsable: true
