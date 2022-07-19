@@ -1,24 +1,23 @@
 window.onload = function() {
   function webLocation() {
-    console.log(navigator.language)
     // 只在首页做判断吧
     if (window.location.pathname !== '/') {
       return
     }
     // 判断浏览器的首选语言
     let protocol = 'https://'
-    let enDomain = 'wenyuan.github.io'
+    let cnDomain = 'www.fedbook.cn'
     let language = navigator.language
     let host = window.location.host
     let urlRelativePath = getUrlRelativePath()
     // 国内的也跳一下弹窗吧（纯属好玩）
     if (language === 'zh-CN') {
-      if (host !== enDomain) {
+      if (host !== cnDomain) {
         swal('提示', '建议国外用户访问部署在 GitHub Pages 的站点(速度可能会快一些)，是否跳转？', {
           buttons: ['取消', '确定'],
         }).then(value => {
           if (value) {
-            location.href = protocol + enDomain + urlRelativePath
+            location.href = protocol + cnDomain + urlRelativePath
           }
         })
       }
