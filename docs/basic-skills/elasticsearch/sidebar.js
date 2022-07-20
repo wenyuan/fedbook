@@ -47,6 +47,11 @@ module.exports = [
         title: '嵌套类型和父子文档',
         path: '/basic-skills/elasticsearch/nested-and-join',
         collapsable: true
+      },
+      {
+        title: '分词器的原理和使用',
+        path: '/basic-skills/elasticsearch/analyzer',
+        collapsable: true
       }
     ]
   },
