@@ -238,7 +238,7 @@ The removed `inject` wasn't generaly useful for directives so there should be no
 
 关于什么时候提交一次：
 
-每次你写完一个功能的时候，就应该做一次提交（这个提交是提交到本地的 Git 库中）。
+每次你写完一个功能的时候，就应该做一次 commit 提交（这个提交是提交到本地的 Git 库中）。
 
 当然，这里的写完表示的是你的这个功能是没有问题的。
 
