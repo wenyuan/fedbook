@@ -125,9 +125,9 @@ Python 内置了很多的异常类，并且这些类都是从 `BaseException` �
 class MyException(Exception):
 
     def __init__(self, message):
-        '''
+        """
         :param message: 异常信息
-        '''
+        """
         self.message = message
 
     # override
