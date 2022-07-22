@@ -83,6 +83,11 @@ module.exports = [
         title: '定义字段类型：Mapping',
         path: '/basic-skills/elasticsearch/mapping',
         collapsable: true
+      },
+      {
+        title: '索引模板：Index Template',
+        path: '/basic-skills/elasticsearch/index-template',
+        collapsable: true
       }
     ]
   }
