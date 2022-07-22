@@ -264,6 +264,7 @@
   - [统计语法：聚合查询](https://fedbook.cn/basic-skills/elasticsearch/aggregations/)
   - [嵌套类型和父子文档](https://fedbook.cn/basic-skills/elasticsearch/nested-and-join/)
   - [分词器的原理和使用](https://fedbook.cn/basic-skills/elasticsearch/analyzer/)
+  - [分页查询的三种语法](https://fedbook.cn/basic-skills/elasticsearch/paging-query/)
   - **Elasticsearch 日常运维**
   - [ES 的安装](https://fedbook.cn/basic-skills/elasticsearch/installation-of-elasticsearch/)
   - [集群管理 API](https://fedbook.cn/basic-skills/elasticsearch/cluster-manage-apis/)

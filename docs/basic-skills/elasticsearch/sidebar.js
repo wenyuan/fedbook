@@ -52,6 +52,11 @@ module.exports = [
         title: '分词器的原理和使用',
         path: '/basic-skills/elasticsearch/analyzer',
         collapsable: true
+      },
+      {
+        title: '分页查询的三种语法',
+        path: '/basic-skills/elasticsearch/paging-query',
+        collapsable: true
       }
     ]
   },
