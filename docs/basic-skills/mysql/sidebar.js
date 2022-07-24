@@ -14,6 +14,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: 'MySQL 库和表的基本操作',
+        path: '/basic-skills/mysql/database-and-table-operations',
+        collapsable: true
+      },
+      {
         title: 'MySQL 主键和自增 ID',
         path: '/basic-skills/mysql/primary-key-and-increment-id',
         collapsable: true
