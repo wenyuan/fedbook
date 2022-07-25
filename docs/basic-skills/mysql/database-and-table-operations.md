@@ -140,7 +140,7 @@ CREATE TABLE 表名 (
 
 #### 创建两个实际的表
 
-先创建一个学生表（`student_info`）：
+先创建一个学生基本信息表（`student_info`）：
 
 ```sql
 CREATE TABLE student_info (
