@@ -19,6 +19,11 @@ module.exports = [
         collapsable: true
       },
       {
+        title: 'MySQL 表中列的属性',
+        path: '/basic-skills/mysql/column-properties',
+        collapsable: true
+      },
+      {
         title: 'MySQL 主键和自增 ID',
         path: '/basic-skills/mysql/primary-key-and-increment-id',
         collapsable: true
