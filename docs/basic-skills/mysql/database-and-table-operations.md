@@ -140,7 +140,7 @@ CREATE TABLE 表名 (
 
 #### 创建两个实际的表
 
-先创建一个学生基本信息表（`student_info`）：
+先创建一个学生信息表（`student_info`）：
 
 ```sql
 CREATE TABLE student_info (
@@ -151,7 +151,7 @@ CREATE TABLE student_info (
     department VARCHAR(30),
     major VARCHAR(30),
     enrollment_time DATE
-) COMMENT '学生基本信息表';
+) COMMENT '学生信息表';
 ```
 
 这张表有如下字段：
