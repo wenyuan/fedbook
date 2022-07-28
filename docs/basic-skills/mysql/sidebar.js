@@ -24,8 +24,8 @@ module.exports = [
         collapsable: true
       },
       {
-        title: 'MySQL 主键和自增 ID',
-        path: '/basic-skills/mysql/primary-key-and-increment-id',
+        title: 'MySQL 插入与查询语句',
+        path: '/basic-skills/mysql/insert-and-query',
         collapsable: true
       }
     ]
@@ -37,6 +37,11 @@ module.exports = [
       {
         title: 'MySQL 的安装与卸载',
         path: '/basic-skills/mysql/installation-of-mysql',
+        collapsable: true
+      },
+      {
+        title: 'MySQL 主键和自增 ID',
+        path: '/basic-skills/mysql/primary-key-and-increment-id',
         collapsable: true
       },
       {

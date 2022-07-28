@@ -243,9 +243,10 @@
   - [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
   - [MySQL 库和表的基本操作](https://fedbook.cn/basic-skills/mysql/database-and-table-operations/)
   - [MySQL 表中列的属性](https://fedbook.cn/basic-skills/mysql/column-properties/)
-  - [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)
+  - [MySQL 插入与查询语句](https://fedbook.cn/basic-skills/mysql/insert-and-query/)
   - **MySQL 日常运维**
   - [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
+  - [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)
   - [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
   - 其它知识点，待后续继续补充
 - [Redis](https://fedbook.cn/basic-skills/redis/)
