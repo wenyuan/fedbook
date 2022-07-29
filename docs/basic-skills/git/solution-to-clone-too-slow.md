@@ -34,7 +34,7 @@ error: RPC failed; curl 18 transfer closed with outstanding read data remaining
 ```bash
 # 使用 http 协议(推荐)
 git config --global http.proxy 127.0.0.1:1081
-# 或使用 socks 协议(不推荐, 忘记会有什么坑了)
+# 或使用 socks 协议(不推荐，忘记会有什么坑了)
 git config --global http.proxy socks5://127.0.0.1:1080
 ```
 
@@ -43,7 +43,7 @@ git config --global http.proxy socks5://127.0.0.1:1080
 ```bash
 # 使用 http 协议(推荐)
 git config --local http.proxy 127.0.0.1:1081
-# 或使用 socks 协议(不推荐, 忘记会有什么坑了)
+# 或使用 socks 协议(不推荐，忘记会有什么坑了)
 git config --local http.proxy socks5://127.0.0.1:1080
 ```
 
@@ -52,7 +52,7 @@ git config --local http.proxy socks5://127.0.0.1:1080
 ```bash
 # 使用 http 协议(推荐)
 git config --global http.https://github.com.proxy 127.0.0.1:1081
-# 或使用 socks 协议(不推荐, 忘记会有什么坑了)
+# 或使用 socks 协议(不推荐，忘记会有什么坑了)
 git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 ```
 
@@ -105,7 +105,7 @@ git config --global --unset http.https://github.com.proxy
 网上很多文章多 clone 过慢或 push 时因为文件过大导致报错时，可以调整 Git 的传输缓存：
 
 ```bash
-# Git 默认设置 http post 的缓存为 1M, 很多文章建议调大一点, 例如 500M。
+# Git 默认设置 http post 的缓存为 1M，很多文章建议调大一点，例如 500M。
 git config --global http.postBuffer 524288000
 ```
 

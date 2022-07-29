@@ -27,7 +27,7 @@ Git 支持 https 和 git 两种传输协议，例如在 GitHub 在 clone 代码�
 ```
 ├── id_rsa       # 私钥
 ├── id_rsa.pub   # 公钥
-└── known_hosts  # 记录每个你访问过的计算机的公钥(public key), 防止 DNS 攻击
+└── known_hosts  # 记录每个你访问过的计算机的公钥(public key)，防止 DNS 攻击
 ```
 
 ### 添加公钥到自己的远程仓库（GitHub）

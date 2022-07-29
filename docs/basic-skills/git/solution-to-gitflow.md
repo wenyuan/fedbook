@@ -18,7 +18,7 @@ git checkout -b develop
 
 # 初始化项目
 echo '# 个人博客' > README.md
-# 创建 .gitignore 文件, 用于忽略一些临时文件或自动编译生成文件
+# 创建 .gitignore 文件，用于忽略一些临时文件或自动编译生成文件
 touch .gitignore
 # ...
 git add .
@@ -38,7 +38,7 @@ git clone https://github.com/[your-github-id]/blog.git
 # (我)切换到 develop 分支
 git checkout develop
 
-# (我)创建功能分支, 功能分支是从开发分支分叉出去的
+# (我)创建功能分支，功能分支是从开发分支分叉出去的
 git checkout -b feature/role
 
 # (我)现在可以愉快地开发新功能了
@@ -65,7 +65,7 @@ git checkout -b release/v0.1.0
 git push -u origin release/v0.1.0
 ```
 
-我们已经开始新的功能了，突然间测试报了个 bug, 我得优先处理这个 bug：
+我们已经开始新的功能了，突然间测试报了个 bug，我得优先处理这个 bug：
 
 ```bash
 # 但是(我)在切换分支时报了个错:
@@ -134,7 +134,7 @@ git merge bug/B20220212
 git tag -a v0.1.1 -m "紧急修复xxxbug"
 git push
 
-# 合并到开发分支, 因为开发分支同样有这个 bug
+# 合并到开发分支，因为开发分支同样有这个 bug
 git checkout develop
 git merge bug/B20220212
 git push
