@@ -7,12 +7,12 @@ action:
 - text: 进入小册 →
   link: /style-guide/document/
 features:
-- title: 人生四戒
-  details: 毋意、毋必、毋固、毋我。
-- title: 持之以恒
-  details: 流水不争先，争的是滔滔不绝。
-- title: 终身学习
-  details: 一年之计，莫如树谷；十年之计，莫如树木；终身之计，莫如树人。
+- title: 夯实基础
+  details: 不积跬步无以至千里，仰望星空更要脚踏实地。
+- title: 构建体系
+  details: 告别碎片化学习方式，构建出自己的知识体系。
+- title: 综合技能
+  details: 以前端开发的视角展开，兼顾后端与运维知识。
 footer: MIT Licensed | Copyright © 2018-present Wenyuan Xu
 copyrightText: false
 ---
