@@ -29,17 +29,17 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '简单查询语句',
+        title: '简单查询语法',
         path: '/basic-skills/mysql/simple-query',
         collapsable: true
       },
       {
-        title: '带搜索条件的查询语句',
+        title: '条件查询语法',
         path: '/basic-skills/mysql/query-by-search-conditions',
         collapsable: true
       },
       {
-        title: '表达式和函数的使用',
+        title: '表达式和函数',
         path: '/basic-skills/mysql/expressions-and-functions',
         collapsable: true
       }
