@@ -14,18 +14,23 @@ module.exports = [
         collapsable: true
       },
       {
-        title: 'MySQL 库和表的基本操作',
+        title: '库和表的基本操作',
         path: '/basic-skills/mysql/database-and-table-operations',
         collapsable: true
       },
       {
-        title: 'MySQL 表中列的属性',
+        title: '表中列的属性',
         path: '/basic-skills/mysql/column-properties',
         collapsable: true
       },
       {
-        title: 'MySQL 插入与查询语句',
+        title: '插入与查询语句',
         path: '/basic-skills/mysql/insert-and-query',
+        collapsable: true
+      },
+      {
+        title: '带搜索条件的查询语句',
+        path: '/basic-skills/mysql/query-by-search-conditions',
         collapsable: true
       }
     ]
