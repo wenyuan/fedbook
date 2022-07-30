@@ -19,13 +19,18 @@ module.exports = [
         collapsable: true
       },
       {
-        title: '表中列的属性',
+        title: '表中列的基本属性',
         path: '/basic-skills/mysql/column-properties',
         collapsable: true
       },
       {
-        title: '插入与查询语句',
-        path: '/basic-skills/mysql/insert-and-query',
+        title: '数据的增删改',
+        path: '/basic-skills/mysql/data-insert-delete-update',
+        collapsable: true
+      },
+      {
+        title: '简单查询语句',
+        path: '/basic-skills/mysql/simple-query',
         collapsable: true
       },
       {

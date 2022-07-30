@@ -240,8 +240,9 @@
   - [MySQL 数据类型](https://fedbook.cn/basic-skills/mysql/data-types/)
   - [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
   - [库和表的基本操作](https://fedbook.cn/basic-skills/mysql/database-and-table-operations/)
-  - [表中列的属性](https://fedbook.cn/basic-skills/mysql/column-properties/)
-  - [插入与查询语句](https://fedbook.cn/basic-skills/mysql/insert-and-query/)
+  - [表中列的基本属性](https://fedbook.cn/basic-skills/mysql/column-properties/)
+  - [数据的增删改](https://fedbook.cn/basic-skills/mysql/data-insert-delete-update/)
+  - [简单查询语句](https://fedbook.cn/basic-skills/mysql/simple-query/)
   - [带搜索条件的查询语句](https://fedbook.cn/basic-skills/mysql/query-by-search-conditions/)
   - **MySQL 日常运维**
   - [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
