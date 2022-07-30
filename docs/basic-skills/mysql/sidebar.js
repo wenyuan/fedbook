@@ -37,6 +37,11 @@ module.exports = [
         title: '带搜索条件的查询语句',
         path: '/basic-skills/mysql/query-by-search-conditions',
         collapsable: true
+      },
+      {
+        title: '表达式和函数的使用',
+        path: '/basic-skills/mysql/expressions-and-functions',
+        collapsable: true
       }
     ]
   },

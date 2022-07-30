@@ -244,6 +244,7 @@
   - [数据的增删改](https://fedbook.cn/basic-skills/mysql/data-insert-delete-update/)
   - [简单查询语句](https://fedbook.cn/basic-skills/mysql/simple-query/)
   - [带搜索条件的查询语句](https://fedbook.cn/basic-skills/mysql/query-by-search-conditions/)
+  - [表达式和函数的使用](https://fedbook.cn/basic-skills/mysql/expressions-and-functions/)
   - **MySQL 日常运维**
   - [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
   - [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)
