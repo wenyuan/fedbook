@@ -47,6 +47,11 @@ module.exports = [
         title: '分组查询语法',
         path: '/basic-skills/mysql/group-query',
         collapsable: true
+      },
+      {
+        title: '子查询语法',
+        path: '/basic-skills/mysql/sub-query',
+        collapsable: true
       }
     ]
   },
