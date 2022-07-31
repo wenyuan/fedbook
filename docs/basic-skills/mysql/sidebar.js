@@ -42,6 +42,11 @@ module.exports = [
         title: '表达式和函数',
         path: '/basic-skills/mysql/expressions-and-functions',
         collapsable: true
+      },
+      {
+        title: '分组查询语法',
+        path: '/basic-skills/mysql/group-query',
+        collapsable: true
       }
     ]
   },
