@@ -1,6 +1,6 @@
 # 数据的增删改
 
-> 这一篇创建了两张表：学生信息表和学生成绩表，并都插入了一些模拟数据。后面的查询相关的文章也会用到这些数据。
+> 这一篇里创建的两张表：学生信息表和学生成绩表，以及里面插入的一些模拟数据，在后面的查询相关文章里也会用到。
 
 数据库的表里得先有数据之后查询才有意义，所以这里先整理各种对表中数据的操作，包括插入数据、删除数据和更新数据。
 
@@ -76,13 +76,13 @@ INSERT INTO 表名(列1,列2, ...) VAULES
   ```sql
   INSERT INTO student_score (number, subject, score) VALUES 
   (20220101, '高等数学', 78),
-  (20220101, '线性代数', 88),
-  (20220102, '复变函数与积分', 87),
-  (20220102, '大学英语', 95),
-  (20220103, '大学物理', 75),
-  (20220103, '数据结构与算法', 92),
-  (20220104, '操作系统', 72),
-  (20220104, '体育选修课', 56);
+  (20220101, '大学英语', 88),
+  (20220102, '高等数学', 100),
+  (20220102, '大学英语', 98),
+  (20220103, '高等数学', 59),
+  (20220103, '大学英语', 61),
+  (20220104, '高等数学', 55),
+  (20220104, '大学英语', 46);
   ```
 
 ::: tip 小贴士
@@ -108,9 +108,9 @@ INSERT INTO 表名(列1,列2, ...) VAULES
 INSERT INTO second_table(column_a, column_b) SELECT first_column, second_column FROM first_table WHERE first_column < 5;
 ```
 
-把这条 INSERT 语句分成两部分来理解就是：先执行查询语句，然后把查询语句得到的结果集插入到指定的表中。
+把这条 `INSERT` 语句分成两部分来理解就是：先执行查询语句，然后把查询语句得到的结果集插入到指定的表中。
 
-有一个注意点：INSERT 语句指定的列要和查询语句中指定的列一一对应。
+有一个注意点：`INSERT` 语句指定的列要和查询语句中指定的列一一对应。
 
 ### INSERT IGNORE
 
@@ -124,7 +124,7 @@ INSERT INTO second_table(column_a, column_b) SELECT first_column, second_column 
 就可以用到 `INSERT IGNORE` 语法：
 
 ```sql
-INSERT IGNORE INTO first_table(first_column, second_column) VALUES (10001, '张星星') ;
+INSERT IGNORE INTO first_table(first_column, second_column) VALUES (10001, '榴莲味的冰淇淋') ;
 ```
 
 对于批量插入的情况，`INSERT IGNORE` 同样适用，会将符合唯一性条件的数据全部插入，忽略不符合要求的数据。
@@ -136,17 +136,17 @@ INSERT IGNORE INTO first_table(first_column, second_column) VALUES (10001, '张�
 这时就要用到 `INSERT ... ON DUPLICATE KEY UPDATE ...` 的语法：
 
 ```sql
-INSERT INTO first_table (first_column, second_column) VALUES (10001, '张星星') ON DUPLICATE KEY UPDATE second_column = '张星星';
+INSERT INTO first_table (first_column, second_column) VALUES (10001, '榴莲味的冰淇淋') ON DUPLICATE KEY UPDATE second_column = '榴莲味的冰淇淋';
 ```
 
-这个语句的意思就是，对于要插入的数据 `(10001, '张星星')` 来说，如果表中已经存在 `first_column` 的列值为 `10001` 的记录（因为 `first_column` 列具有 `UNIQUE` 约束），那么就把该记录的 `second_column` 列更新为 `'张星星'`。
+这个语句的意思就是，对于要插入的数据 `(10001, '榴莲味的冰淇淋')` 来说，如果表中已经存在 `first_column` 的列值为 `10001` 的记录（因为 `first_column` 列具有 `UNIQUE` 约束），那么就把该记录的 `second_column` 列更新为 `'榴莲味的冰淇淋'`。
 
 在批量插入大量记录的时候这条语句怎么写呢？我们可以使用 `VALUES(列名)` 的形式来引用待插入记录中对应列的值，如下所示：
 
 ```sql
 INSERT INTO first_table (first_column, second_column) VALUES 
-(10002, '王二狗'), 
-(10003, '陈珊珊') ON DUPLICATE KEY UPDATE second_column = VALUES(second_column);
+(10002, '菠萝味的冰淇淋'), 
+(10003, '草莓味的冰淇淋') ON DUPLICATE KEY UPDATE second_column = VALUES(second_column);
 ```
 
 其中的 `VALUES(second_column)` 对应上了两条待插入数据的 `second_column`。实现的效果就是批量插入两条数据，如果遇到重复记录时把该重复记录的 `second_column` 列更新成待插入记录中 `second_column` 列的值。
@@ -189,7 +189,7 @@ UPDATE 表名 SET 列1=值1, 列2=值2, ...,  列n=值n [WHERE 布尔表达式];
 另外，也可以使用 `LIMIT` 子句来限制想要更新的记录数量，使用 `ORDER BY` 子句来指定符合条件的记录的更新顺序，如下：
 
 ```sql
-UPDATE first_table SET second_column='张星星' ORDER BY first_column DESC LIMIT 1;
+UPDATE first_table SET second_column='榴莲味的冰淇淋' ORDER BY first_column DESC LIMIT 1;
 ```
 
 上述语句就是想更新 `first_column` 列值最大的那条记录。
