@@ -86,14 +86,21 @@ user_info: Dict[str, float] = {'score': 99}
 # 以前的写法
 def add(a, b):
     """
-    :param a: int
-    :param b: int
-    :return: int
+    这是一个加法运算函数
+    :param a: int 加数
+    :param b: int 加数
+    :return: int 两数相加之和
     """
     return a + b
 
-# 现在的写法
-def add(b:int, a:int) -> int:
+# 现在的写法（无需在注释里说明参数类型了）
+def add(a:int, b:int) -> int:
+    """
+    这是一个加法运算函数
+    :param a: 加数
+    :param b: 加数
+    :return: 两数相加之和
+    """
     return a + b
 ```
 
