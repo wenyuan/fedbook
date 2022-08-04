@@ -5,8 +5,7 @@ module.exports = [
     children: [
       {
         title: '常用命令',
-        path: '/basic-skills/linux/common-commands',
-        collapsable: true
+        path: '/basic-skills/linux/common-commands'
       }
     ]
   },
@@ -16,8 +15,7 @@ module.exports = [
     children: [
       {
         title: '解决 vim 中文乱码问题',
-        path: '/basic-skills/linux/solution-to-vim-encoding',
-        collapsable: true
+        path: '/basic-skills/linux/solution-to-vim-encoding'
       }
     ]
   }

@@ -5,53 +5,43 @@ module.exports = [
     children: [
       {
         title: 'MySQL 数据类型',
-        path: '/basic-skills/mysql/data-types',
-        collapsable: true
+        path: '/basic-skills/mysql/data-types'
       },
       {
         title: 'MySQL 常用命令',
-        path: '/basic-skills/mysql/common-commands',
-        collapsable: true
+        path: '/basic-skills/mysql/common-commands'
       },
       {
         title: '库和表的基本操作',
-        path: '/basic-skills/mysql/database-and-table-operations',
-        collapsable: true
+        path: '/basic-skills/mysql/database-and-table-operations'
       },
       {
         title: '表中列的基本属性',
-        path: '/basic-skills/mysql/column-properties',
-        collapsable: true
+        path: '/basic-skills/mysql/column-properties'
       },
       {
         title: '数据的增删改',
-        path: '/basic-skills/mysql/data-insert-delete-update',
-        collapsable: true
+        path: '/basic-skills/mysql/data-insert-delete-update'
       },
       {
         title: '简单查询语法',
-        path: '/basic-skills/mysql/simple-query',
-        collapsable: true
+        path: '/basic-skills/mysql/simple-query'
       },
       {
         title: '条件查询语法',
-        path: '/basic-skills/mysql/query-by-search-conditions',
-        collapsable: true
+        path: '/basic-skills/mysql/query-by-search-conditions'
       },
       {
         title: '表达式和函数',
-        path: '/basic-skills/mysql/expressions-and-functions',
-        collapsable: true
+        path: '/basic-skills/mysql/expressions-and-functions'
       },
       {
         title: '分组查询语法',
-        path: '/basic-skills/mysql/group-query',
-        collapsable: true
+        path: '/basic-skills/mysql/group-query'
       },
       {
         title: '子查询语法',
-        path: '/basic-skills/mysql/sub-query',
-        collapsable: true
+        path: '/basic-skills/mysql/sub-query'
       }
     ]
   },
@@ -61,18 +51,15 @@ module.exports = [
     children: [
       {
         title: 'MySQL 的安装与卸载',
-        path: '/basic-skills/mysql/installation-of-mysql',
-        collapsable: true
+        path: '/basic-skills/mysql/installation-of-mysql'
       },
       {
         title: 'MySQL 主键和自增 ID',
-        path: '/basic-skills/mysql/primary-key-and-increment-id',
-        collapsable: true
+        path: '/basic-skills/mysql/primary-key-and-increment-id'
       },
       {
         title: 'MySQL 数据库设计规范',
-        path: '/basic-skills/mysql/db-design-spec',
-        collapsable: true
+        path: '/basic-skills/mysql/db-design-spec'
       }
     ]
   }

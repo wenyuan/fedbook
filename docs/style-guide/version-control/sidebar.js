@@ -5,18 +5,15 @@ module.exports = [
     children: [
       {
         title: '版本号定义规范',
-        path: '/style-guide/version-control/version-number',
-        collapsable: true
+        path: '/style-guide/version-control/version-number'
       },
       {
         title: 'Git 工作流 — 分支策略',
-        path: '/style-guide/version-control/git-workflow',
-        collapsable: true
+        path: '/style-guide/version-control/git-workflow'
       },
       {
         title: 'Git 提交信息规范',
-        path: '/style-guide/version-control/git-commit-message',
-        collapsable: true
+        path: '/style-guide/version-control/git-commit-message'
       }
     ]
   }

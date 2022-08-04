@@ -5,8 +5,7 @@ module.exports = [
     children: [
       {
         title: 'npm、yarn、pnpm 区别',
-        path: '/frontend-engineering/package/npm-yarn-pnpm',
-        collapsable: true
+        path: '/frontend-engineering/package/npm-yarn-pnpm'
       }
     ]
   }

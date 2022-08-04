@@ -5,13 +5,11 @@ module.exports = [
     children: [
       {
         title: '前端登录方案总结',
-        path: '/project/solutions/login',
-        collapsable: true
+        path: '/project/solutions/login'
       },
       {
         title: '大文件分片上传和断点续传',
-        path: '/project/solutions/file-upload',
-        collapsable: true
+        path: '/project/solutions/file-upload'
       }
     ]
   }

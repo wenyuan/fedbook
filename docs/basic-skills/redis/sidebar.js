@@ -5,13 +5,11 @@ module.exports = [
     children: [
       {
         title: 'Redis 数据类型',
-        path: '/basic-skills/redis/data-types',
-        collapsable: true
+        path: '/basic-skills/redis/data-types'
       },
       {
         title: 'Redis 缓存三大问题',
-        path: '/basic-skills/redis/three-cache-problems',
-        collapsable: true
+        path: '/basic-skills/redis/three-cache-problems'
       },
     ]
   },
@@ -21,8 +19,7 @@ module.exports = [
     children: [
       {
         title: 'Redis 的安装与卸载',
-        path: '/basic-skills/redis/installation-of-redis',
-        collapsable: true
+        path: '/basic-skills/redis/installation-of-redis'
       },
     ]
   }
