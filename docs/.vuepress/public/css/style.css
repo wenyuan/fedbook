@@ -6,18 +6,29 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600 !important;
 }
 
-/* NavBar Logo
-#app .navbar .home-link span:before {
-  display: inline-block;
-  content: '';
-  width: 32px;
-  height: 32px;
-  background: url(../img/logo.png) no-repeat;
-  background-size: 100% 100%;
-  vertical-align: bottom;
-  margin-right: 8px;
+.home .hero .action-button.primary {
+  border-radius: 20px;
+  padding: 0 20px;
+  line-height: 48px;
+  font-size: 16px;
 }
-*/
+
+.home .hero .action-button.default {
+  border-radius: 20px;
+  padding: 0 20px;
+  line-height: 48px;
+  font-size: 16px;
+
+  border-color: #d1d1d1;
+  color: #213547;
+  background-color: #f2f2f2;
+}
+
+.home .hero .action-button.default:hover {
+  border-color: #d1d1d1;
+  color: #213547;
+  background-color: #e5e5e5;
+}
 
 .navbar {
   /* 取消高斯模糊效果 */
@@ -32,10 +43,6 @@ h1, h2, h3, h4, h5, h6 {
 .navbar .site-name {
   font-size: 1.3rem !important;
   font-weight: 600;
-}
-
-.home .features {
-  /*display: none !important;*/
 }
 
 .home .tech-stack {
@@ -265,20 +272,17 @@ h1, h2, h3, h4, h5, h6 {
 .theme-default-content.content__default blockquote p {
   padding-top: 8px;
   padding-bottom: 8px;
-  /*font-size: 16px;*/
   line-height: 26px;
   margin-top: -15px;
   color: rgba(0, 0, 0, 0.85);
 }
 
 .theme-default-content.content__default blockquote ul {
-  /*font-size: 16px;*/
   margin-top: 5px;
   color: rgba(0, 0, 0, 0.85);
 }
 
 .theme-default-content.content__default blockquote div {
-  /*font-size: 16px;*/
   margin-top: -10px;
 }
 
@@ -313,7 +317,6 @@ a.sidebar-link.active {
   font-size: 14px;
   color: #4f4f4f;
   line-height: 22px;
-  /*border: 1px solid #ddd;*/
 }
 
 .theme-default-content.content__default table tr:nth-child(2n) {
