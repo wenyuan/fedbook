@@ -1,19 +1,21 @@
 ---
 home: true
 heroImage: /img/skills.png
-actionText: 进入小册 →
-actionLink: /style-guide/document/
 action:
-- text: 进入小册 →
-  link: /style-guide/document/
+- text: 快速开始
+  link: /style-guide/document
+  type: primary
+- text: 关于小册
+  link: /others/about
+  type: default
 features:
 - title: 夯实基础
   details: 不积跬步无以至千里，仰望星空更要脚踏实地。
 - title: 构建体系
   details: 告别碎片化学习方式，构建出自己的知识体系。
-- title: 综合技能
-  details: 以前端开发的视角展开，兼顾后端与运维知识。
-footer: MIT Licensed | Copyright © 2018-present Wenyuan Xu
+- title: 持续学习
+  details: 以前端开发的视角展开，兼顾后端等领域知识。
+footer: MIT Licensed | Copyright © 2020-present Wenyuan Xu
 copyrightText: false
 ---
 
