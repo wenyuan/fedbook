@@ -3,7 +3,7 @@ home: true
 heroImage: /img/skills.png
 action:
 - text: 快速开始
-  link: /style-guide/document
+  link: /style-guide/document/
   type: primary
 - text: 关于小册
   link: /others/about
