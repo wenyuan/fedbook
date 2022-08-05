@@ -1,7 +1,7 @@
 module.exports = [
   {
     title: 'MySQL 基础知识',
-    collapsable: false,
+    collapsable: true,
     children: [
       {
         title: 'MySQL 数据类型',
@@ -42,12 +42,16 @@ module.exports = [
       {
         title: '子查询语法',
         path: '/basic-skills/mysql/sub-query'
+      },
+      {
+        title: '连接查询语法',
+        path: '/basic-skills/mysql/join-query'
       }
     ]
   },
   {
     title: 'MySQL 日常运维',
-    collapsable: false,
+    collapsable: true,
     children: [
       {
         title: 'MySQL 的安装与卸载',
