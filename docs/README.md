@@ -14,7 +14,7 @@ features:
 - title: 构建体系
   details: 告别碎片化学习方式，构建出自己的知识体系。
 - title: 持续学习
-  details: 以前端开发的视角展开，兼顾后端等领域知识。
+  details: 以前端开发为背景，涵盖前后端与运维等知识。
 footer: MIT Licensed | Copyright © 2020-present Wenyuan Xu
 copyrightText: false
 ---
