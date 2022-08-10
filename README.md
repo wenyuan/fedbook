@@ -248,6 +248,7 @@
   - [分组查询语法](https://fedbook.cn/basic-skills/mysql/group-query/)
   - [子查询语法](https://fedbook.cn/basic-skills/mysql/sub-query/)
   - [连接查询语法](https://fedbook.cn/basic-skills/mysql/join-query/)
+  - [组合查询语法](https://fedbook.cn/basic-skills/mysql/union-query/)
   - **MySQL 日常运维**
   - [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
   - [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)

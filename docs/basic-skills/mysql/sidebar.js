@@ -46,6 +46,10 @@ module.exports = [
       {
         title: '连接查询语法',
         path: '/basic-skills/mysql/join-query'
+      },
+      {
+        title: '组合查询语法',
+        path: '/basic-skills/mysql/union-query'
       }
     ]
   },
