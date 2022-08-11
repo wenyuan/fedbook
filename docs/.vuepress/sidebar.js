@@ -23,6 +23,7 @@ module.exports = {
   '/basic-skills/mysql/': require('../basic-skills/mysql/sidebar'),
   '/basic-skills/redis/': require('../basic-skills/redis/sidebar'),
   '/basic-skills/elasticsearch/': require('../basic-skills/elasticsearch/sidebar'),
+  '/basic-skills/network/': require('../basic-skills/network/sidebar'),
   /* --------- 深入学习 --------- */
   '/in-depth-learning/algorithm/': require('../in-depth-learning/algorithm/sidebar'),
   '/in-depth-learning/design-patterns/': require('../in-depth-learning/design-patterns/sidebar'),

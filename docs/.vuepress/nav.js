@@ -73,6 +73,12 @@ module.exports = [
           { text: 'Redis', link: '/basic-skills/redis/' },
           { text: 'Elasticsearch', link: '/basic-skills/elasticsearch/' },
         ]
+      },
+      {
+        text: '基础知识',
+        items: [
+          { text: '计算机网络', link: '/basic-skills/network/' }
+        ]
       }
     ]
   },

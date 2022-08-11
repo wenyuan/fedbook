@@ -279,6 +279,9 @@
   - [索引管理 API](https://fedbook.cn/basic-skills/elasticsearch/index-manage-apis/)
   - [定义字段类型：Mapping](https://fedbook.cn/basic-skills/elasticsearch/mapping/)
   - [索引模板：Index Template](https://fedbook.cn/basic-skills/elasticsearch/index-template/)
+- [计算机网络](https://fedbook.cn/basic-skills/network/)
+  - **网络基础**
+  - [网络分层模型](https://fedbook.cn/basic-skills/network/layered-network-model/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
