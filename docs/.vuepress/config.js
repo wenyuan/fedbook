@@ -41,9 +41,9 @@ module.exports = config({
     mdEnhance: {
       enableAll: false,
       // 启用下角标功能（H~2~O）
-      sub: true,
+      sub: false,
       // 启用上角标（19^th^）
-      sup: true,
+      sup: false,
     },
     comment: false,
     copyright: false,
