@@ -6,6 +6,10 @@ module.exports = [
       {
         title: '网络分层模型',
         path: '/basic-skills/network/layered-network-model'
+      },
+      {
+        title: 'IP 地址',
+        path: '/basic-skills/network/ip-address'
       }
     ]
   }
