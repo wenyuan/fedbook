@@ -10,6 +10,10 @@ module.exports = [
       {
         title: 'IP 地址',
         path: '/basic-skills/network/ip-address'
+      },
+      {
+        title: 'UDP 协议',
+        path: '/basic-skills/network/udp'
       }
     ]
   }
