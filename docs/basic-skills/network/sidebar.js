@@ -14,6 +14,10 @@ module.exports = [
       {
         title: 'UDP 协议',
         path: '/basic-skills/network/udp'
+      },
+      {
+        title: 'TCP 协议',
+        path: '/basic-skills/network/tcp'
       }
     ]
   }
