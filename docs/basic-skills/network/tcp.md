@@ -1,5 +1,18 @@
 # TCP 协议
 
+## 基本认识
+
+TCP 是**面向连接的、可靠的、基于字节流**的传输层通信协议。
+
+<div style="text-align: center;">
+  <svg id="SvgjsSvg1006" width="350" height="136" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"><defs id="SvgjsDefs1007"></defs><g id="SvgjsG1008" transform="translate(25,25)"><path id="SvgjsPath1009" d="M 0 43C 0 -14.333333333333334 86 -14.333333333333334 86 43C 86 100.33333333333333 0 100.33333333333333 0 43Z" stroke="none" fill-opacity="1" fill="#ffcccc"></path><g id="SvgjsG1010"><text id="SvgjsText1011" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="66px" fill="#323232" font-weight="700" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="700" font-style="" opacity="1" y="29" transform="rotate(0)"><tspan id="SvgjsTspan1012" dy="20" x="43"><tspan id="SvgjsTspan1013" style="text-decoration:;">面向连接</tspan></tspan></text></g></g><g id="SvgjsG1014" transform="translate(132,25)"><path id="SvgjsPath1015" d="M 0 43C 0 -14.333333333333334 86 -14.333333333333334 86 43C 86 100.33333333333333 0 100.33333333333333 0 43Z" stroke="none" fill-opacity="1" fill="#cce5ff"></path><g id="SvgjsG1016"><text id="SvgjsText1017" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="66px" fill="#323232" font-weight="700" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="700" font-style="" opacity="1" y="29" transform="rotate(0)"><tspan id="SvgjsTspan1018" dy="20" x="43"><tspan id="SvgjsTspan1019" style="text-decoration:;">可靠的</tspan></tspan></text></g></g><g id="SvgjsG1020" transform="translate(239,25)"><path id="SvgjsPath1021" d="M 0 43C 0 -14.333333333333334 86 -14.333333333333334 86 43C 86 100.33333333333333 0 100.33333333333333 0 43Z" stroke="none" fill-opacity="1" fill="#ffff88"></path><g id="SvgjsG1022"><text id="SvgjsText1023" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="66px" fill="#323232" font-weight="700" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="700" font-style="" opacity="1" y="29" transform="rotate(0)"><tspan id="SvgjsTspan1024" dy="20" x="43"><tspan id="SvgjsTspan1025" style="text-decoration:;">字节流</tspan></tspan></text></g></g></svg>
+  <p style="text-align: center; color: #888;">（TCP 三大特点）</p>
+</div>
+
+* **面向连接**：一定是「一对一」才能连接，不能像 UDP 协议可以一个主机同时向多个主机发送消息，也就是一对多是无法做到的。
+* **可靠的**：无论的网络链路中出现了怎样的链路变化，TCP 都可以保证一个报文一定能够到达接收端。
+* **字节流**：用户消息通过 TCP 协议传输时，消息可能会被操作系统「分组」成多个的 TCP 报文，如果接收方的程序如果不知道「消息的边界」，是无法读出一个有效的用户消息的。并且 TCP 报文是「有序的」，当「前一个」TCP 报文没有收到的时候，即使它先收到了后面的 TCP 报文，那么也不能扔给应用层去处理，同时对「重复」的 TCP 报文会自动丢弃。
+
 ## TCP 包头
 
 TCP 包头比 UDP 复杂得多。
@@ -118,5 +131,12 @@ TCP 协议专门设计了几个状态来确保断开连接时的稳定性，这�
 上面说了 TCP 协议要求客户端最后等待一段时间 `TIME_WAIT` 后再释放，是为了确保最后一个 `ACK` 能够被服务端收到，因为如果服务端没有收到的话，会重新向客户端发一个 `FIN`，随后客户端也重新发一个 `ACK`。
 
 其实这个 `TIME_WAIT` 这个延时存在还有一个原因，就是如果客户端直接释放了，那它的端口就直接空出来了。但是服务端不知道，服务端原来发过的很多包很可能还在路上。如果客户端的端口被一个新的应用占用了，这个新的应用会收到上个连接中服务端发过来的包。虽然序列号是重新生成的，但是这里要上一个双保险，防止产生混乱，因而也需要等足够长的时间，等到原来服务端发送的所有的包都死翘翘，再空出端口来。
+
+## TCP 应用场景
+
+由于 TCP 是面向连接，能保证数据的可靠性交付，因此经常用于：
+
+* FTP 文件传输
+* HTTP / HTTPS
 
 （完）
