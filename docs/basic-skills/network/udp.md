@@ -4,16 +4,40 @@
 
 ## TCP 和 UDP 的区别
 
-在客户端和服务端互通之前，TCP 会通过三次握手来建立连接，而 UDP 不会，因此：
+**1. 连接**
 
-* TCP 是面向连接的
-* UDP 是面向无连接的
+* TCP 是面向连接的传输层协议，传输数据前先要通过三次握手来建立连接。
+* UDP 是不需要连接，即刻传输数据。
 
-而这个特性带来了一些区别：
+**2. 服务对象**
 
-* **TCP 提供可靠交付**，通过 TCP 连接传输的数据，无差错、不丢失、不重复、并且按序到达（IP 包是没有任何可靠性保证的，一旦发出去，就只能随它去了）。而 **UDP 继承了 IP 包的特性，不保证不丢失，不保证按顺序到达**。
-* **TCP 是面向字节流的**，发送的时候发的是一个流，没头没尾（IP 包可不是一个流，而是一个个的 IP 包。之所以变成了流，这也是 TCP 自己的状态维护做的事情）。而 **UDP 继承了 IP 的特性，基于数据报的，一个一个地发，一个一个地收**。
-* **TCP 是可以有拥塞控制的**，它意识到包丢弃了或者网络的环境不好了，就会根据情况调整自己的行为，看看是不是发快了，要不要发慢点。**UDP 就不会，应用让我发，我就发**。
+* TCP 是一对一的两点服务，即一条连接只有两个端点。
+* UDP 支持一对一、一对多、多对多的交互通信。
+
+**3. 可靠性**
+
+* TCP 是可靠交付数据的，数据可以无差错、不丢失、不重复、按序到达。
+* UDP 继承了 IP 包的特性，尽最大努力交付，不保证不丢失，不保证按顺序到达。
+
+**4. 拥塞控制、流量控制**
+
+* TCP 有拥塞控制和流量控制机制，保证数据传输的安全性。（它意识到包丢弃了或者网络的环境不好了，就会根据情况调整自己的行为，看看是不是发快了，要不要发慢点）
+* UDP 则没有，即使网络非常拥堵了，也不会影响 UDP 的发送速率。（应用让我发，我就发）
+
+**5. 首部开销**
+
+* TCP 首部长度较长，会有一定的开销，首部在没有使用「选项」字段时是 20 个字节，如果使用了「选项」字段则会变长的。
+* UDP 首部只有 8 个字节，并且是固定不变的，开销较小。
+
+**6. 传输方式**
+
+* TCP 是面向字节流的，发送的时候发的是一个流，没头没尾（IP 包可不是一个流，而是一个个的 IP 包。之所以变成了流，这也是 TCP 自己的状态维护做的事情），但保证顺序和可靠。
+* UDP 继承了 IP 的特性，是一个包一个包的发送，一个包一个包的接收，但可能会丢包和乱序。
+
+**7. 分片不同**
+
+* TCP 的数据大小如果大于 MSS 大小，则会在传输层进行分片，目标主机收到后，也同样在传输层组装 TCP 数据包，如果中途丢失了一个分片，只需要传输丢失的这个分片。
+* UDP 的数据大小如果大于 MTU 大小，则会在 IP 层进行分片，目标主机收到后，在 IP 层组装完数据，接着再传给传输层。
 
 因而 **TCP 其实是一个有状态服务**，里面精确地记着发送了没有，接收到没有，发送到哪个了，应该接收哪个了，错一点儿都不行。而 **UDP 则是无状态服务**，发出去就发出去了。
 
@@ -31,6 +55,10 @@ UDP 包头里面有**源端口号**和**目的端口号**，因为两端通信�
   <svg id="SvgjsSvg1006" width="550" height="218" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"><defs id="SvgjsDefs1007"></defs><g id="SvgjsG1008" transform="translate(25,25)"><path id="SvgjsPath1009" d="M0 0L247.959918 0L247.959918 39.993999599999995 L0 39.993999599999995Z" stroke="rgba(102, 102, 102,1)" stroke-width="1" fill-opacity="1" fill="#ffffff"></path><path id="SvgjsPath1010" d="M247.959918 0L500.02 0L500.02 39.993999599999995 L247.959918 39.993999599999995Z" stroke="rgba(102, 102, 102,1)" stroke-width="1" fill-opacity="1" fill="#ffffff"></path><path id="SvgjsPath1011" d="M0 39.993999599999995L247.959918 39.993999599999995L247.959918 80.00399999999999 L0 80.00399999999999Z" stroke="rgba(102, 102, 102,1)" stroke-width="1" fill-opacity="1" fill="#ffffff"></path><path id="SvgjsPath1012" d="M247.959918 39.993999599999995L500.02 39.993999599999995L500.02 80.00399999999999 L247.959918 80.00399999999999Z" stroke="rgba(102, 102, 102,1)" stroke-width="1" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1013"><text id="SvgjsText1014" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="248px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="5.9969997999999975" transform="rotate(0)"><tspan id="SvgjsTspan1015" dy="20" x="124"><tspan id="SvgjsTspan1016" style="text-decoration:;">源端口号（16 位）</tspan></tspan></text></g><g id="SvgjsG1017"><text id="SvgjsText1018" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="253px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="5.9969997999999975" transform="rotate(0)"><tspan id="SvgjsTspan1019" dy="20" x="374.459918"><tspan id="SvgjsTspan1020" style="text-decoration:;">目的端口号（16 位）</tspan></tspan></text></g><g id="SvgjsG1021"><text id="SvgjsText1022" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="248px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="45.99899979999999" transform="rotate(0)"><tspan id="SvgjsTspan1023" dy="20" x="124"><tspan id="SvgjsTspan1024" style="text-decoration:;">UDP 长度（16 位）</tspan></tspan></text></g><g id="SvgjsG1025"><text id="SvgjsText1026" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="253px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="45.99899979999999" transform="rotate(0)"><tspan id="SvgjsTspan1027" dy="20" x="374.459918"><tspan id="SvgjsTspan1028" style="text-decoration:;">UDP 校验和（16 位）</tspan></tspan></text></g></g><g id="SvgjsG1029" transform="translate(25,105)"><path id="SvgjsPath1030" d="M0 0L500.02 0L500.02 88 L0 88Z" stroke="rgba(102, 102, 102,1)" stroke-width="1" fill-opacity="1" fill="#ffffff"></path><g id="SvgjsG1031"><text id="SvgjsText1032" font-family="微软雅黑" text-anchor="middle" font-size="16px" width="501px" fill="#323232" font-weight="400" align="middle" lineHeight="125%" anchor="middle" family="微软雅黑" size="16px" weight="400" font-style="" opacity="1" y="30" transform="rotate(0)"><tspan id="SvgjsTspan1033" dy="20" x="250.5"><tspan id="SvgjsTspan1034" style="text-decoration:;">数据</tspan></tspan></text></g></g></svg>
   <p style="text-align: center; color: #888;">（UDP 包头示意图）</p>
 </div>
+
+* 目标和源端口：主要是告诉 UDP 协议应该把报文发给哪个进程。
+* 包长度：该字段保存了 UDP 首部的长度跟数据的长度之和。
+* 校验和：校验和是为了提供可靠的 UDP 首部和数据而设计，防止收到在网络传输中受损的 UDP 包。
 
 ## UDP 三大特点
 
