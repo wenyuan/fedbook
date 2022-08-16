@@ -20,5 +20,15 @@ module.exports = [
         path: '/basic-skills/network/tcp'
       }
     ]
+  },
+  {
+    title: '经典问题',
+    collapsable: false,
+    children: [
+      {
+        title: 'Linux 系统是如何收发网络包的？',
+        path: '/basic-skills/network/how-os-deal-with-network-packets'
+      }
+    ]
   }
 ]
