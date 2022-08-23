@@ -213,12 +213,10 @@ npx commitizen init cz-conventional-changelog --save-dev --save-exact
 
 `commitizen` 本身只提供命令行交互框架以及一些 Git 命令的执行，实际的规则则需要通过适配器来定义，commitizen 留有对应的适配器接口。而 `cz-conventional-changelog` 就是一个 commitizen 适配器。
 
-此时运行 `npx cz` 命令，就会出现以下命令行交互页面：
+此时运行 `npx cz` 命令（注意不能用 Git Bash 来运行，那个无法进行上下键选择，用 Win10 的 PowerShell），就会出现以下命令行交互界面：
 
 <div style="text-align: center;">
-  <!--
-  <img src="./assets/npx-cz.png" alt="npx cz 命令行交互页面" style="width: 640px;">
-  -->
+  <img src="./assets/npx-cz.png" alt="npx cz 命令行交互页面">
   <p style="text-align: center; color: #888;">（npx cz 命令行交互页面）</p>
 </div>
 
