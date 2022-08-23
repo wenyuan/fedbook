@@ -65,9 +65,10 @@ type 用于说明 commit 的类别，一般常用的有下面几种标识：
 * `perf`：提高性能的代码更改
 * `test`：新增测试用例或是更新现有测试
 * `revert`：回滚某个更早之前的提交
-* `build`：主要目的是修改项目构建系统（例如 glup，webpack，rollup 的配置等）的提交
-* `ci`：主要目的是修改项目继续集成流程（例如 Travis，Jenkins，GitLab CI，Circle 等）的提交
+* `build`：变更项目构建或外部依赖（例如 webpack、glup、npm、rollup 等）
+* `ci`：更改持续集成软件的配置文件和 package 中的 scripts 命令（例如：Travis，Jenkins，GitLab CI，Circle 等）
 * `chore`：不属于以上类型的其他类型（日常事务，例如对构建或者辅助工具的更改、生成文档等）
+* `revert`：代码回退
 
 如果 type 为 feat 和 fix，则该 commit 将肯定出现在 Change log 之中。其他情况由你决定要不要放入 Change log，建议是不要。
 
