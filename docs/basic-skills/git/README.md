@@ -7,7 +7,7 @@
 必备知识点：
 
 <div style="text-align: center;">
-  <img src="./assets/git.png" alt="Git 通用操作流程图">
+  <img src="./assets/git.png" alt="Git 通用操作流程图" style="width: 640px;">
   <p style="text-align: center; color: #888;">（Git 通用操作流程图，图来源于网络）</p>
 </div>
 
