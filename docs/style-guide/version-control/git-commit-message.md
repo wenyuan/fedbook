@@ -39,17 +39,35 @@
 
 ## commit 的格式
 
-每次提交，commit message 都包括三个部分：header，body 和 footer。header 有一个特殊的格式包含有 type，scope 和 subject：
+每次提交，commit message 都包括三个部分：header，body 和 footer。
 
 ```bash
-<type>(<scope>): <subject>  # header
-<BLANK LINE>                # 空行
-<body>                      # body
-<BLANK LINE>                # 空行
-<footer>                    # footer
+<type>(<scope>): <subject>    # header（必须）
+<BLANK LINE>                  # 空行
+<body>                        # body（可选）
+<BLANK LINE>                  # 空行
+<footer>                      # footer（可选）
 ```
 
-header、body、footer 之间都要空一行，header 是必填项，scope 是选填项。commit message 的每一行的文字不能超过 100 个字符。这样子在 GitHub 和 Git 工具上更便于阅读。
+* header 是必填项，里面的 scope 是选填项。
+* header、body、footer 之间都要空一行。
+* commit message 的每一行的文字不能太长，这样子在 GitHub 和 Git 工具上更便于阅读。
+
+一个简单的模板是这样的：
+
+```bash
+feat: 一句话概述 commit 主题, 不超过 50 个字符
+
+1. 这个改动解决了什么问题, 每行不要超过 70 字符
+2. 这个改动为什么是必要的, 每行不要超过 70 字符
+3. 会影响到哪些其他的代码, 每行不要超过 70 字符
+
+1. breaking change: 与上一个版本不兼容的相关描述、理由及迁移办法
+2. close #issue: 关闭相关问题(附链接)
+3. revert: 撤销以前的 commit
+```
+
+下面展开看这几个项目。
 
 ### type
 
@@ -57,16 +75,25 @@ type 用于说明 commit 的类别，必须为以下类型的一种：
 
 type 用于说明 commit 的类别，一般常用的有下面几种标识：
 
-* `feat`：新功能（feature）
+* `feat`：新功能、添加代码和逻辑
+  * 例如：`feat: add xxx field/method/class`
 * `fix`：修复 bug
-* `docs`：只是文档的更改（documentation）
-* `style`：不影响程序逻辑的代码修改（例如格式化、修改空白字符，补全缺失的分号等）
+  * 例如：`fix: #123, fix xxx error`
+* `docs`：只是文档的更改
+  * 例如：`docs: change documents`
+* `style`：不影响程序逻辑的代码修改（前端的 CSS 样式、或者其它类似格式化、修改空白字符，补全缺失的分号等变动
+  * 例如：`style: add class or change style`
 * `refactor`：即不是新增功能，也不是修改 bug 的代码变动（一般指重构代码）
+  * 例如：`refactor: rename, move, extract, inline` 等
 * `perf`：提高性能的代码更改
-* `test`：新增测试用例或是更新现有测试
+  * 例如：`perf: improves performance`
+* `test`：新增测试用例或是更新现有测试（单元测试等）
+  * 例如：`test: test menu component`
 * `revert`：回滚某个更早之前的提交
-* `build`：变更项目构建或外部依赖（例如 webpack、glup、npm、rollup 等）
-* `ci`：更改持续集成软件的配置文件和 package 中的 scripts 命令（例如：Travis，Jenkins，GitLab CI，Circle 等）
+* `build`：变更项目构建或外部依赖（webpack、glup、npm、rollup 等）
+  * 例如：`build: build project`
+* `ci`：更改持续集成软件的配置文件和 package 中的 scripts 命令（Travis，Jenkins，GitLab CI，Circle 等）
+  * 例如：`ci: change gitlab-ci.yml`
 * `chore`：不属于以上类型的其他类型（日常事务，例如对构建或者辅助工具的更改、生成文档等）
 * `revert`：代码回退
 
@@ -125,13 +152,13 @@ The removed `inject` wasn't generaly useful for directives so there should be no
 如果当前 commit 针对某个 issue，那么可以在 footer 部分关闭这个 issue。
 
 ```bash
-Closes #234
+Close #234
 ```
 
 也可以一次关闭多个 issue。
 
 ```bash
-Closes #123, #245, #992
+Close #123, #245, #992
 ```
 
 ### revert（可忽视）
@@ -168,7 +195,7 @@ Older IEs serialize html uppercased, but IE9 does not...
 Would be better to expect case insensitive, unfortunately jasmine does
 not allow to user regexps for throw expectations.
 
-Closes #392
+Close #392
 Breaks foo.bar api, foo.baz should be used instead
 ```
 
@@ -178,7 +205,7 @@ feat(directive): ng:disabled, ng:checked, ng:multiple, ng:readonly, ng:selected
 New directives for proper binding these attributes in older browsers (IE).
 Added coresponding description, live examples and e2e tests.
 
-Closes #351
+Close #351
 ```
 
 ```bash
@@ -239,7 +266,7 @@ The removed `inject` wasn't generaly useful for directives so there should be no
 
 关于什么时候提交一次：
 
-每次你写完一个功能的时候，就应该做一次 commit 提交（这个提交是提交到本地的 Git 库中）。
+**每次你写完一个功能的时候，就应该做一次 commit 提交（这个提交是提交到本地的 Git 库中）**。
 
 当然，这里的写完表示的是你的这个功能是没有问题的。
 
