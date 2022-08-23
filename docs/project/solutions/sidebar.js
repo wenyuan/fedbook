@@ -10,6 +10,10 @@ module.exports = [
       {
         title: '大文件分片上传和断点续传',
         path: '/project/solutions/file-upload'
+      },
+      {
+        title: 'Git Hooks 工程化实践',
+        path: '/project/solutions/git-hooks'
       }
     ]
   }
