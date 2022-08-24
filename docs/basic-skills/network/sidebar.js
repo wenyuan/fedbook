@@ -28,6 +28,10 @@ module.exports = [
       {
         title: 'Linux 系统是如何收发网络包的？',
         path: '/basic-skills/network/how-os-deal-with-network-packets'
+      },
+      {
+        title: '拔掉网线后，TCP 连接会断开吗？',
+        path: '/basic-skills/network/tcp-connection-after-unpluging-network-cable'
       }
     ]
   }
