@@ -79,12 +79,6 @@ node your/path/to/script/xxx.js
   * 对 Git 执行的一些命令，通过对应的 Hooks 钩子触发，执行自定义的脚本程序。
 * **lint-staged**：检测文件插件
   * 只检测 `git add .` 中暂存区的文件，对过滤出的文件执行脚本。
-* **eslint**：插件化 JavaScript 代码检测工具
-  * JS 编码规范，检测并提示错误或警告信息。
-* **prettier**：代码格式化工具
-  * 代码风格管理，更好的代码风格效果。
-* **editorconfig**：文件代码规范
-  * 保持多人开发一致编码样式。
 * **commitizen**：代码提交内容标准化
   * 提示定义输入标准的 `git commit` 内容。
 * **commitlint**：代码提交检测
