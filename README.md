@@ -389,6 +389,7 @@
 - [前端解决方案](https://fedbook.cn/project/solutions/)
   - [前端登录方案总结](https://fedbook.cn/project/solutions/login/)
   - [大文件分片上传和断点续传](https://fedbook.cn/project/solutions/file-upload/)
+  - [Code Format 工程化实践](https://fedbook.cn/project/solutions/code-format/)
   - [Git Hooks 工程化实践](https://fedbook.cn/project/solutions/git-hooks/)
 
 <p align=right>

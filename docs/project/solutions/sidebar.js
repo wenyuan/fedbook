@@ -12,6 +12,10 @@ module.exports = [
         path: '/project/solutions/file-upload'
       },
       {
+        title: 'Code Format 工程化实践',
+        path: '/project/solutions/code-format'
+      },
+      {
         title: 'Git Hooks 工程化实践',
         path: '/project/solutions/git-hooks'
       }
