@@ -39,129 +39,63 @@
 
 ## commit 的格式
 
-每次提交，commit message 都包括三个部分：header，body 和 footer。
+每次提交，commit message 都包括三个部分，每部分之间用空行隔开。
 
 ```bash
-<type>(<scope>): <subject>    # header（必须）
-<BLANK LINE>                  # 空行
-<body>                        # body（可选）
-<BLANK LINE>                  # 空行
-<footer>                      # footer（可选）
+<type>(<scope>): <subject>    # 一句话概述 commit 主题（必须）
+                              # 空行
+<body>                        # 详细描述 What 和 Why（可选）
+                              # 空行
+<footer>                      # 不兼容或关闭 issue 等说明（可选）
 ```
 
-* header 是必填项，里面的 scope 是选填项。
-* header、body、footer 之间都要空一行。
-* commit message 的每一行的文字不能太长，这样子在 GitHub 和 Git 工具上更便于阅读。
+注意：commit message 的每一行的文字不能太长，这样子在 GitHub 和 Git 工具上更便于阅读。
 
-一个简单的模板是这样的：
+```yaml
+正文(Body)详细描述本次 commit 做了什么、为什么这样做(不是怎么做的)
+- 每行不要超过70字符
+1. 这个改动解决了什么问题？
+2. 这个改动为什么是必要的？
+3. 会影响到哪些其他的代码？
+  bug fix - 组件 bug 修复；
+  breaking change - 不兼容的改动；
+  new feature - 新功能
 
-```bash
-feat: 一句话概述 commit 主题, 不超过 50 个字符
-
-1. 这个改动解决了什么问题, 每行不要超过 70 字符
-2. 这个改动为什么是必要的, 每行不要超过 70 字符
-3. 会影响到哪些其他的代码, 每行不要超过 70 字符
-
+尾注(Footer) 用于关闭 Issue 或存在不兼容时添加相关说明等
 1. breaking change: 与上一个版本不兼容的相关描述、理由及迁移办法
-2. close #issue: 关闭相关问题(附链接)
-3. revert: 撤销以前的 commit
+2. close #issue: 关闭相关问题（附链接）
+3. revert: 撤销以前的commit
 ```
 
-下面展开看这几个项目。
+更详细的规范如下。
 
-### type
+### 主题（Subject）
 
-type 用于说明 commit 的类别，必须为以下类型的一种：
+主题（Subject）是 commit 的简短描述，不超过 50 个字符。
 
-type 用于说明 commit 的类别，一般常用的有下面几种标识：
+采用 动词 + 宾语 + 副词 的形式描述，第一个字母小写，结尾不加句号(`.`)。
 
-* `feat`：新功能、添加代码和逻辑
-  * 例如：`feat: add xxx field/method/class`
-* `fix`：修复 bug
-  * 例如：`fix: #123, fix xxx error`
-* `docs`：只是文档的更改
-  * 例如：`docs: change documents`
-* `style`：不影响程序逻辑的代码修改（前端的 CSS 样式、或者其它类似格式化、修改空白字符，补全缺失的分号等变动
-  * 例如：`style: add class or change style`
-* `refactor`：即不是新增功能，也不是修改 bug 的代码变动（一般指重构代码）
-  * 例如：`refactor: rename, move, extract, inline` 等
-* `perf`：提高性能的代码更改
-  * 例如：`perf: improves performance`
-* `test`：新增测试用例或是更新现有测试（单元测试等）
-  * 例如：`test: test menu component`
-* `revert`：回滚某个更早之前的提交
-* `build`：变更项目构建或外部依赖（webpack、glup、npm、rollup 等）
-  * 例如：`build: build project`
-* `ci`：更改持续集成软件的配置文件和 package 中的 scripts 命令（Travis，Jenkins，GitLab CI，Circle 等）
-  * 例如：`ci: change gitlab-ci.yml`
-* `chore`：不属于以上类型的其他类型（日常事务，例如对构建或者辅助工具的更改、生成文档等）
-* `revert`：代码回退
+常见类别标识及示例如下：
 
-如果 type 为 feat 和 fix，则该 commit 将肯定出现在 Change log 之中。其他情况由你决定要不要放入 Change log，建议是不要。
+* **feat**：新功能、添加代码和逻辑。例如 `feat: add xxx field/method/class`
+* **fix**：修复 bug。例如 `fix: #123, fix xxx error`
+* **docs**：文档更新。例如 `docs: change documents`
+* **style**：不影响程序逻辑的代码修改（CSS 样式、代码格式化等）。例如 `style: add class or change style`
+* **refactor**：一般指重构代码。例如 `refactor: rename, move, extract, inline` 等
+* **perf**：代码性能优化。例如 `perf: improves performance`
+* **test**：代码单元测试。例如 `test: test menu component`
+* **build**：变更项目构建或外部依赖（webpack、glup、npm、rollup 等）。例如 `build: build project`
+* **ci**：修改持续集成配置文件（Travis，Jenkins，GitLab CI，Circle 等）。例如 `ci: change gitlab-ci.yml`
+* **chore**：日常事务，例如对构建或者辅助工具的更改、生成文档等。例如 `chore: change webpack`
+* **revert**：代码回退。例如 `revert: feat(pencil): add 'graphiteWidth' option`
 
-### scope
+::: tip 小贴士
+* Subject 是用一句话说明本次所作的提交，如果一句话说不清楚，那有可能这个提交得拆分成多次。
+* 如果类别标识为 `feat` 和 `fix`，则该 commit 将肯定出现在 Change log 之中。其他情况由你决定要不要放入 Change log，建议是不要。
+* 类别标识后的括号（scope） 用于说明 commit 影响的范围（比如数据层、控制层、视图层等等），当影响的范围有多个时候，可以使用 `*`。
+:::
 
-scope 用于说明 commit 影响的范围（比如数据层、控制层、视图层等等），当影响的范围有多个时候，可以使用 `*`。
-
-### subject
-
-subject 用于对本次 commit 的简洁描述，不超过 50 个字符：
-
-* 使用[祈使句](https://baike.baidu.com/item/祈使句/19650285)，一般以动词原形开始，例如使用 change 而不是 changed 或者 changes。
-* 第一个字母小写。
-* 结尾不加句号（`.`）。
-
-### body
-
-body 用于对 commit 详细描述。
-
-* 使用祈使句，一般以动词原形开始，例如使用 change 而不是 changed 或者 changes。
-* 应该说明代码变动的动机，以及与以前行为的对比。
-* 可以分成多行。
-
-### footer
-
-footer 部分只用于两种情况。
-
-#### 1）不兼容的变动
-
-如果当前代码与上一个版本不兼容，则 footer 部分以 `BREAKING CHANGE:` 开头，后面是对变动的描述、以及变动理由和迁移方法。
-
-```bash
-BREAKING CHANGE: isolate scope bindings definition has changed.
-
-To migrate the code follow the example below:
-
-Before:
-
-scope: {
-  myAttr: 'attribute',
-}
-
-After:
-
-scope: {
-  myAttr: '@',
-}
-
-The removed `inject` wasn't generaly useful for directives so there should be no code using it.
-```
-
-#### 2）关闭 issue
-
-如果当前 commit 针对某个 issue，那么可以在 footer 部分关闭这个 issue。
-
-```bash
-Close #234
-```
-
-也可以一次关闭多个 issue。
-
-```bash
-Close #123, #245, #992
-```
-
-### revert（可忽视）
+特别注意：
 
 如果当前 commit 用于撤销之前的 commit，则必须以 `revert:` 开头，后面跟着被撤销 commit 的 header。
 
@@ -173,7 +107,24 @@ revert: feat(pencil): add 'graphiteWidth' option
 This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
 ```
 
-如果当前 commit 与被撤销的 commit，在同一个发布（release）里面，那么它们都不会出现在 Change log 里面。如果两者在不同的发布，那么当前 commit，会出现在 Change log 的 Reverts 小标题下面。
+### 正文（Body）
+
+详细描述本次 commit 做了什么、为什么这样做(不是怎么做的)，每行不要超过 70 字符。
+
+* 这个改动解决了什么问题？ 
+* 这个改动为什么是必要的？ 
+* 会影响到哪些其他的代码？ 
+  * bug fix - 组件 bug 修复
+  * breaking change - 不兼容的改动
+  * new feature - 新功能
+
+### 尾注（Footer）
+
+用于关闭 Issue 或存在不兼容时添加相关说明等。
+
+* breaking change：与上一个版本不兼容的相关描述、理由及迁移办法
+* close #issue：关闭相关问题（附链接）。例如：`close #123, #245`
+* revert：撤销以前的 commit
 
 ## 模板参考
 
