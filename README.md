@@ -289,6 +289,7 @@
   - [Linux 系统是如何收发网络包的？](https://fedbook.cn/basic-skills/network/how-os-deal-with-network-packets/)
   - [拔掉网线后，TCP 连接会断开吗？](https://fedbook.cn/basic-skills/network/tcp-connection-after-unpluging-network-cable/)
   - [输入 URL 到页面展示，中间发生了什么？](https://fedbook.cn/basic-skills/network/what-happens-after-url/)
+  - [TCP 三次握手期间异常，会发生什么？](https://fedbook.cn/basic-skills/network/tcp-handshake-exception/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
