@@ -40,6 +40,10 @@ module.exports = [
       {
         title: 'TCP 三次握手期间异常，会发生什么？',
         path: '/basic-skills/network/tcp-handshake-exception'
+      },
+      {
+        title: 'TCP 四次挥手期间异常，会发生什么？',
+        path: '/basic-skills/network/tcp-wave-exception'
       }
     ]
   }
