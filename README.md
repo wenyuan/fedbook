@@ -287,10 +287,10 @@
   - [TCP 协议](https://fedbook.cn/basic-skills/network/tcp/)
   - **经典问题**
   - [Linux 系统是如何收发网络包的？](https://fedbook.cn/basic-skills/network/how-os-deal-with-network-packets/)
-  - [拔掉网线后，TCP 连接会断开吗？](https://fedbook.cn/basic-skills/network/tcp-connection-after-unpluging-network-cable/)
   - [输入 URL 到页面展示，中间发生了什么？](https://fedbook.cn/basic-skills/network/what-happens-after-url/)
   - [TCP 三次握手期间异常，会发生什么？](https://fedbook.cn/basic-skills/network/tcp-handshake-exception/)
   - [TCP 四次挥手期间异常，会发生什么？](https://fedbook.cn/basic-skills/network/tcp-wave-exception/)
+  - [拔掉网线几秒再插回去，原本的 TCP 连接还在吗？](https://fedbook.cn/basic-skills/network/tcp-connection-after-unpluging-network-cable/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

@@ -92,7 +92,7 @@ TCP 的连接建立，常常称为三次握手。在连接建立的过程中，�
 ::: tip 小贴士
 这里引申一个问题，客户端因为某种原因掉线后（比如拔掉网线几秒再插回去），原本的 TCP 连接还存在吗？
 
-参考本系列的这篇文章：[拔掉网线后，TCP 连接会断开吗？](/basic-skills/network/tcp-connection-after-unpluging-network-cable/)。
+参考本系列的这篇文章：[拔掉网线几秒再插回去，原本的 TCP 连接还在吗？](/basic-skills/network/tcp-connection-after-unpluging-network-cable/)。
 :::
 
 ### 为什么是三次

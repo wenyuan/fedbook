@@ -30,10 +30,6 @@ module.exports = [
         path: '/basic-skills/network/how-os-deal-with-network-packets'
       },
       {
-        title: '拔掉网线后，TCP 连接会断开吗？',
-        path: '/basic-skills/network/tcp-connection-after-unpluging-network-cable'
-      },
-      {
         title: '输入 URL 到页面展示，中间发生了什么？',
         path: '/basic-skills/network/what-happens-after-url'
       },
@@ -44,7 +40,11 @@ module.exports = [
       {
         title: 'TCP 四次挥手期间异常，会发生什么？',
         path: '/basic-skills/network/tcp-wave-exception'
-      }
+      },
+      {
+        title: '拔掉网线几秒再插回去，原本的 TCP 连接还在吗？',
+        path: '/basic-skills/network/tcp-connection-after-unpluging-network-cable'
+      },
     ]
   }
 ]
