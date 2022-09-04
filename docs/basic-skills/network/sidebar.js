@@ -49,6 +49,10 @@ module.exports = [
         title: '如果已经建立了连接，但是客户端突然出现故障了怎么办？',
         path: '/basic-skills/network/tcp-connection-after-client-break-down'
       },
+      {
+        title: '如果已经建立了连接，但是服务端的进程崩溃会发生什么？',
+        path: '/basic-skills/network/tcp-connection-after-server-break-down'
+      },
     ]
   }
 ]
