@@ -45,6 +45,10 @@ module.exports = [
         title: '拔掉网线几秒再插回去，原本的 TCP 连接还在吗？',
         path: '/basic-skills/network/tcp-connection-after-unpluging-network-cable'
       },
+      {
+        title: '如果已经建立了连接，但是客户端突然出现故障了怎么办？',
+        path: '/basic-skills/network/tcp-connection-after-client-break-down'
+      },
     ]
   }
 ]
