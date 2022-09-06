@@ -23,7 +23,7 @@ module.exports = [
   },
   {
     title: '经典问题',
-    collapsable: false,
+    collapsable: true,
     children: [
       {
         title: 'Linux 系统是如何收发网络包的？',
@@ -52,6 +52,10 @@ module.exports = [
       {
         title: '如果已经建立了连接，但是服务端的进程崩溃会发生什么？',
         path: '/basic-skills/network/tcp-connection-after-server-break-down'
+      },
+      {
+        title: 'TCP 和 UDP 可以使用同一个端口吗？',
+        path: '/basic-skills/network/can-tcp-and-udp-use-the-same-port'
       },
     ]
   }
