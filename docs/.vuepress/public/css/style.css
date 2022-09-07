@@ -322,3 +322,8 @@ a.sidebar-link.active {
 .theme-default-content.content__default table tr:nth-child(2n) {
   background-color: #f7f7f7;
 }
+
+/* strong */
+.theme-default-content.content__default strong {
+  color: #304ffe;
+}
