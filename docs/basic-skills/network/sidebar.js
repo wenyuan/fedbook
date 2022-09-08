@@ -22,6 +22,16 @@ module.exports = [
     ]
   },
   {
+    title: '网络排查',
+    collapsable: false,
+    children: [
+      {
+        title: '抓包与分析',
+        path: '/basic-skills/network/tcpdump-and-wireshark'
+      },
+    ]
+  },
+  {
     title: '经典问题',
     collapsable: true,
     children: [

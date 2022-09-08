@@ -285,6 +285,8 @@
   - [IP 地址](https://fedbook.cn/basic-skills/network/ip-address/)
   - [UDP 协议](https://fedbook.cn/basic-skills/network/udp/)
   - [TCP 协议](https://fedbook.cn/basic-skills/network/tcp/)
+  - **网络排查**
+  - [抓包与分析](https://fedbook.cn/basic-skills/network/tcpdump-and-wireshark/)
   - **经典问题**
   - [Linux 系统是如何收发网络包的？](https://fedbook.cn/basic-skills/network/how-os-deal-with-network-packets/)
   - [输入 URL 到页面展示，中间发生了什么？](https://fedbook.cn/basic-skills/network/what-happens-after-url/)
