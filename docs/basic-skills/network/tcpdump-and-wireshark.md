@@ -163,7 +163,7 @@ Wireshark 可以用时序图的方式显示数据包交互的过程，从菜单�
 再来回顾下 TCP 三次握手和四次挥手，整个流程基本是这样的：
 
 <div style="text-align: center; width: 860px;">
-  <img src="./assets/tcp-three-handshakes-and-four-waves.png" alt="TCP 三次握手和四次挥手" style="width: 640px;">
+  <img src="./assets/tcp-three-handshakes-and-four-waves.png" alt="TCP 三次握手和四次挥手" style="width: 680px;">
   <p style="text-align: center; color: #888;">（TCP 三次握手和四次挥手）</p>
 </div>
 
