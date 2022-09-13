@@ -286,6 +286,7 @@
   - [UDP 协议](https://fedbook.cn/basic-skills/network/udp/)
   - [TCP 协议](https://fedbook.cn/basic-skills/network/tcp/)
   - **网络排查**
+  - [网络排查工具](https://fedbook.cn/basic-skills/network/network-troubleshooting-tools/)
   - [抓包与分析](https://fedbook.cn/basic-skills/network/tcpdump-and-wireshark/)
   - **经典问题**
   - [Linux 系统是如何收发网络包的？](https://fedbook.cn/basic-skills/network/how-os-deal-with-network-packets/)

@@ -26,6 +26,10 @@ module.exports = [
     collapsable: false,
     children: [
       {
+        title: '网络排查工具',
+        path: '/basic-skills/network/network-troubleshooting-tools'
+      },
+      {
         title: '抓包与分析',
         path: '/basic-skills/network/tcpdump-and-wireshark'
       },
