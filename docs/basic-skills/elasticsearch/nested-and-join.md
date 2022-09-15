@@ -364,7 +364,7 @@ nested 数据类型和 join 数据类型可以解决这个问题。
 | 优点   | 对象与文档存储在一起，读取性能高            | 父子文档互相独立                        |
 | 使用场景 | 适合查询频繁但更新频率低的场景             | 适合子文档更新频率高的场景                   |
 
-## 参考文档
+## 参考资料
 
 * [nested](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/nested.html#nested)
 * [join](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/parent-join.html)

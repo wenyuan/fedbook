@@ -599,7 +599,7 @@ systemctl --failed
 
 注：`*` 代表某个服务的名字，如 http 的服务名为 httpd。
 
-## 参考文档
+## 参考资料
 
 * [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 

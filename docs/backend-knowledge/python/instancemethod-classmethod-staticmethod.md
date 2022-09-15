@@ -237,7 +237,7 @@ Foo.class_func()
 Foo.static_func()
 ```
 
-## 参考文档
+## 参考资料
 
 * [Python 中的 classmethod 和 staticmethod 有什么具体用途](https://www.zhihu.com/question/20021164)
 

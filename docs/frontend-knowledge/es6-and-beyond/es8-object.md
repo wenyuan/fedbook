@@ -114,7 +114,7 @@ console.log(Object.getOwnPropertyDescriptors(obj))
 // {name: {…}, age: {…}, gender: {…}}
 ```
 
-## 参考文档
+## 参考资料
 
 * [Object.values()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/values)
 * [Object.entries()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)

@@ -303,7 +303,7 @@ search after + PIT 实现的功能似乎和 scroll API 类似，那它们间有�
 * 而 **PIT 可以允许用户在同一个固定数据集合上运行不同的查询，例如多个请求可以使用同一个 PIT 视图而互不影响**。
 
 
-## 参考文档
+## 参考资料
 
 * [Search after](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/paginate-search-results.html#search-after)
 

@@ -261,7 +261,7 @@ console.log(mod.cname)
 console.log(mod.caddr)
 ```
 
-## 参考文档
+## 参考资料
 
 * [Module 的语法](https://es6.ruanyifeng.com/#docs/module)
 * [import, export, default cheatsheet](https://hackernoon.com/import-export-default-require-commandjs-javascript-nodejs-es6-vs-cheatsheet-different-tutorial-example-5a321738b50f)

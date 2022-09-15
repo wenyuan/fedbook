@@ -258,7 +258,7 @@ GET /books/_search
 
 通俗来说就是其他字段可以使用 `tie_breaker` 来进行「维权」。
 
-## 参考文档
+## 参考资料
 
 * [multi-match](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/query-dsl-multi-match-query.html)
 

@@ -423,7 +423,7 @@ Pipeline 分析的结果会输出到原查询的结果中，根据位置的不�
 
 更多 Pipeline Aggregations 的使用案例可以参考[官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/search-aggregations-pipeline.html)。
 
-## 参考文档
+## 参考资料
 
 * [Aggregations](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/search-aggregations.html)
 

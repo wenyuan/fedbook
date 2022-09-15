@@ -319,7 +319,7 @@ Promise.race([p1, p2, p3]).then(function(value) {
 
 参数 promise 数组中的任何一个 Promise 对象如果变为 `resolve` 或者 `reject` 的话，该函数就会返回，并使用这个 Promise 对象的值进行 `resolve` 或者 `reject`。
 
-## 参考文档
+## 参考资料
 
 * [Promise 对象](https://es6.ruanyifeng.com/#docs/promise)
 * [Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)

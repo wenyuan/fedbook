@@ -1487,7 +1487,7 @@ class MedusaSorcerer:
         return '__xor__'
 ```
 
-## 参考文档
+## 参考资料
 
 * [Python提供的魔术方法](https://www.cnblogs.com/dachenzi/p/8185792.html)
 * [一个类带你了解Python魔法方法](https://juejin.cn/post/6844904051608387598)

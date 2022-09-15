@@ -180,7 +180,7 @@ HEAD _template/my_template
 DELETE _template/my_template
 ```
 
-## 参考文档
+## 参考资料
 
 * [Index templates](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/index-templates.html)
 * [Index Settings](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/index-modules.html#index-modules-settings)

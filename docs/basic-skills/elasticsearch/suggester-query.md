@@ -425,7 +425,7 @@ POST books_context/_search
 * **Completion Suggester 提供自动补全单词的功能，输入词语的前半部分，自动补全整个单词**。由于 Completion Suggester 需要比较高的性能，所以底层使用了 FST 来实现。需要注意的是，Completion Suggester 在写入数据时会将数据进行分词等操作，而不同的分词器分词后的结果不尽相同，这会导致构建的 FST 也是不同的，这样将会造成某些查询无法匹配到结果的现象。
 * **Context Suggester 提供基于上下文的补全功能**。当我们需要根据不同类别进行相关上下文补全的时候，Context Suggester 就派上用场了。Context Suggester 可以定义两种上下文类型：Category 和 Geo，其中我们今天详细讲解了 Category 类型的实例。
 
-## 参考文档
+## 参考资料
 
 * [Suggesters](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/search-suggesters.html#global-suggest)
 

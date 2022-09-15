@@ -175,7 +175,7 @@ POST /books/_search
 }
 ```
 
-## 参考文档
+## 参考资料
 
 [Term-level queries](https://www.elastic.co/guide/en/elasticsearch/reference/7.13/term-level-queries.html)
 
