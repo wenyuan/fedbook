@@ -285,6 +285,7 @@
   - [IP 地址](https://fedbook.cn/basic-skills/network/ip-address/)
   - [UDP 协议](https://fedbook.cn/basic-skills/network/udp/)
   - [TCP 协议](https://fedbook.cn/basic-skills/network/tcp/)
+  - [TCP 重传、乱序和重复的问题](https://fedbook.cn/basic-skills/network/tcp-retransmission-out-of-order-and-duplication/)
   - **网络排查**
   - [网络排查工具](https://fedbook.cn/basic-skills/network/network-troubleshooting-tools/)
   - [抓包与分析](https://fedbook.cn/basic-skills/network/tcpdump-and-wireshark/)

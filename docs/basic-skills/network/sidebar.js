@@ -18,6 +18,10 @@ module.exports = [
       {
         title: 'TCP 协议',
         path: '/basic-skills/network/tcp'
+      },
+      {
+        title: 'TCP 协议重传机制',
+        path: '/basic-skills/network/tcp-retransmission'
       }
     ]
   },
