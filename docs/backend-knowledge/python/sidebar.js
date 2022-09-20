@@ -112,7 +112,7 @@ module.exports = [
         path: '/backend-knowledge/python/global-interpreter-lock'
       },
       {
-        title: 'Python 协程',
+        title: '协程',
         path: '/backend-knowledge/python/coroutine'
       },
       {

@@ -1,4 +1,4 @@
-# Python 协程
+# 协程
 
 ## 前置知识
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
 包含如下步骤：
 
-* 在普通的函数前面加 `async` 关键字；
+* 在普通的函数前面加 `async` 关键字。
 * `await` 表示在这个地方等待子函数执行完成，再往下执行。
   * 在并发操作中，把程序控制权教给主程序，让他分配其他协程执行。
   * `await` 只能在带有 `async` 关键字的函数中运行。
@@ -73,6 +73,10 @@ if __name__ == '__main__':
 :::
 
 ### 多个协程子任务
+
+可以通过使用 `await` 关键字，在一个协程中调用一个协程。一个协程可以启动另一个协程，从而可以使任务根据工作内容，封装到不同的协程中。
+
+就像下面的例子一样：
 
 ```python
 import asyncio
@@ -123,14 +127,13 @@ if __name__ == '__main__':
 
 上述代码创建了 3 个协程，其中 `task1` 和 `task2` 都放在了协程函数 `main` 中，I/O 操作通过 `asyncio.sleep(1)` 进行模拟，整个函数运行时间约为 3 秒，但依旧是串行进行，并没有发挥并发编程的优势。如果是并发编程，这个程序只需要消耗 2 秒，也就是 task1 的等待时间。
 
-
 ### 并发执行协程子任务
 
 #### gather 方法
 
 如果希望修改为并发执行，需要把上面的代码改一下：
 
-```python
+```python {23}
 import asyncio
 import time
 
@@ -165,7 +168,7 @@ if __name__ == '__main__':
     asyncio.run(main())
 ```
 
-代码输出如下所示：
+执行结果：
 
 ```
 任务1
@@ -183,9 +186,9 @@ if __name__ == '__main__':
 
 #### wait 方法
 
-`asyncio.gather()` 可以更换为 `asyncio.wait()`，修改代码如下所示：
+`asyncio.gather()` 可以更换为 `asyncio.wait()`，修改代码如下：
 
-```python
+```python {29}
 import asyncio
 import time
 
@@ -208,7 +211,7 @@ async def task2(x):
 
 async def main():
     start_time = time.perf_counter()
-    # 参考 asyncio.wait() 源码中的注释，需要把协程对象变成 Tasks 对象（3.8 之前会自动生成为 Tasks 对象）
+    # 参考 wait() 源码中的注释，需要把协程对象变成 Tasks 对象（3.8 之前会自动生成为 Tasks 对象）
     # 如果直接把协程对象传给 wait() 方法，Python3.8 会警告，Python3.11 会报错
     tasks = [
         asyncio.create_task(task1(1)),
@@ -232,14 +235,179 @@ if __name__ == '__main__':
 
 * `gather`：需要所有任务都执行结束，如果任意一个协程函数崩溃了，都会抛异常，不会返回结果。
 * `wait`：可以定义函数返回的时机，可以设置为 `FIRST_COMPLETED`（第一个结束的），`FIRST_EXCEPTION`（第一个出现异常的），`ALL_COMPLETED`（全部执行完，默认的）。
+  ```python
+  done, pending = await asyncio.wait(tasks, return_when=asyncio.tasks.FIRST_EXCEPTION)
+  ```
+
+::: tip 小贴士
+在 Python3.8 之前，gather 具有把普通协程函数包装成协程任务的能力，wait 没有。wait 只能接收包装后的协程任务列表做参数。
+
+这也导致了：gather 返回的任务执行结果是有序的，wait 方法获取的结果是无序的。
+
+但在 Python3.8 之后，这种[直接向 `wait()` 传入协程对象的方式已弃用](https://docs.python.org/zh-cn/3/library/asyncio-task.html#asyncio-example-wait-coroutine)。
+
+测试代码：
 
 ```python
-done,pending = await asyncio.wait([task1(1),task2(2)],return_when=asyncio.tasks.FIRST_EXCEPTION)
+import asyncio
+
+
+async def num(n):
+    print(f"当前的数字是：{n}")
+    await asyncio.sleep(n)
+    print(f"等待时间：{n}")
+
+
+async def main():
+    tasks = [num(i) for i in range(10)]  # 协程列表
+    # await asyncio.gather(*tasks)  # gather 有序并发
+    # await asyncio.wait(tasks)     # wait   无序并发
+
+    # wait 新写法，需要传递 Tasks 对象，且这种写法之下也是有序并发了
+    await asyncio.wait([asyncio.create_task(task) for task in tasks])
+
+
+if __name__ == '__main__':
+    # 执行协程对象
+    asyncio.run(main())
+```
+:::
+
+### 在协程中使用普通函数
+
+在普通函数中调用普通函数，直接函数名加括号即可。而在协程中调用一个普通函数，则需要通过一些方法，可以使用的关键字有：
+
+* `call_soon`：立即执行
+* `call_later`：延迟执行
+* `call_at`：在某时刻执行
+* `loop.time`：是事件循环内部的一个即时方法，返回值是时刻，数据类型为 `float`
+
+这三个 `call_xxx` 方法的作用都是将函数作为任务排定到事件循环中，返回值都是 `asyncio.events.TimerHandle` 实例，注意它们不是协程任务，不能作为 `loop.run_until_complete` 的参数。
+
+#### call_soon
+
+通过字面意思理解就是调用立即返回。具体的使用例子：
+
+```python
+import asyncio
+import functools
+
+
+def callback(args, *, kwargs="default"):
+    print(f"普通函数做为回调函数，获取参数：{args}，{kwargs}")
+
+
+async def main():
+    loop = asyncio.get_running_loop()
+    print("注册 callback")
+    loop.call_soon(callback, 1)
+    wrapped = functools.partial(callback, kwargs="not default")
+    loop.call_soon(wrapped, 2)
+    await asyncio.sleep(0.2)
+
+
+if __name__ == '__main__':
+    # 执行协程对象
+    asyncio.run(main())
+```
+
+执行结果：
+
+```
+注册 callback
+普通函数做为回调函数，获取参数：1，default
+普通函数做为回调函数，获取参数：2，not default
+```
+
+::: tip 小贴士
+`functools.partial` 接收一个函数，并返回一个新的函数，与装饰器不同的是它可以传递更多的参数。可参考[偏函数](https://www.liaoxuefeng.com/wiki/1016959663602400/1017454145929440)
+:::
+
+#### call_later
+
+有时候我们不想立即调用一个函数，此时我们就可以用 `call_later` 延时去调用一个函数了。
+
+它的意思就是事件循环在 delay 多长时间之后才执行 callback 函数。配合上面的 `call_soon` 看一个小例子：
+
+```python
+import asyncio
+
+
+def callback(args, *, kwargs="default"):
+    print(f"普通函数做为回调函数，获取参数：{args}，{kwargs}")
+
+
+async def main():
+    loop = asyncio.get_running_loop()
+    print("注册 callback")
+    loop.call_later(0.2, callback, 1)
+    loop.call_later(0.1, callback, 2)
+    loop.call_soon(callback, 3)
+    await asyncio.sleep(0.4)
+
+
+if __name__ == '__main__':
+    # 执行协程对象
+    asyncio.run(main())
+```
+
+执行结果：
+
+```
+注册 callback
+普通函数做为回调函数，获取参数：3，default
+普通函数做为回调函数，获取参数：2，default
+普通函数做为回调函数，获取参数：1，default
+```
+
+通过上面的输出可以得到如下结论：
+
+* `call_soon` 会在 `call_later` 之前执行，和它的位置在哪无关。
+* `call_later` 的第一个参数越小，越先执行。
+
+#### call_at
+
+`call_at` 第一个参数的含义代表的是一个单调时间，它和我们平时说的系统时间有点差异，这里的时间指的是事件循环内部时间，可以通过 `loop.time()` 获取，然后可以在此基础上进行操作。后面的参数和前面的两个方法一样。实际上 `call_later` 内部就是调用的 `call_at`。
+
+```python
+import asyncio
+
+
+def callback(n, loop):
+    print(f"回调函数 {n} 运行时间点 {loop.time()}")
+
+
+async def main():
+    loop = asyncio.get_running_loop()
+    now = loop.time()
+    print(f"当前的内部时间：{now}")
+    print(f"循环时间：{now}")
+    print("注册 callback")
+    loop.call_at(now + 0.1, callback, 1, loop)
+    loop.call_at(now + 0.2, callback, 2, loop)
+    loop.call_soon(callback, 3, loop)
+    await asyncio.sleep(1)
+
+
+if __name__ == '__main__':
+    # 执行协程对象
+    asyncio.run(main())
+```
+
+执行结果：
+
+```
+当前的内部时间：1142173.546
+循环时间：1142173.546
+注册 callback
+回调函数 3 运行时间点 1142173.546
+回调函数 1 运行时间点 1142173.656
+回调函数 2 运行时间点 1142173.75
 ```
 
 ## asyncio 异步 I/O 库
 
-> 展开讲一下 asyncio 库。
+> 上面的代码都用到了 asyncio 库，这里展开讲一下。
 
 Python 中的 `asyncio` 库提供了管理事件、协程、任务和线程的方法，以及编写并发代码的原语，即 `async` 和 `await`。
 

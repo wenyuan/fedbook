@@ -381,7 +381,7 @@
   - [切片](https://fedbook.cn/backend-knowledge/python/slicing/)
   - [多线程、多进程](https://fedbook.cn/backend-knowledge/python/threading-and-multiprocess/)
   - [全局解释器锁（GIL）](https://fedbook.cn/backend-knowledge/python/global-interpreter-lock/)
-  - [Python 协程](https://fedbook.cn/backend-knowledge/python/coroutine/)
+  - [协程](https://fedbook.cn/backend-knowledge/python/coroutine/)
   - [生成器 generator](https://fedbook.cn/backend-knowledge/python/generator/)
   - [迭代器 Iterator](https://fedbook.cn/backend-knowledge/python/iterator/)
   - **Python 常用模块**
