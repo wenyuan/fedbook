@@ -8,6 +8,10 @@ module.exports = [
         path: '/basic-skills/redis/data-types'
       },
       {
+        title: 'Redis 常用命令',
+        path: '/basic-skills/redis/common-commands'
+      },
+      {
         title: 'Redis 缓存三大问题',
         path: '/basic-skills/redis/three-cache-problems'
       },

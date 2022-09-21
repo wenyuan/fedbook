@@ -257,6 +257,7 @@
 - [Redis](https://fedbook.cn/basic-skills/redis/)
   - **Redis 基础知识**
   - [Redis 数据类型](https://fedbook.cn/basic-skills/redis/data-types/)
+  - [Redis 常用命令](https://fedbook.cn/basic-skills/redis/common-commands/)
   - [Redis 缓存三大问题](https://fedbook.cn/basic-skills/redis/three-cache-problems/)
   - **Redis 日常运维**
   - [Redis 的安装与卸载](https://fedbook.cn/basic-skills/redis/installation-of-redis/)
