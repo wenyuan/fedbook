@@ -107,7 +107,7 @@ JavaScript 能够表示的**最大数值**为 `Number.MAX_VALUE`，在大多数�
 
 BigInt 类型是在 ECMAScript 2020（ES11）引入的新特性。
 
-JavaScript 中能够精确表达的最大数字是 `2^53 - 1`，即 `Number.MAX_SAFE_INTEGER`，如果超过了这个范围，运算结果就不再准确了。
+JavaScript 中能够精确表达的最大数字是 `2⁵³ - 1`，即 `Number.MAX_SAFE_INTEGER`，如果超过了这个范围，运算结果就不再准确了。
 
 ```javascript
 const max = Number.MAX_SAFE_INTEGER;
