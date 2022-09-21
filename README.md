@@ -385,6 +385,7 @@
   - [生成器 generator](https://fedbook.cn/backend-knowledge/python/generator/)
   - [迭代器 Iterator](https://fedbook.cn/backend-knowledge/python/iterator/)
   - **Python 常用模块**
+  - [Python 多版本虚拟环境共存](https://fedbook.cn/backend-knowledge/python/multiple-python-install-on-linux/)
   - [使用 xlrd 处理旧版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-xlrd/)
   - [使用 openpyxl 处理新版本 Excel](https://fedbook.cn/backend-knowledge/python/python-lib-openpyxl/)
   - [使用 smtplib 发送电子邮件](https://fedbook.cn/backend-knowledge/python/python-lib-smtplib/)

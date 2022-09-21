@@ -130,6 +130,10 @@ module.exports = [
     collapsable: true,
     children: [
       {
+        title: 'Python 多版本虚拟环境共存',
+        path: '/backend-knowledge/python/multiple-python-install-on-linux'
+      },
+      {
         title: '使用 xlrd 处理旧版本 Excel',
         path: '/backend-knowledge/python/python-lib-xlrd'
       },
