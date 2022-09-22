@@ -14,11 +14,26 @@
 
 如果你要想在多个 Python 版本之间进行切换，首先要确保你已经安装所需的 Python 版本（比如这里我需要 Python3.8）。
 
-从 Python [官网下载](https://www.python.org/downloads/) python3 源码安装包：
+首先需要安装依赖组件，如果不安转的话后续在安装和使用 Python 时会报各种缺少依赖的错误（比如缺少 `_ctypes` 等）
+
+* Ubuntu
+  ```bash
+  sudo apt update -y
+  sudo apt install -y build-essential libncursesw5-dev libgdbm-dev libc6-dev zlib1g zlib1g-dev libsqlite3-dev tk-dev libssl-dev openssl libffi-dev python3-dev python3-smbus
+  ```
+* Centos
+  ```bash
+  sudo yum update -y
+  sudo yum groupinstall -y "development tools"
+  sudo yum install zlib zlib-devel bzip2-devel openssl openssl-devel libffi-devel ncurses-devel xz-devel  python3-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel expat-devel
+  ```
+
+现在开始正式安装 Python，先从 Python [官网下载](https://www.python.org/downloads/) python3 源码安装包：
 
 ```bash
 cd /opt
-wget https://www.python.org/ftp/python/3.8.9/Python-3.8.9.tgz
+# 如果下载慢的话不如先下载到本地开发机器上，再上传到服务器
+wget --no-check-certificate https://www.python.org/ftp/python/3.8.9/Python-3.8.9.tgz
 ```
 
 编译安装：
