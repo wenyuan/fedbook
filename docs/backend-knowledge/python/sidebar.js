@@ -160,6 +160,10 @@ module.exports = [
       {
         title: '使用 Fabric 执行 SSH',
         path: '/backend-knowledge/python/python-lib-fabric'
+      },
+      {
+        title: '使用 celery 实现任务调度',
+        path: '/backend-knowledge/python/python-lib-celery'
       }
     ]
   }
