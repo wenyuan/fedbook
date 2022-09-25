@@ -9,7 +9,7 @@ redis-cli -h 127.0.0.1 -p 6379
 # 如果 redis 设置了密码，在连接后，输入密码命令（显示 OK 则登录成功）
 # 一旦设置密码，必须先验证通过密码，否则所有操作不可用，都将只返回：
 # (error) NOAUTH Authentication required.
-127.0.0.1:6379> auth 密码
+127.0.0.1:6379> auth <password>
 
 # 沟通命令，查看状态（ping 返回 PONG 表示 redis 服务运行正常）
 127.0.0.1:6379> ping
@@ -18,7 +18,7 @@ redis-cli -h 127.0.0.1 -p 6379
 127.0.0.1:6379> config get requirepass
 
 # 设置临时密码（临时密码在服务重启后失效，所以一般生产环境不使用这种方式）
-127.0.0.1:6379> config set requirepass 密码
+127.0.0.1:6379> config set requirepass <password>
 
 # 通过 select 命令来切换数据库。数据库初始是 16 个（0~15），可通过配置文件修改
 # 默认是第 0 个数据库
