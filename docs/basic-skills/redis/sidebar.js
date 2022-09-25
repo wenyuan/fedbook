@@ -25,6 +25,10 @@ module.exports = [
         title: 'Redis 的安装与卸载',
         path: '/basic-skills/redis/installation-of-redis'
       },
+      {
+        title: 'Redis 的 ACL 安全策略',
+        path: '/basic-skills/redis/access-control-list'
+      },
     ]
   }
 ]
