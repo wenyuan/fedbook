@@ -86,7 +86,7 @@ SELECT * FROM t1 LEFT [OUTER] JOIN t2 ON 连接条件 [WHERE 普通过滤条件]
 
 #### 示例：
 
-要求把所有的学生的成绩信息都查询出来，即使是缺考的考生也应该被放到结果集中（这里用到了[数据的增删改](/basic-skills/mysql/data-insert-delete-update/)里插入的表和数据）。
+要求把所有的学生的成绩信息都查询出来，即使是缺考的考生也应该被放到结果集中（这里用到了[数据的增删改](/backend-knowledge/mysql/data-insert-delete-update/)里插入的表和数据）。
 
 ```sql
 mysql> SELECT student_info.number, name, major, subject, score FROM student_info LEFT JOIN student_score ON student_info.number = student_score.number;

@@ -20,9 +20,6 @@ module.exports = {
   '/basic-skills/git/': require('../basic-skills/git/sidebar'),
   '/basic-skills/nginx/': require('../basic-skills/nginx/sidebar'),
   '/basic-skills/linux/': require('../basic-skills/linux/sidebar'),
-  '/basic-skills/mysql/': require('../basic-skills/mysql/sidebar'),
-  '/basic-skills/redis/': require('../basic-skills/redis/sidebar'),
-  '/basic-skills/elasticsearch/': require('../basic-skills/elasticsearch/sidebar'),
   '/basic-skills/network/': require('../basic-skills/network/sidebar'),
   /* --------- 深入学习 --------- */
   '/in-depth-learning/algorithm/': require('../in-depth-learning/algorithm/sidebar'),
@@ -31,6 +28,9 @@ module.exports = {
   /* --------- 后端开发 --------- */
   '/backend-knowledge/python/': require('../backend-knowledge/python/sidebar'),
   '/backend-knowledge/django/': require('../backend-knowledge/django/sidebar'),
+  '/backend-knowledge/mysql/': require('../backend-knowledge/mysql/sidebar'),
+  '/backend-knowledge/redis/': require('../backend-knowledge/redis/sidebar'),
+  '/backend-knowledge/elasticsearch/': require('../backend-knowledge/elasticsearch/sidebar'),
   /* --------- 项目相关 --------- */
   '/project/solutions/': require('../project/solutions/sidebar'),
   /* --------- 其它 --------- */

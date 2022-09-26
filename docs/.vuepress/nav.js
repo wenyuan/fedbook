@@ -67,15 +67,7 @@ module.exports = [
         ]
       },
       {
-        text: '数据库/中间件',
-        items: [
-          { text: 'MySQL', link: '/basic-skills/mysql/' },
-          { text: 'Redis', link: '/basic-skills/redis/' },
-          { text: 'Elasticsearch', link: '/basic-skills/elasticsearch/' },
-        ]
-      },
-      {
-        text: '基础知识',
+        text: '网络知识',
         items: [
           { text: '计算机网络', link: '/basic-skills/network/' }
         ]
@@ -98,6 +90,14 @@ module.exports = [
         items: [
           { text: 'Python', link: '/backend-knowledge/python/' },
           { text: 'Django', link: '/backend-knowledge/django/' }
+        ]
+      },
+      {
+        text: '数据库/中间件',
+        items: [
+          { text: 'MySQL', link: '/backend-knowledge/mysql/' },
+          { text: 'Redis', link: '/backend-knowledge/redis/' },
+          { text: 'Elasticsearch', link: '/backend-knowledge/elasticsearch/' },
         ]
       },
     ]

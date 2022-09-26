@@ -235,52 +235,6 @@
   - [常用命令](https://fedbook.cn/basic-skills/linux/common-commands/)
   - **Linux 常见问题**
   - [vim 中文乱码问题](https://fedbook.cn/basic-skills/linux/solution-to-vim-encoding/)
-- [MySQL](https://fedbook.cn/basic-skills/mysql/)
-  - **MySQL 基础知识**
-  - [MySQL 数据类型](https://fedbook.cn/basic-skills/mysql/data-types/)
-  - [MySQL 常用命令](https://fedbook.cn/basic-skills/mysql/common-commands/)
-  - [库和表的基本操作](https://fedbook.cn/basic-skills/mysql/database-and-table-operations/)
-  - [表中列的基本属性](https://fedbook.cn/basic-skills/mysql/column-properties/)
-  - [数据的增删改](https://fedbook.cn/basic-skills/mysql/data-insert-delete-update/)
-  - [简单查询语法](https://fedbook.cn/basic-skills/mysql/simple-query/)
-  - [条件查询语法](https://fedbook.cn/basic-skills/mysql/query-by-search-conditions/)
-  - [表达式和函数](https://fedbook.cn/basic-skills/mysql/expressions-and-functions/)
-  - [分组查询语法](https://fedbook.cn/basic-skills/mysql/group-query/)
-  - [子查询语法](https://fedbook.cn/basic-skills/mysql/sub-query/)
-  - [连接查询语法](https://fedbook.cn/basic-skills/mysql/join-query/)
-  - [组合查询语法](https://fedbook.cn/basic-skills/mysql/union-query/)
-  - **MySQL 日常运维**
-  - [MySQL 的安装与卸载](https://fedbook.cn/basic-skills/mysql/installation-of-mysql/)
-  - [MySQL 主键和自增 ID](https://fedbook.cn/basic-skills/mysql/primary-key-and-increment-id/)
-  - [MySQL 数据库设计规范](https://fedbook.cn/basic-skills/mysql/db-design-spec/)
-  - 其它知识点，待后续继续补充
-- [Redis](https://fedbook.cn/basic-skills/redis/)
-  - **Redis 基础知识**
-  - [Redis 数据类型](https://fedbook.cn/basic-skills/redis/data-types/)
-  - [Redis 常用命令](https://fedbook.cn/basic-skills/redis/common-commands/)
-  - [Redis 缓存三大问题](https://fedbook.cn/basic-skills/redis/three-cache-problems/)
-  - **Redis 日常运维**
-  - [Redis 的安装与卸载](https://fedbook.cn/basic-skills/redis/installation-of-redis/)
-  - [Redis 的 ACL 安全策略](https://fedbook.cn/basic-skills/redis/access-control-list/)
-- [Elasticsearch](https://fedbook.cn/basic-skills/elasticsearch/)
-  - **Elasticsearch 基础知识**
-  - [ES 中的概念与名词](https://fedbook.cn/basic-skills/elasticsearch/concepts-and-noun/)
-  - [正排索引与倒排索引](https://fedbook.cn/basic-skills/elasticsearch/forward-and-inverted-index/)
-  - [文档基本操作](https://fedbook.cn/basic-skills/elasticsearch/document-crud/)
-  - [全文搜索语法](https://fedbook.cn/basic-skills/elasticsearch/match-query/)
-  - [Term 查询语法](https://fedbook.cn/basic-skills/elasticsearch/term-query/)
-  - [组合查询语法](https://fedbook.cn/basic-skills/elasticsearch/compound-query/)
-  - [搜索词自动补全语法](https://fedbook.cn/basic-skills/elasticsearch/suggester-query/)
-  - [统计语法：聚合查询](https://fedbook.cn/basic-skills/elasticsearch/aggregations/)
-  - [嵌套类型和父子文档](https://fedbook.cn/basic-skills/elasticsearch/nested-and-join/)
-  - [分词器的原理和使用](https://fedbook.cn/basic-skills/elasticsearch/analyzer/)
-  - [分页查询的三种语法](https://fedbook.cn/basic-skills/elasticsearch/paging-query/)
-  - **Elasticsearch 日常运维**
-  - [ES 的安装](https://fedbook.cn/basic-skills/elasticsearch/installation-of-elasticsearch/)
-  - [集群管理 API](https://fedbook.cn/basic-skills/elasticsearch/cluster-manage-apis/)
-  - [索引管理 API](https://fedbook.cn/basic-skills/elasticsearch/index-manage-apis/)
-  - [定义字段类型：Mapping](https://fedbook.cn/basic-skills/elasticsearch/mapping/)
-  - [索引模板：Index Template](https://fedbook.cn/basic-skills/elasticsearch/index-template/)
 - [计算机网络](https://fedbook.cn/basic-skills/network/)
   - **网络基础**
   - [网络分层模型](https://fedbook.cn/basic-skills/network/layered-network-model/)
@@ -401,6 +355,52 @@
   - **Django 基础知识**
   - **Django 第三方集成**
   - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django-celery/)
+- [MySQL](https://fedbook.cn/backend-knowledge/mysql/)
+  - **MySQL 基础知识**
+  - [MySQL 数据类型](https://fedbook.cn/backend-knowledge/mysql/data-types/)
+  - [MySQL 常用命令](https://fedbook.cn/backend-knowledge/mysql/common-commands/)
+  - [库和表的基本操作](https://fedbook.cn/backend-knowledge/mysql/database-and-table-operations/)
+  - [表中列的基本属性](https://fedbook.cn/backend-knowledge/mysql/column-properties/)
+  - [数据的增删改](https://fedbook.cn/backend-knowledge/mysql/data-insert-delete-update/)
+  - [简单查询语法](https://fedbook.cn/backend-knowledge/mysql/simple-query/)
+  - [条件查询语法](https://fedbook.cn/backend-knowledge/mysql/query-by-search-conditions/)
+  - [表达式和函数](https://fedbook.cn/backend-knowledge/mysql/expressions-and-functions/)
+  - [分组查询语法](https://fedbook.cn/backend-knowledge/mysql/group-query/)
+  - [子查询语法](https://fedbook.cn/backend-knowledge/mysql/sub-query/)
+  - [连接查询语法](https://fedbook.cn/backend-knowledge/mysql/join-query/)
+  - [组合查询语法](https://fedbook.cn/backend-knowledge/mysql/union-query/)
+  - **MySQL 日常运维**
+  - [MySQL 的安装与卸载](https://fedbook.cn/backend-knowledge/mysql/installation-of-mysql/)
+  - [MySQL 主键和自增 ID](https://fedbook.cn/backend-knowledge/mysql/primary-key-and-increment-id/)
+  - [MySQL 数据库设计规范](https://fedbook.cn/backend-knowledge/mysql/db-design-spec/)
+  - 其它知识点，待后续继续补充
+- [Redis](https://fedbook.cn/backend-knowledge/redis/)
+  - **Redis 基础知识**
+  - [Redis 数据类型](https://fedbook.cn/backend-knowledge/redis/data-types/)
+  - [Redis 常用命令](https://fedbook.cn/backend-knowledge/redis/common-commands/)
+  - [Redis 缓存三大问题](https://fedbook.cn/backend-knowledge/redis/three-cache-problems/)
+  - **Redis 日常运维**
+  - [Redis 的安装与卸载](https://fedbook.cn/backend-knowledge/redis/installation-of-redis/)
+  - [Redis 的 ACL 安全策略](https://fedbook.cn/backend-knowledge/redis/access-control-list/)
+- [Elasticsearch](https://fedbook.cn/backend-knowledge/elasticsearch/)
+  - **Elasticsearch 基础知识**
+  - [ES 中的概念与名词](https://fedbook.cn/backend-knowledge/elasticsearch/concepts-and-noun/)
+  - [正排索引与倒排索引](https://fedbook.cn/backend-knowledge/elasticsearch/forward-and-inverted-index/)
+  - [文档基本操作](https://fedbook.cn/backend-knowledge/elasticsearch/document-crud/)
+  - [全文搜索语法](https://fedbook.cn/backend-knowledge/elasticsearch/match-query/)
+  - [Term 查询语法](https://fedbook.cn/backend-knowledge/elasticsearch/term-query/)
+  - [组合查询语法](https://fedbook.cn/backend-knowledge/elasticsearch/compound-query/)
+  - [搜索词自动补全语法](https://fedbook.cn/backend-knowledge/elasticsearch/suggester-query/)
+  - [统计语法：聚合查询](https://fedbook.cn/backend-knowledge/elasticsearch/aggregations/)
+  - [嵌套类型和父子文档](https://fedbook.cn/backend-knowledge/elasticsearch/nested-and-join/)
+  - [分词器的原理和使用](https://fedbook.cn/backend-knowledge/elasticsearch/analyzer/)
+  - [分页查询的三种语法](https://fedbook.cn/backend-knowledge/elasticsearch/paging-query/)
+  - **Elasticsearch 日常运维**
+  - [ES 的安装](https://fedbook.cn/backend-knowledge/elasticsearch/installation-of-elasticsearch/)
+  - [集群管理 API](https://fedbook.cn/backend-knowledge/elasticsearch/cluster-manage-apis/)
+  - [索引管理 API](https://fedbook.cn/backend-knowledge/elasticsearch/index-manage-apis/)
+  - [定义字段类型：Mapping](https://fedbook.cn/backend-knowledge/elasticsearch/mapping/)
+  - [索引模板：Index Template](https://fedbook.cn/backend-knowledge/elasticsearch/index-template/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
