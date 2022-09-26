@@ -395,7 +395,7 @@
   - [使用 telnetlib 执行 Telnet](https://fedbook.cn/backend-knowledge/python/python-lib-telnetlib/)
   - [使用 Paramiko 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-paramiko/)
   - [使用 Fabric 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-fabric/)
-  - [使用 celery 实现任务调度](https://fedbook.cn/backend-knowledge/python/python-lib-celery/)
+  - [使用 Celery 实现任务调度](https://fedbook.cn/backend-knowledge/python/python-lib-celery/)
   - 其它知识点，待后续继续补充
 - [Django](https://fedbook.cn/backend-knowledge/django/)
   - **Django 基础知识**
