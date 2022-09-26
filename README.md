@@ -397,6 +397,10 @@
   - [使用 Fabric 执行 SSH](https://fedbook.cn/backend-knowledge/python/python-lib-fabric/)
   - [使用 celery 实现任务调度](https://fedbook.cn/backend-knowledge/python/python-lib-celery/)
   - 其它知识点，待后续继续补充
+- [Django](https://fedbook.cn/backend-knowledge/django/)
+  - **Django 基础知识**
+  - **Django 第三方集成**
+  - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django-celery/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

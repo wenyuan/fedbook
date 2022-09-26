@@ -93,7 +93,13 @@ module.exports = [
   {
     text: '后端知识',
     items: [
-      { text: 'Python', link: '/backend-knowledge/python/' }
+      {
+        text: 'Python 技术栈',
+        items: [
+          { text: 'Python', link: '/backend-knowledge/python/' },
+          { text: 'Django', link: '/backend-knowledge/django/' }
+        ]
+      },
     ]
   },
   {

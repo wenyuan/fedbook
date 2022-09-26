@@ -30,6 +30,7 @@ module.exports = {
   '/in-depth-learning/source-code/': require('../in-depth-learning/source-code/sidebar'),
   /* --------- 后端开发 --------- */
   '/backend-knowledge/python/': require('../backend-knowledge/python/sidebar'),
+  '/backend-knowledge/django/': require('../backend-knowledge/django/sidebar'),
   /* --------- 项目相关 --------- */
   '/project/solutions/': require('../project/solutions/sidebar'),
   /* --------- 其它 --------- */
