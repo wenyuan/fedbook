@@ -4,9 +4,21 @@
 > 
 > 注意一下，下面这些操作，最好在 `root` 用户下运行
 
+## 背景
+
 在实际开发过程中，经常需要同时用到多个版本的 Python，并在各个版本之间来回切换。或者对相同的 Python 版本，在不同的项目中使用不同版本的软件包。
 
-能够实现这种需求的工具有很多，这里选择一个比较流行的虚拟环境工具：virtualenv，它能够在系统中建立多个不同并且相互不干扰的 Python 运行环境。
+能够实现这种需求的工具有很多，简单做个选型对比：
+
+* [pyenv](https://github.com/pyenv/pyenv)：同时支持 Python2.X 和 Python3.X，但在 Python 3.7.3 中会警告说：[这个脚本是过时的，推荐使用 venv 命令](https://docs.python.org/dev/whatsnew/3.6.html#id8)。
+* [venv](https://docs.python.org/3/library/venv.html)：Python3.3 之后标准库自带的虚拟环境创建和管理工具，在一定程度上能够替代 virtualenv 。但 venv 是 Python3.3 才有的，只能创建 Python3 的虚拟环境，Python2.X 不能使用。
+* [virtualenv](https://github.com/pypa/virtualenv)：是目前很流行的 Python 虚拟环境配置工具，同时支持 Python2.X 和 Python3.X，可以为每个虚拟环境指定 Python 解释器，并选择不继承基础版本的包。在当前的生产环境中还需要 Python2.X 的情况下推荐用这个。
+* [virtualenvwrapper](https://bitbucket.org/virtualenvwrapper/virtualenvwrapper/src/master/docs/source/index.rst?mode=view)：是对 virtualenv 的一个封装，目的是使后者更好用。不过似乎最近一次更新是在 2020 年，故不考虑使用了。
+* [pipenv](https://github.com/pypa/pipenv)：据说是集成了 pip，virtualenv 两者的功能，且完善了两者的一些缺陷（对于 virtualenv，主要是说用 virtualenv 管理 requirements.txt 文件可能会有问题，不过我的使用场景目前还没有遇到）。
+
+总结下来，如果完全不需要使用 Python 2.X 的话，可以考虑 venv。否则推荐 virtualenv 或者 pipenv（从 GitHub 看出，这两个工具是同一个组织在维护）。
+
+我目前的需要是在系统中建立多个不同并且相互不干扰的 Python 运行环境，所以[基于各方面考虑](https://packaging.python.org/en/latest/guides/tool-recommendations/#application-dependency-management)，选择了一个比较流行的虚拟环境工具：virtualenv，以后可能会顺便学习了解下 pipenv。
 
 ## 安装 Python
 
