@@ -10,7 +10,7 @@ module.exports = [
     children: [
       {
         title: 'Django 与 Celery 的集成',
-        path: '/backend-knowledge/python/django-celery'
+        path: '/backend-knowledge/django/django-celery'
       },
     ]
   }
