@@ -354,7 +354,9 @@
 - [Django](https://fedbook.cn/backend-knowledge/django/)
   - **Django 基础知识**
   - **Django 第三方集成**
-  - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django-celery/)
+  - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-celery/)
+  - **Django 常见问题**
+  - [执行 migrate 时报错 SQLite 版本过低](https://fedbook.cn/backend-knowledge/django/migrate-error-caused-by-sqlite3/)
 - [MySQL](https://fedbook.cn/backend-knowledge/mysql/)
   - **MySQL 基础知识**
   - [MySQL 数据类型](https://fedbook.cn/backend-knowledge/mysql/data-types/)
