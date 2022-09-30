@@ -2,7 +2,12 @@ module.exports = [
   {
     title: 'Django 基础知识',
     collapsable: true,
-    children: []
+    children: [
+      {
+        title: 'model 字段与属性',
+        path: '/backend-knowledge/django/django-model'
+      },
+    ]
   },
   {
     title: 'Django 第三方集成',

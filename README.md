@@ -353,6 +353,7 @@
   - 其它知识点，待后续继续补充
 - [Django](https://fedbook.cn/backend-knowledge/django/)
   - **Django 基础知识**
+  - [model 字段与属性](https://fedbook.cn/backend-knowledge/django/django-model/)
   - **Django 第三方集成**
   - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrating-celery/)
   - **Django 常见问题**
