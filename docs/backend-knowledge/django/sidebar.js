@@ -7,6 +7,10 @@ module.exports = [
         title: 'model 字段与属性',
         path: '/backend-knowledge/django/django-model'
       },
+      {
+        title: 'model 外键关系',
+        path: '/backend-knowledge/django/django-model-relationship'
+      },
     ]
   },
   {

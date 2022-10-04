@@ -354,6 +354,7 @@
 - [Django](https://fedbook.cn/backend-knowledge/django/)
   - **Django 基础知识**
   - [model 字段与属性](https://fedbook.cn/backend-knowledge/django/django-model/)
+  - [model 外键关系](https://fedbook.cn/backend-knowledge/django/django-model-relationship/)
   - **Django 第三方集成**
   - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrating-celery/)
   - **Django 常见问题**
