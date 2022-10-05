@@ -11,6 +11,10 @@ module.exports = [
         title: 'model 外键关系',
         path: '/backend-knowledge/django/django-model-relationship'
       },
+      {
+        title: 'model 元数据 Meta',
+        path: '/backend-knowledge/django/django-model-meta'
+      },
     ]
   },
   {
