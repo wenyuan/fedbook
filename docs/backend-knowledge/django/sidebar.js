@@ -15,6 +15,10 @@ module.exports = [
         title: 'model 元数据 Meta',
         path: '/backend-knowledge/django/django-model-meta'
       },
+      {
+        title: 'model 的继承',
+        path: '/backend-knowledge/django/django-model-inheritance'
+      },
     ]
   },
   {
