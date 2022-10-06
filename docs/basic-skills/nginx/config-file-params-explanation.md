@@ -165,23 +165,23 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 
 参数释义表：
 
-| 字段                    | 说明                                       |
-| ----------------------- | ----------------------------------------- |
-| $remote_addr            | 客户端地址                                 |
-| $remote_user            | 客户端用户名称                              |
-| $time_local             | 访问时间和时区                              |
-| $request                | 请求的 URI 和 HTTP 协议                     |
-| $http_host              | 请求地址，即浏览器中你输入的地址（IP 或域名）  |
-| $status                 | HTTP 请求状态                               |
-| $upstream_status        | upstream 状态                               |
-| $body_bytes_sent        | 发送给客户端文件内容大小                      |
-| $http_referer           | url 跳转来源                                |
-| $http_user_agent        | 用户终端浏览器等信息                         |
-| $ssl_protocol           | SSL协议版本                                 |
-| $ssl_cipher             | 交换数据中的算法                             |
+| 字段                      | 说明                           |
+|-------------------------|------------------------------|
+| $remote_addr            | 客户端地址                        |
+| $remote_user            | 客户端用户名称                      |
+| $time_local             | 访问时间和时区                      |
+| $request                | 请求的 URI 和 HTTP 协议            |
+| $http_host              | 请求地址，即浏览器中你输入的地址（IP 或域名）     |
+| $status                 | HTTP 请求状态                    |
+| $upstream_status        | upstream 状态                  |
+| $body_bytes_sent        | 发送给客户端文件内容大小                 |
+| $http_referer           | url 跳转来源                     |
+| $http_user_agent        | 用户终端浏览器等信息                   |
+| $ssl_protocol           | SSL 协议版本                     |
+| $ssl_cipher             | 交换数据中的算法                     |
 | $upstream_addr          | 后台 upstream 的地址，即真正提供服务的主机地址 |
-| $request_time           | 整个请求的总时间                             |
-| $upstream_response_time | 请求过程中，upstream 响应时间                 |
+| $request_time           | 整个请求的总时间                     |
+| $upstream_response_time | 请求过程中，upstream 响应时间          |
 
 ## http、server、location 之间的关系
 
