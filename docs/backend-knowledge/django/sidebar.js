@@ -19,6 +19,10 @@ module.exports = [
         title: 'model 的继承',
         path: '/backend-knowledge/django/django-model-inheritance'
       },
+      {
+        title: 'ORM 增删改操作',
+        path: '/backend-knowledge/django/django-orm-create-update-delete'
+      },
     ]
   },
   {

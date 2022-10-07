@@ -357,6 +357,7 @@
   - [model 外键关系](https://fedbook.cn/backend-knowledge/django/django-model-relationship/)
   - [model 元数据 Meta](https://fedbook.cn/backend-knowledge/django/django-model-meta/)
   - [model 继承](https://fedbook.cn/backend-knowledge/django/django-model-meta/)
+  - [ORM 增删改操作](https://fedbook.cn/backend-knowledge/django/django-orm-create-update-delete/)
   - **Django 第三方集成**
   - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrating-celery/)
   - **Django 常见问题**
