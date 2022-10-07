@@ -232,6 +232,27 @@ product.save(update_fields=['name'])
 
 **保存外键和多对多字段**：
 
+假设三个简易 model 如下：
+
+```python
+# 分类
+class Category(models.Model):
+    name = models.CharField('分类', max_length=100)
+
+# 标签
+class Tag(models.Model):
+    name = models.CharField('标签', max_length=100)
+
+# 文章
+class Article(models.Model):
+    title = models.CharField('标题', max_length=70)
+    body = models.TextField()
+    # 文章和分类：多对一
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, verbose_name='分类', blank=True, null=True)
+    # 文章和标签：多对多
+    tags = models.ManyToManyField(Tag, verbose_name='标签', blank=True)
+```
+
 保存一个外键字段和保存普通字段没什么区别，只是要注意值的类型要正确。如下所示：
 
 ```python
@@ -257,14 +278,41 @@ article.tags.add(tag_python)
 在一行语句内，可以同时添加多个对象到多对多的字段，如下所示：
 
 ```python
+# 创建三个 tag
 tag_python = Tag.objects.create(name="Python")
 tag_django = Tag.objects.create(name="Django")
 tag_mysql = Tag.objects.create(name="MySQL")
 
+# 添加关联关系
 article.tags.add(tag_python, tag_django, tag_mysql)
+
+# 查询所有关联的对象
+article.tags.all()
 ```
 
-如果你指定或添加了错误类型的对象，Django 会抛出异常。
+同理，如果要移除多对多字段的关联关系，需要使用 `remove()` 方法：
+
+```python
+article.tags.remove(tag_mysql)
+```
+
+如果要更新多对多字段的关联关系，使用 `set()`，它接收一个列表作为参数：
+
+```python
+# 每次调用 set() 都是进行的修改操作
+article.tags.set([tag_java, tag_spring])
+
+# 如果参数为一个空列表，则清空关联关系
+article.tags.set([])
+```
+
+总结：
+
+* `add()` 适用于在原有基础上添加关联关系
+* `remove()` 从当前关联关系中移除一个关联关系
+* `set()` 用来设置关联关系，可以用来进行修改操作
+
+最后，如果你指定或添加了错误类型的对象，Django 会抛出异常。
 
 ### update()
 
@@ -277,7 +325,7 @@ article.tags.add(tag_python, tag_django, tag_mysql)
 Article.objects.filter(pub_date__year=2022).update(comments_on=False)
 
 # 可以同时更新多个字段（没有多少字段的限制）
-Article.objects.filter(pub_date__year=2010).update(comments_on=False, title='This is old')
+Article.objects.filter(pub_date__year=2022).update(comments_on=False, title='This is old')
 ```
 
 **常见需求**：
