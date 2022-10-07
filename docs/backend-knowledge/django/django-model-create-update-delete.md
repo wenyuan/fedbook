@@ -305,11 +305,9 @@ for obj in Article.objects.filter(pub_date__year=2020):
 ```
 
 ::: warning
-需要注意的是，update() 是作用于查询集（QuerySet）的，而 get（）方法得到的是查询对象，因此不能用 update。
+需要注意的是，update() 是作用于查询集（QuerySet - 代表一些数据库对象的集合）的，而 get（）方法得到的是查询对象，因此不能用 update。
 
 所以要用 filter() 来获取目标对象，然后才能通过 update() 来更新对象得字段。
-
-查询集（QuerySet）的概念下一篇就讲，这里先引入一下。
 :::
 
 ### bulk_update()
