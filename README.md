@@ -358,6 +358,8 @@
   - [model 元数据 Meta](https://fedbook.cn/backend-knowledge/django/django-model-meta/)
   - [model 继承](https://fedbook.cn/backend-knowledge/django/django-model-meta/)
   - [model 增删改操作](https://fedbook.cn/backend-knowledge/django/django-model-create-update-delete/)
+  - [model 增删改操作](https://fedbook.cn/backend-knowledge/django/django-model-create-update-delete/)
+  - [model 查询/检索操作](https://fedbook.cn/backend-knowledge/django/django-model-retrieve/)
   - **Django 第三方集成**
   - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrating-celery/)
   - **Django 常见问题**

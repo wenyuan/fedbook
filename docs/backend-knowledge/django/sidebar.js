@@ -23,6 +23,10 @@ module.exports = [
         title: 'model 增删改操作',
         path: '/backend-knowledge/django/django-model-create-update-delete'
       },
+      {
+        title: 'model 查询/检索操作',
+        path: '/backend-knowledge/django/django-model-retrieve'
+      },
     ]
   },
   {
