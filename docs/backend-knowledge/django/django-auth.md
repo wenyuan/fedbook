@@ -12,7 +12,7 @@
 
   如果希望用户只能删除自己创建的 article，不能删除别人创建的 article，这种需求 Django 默认的权限管理就无法实现了，需要用到 `object permission` 对象权限，有第三方模块实现了对象权限，如 [django-guardian](https://github.com/django-guardian/django-guardian)，你可以直接使用。或者也可以自己实现对象权限，具体思路后面再单独写一篇。
 
-* 每个 model 模型默认只有四个权限，分别是添加 `add_`、修改 `change_`、删除 `delete_`、查看 `view_`，这些权限记录在 `auth_permission` 表中，表数据如下：
+* 每个 model 模型默认只有四个权限，分别是添加 `add_模型小写名字`、修改 `change_模型小写名字`、删除 `delete_模型小写名字`、查看 `view_模型小写名字`，这些权限记录在 `auth_permission` 表中，表数据如下：
 
 <div style="text-align: center;">
   <img src="./assets/auth_permission-table.png" alt="auth_permission 表部分内容">
@@ -20,6 +20,18 @@
 </div>
 
 默认权限的创建是通过 Django 的信号 signal 实现的，使用了 `post_migrate` 信号，在每次执行 migrate 操作时都会为新的 model 模型创建默认权限。
+
+## 默认权限
+
+默认情况下，使用 `manage.py migrate` 命令时，Django 会给每个已经存在的 model 添加默认的权限。
+
+假设你现在有个 app 叫做 blog，有个 model 叫做 Article，使用下面的方式可以测试默认权限：
+
+```python
+add: user.has_perm('blog.add_article')
+change: user.has_perm('blog.change_article')
+delete: user.has_perm('blog.delete_article')
+```
 
 ## 自定义权限
 
@@ -51,7 +63,22 @@ class Article(models.Model):
 
 如果使用了 Django 自带的 Admin，在 migrate 之后就能在 Admin 的 `user` 和 `group` 两个表中看到新添加的权限了。
 
-当然你也可以在程序中来添加或修改权限。
+其实 `groups` 和 `user_permissions` 是 User 模型中的两个多对多字段：
+
+```python
+user = User.objects.get(id=2)
+
+user.groups.set([group_list])
+user.groups.add(group, group, ...)
+user.groups.remove(group, group, ...)
+user.groups.clear()
+user.user_permissions.set([permission_list])
+user.user_permissions.add(permission, permission, ...)
+user.user_permissions.remove(permission, permission, ...)
+user.user_permissions.clear()
+```
+
+因此你可以在程序中来添加或修改权限。
 
 ### 用户权限修改方法
 

@@ -45,7 +45,7 @@ Django 内部已经定义好了一些 signal 供我们使用，如果不能满�
 
 ### model 定义
 
-就以工单系统发送通知的需求为例，先创建一个普通的 Django app 名字就叫 workflow。来看看一个简化版的工单表结构：
+就以工单系统发送通知的需求为例，先创建一个普通的 Django app 名字就叫 `workflow`。来看看一个简化版的工单表结构：
 
 ```python
 # workflow/models.py
@@ -63,8 +63,8 @@ class Ticket(models.Model):
         (8, '已失败')
     )
 
-    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
-    create_user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name='创建用户')
+    created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    created_user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name='创建用户')
 
     state = models.IntegerField(choices=STATE, default=1, verbose_name='工单状态')
 ```
@@ -83,44 +83,44 @@ class Notify:
     def __init__(self):
         self.receiver_list = ["admin@xxx.com", "devops@xxx.com"]
 
-    def migration(self, pk):
-        '''迁移通知'''
+    def push_notification(self, pk):
+        '''推送通知'''
 
-        _t = Ticket.objects.get(id=pk)
-        _u = _t.create_user.username
-        _s = _t.state
+        _ticket = Ticket.objects.get(id=pk)
+        _username = _ticket.created_user.username
+        _state = _ticket.state
 
-        _d = "https://xxx.com/workflow/migration/%d/" %(_t.id)
-        smap = {
+        _jump_url = "https://xxx.com/xxx/%d/" %(_ticket.id)
+        state_map = {
             1: [{
-                "subject": "[已提交]-[overmind]数据迁移工单",
-                "content": "你的数据迁移工单已提交，正在等待DBA审批，后续有状态变更将会自动通知你。\r\n\r\n工单详情：%s" %_d,
-                "receiver_list": [_u],
+                "subject": "[已提交]-xx系统工单",
+                "content": "你的工单已提交，正在等待后台人员审批，后续有状态变更将会自动通知你。\r\n\r\n工单详情：%s" %_jump_url,
+                "receiver_list": [_username],
             }, {
-                "subject": "[待审批]-[overmind]数据迁移工单",
-                "content": "你有工单需要审批，点击下方工单详情链接及时审批。\r\n\r\n工单详情：%s" %_d,
+                "subject": "[待审批]-xx系统工单",
+                "content": "你有工单需要审批，点击下方工单详情链接及时审批。\r\n\r\n工单详情：%s" %_jump_url,
                 "receiver_list": self.receiver_list,
             }],
             6: [{
-                "subject": "[执行中]-[overmind]数据迁移工单",
-                "content": "数据迁移工单已通过DBA审核，正在执行中，后续有状态变更将会自动通知你。\r\n\r\n工单详情：%s" %_d,
-                "receiver_list": [_u] + self.receiver_list,
+                "subject": "[执行中]-xx系统工单",
+                "content": "工单已通过后台人员审核，正在执行中，后续有状态变更将会自动通知你。\r\n\r\n工单详情：%s" %_jump_url,
+                "receiver_list": [_username] + self.receiver_list,
             }],
             7: [{
-                "subject": "[已完成]-[overmind]数据迁移工单",
-                "content": "数据迁移工单已自动完成迁移，请检查最终状态，如有任何疑问随时联系DBA。\r\n\r\n工单详情：%s" %_d,
-                "receiver_list": [_u] + self.receiver_list,
+                "subject": "[已完成]-xx系统工单",
+                "content": "工单已完成，请检查最终状态，如有任何疑问随时联系DBA。\r\n\r\n工单详情：%s" %_jump_url,
+                "receiver_list": [_username] + self.receiver_list,
             }]
         }
 
-        _list = smap[_s]
-        for i in range(0, len(_list)):
+        _email_list = state_map[_state]
+        for i in range(0, len(_email_list)):
             try:
                 # Email 是封装的发送邮件的类，不是重点，这里就不展开了
                 Email(
-                    subject=_list[i]['subject'], 
-                    content=_list[i]['content'], 
-                    receiver_list=_list[i]['receiver_list']
+                    subject=_email_list[i]['subject'], 
+                    content=_email_list[i]['content'], 
+                    receiver_list=_email_list[i]['receiver_list']
                 )
             except Exception as e:
                 print('Error:' +str(e))
@@ -146,7 +146,7 @@ def migrate_notify_init(instance, **kwargs):
 @receiver(signals.post_save, sender=Ticket)
 def migrate_notify_post(instance, created, **kwargs):
     if created or instance.old_state != instance.state:
-        Notify().migration(instance.id)
+        Notify().push_notification(instance.id)
 ```
 
 这里用到了两个 signal：`post_init` 和 `post_save`。
@@ -159,7 +159,7 @@ def migrate_notify_post(instance, created, **kwargs):
 
 接下来加载 signal，需要修改两个配置文件：
 
-* config1：`workflow/apps.py`：
+* 第一个配置文件：`workflow/apps.py`：
 
 ```python
 from django.apps import AppConfig
@@ -172,7 +172,7 @@ class WorkflowConfig(AppConfig):
         import workflow.signals
 ```
 
-* config2：`workflow/__init__.py`：
+* 第二个配置文件：`workflow/__init__.py`：
 
 ```python
 default_app_config = 'workflow.apps.WorkflowConfig'
