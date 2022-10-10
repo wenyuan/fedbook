@@ -27,6 +27,10 @@ module.exports = [
         title: 'model 查询/检索操作',
         path: '/backend-knowledge/django/django-model-retrieve'
       },
+      {
+        title: 'signal 监测 model 变化',
+        path: '/backend-knowledge/django/django-signal'
+      },
     ]
   },
   {
