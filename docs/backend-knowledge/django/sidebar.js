@@ -31,6 +31,10 @@ module.exports = [
         title: 'signal 监测 model 变化',
         path: '/backend-knowledge/django/django-signal'
       },
+      {
+        title: 'Django 自带权限机制使用',
+        path: '/backend-knowledge/django/django-auth'
+      },
     ]
   },
   {
