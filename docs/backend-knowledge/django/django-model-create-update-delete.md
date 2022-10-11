@@ -23,7 +23,7 @@ obj.save()
 from django.db import models
 
 class Article(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(verbose_name='标题', max_length=70)
     body = models.TextField()
 
     def save(self, *args, **kwargs):
@@ -237,15 +237,15 @@ product.save(update_fields=['name'])
 ```python
 # 分类
 class Category(models.Model):
-    name = models.CharField('分类', max_length=100)
+    name = models.CharField(verbose_name='分类', max_length=100)
 
 # 标签
 class Tag(models.Model):
-    name = models.CharField('标签', max_length=100)
+    name = models.CharField(verbose_name='标签', max_length=100)
 
 # 文章
 class Article(models.Model):
-    title = models.CharField('标题', max_length=70)
+    title = models.CharField(verbose_name='标题', max_length=70)
     body = models.TextField()
     # 文章和分类：多对一
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, verbose_name='分类', blank=True, null=True)
