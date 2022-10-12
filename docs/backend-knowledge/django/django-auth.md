@@ -187,6 +187,6 @@ def on_blog_update(request):
 {% endif %}
 ```
 
-至此，Django 的默认权限系统介绍完成，默认权限在小型项目中能满足大部分的需求，如果对权限控制有更高的要求可以使用 django-guardian 或自己拓展实现。
+至此，Django 的默认权限系统介绍完成，默认权限在小型项目中能满足大部分的需求，如果对权限控制有更高的要求可以使用 [django-guardian](https://github.com/django-guardian/django-guardian) 或自己拓展实现。
 
 （完）
