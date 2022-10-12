@@ -32,8 +32,12 @@ module.exports = [
         path: '/backend-knowledge/django/django-signal'
       },
       {
-        title: 'Django 自带权限机制使用',
+        title: 'Django 内置权限系统使用',
         path: '/backend-knowledge/django/django-auth'
+      },
+      {
+        title: 'Django 内置权限系统扩展',
+        path: '/backend-knowledge/django/django-auth-extension'
       },
     ]
   },
