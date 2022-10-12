@@ -32,7 +32,7 @@ class Article(models.Model):
 
 model 确定了，接下来我们分三部分详细介绍下权限验证的具体实现。
 
-## 列表页权限控制
+## 查询接口权限控制
 
 需求：每个用户进入系统后只能查看自己有读权限的文章列表，管理员能查看所有，代码如下：
 
@@ -61,7 +61,56 @@ def article_list(request):
 
 QuerySet 合并不能用简单的相加，应该通过自带的方法：`QuerySet_1 | QuerySet_2`。这种方式合并的结构还是一个 QuerySet，合并后还可以用 `order_by` 等函数，但只能合并同种 model 对象的数据。
 
-## 查询接口权限控制
+根据 group 去反查都有哪些数据包含了该组，这里用到了 M2M 的 `related_name` 属性：`group.read.all()`。
 
+## 编辑接口权限控制
 
+除了查询之外，我们还对编辑进行的权限控制。例如执行修改文章的操作前判断用户是否对此文章有修改权限。
 
+有很多地方都需要做这个判断，所以把这个权限判断单独写个方法来处理，代码如下：
+
+```python
+def check_permission(perm, article, user):
+    # 如果用户是超级管理员则有权限
+    if user.is_superuser:
+        return True
+
+    # 取出用户所属的所有组
+    _user_groups = user.groups.all()
+
+    # 取出当前 Article 实例对应权限的所有组
+    if perm == 'read':
+        _article_groups = article.read_groups.all()
+    if perm == 'write':
+        _article_groups = article.write_groups.all()
+
+    # 用户组和 Article 权限组取交集，有则表示有权限，否则没有权限
+    group_list = list(set(_user_groups).intersection(set(_article_groups)))
+
+    return False if len(group_list) == 0 else True
+```
+
+实现思路是：根据传入的第三个用户参数，来获取到用户所有的组，然后根据传入的第一个参数类型读取或写入和第二个参数 Article 实例来获取到有权限的所有组，然后对两个组取交集，交集不为空则表示有权限，为空则没有。
+
+M2M 的 `.all()` 取出来的结果是个 list，两个 list 取交集的方法为：`list(set(list_A).intersection(set(list_B)))`
+
+view 中使用就很简单了，如下：
+
+```python
+from django.shortcuts import get_object_or_404 
+
+def query(request):
+    if request.method == 'POST':
+        postdata = request.body.decode('utf-8')
+        _article = get_object_or_404(Article, id=int(postdata.get('article')))
+
+        # 检查用户是否有当前 article 的查询权限
+        if check_permission('read', _article, request.user) == False:
+            return JsonResponse({'state': 0, 'message': '当前用户没有查询此文章的权限'})
+```
+
+## 总结
+
+Django 有第三方的基于 object 的权限管理模块 [django-guardian](https://github.com/django-guardian/django-guardian)，这里没有使用主要是因为权限需求并不复杂，自己实现也很方便，相反如果每次引入一个庞大的包而仅仅是为了用到其中一小块功能，那么太多的第三方包会让项目变得越来越笨重。
+
+（完）
