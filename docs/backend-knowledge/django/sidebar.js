@@ -49,6 +49,10 @@ module.exports = [
         title: 'Django 与 Celery 的集成',
         path: '/backend-knowledge/django/django-integrating-celery'
       },
+      {
+        title: 'Django 与权限模块的集成',
+        path: '/backend-knowledge/django/django-guardian'
+      },
     ]
   },
   {
