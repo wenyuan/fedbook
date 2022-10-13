@@ -174,16 +174,12 @@ def on_blog_update(request):
 当前登陆用户的权限保存在模版变量 `perms` 中，可以在模版中通过 if 判断用户是否拥有相应的权限而开放对应的内容，例如对于侧边栏菜单只显示用户有权限访问的，就可以这么写：
 
 ```html
-{% if perms.cmdb.view_project %}
-    <li><a href="{% url 'project-list-url' %}"></i> 项目列表</a></li>
+{% if perms.blog.view_article %}
+    <li><a href="{% url 'article-list-url' %}"></i> 文章列表</a></li>
 {% endif %}
 
-{% if perms.cmdb.view_service %}
-    <li><a href="{% url 'service-list-url' %}"></i> 服务列表</a></li>
-{% endif %}
-
-{% if perms.cmdb.view_environment %}
-    <li><a href="{% url 'environment-list-url' %}"></i> 环境列表</a></li>
+{% if perms.blog.view_comment %}
+    <li><a href="{% url 'comment-list-url' %}"></i> 评论列表</a></li>
 {% endif %}
 ```
 
