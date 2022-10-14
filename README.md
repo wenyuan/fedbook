@@ -362,9 +362,9 @@
   - [model 查询/检索操作](https://fedbook.cn/backend-knowledge/django/django-model-retrieve/)
   - [signal 监测 model 变化](https://fedbook.cn/backend-knowledge/django/django-signal/)
   - [Django 内置权限系统使用](https://fedbook.cn/backend-knowledge/django/django-auth/)
+  - **Django 实战经验**
   - [Django 内置权限系统扩展](https://fedbook.cn/backend-knowledge/django/django-auth-extension/)
-  - **Django 第三方集成**
-  - [Django 与权限模块的集成](https://fedbook.cn/backend-knowledge/django/django-guardian/)
+  - [Django 与 Guardian 的集成](https://fedbook.cn/backend-knowledge/django/django-guardian/)
   - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrating-celery/)
   - **Django 常见问题**
   - [执行 migrate 时报错 SQLite 版本过低](https://fedbook.cn/backend-knowledge/django/migrate-error-caused-by-sqlite3/)

@@ -1,4 +1,4 @@
-# Django 与权限模块的集成
+# Django 与 Guardian 的集成
 
 ## 背景
 

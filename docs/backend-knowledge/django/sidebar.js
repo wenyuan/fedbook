@@ -35,23 +35,23 @@ module.exports = [
         title: 'Django 内置权限系统使用',
         path: '/backend-knowledge/django/django-auth'
       },
+    ]
+  },
+  {
+    title: 'Django 实战经验',
+    collapsable: true,
+    children: [
       {
         title: 'Django 内置权限系统扩展',
         path: '/backend-knowledge/django/django-auth-extension'
       },
-    ]
-  },
-  {
-    title: 'Django 第三方集成',
-    collapsable: true,
-    children: [
+      {
+        title: 'Django 与 Guardian 的集成',
+        path: '/backend-knowledge/django/django-guardian'
+      },
       {
         title: 'Django 与 Celery 的集成',
         path: '/backend-knowledge/django/django-integrating-celery'
-      },
-      {
-        title: 'Django 与权限模块的集成',
-        path: '/backend-knowledge/django/django-guardian'
       },
     ]
   },
