@@ -230,8 +230,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* inline code */
 .theme-default-content.content__default code {
-  color: #c7254e;
-  background-color: #f9f2f4 !important;
+  color: #e96900;
+  background-color: #f8f8f8 !important;
   /*font-size: 14px;*/
   border-radius: 5px;
   padding-left: 5px;
