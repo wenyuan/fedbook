@@ -42,6 +42,10 @@ module.exports = [
     collapsable: true,
     children: [
       {
+        title: 'Django 用户模型扩展/重写',
+        path: '/backend-knowledge/django/django-user-model-extension'
+      },
+      {
         title: 'Django 内置权限系统扩展',
         path: '/backend-knowledge/django/django-auth-extension'
       },

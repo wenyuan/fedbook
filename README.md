@@ -363,6 +363,7 @@
   - [signal 监测 model 变化](https://fedbook.cn/backend-knowledge/django/django-signal/)
   - [Django 内置权限系统使用](https://fedbook.cn/backend-knowledge/django/django-auth/)
   - **Django 实战经验**
+  - [Django 用户模型扩展/重写](https://fedbook.cn/backend-knowledge/django/django-user-model-extension/)
   - [Django 内置权限系统扩展](https://fedbook.cn/backend-knowledge/django/django-auth-extension/)
   - [Django 与 Guardian 的集成](https://fedbook.cn/backend-knowledge/django/django-guardian/)
   - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrating-celery/)
