@@ -134,6 +134,10 @@ module.exports = [
         path: '/backend-knowledge/python/multiple-python-install-on-linux'
       },
       {
+        title: '使用 logging 配置日志的方式',
+        path: '/backend-knowledge/python/python-lib-logging'
+      },
+      {
         title: '使用 xlrd 处理旧版本 Excel',
         path: '/backend-knowledge/python/python-lib-xlrd'
       },
