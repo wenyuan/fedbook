@@ -367,6 +367,7 @@
   - [Django 用户模型扩展/重写](https://fedbook.cn/backend-knowledge/django/django-user-model-extension/)
   - [Django 内置权限系统扩展](https://fedbook.cn/backend-knowledge/django/django-auth-extension/)
   - [Django 与 Guardian 的集成](https://fedbook.cn/backend-knowledge/django/django-guardian/)
+  - [Django 设置 Redis 作为缓存](https://fedbook.cn/backend-knowledge/django/django-redis-cache/)
   - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrating-celery/)
   - **Django 常见问题**
   - [执行 migrate 时报错 SQLite 版本过低](https://fedbook.cn/backend-knowledge/django/migrate-error-caused-by-sqlite3/)

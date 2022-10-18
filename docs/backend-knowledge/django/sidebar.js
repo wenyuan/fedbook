@@ -54,6 +54,10 @@ module.exports = [
         path: '/backend-knowledge/django/django-guardian'
       },
       {
+        title: 'Django 设置 Redis 作为缓存',
+        path: '/backend-knowledge/django/django-redis-cache'
+      },
+      {
         title: 'Django 与 Celery 的集成',
         path: '/backend-knowledge/django/django-integrating-celery'
       },
