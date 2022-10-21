@@ -54,6 +54,10 @@ module.exports = [
         path: '/backend-knowledge/django/django-guardian'
       },
       {
+        title: 'Django+JWT 实现 Token 认证',
+        path: '/backend-knowledge/django/django-jwt-auth'
+      },
+      {
         title: 'Django 设置 Redis 作为缓存',
         path: '/backend-knowledge/django/django-redis-cache'
       },
