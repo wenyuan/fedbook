@@ -469,7 +469,7 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
   <p style="text-align:center; color: #888;">（创建每隔 5 秒执行的规则）</p>
 </div>
 
-* 比如我们要创建**每整分钟执行（`小时:分钟:00`）**的规则，就可以在 Crontabs 表名后面点击 Add 按钮：
+* 比如我们要创建**每整分钟执行**（`小时:分钟:00`）的规则，就可以在 Crontabs 表名后面点击 Add 按钮：
 
 <div style="text-align: center;">
   <img src="./assets/django-celery-admin-3.png" alt="创建每整分钟执行的规则">
@@ -509,7 +509,7 @@ celery -A django_celery_demo beat -l info
 
 ### 观察定时任务执行
 
-从 work 的输出可以看到：
+从 worker 的输出可以看到：
 
 <div style="text-align: center;">
   <img src="./assets/django-celery-periodic-tasks-worker-output.png" alt="定时任务 - worker 输出信息">
@@ -554,7 +554,7 @@ http://192.168.10.50:5555
 
 ## 使用 supervisor 进行管理
 
-上面的 work、beat 和 flower 都是在命令行前台启动的，虽然也可以改成后台启动，但是如果因为某个意外导致进程被杀掉了，那么整个服务就不可用了。因此实际生产中我们会使用 supervisor 进行管理。
+上面的 worker、beat 和 flower 都是在命令行前台启动的，虽然也可以改成后台启动，但是如果因为某个意外导致进程被杀掉了，那么整个服务就不可用了。因此实际生产中我们会使用 supervisor 进行管理。
 
 supervisor 的配置文件（用到了虚拟环境，所以有些命令指向了虚拟环境中）：
 
