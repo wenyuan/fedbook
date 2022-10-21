@@ -610,6 +610,10 @@ stderr_logfile=/var/log/supervisor/celery-flower.log
 
 需要注意不能用 root 用户去启动 celery 进程，否则可能会报错，出问题。
 
+## 完整代码
+
+完整代码我放到 GitHub 了，详见 [django_celery_demo](https://github.com/wenyuan/django_celery_demo)。
+
 ## 参考文档
 
 * [First steps with Django](https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html)
