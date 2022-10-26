@@ -63,7 +63,11 @@ module.exports = [
       },
       {
         title: 'Django 与 Celery 的集成',
-        path: '/backend-knowledge/django/django-integrating-celery'
+        path: '/backend-knowledge/django/django-integrate-celery'
+      },
+      {
+        title: 'Django 与 Channels 的集成',
+        path: '/backend-knowledge/django/django-integrate-channels'
       },
     ]
   },

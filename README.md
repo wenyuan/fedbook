@@ -369,7 +369,8 @@
   - [Django 与 Guardian 的集成](https://fedbook.cn/backend-knowledge/django/django-guardian/)
   - [Django+JWT 实现 Token 认证](https://fedbook.cn/backend-knowledge/django/django-jwt-auth/)
   - [Django 设置 Redis 作为缓存](https://fedbook.cn/backend-knowledge/django/django-redis-cache/)
-  - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrating-celery/)
+  - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrate-celery/)
+  - [Django 与 Channels 的集成](https://fedbook.cn/backend-knowledge/django/django-integrate-channels/)
   - **Django 常见问题**
   - [执行 migrate 时报错 SQLite 版本过低](https://fedbook.cn/backend-knowledge/django/migrate-error-caused-by-sqlite3/)
 - [MySQL](https://fedbook.cn/backend-knowledge/mysql/)

@@ -3,7 +3,7 @@
 > 本项目的环境为：
 >
 > * CentOS 7
-> * Python 3.8.9
+> * Python 3.8
 > * Django 4
 > * Celery 5
 > * Redis 7
