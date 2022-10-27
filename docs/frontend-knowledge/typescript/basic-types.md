@@ -1,409 +1,263 @@
 # 基础类型
 
+> TypeScript 可以通过为 JavaScript 代码添加类型与类型检查来确保健壮性。因此「类型」它是最核心的部分。
+
 在 TypeScript 语法中，类型的标注主要通过类型后置语法来实现，即用 `:` 作为分割变量和类型的分隔符。而缺省类型注解的 TypeScript 与 JavaScript 完全一致，因此可以把 TypeScript 代码的编写看作是为 JavaScript 代码添加类型注解。
 
-## 简单基础类型
+## 原始类型的类型标注
 
-### 数值（Number）
-
-使用 `number` 类型表示 JavaScript 已经支持或者即将支持的十进制整数、浮点数，以及二进制数、八进制数、十六进制数：
+在 [JavaScript 的内置原始类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#原始值_primitive_values)中，除了常见的 number / string / boolean / null / undefined，ES6 和 ES11 又分别引入了 2 个新的原始类型：symbol 与 bigint 。在 TypeScript 中它们都有对应的类型注解：
 
 ```typescript
-let a: number = 123;        // 十进制整数
-
-let b: number = Number(42); // 十进制整数
-
-let c: number = 3.14;       // 十进制浮点数
-
-let d: number = 0b1010101;  // 二进制
-
-let e: number = 0o75;       // 八进制
-
-let f: number = 0xA12;      // 十六进制
-
-let g: number = NaN;        // 非数字
-
-let h: number = Infinity;   // 正无穷大的数值
+const name: string = 'apple';
+const age: number = 24;
+const male: boolean = false;
+const undef: undefined = undefined;
+const nul: null = null;
+const obj: object = { name, age, male };
+const bigintVar1: bigint = 9007199254740991n;
+const bigintVar2: bigint = BigInt(9007199254740991);
+const symbolVar: symbol = Symbol('unique');
 ```
 
-如果需要大整数，那么可以使用 `bigint` 类型来表示：
+其中，除了 `null` 与 `undefined` 比较特殊之外，余下的类型基本上可以完全对应到 JavaScript 中的数据类型概念。
+
+### null 与 undefined
+
+在 JavaScript 中，`null` 与 `undefined` 分别表示「有值，但是个空值」和「没有值」。
+
+而在 TypeScript 中，`null` 与 `undefined` 类型都是有具体意义的类型。也就是说，它们作为类型时，表示的是一个有意义的具体类型值。这两者在没有开启 `strictNullChecks` 检查的情况下，会被视作其他类型的子类型，比如 `string` 类型会被认为包含了 `null` 与 `undefined` 类型：
 
 ```typescript
-let big: bigint = 100n;
+const tmp1: null = null;
+const tmp2: undefined = undefined;
+
+const tmp3: string = null; // 仅在关闭 strictNullChecks 时成立，下同
+const tmp4: string = undefined;
 ```
 
-注意：虽然 `number` 和 `bigint` 都表示数字，但是这两个类型不兼容，如果混用会抛出一个类型不兼容的 ts(2322) 错误。
+### void
 
-### 字符串（String）
+`void` 也是一个特殊的类型，它和 JavaScript 中的 `void` 同样不是一回事。
 
-使用 `string` 表示 JavaScript 中任意的字符串（包括模板字符串）：
+在 JavaScript 中，形如 `<a href="javascript:void(0)">清除缓存</a>` 的代码，void 操作符会执行后面跟着的表达式并返回一个 `undefined`。
+
+而在 TypeScript 中，`void` 用于描述一个内部没有 return 语句，或者没有显式 return 一个值的函数的返回值，如：
 
 ```typescript
-let firstname: string = 'Captain';    // 字符串字面量
-
-let familyname: string = String('S'); // 显式类型转换
-
-let fullname: string = `my name is ${firstname}.${familyname}`; // 模板字符串
+function func1() {}
+function func2() {
+  return;
+}
+function func3() {
+  return undefined;
+}
 ```
 
-### 布尔（Boolean）
+在这里，func1 与 func2 的返回值类型都会被隐式推导为 `void`，只有显式返回了 `undefined` 值的 func3 其返回值类型才被推导为了 `undefined`。但在实际的代码执行中，func1 与 func2 的返回值均是 `undefined`。
 
-使用 `boolean` 表示 True 或者 False：
+这里可以认为 `void` 表示一个空类型，而 `null` 与 `undefined` 都是一个具有意义的实际类型。因此`undefined` 能够被赋值给 `void` 类型的变量，就像这样：
 
 ```typescript
-const flag1: boolean = true;
+const voidVar1: void = undefined;
 
-const flag2: boolean = false;
+// null 也可以，但是需要关闭 strictNullChecks
+const voidVar2: void = null;
 ```
 
-### Symbol
+## 数组的类型标注
 
-ES6 开始，TypeScript 也支持了新的 `Symbol` 原始类型，即我们可以通过 `Symbol` 构造函数，创建一个独一无二的标记。同时还可以使用 `symbol` 表示这个变量的类型：
+### 数组
+
+数组同样是最常用的类型之一，在 TypeScript 中有两种方式来声明一个数组类型：
 
 ```typescript
-let sym1: symbol = Symbol();
+const arr1: string[] = [];
 
-let sym2: symbol = Symbol('42');
+const arr2: Array<string> = [];
 ```
 
-## 复杂基础类型
+这两种方式是完全等价的，但其实更多是以前者为主。
 
-### 数组（Array）
+### 元组
 
-在 TypeScript 中，array 一般指**所有元素类型相同**的值的集合。
-
-可以直接使用 `[]` 的形式定义数组类型：
+在某些情况下，使用元组（Tuple）来代替数组要更加妥当，比如一个数组中只存放固定长度的变量，但我们进行了超出长度的访问。如果是数组，会抛出错误；使用元素的话，能在越界访问时给出类型报错：
 
 ```typescript
-let arrayOfNumber: number[] = [1, 2, 3];       // 子元素是数字类型的数组
+// 使用数组，运行时报错
+const arr3: string[] = ['apple', 'pear', 'banana'];
+console.log(arr3[599]);
 
-let arrayOfString: string[] = ['x', 'y', 'z']; // 子元素是字符串类型的数组
+// 使用元组，在越界访问时会给出类型报错
+const arr4: [string, string, string] = ['apple', 'pear', 'banana'];
+console.log(arr4[599]);
 ```
-
-也可以使用 Array 泛型定义数组类型：
-
-```typescript
-let arrayOfNumber: Array<number> = [1, 2, 3];       // 子元素是数字类型的数组
-
-let arrayOfString: Array<string> = ['x', 'y', 'z']; // 子元素是字符串类型的数组
-```
-
-以上两种方式，更推荐使用 `[]` 这种形式来定义。**一方面可以避免与 JSX 的语法冲突，另一方面可以减少不少代码量**。
-
-### 元祖（Tuple）
-
-TypeScript 的数组和元组转译为 JavaScript 后都是数组，但元组最重要的特性是**数量固定，类型可以各异**。
 
 在写法上，元祖类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同：
 
+因为在 JavaScript 中并没有元组的概念，所以 TypeScript 的数组和元组在转译为 JavaScript 后都是数组，但元组最重要的特性是数量固定，类型可以各异。
+
+同时，为了增加可读性，在 TypeScript 4.0 中，有了[具名元组](https://github.com/Microsoft/TypeScript/issues/28259)的支持，使得我们可以为元组中的元素打上类似 label 的标记：
+
 ```typescript
-const arr1: [number, string] = [100, 'hello'];
+const arr7: [name: string, age: number, male: boolean] = ['张三', 13, true];
 ```
 
-在 JavaScript 中并没有元组的概念，作为一门动态类型语言，它的优势是**天然支持多类型元素数组**。
+## 对象的类型标注
 
-## 特殊基础类型
+对象的类型标注是比较重要的部分，因为它在 JavaScript 中也是使用最频繁的数据结构。
 
-### any
+在 TypeScript 中，用来描述对象类型的类型标注是 `interface`，可以理解为它代表了这个对象对外提供的接口结构（好吧，如果会后端语言，会觉得给「对象」被「接口」多少还是有点区别的，不过这是前端嘛）。
 
-any 指的是一个任意类型，它是官方提供的一个选择性绕过静态类型检测的作弊方式。
+### 声明方式
 
-我们可以对被注解为 `any` 类型的变量进行任何操作，包括获取事实上并不存在的属性、方法，并且 TypeScript 还无法检测其属性是否存在、类型是否正确。
-
-比如可以把任何类型的值赋值给 any 类型的变量，也可以把 any 类型的值赋值给任意类型（除 never 以外）的变量：
+首先使用 `interface` 声明一个结构，然后使用这个结构来作为一个对象的类型标注即可：
 
 ```typescript
-let val: any = {};
-
-val.doAnything(); // 不会提示错误
-
-val = 1;          // 不会提示错误
-
-val = 'x';        // 不会提示错误
-
-let num: number = val; // 不会提示错误
-
-let str: string = val; // 不会提示错误
-```
-
-如果我们不想花费过高的成本为复杂的数据添加类型注解，或者已经引入了缺少类型注解的第三方组件库，这时就可以把这些值全部注解为 any 类型，并告诉 TypeScript 选择性地忽略静态类型检测。
-
-尤其是在将一个基于 JavaScript 的应用改造成 TypeScript 的过程中，我们不得不借助 any 来选择性添加和忽略对某些 JavaScript 模块的静态类型检测，直至逐步替换掉所有的 JavaScript。
-
-any 类型会在对象的调用链中进行传导，即所有 any 类型的任意属性的类型都是 any：
-
-```typescript
-let anything: any = {};
-
-let z = anything.x.y.z; // z 类型是 any，不会提示错误
-
-z(); // 不会提示错误
-```
-
-但是从长远来看，使用 any 绝对是一个坏习惯。如果一个 TypeScript 应用中充满了 any，此时静态类型检测基本起不到任何作用，也就是说与直接使用 JavaScript 没有任何区别。**因此，除非有充足的理由，否则我们应该尽量避免使用 any ，并且开启禁用隐式 any 的设置**。
-
-### unknown
-
-unknown 是 TypeScript 3.0 中添加的一个类型，它主要用来描述类型并不确定的变量。
-
-比如在多个 if else 条件分支场景下，它可以用来接收不同条件下类型各异的返回值的临时变量：
-
-```typescript
-let result: unknown;
-if (x) {
-  result = x();
-} else if (y) {
-  result = y();
-} ...
-```
-
-与 any 不同的是，unknown 在类型上更安全。比如我们可以将任意类型的值赋值给 unknown，但 unknown 类型的值只能赋值给 unknown 或 any，否则会抛出一个 ts(2322) 错误：
-
-```typescript
-let result: unknown;
-let num: number = result;   // 提示 ts(2322)
-let anything: any = result; // 不会提示错误
-```
-
-使用 unknown 后，TypeScript 会对它做类型检测。但是，如果不缩小类型（Type Narrowing），我们对 unknown 执行的任何操作都会出现如下所示错误：
-
-```typescript
-let result: unknown;
-result.toFixed(); // 提示 ts(2571)
-```
-
-**而所有的类型缩小手段对 unknown 都有效**，例如：
-
-```typescript
-let result: unknown;
-if (typeof result === 'number') {
-  result.toFixed(); // 此处 hover result 提示类型是 number，不会提示错误
-}
-```
-
-### 空值（void）
-
-void 类型在某种程度上来说像是与 any 类型相反，它表示没有任何类型。仅适用于表示没有返回值的函数。即如果该函数没有返回值，那它的类型就是 void。
-
-声明一个 void 类型的变量几乎没有任何实际用处，因为我们不能把 void 类型的变量值再赋值给除了 any 和 unknown 之外的任何类型变量，且它只能被赋值为 `undefined`。
-
-```typescript
-function foo():void {
-  console.log('hello word');
+// 声明一个接口
+interface IDescription {
+  name: string;
+  age: number;
+  male: boolean;
 }
 
-const result: void = undefined;
+// 用上面声明的接口，给一个对象标注类型
+const obj1: IDescription = {
+  name: '张三',
+  age: 13,
+  male: true,
+};
 ```
 
-### undefined 和 null
+这里声明的接口表示：
 
-这两个是 TypeScript 值与类型关键字同名的唯二例外：
+* 对象每一个属性的值必须**一一对应**到接口的属性类型。
+* 不能有多的属性，也不能有少的属性，包括直接在对象内部声明，或是 `obj1.other = 'xxx'` 这样属性访问赋值的形式。
 
-```typescript
-let undeclared: undefined = undefined; // undefined 类型只能赋值为 undefined
-let nullable: null = null;             // null 类型只能赋值为 null
-```
+除了声明属性以及属性的类型以外，我们还可以对属性进行修饰，常见的修饰包括**可选**（Optional）与**只读**（Readonly）这两种。
 
-单纯声明 undefined 或者 null 类型的变量是比较鸡肋的。
+### 修饰接口属性
 
-undefined 的最大价值主要体现在接口类型（后面会单独整理这个知识点）上，它表示一个可缺省、未定义的属性。
-
-在 TS 中有个比较费解的设计：**我们可以把 undefined 值或类型是 undefined 的变量赋值给 void 类型变量，反过来，类型是 void 但值是 undefined 的变量不能赋值给 undefined 类型**。
+在接口结构可以通过 `?` 来标记一个属性为可选：
 
 ```typescript
-const userInfo: {
-  id?: number;
-} = {};
-let undeclared: undefined = undefined;
-let unusable: void = undefined;
-unusable = undeclared; // ok
-undeclared = unusable; // ts(2322)
-```
-
-而 null 的价值主要体现在接口制定上，它表明对象或属性可能是空值。尤其是在前后端交互的接口，比如 Java Restful、Graphql，任何涉及查询的属性、对象都可能是 null 空对象，如下代码所示：
-
-```typescript
-const userInfo: {
-  name: null | string
-} = { name: null };
-```
-
-除此之外，undefined 和 null 类型还具备警示意义，它们可以提醒我们针对可能操作这两种（类型）值的情况做容错处理。
-
-我们需要类型守卫（后面会单独整理这个知识点）在操作之前判断值的类型是否支持当前的操作。类型守卫既能通过类型缩小影响 TypeScript 的类型检测，也能保障 JavaScript 运行时的安全性，如下代码所示：
-
-```typescript
-const userInfo: {
-  id?: number;
-  name?: null | string
-} = { id: 1, name: 'Captain' };
-if (userInfo.id !== undefined) { // Type Guard
-  userInfo.id.toFixed(); // id 的类型缩小成 number
+interface IDescription {
+  name: string;
+  age: number;
+  male?: boolean;
+  func?: Function;
 }
+
+const obj2: IDescription = {
+  name: '张三',
+  age: 13,
+  male: true,
+  // 无需实现 func 也是合法的
+};
 ```
 
-不建议随意使用非空断言（参见类型断言中的内容）来排除值可能为 null 或 undefined 的情况，因为这样很不安全。
+在这种情况下，即使在 `obj2` 中定义了 `male` 属性，但当你访问 `obj2.male` 时，它的类型仍然会是 `boolean | undefined`。
+
+同理，即使对上面的可选属性（`func` 函数）进行了赋值，然后调用（`obj2.func()`），TypeScript 仍然会**以接口的描述为准**进行类型检查，此时将会产生一个类型报错：「不能调用可能是未定义的方法」。但可选属性标记不会影响你对这个属性进行赋值和实际使用，要想解决这个类型验证的问题，可以使用类型断言、非空断言或可选链（后面再说）。
+
+除了标记一个属性为可选以外，还可以标记这个属性为只读：`readonly`。它的作用是防止对象的属性被再次赋值。
 
 ```typescript
-userInfo.id!.toFixed(); // ok，但不建议
-userInfo.name!.toLowerCase() // ok，但不建议
-```
-
-比非空断言更安全、类型守卫更方便的做法是使用单问号（Optional Chain）、双问号（空值合并），我们可以使用它们来保障代码的安全性，如下代码所示：
-
-```typescript
-userInfo.id?.toFixed(); // Optional Chain
-const myName = userInfo.name?? `my name is ${info.name}`; // 空值合并
-```
-
-### never
-
-never 类型表示的是那些永不存在的值的类型。例如，never 类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型。变量也可能是 never 类型，当他们被用不为真的类型保护所约束时。
-
-例如，定义一个统一抛出错误的函数，代码示例如下（圆括号后 `:` + 类型注解，表示函数返回值的类型）：
-
-```typescript
-function ThrowError(msg: string): never {
-  throw Error(msg);
+interface IDescription {
+  readonly name: string;
+  age: number;
 }
+
+const obj3: IDescription = {
+  name: '张三',
+  age: 13,
+};
+
+// 无法分配到 "name" ，因为它是只读属性
+obj3.name = "张三";
 ```
 
-以上函数因为永远不会有返回值，所以它的返回值类型就是 `never`。
+其实在数组与元组层面也有着只读的修饰，但与对象类型有着两处不同：
 
-同样，如果函数代码中是一个死循环，那么这个函数的返回值类型也是 never，如下代码所示：
+* 只能将整个数组/元组标记为只读，而不能像对象那样标记某个属性为只读。
+* 一旦被标记为只读，那这个只读数组/元组的类型上，将不再具有 `push`、`pop` 等方法（即会修改原数组的方法），因此报错信息也将是「类型 xxx 上不存在属性 "push"」这种。这一实现的本质是**只读数组与只读元组的类型实际上变成了 ReadonlyArray，而不再是 Array**。
+
+### type 与 interface
+
+在 TypeScript 中，type（类型别名）和 interface（接口）都可以用来描述对象，在大多数情况下效果等价。不过还是推荐：
+
+* interface 用来描述对象、类的结构。
+* type 用来将一个函数签名、一组联合类型、一个工具类型等等抽离成一个完整独立的类型。（这也更贴合「别名」这一称谓）
+
+但大部分场景下接口都可以被类型别名所取代，因此，只要你觉得统一使用类型别名让你觉得更整齐，也没什么问题。
+
+### object、Object 以及 {}
+
+`object`、`Object` 以及 `{}`（一个空对象）这三者的使用也是挺让人困惑的，这里区分一下吧。
+
+首先是 `Object` 的使用。在 JavaScript 原型链的知识中提到，原型链的顶端是 `Object` 以及 `Function`，这也就意味着所有的原始类型与对象类型最终都指向 `Object`，在 TypeScript 中就表现为 `Object` 包含了所有的类型：
 
 ```typescript
-function InfiniteLoop(): never {
-  while (true) {}
-}
+// 对于 undefined、null、void 0 ，需要关闭 strictNullChecks
+const tmp1: Object = undefined;
+const tmp2: Object = null;
+const tmp3: Object = void 0;
+
+const tmp4: Object = 'apple';
+const tmp5: Object = 599;
+const tmp6: Object = { name: '张三' };
+const tmp7: Object = () => {};
+const tmp8: Object = [];
 ```
 
-never 是所有类型的子类型，它可以给所有类型赋值，如下代码所示：
+和 `Object` 类似的还有 `Boolean`、`Number`、`String`、`Symbol`，这几个装箱类型（Boxed Types）同样包含了一些超出预期的类型。以 `String` 为例，它同样包括 `undefined`、`null`、`void`，以及代表的拆箱类型（Unboxed Types）`string`，但并不包括其他装箱类型对应的拆箱类型，如 `boolean` 与 基本对象类型，看以下的代码：
 
 ```typescript
-let Unreachable: never = 1;      // ts(2322)
-Unreachable = 'string';          // ts(2322)
-Unreachable = true;              // ts(2322)
-let num: number = Unreachable;   // ok
-let str: string = Unreachable;   // ok
-let bool: boolean = Unreachable; // ok
+const tmp9: String = undefined;
+const tmp10: String = null;
+const tmp11: String = void 0;
+const tmp12: String = 'apple';
+
+// 以下不成立，因为不是字符串类型的拆箱类型
+const tmp13: String = 599; // 报错
+const tmp14: String = { name: '张三' }; // 报错
+const tmp15: String = () => {}; // 报错
+const tmp16: String = []; // 报错
 ```
 
-但是反过来，除了 never 自身以外，其他类型（包括 any 在内的类型）都不能为 never 类型赋值。
+注意：**在任何情况下，都不应该使用这些装箱类型**。
 
-在恒为 false 的类型守卫条件判断下，变量的类型将缩小为 never（never 是所有其他类型的子类型，所以是类型缩小为 never，而不是变成 never）。因此，条件判断中的相关操作始终会报无法更正的错误（我们可以把这理解为一种基于静态类型检测的 Dead Code 检测机制），如下代码所示：
+`object` 的引入就是为了解决对 `Object` 类型的错误使用，它代表所有非原始类型的类型，即**数组、对象与函数类型**这些：
 
 ```typescript
-const str: string = 'string';
-if (typeof str === 'number') {
-  str.toLowerCase(); // Property 'toLowerCase' does not exist on type 'never'.ts(2339)
-}
+const tmp17: object = undefined;
+const tmp18: object = null;
+const tmp19: object = void 0;
+
+const tmp20: object = 'apple';  // 报错，值为原始类型
+const tmp21: object = 599;        // 报错，值为原始类型
+
+const tmp22: object = { name: '张三' };
+const tmp23: object = () => {};
+const tmp24: object = [];
 ```
 
-基于 never 的特性，我们还可以使用 never 实现一些有意思的功能。比如我们可以把 never 作为接口类型下的属性类型，用来禁止写接口下特定的属性，示例代码如下：
+最后是 `{}`，可以认为它就是一个对象字面量类型（字面量类型后面再讲）。即使用 `{}` 作为类型签名就是一个合法的，但内部无属性定义的空对象，它意味着任何非 `null` / `undefined` 的值：
+
+虽然能够将其作为任意变量的类型，但实际上却**无法对这个变量进行任何赋值操作**：
 
 ```typescript
-const props: {
-  id: number,
-  name?: never
-} = {
-  id: 1
-}
-props.name = null;  // ts(2322))
-props.name = 'str'; // ts(2322)
-props.name = 1;     // ts(2322)
+const tmp30: {} = { name: '张三' };
+
+tmp30.age = 18; // 报错 类型 "{}" 上不存在属性 "age"
 ```
 
-此时，无论我们给 `props.name` 赋什么类型的值，它都会提示类型错误，实际效果等同于 `name` 只读。
+这是因为它就是纯洁的像一张白纸一样的空对象，上面没有任何的属性（除了 toString 这种与生俱来的）。
 
-### object
+**结论**：
 
-object 类型表示非原始类型的类型，即非 number、string、boolean、bigint、symbol、null、undefined 的类型。然而，它也是个没有什么用武之地的类型，如下所示的一个应用场景是用来表示 `Object.create` 的类型。
-
-```typescript
-declare function create(o: object | null): any;
-create({});         // ok
-create(() => null); // ok
-create(2);          // ts(2345)
-create('string');   // ts(2345)
-```
-
-## 类型断言（Type Assertion）
-
-### 是什么
-
-类型断言，用于告诉 TypeScript 某个值你非常确定是你断言的类型，而不是 TS 推测出来的类型。
-
-例如下面的场景：
-
-```typescript
-const arrayNumber: number[] = [1, 2, 3, 4];
-const greaterThan2: number = arrayNumber.find(num => num > 2); // 提示 ts(2322)
-```
-
-其中，greaterThan2 一定是一个数字（确切地讲是 3），因为 arrayNumber 中明显有大于 2 的元素，但静态类型对运行时的逻辑无能为力。
-
-在 TypeScript 看来，greaterThan2 的类型既可能是数字，也可能是 undefined，所以上面的示例中提示了一个 ts(2322) 错误，此时我们不能把类型 undefined 分配给类型 number。
-
-不过，我们可以使用一种笃定的方式 —— **类型断言**（类似仅作用在类型层面的强制类型转换）告诉 TypeScript 按照我们的方式做类型检查。
-
-比如，我们可以使用 as 语法做类型断言，如下代码所示：
-
-```typescript
-const arrayNumber: number[] = [1, 2, 3, 4];
-const greaterThan2: number = arrayNumber.find(num => num > 2) as number;
-```
-
-又或者是使用尖括号 + 类型的格式做类型断言，如下代码所示：
-
-```typescript
-const arrayNumber: number[] = [1, 2, 3, 4];
-const greaterThan2: number = <number>arrayNumber.find(num => num > 2);
-```
-
-以上两种方式虽然没有任何区别，但是尖括号格式会与 JSX 产生语法冲突，因此更推荐使用 as 语法。
-
-### 需要满足约束关系
-
-类型断言的操作对象必须满足某些约束关系，否则我们将得到一个 ts(2352) 错误，即从类型「源类型」到类型「目标类型」的转换是错误的，因为这两种类型不能充分重叠。
-
-通俗的说，这种约束关系就是我们不能「指鹿为马」。但可以「指白马为马」或「指马为白马」，这可以很贴切地体现类型断言的约束条件：父子、子父类型之间可以使用类型断言进行转换。
-
-::: warning
-这个结论完全适用于复杂类型。同时对于 number、string、boolean 原始类型来说，不仅父子类型可以相互断言，父类型相同的类型也可以相互断言，比如 `1 as 2`、`'a' as 'b'`、`true as false`，只不过这样的断言没有任何意义。
-:::
-
-另外，any 和 unknown 这两个特殊类型属于万金油，因为它们既可以被断言成任何类型，反过来任何类型也都可以被断言成 any 或 unknown。
-
-除了可以把特定类型断言成符合约束添加的其他类型之外，还可以使用「字面量值 + as const」语法结构进行常量断言，如下所示：
-
-```typescript
-let str = 'str' as const; // str 类型是 '"str"'
-
-const readOnlyArr = [0, 1] as const; // readOnlyArr 类型是 'readonly [0, 1]'
-```
-
-### 非空断言
-
-还有一种非空断言，即在值（变量、属性）的后边添加 `!` 断言操作符，它可以用来排除值为 null、undefined 的情况：
-
-```typescript
-let mayNullOrUndefinedOrString: null | undefined | string;
-mayNullOrUndefinedOrString!.toString(); // ok
-mayNullOrUndefinedOrString.toString(); // ts(2531)
-```
-
-但应该尽量少用，因为无法保证之前一定非空的值，且这种错误只会在运行环境中抛出，静态类型检测是发现不了的。非空断言的替代方案是类型守卫（后面会讲）：
-
-```typescript
-let mayNullOrUndefinedOrString: null | undefined | string;
-if (typeof mayNullOrUndefinedOrString === 'string') {
-  mayNullOrUndefinedOrString.toString(); // ok
-}
-```
-
-### 应用场景
-
-比如在获取一个 DOM 元素时，推断出来的类型是 `xxElement | null`，但是你非常笃定元素一定存在，这个时候就可以使用类型断言，`as xxElement`。
+* 在任何时候都不要使用 `Object` 以及类似的装箱类型（少学一样会带来困扰的东西，心理负担会小很多）。
+* 同样要避免使用 `{}`。它意味着任何非 `null` / `undefined` 的值，从这个层面上看，这和使用 `any` 一样恶劣。
+* 当你不确定某个变量的具体类型，但能确定它不是原始类型，可以使用 `object`。但更推荐进一步区分，也就是使用 `Record<string, unknown>` 或 `Record<string, any>` 表示对象，`unknown[]` 或 `any[]` 表示数组，`(...args: any[]) => any` 表示函数这样。
 
 （完）

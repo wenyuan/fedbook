@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'TypeScript 基础',
+    title: 'TypeScript 类型检查',
     collapsable: false,
     children: [
       {
