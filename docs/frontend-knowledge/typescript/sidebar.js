@@ -9,7 +9,7 @@ module.exports = [
       },
       {
         title: '字面量类型与枚举',
-        path: '/frontend-knowledge/typescript/basic-types'
+        path: '/frontend-knowledge/typescript/literal-and-enum'
       },
       {
         title: '字面量类型',

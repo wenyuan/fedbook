@@ -121,6 +121,7 @@
 - [TypeScript](https://fedbook.cn/frontend-knowledge/typescript/)
   - **TypeScript 基础**
   - [基础类型（始于 JS）](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
+  - [字面量类型与枚举](https://fedbook.cn/frontend-knowledge/typescript/literal-and-enum/)
   - [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal/)
   - [函数](https://fedbook.cn/frontend-knowledge/typescript/function/)
   - [类](https://fedbook.cn/frontend-knowledge/typescript/class/)
