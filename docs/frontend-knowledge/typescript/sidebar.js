@@ -4,7 +4,11 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: '基础类型',
+        title: '基础类型（始于 JS）',
+        path: '/frontend-knowledge/typescript/basic-types'
+      },
+      {
+        title: '字面量类型与枚举',
         path: '/frontend-knowledge/typescript/basic-types'
       },
       {

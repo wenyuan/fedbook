@@ -1,12 +1,12 @@
-# 基础类型
+# 基础类型（始于 JS）
 
 > TypeScript 可以通过为 JavaScript 代码添加类型与类型检查来确保健壮性。因此「类型」它是最核心的部分。
 
-在 TypeScript 语法中，类型的标注主要通过类型后置语法来实现，即用 `:` 作为分割变量和类型的分隔符。而缺省类型注解的 TypeScript 与 JavaScript 完全一致，因此可以把 TypeScript 代码的编写看作是为 JavaScript 代码添加类型注解。
+在 TypeScript 语法中，类型的标注主要通过类型后置语法来实现，即用 `:` 作为分割变量和类型的分隔符。而没有写类型标注的 TypeScript 与 JavaScript 完全一致，因此可以把 TypeScript 代码的编写看作是为 JavaScript 代码添加类型标注。
 
 ## 原始类型的类型标注
 
-在 [JavaScript 的内置原始类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#原始值_primitive_values)中，除了常见的 number / string / boolean / null / undefined，ES6 和 ES11 又分别引入了 2 个新的原始类型：symbol 与 bigint 。在 TypeScript 中它们都有对应的类型注解：
+在 [JavaScript 的内置原始类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#原始值_primitive_values)中，除了常见的 number / string / boolean / null / undefined，ES6 和 ES11 又分别引入了 2 个新的原始类型：symbol 与 bigint 。在 TypeScript 中它们都有对应的类型标注：
 
 ```typescript
 const name: string = 'apple';
@@ -259,5 +259,14 @@ tmp30.age = 18; // 报错 类型 "{}" 上不存在属性 "age"
 * 在任何时候都不要使用 `Object` 以及类似的装箱类型（少学一样会带来困扰的东西，心理负担会小很多）。
 * 同样要避免使用 `{}`。它意味着任何非 `null` / `undefined` 的值，从这个层面上看，这和使用 `any` 一样恶劣。
 * 当你不确定某个变量的具体类型，但能确定它不是原始类型，可以使用 `object`。但更推荐进一步区分，也就是使用 `Record<string, unknown>` 或 `Record<string, any>` 表示对象，`unknown[]` 或 `any[]` 表示数组，`(...args: any[]) => any` 表示函数这样。
+
+## 总结
+
+这一章是衔接 JS 和 TS 两者的过渡，可以认为是学完 JS，如何带着 JS 的基础来学 TS。其实可以分为两类：
+
+* 与 JavaScript 概念基本一致的部分，如原始类型与数组类型需要重点掌握，但因为思维方式基本没有变化，所以可以认为就是在写更严格一些的 JavaScript。
+* 一些全新的概念，比如元组与 readonly 修饰等，这一部分就是 JS 没有的东西了，需要稍微转换一下思维方式。
+
+通过这一章的过渡，后面就完全进入 TS 独有的世界了。
 
 （完）
