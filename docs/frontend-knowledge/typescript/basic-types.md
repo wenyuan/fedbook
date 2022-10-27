@@ -29,10 +29,13 @@ const symbolVar: symbol = Symbol('unique');
 而在 TypeScript 中，`null` 与 `undefined` 类型都是有具体意义的类型。也就是说，它们作为类型时，表示的是一个有意义的具体类型值。这两者在没有开启 `strictNullChecks` 检查的情况下，会被视作其他类型的子类型，比如 `string` 类型会被认为包含了 `null` 与 `undefined` 类型：
 
 ```typescript
+// null 类型只能赋值为 null
 const tmp1: null = null;
+// undefined 类型只能赋值为 undefined
 const tmp2: undefined = undefined;
 
-const tmp3: string = null; // 仅在关闭 strictNullChecks 时成立，下同
+// 仅在关闭 strictNullChecks 时成立，下面代码成立
+const tmp3: string = null;
 const tmp4: string = undefined;
 ```
 
@@ -242,7 +245,7 @@ const tmp23: object = () => {};
 const tmp24: object = [];
 ```
 
-最后是 `{}`，可以认为它就是一个对象字面量类型（字面量类型后面再讲）。即使用 `{}` 作为类型签名就是一个合法的，但内部无属性定义的空对象，它意味着任何非 `null` / `undefined` 的值：
+最后是 `{}`，可以认为它就是一个对象字面量类型（字面量类型后面再讲）。即使用 `{}` 作为类型标注就是一个合法的，但内部无属性定义的空对象，它意味着任何非 `null` / `undefined` 的值：
 
 虽然能够将其作为任意变量的类型，但实际上却**无法对这个变量进行任何赋值操作**：
 
