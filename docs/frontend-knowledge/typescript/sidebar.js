@@ -15,6 +15,11 @@ module.exports = [
         title: '函数与 class 类型',
         path: '/frontend-knowledge/typescript/function-and-class'
       },
+      {
+        title: '内置类型和类型断言',
+        path: '/frontend-knowledge/typescript/any-unknown-never'
+      },
+
 
       {
         title: '字面量类型',

@@ -123,6 +123,7 @@
   - [基础类型（始于 JS）](https://fedbook.cn/frontend-knowledge/typescript/basic-types/)
   - [字面量类型与枚举](https://fedbook.cn/frontend-knowledge/typescript/literal-and-enum/)
   - [函数与 class 类型](https://fedbook.cn/frontend-knowledge/typescript/function-and-class/)
+  - [内置类型和类型断言](https://fedbook.cn/frontend-knowledge/typescript/any-unknown-never/)
   - 
   - [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal/)
   - [函数](https://fedbook.cn/frontend-knowledge/typescript/function/)
