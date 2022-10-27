@@ -12,6 +12,11 @@ module.exports = [
         path: '/frontend-knowledge/typescript/literal-and-enum'
       },
       {
+        title: '函数与 class 类型',
+        path: '/frontend-knowledge/typescript/function-and-class'
+      },
+
+      {
         title: '字面量类型',
         path: '/frontend-knowledge/typescript/literal'
       },
