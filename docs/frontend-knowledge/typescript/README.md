@@ -35,7 +35,7 @@ tsc hello.ts
 
 执行完上述命令后，会在当前目录生成一个 `hello.js` 文件，然后就可以使用命令 `node hello.js` 来执行该文件。
 
-官方也提供了一个在线开发 TypeScript 的云环境 —— Playground：
+如果只是想拥有一个简单的环境，能写 TypeScript，能检查错误，能快速地调整 tsconfig，可以使用官方提供的一个在线开发 TypeScript 的云环境 —— Playground：
 
 * [点击查看中文版地址](https://www.typescriptlang.org/zh/play)
 * [点击查看英文版地址](https://www.typescriptlang.org/play/)
