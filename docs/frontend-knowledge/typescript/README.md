@@ -4,7 +4,11 @@
 
 TypeScript 是 JavaScript 的超集，它不仅包含了 JavaScript 当前主流的 ES5 标准，还包含了 ES6/7/8 等未来的标准以及一些处于实验阶段的语法（例如 decorator 装饰器）。
 
-TypeScript 为 JavaScript 带来了**强类型**的定义。
+所以对于 TypeScript 的学习，也分为了三个递进的部分：
+
+* 为 JS 代码添加类型与类型检查来确保健壮性
+* 使用新语法或新特性来让代码更优雅
+* 最终实现工程化
 
 <hr>
 

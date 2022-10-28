@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: 'TypeScript 类型检查',
+    title: 'TypeScript 基础',
     collapsable: false,
     children: [
       {
@@ -19,8 +19,7 @@ module.exports = [
         title: '内置类型和类型断言',
         path: '/frontend-knowledge/typescript/any-unknown-never'
       },
-
-
+/*
       {
         title: '字面量类型',
         path: '/frontend-knowledge/typescript/literal'
@@ -49,6 +48,7 @@ module.exports = [
         title: '泛型',
         path: '/frontend-knowledge/typescript/generics'
       },
+*/
     ]
   },
   {
@@ -56,9 +56,15 @@ module.exports = [
     collapsable: false,
     children: [
       {
+        title: '类型创建',
+        path: '/frontend-knowledge/typescript/type-to-create'
+      },
+/*
+      {
         title: '类型守卫',
         path: '/frontend-knowledge/typescript/type-guard'
       },
+ */
     ]
   }
 ]

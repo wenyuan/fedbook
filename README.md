@@ -124,16 +124,8 @@
   - [字面量类型与枚举](https://fedbook.cn/frontend-knowledge/typescript/literal-and-enum/)
   - [函数与 class 类型](https://fedbook.cn/frontend-knowledge/typescript/function-and-class/)
   - [内置类型和类型断言](https://fedbook.cn/frontend-knowledge/typescript/any-unknown-never/)
-  - 
-  - [字面量类型](https://fedbook.cn/frontend-knowledge/typescript/literal/)
-  - [函数](https://fedbook.cn/frontend-knowledge/typescript/function/)
-  - [类](https://fedbook.cn/frontend-knowledge/typescript/class/)
-  - [接口类型与类型别名](https://fedbook.cn/frontend-knowledge/typescript/interface-and-type/)
-  - [联合类型与交叉类型](https://fedbook.cn/frontend-knowledge/typescript/union-and-intersection/)
-  - [枚举](https://fedbook.cn/frontend-knowledge/typescript/enum/)
-  - [泛型](https://fedbook.cn/frontend-knowledge/typescript/generics/)
   - **TypeScript 进阶**
-  - [类型守卫](https://fedbook.cn/frontend-knowledge/typescript/type-guard/)
+  - [类型创建](https://fedbook.cn/frontend-knowledge/typescript/type-to-create/)
 - [浏览器相关](https://fedbook.cn/frontend-knowledge/browser/)
   - **浏览器工作原理**
   - [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
