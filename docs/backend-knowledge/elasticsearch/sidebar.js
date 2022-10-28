@@ -72,6 +72,10 @@ module.exports = [
       {
         title: '索引模板：Index Template',
         path: '/backend-knowledge/elasticsearch/index-template'
+      },
+      {
+        title: 'ES 集群性能优化小记录',
+        path: '/backend-knowledge/elasticsearch/performance-optimization'
       }
     ]
   }

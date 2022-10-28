@@ -423,6 +423,7 @@
   - [索引管理 API](https://fedbook.cn/backend-knowledge/elasticsearch/index-manage-apis/)
   - [定义字段类型：Mapping](https://fedbook.cn/backend-knowledge/elasticsearch/mapping/)
   - [索引模板：Index Template](https://fedbook.cn/backend-knowledge/elasticsearch/index-template/)
+  - [ES 集群性能优化小记录](https://fedbook.cn/backend-knowledge/elasticsearch/performance-optimization/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>
