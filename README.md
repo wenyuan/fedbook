@@ -6,7 +6,7 @@
 
 <p align="center">
   <img alt="author" src="https://img.shields.io/badge/author-wenyuan-blue.svg?style=flat-square">
-  <img alt="updated" src="https://img.shields.io/badge/update-2022.10-blue.svg?style=flat-square">
+  <img alt="updated" src="https://img.shields.io/badge/update-2022.11-blue.svg?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-CC BY NC 4.0-blue.svg?style=flat-square">
   <a href="https://www.fedbook.cn/others/sponsor/" target="_blank">
     <img alt="sponsor" src="https://img.shields.io/badge/sponsor-❤-ff69b4.svg?style=flat-square">
@@ -26,7 +26,7 @@
 
 高中时候有摘笔记的习惯，每天都会挤时间抄课堂讲义，但到高考结束都几乎没有翻完那一堆本子。后来发现这是一种比较愚蠢的课堂笔记 —— 什么都记还不如不记。经过一次次的尝试后，觉得根据文章理大纲也比较低效。目前来看，还是通过判断个人对知识点吸收的难易程度去记，更容易自己成长。把认为重要的、容易遗忘的、经常要查阅的记录下来，形成自己的学习小册，定期温故知新。未来需要用到的时候，还能节省时间成本，不用一一百度/Google。
 
-近期正在学习：计算机网络
+近期正在学习：TypeScript
 
 ## 目录
 
