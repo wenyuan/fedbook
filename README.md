@@ -125,7 +125,8 @@
   - [函数与 class 类型](https://fedbook.cn/frontend-knowledge/typescript/function-and-class/)
   - [内置类型和类型断言](https://fedbook.cn/frontend-knowledge/typescript/any-unknown-never/)
   - **TypeScript 进阶**
-  - [类型创建](https://fedbook.cn/frontend-knowledge/typescript/type-to-create/)
+  - [类型创建](https://fedbook.cn/frontend-knowledge/typescript/to-create-type/)
+  - [类型保护](https://fedbook.cn/frontend-knowledge/typescript/to-protect-type/)
 - [浏览器相关](https://fedbook.cn/frontend-knowledge/browser/)
   - **浏览器工作原理**
   - [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)

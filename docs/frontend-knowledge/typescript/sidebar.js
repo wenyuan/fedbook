@@ -57,7 +57,11 @@ module.exports = [
     children: [
       {
         title: '类型创建',
-        path: '/frontend-knowledge/typescript/type-to-create'
+        path: '/frontend-knowledge/typescript/to-create-type'
+      },
+      {
+        title: '类型保护',
+        path: '/frontend-knowledge/typescript/to-protect-type'
       },
 /*
       {
