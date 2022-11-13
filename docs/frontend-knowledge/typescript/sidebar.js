@@ -63,6 +63,10 @@ module.exports = [
         title: '类型保护',
         path: '/frontend-knowledge/typescript/to-protect-type'
       },
+      {
+        title: '泛型',
+        path: '/frontend-knowledge/typescript/generic-types'
+      },
 /*
       {
         title: '类型守卫',

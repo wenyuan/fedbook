@@ -127,6 +127,7 @@
   - **TypeScript 进阶**
   - [类型创建](https://fedbook.cn/frontend-knowledge/typescript/to-create-type/)
   - [类型保护](https://fedbook.cn/frontend-knowledge/typescript/to-protect-type/)
+  - [泛型](https://fedbook.cn/frontend-knowledge/typescript/generic-types/)
 - [浏览器相关](https://fedbook.cn/frontend-knowledge/browser/)
   - **浏览器工作原理**
   - [浏览器宏观认识](https://fedbook.cn/frontend-knowledge/browser/browser-macro-knowledge/)
