@@ -60,7 +60,7 @@ module.exports = [
         path: '/frontend-knowledge/typescript/to-create-type'
       },
       {
-        title: '类型保护',
+        title: '类型安全保护',
         path: '/frontend-knowledge/typescript/to-protect-type'
       },
       {
