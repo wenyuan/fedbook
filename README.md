@@ -371,6 +371,7 @@
   - [Django 与 Celery 的集成](https://fedbook.cn/backend-knowledge/django/django-integrate-celery/)
   - [Django 与 Channels 的集成](https://fedbook.cn/backend-knowledge/django/django-integrate-channels/)
   - **Django 常见问题**
+  - [导出/导入数据库表数据](https://fedbook.cn/backend-knowledge/django/dumpdata-and-loaddata/)
   - [执行 migrate 时报错 SQLite 版本过低](https://fedbook.cn/backend-knowledge/django/migrate-error-caused-by-sqlite3/)
 - [MySQL](https://fedbook.cn/backend-knowledge/mysql/)
   - **MySQL 基础知识**

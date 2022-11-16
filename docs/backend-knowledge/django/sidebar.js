@@ -76,6 +76,10 @@ module.exports = [
     collapsable: true,
     children: [
       {
+        title: '导出/导入数据库表数据',
+        path: '/backend-knowledge/django/dumpdata-and-loaddata'
+      },
+      {
         title: '执行 migrate 时报错 SQLite 版本过低',
         path: '/backend-knowledge/django/migrate-error-caused-by-sqlite3'
       },
