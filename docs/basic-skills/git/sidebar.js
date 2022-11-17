@@ -26,7 +26,7 @@ module.exports = [
         path: '/basic-skills/git/solution-to-clone-too-slow'
       },
       {
-        title: '修改 commit 信息',
+        title: '如何修改 commit 信息',
         path: '/basic-skills/git/solution-to-commit-info-mistake'
       },
       {
