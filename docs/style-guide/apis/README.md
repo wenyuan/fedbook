@@ -169,18 +169,22 @@ RESTful 响应的 JSON 结构应当全局保持相同的结构与语义，这里
 
 当然不同的公司有不同的命名规则，一定要提前定义好并要求开发团队严格按语义使用编码。
 
-```
+```json
 {
-    code:"0" ,
-    message : "success" ,
-    data : {
-        employee : {
-            name : "张三",
-            salary : 3500 , 
-            version : 2
-        }
+  code: 0,
+  message : "success" ,
+  data : {
+    employee : {
+      name : "张三",
+      salary : 3500 , 
+      version : 2
     }
+  }
 }
 ```
+
+上述返回结果中，可以发现有一个 `version` 字段。那是为了让接口**保证幂等性**的设计。即通过乐观锁的方式，在工资表额外增加一个 `version` 的字段，代表当前数据的版本，任何对该数据修改操作都会让 `version` 字段值 `+1`，这个 `version` 的数值要求附加在请求中。
+
+> 幂等性：当多次重复请求时，接口能保证与预期相符的结果。
 
 （完）
