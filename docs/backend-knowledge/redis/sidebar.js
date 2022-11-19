@@ -10,11 +10,17 @@ module.exports = [
       {
         title: 'Redis 常用命令',
         path: '/backend-knowledge/redis/common-commands'
-      },
+      }
+    ]
+  },
+  {
+    title: 'Redis 常见问题',
+    collapsable: false,
+    children: [
       {
         title: 'Redis 缓存三大问题',
         path: '/backend-knowledge/redis/three-cache-problems'
-      },
+      }
     ]
   },
   {
