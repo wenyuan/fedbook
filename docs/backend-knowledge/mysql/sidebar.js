@@ -54,6 +54,16 @@ module.exports = [
     ]
   },
   {
+    title: 'MySQL 常见问题',
+    collapsable: true,
+    children: [
+      {
+        title: '脏读、不可重复读和幻读',
+        path: '/backend-knowledge/mysql/transaction-isolation-levels'
+      },
+    ]
+  },
+  {
     title: 'MySQL 日常运维',
     collapsable: true,
     children: [
