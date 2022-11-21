@@ -100,9 +100,9 @@ chown root:root /usr/local/nginx/passwd.db
 
 ## 配置案例
 
-前端我们已经通过使用 htpasswd 工具，在 `/usr/local/nginx/` 目录下生成了用户文件 `passwd.db`，接下来在 Nginx 配置文件中进行配置。
+前面我们已经通过使用 htpasswd 工具，在 `/usr/local/nginx/` 目录下生成了用户文件 `passwd.db`，接下来在 Nginx 配置文件中进行配置。
 
-假设我们有个网站，要限制外人不能访问管理页面（只允许指定 IP 访问 `/admin` 开始的 uri）。
+假设我们有个网站，要限制外人不能访问下载页面（必须经过用户名/密码登录验证后才能访问）。
 
 ```bash {9,10}
 server {
@@ -118,6 +118,14 @@ server {
     }
 }
 ```
+
+## 常见问题
+
+问题描述：通过上面的配置给 Nginx 增加了 用户认证，但是当进行 Nginx 身份验证时，返回 500 错误。
+
+问题原因：此时检查一下，可能是你的 Nginx 是用普通用户跑的，而不是 root。前面给 `passwd.db` 设置了普通用户禁止读取权限。
+
+解决方案：`chown 该普通用户名:该普通用户所属组 /usr/local/nginx/passwd.db`。
 
 ## 参考资料
 
