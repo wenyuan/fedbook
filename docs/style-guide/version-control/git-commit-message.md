@@ -84,9 +84,9 @@
 * **refactor**：一般指重构代码。例如 `refactor: rename, move, extract, inline` 等
 * **perf**：代码性能优化。例如 `perf: improves performance`
 * **test**：代码单元测试。例如 `test: test menu component`
-* **build**：变更项目构建或外部依赖（webpack、glup、npm、rollup 等）。例如 `build: build project`
+* **build**：变更项目构建或包依赖更新（webpack、glup、npm、rollup 等）。例如 `build: build project`
 * **ci**：修改持续集成配置文件（Travis，Jenkins，GitLab CI，Circle 等）。例如 `ci: change gitlab-ci.yml`
-* **chore**：日常事务，例如对构建或者辅助工具的更改、生成文档等。例如 `chore: change webpack`
+* **chore**：日常事务，对构建、辅助工具的更改、测试文件的更新、生成文档等。例如 `chore: change webpack`
 * **revert**：代码回退。例如 `revert: feat(pencil): add 'graphiteWidth' option`
 
 ::: tip 小贴士
