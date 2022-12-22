@@ -176,7 +176,7 @@ GitLabFlow 并不像 GitFlow、GitHubFlow 一样具有明显的规范，它更�
 
 **release 分支**：`release` 分支遵循 GitFlow 流程。
 
-* GitFlow 风格的 release：当前前端的稳定版本和 SQY（产品名）版本绑定。`release` 分支不一定存在。一般情况下，只会在前端版本稳定后，将其合并到 `master`，并创建 tag 标记。而只有需要为指定的正式版本修复 bug 时才会创建 `release` 分支。
+* GitFlow 风格的 release：前端的稳定版本和 SQY（产品名）版本绑定。`release` 分支不一定存在。一般情况下，只会在前端版本稳定后，将其合并到 `master`，并创建 tag 标记。而只有需要为指定的正式版本修复 bug 时才会创建 `release` 分支。
 * 场景：需要为某个正式版本修复 bug（hotfix）时，从 `master` 的对应 tag 中 `checkout` 出一个 `release` 分支。
 * 命名规范：`release/{product_version}`，外部人员只会关注产品版本。
 * 如何修复：
