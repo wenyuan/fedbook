@@ -27,9 +27,9 @@ upstream ws_proxy {
 
 server {
     listen       80;
-    server_name  www.wenyuanblog.com wenyuanblog.com;
+    server_name  www.myblog.com myblog.com;
 
-    root /home/spa-project/wenyuanblog;
+    root /home/spa-project/myblog;
     index index.html;
 
     # 将 404 错误页面重定向到 index.html 可以解决 history 模式访问不到页面问题
@@ -82,7 +82,7 @@ server {
         add_header Cache-Control "public"; 
     } 
     
-    access_log  /var/log/nginx/access/wenyuanblog.log;
+    access_log  /var/log/nginx/access/myblog.log;
 }
 ```
 

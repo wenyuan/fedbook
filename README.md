@@ -454,7 +454,7 @@
 
 * 给我一个小星星 ⭐️
 * 提交 Issues 或 PR
-* [送我一本书](https://www.wenyuanblog.com/gift.html)
+* [送我一本书](https://fedbook.cn/others/sponsor/)
 
 ## 版权信息
 

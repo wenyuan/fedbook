@@ -104,7 +104,7 @@ const uri_https = uri_curring('https://');
 
 const uri1 = uri_https('www.fedbook.cn', '/frontend-knowledge/javascript/function-currying/');
 const uri2 = uri_https('www.fedbook.cn', '/handwritten/javascript/10-实现bind方法/');
-const uri3 = uri_https('www.wenyuanblog.com', '/');
+const uri3 = uri_https('www.myblog.com', '/');
 
 console.log(uri1);
 console.log(uri2);

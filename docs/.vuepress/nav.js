@@ -121,7 +121,6 @@ module.exports = [
       {
         text: '站外',
         items: [
-          { text: '博客', link: 'https://www.wenyuanblog.com/' },
           { text: 'GitHub', link: 'https://github.com/wenyuan' },
         ]
       }
