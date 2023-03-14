@@ -16,6 +16,10 @@ module.exports = [
       {
         title: '解决 vim 中文乱码问题',
         path: '/basic-skills/linux/solution-to-vim-encoding'
+      },
+      {
+        title: '限制用户可使用的命令',
+        path: '/basic-skills/linux/restricted-shell'
       }
     ]
   }
