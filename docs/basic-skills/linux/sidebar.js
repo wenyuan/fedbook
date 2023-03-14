@@ -18,7 +18,7 @@ module.exports = [
         path: '/basic-skills/linux/solution-to-vim-encoding'
       },
       {
-        title: '限制用户可使用的命令',
+        title: '如何限制用户可使用的命令',
         path: '/basic-skills/linux/restricted-shell'
       }
     ]
