@@ -21,8 +21,8 @@ mysql> describe 表名;
 # 显示表中的记录（注意表名大小写）
 mysql> select * from 表名;
 
-# 创建数据库
-mysql> create database 数据库名;
+# 创建数据库（一定要指定编码格式，否则后期会有莫名其妙的坑）
+mysql> create database 数据库名 default character set utf8 collate utf8_general_ci;
 
 # 建表  
 use 库名;
