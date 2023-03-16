@@ -20,6 +20,7 @@ module.exports = {
   '/basic-skills/git/': require('../basic-skills/git/sidebar'),
   '/basic-skills/nginx/': require('../basic-skills/nginx/sidebar'),
   '/basic-skills/linux/': require('../basic-skills/linux/sidebar'),
+  '/basic-skills/docker/': require('../basic-skills/docker/sidebar'),
   '/basic-skills/network/': require('../basic-skills/network/sidebar'),
   /* --------- 深入学习 --------- */
   '/in-depth-learning/algorithm/': require('../in-depth-learning/algorithm/sidebar'),
