@@ -237,6 +237,7 @@
   - [如何限制用户可使用的命令](https://fedbook.cn/basic-skills/linux/restricted-shell/)
 - [Docker](https://fedbook.cn/basic-skills/docker/)
   - **Docker 基础知识**
+  - [基础入门](https://fedbook.cn/basic-skills/docker/docker-tutorial/)
   - [常用命令](https://fedbook.cn/basic-skills/docker/common-commands/)
 - [计算机网络](https://fedbook.cn/basic-skills/network/)
   - **网络基础**
