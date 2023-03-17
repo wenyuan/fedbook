@@ -8,6 +8,9 @@
 
 ```bash
 docker build -t [image_name] [dockerfile]
+
+# Docker 17.05 开始，官网为了更好地描述作用，对一些命令名称进行了调整
+docker image build -t [image_name] [dockerfile]
 ```
 
 * `-t` 参数是 `-tag` 参数的缩写形式，允许镜像 `image` 指定名称和可选标签（冒号后面的部分），标签通常用于区分镜像的版本。
@@ -29,7 +32,11 @@ docker image ls
 后面指定的是一个镜像，通过这个命令可以利用镜像生成容器，并启动容器。
 
 ```bash
-docker run [option] [image_name]
+# 各版本都可用
+docker run [options] [image_name]
+
+# 1.13 版本之后推荐使用
+docker container run [options] [image_name]
 ```
 
 这里要特别说一下 `docker run` 的 `option`，因为最常用：
@@ -50,7 +57,11 @@ docker run [option] [image_name]
 列出所有当前正在运行的容器。
 
 ```bash
+# 各版本都可用
 docker ps
+
+# 1.13 版本之后推荐使用
+docker container ps
 ```
 
 运行后可以看到列出所有运行的容器，包括容器 ID、名称 和 镜像名称。
@@ -60,9 +71,11 @@ docker ps
 后面指定的是一个容器，用于启动/停止一个之前已经生成过的容器。
 
 ```bash
-docker start|stop [container_name]
-# 或者
-docker start|stop [container_id]
+# 各版本都可用
+docker start|stop [container_id]|[container_name]
+
+# 新版本推荐使用
+docker container start|stop [container_id]
 ```
 
 > 一旦容器停止运行，它将不再出现在正在运行的容器列表中，通过 `docker ps` 是无法看到，需要列出不在运行的容器，可以使用命令 `docker ps -a`。
@@ -72,7 +85,11 @@ docker start|stop [container_id]
 查看正在运行的容器的日志。
 
 ```bash
+# 各版本都可用
 docker logs [container_name]
+
+# 新版本推荐使用
+docker container logs [container_id]
 ```
 
 此命令有助于调试容器中抛出的任何启动问题或异常。
@@ -82,9 +99,11 @@ docker logs [container_name]
 通过此命令可以进入运行的容器中。
 
 ```bash
-docker exec -it [container_name]
-# 或者
-docker exec -it [container_id]
+# 各版本都可用
+docker exec -it [container_id]|[container_name] /bin/bash
+
+# 新版本推荐使用
+docker container exec -it [container_id] /bin/bash
 ```
 
 其中容器 ID 只要是能够证明唯一就可以，不用全输入。
@@ -106,7 +125,11 @@ docker login -u [username]
 该命令用于将镜像推送到 DockerHub。
 
 ```bash
-docker push [username]/[image_name]
+# 各版本都可用
+docker push [username]/[image_name]:[tag]
+
+# 新版本推荐使用
+docker image push [username]/[repository]:[tag]
 ```
 
 跟 GitHub 的使用方式类似。
@@ -114,23 +137,31 @@ docker push [username]/[image_name]
 构建 Docker 镜像时的标准约定是：
 
 ```bash
+# 各版本都可用
 docker build -t [username]/[image_name]:[tag_name]
+
+# 新版本推荐使用
+docker image build -t [username]/[image_name]:[tag_name]
 ```
 
 例如：
 
 ```bash
-docker build -t test/vue3:v1
+docker build -t test-user/vue3:v1
 ```
 
-DockerHub 会在 `test` 用户下，自动将名为 `vue3` 的镜像标记为 `v1`。
+DockerHub 会在 `test-user` 用户下，自动将名为 `vue3` 的镜像标记为 `v1`。
 
 ## docker pull
 
 登录到 DockerHub 后，可以使用这个命令拉取现有镜像：
 
 ```bash
-docker pull test/vue3:v1
+# 各版本都可用
+docker pull test-user/vue3:v1
+
+# 新版本推荐使用
+docker image pull test-user/vue3:v1
 ```
 
 ## 拓展
