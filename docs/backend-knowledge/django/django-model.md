@@ -303,11 +303,20 @@ class MyUUIDModel(models.Model):
 
 #### 1. **null**
 
-数据库中字段是否可以为空。默认值为 `False`。该值为 True 时，Django 在数据库用 `NULL` 保存空值。对于保存字符串类型数据的字段，请尽量避免将此参数设为 True，那样会导致两种「没有数据」的情况，一种是 `NULL`，另一种是空字符串 `''`。Django 的惯例是使用空字符串而不是 `NULL`。
+数据库中字段是否可以为空。默认值为 `False`。该值为 True 时，Django 在数据库用 `NULL` 保存空值。对于保存字符串类型数据的字段，请尽量避免将此参数设为 True，那样会导致两种「没有数据」的情况，一种是 `NULL`，另一种是空字符串 `''`，那么在查询时就需要使用额外的 `IS NULL` 子句，这会降低查询效率。
+
+Django 的惯例是使用如下两种之一：
+
+```python
+# 表单验证时，这是个必填参数
+name = models.CharField(max_length=50, null=False, blank=False)
+# 表单验证时，允许为空字符串
+description = models.TextField(max_length=100, null=False, blank=True)
+```
 
 #### 2. **blank**
 
-Admin 中是否允许用户提交空表单。默认值为 `False`。该值为 True 时，字段可以为空。和 null 参数不同的是，null 是纯数据库层面的，而 blank 是验证相关的，它与 Django 自带的表单验证是否允许输入框内为空有关，与数据库无关。所以要小心一个 null 为 False，blank 为 True 的字段接收到一个空值可能会出 bug 或异常。
+Admin 中是否允许用户提交空表单。默认值为 `False`。该值为 True 时，字段可以为空。和 null 参数不同的是，null 是纯数据库层面的，而 blank 是验证相关的，它与 Django 自带的表单验证是否允许输入框内为空有关，与数据库无关。
 
 #### 3. **choices**
 
