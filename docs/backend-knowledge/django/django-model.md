@@ -471,7 +471,7 @@ poll = models.ForeignKey(
     verbose_name="the related poll",
     )
 sites = models.ManyToManyField(Site, verbose_name="list of sites")
-    place = models.OneToOneField(
+place = models.OneToOneField(
     Place,
     on_delete=models.CASCADE,
     verbose_name="related place",
