@@ -1,4 +1,4 @@
-# 实现浅克隆（shallowClone）
+# 实现浅拷贝（shallowClone）
 
 ## 功能描述
 

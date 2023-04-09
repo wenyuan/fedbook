@@ -144,8 +144,8 @@
   - **简单手写：函数**
   - [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
   - [实现节流函数（throttle）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现节流函数-throttle/)
-  - [实现浅克隆（shallowClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现浅克隆-shallow-clone/)
-  - [实现深克隆（deepClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现深克隆-deep-clone/)
+  - [实现浅拷贝（shallowClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现浅拷贝-shallow-clone/)
+  - [实现深拷贝（deepClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现深拷贝-deep-clone/)
   - [实现 instanceof 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现instanceof运算符/)
   - [实现 Object.create 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现object-create方法/)
   - [实现 new 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现new运算符/)

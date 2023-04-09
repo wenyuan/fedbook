@@ -12,12 +12,12 @@ module.exports = [
         path: '/frontend-knowledge/javascript-handwritten/实现节流函数-throttle'
       },
       {
-        title: '实现浅克隆（shallowClone）',
-        path: '/frontend-knowledge/javascript-handwritten/实现浅克隆-shallow-clone'
+        title: '实现浅拷贝（shallowClone）',
+        path: '/frontend-knowledge/javascript-handwritten/实现浅拷贝-shallow-clone'
       },
       {
-        title: '实现深克隆（deepClone）',
-        path: '/frontend-knowledge/javascript-handwritten/实现深克隆-deep-clone'
+        title: '实现深拷贝（deepClone）',
+        path: '/frontend-knowledge/javascript-handwritten/实现深拷贝-deep-clone'
       },
       {
         title: '实现 instanceof 运算符',
