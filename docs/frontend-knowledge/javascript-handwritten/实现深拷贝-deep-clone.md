@@ -14,7 +14,7 @@ let newObj = JSON.parse(JSON.stringify(oldObj));
 
 局限性：
 
-* 对象有循环引用，会报错。
+* 如果对象有循环引用，拷贝时会报错。
   ```javascript
   const obj = { name: "张三" };
   obj.details = obj;
@@ -36,7 +36,7 @@ let newObj = JSON.parse(JSON.stringify(oldObj));
 ```javascript
 /**
  * @param {*} target 需要被拷贝的对象
- * @param {*} hash   性能考虑不用 Map，使用弱引用的 WeakMap 更轻量一点
+ * @param {*} hash   性能考虑不用 Map，使用弱引用的 WeakMap
  * @returns
  */
 function deepClone(target, hash = new WeakMap) {
@@ -45,14 +45,15 @@ function deepClone(target, hash = new WeakMap) {
   // RegExp 和 Date 这两种特殊值暂不考虑
   if (target instanceof RegExp) { return new RegExp(target) }
   if (target instanceof Date) { return new Date(target) }
-  // 函数也暂不考虑
+  // 基本数据类型直接返回即可，函数暂不考虑
   if (typeof target != 'object') return target;
-  // 针对 [] {} 两种类型，基于它们的构造函数来实例化一个新的对象实例，这样 obj 也将具备 target 自身的一些属性或方法
+  // 针对 [] {} 两种类型，基于它们的构造函数来实例化一个新的对象实例
   let clonedTarget = new target.constructor();
-  // 说明是一个对象类型，那么直接返回即可，防止循环引用
+  // 说明是一个已经拷贝过的对象，那么直接返回即可，防止循环引用
   if (hash.get(target)) {
     return hash.get(target)
   }
+  // 记录下已经拷贝过的对象
   hash.set(target, clonedTarget);
   // 遍历对象的 key，in 会遍历当前对象上的属性 和 __proto__ 指向的属性
   for (let key in target) {
@@ -65,6 +66,13 @@ function deepClone(target, hash = new WeakMap) {
   return clonedTarget
 }
 ```
+
+> 关于强引用与弱引用
+> * 如果用的是 Map 来创建 map 对象，那么里面的 key 和 map 构成了强引用关系。对于强引用来说，只要这个强引用还在，那么对象就无法被回收。在上面的例子中，在程序结束之前，因为是用一个个对象来作为 map 的 key 的，所以这些对象所占的内存空间一直不会被释放。
+> * 如果用的是 WeakMap 这一种特殊的 Map，那么其中的 key 和 map 构成了弱引用（其键必须是对象，而值可以是任意的），被弱引用的对象可以在任何时候被回收。
+> * 同时，Map 类型在访问、插入、删除元素时，需要进行迭代器解引用操作，这也会导致性能下降；而 WeakMap 在进行这些操作时不需要进行解引用操作，因此可以提供更好的性能。
+>
+> 显然，使用 WeakMap（弱引用）来存储元素，可以避免强引用导致的内存泄漏问题，同时这种类型在查找特定元素时也可以更快地响应。
 
 ## 手写实现（完整版）
 
