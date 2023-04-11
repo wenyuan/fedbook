@@ -81,6 +81,167 @@ function deepClone(target, hash = new WeakMap) {
 * 能够拷贝特殊对象
 * 能够拷贝函数
 
-TODO...
+### 前置准备
+
+首先对于特殊对象，要知道这个对象是不是可遍历的，因为这将决定采用不同的处理逻辑。
+
+```javascript
+// 对于特殊对象，使用这个方式来鉴别
+Object.prototype.toString.call(obj);
+
+// 可遍历对象的返回结果
+'[object Map]'
+'[object Set]'
+'[object Array]'
+'[object Object]'
+'[object Arguments]'
+
+// 不可遍历的对象的返回结果
+'[object Boolean]'
+'[object Number]'
+'[object String]'
+'[object Date]'
+'[object Error]'
+'[object RegExp]'
+'[object Function]'
+```
+
+其次对于函数的拷贝：
+
+* 虽然函数也是对象，但是它过于特殊，需要单独把它拿出来拆解。
+* JS 有两种函数，一种是普通函数，另一种是箭头函数。
+  * 每个普通函数都是 Function 的实例。
+  * 箭头函数不是任何类的实例，每次调用都是不一样的引用。
+  * 因此只需要处理普通函数的情况，箭头函数直接返回它本身就好了。
+  * 利用原型来区分两者，因为箭头函数是不存在原型的。
+
+### 完整代码
+
+```javascript
+// 获取对象类型
+const getType = (obj) => Object.prototype.toString.call(obj);
+
+// 判断是基本数据类型还是引用数据类型 
+const isObject = (target) => (typeof target === 'object' || typeof target === 'function') && target !== null;
+
+// 判断是否可遍历
+const canTraverse = {
+  '[object Map]': true,
+  '[object Set]': true,
+  '[object Array]': true,
+  '[object Object]': true,
+  '[object Arguments]': true,
+};
+const mapTag = '[object Map]';
+const setTag = '[object Set]';
+const boolTag = '[object Boolean]';
+const numberTag = '[object Number]';
+const stringTag = '[object String]';
+const symbolTag = '[object Symbol]';
+const dateTag = '[object Date]';
+const errorTag = '[object Error]';
+const regexpTag = '[object RegExp]';
+const funcTag = '[object Function]';
+
+// 处理 RegExp 对象
+// 返回一个新的 RegExp 对象，它继承了原始 RegExp 对象的属性和方法
+// source：源字符串  flags：标志字符串 
+const handleRegExp = (target) => {
+  const { source, flags } = target;
+  return new target.constructor(source, flags);
+}
+
+// 处理函数
+const handleFunc = (func) => {
+  // 箭头函数直接返回自身
+  if (!func.prototype) return func;
+
+  const bodyReg = /(?<={)(.|\n)+(?=})/m;
+  const paramReg = /(?<=\().+(?=\)\s+{)/;
+  const funcString = func.toString();
+  // 分别匹配 函数参数 和 函数体
+  const param = paramReg.exec(funcString);
+  const body = bodyReg.exec(funcString);
+  if (!body) return null;
+  if (param) {
+    const paramArr = param[0].split(',');
+    return new Function(...paramArr, body[0]);
+  } else {
+    return new Function(body[0]);
+  }
+}
+
+// 处理不可遍历对象
+const handleNotTraverse = (target, tag) => {
+  // 获取目标对象的构造函数，用于创建新的对象
+  const Ctor = target.constructor;
+  switch (tag) {
+    case boolTag:
+      return new Object(Boolean.prototype.valueOf.call(target));
+    case numberTag:
+      return new Object(Number.prototype.valueOf.call(target));
+    case stringTag:
+      return new Object(String.prototype.valueOf.call(target));
+    case symbolTag:
+      return new Object(Symbol.prototype.valueOf.call(target));
+    case errorTag:
+    case dateTag:
+      return new Ctor(target);
+    case regexpTag:
+      return handleRegExp(target);
+    case funcTag:
+      return handleFunc(target);
+    default:
+      return new Ctor(target);
+  }
+}
+
+/**
+ * 在前面的深拷贝实现上，加入了对特殊对象和函数的支持
+ * @param {*} target 需要被拷贝的对象
+ * @param {*} hash   性能考虑不用 Map，使用弱引用的 WeakMap
+ * @returns 
+ */
+const deepClone = (target, hash = new WeakMap()) => {
+  if (!isObject(target))
+    return target;
+  let type = getType(target);
+  let cloneTarget;
+  if (!canTraverse[type]) {
+    // 处理不能遍历的对象
+    return handleNotTraverse(target, type);
+  } else {
+    // 这一步很关键，可以保证对象的原型不丢失
+    let ctor = target.constructor;
+    cloneTarget = new ctor();
+  }
+
+  if (hash.get(target))
+    return target;
+  hash.set(target, true);
+
+  if (type === mapTag) {
+    // 处理 Map
+    target.forEach((item, key) => {
+      cloneTarget.set(deepClone(key, hash), deepClone(item, hash));
+    })
+  }
+
+  if (type === setTag) {
+    // 处理 Set
+    target.forEach(item => {
+      cloneTarget.add(deepClone(item, hash));
+    })
+  }
+
+  // 处理数组和对象
+  for (let prop in target) {
+    if (target.hasOwnProperty(prop)) {
+      cloneTarget[prop] = deepClone(target[prop], hash);
+    }
+  }
+  return cloneTarget;
+}
+```
 
 （完）
