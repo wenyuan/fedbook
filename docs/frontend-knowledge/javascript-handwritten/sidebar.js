@@ -1,6 +1,6 @@
 module.exports = [
   {
-    title: '简单手写：函数',
+    title: '常用函数',
     collapsable: false,
     children: [
       {
@@ -18,19 +18,27 @@ module.exports = [
       {
         title: '实现深拷贝（deepClone）',
         path: '/frontend-knowledge/javascript-handwritten/实现深拷贝-deep-clone'
-      },
+      }
+    ]
+  },
+  {
+    title: '原生运算符',
+    collapsable: true,
+    children: [
       {
         title: '实现 instanceof 运算符',
         path: '/frontend-knowledge/javascript-handwritten/实现instanceof运算符'
       },
       {
-        title: '实现 Object.create 方法',
-        path: '/frontend-knowledge/javascript-handwritten/实现object-create方法'
-      },
-      {
         title: '实现 new 运算符',
         path: '/frontend-knowledge/javascript-handwritten/实现new运算符'
-      },
+      }
+    ]
+  },
+  {
+    title: '对象内置方法',
+    collapsable: true,
+    children: [
       {
         title: '实现 call 方法',
         path: '/frontend-knowledge/javascript-handwritten/实现call方法'
@@ -44,14 +52,24 @@ module.exports = [
         path: '/frontend-knowledge/javascript-handwritten/实现bind方法'
       },
       {
-        title: '未完待续',
-        path: '/frontend-knowledge/javascript-handwritten/to-be-continued'
-      }
+        title: '实现 Object.create 方法',
+        path: '/frontend-knowledge/javascript-handwritten/实现object-create方法'
+      },
     ]
   },
   {
-    title: '复杂手写：类库',
-    collapsable: false,
+    title: '数组内置方法',
+    collapsable: true,
+    children: [
+      {
+        title: '实现数组扁平化 flat 方法',
+        path: '/frontend-knowledge/javascript-handwritten/实现数组扁平化flat方法'
+      },
+    ]
+  },
+  {
+    title: '框架和类库相关',
+    collapsable: true,
     children: [
       {
         title: '实现符合 Promises/A+ 规范的 Promise',

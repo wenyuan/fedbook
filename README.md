@@ -141,19 +141,22 @@
   - [CSRF 攻击](https://fedbook.cn/frontend-knowledge/browser/csrf/)
   - [网络安全协议（HTTPS）](https://fedbook.cn/frontend-knowledge/browser/https/)
 - [JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
-  - **简单手写：函数**
+  - **常用函数**
   - [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
   - [实现节流函数（throttle）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现节流函数-throttle/)
   - [实现浅拷贝（shallowClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现浅拷贝-shallow-clone/)
   - [实现深拷贝（deepClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现深拷贝-deep-clone/)
+  - **原生运算符**
   - [实现 instanceof 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现instanceof运算符/)
-  - [实现 Object.create 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现object-create方法/)
   - [实现 new 运算符](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现new运算符/)
+  - **对象内置方法**
   - [实现 call 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现call方法/)
   - [实现 apply 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现apply方法/)
   - [实现 bind 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现bind方法/)
-  - 其它知识点，待后续继续补充
-  - **复杂手写：类库**
+  - [实现 Object.create 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现object-create方法/)
+  - **数组内置方法**
+  - [实现数组扁平化 flat 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现数组扁平化flat方法/)
+  - **框架和类库相关**
   - [实现符合 Promises/A+ 规范的 Promise](https://fedbook.cn/frontend-knowledge/javascript-handwritten/my-promise/)
   - 其它知识点，待后续继续补充
 
