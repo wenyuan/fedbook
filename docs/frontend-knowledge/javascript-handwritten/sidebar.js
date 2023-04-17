@@ -65,6 +65,10 @@ module.exports = [
         title: '实现数组扁平化 flat 方法',
         path: '/frontend-knowledge/javascript-handwritten/实现数组扁平化flat方法'
       },
+      {
+        title: '实现数组去重的方法',
+        path: '/frontend-knowledge/javascript-handwritten/实现数组去重的方法'
+      },
     ]
   },
   {
