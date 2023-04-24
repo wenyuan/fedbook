@@ -58,7 +58,7 @@ module.exports = [
     ]
   },
   {
-    title: '数组内置方法',
+    title: '数组相关方法',
     collapsable: true,
     children: [
       {
@@ -68,6 +68,10 @@ module.exports = [
       {
         title: '实现数组去重的方法',
         path: '/frontend-knowledge/javascript-handwritten/实现数组去重的方法'
+      },
+      {
+        title: '实现对象数组去重的方法',
+        path: '/frontend-knowledge/javascript-handwritten/实现对象数组去重的方法'
       },
     ]
   },

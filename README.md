@@ -157,6 +157,7 @@
   - **数组内置方法**
   - [实现数组扁平化 flat 方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现数组扁平化flat方法/)
   - [实现数组去重的方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现数组去重的方法/)
+  - [实现对象数组去重的方法](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现对象数组去重的方法/)
   - **框架和类库相关**
   - [实现符合 Promises/A+ 规范的 Promise](https://fedbook.cn/frontend-knowledge/javascript-handwritten/my-promise/)
   - 其它知识点，待后续继续补充
