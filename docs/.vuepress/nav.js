@@ -106,7 +106,8 @@ module.exports = [
   {
     text: '项目相关',
     items: [
-      { text: '解决方案', link: '/project/solutions/' }
+      { text: '解决方案', link: '/project/solutions/' },
+      { text: '问题排查', link: '/project/troubleshooting/' }
     ]
   },
   {
