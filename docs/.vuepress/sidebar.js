@@ -34,6 +34,7 @@ module.exports = {
   '/backend-knowledge/elasticsearch/': require('../backend-knowledge/elasticsearch/sidebar'),
   /* --------- 项目相关 --------- */
   '/project/solutions/': require('../project/solutions/sidebar'),
+  '/project/troubleshooting/': require('../project/troubleshooting/sidebar'),
   /* --------- 其它 --------- */
   '/extracurricular/': require('../extracurricular/sidebar'),
   '/': [],
