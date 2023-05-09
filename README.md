@@ -440,11 +440,15 @@
 
 ### 项目相关
 
-- [前端解决方案](https://fedbook.cn/project/solutions/)
+- [解决方案](https://fedbook.cn/project/solutions/)
+  - **前端解决方案**
   - [前端登录方案总结](https://fedbook.cn/project/solutions/login/)
   - [大文件分片上传和断点续传](https://fedbook.cn/project/solutions/file-upload/)
+  - [高性能渲染大量数据（虚拟列表）](https://fedbook.cn/project/solutions/virtual-list/)
   - [Code Format 工程化实践](https://fedbook.cn/project/solutions/code-format/)
   - [Git Hooks 工程化实践](https://fedbook.cn/project/solutions/git-hooks/)
+- [问题排查](https://fedbook.cn/project/troubleshooting/)
+- [HTTP 错误状态码及排查路径](https://fedbook.cn/project/troubleshooting/http-error-status-code/)
 
 <p align=right>
   <a href="#目录">⬆️ 返回顶部</a>

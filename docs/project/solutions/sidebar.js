@@ -12,6 +12,10 @@ module.exports = [
         path: '/project/solutions/file-upload'
       },
       {
+        title: '高性能渲染大量数据（虚拟列表）',
+        path: '/project/solutions/virtual-list'
+      },
+      {
         title: 'Code Format 工程化实践',
         path: '/project/solutions/code-format'
       },
