@@ -58,6 +58,10 @@ module.exports = [
         path: '/backend-knowledge/elasticsearch/installation-of-elasticsearch'
       },
       {
+        title: '命令行操作',
+        path: '/backend-knowledge/elasticsearch/command-with-curl'
+      },
+      {
         title: '集群管理 API',
         path: '/backend-knowledge/elasticsearch/cluster-manage-apis'
       },

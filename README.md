@@ -428,6 +428,7 @@
   - [分页查询的三种语法](https://fedbook.cn/backend-knowledge/elasticsearch/paging-query/)
   - **Elasticsearch 日常运维**
   - [ES 的安装](https://fedbook.cn/backend-knowledge/elasticsearch/installation-of-elasticsearch/)
+  - [命令行操作](https://fedbook.cn/backend-knowledge/elasticsearch/command-with-curl/)
   - [集群管理 API](https://fedbook.cn/backend-knowledge/elasticsearch/cluster-manage-apis/)
   - [索引管理 API](https://fedbook.cn/backend-knowledge/elasticsearch/index-manage-apis/)
   - [定义字段类型：Mapping](https://fedbook.cn/backend-knowledge/elasticsearch/mapping/)
