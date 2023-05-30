@@ -6,6 +6,10 @@ module.exports = [
       {
         title: '常用命令',
         path: '/basic-skills/linux/common-commands'
+      },
+      {
+        title: 'crontab 命令',
+        path: '/basic-skills/linux/crontab'
       }
     ]
   },

@@ -237,6 +237,7 @@
 - [Linux](https://fedbook.cn/basic-skills/linux/)
   - **Linux 基础知识**
   - [常用命令](https://fedbook.cn/basic-skills/linux/common-commands/)
+  - [crontab 命令](https://fedbook.cn/basic-skills/linux/crontab/)
   - **Linux 常见问题**
   - [vim 中文乱码问题](https://fedbook.cn/basic-skills/linux/solution-to-vim-encoding/)
   - [如何限制用户可使用的命令](https://fedbook.cn/basic-skills/linux/restricted-shell/)
