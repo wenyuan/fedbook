@@ -42,5 +42,15 @@ module.exports = [
         path: '/frontend-knowledge/browser/https'
       },
     ]
+  },
+  {
+    title: '浏览器性能',
+    collapsable: false,
+    children: [
+      {
+        title: '浏览器缓存机制',
+        path: '/frontend-knowledge/browser/browser-caching-mechanism'
+      }
+    ]
   }
 ]

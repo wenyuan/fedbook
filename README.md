@@ -140,6 +140,8 @@
   - [跨站脚本攻击（XSS）](https://fedbook.cn/frontend-knowledge/browser/xss/)
   - [CSRF 攻击](https://fedbook.cn/frontend-knowledge/browser/csrf/)
   - [网络安全协议（HTTPS）](https://fedbook.cn/frontend-knowledge/browser/https/)
+  - **浏览器性能**
+  - [浏览器缓存机制](https://fedbook.cn/frontend-knowledge/browser/browser-caching-mechanism/)
 - [JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
   - **常用函数**
   - [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
