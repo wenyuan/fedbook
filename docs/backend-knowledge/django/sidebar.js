@@ -83,6 +83,10 @@ module.exports = [
         title: '执行 migrate 时报错 SQLite 版本过低',
         path: '/backend-knowledge/django/migrate-error-caused-by-sqlite3'
       },
+      {
+        title: '.filter() 使用 isnull 参数时返回重复对象',
+        path: '/backend-knowledge/django/filter-returns-duplicated-objects'
+      },
     ]
   }
 ]

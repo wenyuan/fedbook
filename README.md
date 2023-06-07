@@ -386,6 +386,7 @@
   - **Django 常见问题**
   - [导出/导入数据库表数据](https://fedbook.cn/backend-knowledge/django/dumpdata-and-loaddata/)
   - [执行 migrate 时报错 SQLite 版本过低](https://fedbook.cn/backend-knowledge/django/migrate-error-caused-by-sqlite3/)
+  - [.filter() 使用 isnull 参数时返回重复对象](https://fedbook.cn/backend-knowledge/django/filter-returns-duplicated-objects/)
 - [MySQL](https://fedbook.cn/backend-knowledge/mysql/)
   - **MySQL 基础知识**
   - [MySQL 数据类型](https://fedbook.cn/backend-knowledge/mysql/data-types/)
