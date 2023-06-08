@@ -80,12 +80,16 @@ module.exports = [
         path: '/backend-knowledge/django/dumpdata-and-loaddata'
       },
       {
-        title: '执行 migrate 时报错 SQLite 版本过低',
-        path: '/backend-knowledge/django/migrate-error-caused-by-sqlite3'
+        title: '如何查看 ORM 对应的 SQL 语句',
+        path: '/backend-knowledge/django/convert-django-orm-to-sql'
       },
       {
         title: '.filter() 使用 isnull 参数时返回重复对象',
         path: '/backend-knowledge/django/filter-returns-duplicated-objects'
+      },
+      {
+        title: '执行 migrate 时报错 SQLite 版本过低',
+        path: '/backend-knowledge/django/migrate-error-caused-by-sqlite3'
       },
     ]
   }
