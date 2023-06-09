@@ -96,3 +96,65 @@ If-None-Match: W/"d989f816c318997ceef047a94f447c2a"
 在日常开发中，Base64 格式的图片，一般可以被塞进 memory cache，这可以视作浏览器为节省渲染开销的自动行为。此外，体积不大的 JS、CSS 文件，也有较大几率被写入内存。但因为内存资源是有限的，对于较大的 JS、CSS 文件就没有这个待遇了，它们往往被直接甩进磁盘。
 
 ## Service Worker Cache
+
+Service Worker 是一种独立于主线程之外的 Javascript 线程。它脱离于浏览器窗体，因此无法直接访问 DOM。它可以帮我们实现离线缓存、消息推送和网络代理等功能。我们借助 Service worker 实现的离线缓存就称为 Service Worker Cache。
+
+Service Worker 的生命周期包括 `install`、`active`、`working` 三个阶段。一旦 Service Worker 被 `install`，它将始终存在，只会在 `active` 与 `working` 之间切换，除非我们主动终止它。这是它可以用来实现离线存储的重要先决条件。
+
+要想使用 Service Worker 实现离线缓存，首先在入口文件中插入这样一段 JS 代码，用以判断和引入 Service Worker：
+
+```javascript
+window.navigator.serviceWorker.register('/test.js').then(
+  function () {
+    console.log('注册成功')
+  }).catch(err => {
+    console.error("注册失败")
+  })
+```
+
+在 `test.js` 中，我们进行缓存的处理。假设我们需要缓存的文件分别是 `test.html`，`test.css` 和 `test.js`：
+
+```javascript
+// Service Worker 会监听 install 事件，我们在其对应的回调里可以实现初始化的逻辑  
+self.addEventListener('install', event => {
+  event.waitUntil(
+    // 考虑到缓存也需要更新，open 内传入的参数为缓存的版本号
+    caches.open('test-v1').then(cache => {
+      return cache.addAll([
+        // 此处传入指定的需缓存的文件名
+        '/test.html',
+        '/test.css',
+        '/test.js'
+      ])
+    })
+  )
+})
+
+// Service Worker 会监听所有的网络请求，网络请求的产生触发的是 fetch 事件，我们可以在其对应的监听函数中实现对请求的拦截，进而判断是否有对应到该请求的缓存，实现从 Service Worker 中取到缓存的目的
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    // 尝试匹配该请求对应的缓存值
+    caches.match(event.request).then(res => {
+      // 如果匹配到了，调用 Server Worker 缓存
+      if (res) {
+        return res;
+      }
+      // 如果没匹配到，向服务端发起这个资源请求
+      return fetch(event.request).then(response => {
+        if (!response || response.status !== 200) {
+          return response;
+        }
+        // 请求成功的话，将请求缓存起来。
+        caches.open('test-v1').then(function (cache) {
+          cache.put(event.request, response);
+        });
+        return response.clone();
+      });
+    })
+  );
+});
+```
+
+需要注意：Server Worker 必须以 HTTPS 协议为前提。因为 Server Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。如果是本地调试的话，localhost 是可以的。
+
+## Push Cache
