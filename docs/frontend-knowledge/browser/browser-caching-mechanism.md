@@ -158,3 +158,13 @@ self.addEventListener('fetch', event => {
 需要注意：Server Worker 必须以 HTTPS 协议为前提。因为 Server Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。如果是本地调试的话，localhost 是可以的。
 
 ## Push Cache
+
+Push Cache 是指 HTTP2 在 server push 阶段存在的缓存。这块的知识比较新，应用也还处于萌芽阶段。
+
+关键特性：
+
+* Push Cache 是缓存的最后一道防线。浏览器只有在 Memory Cache、HTTP Cache 和 Service Worker Cache 均未命中的情况下才会去询问 Push Cache。
+* Push Cache 是一种存在于会话阶段的缓存，当 session 终止时，缓存也随之释放。
+* 不同的页面只要共享了同一个 HTTP2 连接，那么它们就可以共享同一个 Push Cache。
+
+（完）
