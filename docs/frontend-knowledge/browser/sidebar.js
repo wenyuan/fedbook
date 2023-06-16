@@ -50,6 +50,10 @@ module.exports = [
       {
         title: '浏览器缓存机制',
         path: '/frontend-knowledge/browser/browser-caching-mechanism'
+      },
+      {
+        title: '回流与重绘',
+        path: '/frontend-knowledge/browser/reflow-and-repaint'
       }
     ]
   }
