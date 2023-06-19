@@ -145,8 +145,8 @@
   - [回流与重绘](https://fedbook.cn/frontend-knowledge/browser/reflow-and-repaint/)
 - [JS 手写](https://fedbook.cn/frontend-knowledge/javascript-handwritten/)
   - **常用函数**
-  - [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
   - [实现节流函数（throttle）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现节流函数-throttle/)
+  - [实现防抖函数（debounce）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce/)
   - [实现浅拷贝（shallowClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现浅拷贝-shallow-clone/)
   - [实现深拷贝（deepClone）](https://fedbook.cn/frontend-knowledge/javascript-handwritten/实现深拷贝-deep-clone/)
   - **原生运算符**

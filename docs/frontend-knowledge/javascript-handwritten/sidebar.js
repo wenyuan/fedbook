@@ -4,12 +4,12 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: '实现防抖函数（debounce）',
-        path: '/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce'
-      },
-      {
         title: '实现节流函数（throttle）',
         path: '/frontend-knowledge/javascript-handwritten/实现节流函数-throttle'
+      },
+      {
+        title: '实现防抖函数（debounce）',
+        path: '/frontend-knowledge/javascript-handwritten/实现防抖函数-debounce'
       },
       {
         title: '实现浅拷贝（shallowClone）',
