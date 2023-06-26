@@ -50,6 +50,9 @@ mysql> delete from user where name='张三';
 mysql> drop database 库名;
 mysql> drop table 表名;
 
+# 查看日志信息
+mysql> show global variables like '%log%';
+
 # 退出mysql
 mysql> exit (回车)
 ```
