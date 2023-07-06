@@ -35,7 +35,7 @@ git commit --amend
 然后执行强制推送命令：
 
 ```bash
-git push --force-with-lease origin master
+git push --force-with-lease origin [branch-name]
 ```
 
 （完）
