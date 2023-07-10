@@ -96,7 +96,7 @@ JVM 内存分为新生代和老生代：
 
 ```bash
 # 一秒一刷执行100次，执行一次，遇不到gc 
-jstat -gc es-pid 1s 100
+jstat -gc [es-pid] 1s 100
 ```
 
 <div style="text-align: center;">
