@@ -52,6 +52,16 @@ docker container run [options] [image_name]
 * `--restart=always` 设置容器自启动。
 * `-v /xxx:/yyy` 映射命令，把本机的 xxx 目录映射到容器中的 yyy 目录，也就是说改变本机的 xxx 目录下的内容，容器 yyy 目录中的内容也会改变。
 
+以后台模式启动一个容器 `docker run -d [image_name]` 后，用 `docker ps` 查看会发现容器并不在运行中。这是因为 Docker 的运行机制：**Docker 容器后台运行，必须有一个前台进程**。
+
+容器运行的命令如果不是那些一直挂起的命令，比如 `top`、`tail`，那么命令执行完毕容器会自动退出。所以为了让容器持续在后台运行，那么需要将运行的程序以前台进程的形式运行。
+
+比如这里在后台运行一个命令，这个命令一直在打印：
+
+```bash
+docker run -d [image_name] /bin/bash -c "while true; do echo hello world; sleep 10; done"
+```
+
 ## docker ps
 
 列出所有当前正在运行的容器。
