@@ -9,6 +9,7 @@ Windows 下中文字符显示正常、且是 utf-8 编码的文本，上传到 L
 打开 vim 配置文件：`/etc/vim/vimrc`（Ubuntu）或 `/etc/vimrc`（CentOS），末尾添加：
 
 ```bash
+" Chinese language support
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set termencoding=utf-8
 set fileformats=unix
