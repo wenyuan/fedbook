@@ -961,7 +961,7 @@ print(res.get())
 
 完整代码我放到 GitHub 了，详见 [celery_demo](https://github.com/wenyuan/celery_demo)。
 
-## 参考文档
+## 参考资料
 
 * [官方文档](https://docs.celeryq.dev)
 

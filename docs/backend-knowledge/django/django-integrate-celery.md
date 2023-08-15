@@ -614,7 +614,7 @@ stderr_logfile=/var/log/supervisor/celery-flower.log
 
 完整代码我放到 GitHub 了，详见 [django_celery_demo](https://github.com/wenyuan/django_celery_demo)。
 
-## 参考文档
+## 参考资料
 
 * [First steps with Django](https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html)
 

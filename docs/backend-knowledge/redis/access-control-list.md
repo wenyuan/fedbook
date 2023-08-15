@@ -477,7 +477,7 @@ Warning: Using a password with '-a' or '-u' option on the command line interface
 * `resetpass`：清空该用户的所有密码列表，而且移除 `nopass` 状态。`resetpass` 之后用户没有关联的密码同时也无法使用无密码登录，因此 `resetpass` 之后必须添加密码或改为 `nopass` 状态才能正常登录。
 * `reset`：重置用户状态为初始状态。执行以下操作 `resetpass`，`resetkeys`，`off`，`-@all`。
 
-## 参考文档
+## 参考资料
 
 * [官方文档 - ACL](https://redis.io/docs/manual/security/acl/)
 

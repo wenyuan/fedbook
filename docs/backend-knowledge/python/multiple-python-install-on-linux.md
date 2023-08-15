@@ -174,7 +174,7 @@ virtualenv 是如何创建「独立」的 Python 运行环境的呢？原理很�
 */1 * * * * /home/user/my_project/venv/bin/python3.8 /home/user/my_project/cron_script.py
 ```
 
-## 参考文档
+## 参考资料
 
 [Pipenv & 虚拟环境](https://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html)
 

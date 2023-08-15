@@ -400,7 +400,7 @@ ZINCRBY key increment member
 ZREM key member [member...]
 ```
 
-## 参考文档
+## 参考资料
 
 * [官方文档](https://redis.io/commands/)
 
