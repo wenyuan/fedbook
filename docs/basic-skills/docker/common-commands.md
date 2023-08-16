@@ -59,7 +59,7 @@ docker container run [options] [image_name]
 比如这里在后台运行一个命令，这个命令一直在打印：
 
 ```bash
-docker run -d [image_name] /bin/bash -c "while true; do echo hello world; sleep 10; done"
+docker run -d [image_name] /bin/bash -c "while true; do echo hello world; sleep 3600; done"
 ```
 
 ## docker ps
@@ -103,6 +103,13 @@ docker container logs [container_id]
 ```
 
 此命令有助于调试容器中抛出的任何启动问题或异常。
+
+可选参数：
+
+* `--detail` 显示详细信息。
+* `-t` 针对每行日志添加时间戳。
+* `-f` 跟踪实时日志输出。
+* `--tail n` 输出倒数 N 行的日志。
 
 ## docker exec
 
