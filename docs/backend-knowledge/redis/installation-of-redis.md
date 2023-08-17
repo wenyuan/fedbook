@@ -127,7 +127,7 @@ CLIEXEC=/usr/local/redis/bin/redis-cli
 # 核心配置文件
 CONF="/usr/local/redis/conf/redis-${REDISPORT}.conf"
 
-# 脚本里面只有 start 和 stop 脚本，可以增加 status 和 restart 脚本（在"*)"上面写入）
+# 脚本里面只有 start 和 stop 脚本，可以增加 status 和 restart 脚本（在 "*)" 上面写入）
     status)  
         if [ -f $PIDPROFILE ]  
         then  
@@ -240,5 +240,214 @@ firewall-cmd --reload
 * 关闭 Redis 开机启动，并将其从 chkconfig 托管中删除
 * 删除 Redis 安装目录
 * 如果还想更干净可以通过 `find / -name redis` 命令，将查到的文件夹及目录都删除即可
+
+## Ubuntu 20.04 下安装
+
+> 通过 `apt show redis-server` 命令可知，当前 Ubuntu 20.04 的官方软件仓库中提供的 Redis 版本为 5.0.7。  
+> 因此选择从官方网站下载源码并编译安装的方式来安装 Redis 7。
+> 以下所有命令使用 root 用户运行，如果没有 root 权限，则使用 sudo 命令以 root 权限运行。
+
+### 准备依赖环境
+
+```bash
+apt update
+gcc -v                   # 如果不存在，就安装 apt install gcc
+dpkg -s build-essential  # 如果不存在，就安装 apt install build-essential
+```
+
+### 下载、编译、安装
+
+```bash
+# 我一般喜欢把这些中间件暂时下载到这里
+cd /opt
+
+# 下载
+wget --no-check-certificate https://download.redis.io/releases/redis-7.0.0.tar.gz
+
+# 解压
+tar -zxvf redis-7.0.0.tar.gz
+
+cd redis-7.0.0
+
+# 编译
+make
+
+# 安装到 /usr/local/redis 目录里
+# 否则默认是 /usr/local/bin
+make install PREFIX=/usr/local/redis
+
+# 由于修改了默认安装目录，所以要创建个软链接方便后面执行命令
+ln -s /usr/local/redis/bin/redis-server /usr/local/bin/redis-server
+ln -s /usr/local/redis/bin/redis-cli /usr/local/bin/redis-cli
+```
+
+### Redis 服务配置
+
+先在 redis 目录下面创建 conf 文件夹和 data 文件夹：
+
+```bash
+cd /usr/local/redis
+mkdir conf
+mkdir data
+```
+
+然后从安装包复制一份 redis.conf 到 conf 文件夹下面：
+
+```bash
+cp /opt/redis-7.0.0/redis.conf /usr/local/redis/conf/redis-6379.conf
+```
+
+修改配置文件，并设置启动模式为后台模式，绑定 ip 修改为 0.0.0.0（生产环境禁止！！！），支持远程登录：
+
+```bash
+# 默认绑定
+bind 0.0.0.0 -::1
+
+# 监听端口号
+port 6379
+
+# 设置密码，去掉 # 注释，并把后面的密码设置成需要的密码
+requirepass your_password
+
+# 是否守护进程，默认是 no，改成 yes 以后会以后台运行模式启动
+daemonize yes
+
+# 日志文件名称
+logfile "redis-6379.log"
+
+# 指定 data 存放路径
+dir /usr/local/redis/data
+```
+
+配置文件以后查看 Redis 的运行状态，OK，运行成功了。
+
+```bash
+cd /usr/local/redis
+
+redis-server conf/redis-6379.conf
+```
+
+前台启动运行测试一下：
+
+```bash
+# 查看服务
+ps -ef|grep redis
+
+root@ubuntu-20:/usr/local/redis# ps -ef|grep redis
+root     10990     0  0 15:24 ?        00:00:00 redis-server 127.0.0.1:6379
+root     10998  1654  0 15:24 pts/1    00:00:00 grep --color=auto redis
+
+root@ubuntu-20:/usr/local/redis# redis-cli -p 6379
+127.0.0.1:6379> ping
+(error) NOAUTH Authentication required.
+127.0.0.1:6379> auth <password>
+OK
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379> 
+```
+
+测试结束，停止 Redis 服务：
+
+> 这里要注意，由于我们对 Redis 设置了密码，因此不能用 `redis-cli shutdown` 命令来停止 Redis 服务。  
+> 因为即使你通过参数 `redis-cli -a <password> shutdown` 来执行命令，也会报错：`Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.`  
+> 这个特性导致接下来在 `/etc/init.d/redis` 脚本中的 `stop` 和 `restart` 命令实际上也是无法有效执行的。
+
+```bash
+# 登录 Redis 客户端后执行关闭服务的操作
+127.0.0.1:6379> shutdown
+not connected>
+```
+
+### 设置开机启动
+
+从 redis 解压目录中，拷贝启动脚本到 `/etc/init.d` 文件夹：
+
+```bash
+cp /opt/redis-7.0.0/utils/redis_init_script /etc/init.d/redis
+```
+
+修改 Redis 启动脚本，主要修改 `EXEC` 和 `CLIEXEC` 执行启动命令的脚本目录和 `CONF` 配置文件目录。截取脚本中部分相关的内容，如下：
+
+```bash
+# 指定运行的客户端
+EXEC=/usr/local/redis/bin/redis-server
+# 客户端
+CLIEXEC=/usr/local/redis/bin/redis-cli
+# 核心配置文件
+CONF="/usr/local/redis/conf/redis-${REDISPORT}.conf"
+
+# 脚本里面只有 start 和 stop 脚本，可以增加 status 和 restart 脚本（在 "*)" 上面写入）
+    status)  
+        if [ -f $PIDPROFILE ]  
+        then  
+            echo 'Redis is running'  
+        else  
+            echo "Redis is not running"  
+        fi  
+        ;;  
+    restart)  
+        $0 stop  
+        $0 start  
+        ;;
+
+# 如果 Redis 设置了访问密码，stop) 脚本需要做以下修改，主要是执行 redis-cli 命令时加上密码
+$CLIEXEC -a your_password -p $REDISPORT shutdown
+```
+
+修改脚本执行权限：
+
+```bash
+cd /etc/init.d/
+chmod 777 redis
+```
+
+脚本执行检查：
+
+```bash
+[root@ubuntu-20 ~]# /etc/init.d/redis start
+Starting Redis server...
+[root@ubuntu-20 ~]# ps -ef|grep redis
+root     29683     1  0 12:56 ?        00:00:00 /usr/local/redis/bin/redis-server 127.0.0.1:6379
+root     29729  2522  0 12:57 pts/1    00:00:00 grep --color=auto redis
+
+# 登录 Redis 客户端后执行关闭服务的操作
+root@ubuntu-20:/usr/local/redis# redis-cli -p 6379
+127.0.0.1:6379> auth <password>
+OK
+127.0.0.1:6379> shutdown
+not connected>
+```
+
+开机启动管理：
+
+```bash
+# 进入目录，该目录是 Linux 系统中专门放置系统服务启停脚本的
+cd /etc/init.d/
+
+# 将 redis 加入到开启自启动
+update-rc.d redis defaults
+
+# 启动 redis 服务
+/etc/init.d/redis start
+```
+
+当然了，如果需要关闭开机启动的功能：
+
+```bash
+# 取消开机启动
+update-rc.d -f redis remove
+```
+
+### 卸载 Redis
+
+* 先停止 Redis 服务
+* 关闭 Redis 开机启动，并将启动脚本从 `/etc/init.d` 目录中删除
+* 删除 Redis 安装目录
+* 如果还想更干净可以通过 `find / -name redis*` 命令，将查到的文件夹及目录都删除即可
+
+## 参考资料
+
+* [官方文档](https://redis.io/docs/getting-started/installation/install-redis-from-source/)
 
 （完）
