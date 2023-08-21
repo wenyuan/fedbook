@@ -99,7 +99,7 @@ pip install django-celery-beat
 pip install django-celery-results
 ```
 
-在 `django_celery_demo/` 目录中（注意是项目配置文件 `settings.py` ，不是项目根目录）创建 `celery.py` 模块：
+在 `django_celery_demo/` 目录中（注意是项目配置文件 `settings.py` 所在目录，不是项目根目录）创建 `celery.py` 模块：
 
 ``` {13}
 django_celery_demo/
@@ -208,7 +208,7 @@ CELERY_TIMEZONE = 'Asia/Shanghai'
 
 ### 编写 tasks.py 模块
 
-在子应用下建立各自对应的任务文件 tasks.py（必须是 tasks.py 这个名字，不允许修改），而我们这里就是在 `celery_app` 应用中创建 tasks.py 模块：
+在子应用下建立各自对应的任务文件 `tasks.py`（必须是 `tasks.py` 这个名字，不允许修改），而我们这里就是在 `celery_app` 应用中创建 tasks.py 模块：
 
 ``` {8}
 django_celery_demo/
@@ -249,7 +249,7 @@ def my_task():
 
 这里把普通函数封装成 celery 的任务函数，可以使用的装饰器有两个：`@app.task` 和 `@shared_task`。
 
-它们的区别是： shared_task 的源码 多了一个线程锁，我的理解是多进程情况下，控制任务分发时的资源竞争问题。
+它们的区别是： `shared_task` 的源码多了一个线程锁，我的理解是多进程情况下，控制任务分发时的资源竞争问题。
 
 当我们使用 `@app.task` 装饰器定义我们的异步任务时，那么这个任务依赖于根据项目名 `django_celery_demo` 生成的这个 celery 实例：
 
