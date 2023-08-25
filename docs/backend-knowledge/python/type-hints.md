@@ -12,7 +12,7 @@ Python 变量类型的声明方式是：`变量名: 变量类型`，其中 `变�
 age: int = 13
 name: str = '张三'
 sex: bool = True
-weight: float: 52.5
+weight: float = 52.5
 x: bytes = b"moon"
 ```
 
