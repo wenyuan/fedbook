@@ -121,24 +121,25 @@ Python 内置了很多的异常类，并且这些类都是从 `BaseException` �
 
 大多数情况下，内置异常已经够用了，但是有时候你还是需要自定义一些异常。自定义异常应该继承 `Exception` 类，直接继承或者间接继承都可以，例如：
 
+> 在 Python 3 中，大多数异常类已经移除了 `.message` 属性，因此需要手动实现该参数的传递，并重写 `__str__` 方法
+
 ```python
-class MyException(Exception):
+class CustomException(Exception):
 
     def __init__(self, message):
         """
         :param message: 异常信息
         """
         self.message = message
+        super().__init__()
 
     # override
-    # 如果我们上面的变量名不是定义的 message，比如改成了 msg
-    # 该方法就必须定义，因为基类中使用的就是 message，否则无法正常输出异常信息
     def __str__(self):
         return self.message
 
 try:
-    raise MyException('我的异常!')
-except MyException as e:
+    raise CustomException('我的异常!')
+except CustomException as e:
     print(e)
 ```
 
