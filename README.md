@@ -248,6 +248,8 @@
   - **Docker 基础知识**
   - [基础入门](https://fedbook.cn/basic-skills/docker/docker-tutorial/)
   - [常用命令](https://fedbook.cn/basic-skills/docker/common-commands/)
+  - **Docker 实战经验**
+  - [部署纯净的 Ubuntu 系统](https://fedbook.cn/basic-skills/docker/deploy-pure-ubuntu/)
 - [计算机网络](https://fedbook.cn/basic-skills/network/)
   - **网络基础**
   - [网络分层模型](https://fedbook.cn/basic-skills/network/layered-network-model/)
