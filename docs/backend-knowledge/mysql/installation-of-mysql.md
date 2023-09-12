@@ -572,8 +572,6 @@ service mysql start
 
 MySQL 的配置文件在 `/etc/mysql/mysql.conf.d/mysqld.cnf`，如有需要可以去修改，记得修改后重启 MySQL 服务即可。
 
-如果需要修改端口号：https://blog.csdn.net/zjb1697922408/article/details/127552294
-
 ### 新建用户并分配权限
 
 ```bash
@@ -581,7 +579,7 @@ MySQL 的配置文件在 `/etc/mysql/mysql.conf.d/mysqld.cnf`，如有需要可�
 
 # 登录 MySQL
 mysql -uroot -p
-# 新建用户（如果想允许来自任何主机的访问，"主机名" 指允许通过此用户访问 MySQL 的主机。如果不加限制可以使用 "%"）
+# 新建用户（"主机名" 指允许访问 MySQL 的主机，如果想允许来自任何主机的访问，可以使用 "%"）
 CREATE USER '[用户名]'@'[主机名]' IDENTIFIED BY '[密码]';
 # 对安全不严格的话就通过下面命令创建 developer 用户：
 CREATE USER 'developer'@'%' IDENTIFIED BY 'password';
