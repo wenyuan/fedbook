@@ -94,7 +94,7 @@ INSTALLED_APPS = [
 
 ```bash
 pip install celery
-pip install redis
+pip install django-redis
 pip install django-celery-beat
 pip install django-celery-results
 ```
