@@ -272,8 +272,8 @@ cd redis-7.0.0
 # 编译
 make
 
-# 安装到 /usr/local/redis 目录里
-# 否则默认是 /usr/local/bin
+# 手动指定安装到 /usr/local/redis 目录
+# 否则默认是 /usr/local/bin 目录
 make install PREFIX=/usr/local/redis
 
 # 由于修改了默认安装目录，所以要创建个软链接方便后面执行命令
@@ -301,6 +301,7 @@ cp /opt/redis-7.0.0/redis.conf /usr/local/redis/conf/redis-6379.conf
 
 ```bash
 # 默认绑定
+# bind 127.0.0.1 -::1
 bind 0.0.0.0 -::1
 
 # 监听端口号
@@ -402,7 +403,7 @@ cd /etc/init.d/
 chmod 777 redis
 ```
 
-脚本执行检查：
+用启动脚本启动服务：
 
 ```bash
 [root@ubuntu-20 ~]# /etc/init.d/redis start
