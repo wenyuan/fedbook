@@ -71,24 +71,13 @@ which crontab  # 如果不存在，就安装 apt install cron
 
 ## 中文支持
 
-对于纯净的 Ubuntu 系统，默认没有中文支持。因此 Windows 下中文字符显示正常、且是 utf-8 编码的文本，上传到 Linux 环境后用 vim 打开发现中文字符都是乱码。
+### 系统中文字库
 
-打开 vim 配置文件：`/etc/vim/vimrc`，末尾添加：
-
-```bash
-" Chinese language support
-set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
-set termencoding=utf-8
-set fileformats=unix
-set encoding=utf-8
-set fileencoding=utf-8
-```
-
-同样是中文问题，先测试一下能不能创建一个中文文件。如果发现在当前 Linux 环境中无法用中文字符创建文件，那是系统没有配置支持中文语言环境。
+先测试一下能不能创建一个中文文件。如果发现在当前 Linux 环境中无法用中文字符创建文件，那是系统没有配置支持中文语言环境。
 
 > 如果没有提前设置好语言环境，后续用编程语言创建带中文的文件，会在服务器上显示为形如 `''$'\350\360\220.xlsx'` 这样的乱码。
 
-解决方法很简单，分为两个步骤：安装和设置字库、设置语言环境变量。
+解决方法很简单，分为两个步骤：安装并设置字库、设置语言环境变量。
 
 ```bash
 # 以下命令均使用 root 用户
@@ -146,6 +135,21 @@ source ~/.zshrc
 ```
 
 现在就可以创建中文文件了，如果还是没有生效，可以重启 Linux。
+
+### 文件字符编码
+
+同样是中文问题，对于纯净的 Ubuntu 系统，如果发现 Windows 下中文字符显示正常、且是 utf-8 编码的文本，上传到 Linux 环境后用 vim 打开时中文字符都是乱码。
+
+打开 vim 配置文件：`/etc/vim/vimrc`，末尾添加：
+
+```bash
+" Chinese language support
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set termencoding=utf-8
+set fileformats=unix
+set encoding=utf-8
+set fileencoding=utf-8
+```
 
 ## 容器系统启用 SSH
 
