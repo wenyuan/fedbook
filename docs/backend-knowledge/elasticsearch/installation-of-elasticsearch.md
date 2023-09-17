@@ -11,10 +11,12 @@
 ```bash
 # 我一般将 ES 安装在 /opt 目录下
 cd /opt
-
+# 下载
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.13.0-linux-x86_64.tar.gz
-
+# 解压
 tar -zxvf elasticsearch-7.13.0-linux-x86_64.tar.gz
+# 删除多余文件
+rm elasticsearch-7.13.0-linux-x86_64.tar.gz
 ```
 
 解压后可以看到 ES 的文件目录结构如下：
@@ -44,22 +46,23 @@ elasticsearch.yml 是用来配置 ES 服务的各种参数的，而 jvm.options 
 ```bash
 # 建议和前面的内容之间加个空行，可以更清晰些
 
-cluster.name: my_app
-node.name: my_node_1
+cluster.name: my_es
+node.name: node_1
 path.data: ./data
 path.logs: ./logs
 http.port: 9211
 network.host: 0.0.0.0  # 线上一定不能配置为 0.0.0.0
 discovery.seed_hosts: ["localhost"]
-cluster.initial_master_nodes: ["my_node_1"]
+cluster.initial_master_nodes: ["node_1"]
 ```
 
 配置项解析：
 
+* ``：`/etc/hosts`
 * `discovery.seed_hosts`：在开箱即用的场景下（本机环境）无需配置，ES 会自动扫描本机的 9300 到9305 端口。一旦进行了网络环境配置，这个自动扫描操作就不会执行。
   * 将它的值配置为 master 候选者节点即可。如果需要指定端口的话，其值可以为：`["localhost:9300", "localhost:9301"]`
 * `cluster.initial_master_nodes`：指定新集群 master 候选者列表，其值为节点的名字列表。
-  * 这里配置了 `node.name: my_node_1`，所以其值为 `["my_node_1"]`，而不是 ip 列表。
+  * 这里配置了 `node.name: node_1`，所以其值为 `["node_1"]`，而不是 ip 列表。
 * `network.host` 和 `http.port`：这是 ES 提供服务的监听地址和端口。
   * 线上一定不能配置 ip 为 0.0.0.0，这是非常危险的行为！！！
 
@@ -131,11 +134,11 @@ chown -R elasticsearch:elasticsearch /opt/elasticsearch-7.13.0/
 
 ```bash
 # 前台运行，可以直接查看日志
-.bin/elasticsearch
+sudo -u elasticsearch bin/elasticsearch
 
-# 后台运行，日志在 ./logs/my_app.log
-# 查看日志的话可以：tail -n 100 -f logs/my_app.log
-.bin/elasticsearch -d
+# 后台运行，日志在 ./logs/my_es.log
+# 查看日志的话可以：tail -n 100 -f logs/my_es.log
+sudo -u elasticsearch bin/elasticsearch -d
 ```
 
 在浏览器中访问 localhost:9211，可以看到有关节点信息的内容即运行成功。
@@ -212,7 +215,7 @@ sed -i 's/server.http.port = ${?CEREBRO_PORT}/server.http.port = 9800/g' conf/ap
 echo -e '\nhosts = [
     {
         host = "http://localhost:9211"
-        name = "my_app"
+        name = "my_es"
     }
 ]' >> conf/application.conf
 ```
