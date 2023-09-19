@@ -137,6 +137,130 @@ net stop mysql
 .\mysqld --remove mysql
 ```
 
+## Ubuntu 20.04 下安装
+
+### 安装 MySQL
+
+对于 Ubuntu 20.04 及以上版本，直接通过 `apt install mysql-server` 安装时就会安装 MySQL 8.0.x 版本。
+
+```bash
+# 以下命令均使用 root 用户
+
+# 更新系统安装源
+apt-get update
+# MySQL 安装过程中可能需要用到系统对话框来配置一些信息，否则会跳过这些配置，后续会很麻烦
+apt install dialog
+# 安装 MySQL
+apt install mysql-server
+# 检查 MySQL 安装是否成功
+mysql -V
+# 查看 MySQL 启动状态，没启动就启动一下
+service mysql status
+
+# 初始化 MySQL 的相关配置
+# 执行命令之后会出现需要设置的选项
+# 对于是否开启密码验证组件，安全起见建议都 y，具体看个人需求
+mysql_secure_installation
+
+# 查看 MySQL 启动状态
+service mysql status
+# 测试登录 MySQL
+mysql -uroot -p
+
+# 修改 MySQL 的 home 目录，安装时默认创建的服务账户无 home 目录，会在后续抛出警告：
+# su: warning: cannot change directory to /nonexistent: No such file or director
+service mysql stop
+usermod -d /var/lib/mysql/ mysql
+service mysql start
+```
+
+MySQL 的配置文件在 `/etc/mysql/mysql.conf.d/mysqld.cnf`，如有需要可以去修改，记得修改后重启 MySQL 服务即可。
+
+### 新建用户并分配权限
+
+如果在 MySQL 中创建用户时想要使用简单密码，则修改 MySQL 配置文件：
+
+```bash
+vim /etc/mysql/mysql.conf.d/mysqld.cnf`
+```
+
+在文件末添加如下内容：
+
+```bash
+[mysqld]
+...
+#
+# * Validate Settings
+#
+validate_password.policy=LOW
+```
+
+> LOW    Length >= 8  
+> MEDIUM Length >= 8, numeric, mixed case, and special characters  
+> STRONG Length >= 8, numeric, mixed case, special characters and dictionary
+
+保存并关闭文件，重启 MySQL 服务使更改生效。
+
+```bash
+# 重启服务
+service mysql restart
+# 登录 MySQL
+mysql -uroot -p
+# 查看当前的密码策略要求，确认 validate_password.policy 的值
+SHOW VARIABLES LIKE 'validate_password%';
+```
+
+在 MySQL 中新建用户的步骤如下：
+
+```bash
+# 以下命令均使用 root 用户
+
+# 登录 MySQL
+mysql -uroot -p
+# 新建用户（"主机名" 指允许访问 MySQL 的主机，如果想允许来自任何主机的访问，可以使用 "%"）
+CREATE USER '[用户名]'@'[主机名]' IDENTIFIED BY '[密码]';
+# 对安全不严格的话就通过下面命令创建 developer 用户：
+CREATE USER 'developer'@'%' IDENTIFIED BY 'password';
+
+# 将所有权限授予新用户的命令
+GRANT ALL PRIVILEGES ON [数据库名].[表名] TO '[用户名]'@'[连接地址]' WITH GRANT OPTION;
+# 或者指定增删改查权限
+GRANT SELECT, UPDATE, DELETE, INSERT ON [数据库名].[表名] TO '[用户名]'@'[连接地址]' WITH GRANT OPTION;
+# 对安全不严格的话就通过下面命令把所有数据库的所有表的所有权限给 developer 用户：
+GRANT ALL PRIVILEGES ON *.* TO 'developer'@'%' WITH GRANT OPTION;
+
+# 如果要使用 root 用户撤销权限
+REVOKE ALL PRIVILEGES FROM [用户名];
+
+# 刷新权限，每一次权限更改后都刷新一下
+FLUSH PRIVILEGES;
+```
+
+### 卸载 MySQL
+
+```bash
+# 以下命令均使用 root 用户
+
+# 停止所有 MySQL 服务
+service mysql stop
+# 检查所有已安装的 MySQL 软件包，并确认是否有多于一个软件包
+dpkg --list | grep mysql
+# 通过软件包名称来删除软件包（把上面列出来的几个全删了）
+apt-get remove --purge mysql-client-8.0 mysql-client-core-8.0 mysql-common mysql-server mysql-server-8.0 mysql-server-core-8.0
+# 删除 MySQL 配置文件和数据
+rm -rf /etc/mysql /var/lib/mysql
+# 删除不再需要的依赖项
+apt-get autoremove
+# 清理下载的软件包缓存
+apt-get autoclean
+# 删除安装 MySQL 时自动创建的 mysql 这个服务账户
+userdel -r mysql
+# 显示出所有的含有 mysql 文件名的路径，逐一手动删除掉
+find  / -name mysql -print
+# 验证卸载结果
+mysql --version
+```
+
 ## CentOS 7.6 下安装
 
 ### 安装对比
@@ -532,96 +656,6 @@ groupdel mysql
 > 注意：`-rf` 参数表示删除当前已登陆的用户，并删除与其相关的所有文件。
 >
 > 慎用 `-r` 选项，如果用户目录下有重要文件，删除前请备份。
-
-## Ubuntu 20.04 下安装
-
-### 安装 MySQL
-
-对于 Ubuntu 20.04 及以上版本，直接通过 `apt install mysql-server` 安装时就会安装 MySQL 8.0.x 版本。
-
-```bash
-# 以下命令均使用 root 用户
-
-# 更新系统安装源
-apt-get update
-# MySQL 安装过程中可能需要用到系统对话框来配置一些信息，否则会跳过这些配置，后续会很麻烦
-apt install dialog
-# 安装 MySQL
-apt install mysql-server
-# 检查 MySQL 安装是否成功
-mysql -V
-# 查看 MySQL 启动状态，没启动就启动一下
-service mysql status
-
-# 初始化 MySQL 的相关配置
-# 执行命令之后会出现需要设置的选项
-# 对于是否开启密码验证组件，安全起见建议都 y，具体看个人需求
-mysql_secure_installation
-
-# 查看 MySQL 启动状态
-service mysql status
-# 测试登录 MySQL
-mysql -uroot -p
-
-# 修改 MySQL 的 home 目录，安装时默认创建的服务账户无 home 目录，会在后续抛出警告：
-# su: warning: cannot change directory to /nonexistent: No such file or director
-service mysql stop
-usermod -d /var/lib/mysql/ mysql
-service mysql start
-```
-
-MySQL 的配置文件在 `/etc/mysql/mysql.conf.d/mysqld.cnf`，如有需要可以去修改，记得修改后重启 MySQL 服务即可。
-
-### 新建用户并分配权限
-
-```bash
-# 以下命令均使用 root 用户
-
-# 登录 MySQL
-mysql -uroot -p
-# 新建用户（"主机名" 指允许访问 MySQL 的主机，如果想允许来自任何主机的访问，可以使用 "%"）
-CREATE USER '[用户名]'@'[主机名]' IDENTIFIED BY '[密码]';
-# 对安全不严格的话就通过下面命令创建 developer 用户：
-CREATE USER 'developer'@'%' IDENTIFIED BY 'password';
-
-# 将所有权限授予新用户的命令
-GRANT ALL PRIVILEGES ON [数据库名].[表名] TO '[用户名]'@'[连接地址]' WITH GRANT OPTION;
-# 或者指定增删改查权限
-GRANT SELECT, UPDATE, DELETE, INSERT ON [数据库名].[表名] TO '[用户名]'@'[连接地址]' WITH GRANT OPTION;
-# 对安全不严格的话就通过下面命令把所有数据库的所有表的所有权限给 developer 用户：
-GRANT ALL PRIVILEGES ON *.* TO 'developer'@'%' WITH GRANT OPTION;
-
-# 如果要使用 root 用户撤销权限
-REVOKE ALL PRIVILEGES FROM [用户名];
-
-# 刷新权限，每一次权限更改后都刷新一下
-FLUSH PRIVILEGES;
-```
-
-### 卸载 MySQL
-
-```bash
-# 以下命令均使用 root 用户
-
-# 停止所有 MySQL 服务
-service mysql stop
-# 检查所有已安装的 MySQL 软件包，并确认是否有多于一个软件包
-dpkg --list | grep mysql
-# 通过软件包名称来删除软件包（把上面列出来的几个全删了）
-apt-get remove --purge mysql-client-8.0 mysql-client-core-8.0 mysql-common mysql-server mysql-server-8.0 mysql-server-core-8.0
-# 删除 MySQL 配置文件和数据
-rm -rf /etc/mysql /var/lib/mysql
-# 删除不再需要的依赖项
-apt-get autoremove
-# 清理下载的软件包缓存
-apt-get autoclean
-# 删除安装 MySQL 时自动创建的 mysql 这个服务账户
-userdel -r mysql
-# 显示出所有的含有 mysql 文件名的路径，逐一手动删除掉
-find  / -name mysql -print
-# 验证卸载结果
-mysql --version
-```
 
 ## 参考资料
 
