@@ -55,7 +55,7 @@ def exec_without_block():
 
 ### 执行命令，添加子进程等待
 
-为了让主程序等待子进程完成后再继续往下执行，我们必须调用 Popen 对象的 `wait()` 方法，这样父进程才会等待（也就是阻塞 block）。
+为了让主程序等待子进程完成后再继续往下执行，我们必须调用 Popen 对象的 `wait()` 或 `communicate()` 方法，这样父进程才会等待（也就是阻塞父进程）。
 
 ```python
 import subprocess
@@ -69,7 +69,9 @@ def exec_with_block():
 
 ### 执行命令，获取返回结果
 
-我们可以在 Popen() 建立子进程的时候改变标准输入、标准输出和标准错误，从而获取执行结果，如下例子。
+虽然 `wait()` 方法也可以阻塞父进程，直到子进程结束。但是当我们需要从子进程读取大量输出时，使用 `wait()` 方法可能会导致死锁，所以一般建议用 `communicate()` 方法稳妥一些。
+
+如下例子，在 Popen() 建立子进程的时候改变标准输入、标准输出和标准错误，从而获取执行结果。
 
 ```python
 import subprocess
@@ -80,13 +82,12 @@ def get_exec_result():
                              shell=True,
                              stdout=subprocess.PIPE,
                              stderr=subprocess.PIPE)
-    child.wait()
-    result = child.stdout.read()
-    if not result:
-        err = child.stderr.read()
-        print(sys.stderr, 'ERROR: %s' % err)
+    stdout, stdrr = child.communicate()
+    # 检查是否有错误输出
+    if child.returncode != 0:
+        print('Error: %s' % stdrr)
     else:
-        print(result)
+        print('Output: %s' % stdout)
 ```
 
 ## 参考资料
