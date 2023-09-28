@@ -127,6 +127,7 @@ wget http://nginx.org/download/nginx-1.18.0.tar.gz
 
 # 解压
 tar -zxvf nginx-1.18.0.tar.gz
+rm nginx-1.18.0.tar.gz
 ```
 
 ### 编译安装
