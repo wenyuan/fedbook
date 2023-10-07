@@ -8,14 +8,7 @@
 
 从 [官方网站](http://nginx.org/en/download.html) 下载稳定版本。
 
-以 nginx/Windows-1.18.0 为例，直接下载 nginx-1.18.0.zip。
-
-下载后解压，解压后如下：
-
-<div style="text-align: center;">
-  <img src="./assets/nginx-for-windows.png" alt="Nginx for Windows">
-  <p style="text-align: center; color: #888;">（Nginx for Windows）</p>
-</div>
+以 nginx/Windows-1.24.0 为例，直接下载 nginx-1.24.0.zip，下载后解压即可。
 
 ### 启动 Nginx
 
@@ -123,11 +116,11 @@ yum install -y openssl openssl-devel
 
 ```bash
 # 下载
-wget http://nginx.org/download/nginx-1.18.0.tar.gz
+wget http://nginx.org/download/nginx-1.24.0.tar.gz
 
 # 解压
-tar -zxvf nginx-1.18.0.tar.gz
-rm nginx-1.18.0.tar.gz
+tar -zxvf nginx-1.24.0.tar.gz
+rm nginx-1.24.0.tar.gz
 ```
 
 ### 编译安装
@@ -137,7 +130,7 @@ rm nginx-1.18.0.tar.gz
 首先进入 Nginx 安装包的解压目录：
 
 ```bash
-cd nginx-1.18.0/
+cd nginx-1.24.0/
 ```
 
 下面开始安装 Nginx：
