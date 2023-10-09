@@ -1,6 +1,6 @@
 # Nginx
 
-> 本系列以 Nginx 1.18.0 作为安装版本进行知识点梳理，该版本目前属于 Legacy versions（老版本的稳定版）。
+> 本系列以 Nginx 1.24.0 作为安装版本进行知识点梳理，该版本目前属于 Legacy versions（老版本的稳定版）。
 
 Nginx（engine x）是一个高性能的 HTTP 和反向代理 web 服务器，同时也提供了 IMAP/POP3/SMTP 服务。其特点是占有内存少，并发能力强。
 
