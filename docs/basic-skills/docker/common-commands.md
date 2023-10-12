@@ -49,18 +49,24 @@ docker container run [options] [image_name]
 * `-i` 以交互模式运行容器，通常与 `-t` 同时使用。
 * `-t` 为容器重新分配一个伪输入终端，容器的 Shell 会映射到当前的 Shell，然后在本机窗口输入的命令，就会传入容器，通常与 `-i` 同时使用。
 * `--rm` 在容器终止运行后自动删除容器文件。
-* `--restart=always` 设置容器自启动。
+* `--restart=always` 设置容器自启动，这是一个重启策略，这个参数可以确保在 Docker 守护进程启动时，容器也会自动启动。
 * `-v /xxx:/yyy` 映射命令，把本机的 xxx 目录映射到容器中的 yyy 目录，也就是说改变本机的 xxx 目录下的内容，容器 yyy 目录中的内容也会改变。
 
-以后台模式启动一个容器 `docker run -d [image_name]` 后，用 `docker ps` 查看会发现容器并不在运行中。这是因为 Docker 的运行机制：**Docker 容器后台运行，必须有一个前台进程**。
+有时候，用后台模式启动一个容器 `docker run -d [image_name]` 后，用 `docker ps` 查看会发现容器并不在运行中。这是因为 Docker 的运行机制：**Docker 容器后台运行，必须有一个前台进程**。
 
 容器运行的命令如果不是那些一直挂起的命令，比如 `top`、`tail`，那么命令执行完毕容器会自动退出。所以为了让容器持续在后台运行，那么需要将运行的程序以前台进程的形式运行。
 
-比如这里在后台运行一个命令，这个命令一直在打印：
-
 ```bash
-docker run -d [image_name] /bin/bash -c "while true; do echo hello world; sleep 3600; done"
+# 方法一：在后台运行一个命令，这个命令一直在打印：
+docker run -d --name [my_container_name] [image_name] /bin/bash -c "while true; do echo hello world; sleep 3600; done"
+
+# 方法二：在运行命令中添加 -it 参数，这样容器就会以交互模式运行，即使没有前台进程，也不会退出
+docker run -dit --name [my_container_name] [image_name] /bin/bash
 ```
+
+但是在生产环境中，我们通常会尽量避免使用死循环或者 `tail -f /dev/null` 这样的方法来保持容器运行，因为这些方法虽然可以解决问题，但是它们并不是最佳实践。这些方法可能会消耗额外的 CPU 资源，尤其是在大规模部署的情况下。
+
+在生产环境中，我们通常会让容器运行一个长期运行的进程，比如一个 Web 服务器或者一个数据库服务器。这样，只要这个进程在运行，容器就不会退出。
 
 ## docker ps
 
