@@ -54,19 +54,20 @@ docker container logs [container_id]
 apt-get update
 
 # 按需检查并安装常用命令
-which rz       # 如果不存在，就安装 apt install lrzsz
-which vim      # 如果不存在，就安装 apt install vim
-which zip      # 如果不存在，就安装 apt install zip
-which sudo     # 如果不存在，就安装 apt install sudo
-which locate   # 如果不存在，就安装 apt install locate
-which wget     # 如果不存在，就安装 apt install wget
-which ping     # 如果不存在，就安装 apt install iputils-ping
-which telnet   # 如果不存在，就安装 apt install telnet
-which netstat  # 如果不存在，就安装 apt install net-tools
-which gcc      # 如果不存在，就安装 apt install gcc
-which make     # 如果不存在，就安装 apt install make
-which dialog   # 如果不存在，就安装 apt install dialog
-which crontab  # 如果不存在，就安装 apt install cron
+which rz          # 如果不存在，就安装 apt install lrzsz
+which vim         # 如果不存在，就安装 apt install vim
+which zip         # 如果不存在，就安装 apt install zip
+which sudo        # 如果不存在，就安装 apt install sudo
+which locate      # 如果不存在，就安装 apt install locate
+which wget        # 如果不存在，就安装 apt install wget
+which ping        # 如果不存在，就安装 apt install iputils-ping
+which telnet      # 如果不存在，就安装 apt install telnet
+which netstat     # 如果不存在，就安装 apt install net-tools
+which gcc         # 如果不存在，就安装 apt install gcc
+whick pkg-config  # 如果不存在，就安装 apt install pkg-config
+which make        # 如果不存在，就安装 apt install make
+which dialog      # 如果不存在，就安装 apt install dialog
+which crontab     # 如果不存在，就安装 apt install cron
 ```
 
 ## 中文支持
