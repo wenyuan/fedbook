@@ -63,7 +63,7 @@ class Person(User):
 ## 第二种：一对一外键
 
 * 作用：给模型增加新的字段、新方法
-* 局限：只能增加字段，不能减少字段，不能修改户验证方法：`authenticate`
+* 局限：只能增加字段，不能减少字段，不能修改用户验证方法：`authenticate`
 * 好处：不破坏原来的 User 模型的表结构
 
 如果你对用户验证方法 `authenticate` 没有其他要求，就是使用 `username` 和 `password` 即可完成。但是想要在原来模型的基础之上添加新的字段，那么可以使用一对一外键的方式。示例代码如下：
@@ -108,7 +108,7 @@ def one_to_one_view(request):
 
 ## 第三种：继承 AbstractUser
 
-* 作用：给模型增加新的字段，修改户验证方法: `authenticate`
+* 作用：给模型增加新的字段，修改用户验证方法: `authenticate`
 * 局限：只能增加，不能减少字段
 * 坏处：破坏了原来的 User 模型的表结构
 
@@ -227,7 +227,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 ```
 
-但是按照官网所说，我们以后有可能会需要更改 `AUTH_USER_MODEL` 配置，也就是说可能会更改项目的用户模型。那么为了更灵活的适配各种情况，官方建议使用 `django.contrib.auth.get_user_model()` 来引用用户模型，如下：
+但是按照官网所说，我们以后有可能会需要更改 `settings.AUTH_USER_MODEL` 配置，也就是说可能会更改项目的用户模型。那么为了更灵活的适配各种情况，官方建议使用 `django.contrib.auth.get_user_model()` 来引用用户模型，如下：
 
 ```python
 from django.contrib.auth import get_user_model
