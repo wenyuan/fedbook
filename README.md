@@ -8,14 +8,14 @@
   <img alt="author" src="https://img.shields.io/badge/author-wenyuan-blue.svg?style=flat-square">
   <img alt="updated" src="https://img.shields.io/badge/update-2023.04-blue.svg?style=flat-square">
   <img alt="license" src="https://img.shields.io/badge/license-CC BY NC 4.0-blue.svg?style=flat-square">
-  <a href="https://www.fedbook.cn/others/sponsor/" target="_blank">
+  <a href="https://wenyuan.github.io/others/sponsor/" target="_blank">
     <img alt="sponsor" src="https://img.shields.io/badge/sponsor-❤-ff69b4.svg?style=flat-square">
   </a>
 </p>
 
 ## 简介
 
-[在线预览](https://www.fedbook.cn/) | [国外镜像](https://wenyuan.github.io/)
+[在线预览](https://wenyuan.github.io/) | [国外镜像](https://wenyuan.github.io/)
 
 建立小册的目的：
 
