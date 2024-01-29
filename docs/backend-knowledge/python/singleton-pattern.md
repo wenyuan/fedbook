@@ -102,10 +102,10 @@ class Singleton(object):
         self._instance = {}
 
     def __call__(self):
-        with Singleton._instance_lock:
+        with Singleton._single_lock:
             if self._cls not in self._instance:
                 self._instance[self._cls] = self._cls()
-            return self._instance[self._cls]
+        return self._instance[self._cls]
 
 
 @Singleton
@@ -211,12 +211,12 @@ class Singleton(object):
 
     @classmethod
     def get_instance(cls, *args, **kwargs):
-        with Singleton._instance_lock:
+        with Singleton._single_lock:
             # hasattr() 函数用于判断对象是否包含对应的属性，这里是看看这个类有没有 _instance 属性
             if not hasattr(Singleton, '_instance'):
                 Singleton._instance = Singleton(*args, **kwargs)
 
-            return Singleton._instance
+        return Singleton._instance
 ```
 
 但是为了保证线程安全，在类内部加入锁机制，又会使加锁部分代码串行执行，速度降低。
@@ -225,60 +225,64 @@ class Singleton(object):
 
 ```python
 class Singleton(object):
-
-    def __init__(self):
-        print("__init__")
+    _instance = None
 
     def __new__(cls, *args, **kwargs):
-        print("__new__")
-        if not hasattr(Singleton, "_instance" ):
-            print("创建新实例")
-            Singleton._instance = object.__new__(cls)
-        return Singleton._instance
+        print('__new__')
+        if cls._instance is None:
+            # 创建新实例
+            cls._instance = super().__new__(cls)
+        return cls._instance
+    
+    def __init__(self, name):
+        print('__init__')
+        self.name = name
 
 
-obj1 = Singleton()
-obj2 = Singleton()
+obj1 = Singleton('模块单例')
+obj2 = Singleton('模块单例')
 print(obj1, obj2)
 ```
 
 当 Python 实例化一个对象时，是先执行类的 `__new__()` 方法，当我们没写 `__new__()` 方法时，默认调用基类 `object` 的 `__new__()` 方法，然后再执行类的 `__init__()` 方法，对这个对象进行初始化。
 
-所以我们可以基于这个，去实现单例模式。我们通过 `hasattr(Singleton, **"_instance"** )`（其中 `hasattr()` 的功能是判断一个对象有没有指定的属性）去判断之前有没有实例化过对象，如果有，就直接返回，没有就新创建一个。
+所以我们可以基于这个，去实现单例模式。我们通过 `cls._instance is None` 去判断之前有没有实例化过对象，如果有，就直接返回，没有就新创建一个。
 
 从控制台输出可以看出，同样实现了单例：
 
 ```python
 __new__
-创建新实例
 __init__
 __new__
 __init__
-<__main__.Singleton object at 0x7f5350b5bb50> <__main__.Singleton object at 0x7f5350b5bb50>
+<__main__.Singleton object at 0x00000226FD86DF10> <__main__.Singleton object at 0x00000226FD86DF10>
 ```
 
-但这样其实有个小问题，看输出其实执行了两遍 `__init__()` 方法，既然是同一个对象，初始化两次，这是不太合理的，我们可以改造一下。
+但这样其实有个小问题，看输出其实执行了两遍 `__init__()` 方法，既然是同一个对象，初始化两次，这是不太合理的，因为如果后面在实例化时候传递了不同的参数，会直接把单例的相应属性给修改掉。
 
-和单例模式的解决思路差不多：定义一个类属性标记（`_first_init`）表示是否第一次执行初始化动作。
+因此我们可以改造一下，和单例模式的解决思路差不多：定义一个类属性标记（`_initialized`）表示是否第一次执行初始化动作。
 
 ```python
 class Singleton(object):
-
-    def __init__(self):
-        if not hasattr(Singleton, "_first_init"):
-            print("__init__")
-            Singleton._first_init = True
+    _instance = None
+    _initialized = False
 
     def __new__(cls, *args, **kwargs):
         print("__new__")
-        if not hasattr(Singleton, "_instance"):
-            print("创建新实例")
-            Singleton._instance = object.__new__(cls)
-        return Singleton._instance
+        if cls._instance is None:
+            # 创建新实例
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __init__(self, name):
+        if not self._initialized:
+            print("__init__")
+            self.name = name
+            self._initialized = True
 
 
-obj1 = Singleton()
-obj2 = Singleton()
+obj1 = Singleton('模块单例')
+obj2 = Singleton('模块单例')
 print(obj1, obj2)
 ```
 
@@ -286,10 +290,9 @@ print(obj1, obj2)
 
 ```python
 __new__
-创建新实例
 __init__
 __new__
-<__main__.Singleton object at 0x7f1069f4fb50> <__main__.Singleton object at 0x7f1069f4fb50>
+<__main__.Singleton object at 0x0000017F50F0DF10> <__main__.Singleton object at 0x0000017F50F0DF10>
 ```
 
 而且 `__new__()` 方法是支持多线程的，不需要单独再加线程锁进行规避操作，省时又省力。
