@@ -13,9 +13,41 @@ subprocess 这个模块可以用来产生子进程，并连接到子进程的标
 > * popen2.* –废弃
 > * commands.* –废弃，3.x中被移除
 
+## subprocess.run
+
+是 Python 3.5 及更高版本中新增的一个便捷函数，用于执行一个命令并等待它完成。
+
+比如下面的代码：`execute_snmp_commands` 函数接受一个包含多个 SNMP 命令的列表，然后遍历这个列表并执行每个命令。如果命令执行成功，函数将命令的输出添加到结果列表中。如果命令执行失败，函数打印出错误信息并在结果列表中添加 `None`。
+
+```python
+import subprocess
+
+def execute_snmp_commands(commands):
+    results = []
+    for command in commands:
+        try:
+            # 使用shell=True来允许shell命令
+            result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            results.append(result.stdout.decode())
+        except subprocess.CalledProcessError as e:
+            print(f"An error occurred while executing the SNMP command: {e}")
+            results.append(None)
+    return results
+
+
+# 使用方法
+commands = ["snmpget -v2c -c public localhost sysUpTime.0", "snmpget -v2c -c public localhost sysName.0"]
+print(execute_snmp_commands(commands))
+```
+
+* 如果指定了 `stdout=subprocess.PIPE` 和`stderr=subprocess.PIPE`，它返回一个 `subprocess.CompletedProcess` 实例，该实例包含了命令的返回码以及标准输出和标准错误的内容）。
+* 如果指定了 `check=True`，那么当命令返回非零状态码时，`subprocess.run` 会抛出一个`subprocess.CalledProcessError` 异常。
+
 ## subprocess.Popen()
 
-Popen 类用于创建和管理进程，子程序将在新进程中被执行完成。在 UNIX/Linux 中执行子程序，该类会使用 `os.execvp()` 函数。而在 Windows 中执行子程序，该类将使用 `CreateProcess()` 函数。
+这是一个更底层的接口，用于创建和管理子进程。它立即返回一个 `subprocess.Popen` 实例，而不等待子进程完成。可以使用这个实例的方法（如 `wait()`、`communicate()` 等）来与子进程交互。这使得 `subprocess.Popen比subprocess.run` 更灵活，但也更复杂一些。
+
+核心的 Popen 类用于创建和管理进程，子程序将在新进程中被执行完成。在 UNIX/Linux 中执行子程序，该类会使用 `os.execvp()` 函数。而在 Windows 中执行子程序，该类将使用 `CreateProcess()` 函数。
 
 首先看一下 `subprocess.Popen()` 的常用参数：
 
@@ -89,6 +121,11 @@ def get_exec_result():
     else:
         print('Output: %s' % stdout)
 ```
+
+## 总结
+
+* 如果只需要执行一个命令并获取它的结果，那么 `subprocess.run` 可能是更好的选择。
+* 如果需要更细粒度的控制，或者需要同时管理多个子进程，那么 `subprocess.Popen` 可以实现这个需求。
 
 ## 参考资料
 
