@@ -1,8 +1,8 @@
 const { config } = require('vuepress-theme-hope')
 
 module.exports = config({
-  title: '前端修炼小册',
-  description: 'Wenyuan\'s Front-End Development Book',
+  title: 'CODING 修炼小册',
+  description: '前端 / 后端 / 全栈开发',
   dest: './dist',
   port: '7777',
   head: [
@@ -33,7 +33,7 @@ module.exports = config({
     smoothScroll: true,
     // vuepress-theme-hope config
     author: 'wenyuan',
-    hostname: 'https://www.fedbook.cn',
+    hostname: 'https://wenyuan.github.io',
     darkmode: 'disable',
     themeColor: false,
     blog: false,

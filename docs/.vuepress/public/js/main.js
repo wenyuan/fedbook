@@ -6,12 +6,13 @@ window.onload = function() {
     }
     // 判断浏览器的首选语言
     let protocol = 'https://'
-    let cnDomain = 'www.fedbook.cn'
+    let cnDomain = 'wenyuan.github.io'
     let language = navigator.language
     let host = window.location.host
     let urlRelativePath = getUrlRelativePath()
     // 国内的也跳一下弹窗吧（纯属好玩）
     if (language === 'zh-CN') {
+      return // 不跳了
       if (host !== cnDomain) {
         swal('提示', '建议国外用户访问部署在 GitHub Pages 的站点(速度可能会快一些)，是否跳转？', {
           buttons: ['取消', '确定'],

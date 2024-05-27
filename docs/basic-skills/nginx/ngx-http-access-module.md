@@ -26,7 +26,7 @@
 ```bash {8,9}
 server {
     listen 80;
-    server_name  www.fedbook.cn;
+    server_name  wenyuan.github.io;
     root /sites/fedbook;
     index index.html;
 

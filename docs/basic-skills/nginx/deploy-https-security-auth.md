@@ -66,7 +66,7 @@ rz -be  # 上传文件
 ```bash {2,8-13,21-23}
 server {
     listen 443 ssl;
-    server_name  www.fedbook.cn fedbook.cn;
+    server_name  wenyuan.github.io myblog.com;
 
     root /sites/fedbook;
     index index.html;
@@ -85,7 +85,7 @@ server {
 
 server {
     listen 80;
-    server_name  www.fedbook.cn fedbook.cn;
+    server_name  wenyuan.github.io myblog.com;
     return 301 https://$host$request_uri;
 }
 ```

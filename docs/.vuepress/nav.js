@@ -10,52 +10,6 @@ module.exports = [
     ]
   },
   {
-    text: '前端知识',
-    items: [
-      {
-        text: '基础',
-        items: [
-          { text: 'HTML', link: '/frontend-knowledge/html/' },
-          { text: 'CSS', link: '/frontend-knowledge/css/' },
-          { text: 'JavaScript', link: '/frontend-knowledge/javascript/' }
-        ]
-      },
-      {
-        text: '进阶',
-        items: [
-          { text: 'ECMAScript 6+', link: '/frontend-knowledge/es6-and-beyond/' },
-          { text: 'TypeScript', link: '/frontend-knowledge/typescript/' },
-          { text: '浏览器相关', link: '/frontend-knowledge/browser/' }
-        ]
-      },
-      {
-        text: '手写',
-        items: [
-          { text: 'JS 手写', link: '/frontend-knowledge/javascript-handwritten/' }
-        ]
-      }
-    ]
-  },
-  {
-    text: '工程化',
-    items: [
-      {
-        text: '框架',
-        items: [
-          { text: 'Vue.js', link: '/frontend-engineering/vuejs/' },
-          { text: 'React', link: '/frontend-engineering/react/' },
-        ]
-      },
-      {
-        text: '工具',
-        items: [
-          { text: 'Webpack', link: '/frontend-engineering/webpack/' },
-          { text: '包管理工具', link: '/frontend-engineering/package/' }
-        ]
-      }
-    ]
-  },
-  {
     text: '必知必会',
     items: [
       {
@@ -76,11 +30,44 @@ module.exports = [
     ]
   },
   {
-    text: '深入学习',
+    text: '前端知识',
     items: [
-      { text: '数据结构与算法', link: '/in-depth-learning/algorithm/' },
-      { text: '设计模式', link: '/in-depth-learning/design-patterns/' },
-      { text: '源码阅读与学习', link: '/in-depth-learning/source-code/' }
+      {
+        text: '基础',
+        items: [
+          { text: 'HTML', link: '/frontend/html/' },
+          { text: 'CSS', link: '/frontend/css/' },
+          { text: 'JavaScript', link: '/frontend/javascript/' }
+        ]
+      },
+      {
+        text: '进阶',
+        items: [
+          { text: 'ECMAScript 6+', link: '/frontend/es6-and-beyond/' },
+          { text: 'TypeScript', link: '/frontend/typescript/' },
+          { text: '浏览器相关', link: '/frontend/browser/' }
+        ]
+      },
+      {
+        text: '手写',
+        items: [
+          { text: 'JS 手写', link: '/frontend/javascript-handwritten/' }
+        ]
+      },
+      {
+        text: '框架',
+        items: [
+          { text: 'Vue.js', link: '/frontend/vuejs/' },
+          { text: 'React', link: '/frontend/react/' },
+        ]
+      },
+      {
+        text: '工具',
+        items: [
+          { text: 'Webpack', link: '/frontend/webpack/' },
+          { text: '包管理工具', link: '/frontend/package/' }
+        ]
+      }
     ]
   },
   {
@@ -89,18 +76,26 @@ module.exports = [
       {
         text: 'Python 技术栈',
         items: [
-          { text: 'Python', link: '/backend-knowledge/python/' },
-          { text: 'Django', link: '/backend-knowledge/django/' }
+          { text: 'Python', link: '/backend/python/' },
+          { text: 'Django', link: '/backend/django/' }
         ]
       },
       {
         text: '数据库/中间件',
         items: [
-          { text: 'MySQL', link: '/backend-knowledge/mysql/' },
-          { text: 'Redis', link: '/backend-knowledge/redis/' },
-          { text: 'Elasticsearch', link: '/backend-knowledge/elasticsearch/' },
+          { text: 'MySQL', link: '/backend/mysql/' },
+          { text: 'Redis', link: '/backend/redis/' },
+          { text: 'Elasticsearch', link: '/backend/elasticsearch/' },
         ]
       },
+    ]
+  },
+  {
+    text: '深入学习',
+    items: [
+      { text: '数据结构与算法', link: '/in-depth-learning/algorithm/' },
+      { text: '设计模式', link: '/in-depth-learning/design-patterns/' },
+      { text: '源码阅读与学习', link: '/in-depth-learning/source-code/' }
     ]
   },
   {

@@ -134,7 +134,7 @@ mkdir vhosts
 ```bash
 server {
     listen 80;
-    server_name  www.fedbook.cn fedbook.cn;
+    server_name  wenyuan.github.io myblog.com;
 
     root /sites/fedbook;
     index index.html;

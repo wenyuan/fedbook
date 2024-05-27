@@ -480,7 +480,7 @@ var getTitle = "LoginTable"
 
 ```javascript
 const MAX_COUNT = 10
-const URL = 'https://www.fedbook.cn'
+const URL = 'https://wenyuan.github.io'
 ```
 
 #### 8）方法
