@@ -24,6 +24,10 @@ module.exports = [
       {
         title: '如何限制用户可使用的命令',
         path: '/basic-skills/linux/restricted-shell'
+      },
+      {
+        title: '忘记 root 密码如何重置',
+        path: '/basic-skills/linux/reset-forgotten-root-password'
       }
     ]
   }
