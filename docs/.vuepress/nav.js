@@ -18,7 +18,8 @@ module.exports = [
           { text: 'Git', link: '/basic-skills/git/' },
           { text: 'Nginx', link: '/basic-skills/nginx/' },
           { text: 'Linux', link: '/basic-skills/linux/common-commands/' },
-          { text: 'Docker', link: '/basic-skills/docker/docker-tutorial/' }
+          { text: 'Docker', link: '/basic-skills/docker/docker-tutorial/' },
+          { text: 'VMware', link: '/basic-skills/vmware/uninstallation-of-vmware/' },
         ]
       },
       {
