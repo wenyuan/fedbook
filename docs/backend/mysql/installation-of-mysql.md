@@ -134,6 +134,7 @@ quit
 
 ```bash
 net stop mysql
+# 进入 MySQL 安装目录下的 bin/ 目录
 .\mysqld --remove mysql
 ```
 
