@@ -105,23 +105,23 @@ module.exports = [
       },
       {
         title: '多线程、多进程',
-        path: '/backend-knowledge/python/threading-and-multiprocess'
+        path: '/backend/python/threading-and-multiprocess'
       },
       {
         title: '全局解释器锁（GIL）',
-        path: '/backend-knowledge/python/global-interpreter-lock'
+        path: '/backend/python/global-interpreter-lock'
       },
       {
         title: '协程',
-        path: '/backend-knowledge/python/coroutine'
+        path: '/backend/python/coroutine'
       },
       {
         title: '生成器 generator',
-        path: '/backend-knowledge/python/generator'
+        path: '/backend/python/generator'
       },
       {
         title: '迭代器 Iterator',
-        path: '/backend-knowledge/python/iterator'
+        path: '/backend/python/iterator'
       },
     ]
   },
@@ -131,43 +131,43 @@ module.exports = [
     children: [
       {
         title: 'Python 多版本虚拟环境共存',
-        path: '/backend-knowledge/python/multiple-python-install-on-linux'
+        path: '/backend/python/multiple-python-install-on-linux'
       },
       {
         title: '使用 logging 配置日志的方式',
-        path: '/backend-knowledge/python/python-lib-logging'
+        path: '/backend/python/python-lib-logging'
       },
       {
         title: '使用 xlrd 处理旧版本 Excel',
-        path: '/backend-knowledge/python/python-lib-xlrd'
+        path: '/backend/python/python-lib-xlrd'
       },
       {
         title: '使用 openpyxl 处理新版本 Excel',
-        path: '/backend-knowledge/python/python-lib-openpyxl'
+        path: '/backend/python/python-lib-openpyxl'
       },
       {
         title: '使用 smtplib 发送电子邮件',
-        path: '/backend-knowledge/python/python-lib-smtplib'
+        path: '/backend/python/python-lib-smtplib'
       },
       {
         title: '使用 subprocess 执行 cmd',
-        path: '/backend-knowledge/python/python-lib-subprocess'
+        path: '/backend/python/python-lib-subprocess'
       },
       {
         title: '使用 telnetlib 执行 Telnet',
-        path: '/backend-knowledge/python/python-lib-telnetlib'
+        path: '/backend/python/python-lib-telnetlib'
       },
       {
         title: '使用 Paramiko 执行 SSH',
-        path: '/backend-knowledge/python/python-lib-paramiko'
+        path: '/backend/python/python-lib-paramiko'
       },
       {
         title: '使用 Fabric 执行 SSH',
-        path: '/backend-knowledge/python/python-lib-fabric'
+        path: '/backend/python/python-lib-fabric'
       },
       {
         title: '使用 Celery 实现任务调度',
-        path: '/backend-knowledge/python/python-lib-celery'
+        path: '/backend/python/python-lib-celery'
       }
     ]
   }

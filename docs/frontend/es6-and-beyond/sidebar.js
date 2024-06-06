@@ -101,11 +101,11 @@ module.exports = [
       },
       {
         title: 'String 扩展',
-        path: '/frontend-knowledge/es6-and-beyond/es8-string'
+        path: '/frontend/es6-and-beyond/es8-string'
       },
       {
         title: '尾逗号 Trailing commas',
-        path: '/frontend-knowledge/es6-and-beyond/es8-trailing-commas'
+        path: '/frontend/es6-and-beyond/es8-trailing-commas'
       }
     ]
   },
@@ -115,19 +115,19 @@ module.exports = [
     children: [
       {
         title: 'for await of',
-        path: '/frontend-knowledge/es6-and-beyond/es9-for-await-of'
+        path: '/frontend/es6-and-beyond/es9-for-await-of'
       },
       {
         title: 'RegExp 扩展',
-        path: '/frontend-knowledge/es6-and-beyond/es9-regexp'
+        path: '/frontend/es6-and-beyond/es9-regexp'
       },
       {
         title: 'Object 扩展',
-        path: '/frontend-knowledge/es6-and-beyond/es9-object'
+        path: '/frontend/es6-and-beyond/es9-object'
       },
       {
         title: 'Promise.prototype.finally()',
-        path: '/frontend-knowledge/es6-and-beyond/es9-promise'
+        path: '/frontend/es6-and-beyond/es9-promise'
       }
     ]
   },
@@ -137,31 +137,31 @@ module.exports = [
     children: [
       {
         title: 'Object.fromEntries()',
-        path: '/frontend-knowledge/es6-and-beyond/es10-object'
+        path: '/frontend/es6-and-beyond/es10-object'
       },
       {
         title: 'String 扩展',
-        path: '/frontend-knowledge/es6-and-beyond/es10-string'
+        path: '/frontend/es6-and-beyond/es10-string'
       },
       {
         title: 'Array 扩展',
-        path: '/frontend-knowledge/es6-and-beyond/es10-array'
+        path: '/frontend/es6-and-beyond/es10-array'
       },
       {
         title: '修订 Function.prototype.toString()',
-        path: '/frontend-knowledge/es6-and-beyond/es10-function'
+        path: '/frontend/es6-and-beyond/es10-function'
       },
       {
         title: '可选的 Catch Binding',
-        path: '/frontend-knowledge/es6-and-beyond/es10-catch'
+        path: '/frontend/es6-and-beyond/es10-catch'
       },
       {
         title: 'JSON 扩展',
-        path: '/frontend-knowledge/es6-and-beyond/es10-json'
+        path: '/frontend/es6-and-beyond/es10-json'
       },
       {
         title: 'Symbol 扩展',
-        path: '/frontend-knowledge/es6-and-beyond/es10-symbol'
+        path: '/frontend/es6-and-beyond/es10-symbol'
       }
     ]
   },
@@ -171,31 +171,31 @@ module.exports = [
     children: [
       {
         title: 'String 扩展',
-        path: '/frontend-knowledge/es6-and-beyond/es11-string'
+        path: '/frontend/es6-and-beyond/es11-string'
       },
       {
         title: '动态引入',
-        path: '/frontend-knowledge/es6-and-beyond/es11-dynamic-import'
+        path: '/frontend/es6-and-beyond/es11-dynamic-import'
       },
       {
         title: 'BigInt',
-        path: '/frontend-knowledge/es6-and-beyond/es11-bigint'
+        path: '/frontend/es6-and-beyond/es11-bigint'
       },
       {
         title: 'Promise.allSettled()',
-        path: '/frontend-knowledge/es6-and-beyond/es11-promise'
+        path: '/frontend/es6-and-beyond/es11-promise'
       },
       {
         title: 'globalThis',
-        path: '/frontend-knowledge/es6-and-beyond/es11-globalthis'
+        path: '/frontend/es6-and-beyond/es11-globalthis'
       },
       {
         title: '可选链 Optional chaining',
-        path: '/frontend-knowledge/es6-and-beyond/es11-chaining'
+        path: '/frontend/es6-and-beyond/es11-chaining'
       },
       {
         title: '空值合并运算符',
-        path: '/frontend-knowledge/es6-and-beyond/es11-nullish'
+        path: '/frontend/es6-and-beyond/es11-nullish'
       }
     ]
   },
@@ -205,23 +205,23 @@ module.exports = [
     children: [
       {
         title: 'String 扩展',
-        path: '/frontend-knowledge/es6-and-beyond/es12-string'
+        path: '/frontend/es6-and-beyond/es12-string'
       },
       {
         title: '类的私有方法',
-        path: '/frontend-knowledge/es6-and-beyond/es12-private-class-fields'
+        path: '/frontend/es6-and-beyond/es12-private-class-fields'
       },
       {
         title: 'Promise.any() 和 AggregateError',
-        path: '/frontend-knowledge/es6-and-beyond/es12-promise'
+        path: '/frontend/es6-and-beyond/es12-promise'
       },
       {
         title: '数字分隔符',
-        path: '/frontend-knowledge/es6-and-beyond/es12-number'
+        path: '/frontend/es6-and-beyond/es12-number'
       },
       {
         title: '新的逻辑操作符',
-        path: '/frontend-knowledge/es6-and-beyond/es12-logical'
+        path: '/frontend/es6-and-beyond/es12-logical'
       }
     ]
   }

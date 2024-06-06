@@ -57,7 +57,7 @@ promise.then(onFulfilled, onRejected)
   * 2.2.3.2. 该函数不能在过渡到 rejected 状态之前调用。
   * 2.2.3.3. 该函数只能被调用一次。
 * 2.2.4. `onFulfilled` 和 `onRejected` 只有在执行上下文栈仅包含平台代码时才可以被调用。（平台代码：[注释 3.1](https://promisesaplus.com/#point-67)）
-* 2.2.5. `onFulfilled` 和 `onRejected` 只能[以函数的形式被调用](/frontend-knowledge/javascript/function-invocation/#作为函数调用)（严格模式中 `this` 值为 `undefined`，非严格模式中为全局对象，[注释 3.2](https://promisesaplus.com/#point-69)）。
+* 2.2.5. `onFulfilled` 和 `onRejected` 只能[以函数的形式被调用](/frontend/javascript/function-invocation/#作为函数调用)（严格模式中 `this` 值为 `undefined`，非严格模式中为全局对象，[注释 3.2](https://promisesaplus.com/#point-69)）。
 * 2.2.6. `then` 方法可以被一个 promise 多次调用：
   * 2.2.6.1. 当 promise 过渡到 fulfilled 状态时，所有相应的 onFulfilled 回调必须按照 then 的顺序依次执行。
   * 2.2.6.2. 当 promise 过渡到 rejected 状态时，所有相应的 onRejected 回调必须按照 then 的顺序依次执行。

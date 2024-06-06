@@ -4,7 +4,7 @@
 > 
 > 这篇文章其实是：输入 URL 到页面展示，中间发生了什么？（网络版）—— 侧重网络模型的行为过程
 > 
-> 之前写过另一个：[输入 URL 到页面展示，中间发生了什么？（前端版）](/frontend-knowledge/browser/browser-macro-knowledge/#输入-url-到页面展示) —— 侧重客户端的行为过程
+> 之前写过另一个：[输入 URL 到页面展示，中间发生了什么？（前端版）](/frontend/browser/browser-macro-knowledge/#输入-url-到页面展示) —— 侧重客户端的行为过程
 
 ## 应用层数据：HTTP
 

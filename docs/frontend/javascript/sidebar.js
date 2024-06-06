@@ -75,15 +75,15 @@ module.exports = [
       },
       {
         title: '声明函数的六种方式',
-        path: '/frontend-knowledge/javascript/function-declare'
+        path: '/frontend/javascript/function-declare'
       },
       {
         title: '调用函数的四种方式',
-        path: '/frontend-knowledge/javascript/function-invocation'
+        path: '/frontend/javascript/function-invocation'
       },
       {
         title: '未完待续',
-        path: '/frontend-knowledge/javascript/to-be-continued'
+        path: '/frontend/javascript/to-be-continued'
       }
     ]
   }
