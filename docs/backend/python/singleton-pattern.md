@@ -4,8 +4,8 @@
 
 优点：
 
-* 因为单例模式在全局内只有一个实例，因此可以节省比较多的内存空间。
-* 全局只有一个接入点，可以更好地进行数据同步控制，避免多重占用。
++ 因为单例模式在全局内只有一个实例，因此可以节省比较多的内存空间。
++全局只有一个接入点，可以更好地进行数据同步控制，避免多重占用。
 
 Python 实现单例模式有五种方式。
 
@@ -46,281 +46,235 @@ from my_singleton import singleton
 编写一个单例模式的装饰器，来装饰那些需要支持单例的类：
 
 ```python
+import threading
+import time
+
+
 def singleton(cls):
     # 创建一个字典用来保存被装饰类的实例对象
     _instance = {}
+    # 使用线程锁来确保在同一时间只有一个线程能够访问创建实例的代码段
+    _lock = threading.Lock()
 
     def wrapper(*args, **kwargs):
-        # 判断这个类有没有创建过对象，没有就新创建一个，有则返回之前创建的  
+        # 初次检查：如果已经有一个实例存在，则可以直接返回这个实例（减少了获取锁的开销）
         if cls not in _instance:
-            _instance[cls] = cls(*args, **kwargs)
+            with _lock:
+                # 二次检查：在锁的内部再次检查实例是否存在，不存在就创建（解决多线程问题）
+                if cls not in _instance:
+                    _instance[cls] = cls(*args, **kwargs)
         return _instance[cls]
 
     return wrapper
+
 
 @singleton
-class A(object):
-    def __init__(self, a=0):
-        self.a = a
+class MyObject(object):
+    def __init__(self, *args, **kwargs):
+        # 添加延迟，模拟线程不安全的情况，实际的生产环境中不要加
+        time.sleep(0.1)
+        # 一些初始化操作
+        # ...
 
 
-a1 = A(1)
-a2 = A(2)
-# id() 函数可以获取对象的内存地址，同一内存地址即为同一对象
-print(id(a1), id(a2))
+if __name__ == '__main__':
+    # --- 测试代码 ---
+    def task():
+        obj = MyObject(1)
+        print(f"id: {id(obj)}")
+
+    for i in range(10):
+        t = threading.Thread(target=task)
+        t.start()
 ```
 
-上述代码只是为了简单的演示思路，实际上在多线程环境下，这种设计方法是不安全的，多个线程同时判断 `cls` 是否在 `_instance` 字典中，得到的返回结果都是 `False`，于是这些线程都会去创建对象，为了避免这种情况，加上一把 `RLock` 锁：
+上述代码有两个重要点：
 
-```python
-from threading import RLock
-single_lock = RLock()
++ 线程锁：
+  + 如果多个线程几乎同时到达 `if cls not in _instance:` 这一行，它们都可能判断出没有实例存在，然后都试图去创建一个新的实例，这就违反了单例模式的原则。
+  + 因此需要在创建实例之前获取锁，确保同一时间只有一个线程能够创建实例。这就是 `with _lock:` 这一行的作用。
+  + 注意为了保证线程安全，在类内部加入锁机制，会使加锁部分代码串行执行，速度降低。
++ 双重检查锁定：
+  + 第一次检查是为了在已经有实例存在的情况下，减少获取锁的开销。
+  + 第二次检查是为了解决多线程下的安全问题。
 
-def Singleton(cls):
-    _instance = {}
-
-    def wrapper(*args, **kargs):
-        with single_lock:
-            if cls not in _instance:
-                _instance[cls] = cls(*args, **kargs)
-        return _instance[cls]
-
-    return wrapper
-```
+**接下来实现单例模式的其它方式中，都将沿用这两个思想**。
 
 ### 类装饰器方式
 
 ```python
-from threading import RLock
+import threading
+import time
 
 
 class Singleton(object):
-    _single_lock = RLock()
+    _lock = threading.Lock()
 
     def __init__(self, cls):
         self._cls = cls
         self._instance = {}
 
-    def __call__(self):
-        with Singleton._single_lock:
-            if self._cls not in self._instance:
-                self._instance[self._cls] = self._cls()
+    def __call__(self, *args, **kwargs):
+        if self._cls not in self._instance:
+            with Singleton._lock:
+                if self._cls not in self._instance:
+                    self._instance[self._cls] = self._cls(*args, **kwargs)
         return self._instance[self._cls]
 
 
 @Singleton
-class B(object):
-    def __init__(self):
-        pass
+class MyObject(object):
+    def __init__(self, *args, **kwargs):
+        # 添加延迟，模拟线程不安全的情况，实际的生产环境中不要加
+        time.sleep(0.1)
+        # 一些初始化操作
+        # ...
 
-b1 = B()
-b2 = B()
-print(id(b1), id(b2))
+
+if __name__ == '__main__':
+    # --- 测试代码 ---
+    def task():
+        obj = MyObject(1)
+        print(f"id: {id(obj)}")
+
+    for i in range(10):
+        t = threading.Thread(target=task)
+        t.start()
 ```
+
+上述代码的注意点在于：在 `MyObject` 的 `__init__` 方法中接收了 `*args` 和 `**kwargs` 参数，因此 `Singleton` 类的 `__call__` 方法也需要添加对参数的支持，并且在调用 `self._cls()` 时传入这些参数。
 
 ## 使用类的方式实现
 
 ```python
-class Singleton(object):
+import threading
+import time
+
+
+class MyObject(object):
+    _single_lock = threading.Lock()
+    _single_instance = None
+
     def __init__(self, *args, **kwargs):
+        # 一些初始化操作
+        # ...
         pass
-        
+
     @classmethod
     def get_instance(cls, *args, **kwargs):
-        # hasattr() 函数用于判断对象是否包含对应的属性，这里是看看这个类有没有 _instance 属性  
-        if not hasattr(Singleton, '_instance' ):
-            Singleton._instance = Singleton(*args, **kwargs)
+        # 添加延迟，模拟线程不安全的情况，实际的生产环境中不要加
+        time.sleep(0.1)
+        # 使用 cls 变量代替硬编码的类名，
+        # 这样凡是继承当前类的子类，都可以使用这个单例模式的实现，而不需要重新实现当前方法
+        if cls._single_instance is None:
+            with cls._single_lock:
+                if cls._single_instance is None:
+                    cls._single_instance = cls(*args, **kwargs)
 
-        return Singleton._instance
+        return cls._single_instance
 
 
-s1 = Singleton()  # 使用这种方式创建实例的时候，并不能保证单例 
-s2 = Singleton.get_instance()  # 只有使用这种方式创建的时候才可以实现单例 
-s3 = Singleton()
-s4 = Singleton.get_instance()
+if __name__ == '__main__':
+    # --- 测试代码 ---
+    def task():
+        obj = MyObject.get_instance(1)
+        print(f"id: {id(obj)}")
 
-print(id(s1), id(s2), id(s3), id(s4))
+    for i in range(10):
+        t = threading.Thread(target=task)
+        t.start()
 ```
 
 其实这种方式的思路就是，调用类的 `get_instance()` 方法去创建对象，这个方法会判断之前有没有创建过对象，有的话也是会返回之前已经创建的对象，不再新创建。
 
-但是这样有一个弊端，就是在使用类创建 `s3 = Singleton()` 这种方式的时候，就不能保证单例了，也就是说在创建类的时候一定要用类里面规定的 `get_instance()` 方法创建。
-
-再者，当使用多线程时这样也会存在问题，比如下面的代码：
-
-```python
-class Singleton(object):
-    def __init__(self, *args, **kwargs):
-        import time
-        time.sleep(1)
-
-    @classmethod
-    def get_instance(cls, *args, **kwargs):
-        # hasattr() 函数用于判断对象是否包含对应的属性，这里是看看这个类有没有 _instance 属性
-        if not hasattr(Singleton, '_instance'):
-            Singleton._instance = Singleton(*args, **kwargs)
-
-        return Singleton._instance
-
-
-def task():
-    obj = Singleton.get_instance()
-    print(obj)
-
-
-for i in range(10):
-    t = threading.Thread(target=task)
-    t.start()
-```
-
-程序执行后，打印结果：
-
-```python
-<__main__.Singleton object at 0x031014B0>
-<__main__.Singleton object at 0x00DA32F0>
-<__main__.Singleton object at 0x03101430>
-<__main__.Singleton object at 0x03101530>
-<__main__.Singleton object at 0x031015B0>
-<__main__.Singleton object at 0x031016B0>
-<__main__.Singleton object at 0x03101630>
-<__main__.Singleton object at 0x03101830>
-<__main__.Singleton object at 0x03101730>
-<__main__.Singleton object at 0x031017B0>
-
-Process finished with exit code 0
-```
-
-如果在 `__init__()` 方法中有一些 IO 操作（此处使用 `time.sleep(1)` 来模拟），就会发现此时并不是同一个实例对象，这是因为在一个对象创建的过程中，会先去获取 `_instance` 属性，判断之前有没有实例对象，因为 IO 耗时操作，当他们判断的时候，还没有对象完成实例化，所以就会调用 `init()` 方法进行实例化，结果就是调用了多次，然后就创建了多个对象。
-
-那要如何解决呢？
-
-答案是加锁，在获取对象属性 `_instance` 的时候加锁，如果已经有人在获取对象了，其他的人如果要获取这个对象，就先等一下，因为前面的那个人，可能在创建对象，就是还没创建完成。
-
-代码如下：
-
-```python
-from threading import RLock
-
-
-class Singleton(object):
-    _single_lock = RLock()  # 线程锁
-    
-    def __init__(self, *args, **kwargs):
-        import time
-        time.sleep(1)
-
-    @classmethod
-    def get_instance(cls, *args, **kwargs):
-        with Singleton._single_lock:
-            # hasattr() 函数用于判断对象是否包含对应的属性，这里是看看这个类有没有 _instance 属性
-            if not hasattr(Singleton, '_instance'):
-                Singleton._instance = Singleton(*args, **kwargs)
-
-        return Singleton._instance
-```
-
-但是为了保证线程安全，在类内部加入锁机制，又会使加锁部分代码串行执行，速度降低。
+但是这样有一个弊端，就是在使用类创建 `obj = MyObject()` 这种方式的时候，就不能保证单例了，也就是说在创建类的时候一定要用类里面规定的 `get_instance()` 方法。
 
 ## 使用 `__new__()` 函数实现
 
 ```python
-class Singleton(object):
-    _instance = None
+import threading
+import time
+
+
+class MyObject(object):
+    _single_lock = threading.Lock()
+    _single_instance = None
+    _has_initialized = False
 
     def __new__(cls, *args, **kwargs):
-        print('__new__')
-        if cls._instance is None:
-            # 创建新实例
-            cls._instance = super().__new__(cls)
-        return cls._instance
-    
-    def __init__(self, name):
-        print('__init__')
-        self.name = name
+        if cls._single_instance is None:
+            with cls._single_lock:
+                if cls._single_instance is None:
+                    # 添加延迟，模拟线程不安全的情况，实际的生产环境中不要加
+                    time.sleep(0.1)
+                    cls._single_instance = super().__new__(cls)
+        return cls._single_instance
+
+    def __init__(self, *args, **kwargs):
+        if not self._has_initialized:
+            with self._single_lock:
+                if not self._has_initialized:
+                    # 一些初始化操作
+                    # ...
+                    self._has_initialized = True
 
 
-obj1 = Singleton('模块单例')
-obj2 = Singleton('模块单例')
-print(obj1, obj2)
+if __name__ == '__main__':
+    # --- 测试代码 ---
+    def task():
+        obj = MyObject(1)
+        print(f"id: {id(obj)}")
+
+    for i in range(10):
+        t = threading.Thread(target=task)
+        t.start()
 ```
 
-当 Python 实例化一个对象时，是先执行类的 `__new__()` 方法，当我们没写 `__new__()` 方法时，默认调用基类 `object` 的 `__new__()` 方法，然后再执行类的 `__init__()` 方法，对这个对象进行初始化。
+在 Python 中，当创建一个新的对象实例时，Python 首先会调用 `__new__()` 方法来创建实例（没写 `__new__()` 方法时默认调用基类 `object` 的 `__new__()` 方法），然后再调用 `__init__()` 方法来初始化这个实例。
 
-所以我们可以基于这个，去实现单例模式。我们通过 `cls._instance is None` 去判断之前有没有实例化过对象，如果有，就直接返回，没有就新创建一个。
+所以可以基于这个去实现单例模式：在创建实例前去判断之前有没有实例化过对象，如果有就直接返回，没有就新创建一个。
 
-从控制台输出可以看出，同样实现了单例：
+值得一提的是，在对象的生命周期中，这两个方法并不是原子的，它们是两个独立的步骤，先执行 `__new__()`，然后执行 `__init__()`，在这两个步骤之间，其他的操作是可以插入的。
 
-```python
-__new__
-__init__
-__new__
-__init__
-<__main__.Singleton object at 0x00000226FD86DF10> <__main__.Singleton object at 0x00000226FD86DF10>
-```
+因此上面的代码中用到了**两次线程锁**和**两次双重检查锁定**，各自的作用如下：
 
-但这样其实有个小问题，看输出其实执行了两遍 `__init__()` 方法，既然是同一个对象，初始化两次，这是不太合理的，因为如果后面在实例化时候传递了不同的参数，会直接把单例的相应属性给修改掉。
-
-因此我们可以改造一下，和单例模式的解决思路差不多：定义一个类属性标记（`_initialized`）表示是否第一次执行初始化动作。
-
-```python
-class Singleton(object):
-    _instance = None
-    _initialized = False
-
-    def __new__(cls, *args, **kwargs):
-        print("__new__")
-        if cls._instance is None:
-            # 创建新实例
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __init__(self, name):
-        if not self._initialized:
-            print("__init__")
-            self.name = name
-            self._initialized = True
-
-
-obj1 = Singleton('模块单例')
-obj2 = Singleton('模块单例')
-print(obj1, obj2)
-```
-
-输出结果：
-
-```python
-__new__
-__init__
-__new__
-<__main__.Singleton object at 0x0000017F50F0DF10> <__main__.Singleton object at 0x0000017F50F0DF10>
-```
-
-而且 `__new__()` 方法是支持多线程的，不需要单独再加线程锁进行规避操作，省时又省力。
++ 在 `__new__` 方法中：
+  + 线程锁用来保护 `_single_instance` 变量，防止在等待获取锁的过程中，其他线程已经创建了实例吗，从而重复创建实例，违反单例模式的原则。
+  + 双重检查锁定用于确保单例对象只被创建一次。
++ 在 `__init__` 方法中：
+  + 线程锁用来保护 `_has_initialized` 变量，防止在等待获取锁的过程中，其他线程已经完成了初始化，从而重复执行初始化逻辑，引发一些不必要的问题。
+  + 双重检查锁定用于确保单例对象只被初始化一次。
 
 ## 使用元类
 
 在上述所有实现单例模式的方法中，基于元类的实现可能是最难理解的一个。
 
-在 Python 中，`type` 和 `object` 是两个特殊的内置类。`type` 是所有类的元类，包括它自身，而 `object` 是所有类和实例的基类。
+在 Python 中，`type` 和 `object` 是两个特殊的内置类：
 
-* 当创建一个类并让它继承自 `type` 时，实际上是在创建一个元类。元类是用来创建类的类，在下面的例子中，`SingletonType` 是一个元类，它的实例是类，而不是普通的对象。
-* 当创建一个类并让它继承自 `object` 时，创建的是一个普通的类。这个类的实例是普通的对象，而不是类。
++ `type` 是所有类的元类，包括它自身。
+  + 当创建一个类并让它继承自 `type` 时，实际上是在创建一个元类。
+  + 元类是用来创建类的类，**元类的实例是类，而不是普通的对象**。
+  + 在下面的例子中，`SingletonType` 是一个元类。
++ `object` 是所有类和实例的基类。
+  + 当创建一个类并让它继承自 `object` 时，创建的是一个普通的类。
+  + **类的实例是普通的对象**，而不是类。
 
 > 元类是一个高级特性，通常只在构建复杂的库或框架时使用。在大多数情况下并不需要直接使用元类。
 
 下面使用更多的注释来解释代码的含义：
 
 ```python
-from threading import RLock
+import threading
+import time
 
-# 在 Python 中 type 是所有类的元类
+
 class SingletonType(type):
-    _single_lock = RLock()
+    _single_lock = threading.Lock()
 
     # __call__ 方法可以让类的实例像函数一样去调用
-    # 下面的 Singleton 继承了 SingletonType 这个元类，那么 Singleton 就是元类 SingletonType 通过 __new__ 构造出来的实例
-    # 当实例 Singleton 调用 Singleton() 时，就是在调用元类SingletonType 的 __call__ 方法
-    # 在 __call__ 方法里，cls 就是下面的类 Singleton
+    # 下面的 MyObject 继承了 SingletonType 这个元类，那么 MyObject 就是元类 SingletonType 通过 __new__ 构造出来的实例
+    # 当实例 MyObject 调用 Singleton() 时，就是在调用元类SingletonType 的 __call__ 方法
+    # 在 __call__ 方法里，cls 就是下面的类 MyObject
     def __call__(cls, *args, **kwargs):
         with SingletonType._single_lock:
             if not hasattr(cls, "_instance"):
@@ -332,25 +286,32 @@ class SingletonType(type):
 
 
 # 在定义类时通过 metaclass 关键字参数来指定元类
-# 当创建 Singleton 的一个实例时，SingletonType 元类中的方法（例如 __new__ 和 __init__）会被调用，从而允许我们控制 Singleton 的创建过程
-class Singleton(metaclass=SingletonType):
-    def __init__(self, name):
-        self.name = name
+# 当创建 MyObject 的一个实例时，SingletonType 元类中的方法（例如 __new__ 和 __init__）会被调用，从而允许我们控制 MyObject 的创建过程
+class MyObject(metaclass=SingletonType):
+    def __init__(self, *args, **kwargs):
+        # 添加延迟，模拟线程不安全的情况，实际的生产环境中不要加
+        time.sleep(0.1)
+        # 一些初始化操作
+        # ...
 
 
-single_1 = Singleton('第1次创建')
-single_2 = Singleton('第2次创建')
+if __name__ == '__main__':
+    # --- 测试代码 ---
+    def task():
+        obj = MyObject(1)
+        print(f"id: {id(obj)}")
 
-print(single_1.name, single_2.name)  # 第1次创建 第1次创建
-print(single_1 is single_2)          # True
+    for i in range(10):
+        t = threading.Thread(target=task)
+        t.start()
 ```
 
 ## 总结
 
 上述五种方法都可以实现多线程环境下的安全的单例模式，但是具体哪个最好取决于需求和使用场景。
 
-* 考虑降低代码复杂性：使用模块或函数装饰器来实现单例无疑是最好的选择。
-* 考虑灵活性：例如希望能够在运行时改变单例的实例，那么可能需要使用 `__new__` 方法或元类，但是它们的代码也更复杂。
-* 考虑性能：使用模块或 `__new__` 方法，这两种方法的性能通常比使用装饰器或元类要好。
++ 考虑降低代码复杂性：使用模块或函数装饰器来实现单例无疑是最好的选择。
++ 考虑灵活性：例如希望能够在运行时改变单例的实例，那么可能需要使用 `__new__` 方法或元类，但是它们的代码也更复杂。
++ 考虑性能：使用模块或 `__new__` 方法，这两种方法的性能通常比使用装饰器或元类要好。
 
 （完）
