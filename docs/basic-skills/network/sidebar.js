@@ -12,6 +12,10 @@ module.exports = [
         path: '/basic-skills/network/ip-address'
       },
       {
+        title: '子网掩码、网络地址和广播地址',
+        path: '/basic-skills/network/ip-address-subnet-mask'
+      },
+      {
         title: 'UDP 协议',
         path: '/basic-skills/network/udp'
       },
