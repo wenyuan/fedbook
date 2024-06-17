@@ -52,6 +52,7 @@ import time
 
 def singleton(cls):
     # 创建一个字典用来保存被装饰类的实例对象
+    # 因为可能会有多个类使用这个单例装饰器，每个类都需要有自己的实例
     _instance = {}
     # 使用线程锁来确保在同一时间只有一个线程能够访问创建实例的代码段
     _lock = threading.Lock()
