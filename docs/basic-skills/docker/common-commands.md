@@ -131,6 +131,21 @@ docker container exec -it [container_id] /bin/bash
 
 其中容器 ID 只要是能够证明唯一就可以，不用全输入。
 
+## docker cp
+
+该命令用于在 Docker 容器和主机之间复制文件或目录。
+
+```bash
+# 将主机上的文件或目录拷贝到容器的目录下
+docker cp [src_path] [container_id]|[container_name]:[dest_path]
+
+# 将容器中的目录拷贝到主机的目录下
+docker cp [container_id]|[container_name]:[src_path] [dest_path]
+
+# 新版本推荐使用
+docker container cp
+```
+
 ## docker login
 
 为应用程序构建镜像并测试成功运行后，如果需要共享给其他人使用，就需要注册镜像仓库。
@@ -189,6 +204,7 @@ docker image pull test-user/vue3:v1
 
 ## 拓展
 
-推荐一个文档：[Docker 简介和安装 - Docker 快速入门](https://docker.easydoc.net/doc/81170005/cCewZWoN/lTKfePfP)
++ 推荐一个文档：[Docker 简介和安装 - Docker 快速入门](https://docker.easydoc.net/doc/81170005/cCewZWoN/lTKfePfP)
++ 官方文档： [官方文档](https://docs.docker.com/reference/cli/docker/container/)
 
 （完）
