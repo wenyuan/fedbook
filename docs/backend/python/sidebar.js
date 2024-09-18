@@ -123,6 +123,10 @@ module.exports = [
         title: '迭代器 Iterator',
         path: '/backend/python/iterator'
       },
+      {
+        title: '封装防抖和节流函数',
+        path: '/backend/python/debounce-and-throttle'
+      },
     ]
   },
   {
