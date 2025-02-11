@@ -42,7 +42,15 @@ module.exports = [
       {
         title: '类型提示进阶：typing 模块',
         path: '/backend/python/typing-for-type-hints'
-      }
+      },
+      {
+        title: 'Py2 和 Py3 语法特性区别',
+        path: '/backend/python/diffs-between-py2-and-py3'
+      },
+      {
+        title: '平时用到的编程小技巧',
+        path: '/backend/python/tips-in-programming'
+      },
     ]
   },
   {
