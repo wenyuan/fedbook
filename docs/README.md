@@ -10,11 +10,11 @@ action:
   type: default
 features:
 - title: 夯实基础
-  details: 不积跬步无以至千里，仰望星空更要脚踏实地。
+  details: 千里之行始于足下，既要仰望星空也要脚踏实地。
 - title: 构建体系
-  details: 告别碎片化学习方式，构建出自己的知识体系。
+  details: 告别碎片化学习困境，构建自己的知识结构体系。
 - title: 持续学习
-  details: 只要投入时间努力学，不管什么知识总能学会。
+  details: 投入时间付出精力，再难的知识也总可以被掌握。
 footer: MIT Licensed | Copyright © 2020-present Wenyuan Xu
 copyrightText: false
 ---
