@@ -37,6 +37,11 @@ docker run [options] [image_name]
 
 # 1.13 版本之后推荐使用
 docker container run [options] [image_name]
+
+# 示例：
+# 用 face 镜像创建一个容器名为 node
+# 把容器 3000 端口 映射到宿主机 3000 端口，把 /demo 目录（比如需要运行的程序）映射到宿主机的 /demo
+docker run -d -it -p 3000:3000 -v /demo:/demo --name node face
 ```
 
 这里要特别说一下 `docker run` 的 `option`，因为最常用：
@@ -44,7 +49,7 @@ docker container run [options] [image_name]
 * `--name` 为容器指定一个名称，否则 Docker 会为其分配一个随机名称。
 * `-d` 容器启动后进入后台，并返回容器 ID，即启动守护式容器。
 * `-P` 随机端口映射。
-* `-p 80:8080` 将本地 80 端口映射到容器的 8080 端口。
+* `-p 80:8080` 将容器的 8080 端口映射到宿主机的 80 端口。
 * `bash` 容器启动以后，内部第一个执行的命令。这里启动 bash，保证用户可以使用 Shell。
 * `-i` 以交互模式运行容器，通常与 `-t` 同时使用。
 * `-t` 为容器重新分配一个伪输入终端，容器的 Shell 会映射到当前的 Shell，然后在本机窗口输入的命令，就会传入容器，通常与 `-i` 同时使用。
