@@ -82,6 +82,13 @@ module.exports = [
         ]
       },
       {
+        text: 'Java 技术栈',
+        items: [
+          { text: 'JavaSE', link: '/backend/java/string' },
+          { text: 'Spring', link: '/backend/spring/annotation' }
+        ]
+      },
+      {
         text: '数据库/中间件',
         items: [
           { text: 'MySQL', link: '/backend/mysql/' },

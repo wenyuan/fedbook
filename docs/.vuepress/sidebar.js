@@ -25,6 +25,8 @@ module.exports = {
   /* --------- 后端知识 --------- */
   '/backend/python/': require('../backend/python/sidebar'),
   '/backend/django/': require('../backend/django/sidebar'),
+  '/backend/java/': require('../backend/java/sidebar'),
+  '/backend/spring/': require('../backend/spring/sidebar'),
   '/backend/mysql/': require('../backend/mysql/sidebar'),
   '/backend/redis/': require('../backend/redis/sidebar'),
   '/backend/elasticsearch/': require('../backend/elasticsearch/sidebar'),
