@@ -15,6 +15,14 @@ module.exports = [
         title: '集合',
         path: '/backend/java/collection'
       },
+      {
+        title: '反射',
+        path: '/backend/java/reflection'
+      },
+      {
+        title: '多线程',
+        path: '/backend/java/thread'
+      },
     ]
   }
 ]
