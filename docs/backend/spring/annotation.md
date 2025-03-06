@@ -18,14 +18,18 @@ public class SpringSecurityJwtGuideApplication {
 它其实是一个组合注解，集合了：`@Configuration`、`@EnableAutoConfiguration`、`@ComponentScan`。
 
 + `@EnableAutoConfiguration`：启用 SpringBoot 的自动配置机制。
-+ `@ComponentScan`：扫描被 `@Component`（`@Service`，`@Controller`）注解的 bean，注解默认会扫描该类所在的包下所有的类。
-+ `@Configuration`：允许在 Spring 上下文中注册额外的 bean 或导入其他配置类。
++ `@ComponentScan`：扫描被 `@Component`（`@Service`，`@Controller`）注解的 Bean，注解默认会扫描该类所在的包下所有的类。
++ `@Configuration`：允许在 Spring 上下文中注册额外的 Bean 或导入其他配置类。
 
-## Spring Bean 相关
+## Spring Bean 注解
 
 ### @Autowired
 
 作用：自动将 Spring 容器中相应的 Bean 注入到当前类，避免手动实例化对象。
+
+通常与构造函数、Setter 方法或字段一起使用。
+
+用法：
 
 ```java
 @Service
@@ -42,7 +46,7 @@ public class UserController {
 }
 ```
 
-我们一般使用 `@Autowired` 注解让 Spring 容器帮我们自动装配 bean。
+我们一般使用 `@Autowired` 注解让 Spring 容器帮我们自动装配 Bean。
 
 不过现在（2025年）又有说法说不推荐使用字段注入（Field Injection），至少下面的代码 IDE 会给出黄色波浪线提示：
 
@@ -98,7 +102,7 @@ public class YourClass {
 
 ### @Component，@Repository，@Service，@Controller
 
-作用：要想把类标识成可用于 `@Autowired` 注解自动装配的 Bean 的类，可以采用以下注解实现：
+作用：要想把类标识成会被 Spring 扫描并注册为一个 Bean 的类，可以采用以下注解实现：
 
 + `@Component`：通用的注解，可标注任意类为 Spring 组件。如果一个 Bean 不知道属于哪个层，可以使用` @Component` 注解标注。
 + `@Repository`：对应持久层即 Dao 层，主要用于数据库相关操作。
@@ -109,7 +113,7 @@ public class YourClass {
 
 ### @RestController
 
-作用：用于表示这是个控制器 bean，并且是将函数的返回值直接填入 HTTP 响应体中，是 REST 风格的控制器。
+作用：用于表示这是个控制器 Bean，并且是将函数的返回值直接填入 HTTP 响应体中，是 REST 风格的控制器。
 
 它是 `@Controller` 和 `@ResponseBody` 的合集。
 
@@ -129,14 +133,14 @@ public Person personSingleton() {
 
 四种常见的 Spring Bean 的作用域：
 
-+ `singleton`：唯一 bean 实例，Spring 中的 bean 默认都是单例的。
-+ `prototype`：每次请求都会创建一个新的 bean 实例。
-+ `request`：每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。
-+ `session`：每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。
++ `singleton`：唯一 Bean 实例，Spring 中的 Bean 默认都是单例的。
++ `prototype`：每次请求都会创建一个新的 Bean 实例。
++ `request`：每一次 HTTP 请求都会产生一个新的 Bean，该 Bean 仅在当前 HTTP request 内有效。
++ `session`：每一次 HTTP 请求都会产生一个新的 Bean，该 Bean 仅在当前 HTTP session 内有效。
 
 ### @Configuration
 
-作用：一般用来声明配置类，可以使用 `@Component` 注解替代，不过使用 `Configuration` 注解声明配置类更加语义化。
+作用：用于定义 Bean，一般用来标志配置类，可以使用 `@Component` 注解替代，不过使用 `Configuration` 注解声明配置类更加语义化。
 
 使用方法：
 
@@ -157,7 +161,7 @@ public class AppConfig {
 + 显式配置和定义 Bean：指的是使用 `@Bean` 注解时，需要在配置类中手动编写代码来定义一个方法，该方法返回你想要注册为 Spring 容器中的 Bean 的对象。换句话说，你明确地定义了如何创建这个 Bean 以及它的配置细节。这是一种手动的、明确的方式。
 + 相比之下，自动检测和注册 Bean（即使用 `@Component`、`@Repository`、`@Service` 和 `@Controller` 注解）是一种自动化的方式。只需要在类上标注相应的注解，Spring 框架会通过组件扫描自动发现这些注解并将对应的类注册为 Sprin g容器中的 Bean。这种方式不需要手动编写配置代码，减少了显式配置的步骤。
 
-## 处理常见的 HTTP 请求类型
+## HTTP 请求注解
 
 5 种常见的请求类型:
 
@@ -166,6 +170,23 @@ public class AppConfig {
 + **PUT**：更新服务器上的资源（客户端提供更新后的整个资源）。举个例子：`PUT /users/12`（更新编号为 12 的学生）
 + **DELETE**：从服务器删除特定的资源。举个例子：`DELETE /users/12`（删除编号为 12 的学生）
 + **PATCH**：更新服务器上的资源（客户端提供更改的属性，可以看做作是部分更新），使用的比较少。
+
+### @RequestMapping
+
+作用：用于映射 HTTP 请求到控制器方法，并指定 URL 路径。
+
+用法：
+
+```java
+@Controller
+@RequestMapping("/my")
+public class MyController {
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello, World!";
+    }
+}
+```
 
 ### @GetMapping
 
@@ -334,7 +355,7 @@ private String mailbox;
 
 ### @ConfigurationProperties
 
-作用：读取配置信息并与 bean 绑定。
+作用：读取配置信息并与 Bean 绑定。
 
 ```java
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -729,6 +750,53 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 + `@OneToMany`：声明一对多关系
 + `@ManyToOne`：声明多对一关系
 + `MangToMang`：声明多对多关系
+
+## LomBok 工具注解
+
+这是一个 Java 库，它通过注解的方式可以简化 Java 代码的编写，能在编译时自动生成例如 getter 和 setter 方法、构造函数、`toString` 方法、`equals` 和 `hashCode` 方法等。
+
+### @Data
+
+作用：生成所有字段的 `getter`、`toString()`、`hashCode()`、`equals()`、所有非 `final` 字段的 `setter`、构造器。
+
+相当于设置了 `@Getter`、`@Setter`、`@RequiredArgsConstructor`、`@ToString` 和 `@EqualsAndHashCode`。
+
+用法：
+
+```java
+@Data
+public class User {
+    private String name;
+    private int age;
+}
+```
+
+### @Slf4j
+
+作用：最常用的日志注解，为类生成一个 SLF4J 日志对象。
+
+用法：
+
+```java
+@Slf4j
+public class LogExample {
+    public void doSomething() {
+        log.info("这是一条信息日志");
+        log.error("这是一条错误日志");
+        log.debug("这是一条调试日志");
+        
+        // 支持参数占位符
+        String name = "admin";
+        log.info("用户 {} 登录成功", name);
+        
+        try {
+            // 一些可能抛出异常的代码
+        } catch (Exception e) {
+            log.error("发生错误", e);
+        }
+    }
+}
+```
 
 ## 事务
 
