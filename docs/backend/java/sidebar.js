@@ -24,5 +24,15 @@ module.exports = [
         path: '/backend/java/thread'
       },
     ]
+  },
+  {
+    title: '项目实战',
+    collapsable: true,
+    children: [
+      {
+        title: '开发环境准备',
+        path: '/backend/java/dev-env'
+      }
+    ]
   }
 ]
