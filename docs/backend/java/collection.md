@@ -81,7 +81,7 @@ arrlist.removeAll(arrlist2);
 /**
  * 使用 foreach 循环遍历
  */
-for (String subject: arrlist) {
+for (String subject : arrlist) {
     System.out.println(subject);
 }
 

@@ -64,7 +64,7 @@ for(int i = 0; i < nums.length; i++) {
 ```java
 int[] nums = {10,9,17,18,22,34};
 
-for (int num: nums) {
+for (int num : nums) {
     // num 是数组元素，而不是索引
     System.out.println(num);
 }
