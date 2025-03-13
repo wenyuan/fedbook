@@ -85,7 +85,8 @@ module.exports = [
         text: 'Java 技术栈',
         items: [
           { text: 'JavaSE', link: '/backend/java/string' },
-          { text: 'Spring', link: '/backend/spring/annotation' }
+          { text: 'Spring', link: '/backend/spring/annotation' },
+          { text: '其他框架和库', link: '/backend/deps/activiti7-springboot' },
         ]
       },
       {
