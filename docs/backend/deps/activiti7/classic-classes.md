@@ -172,10 +172,11 @@ ProcessDefinition 与 ProcessInstance 是**一对多**的关系：即流程实�
 
 > 流程实例相关的 API 需要注入 `RuntimeService` 这个类。
 
-`startProcessInstanceByKey()` 接收两个参数：
+`startProcessInstanceByKey()` 可以接收两个参数：
 
 + 第一个参数：流程定义 key（就是 BPMN 图的 ID）
 + 第二个参数：业务标识 businessKey（就是业务表单的 ID，比如请假单的ID）
++ 第三个参数：流程变量 variables（Map 类型，这里添加的是全局变量）
 
 ```java
 package com.example.workflow;

@@ -86,7 +86,7 @@ module.exports = [
         items: [
           { text: 'JavaSE', link: '/backend/java/string' },
           { text: 'Spring', link: '/backend/spring/annotation' },
-          { text: '其他框架和库', link: '/backend/deps/activiti7-springboot' },
+          { text: '其他框架和库', link: '/backend/deps/activiti7/used-in-springboot' },
         ]
       },
       {
