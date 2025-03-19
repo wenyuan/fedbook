@@ -156,10 +156,30 @@ public class AppConfig {
 
 ### @Bean
 
-作用：用于在配置类中显式配置和定义一个 Spring Bean，一般在 @Configuration 注解的配置类中使用，定义返回 Bean 的方法。
+区别：
 
-+ 显式配置和定义 Bean：指的是使用 `@Bean` 注解时，需要在配置类中手动编写代码来定义一个方法，该方法返回你想要注册为 Spring 容器中的 Bean 的对象。换句话说，你明确地定义了如何创建这个 Bean 以及它的配置细节。这是一种手动的、明确的方式。
-+ 相比之下，自动检测和注册 Bean（即使用 `@Component`、`@Repository`、`@Service` 和 `@Controller` 注解）是一种自动化的方式。只需要在类上标注相应的注解，Spring 框架会通过组件扫描自动发现这些注解并将对应的类注册为 Sprin g容器中的 Bean。这种方式不需要手动编写配置代码，减少了显式配置的步骤。
++ 类级别注解（`@Component` 及其衍生注解）：会将类标记为 Spring 容器中的 Bean，它们主要用于类级别的注解。
++ 方法级别注解（`@Bean`）：主要用在配置类中的方法上，用于手动注册 Bean。
+
+@Bean适用场景：
+
++ 需要注册第三方库中的类时
++ 需要对 Bean 进行复杂配置时
++ 需要根据条件创建不同的 Bean 实例时
+
+示例：
+
+```java
+@Configuration
+public class AppConfig {
+    @Bean
+    public RestTemplate restTemplate() {
+        RestTemplate restTemplate = new RestTemplate();
+        // 可以进行详细配置
+        return restTemplate;
+    }
+}
+```
 
 ## HTTP 请求注解
 
