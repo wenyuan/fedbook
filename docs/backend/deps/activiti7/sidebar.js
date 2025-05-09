@@ -19,6 +19,10 @@ module.exports = [
         title: 'UEL表达式和流程变量',
         path: '/backend/deps/activiti7/uel-and-variables'
       },
+      {
+        title: '监听器',
+        path: '/backend/deps/activiti7/listener'
+      },
     ]
   }
 ]
