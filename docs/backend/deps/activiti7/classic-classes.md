@@ -422,6 +422,94 @@ public class Part4_Task {
 }
 ```
 
+### 服务任务
+
+常见用途：
+
++ 发短信
++ 发邮件
++ 调用其他接口
+
+服务任务是自动执行的，最简单的实现方式是「Java 类」。需要给它指定一个执行类，该执行类必须继承 JavaDelegate 接口。
+
+在 BPMN XML 中，服务任务需要使用 `<serviceTask>` 元素，并且需要指定以下关键属性：
+
+```xml
+<serviceTask id="服务任务的唯一标识符" name="服务任务的显示名称"
+    activiti:class="com.example.workflow.delegate.MyServiceTask"
+    activiti:async="true">
+</serviceTask>
+```
+
+执行类的代码示例如下：
+
+```java
+package com.example.workflow.delegate;
+
+import org.activiti.engine.delegate.DelegateExecution;
+import org.activiti.engine.delegate.JavaDelegate;
+
+public class SendEmailDelegate implements JavaDelegate {
+    @Override
+    public void execute(DelegateExecution execution) {
+        // 执行发送邮件的具体逻辑
+        // 获取流程相关的值
+        System.out.println(execution.getEventName());
+        System.out.println(execution.getProcessDefinitionId());
+        System.out.println(execution.getProcessInstanceId());
+        // 获取流程变量
+        String username = (String) execution.getVariable("email");
+        // 也可以设置流程变量
+        execution.setVariable("name", "张三");
+        
+        // ... 处理业务逻辑 ...
+    }
+}
+```
+
+但在 BPMN XML 中直接填写 Java 类的完整类名存在代码泄露的风险，因此比较推荐使用委托表达式。
+
+BPMN XML文件的修改：
+
+```xml
+<serviceTask id="服务任务的唯一标识符" name="服务任务的显示名称" 
+    activiti:delegateExpression="${sendEmailDelegate}" 
+    activiti:async="true">
+</serviceTask>
+```
+
+Java类的修改：
+
+```java
+package com.example.workflow.delegate;
+
+import org.activiti.engine.delegate.DelegateExecution;
+import org.activiti.engine.delegate.JavaDelegate;
+import org.springframework.stereotype.Component;
+
+@Component("sendEmailDelegate")  // Bean 名称要与流程定义中的表达式一致
+public class SendEmailDelegate implements JavaDelegate {
+    @Override
+    public void execute(DelegateExecution execution) {
+        // 执行发送邮件的具体逻辑
+        // 获取流程相关的值
+        System.out.println(execution.getEventName());
+        System.out.println(execution.getProcessDefinitionId());
+        System.out.println(execution.getProcessInstanceId());
+        // 获取流程变量
+        String username = (String) execution.getVariable("email");
+        // 也可以设置流程变量
+        execution.setVariable("name", "张三");
+        
+        // ... 处理业务逻辑 ...
+    }
+}
+```
+
+### 手工任务
+
+它的作用就是在 BPMN 图中留个痕迹（标记），表示这件事情线下去办且不用做表单记录。因此这种任务实际上不会做任何代码处理，就算画了，也是直接通过的。
+
 ## 历史任务 HistoricTaskInstance
 
 也就是查询历史记录，往往查询历史数据会涉及到两个类：
