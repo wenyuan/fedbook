@@ -1,5 +1,95 @@
 # Activiti7 监听器
 
+## 全局事件监听器（ActivitiEventListener）
+
+### 使用场景
+
+全局事件监听器可以监听整个流程引擎的所有事件，通过配置类全局注册，不需要在流程定义中配置。
+
+常用于全局性的业务处理，如审计日志、统计信息等
+
+### 代码示例
+
+首先创建一个全局事件监听器：
+
+```java
+import org.activiti.engine.delegate.event.ActivitiEvent;
+import org.activiti.engine.delegate.event.ActivitiEventListener;
+import org.activiti.engine.delegate.event.ActivitiEventType;
+import org.springframework.stereotype.Component;
+
+@Component
+public class GlobalActivitiEventListener implements ActivitiEventListener {
+    
+    @Autowired
+    private YourBusinessService businessService;
+    
+    @Override
+    public void onEvent(ActivitiEvent event) {
+        if (event.getType() == ActivitiEventType.TASK_COMPLETED) {
+            // 获取任务相关信息
+            TaskEntity task = (TaskEntity) ((ActivitiEntityEvent) event).getEntity();
+            String taskId = task.getId();
+            String processInstanceId = task.getProcessInstanceId();
+            String taskName = task.getName();
+            
+            // 调用业务方法
+            businessService.handleTaskCompletion(taskId, processInstanceId, taskName);
+        }
+    }
+    
+    @Override
+    public boolean isFailOnException() {
+        return false;
+    }
+}
+```
+
+在配置类中注册全局事件监听器：
+
+```java
+@Configuration
+public class ActivitiConfig {
+    
+    @Bean
+    public ProcessEngineConfigurationImpl processEngineConfiguration(GlobalActivitiEventListener eventListener) {
+        ProcessEngineConfigurationImpl configuration = new StandaloneProcessEngineConfiguration();
+        // ... 其他配置 ...
+        
+        // 添加全局事件监听器
+        configuration.setEventListeners(Collections.singletonList(eventListener));
+        
+        return configuration;
+    }
+}
+```
+
+这样只需配置一次，不需要修改 BPMN 文件，就可以根据需要灵活地过滤特定任务。
+
+比如监听所有任务节点的完成事件，并对特定任务进行特殊处理，可以在监听器中添加判断逻辑：
+
+```java
+@Override
+public void onEvent(ActivitiEvent event) {
+    if (event.getType() == ActivitiEventType.TASK_COMPLETED) {
+        TaskEntity task = (TaskEntity) ((ActivitiEntityEvent) event).getEntity();
+        
+        // 根据任务定义key进行不同处理
+        switch(task.getTaskDefinitionKey()) {
+            case "task1":
+                businessService.handleTask1Completion(task);
+                break;
+            case "task2":
+                businessService.handleTask2Completion(task);
+                break;
+            default:
+                businessService.handleDefaultTaskCompletion(task);
+        }
+    }
+}
+```
+
+
 ## 执行监听器（ExecutionListener）
 
 ### 使用场景
