@@ -27,7 +27,7 @@ module.exports = {
   '/backend/django/': require('../backend/django/sidebar'),
   '/backend/java/': require('../backend/java/sidebar'),
   '/backend/spring/': require('../backend/spring/sidebar'),
-  '/backend/deps/': require('../backend/deps/activiti7/sidebar'),
+  '/backend/deps/': require('../backend/deps/sidebar'),
   '/backend/mysql/': require('../backend/mysql/sidebar'),
   '/backend/redis/': require('../backend/redis/sidebar'),
   '/backend/elasticsearch/': require('../backend/elasticsearch/sidebar'),

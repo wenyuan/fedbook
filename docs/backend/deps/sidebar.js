@@ -24,5 +24,15 @@ module.exports = [
         path: '/backend/deps/activiti7/listener'
       },
     ]
+  },
+  {
+    title: 'Flowable7',
+    collapsable: true,
+    children: [
+      {
+        title: 'SpringBoot3 集成',
+        path: '/backend/deps/flowable7/used-in-springboot3'
+      }
+    ]
   }
 ]
