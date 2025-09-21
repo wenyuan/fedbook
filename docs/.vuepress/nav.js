@@ -110,6 +110,7 @@ module.exports = [
   {
     text: '项目相关',
     items: [
+      { text: '环境配置', link: '/project/environment/maven/' },
       { text: '解决方案', link: '/project/solutions/login/' },
       { text: '问题排查', link: '/project/troubleshooting/http-error-status-code/' }
     ]

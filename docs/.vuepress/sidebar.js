@@ -36,6 +36,7 @@ module.exports = {
   '/in-depth-learning/design-patterns/': require('../in-depth-learning/design-patterns/sidebar'),
   '/in-depth-learning/source-code/': require('../in-depth-learning/source-code/sidebar'),
   /* --------- 项目相关 --------- */
+  '/project/environment/': require('../project/environment/sidebar'),
   '/project/solutions/': require('../project/solutions/sidebar'),
   '/project/troubleshooting/': require('../project/troubleshooting/sidebar'),
   /* --------- 其它 --------- */
