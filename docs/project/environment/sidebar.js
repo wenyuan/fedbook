@@ -28,7 +28,7 @@ module.exports = [
     collapsable: false,
     children: [
       {
-        title: 'Node.js',
+        title: '单体 SpringBoot 项目',
         path: '/project/environment/single-spring-boot'
       }
     ]
