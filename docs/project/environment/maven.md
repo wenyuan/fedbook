@@ -40,23 +40,37 @@
       <url>http://my.repository.com/repo/path</url>
     </mirror>
      -->
-     <mirror>
-      <id>alimaven</id>
-      <name>aliyun maven</name>
-      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-      <mirrorOf>central</mirrorOf>        
-    </mirror>
+    <!-- 阿里云公共仓库（使用 HTTPS） -->
     <mirror>
-       <id>alimaven</id>
-       <mirrorOf>central</mirrorOf>
-       <name>aliyun maven</name>
-       <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+      <id>aliyunmaven</id>
+      <mirrorOf>*</mirrorOf>
+      <name>阿里云公共仓库</name>
+      <url>https://maven.aliyun.com/repository/public</url>
     </mirror>
+
+    <!-- 华为云镜像（备用） -->
     <mirror>
-      <id>repo2</id>
+      <id>huaweicloud</id>
+      <mirrorOf>*</mirrorOf>
+      <name>华为云公共仓库</name>
+      <url>https://repo.huaweicloud.com/repository/maven/</url>
+    </mirror>
+
+    <!-- Maven 中央仓库（最后备用） -->
+    <mirror>
+      <id>central-mirror</id>
       <mirrorOf>central</mirrorOf>
-      <name>Human Readable Name for this Mirror.</name>
-      <url>http://repo2.maven.org/maven2/</url>
+      <name>Maven Central</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </mirror>
+
+    <!-- 阻止 HTTP 协议 -->
+    <mirror>
+      <id>maven-default-http-blocker</id>
+      <mirrorOf>external:http:*</mirrorOf>
+      <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+      <url>http://0.0.0.0/</url>
+      <blocked>true</blocked>
     </mirror>
   </mirrors>
 ```
